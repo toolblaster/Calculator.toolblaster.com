@@ -9,17 +9,22 @@ body {
 
 .container {
     width: 90%;
-    max-width: 800px;
+    max-width: 950px;
     margin-left: auto;
     margin-right: auto;
 }
 
 /* Header and Navigation */
 .site-header {
+    /* CONSTRAINED LAYOUT */
+    max-width: 950px;
+    margin: 0 auto 1rem; /* Removed top margin */
+    width: 90%;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #eee;
     background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    padding: 0.75rem 0; /* Vertical padding only */
-    border-bottom: 1px solid #eee;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 .main-nav {
@@ -82,7 +87,7 @@ body {
 /* SEO Content Section Styles */
 .seo-content {
     padding: 2rem 0;
-    max-width: 800px;
+    max-width: 950px;
     margin: 0 auto;
 }
 
@@ -96,7 +101,7 @@ body {
 }
 
 .section-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem; /* Reduced font size */
     margin-bottom: 0.5rem;
 }
 
@@ -226,10 +231,16 @@ body {
 
 /* Footer Styles */
 .site-footer { 
+    /* CONSTRAINED LAYOUT */
+    max-width: 950px;
+    margin: 2rem auto 0; /* Removed bottom margin */
+    width: 90%;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+
+    /* ORIGINAL STYLES */
     background-color: #121212; 
     color: #a3a3a3; 
-    padding: 1.5rem 0;
-    margin-top: 2rem; 
     font-size: 0.9rem;
 }
 .footer-content { 
@@ -272,40 +283,51 @@ body {
     transform-origin: bottom left; 
 }
 
-/* Legal Pages */
+/* Legal Pages & Guide Content Styles */
 .legal-content { 
     background-color: #ffffff; 
-    padding: 2rem; 
+    padding: 1.5rem; /* Reduced padding for mobile */
     margin: 1.5rem auto;
     border-radius: 0.5rem; 
     box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
     border: 1px solid #eee; 
-    max-width: 800px; 
+    max-width: 950px; 
 }
 .legal-content h1 { 
-    font-size: 1.4rem;
+    font-size: 1.2rem; /* Reduced font size */
     font-weight: 700; 
     color: #121212; 
-    margin-bottom: 1.25rem; 
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #E34037; /* ACCENT LINE ADDED */
 }
 .legal-content h2 { 
-    font-size: 1.1rem;
+    font-size: 1.05rem; /* Reduced font size */
     font-weight: 600; 
     color: #121212; 
     margin-top: 1.5rem; 
     margin-bottom: 0.75rem; 
-    border-bottom: 1px solid #f0f0f0; 
+    border-bottom: 1px solid #E34037; /* ACCENT LINE ADDED */
     padding-bottom: 0.5rem; 
 }
 .legal-content p, .legal-content ul { 
     color: #525252; 
     margin-bottom: 1rem; 
     line-height: 1.6; 
-    font-size: 0.85rem;
+    font-size: 0.8rem; /* Reduced font size */
 }
 .legal-content ul { 
-    padding-left: 1.5rem; 
+    padding-left: 1.25rem; 
 }
+/* Responsive Table Styles */
+.legal-content table {
+    font-size: 0.7rem; /* Smaller font for table on mobile */
+    word-break: break-word;
+}
+.legal-content th, .legal-content td {
+    padding: 0.5rem; /* Reduced padding for mobile */
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
@@ -316,9 +338,29 @@ body {
     .footer-content { flex-direction: column; text-align: center; }
     .section-title { font-size: 1.3rem; }
     .section-title-secondary { font-size: 1.1rem; }
-    .legal-content h1 { font-size: 1.3rem; }
-    .legal-content h2 { font-size: 1.05rem; }
     .card-container {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Media query for larger screens to restore original sizes */
+@media (min-width: 768px) {
+    .legal-content {
+        padding: 2rem;
+    }
+    .legal-content h1 {
+        font-size: 1.4rem;
+    }
+    .legal-content h2 {
+        font-size: 1.1rem;
+    }
+    .legal-content p, .legal-content ul {
+        font-size: 0.85rem;
+    }
+    .legal-content table {
+        font-size: 0.85rem; /* Restore table font size */
+    }
+    .legal-content th, .legal-content td {
+        padding: 0.75rem; /* Restore table padding */
     }
 }
