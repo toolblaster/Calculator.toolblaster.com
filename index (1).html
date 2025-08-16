@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Calculator - Plan Your Future</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Calculator-Specific Stylesheet -->
+    <link rel="stylesheet" href="calculators/financial-calculator/calculator-style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header will be loaded here -->
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <!-- Financial Calculator Section -->
+        <div class="financial-calculator-wrapper">
+            <div class="bg-white shadow-lg rounded-xl p-2 sm:p-4 w-full border border-gray-200 mx-auto my-0 calculator-container">
+                <h1 id="calculatorTitle" class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">SIP Calculator</h1>
+                <p id="calculatorDescription" class="text-center text-gray-500 mb-3 text-xs">Calculate the future value of your SIP investments.</p>
+                
+                <div class="flex justify-center mb-3 flex-wrap gap-1">
+                    <button id="sipModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-blue-600 text-white shadow-md">SIP</button>
+                    <button id="lumpsumModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Lumpsum</button>
+                    <button id="swpModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">SWP</button>
+                    <button id="rdModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">RD</button>
+                    <button id="fdModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">FD</button>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
+                    <div class="space-y-2">
+                        <div id="sipSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg">
+                            <div>
+                                <label for="sipAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="sipAmountLabel">Monthly SIP Amount (₹)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="sipAmountSlider" min="500" max="50000" value="10000" step="500" class="w-full range-slider">
+                                    <input type="number" id="sipAmountInput" class="manual-input" value="10000" min="500" max="50000" step="500">
+                                </div>
+                                <p id="sipAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹500 - ₹50,000.</p>
+                            </div>
+                            <div>
+                                <label for="sipFrequency" class="block text-xs font-medium text-gray-600 mb-1">SIP Frequency</label>
+                                <select id="sipFrequency" class="w-full p-1 border border-gray-300 rounded-md text-xs font-semibold text-gray-700 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 shadow-sm">
+                                    <option value="monthly">Monthly</option>
+                                    <option value="quarterly">Quarterly</option>
+                                    <option value="half-yearly">Half-Yearly</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="sipIncreaseRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Annual Increase (%)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="sipIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider">
+                                    <input type="number" id="sipIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="lumpsumSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
+                            <div>
+                                <label for="lumpsumAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="lumpsumAmountLabel">Lumpsum Amount (₹)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="lumpsumAmountSlider" min="5000" max="10000000" value="500000" step="1000" class="w-full range-slider">
+                                    <input type="number" id="lumpsumAmountInput" class="manual-input" value="500000" min="5000" max="10000000" step="1000">
+                                </div>
+                                <p id="lumpsumAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹5,000 - ₹1 Crore.</p>
+                            </div>
+                        </div>
+                        <div id="rdSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
+                            <div>
+                                <label for="rdAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="rdAmountLabel">Monthly RD Amount (₹)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="rdAmountSlider" min="100" max="50000" value="5000" step="100" class="w-full range-slider">
+                                    <input type="number" id="rdAmountInput" class="manual-input" value="5000" min="100" max="50000" step="100">
+                                </div>
+                                <p id="rdAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹100 - ₹50,000.</p>
+                            </div>
+                            <div>
+                                <label for="rdFrequency" class="block text-xs font-medium text-gray-600 mb-1">RD Frequency</label>
+                                <select id="rdFrequency" class="w-full p-1 border border-gray-300 rounded-md text-xs font-semibold text-gray-700 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 shadow-sm">
+                                    <option value="monthly">Monthly</option>
+                                    <option value="quarterly">Quarterly</option>
+                                    <option value="half-yearly">Half-Yearly</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="rdIncreaseRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Annual Increase (%)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="rdIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider">
+                                    <input type="number" id="rdIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="fdSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
+                            <div>
+                                <label for="fdAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="fdAmountLabel">FD Amount (₹)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="fdAmountSlider" min="1000" max="10000000" value="100000" step="1000" class="w-full range-slider">
+                                    <input type="number" id="fdAmountInput" class="manual-input" value="100000" min="1000" max="10000000" step="1000">
+                                </div>
+                                <p id="fdAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1,000 - ₹1 Crore.</p>
+                            </div>
+                        </div>
+                        <div id="swpSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
+                            <div>
+                                <label for="initialCorpusSlider" class="block text-xs font-medium text-gray-600 mb-1" id="initialCorpusLabel">Initial Investment (₹)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="initialCorpusSlider" min="100000" max="50000000" value="2000000" step="10000" class="w-full range-slider">
+                                    <input type="number" id="initialCorpusInput" class="manual-input" value="2000000" min="100000" max="50000000" step="10000">
+                                </div>
+                                <p id="initialCorpusError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1 Lac - ₹5 Crore.</p>
+                            </div>
+                            <div>
+                                <label for="withdrawalAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Monthly Withdrawal (₹)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="withdrawalAmountSlider" min="1000" max="100000" value="20000" step="500" class="w-full range-slider">
+                                    <input type="number" id="withdrawalAmountInput" class="manual-input" value="20000" min="1000" max="100000" step="500">
+                                </div>
+                                <p id="withdrawalAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1,000 - ₹1 Lac.</p>
+                            </div>
+                            <div>
+                                <label for="withdrawalFrequency" class="block text-xs font-medium text-gray-600 mb-1">Withdrawal Frequency</label>
+                                <select id="withdrawalFrequency" class="w-full p-1 border border-gray-300 rounded-md text-xs font-semibold text-gray-700 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 shadow-sm">
+                                    <option value="monthly">Monthly</option>
+                                    <option value="quarterly">Quarterly</option>
+                                    <option value="half-yearly">Half-Yearly</option>
+                                    <option value="yearly">Yearly</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50/50 p-2 rounded-lg space-y-2">
+                            <div>
+                                <label for="returnRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="returnRateSlider" min="1" max="30" value="12" step="0.1" class="w-full range-slider">
+                                    <input type="number" id="returnRateInput" class="manual-input" value="12" min="1" max="30" step="0.1">
+                                </div>
+                                <p id="returnRateError" class="text-red-500 text-xxs mt-1 hidden">Rate must be between 1% - 30%.</p>
+                            </div>
+                            <div>
+                                <label for="investmentPeriodSlider" class="block text-xs font-medium text-gray-600 mb-1" id="periodLabel">Investment Period (Years)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="investmentPeriodSlider" min="1" max="40" value="10" class="w-full range-slider">
+                                    <input type="number" id="investmentPeriodInput" class="manual-input" value="10" min="1" max="40">
+                                </div>
+                                <p id="investmentPeriodError" class="text-red-500 text-xxs mt-1 hidden">Period must be between 1 - 40 years.</p>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50/50 p-2 rounded-lg">
+                            <div class="flex items-center justify-between">
+                                <label for="inflationToggle" class="text-xs font-medium text-gray-600">Adjust for Inflation</label>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="inflationToggle" class="sr-only peer">
+                                    <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+                                </label>
+                            </div>
+                            <div id="inflationInputGroup" class="mt-2 hidden">
+                                <label for="inflationRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Inflation Rate (p.a. %)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="inflationRateSlider" min="0" max="15" value="5" step="0.1" class="w-full range-slider">
+                                    <input type="number" id="inflationRateInput" class="manual-input" value="5" min="0" max="15" step="0.1">
+                                </div>
+                                <p id="inflationRateError" class="text-red-500 text-xxs mt-1 hidden">Rate must be between 0% - 15%.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <div id="sipSummary" class="bg-blue-50/50 p-2 rounded-lg" aria-live="polite">
+                            <h3 class="text-sm font-bold text-blue-800 mb-2 text-center">SIP Summary</h3>
+                            <div class="space-y-1 text-xs">
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountSIP" class="font-semibold text-blue-700">₹0</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsSIP" class="font-semibold text-green-700">₹0</span></div>
+                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueSIP" class="text-sm font-bold text-purple-700">₹0</span></div>
+                                <div id="realValueSectionSIP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueSIP" class="font-bold text-orange-700">₹0</span></div>
+                            </div>
+                        </div>
+                        <div id="lumpsumSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
+                            <h3 class="text-sm font-bold text-blue-800 mb-2 text-center">Lumpsum Summary</h3>
+                            <div class="space-y-1 text-xs">
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountLumpsum" class="font-semibold text-blue-700">₹0</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsLumpsum" class="font-semibold text-green-700">₹0</span></div>
+                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueLumpsum" class="text-sm font-bold text-purple-700">₹0</span></div>
+                                <div id="realValueSectionLumpsum" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueLumpsum" class="font-bold text-orange-700">₹0</span></div>
+                            </div>
+                        </div>
+                        <div id="rdSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
+                            <h3 class="text-sm font-bold text-blue-800 mb-2 text-center">RD Summary</h3>
+                            <div class="space-y-1 text-xs">
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountRD" class="font-semibold text-blue-700">₹0</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsRD" class="font-semibold text-green-700">₹0</span></div>
+                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueRD" class="text-sm font-bold text-purple-700">₹0</span></div>
+                                <div id="realValueSectionRD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueRD" class="font-bold text-orange-700">₹0</span></div>
+                            </div>
+                        </div>
+                        <div id="fdSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
+                            <h3 class="text-sm font-bold text-blue-800 mb-2 text-center">FD Summary</h3>
+                            <div class="space-y-1 text-xs">
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountFD" class="font-semibold text-blue-700">₹0</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsFD" class="font-semibold text-green-700">₹0</span></div>
+                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueFD" class="text-sm font-bold text-purple-700">₹0</span></div>
+                                <div id="realValueSectionFD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueFD" class="font-bold text-orange-700">₹0</span></div>
+                            </div>
+                        </div>
+                        <div id="swpSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
+                            <h3 class="text-sm font-bold text-blue-800 mb-2 text-center">SWP Summary</h3>
+                            <div class="space-y-1 text-xs">
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Initial Corpus:</span><span id="initialCorpusSWP" class="font-semibold text-blue-700">₹0</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Withdrawn:</span><span id="totalWithdrawnSWP" class="font-semibold text-green-700">₹0</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Interest:</span><span id="totalInterestSWP" class="font-semibold text-purple-700">₹0</span></div>
+                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Remaining:</span><span id="remainingCorpusSWP" class="text-sm font-bold text-red-700">₹0</span></div>
+                                <div id="corpusExhaustedInfo" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Exhausted After:</span><span id="exhaustionPeriodSWP" class="font-bold text-orange-700"></span></div>
+                                <div id="realValueSectionSWP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Remaining:</span><span id="realRemainingCorpusSWP" class="font-bold text-orange-700">₹0</span></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-center items-center h-32 sm:h-40 md:h-48 w-full relative mt-3">
+                            <canvas id="investmentDoughnutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center my-4">
+                    <button id="toggleGrowthTableBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Show Yearly Growth</button>
+                </div>
+                <div id="growthTableContainer" class="hidden overflow-x-auto bg-white rounded-lg shadow-md mt-4 p-4 border border-gray-200">
+                    <h3 class="text-center text-sm font-bold text-gray-800 mb-2">Yearly Investment Growth</h3>
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider">Year</th>
+                                <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider" id="tableHeaderInvested">Invested</th>
+                                <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider">Returns</th>
+                                <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider">Total Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="growthTableBody" class="bg-white divide-y divide-gray-200 text-xs">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="border-t border-gray-200 my-3 w-full"></div>
+                <p class="text-center text-gray-500 text-xxs leading-relaxed px-2">
+                    <strong>Disclaimer:</strong> This calculator is for informational purposes only and does not constitute financial advice.
+                </p>
+            </div>
+        </div>
+
+        <!-- SEO Content Section (Dynamically Loaded) -->
+        <section id="dynamic-content-area" class="seo-content"></section>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
