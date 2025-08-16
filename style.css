@@ -9,7 +9,7 @@ body {
 
 .container {
     width: 90%;
-    max-width: 950px;
+    max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -17,7 +17,7 @@ body {
 /* Header and Navigation */
 .site-header {
     /* CONSTRAINED LAYOUT */
-    max-width: 950px;
+    max-width: 1000px;
     margin: 0 auto 1rem; /* Removed top margin */
     width: 90%;
     padding: 0.75rem 1.5rem;
@@ -59,7 +59,7 @@ body {
     text-decoration: none;
     color: #121212;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.9rem; /* Reduced font size */
     transition: color 0.3s ease;
 }
 
@@ -87,7 +87,7 @@ body {
 /* SEO Content Section Styles */
 .seo-content {
     padding: 2rem 0;
-    max-width: 950px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -232,7 +232,7 @@ body {
 /* Footer Styles */
 .site-footer { 
     /* CONSTRAINED LAYOUT */
-    max-width: 950px;
+    max-width: 1000px;
     margin: 2rem auto 0; /* Removed bottom margin */
     width: 90%;
     padding: 1.5rem;
@@ -241,7 +241,7 @@ body {
     /* ORIGINAL STYLES */
     background-color: #121212; 
     color: #a3a3a3; 
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Reduced font size */
 }
 .footer-content { 
     display: flex; 
@@ -291,7 +291,7 @@ body {
     border-radius: 0.5rem; 
     box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
     border: 1px solid #eee; 
-    max-width: 950px; 
+    max-width: 1000px; 
 }
 .legal-content h1 { 
     font-size: 1.2rem; /* Reduced font size */
