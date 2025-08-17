@@ -50,6 +50,44 @@
             /* Changed hover color for consistency */
             color: #C22D2D; 
         }
+
+        /* Update card container for 4 items */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem; /* Increased gap for better spacing with 4 cards */
+        }
+
+        .content-card {
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+            text-decoration: none; /* Make the whole card a clickable link */
+            color: inherit;
+        }
+
+        .content-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 12px 16px rgba(0,0,0,0.08); 
+        }
+
+        .content-card h3 { 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            color: #121212; 
+            margin-bottom: 0.5rem; 
+        }
+
+        .content-card p {
+            font-size: 0.75rem;
+            color: #525252;
+            margin-bottom: 1rem;
+        }
     </style>
     <!-- Updated: JSON-LD Structured Data for both WebPage and FAQPage -->
     <script type="application/ld+json">
@@ -393,6 +431,14 @@
                     </div>
                     <h3>Plan Your Retirement</h3>
                     <p>Learn how to build a retirement corpus and create a steady income stream.</p>
+                    <span class="guide-link">Read More &rarr;</span>
+                </a>
+                <a href="goal-based-investing.html" class="content-card">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><path d="M15 3.34a10 10 0 0 1 4.24 4.24M20.66 9a10 10 0 0 1-.34 4.24M20.66 15a10 10 0 0 1-4.24 4.24M15 20.66a10 10 0 0 1-4.24-.34M9 20.66a10 10 0 0 1-4.24-4.24M3.34 15a10 10 0 0 1 .34-4.24M3.34 9a10 10 0 0 1 4.24-4.24M9 3.34a10 10 0 0 1 4.24.34"/></svg>
+                    </div>
+                    <h3>Goal-Based Investing</h3>
+                    <p>A simple guide to planning for your financial goals, big or small.</p>
                     <span class="guide-link">Read More &rarr;</span>
                 </a>
             </div>
