@@ -49,6 +49,7 @@ body {
 .nav-links {
     list-style: none;
     display: flex;
+    align-items: center;
     margin: 0;
     padding: 0;
 }
@@ -57,7 +58,7 @@ body {
     margin-left: 1.5rem;
 }
 
-.nav-links a {
+.nav-links > li > a {
     text-decoration: none;
     color: #121212;
     font-weight: 500;
@@ -67,12 +68,12 @@ body {
     padding-bottom: 5px; /* Space for the underline */
 }
 
-/* --- ADDED Underline Effect --- */
-.nav-links a::after {
+/* --- UPDATED Underline Effect --- */
+.nav-links > li > a::after {
     content: '';
     position: absolute;
     width: 100%;
-    transform: scaleX(0);
+    transform: scaleX(0); /* Make underline hidden by default */
     height: 2px;
     bottom: 0;
     left: 0;
@@ -81,15 +82,91 @@ body {
     transition: transform 0.3s ease-out;
 }
 
-.nav-links a:hover {
+.nav-links > li > a:hover,
+.nav-links > li > a.active {
     color: #E34037;
 }
 
-.nav-links a:hover::after {
-    transform: scaleX(1);
+.nav-links > li > a:hover::after,
+.nav-links > li > a.active::after {
+    transform: scaleX(1); /* Show underline on hover/active */
     transform-origin: bottom left;
 }
 /* --- END of Underline Effect --- */
+
+/* --- UPDATED Dropdown Menu Styles --- */
+.dropdown {
+    position: relative;
+}
+
+.dropdown > a {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem; /* Space between text and icon */
+}
+
+/* Hide the old text-based arrow */
+.dropdown > a::after {
+    content: '';
+    display: none;
+}
+
+.dropdown-icon {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position right below the parent */
+    left: 0;
+    background-color: #ffffff;
+    min-width: 220px; /* Wider for better readability */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 10; /* Ensure it's on top */
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    border-radius: 0.5rem;
+    border: 1px solid #f0f0f0;
+}
+
+/* Show on hover for desktop */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Rotate icon on hover (desktop) or when open (mobile) */
+.dropdown:hover .dropdown-icon,
+.dropdown > a.open .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    padding: 0.4rem 1.2rem; 
+    display: block;
+    white-space: nowrap;
+    text-decoration: none;
+    color: #121212;
+    font-weight: 500;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    /* Make red accent line transparent by default */
+    border-left: 3px solid transparent;
+}
+
+/* Hover and active effect for dropdown items */
+.dropdown-menu li a:hover,
+.dropdown-menu li a.active {
+    background-color: #fef2f2; /* Light red background */
+    color: #C22D2D; /* Darker red text */
+    border-left-color: #E34037; /* Show red accent line on hover/active */
+}
+/* --- END of Dropdown Styles --- */
 
 
 .hamburger {
@@ -430,13 +507,42 @@ body {
         margin: 0; /* Remove vertical margins */
         width: 100%;
     }
-    .nav-links a {
+    .nav-links > li > a {
         display: block;
         padding: 0.4rem 1rem; /* Reduced padding for less space */
         text-align: left; /* Align text to the left */
         font-size: 0.8rem; /* Slightly smaller font for compact view */
     }
     /* --- END OF UPDATED STYLES --- */
+
+    /* --- ADDED Dropdown Mobile Styles --- */
+    .dropdown {
+        position: static; /* Reset position for in-flow layout */
+    }
+    
+    .dropdown > a {
+        position: relative;
+    }
+
+    .dropdown > a .dropdown-icon {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .dropdown-menu {
+        position: static; /* Reset position */
+        display: none; /* JS will handle display */
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        border-top: 1px solid #f0f0f0;
+        border-radius: 0;
+        padding: 0.5rem 0 0.5rem 1rem; /* Indent nested items */
+        background-color: #f9fafb; /* Slightly different bg for visual hierarchy */
+    }
+    /* --- END of Dropdown Mobile Styles --- */
 
     .hamburger { 
         display: block; 
