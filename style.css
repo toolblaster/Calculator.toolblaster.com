@@ -1,7 +1,7 @@
 /* General Body Styles */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f7f7f7;
+    background-color: #f9fafb;
     color: #121212;
     margin: 0;
     line-height: 1.6;
@@ -257,18 +257,20 @@ body {
 
 /* Footer Styles */
 .site-footer { 
-    /* CONSTRAINED LAYOUT */
     max-width: 1000px;
-    margin: 2rem auto 0; /* Removed bottom margin */
+    margin: 0.5rem auto 0;
     width: 90%;
-    padding: 1.5rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
-
-    /* ORIGINAL STYLES */
-    background-color: #121212; 
+    
+    /* Updated for the new color scheme */
+    border: none;
+    box-shadow: none;
+    background-color: #121212;
     color: #a3a3a3; 
-    font-size: 0.8rem; /* Reduced font size */
+    font-size: 0.8rem; 
 }
+
 .footer-content { 
     display: flex; 
     justify-content: space-between; 
@@ -453,6 +455,7 @@ body {
         font-size: 1.1rem; /* Adjusted font size */
     }
     .legal-content p, .legal-content ul {
+        color: #525252;
         font-size: 0.8rem;
     }
     .legal-content table {
