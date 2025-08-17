@@ -417,11 +417,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           else if (newMode === 'goal') { 
             targetAmountSlider.value = 5000000; targetAmountInput.value = 5000000; goalReturnRateSlider.value = 12; goalReturnRateInput.value = 12; goalPeriodSlider.value = 10; goalPeriodInput.value = 10; 
-            // Goal Planner uses its own inputs, so copy values to the global ones for inflation toggle
-            returnRateSlider.value = goalReturnRateSlider.value;
-            returnRateInput.value = goalReturnRateInput.value;
-            investmentPeriodSlider.value = goalPeriodSlider.value;
-            investmentPeriodInput.value = goalPeriodInput.value;
             getElem('inflationToggle').disabled = false;
           }
           
@@ -454,23 +449,16 @@ document.addEventListener('DOMContentLoaded', () => {
            { slider: goalPeriodSlider, input: goalPeriodInput }
          ];
           
+          // --- UPDATED EVENT LISTENERS ---
           inputs.forEach(({ slider, input }) => { 
             if (slider && input) { 
               slider.addEventListener('input', () => { 
                 input.value = slider.value; 
-                if (slider.id === 'goalReturnRateSlider' || slider.id === 'goalPeriodSlider') {
-                  returnRateSlider.value = slider.value;
-                  returnRateInput.value = slider.value;
-                }
                 updateSliderFill(slider); 
                 debouncedUpdate(); 
               }); 
               input.addEventListener('input', () => { 
                 slider.value = input.value; 
-                if (input.id === 'goalReturnRateInput' || input.id === 'goalPeriodInput') {
-                  returnRateSlider.value = input.value;
-                  returnRateInput.value = input.value;
-                }
                 updateSliderFill(slider); 
                 debouncedUpdate(); 
               }); 
@@ -482,21 +470,6 @@ document.addEventListener('DOMContentLoaded', () => {
               el.addEventListener('change', () => { 
                 if (el.id === 'inflationToggle') {
                   inflationInputGroup.classList.toggle('hidden', !inflationToggle.checked);
-                  // Syncing inputs for Goal Planner
-                  if(currentMode === 'goal') {
-                    if (inflationToggle.checked) {
-                        returnRateSlider.value = goalReturnRateSlider.value;
-                        returnRateInput.value = goalReturnRateInput.value;
-                        investmentPeriodSlider.value = goalPeriodSlider.value;
-                        investmentPeriodInput.value = goalPeriodInput.value;
-                    } else {
-                        // Reset global sliders when inflation is off for Goal Planner
-                        returnRateSlider.value = 12;
-                        returnRateInput.value = 12;
-                        investmentPeriodSlider.value = 10;
-                        investmentPeriodInput.value = 10;
-                    }
-                  }
                 }
                 updateCalculator(); 
               }); 
@@ -520,7 +493,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- SECTION 4: MOBILE NAVIGATION ---
-    // Added this new section to handle the mobile menu.
     const setupMobileMenu = () => {
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -533,7 +505,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Call the function to set up the mobile menu after components are loaded.
-    // We use a small delay to ensure the header is in the DOM.
     setTimeout(setupMobileMenu, 200);
 
 });
