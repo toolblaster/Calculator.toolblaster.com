@@ -38,57 +38,41 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- SECTION 2: PAGE INITIALIZATION ---
 
     const initializePage = () => {
-        // Create a list of components to load. Header and footer are universal.
         const loadPromises = [
             loadComponent('assets/components/header.html', 'header-placeholder'),
             loadComponent('assets/components/footer.html', 'footer-placeholder')
         ];
 
-        // IMPORTANT: Only try to load the main content if the placeholder exists.
         if (document.getElementById('dynamic-content-area')) {
             loadPromises.push(loadComponent('assets/components/content.html', 'dynamic-content-area'));
         }
 
-        // Load all required components for the current page.
-        Promise.all(loadPromises).then(() => {
-            // Initialize mobile menu on every page (after header is loaded)
-            const hamburger = document.querySelector('.hamburger');
-            const navLinks = document.querySelector('.nav-links');
-            if (hamburger && navLinks) {
-                hamburger.addEventListener('click', () => {
-                    hamburger.classList.toggle('active');
-                    navLinks.classList.toggle('active');
-                });
-            }
-
-            // CONDITIONALLY initialize the calculator
-            const calculatorContainer = document.querySelector('.calculator-container');
-            if (calculatorContainer) {
-                // This code will ONLY run if the calculator exists on the page (i.e., the homepage)
-                initializeCalculator();
-            }
-        });
+        const calculatorContainer = document.querySelector('.calculator-container');
+        if (calculatorContainer) {
+            initializeCalculator();
+        }
     };
 
     initializePage();
 
-
     // --- SECTION 3: Financial Calculator Logic ---
-    // This function is defined on every page, but it is only CALLED on the homepage.
-
     function initializeCalculator() {
         'use strict';
         const getElem = (id) => document.getElementById(id);
         const sipModeBtn = getElem('sipModeBtn');
         const lumpsumModeBtn = getElem('lumpsumModeBtn');
+        const swpModeBtn = getElem('swpModeBtn');
         const rdModeBtn = getElem('rdModeBtn');
         const fdModeBtn = getElem('fdModeBtn');
-        const swpModeBtn = getElem('swpModeBtn');
+        const goalModeBtn = getElem('goalModeBtn');
+        
         const sipSection = getElem('sipSection');
         const lumpsumSection = getElem('lumpsumSection');
         const rdSection = getElem('rdSection');
         const fdSection = getElem('fdSection');
         const swpSection = getElem('swpSection');
+        const goalSection = getElem('goalSection');
+
         const sipAmountSlider = getElem('sipAmountSlider');
         const sipAmountInput = getElem('sipAmountInput');
         const sipFrequencySelect = getElem('sipFrequency');
@@ -108,6 +92,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const withdrawalAmountSlider = getElem('withdrawalAmountSlider');
         const withdrawalAmountInput = getElem('withdrawalAmountInput');
         const withdrawalFrequencySelect = getElem('withdrawalFrequency');
+        
+        const targetAmountSlider = getElem('targetAmountSlider');
+        const targetAmountInput = getElem('targetAmountInput');
+        const goalReturnRateSlider = getElem('goalReturnRateSlider');
+        const goalReturnRateInput = getElem('goalReturnRateInput');
+        const goalPeriodSlider = getElem('goalPeriodSlider');
+        const goalPeriodInput = getElem('goalPeriodInput');
+
         const returnRateSlider = getElem('returnRateSlider');
         const returnRateInput = getElem('returnRateInput');
         const investmentPeriodSlider = getElem('investmentPeriodSlider');
@@ -116,13 +108,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const inflationInputGroup = getElem('inflationInputGroup');
         const inflationRateSlider = getElem('inflationRateSlider');
         const inflationRateInput = getElem('inflationRateInput');
+
         const errorMessages = {
           sipAmount: getElem('sipAmountError'), lumpsumAmount: getElem('lumpsumAmountError'),
           rdAmount: getElem('rdAmountError'), fdAmount: getElem('fdAmountError'),
           initialCorpus: getElem('initialCorpusError'), withdrawalAmount: getElem('withdrawalAmountError'),
           returnRate: getElem('returnRateError'), investmentPeriod: getElem('investmentPeriodError'),
-          inflationRate: getElem('inflationRateError')
+          inflationRate: getElem('inflationRateError'),
+          targetAmount: getElem('targetAmountError'), goalReturnRate: getElem('goalReturnRateError'), goalPeriod: getElem('goalPeriodError')
         };
+        
         const calculatorTitle = getElem('calculatorTitle');
         const calculatorDescription = getElem('calculatorDescription');
         const periodLabel = getElem('periodLabel');
@@ -160,6 +155,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const realRemainingCorpusSWP = getElem('realRemainingCorpusSWP');
         const corpusExhaustedInfo = getElem('corpusExhaustedInfo');
         const exhaustionPeriodSWP = getElem('exhaustionPeriodSWP');
+        const goalSummary = getElem('goalSummary');
+        const targetAmountGoal = getElem('targetAmountGoal');
+        const totalInvestmentGoal = getElem('totalInvestmentGoal');
+        const expectedReturnsGoal = getElem('expectedReturnsGoal');
+        const monthlyInvestmentGoal = getElem('monthlyInvestmentGoal');
+
         const growthTableContainer = getElem('growthTableContainer');
         const growthTableBody = getElem('growthTableBody');
         const toggleGrowthTableBtn = getElem('toggleGrowthTableBtn');
@@ -185,14 +186,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function updateCalculator() {
-          let isFormValid = validateSlider(returnRateSlider, errorMessages.returnRate) && validateSlider(investmentPeriodSlider, errorMessages.investmentPeriod);
-          if (inflationToggle.checked) isFormValid = isFormValid && validateSlider(inflationRateSlider, errorMessages.inflationRate);
+          let isFormValid = true;
+          // Dynamically validate sliders based on the current mode
+          if (currentMode !== 'goal') {
+              isFormValid = validateSlider(returnRateSlider, errorMessages.returnRate) && validateSlider(investmentPeriodSlider, errorMessages.investmentPeriod);
+              if (inflationToggle.checked) isFormValid = isFormValid && validateSlider(inflationRateSlider, errorMessages.inflationRate);
+          } else {
+              isFormValid = validateSlider(goalReturnRateSlider, errorMessages.goalReturnRate) && validateSlider(goalPeriodSlider, errorMessages.goalPeriod) && validateSlider(targetAmountSlider, errorMessages.targetAmount);
+              if (inflationToggle.checked) isFormValid = isFormValid && validateSlider(inflationRateSlider, errorMessages.inflationRate);
+          }
+          
           let yearlyGrowthData = [];
-          const annualReturnRate = parseFloat(returnRateSlider.value) / 100;
+          
+          // Re-establish rate and period variables based on current mode
+          const annualReturnRate = (currentMode === 'goal' ? parseFloat(goalReturnRateSlider.value) : parseFloat(returnRateSlider.value)) / 100;
+          const investmentPeriodYears = (currentMode === 'goal' ? parseFloat(goalPeriodSlider.value) : parseFloat(investmentPeriodSlider.value));
+          
           const annualInflationRate = inflationToggle.checked ? parseFloat(inflationRateSlider.value) / 100 : 0;
-          const investmentPeriodYears = parseFloat(investmentPeriodSlider.value);
-          if (currentMode === 'swp') { growthTableContainer.classList.add('hidden'); toggleGrowthTableBtn.classList.add('hidden'); } else { toggleGrowthTableBtn.classList.remove('hidden'); }
-          if (currentMode === 'fd' || currentMode === 'lumpsum') { tableHeaderInvested.textContent = 'Principal'; } else { tableHeaderInvested.textContent = 'Invested'; }
+          
+          if (currentMode === 'swp' || currentMode === 'goal') { 
+            growthTableContainer.classList.add('hidden'); 
+            toggleGrowthTableBtn.classList.add('hidden'); 
+          } else { 
+            toggleGrowthTableBtn.classList.remove('hidden'); 
+          }
+          
+          if (currentMode === 'fd' || currentMode === 'lumpsum') { 
+            tableHeaderInvested.textContent = 'Principal'; 
+          } else { 
+            tableHeaderInvested.textContent = 'Invested'; 
+          }
+          
           if (currentMode === 'sip') {
             isFormValid = isFormValid && validateSlider(sipAmountSlider, errorMessages.sipAmount);
             if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
@@ -323,6 +347,42 @@ document.addEventListener('DOMContentLoaded', () => {
               realValueSectionSWP.classList.remove('hidden');
             } else { realValueSectionSWP.classList.add('hidden'); }
             updateDoughnutChart([totalWithdrawn, totalInterest, corpus], ['Withdrawn', 'Interest', 'Remaining'], ['#10B981', '#6366F1', '#EF4444']);
+          } else if (currentMode === 'goal') {
+            isFormValid = isFormValid && validateSlider(targetAmountSlider, errorMessages.targetAmount) && validateSlider(goalReturnRateSlider, errorMessages.goalReturnRate) && validateSlider(goalPeriodSlider, errorMessages.goalPeriod);
+            if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
+
+            let targetAmount = parseFloat(targetAmountSlider.value);
+            const annualRate = parseFloat(goalReturnRateSlider.value) / 100;
+            const years = parseFloat(goalPeriodSlider.value);
+            const months = years * 12;
+
+            const monthlyRate = annualRate / 12;
+            let monthlyInvestment;
+            
+            // Fix: Adjust the target amount for inflation
+            let inflatedTargetAmount = targetAmount;
+            if (inflationToggle.checked) {
+                const inflationRate = parseFloat(inflationRateSlider.value) / 100;
+                inflatedTargetAmount = targetAmount * Math.pow(1 + inflationRate, years);
+            }
+
+            if (monthlyRate === 0) {
+                monthlyInvestment = inflatedTargetAmount / months;
+            } else {
+                monthlyInvestment = (inflatedTargetAmount * monthlyRate) / ((Math.pow(1 + monthlyRate, months) - 1) * (1 + monthlyRate));
+            }
+            
+            const totalInvestment = monthlyInvestment * months;
+            const totalCorpus = monthlyInvestment * (Math.pow(1 + monthlyRate, months + 1) - (1 + monthlyRate)) / monthlyRate;
+            const expectedReturns = totalCorpus - totalInvestment;
+
+            targetAmountGoal.textContent = formatCurrency(targetAmount);
+            totalInvestmentGoal.textContent = formatCurrency(totalInvestment);
+            expectedReturnsGoal.textContent = formatCurrency(expectedReturns);
+            monthlyInvestmentGoal.textContent = formatCurrency(monthlyInvestment);
+            
+            // Fix: Updated chart colors to match the output summary colors
+            updateDoughnutChart([totalInvestment, expectedReturns], ['Total Investment', 'Expected Returns'], ['#22C55E', '#6366F1']);
           }
         }
 
@@ -330,25 +390,126 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function switchMode(newMode) {
           currentMode = newMode;
-          [sipSection, lumpsumSection, rdSection, fdSection, swpSection, sipSummary, lumpsumSummary, rdSummary, fdSummary, swpSummary].forEach(el => el.classList.add('hidden'));
+          [sipSection, lumpsumSection, rdSection, fdSection, swpSection, goalSection, sipSummary, lumpsumSummary, rdSummary, fdSummary, swpSummary, goalSummary].forEach(el => el.classList.add('hidden'));
           const activeClasses = 'bg-blue-600 text-white shadow-md'.split(' ');
           const inactiveClasses = 'bg-gray-200 text-gray-700 hover:bg-gray-300'.split(' ');
-          [sipModeBtn, lumpsumModeBtn, rdModeBtn, fdModeBtn, swpModeBtn].forEach(btn => { btn.classList.remove(...activeClasses, ...inactiveClasses); btn.classList.add(...(btn.id.startsWith(newMode) ? activeClasses : inactiveClasses)); });
-          if (newMode === 'sip') { sipAmountSlider.value = 10000; sipAmountInput.value = 10000; sipIncreaseRateSlider.value = 0; sipIncreaseRateInput.value = 0; returnRateSlider.value = 12; returnRateInput.value = 12; } else if (newMode === 'lumpsum') { lumpsumAmountSlider.value = 500000; lumpsumAmountInput.value = 500000; returnRateSlider.value = 10; returnRateInput.value = 10; } else if (newMode === 'rd') { rdAmountSlider.value = 5000; rdAmountInput.value = 5000; rdIncreaseRateSlider.value = 0; rdIncreaseRateInput.value = 0; returnRateSlider.value = 6.5; returnRateInput.value = 6.5; } else if (newMode === 'fd') { fdAmountSlider.value = 100000; fdAmountInput.value = 100000; returnRateSlider.value = 7; returnRateInput.value = 7; } else if (newMode === 'swp') { initialCorpusSlider.value = 2000000; initialCorpusInput.value = 2000000; withdrawalAmountSlider.value = 20000; withdrawalAmountInput.value = 20000; returnRateSlider.value = 8; returnRateInput.value = 8; }
-          if (newMode === 'sip') { sipSection.classList.remove('hidden'); sipSummary.classList.remove('hidden'); calculatorTitle.textContent = 'SIP Calculator'; calculatorDescription.textContent = 'Calculate the future value of your SIP investments.'; periodLabel.textContent = 'Investment Period (Years)'; toggleGrowthTableBtn.textContent = 'Show Yearly Growth'; } else if (newMode === 'lumpsum') { lumpsumSection.classList.remove('hidden'); lumpsumSummary.classList.remove('hidden'); calculatorTitle.textContent = 'Lumpsum Calculator'; calculatorDescription.textContent = 'Calculate the future value of your one-time lumpsum investment.'; periodLabel.textContent = 'Investment Period (Years)'; toggleGrowthTableBtn.textContent = 'Show Yearly Growth'; } else if (newMode === 'rd') { rdSection.classList.remove('hidden'); rdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'RD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your recurring deposits.'; periodLabel.textContent = 'Investment Period (Years)'; toggleGrowthTableBtn.textContent = 'Show Yearly Growth'; } else if (newMode === 'fd') { fdSection.classList.remove('hidden'); fdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'FD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your fixed deposit.'; periodLabel.textContent = 'Investment Period (Years)'; toggleGrowthTableBtn.textContent = 'Show Yearly Growth'; } else if (newMode === 'swp') { swpSection.classList.remove('hidden'); swpSummary.classList.remove('hidden'); calculatorTitle.textContent = 'SWP Calculator'; calculatorDescription.textContent = 'Calculate your Systematic Withdrawal Plan returns and remaining corpus.'; periodLabel.textContent = 'Withdrawal Period (Years)'; growthTableContainer.classList.add('hidden'); toggleGrowthTableBtn.classList.add('hidden'); }
+          [sipModeBtn, lumpsumModeBtn, rdModeBtn, fdModeBtn, swpModeBtn, goalModeBtn].forEach(btn => { btn.classList.remove(...activeClasses, ...inactiveClasses); btn.classList.add(...(btn.id.startsWith(newMode) ? activeClasses : inactiveClasses)); });
+          
+          if (newMode === 'sip') { 
+            sipAmountSlider.value = 10000; sipAmountInput.value = 10000; sipIncreaseRateSlider.value = 0; sipIncreaseRateInput.value = 0; returnRateSlider.value = 12; returnRateInput.value = 12; investmentPeriodSlider.value = 10; investmentPeriodInput.value = 10; 
+            getElem('inflationToggle').disabled = false;
+          } 
+          else if (newMode === 'lumpsum') { 
+            lumpsumAmountSlider.value = 500000; lumpsumAmountInput.value = 500000; returnRateSlider.value = 10; returnRateInput.value = 10; investmentPeriodSlider.value = 10; investmentPeriodInput.value = 10; 
+            getElem('inflationToggle').disabled = false;
+          } 
+          else if (newMode === 'rd') { 
+            rdAmountSlider.value = 5000; rdAmountInput.value = 5000; rdIncreaseRateSlider.value = 0; rdIncreaseRateInput.value = 0; returnRateSlider.value = 6.5; returnRateInput.value = 6.5; investmentPeriodSlider.value = 10; investmentPeriodInput.value = 10; 
+            getElem('inflationToggle').disabled = false;
+          } 
+          else if (newMode === 'fd') { 
+            fdAmountSlider.value = 100000; fdAmountInput.value = 100000; returnRateSlider.value = 7; returnRateInput.value = 7; investmentPeriodSlider.value = 5; investmentPeriodInput.value = 5; 
+            getElem('inflationToggle').disabled = false;
+          } 
+          else if (newMode === 'swp') { 
+            initialCorpusSlider.value = 2000000; initialCorpusInput.value = 2000000; withdrawalAmountSlider.value = 20000; withdrawalAmountInput.value = 20000; returnRateSlider.value = 8; returnRateInput.value = 8; investmentPeriodSlider.value = 20; investmentPeriodInput.value = 20; 
+            getElem('inflationToggle').disabled = false;
+          }
+          else if (newMode === 'goal') { 
+            targetAmountSlider.value = 5000000; targetAmountInput.value = 5000000; goalReturnRateSlider.value = 12; goalReturnRateInput.value = 12; goalPeriodSlider.value = 10; goalPeriodInput.value = 10; 
+            // Goal Planner uses its own inputs, so copy values to the global ones for inflation toggle
+            returnRateSlider.value = goalReturnRateSlider.value;
+            returnRateInput.value = goalReturnRateInput.value;
+            investmentPeriodSlider.value = goalPeriodSlider.value;
+            investmentPeriodInput.value = goalPeriodInput.value;
+            getElem('inflationToggle').disabled = false;
+          }
+          
+          if (newMode === 'sip') { sipSection.classList.remove('hidden'); sipSummary.classList.remove('hidden'); calculatorTitle.textContent = 'SIP Calculator'; calculatorDescription.textContent = 'Calculate the future value of your SIP investments.'; periodLabel.textContent = 'Investment Period (Years)'; toggleGrowthTableBtn.textContent = 'Show Yearly Growth'; } 
+          else if (newMode === 'lumpsum') { lumpsumSection.classList.remove('hidden'); lumpsumSummary.classList.remove('hidden'); calculatorTitle.textContent = 'Lumpsum Calculator'; calculatorDescription.textContent = 'Calculate the future value of your one-time lumpsum investment.'; periodLabel.textContent = 'Investment Period (Years)'; toggleGrowthTableBtn.textContent = 'Show Yearly Growth'; } 
+          else if (newMode === 'rd') { rdSection.classList.remove('hidden'); rdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'RD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your recurring deposits.'; periodLabel.textContent = 'Investment Period (Years)'; toggleGrowthTableBtn.textContent = 'Show Yearly Growth'; } 
+          else if (newMode === 'fd') { fdSection.classList.remove('hidden'); fdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'FD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your fixed deposit.'; periodLabel.textContent = 'Investment Period (Years)'; toggleGrowthTableBtn.textContent = 'Show Yearly Growth'; } 
+          else if (newMode === 'swp') { swpSection.classList.remove('hidden'); swpSummary.classList.remove('hidden'); calculatorTitle.textContent = 'SWP Calculator'; calculatorDescription.textContent = 'Calculate your Systematic Withdrawal Plan returns and remaining corpus.'; periodLabel.textContent = 'Withdrawal Period (Years)'; growthTableContainer.classList.add('hidden'); toggleGrowthTableBtn.classList.add('hidden'); }
+          else if (newMode === 'goal') { goalSection.classList.remove('hidden'); goalSummary.classList.remove('hidden'); calculatorTitle.textContent = 'Goal Planner'; calculatorDescription.textContent = 'Calculate the monthly investment needed to reach your financial goal.'; periodLabel.textContent = 'Investment Period (Years)'; }
+
           document.querySelectorAll('.range-slider').forEach(updateSliderFill);
           updateCalculator();
         }
 
         function setupEventListeners() {
-          const inputs = [ { slider: sipAmountSlider, input: sipAmountInput }, { slider: lumpsumAmountSlider, input: lumpsumAmountInput }, { slider: rdAmountSlider, input: rdAmountInput }, { slider: fdAmountSlider, input: fdAmountInput }, { slider: initialCorpusSlider, input: initialCorpusInput }, { slider: withdrawalAmountSlider, input: withdrawalAmountInput }, { slider: returnRateSlider, input: returnRateInput }, { slider: investmentPeriodSlider, input: investmentPeriodInput }, { slider: inflationRateSlider, input: inflationRateInput }, { slider: sipIncreaseRateSlider, input: sipIncreaseRateInput }, { slider: rdIncreaseRateSlider, input: rdIncreaseRateInput } ];
-          inputs.forEach(({ slider, input }) => { if (slider && input) { slider.addEventListener('input', () => { input.value = slider.value; updateSliderFill(slider); debouncedUpdate(); }); input.addEventListener('input', () => { slider.value = input.value; updateSliderFill(slider); debouncedUpdate(); }); } });
-          [sipFrequencySelect, rdFrequencySelect, withdrawalFrequencySelect, inflationToggle].forEach(el => { if (el) { el.addEventListener('change', () => { if (el.id === 'inflationToggle') inflationInputGroup.classList.toggle('hidden', !inflationToggle.checked); updateCalculator(); }); } });
+          const inputs = [ 
+           { slider: sipAmountSlider, input: sipAmountInput }, 
+           { slider: lumpsumAmountSlider, input: lumpsumAmountInput }, 
+           { slider: rdAmountSlider, input: rdAmountInput }, 
+           { slider: fdAmountSlider, input: fdAmountInput }, 
+           { slider: initialCorpusSlider, input: initialCorpusInput }, 
+           { slider: withdrawalAmountSlider, input: withdrawalAmountInput }, 
+           { slider: returnRateSlider, input: returnRateInput }, 
+           { slider: investmentPeriodSlider, input: investmentPeriodInput }, 
+           { slider: inflationRateSlider, input: inflationRateInput }, 
+           { slider: sipIncreaseRateSlider, input: sipIncreaseRateInput }, 
+           { slider: rdIncreaseRateSlider, input: rdIncreaseRateInput },
+           { slider: targetAmountSlider, input: targetAmountInput }, 
+           { slider: goalReturnRateSlider, input: goalReturnRateInput }, 
+           { slider: goalPeriodSlider, input: goalPeriodInput }
+         ];
+          
+          inputs.forEach(({ slider, input }) => { 
+            if (slider && input) { 
+              slider.addEventListener('input', () => { 
+                input.value = slider.value; 
+                if (slider.id === 'goalReturnRateSlider' || slider.id === 'goalPeriodSlider') {
+                  returnRateSlider.value = slider.value;
+                  returnRateInput.value = slider.value;
+                }
+                updateSliderFill(slider); 
+                debouncedUpdate(); 
+              }); 
+              input.addEventListener('input', () => { 
+                slider.value = input.value; 
+                if (input.id === 'goalReturnRateInput' || input.id === 'goalPeriodInput') {
+                  returnRateSlider.value = input.value;
+                  returnRateInput.value = input.value;
+                }
+                updateSliderFill(slider); 
+                debouncedUpdate(); 
+              }); 
+            } 
+          });
+          
+          [sipFrequencySelect, rdFrequencySelect, withdrawalFrequencySelect, inflationToggle].forEach(el => { 
+            if (el) { 
+              el.addEventListener('change', () => { 
+                if (el.id === 'inflationToggle') {
+                  inflationInputGroup.classList.toggle('hidden', !inflationToggle.checked);
+                  // Syncing inputs for Goal Planner
+                  if(currentMode === 'goal') {
+                    if (inflationToggle.checked) {
+                        returnRateSlider.value = goalReturnRateSlider.value;
+                        returnRateInput.value = goalReturnRateInput.value;
+                        investmentPeriodSlider.value = goalPeriodSlider.value;
+                        investmentPeriodInput.value = goalPeriodInput.value;
+                    } else {
+                        // Reset global sliders when inflation is off for Goal Planner
+                        returnRateSlider.value = 12;
+                        returnRateInput.value = 12;
+                        investmentPeriodSlider.value = 10;
+                        investmentPeriodInput.value = 10;
+                    }
+                  }
+                }
+                updateCalculator(); 
+              }); 
+            } 
+          });
+          
           sipModeBtn.addEventListener('click', () => switchMode('sip'));
           lumpsumModeBtn.addEventListener('click', () => switchMode('lumpsum'));
           rdModeBtn.addEventListener('click', () => switchMode('rd'));
           fdModeBtn.addEventListener('click', () => switchMode('fd'));
           swpModeBtn.addEventListener('click', () => switchMode('swp'));
+          goalModeBtn.addEventListener('click', () => switchMode('goal'));
+
           toggleGrowthTableBtn.addEventListener('click', () => { growthTableContainer.classList.toggle('hidden'); toggleGrowthTableBtn.textContent = growthTableContainer.classList.contains('hidden') ? 'Show Yearly Growth' : 'Hide Yearly Growth'; });
           window.addEventListener('resize', debounce(() => { if(investmentDoughnutChart) investmentDoughnutChart.resize(); }, 250));
         }
