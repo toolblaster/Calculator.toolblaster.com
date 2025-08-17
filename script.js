@@ -518,4 +518,22 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.range-slider').forEach(updateSliderFill);
         switchMode('sip');
     }
+
+    // --- SECTION 4: MOBILE NAVIGATION ---
+    // Added this new section to handle the mobile menu.
+    const setupMobileMenu = () => {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+    };
+
+    // Call the function to set up the mobile menu after components are loaded.
+    // We use a small delay to ensure the header is in the DOM.
+    setTimeout(setupMobileMenu, 200);
+
 });
