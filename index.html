@@ -19,6 +19,33 @@
 
     <style>
         .hidden { display: none !important; }
+        
+        /* Custom styles for the new guides section */
+        .featured-guides-section {
+            padding: 2.5rem 0;
+            margin: 0 auto;
+            max-width: 1000px;
+            /* Added background to make it stand out */
+            background-color: #f0f4f8; 
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+        
+        /* Additional styling for the links inside the guide cards */
+        .guide-link {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #3B82F6; /* Use a brand-like blue */
+            text-decoration: none;
+            margin-top: auto; /* Push the link to the bottom of the card */
+            transition: color 0.3s ease;
+            align-self: flex-start; /* Align link to the left */
+        }
+        
+        .guide-link:hover {
+            color: #1D4ED8; /* A darker blue on hover */
+        }
     </style>
     <!-- Updated: JSON-LD Structured Data for both WebPage and FAQPage -->
     <script type="application/ld+json">
@@ -334,6 +361,38 @@
                 </p>
             </div>
         </div>
+
+        <!-- Featured Guides Section - NEW CONTENT ADDED HERE -->
+        <section class="featured-guides-section">
+            <h2 class="section-title">Featured Guides</h2>
+            <p class="section-subtitle">Dive deeper into personal finance with our expert guides.</p>
+            <div class="card-container">
+                <a href="guides.html" class="content-card">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                    </div>
+                    <h3>Beginner's Guide to Investing</h3>
+                    <p>Your comprehensive guide to mutual funds, SIP, and more.</p>
+                    <span class="guide-link">Read More &rarr;</span>
+                </a>
+                <a href="tax-saving-guide.html" class="content-card">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-plus"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+                    </div>
+                    <h3>Smart Tax-Saving Strategies</h3>
+                    <p>Explore the best ways to save tax and grow your wealth under Section 80C.</p>
+                    <span class="guide-link">Read More &rarr;</span>
+                </a>
+                <a href="retirement-planning-guide.html" class="content-card">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3>Plan Your Retirement</h3>
+                    <p>Learn how to build a retirement corpus and create a steady income stream.</p>
+                    <span class="guide-link">Read More &rarr;</span>
+                </a>
+            </div>
+        </section>
 
         <!-- SEO Content Section (Dynamically Loaded) -->
         <section id="dynamic-content-area" class="seo-content"></section>
