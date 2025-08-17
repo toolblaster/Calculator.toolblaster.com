@@ -47,13 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
             loadPromises.push(loadComponent('assets/components/content.html', 'dynamic-content-area'));
         }
 
-        const calculatorContainer = document.querySelector('.calculator-container');
-        if (calculatorContainer) {
-            initializeCalculator();
-        }
-    };
+        Promise.all(loadPromises).then(() => {
+            // All components are loaded, now set up event listeners
+            setupMobileMenu();
+            setupDropdownMenu(); // Setup for the new dropdown
 
-    initializePage();
+            const calculatorContainer = document.querySelector('.calculator-container');
+            if (calculatorContainer) {
+                initializeCalculator();
+            }
+        });
+    };
 
     // --- SECTION 3: Financial Calculator Logic ---
     function initializeCalculator() {
@@ -504,7 +508,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Call the function to set up the mobile menu after components are loaded.
-    setTimeout(setupMobileMenu, 200);
+    // --- SECTION 5: DROPDOWN MENU (NEW) ---
+    const setupDropdownMenu = () => {
+        const dropdownToggle = document.querySelector('.dropdown > a');
+        if (!dropdownToggle) return;
+
+        dropdownToggle.addEventListener('click', function(e) {
+            // This logic is for touch devices where hover isn't an option.
+            // We check for window width to apply this behavior only on "mobile".
+            if (window.innerWidth <= 768) {
+                e.preventDefault(); // Prevent link navigation
+                this.classList.toggle('open'); // For arrow rotation in CSS
+                const menu = this.nextElementSibling; // The .dropdown-menu
+                
+                // Simple toggle logic for the dropdown menu visibility
+                if (menu.style.display === 'block') {
+                    menu.style.display = 'none';
+                } else {
+                    menu.style.display = 'block';
+                }
+            }
+        });
+    };
+
+    // Start the page initialization
+    initializePage();
 
 });
