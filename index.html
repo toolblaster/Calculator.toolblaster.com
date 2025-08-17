@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Calculator - Plan Your Future</title>
+    <meta name="description" content="An all-in-one financial calculator to plan your SIP, Lumpsum, SWP, RD, and FD investments with precision and accuracy.">
+    <meta name="keywords" content="financial calculator, investment calculator, SIP, Lumpsum, SWP, RD, FD, mutual funds, personal finance, savings">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Main Stylesheet -->
@@ -18,14 +20,48 @@
     <style>
         .hidden { display: none !important; }
     </style>
+    <!-- Updated: JSON-LD Structured Data for both WebPage and FAQPage -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Investment & Savings Calculator",
-      "description": "An all-in-one financial calculator to plan your SIP, Lumpsum, SWP, RD, and FD investments with precision and accuracy.",
-      "url": "https://domain.com/index.html",
-      "inLanguage": "en-IN"
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "name": "Investment & Savings Calculator",
+          "description": "An all-in-one financial calculator to plan your SIP, Lumpsum, SWP, RD, and FD investments with precision and accuracy.",
+          "url": "https://domain.com/index.html",
+          "inLanguage": "en-IN"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is an SIP calculator with inflation adjustment?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "An SIP calculator with inflation adjustment is a financial tool that not only projects the future value of your Systematic Investment Plan (SIP) but also shows you what that future value will be worth in today's terms."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why is my inflation-adjusted return lower than the total value?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Your total value shows the absolute amount of money you'll have, while the inflation-adjusted return (or 'real value') shows what that money can actually buy. Inflation reduces the purchasing power of money over time."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does this tool help in better financial planning?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "By using a reliable financial calculator, you can set more realistic financial goals. It helps you calculate the actual target amount you need to achieve for future goals, ensuring you are not under-prepared."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
 </head>
