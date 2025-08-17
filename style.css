@@ -357,7 +357,7 @@ body {
     }
     .nav-links a {
         display: block;
-        padding: 0.6rem 1rem; /* Add padding to links for easier tapping */
+        padding: 0.4rem 1rem; /* Reduced padding for less space */
         text-align: left; /* Align text to the left */
         font-size: 0.85rem; /* Slightly smaller font for compact view */
     }
