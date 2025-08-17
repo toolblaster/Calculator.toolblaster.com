@@ -21,7 +21,8 @@ body {
     max-width: 1000px;
     margin: 0 auto 0.5rem; /* Reduced bottom margin for less space */
     width: 90%;
-    padding: 0.75rem 1.5rem;
+    /* Reduced vertical padding to make header more compact */
+    padding: 0.5rem 1.5rem; 
     border-radius: 0.5rem;
     border: 1px solid #eee;
     background-color: #ffffff;
@@ -65,7 +66,8 @@ body {
     font-size: 0.85rem; /* Reduced font size */
     transition: color 0.3s ease;
     position: relative; /* Needed for the underline effect */
-    padding-bottom: 5px; /* Space for the underline */
+    /* Removed padding to rely on parent's alignment */
+    padding-bottom: 3px; /* Minimal space for the line */
 }
 
 /* --- UPDATED Underline Effect --- */
@@ -75,7 +77,7 @@ body {
     width: 100%;
     transform: scaleX(0); /* Make underline hidden by default */
     height: 2px;
-    bottom: 0;
+    bottom: 0; /* Positioned at the bottom of the link */
     left: 0;
     background-color: #E34037;
     transform-origin: bottom right;
