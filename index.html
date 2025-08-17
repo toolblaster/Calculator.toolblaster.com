@@ -18,6 +18,16 @@
     <style>
         .hidden { display: none !important; }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Investment & Savings Calculator",
+      "description": "An all-in-one financial calculator to plan your SIP, Lumpsum, SWP, RD, and FD investments with precision and accuracy.",
+      "url": "https://domain.com/index.html",
+      "inLanguage": "en-IN"
+    }
+    </script>
 </head>
 <body class="bg-gray-50">
 
@@ -28,6 +38,7 @@
         <!-- Financial Calculator Section -->
         <div class="financial-calculator-wrapper">
             <div class="bg-white shadow-lg rounded-xl p-2 sm:p-4 w-full border border-gray-200 mx-auto my-0 calculator-container">
+                
                 <h1 id="calculatorTitle" class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">SIP Calculator</h1>
                 <p id="calculatorDescription" class="text-center text-gray-500 mb-3 text-xs">Calculate the future value of your SIP investments.</p>
                 
@@ -37,6 +48,7 @@
                     <button id="swpModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">SWP</button>
                     <button id="rdModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">RD</button>
                     <button id="fdModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">FD</button>
+                    <button id="goalModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Goal Planner</button>
                 </div>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
@@ -138,6 +150,32 @@
                                 </select>
                             </div>
                         </div>
+                        <div id="goalSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
+                            <div>
+                                <label for="targetAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Target Amount (₹)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="targetAmountSlider" min="100000" max="100000000" value="5000000" step="10000" class="w-full range-slider">
+                                    <input type="number" id="targetAmountInput" class="manual-input" value="5000000" min="100000" max="100000000" step="10000">
+                                </div>
+                                <p id="targetAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1 Lac - ₹10 Crore.</p>
+                            </div>
+                            <div>
+                                <label for="goalReturnRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="goalReturnRateSlider" min="1" max="30" value="12" step="0.1" class="w-full range-slider">
+                                    <input type="number" id="goalReturnRateInput" class="manual-input" value="12" min="1" max="30" step="0.1">
+                                </div>
+                                <p id="goalReturnRateError" class="text-red-500 text-xxs mt-1 hidden">Rate must be between 1% - 30%.</p>
+                            </div>
+                            <div>
+                                <label for="goalPeriodSlider" class="block text-xs font-medium text-gray-600 mb-1">Investment Period (Years)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="goalPeriodSlider" min="1" max="40" value="10" class="w-full range-slider">
+                                    <input type="number" id="goalPeriodInput" class="manual-input" value="10" min="1" max="40">
+                                </div>
+                                <p id="goalPeriodError" class="text-red-500 text-xxs mt-1 hidden">Period must be between 1 - 40 years.</p>
+                            </div>
+                        </div>
                         <div class="bg-blue-50/50 p-2 rounded-lg space-y-2">
                             <div>
                                 <label for="returnRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
@@ -220,6 +258,15 @@
                                 <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Remaining:</span><span id="remainingCorpusSWP" class="text-sm font-bold text-red-700">₹0</span></div>
                                 <div id="corpusExhaustedInfo" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Exhausted After:</span><span id="exhaustionPeriodSWP" class="font-bold text-orange-700"></span></div>
                                 <div id="realValueSectionSWP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Remaining:</span><span id="realRemainingCorpusSWP" class="font-bold text-orange-700">₹0</span></div>
+                            </div>
+                        </div>
+                        <div id="goalSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
+                            <h3 class="text-sm font-bold text-blue-800 mb-2 text-center">Goal Planner Summary</h3>
+                            <div class="space-y-1 text-xs">
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Target Amount:</span><span id="targetAmountGoal" class="font-semibold text-blue-700">₹0</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Total Investment:</span><span id="totalInvestmentGoal" class="font-semibold text-green-700">₹0</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-600">Expected Returns:</span><span id="expectedReturnsGoal" class="font-semibold text-purple-700">₹0</span></div>
+                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Monthly Investment:</span><span id="monthlyInvestmentGoal" class="text-lg font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
                         <div class="flex justify-center items-center h-32 sm:h-40 md:h-48 w-full relative mt-3">
