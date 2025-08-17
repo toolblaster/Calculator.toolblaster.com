@@ -313,7 +313,7 @@ body {
 .legal-content {
     background-color: #ffffff;
     padding: 0; /* Remove padding to handle it internally */
-    margin: 1.5rem auto;
+    margin: 1rem auto; /* Standardized top margin */
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     border: 1px solid #eee;
@@ -371,15 +371,23 @@ body {
     padding-left: 1.25rem; 
 }
 
+/* --- UPDATED Table Styles --- */
 .legal-content table {
     font-size: 0.65rem;
     word-break: break-word;
-    width: calc(100% - 3rem); /* Adjust width to account for margins */
+    width: calc(100% - 3rem);
+    table-layout: fixed; /* Ensure columns are evenly spaced */
 }
 
 .legal-content th, .legal-content td {
     padding: 0.5rem;
+    vertical-align: top; /* Align text to the top */
 }
+
+.legal-content td:first-child, .legal-content th:first-child {
+    width: 25%; /* Give the first column more space */
+}
+/* --- END of Table Styles --- */
 
 
 /* Responsive Styles */
