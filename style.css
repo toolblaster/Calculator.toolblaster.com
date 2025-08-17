@@ -286,49 +286,76 @@ body {
     transform-origin: bottom left; 
 }
 
-/* Legal Pages & Guide Content Styles */
-.legal-content { 
-    background-color: #ffffff; 
-    padding: 1.5rem; /* Reduced padding for mobile */
+/* --- UPDATED Legal Pages & Guide Content Styles --- */
+.legal-content {
+    background-color: #ffffff;
+    padding: 0; /* Remove padding to handle it internally */
     margin: 1.5rem auto;
-    border-radius: 0.5rem; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-    border: 1px solid #eee; 
-    max-width: 1000px; 
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    max-width: 1000px;
+    overflow: hidden; /* To contain the background of the header */
 }
-.legal-content h1 { 
-    font-size: 1.1rem; /* Reduced font size */
-    font-weight: 700; 
-    color: #121212; 
+
+/* Create a distinct header card section */
+.legal-content h1 {
+    background-color: #f9fafb;
+    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+    margin: 0;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #121212;
+    border-bottom: none;
+}
+
+.legal-content h1 + p {
+    background-color: #f9fafb;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #525252;
+    border-bottom: 1px solid #eee; /* Add a separator */
+}
+
+/* Add padding to the rest of the content inside .legal-content */
+.legal-content > *:not(h1):not(h1 + p) {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+/* Re-apply original styles with new margin context */
+.legal-content h2 {
+    font-size: 1.0rem;
+    font-weight: 700;
+    color: #121212;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid #E34037;
+    padding-bottom: 0.5rem;
+}
+
+.legal-content p:not(h1 + p), .legal-content ul {
+    color: #525252;
     margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid #E34037; /* ACCENT LINE ADDED */
+    line-height: 1.6;
+    font-size: 0.75rem;
 }
-.legal-content h2 { 
-    font-size: 1.0rem; /* Reduced font size */
-    font-weight: 700; /* Bolder h2 */
-    color: #121212; 
-    margin-top: 1.5rem; 
-    margin-bottom: 0.75rem; 
-    border-bottom: 1px solid #E34037; /* ACCENT LINE ADDED */
-    padding-bottom: 0.5rem; 
-}
-.legal-content p, .legal-content ul { 
-    color: #525252; 
-    margin-bottom: 1rem; 
-    line-height: 1.6; 
-    font-size: 0.75rem; /* Reduced font size */
-}
-.legal-content ul { 
+
+.legal-content ul {
     padding-left: 1.25rem; 
 }
-/* Responsive Table Styles */
+
 .legal-content table {
-    font-size: 0.65rem; /* Smaller font for table on mobile */
+    font-size: 0.65rem;
     word-break: break-word;
+    width: calc(100% - 3rem); /* Adjust width to account for margins */
 }
+
 .legal-content th, .legal-content td {
-    padding: 0.5rem; /* Reduced padding for mobile */
+    padding: 0.5rem;
 }
 
 
@@ -386,7 +413,7 @@ body {
 /* Media query for larger screens to restore original sizes */
 @media (min-width: 768px) {
     .legal-content {
-        padding: 2rem;
+        padding: 0;
     }
     .legal-content h1 {
         font-size: 1.3rem;
