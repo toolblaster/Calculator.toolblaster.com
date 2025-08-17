@@ -5,6 +5,7 @@ body {
     color: #121212;
     margin: 0;
     line-height: 1.6;
+    font-size: 15px; /* Set a smaller base font size */
 }
 
 .container {
@@ -18,7 +19,7 @@ body {
 .site-header {
     /* CONSTRAINED LAYOUT */
     max-width: 1000px;
-    margin: 0 auto 1rem; /* Removed top margin */
+    margin: 0 auto 0.5rem; /* Reduced bottom margin for less space */
     width: 90%;
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
@@ -35,7 +36,7 @@ body {
 }
 
 .logo {
-    font-size: 1.4rem;
+    font-size: 1.3rem; /* Reduced font size */
     font-weight: 700;
     color: #121212;
     text-decoration: none;
@@ -60,7 +61,7 @@ body {
     text-decoration: none;
     color: #121212;
     font-weight: 500;
-    font-size: 0.9rem; /* Reduced font size */
+    font-size: 0.85rem; /* Reduced font size */
     transition: color 0.3s ease;
 }
 
@@ -103,12 +104,12 @@ body {
 }
 
 .section-title {
-    font-size: 1.3rem; /* Reduced font size */
+    font-size: 1.2rem; /* Reduced font size */
     margin-bottom: 0.5rem;
 }
 
 .section-title-secondary {
-    font-size: 1.3rem;
+    font-size: 1.2rem; /* Reduced font size */
     margin-bottom: 0.5rem;
 }
 
@@ -127,7 +128,7 @@ body {
     color: #525252;
     max-width: 700px;
     margin: 0 auto 2rem auto;
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Reduced font size */
 }
 
 .content-section {
@@ -152,9 +153,9 @@ body {
 }
 
 .content-card:hover { transform: translateY(-5px); box-shadow: 0 12px 16px rgba(0,0,0,0.08); }
-.content-card h3 { font-size: 0.9rem; font-weight: 600; color: #121212; margin-bottom: 0.5rem; }
-.content-card h4 { font-size: 0.85rem; font-weight: 600; color: #121212; margin-bottom: 0.25rem; }
-.content-card p, .content-card ul { color: #525252; margin-bottom: 0.25rem; font-size: 0.75rem; line-height: 1.5; }
+.content-card h3 { font-size: 0.85rem; font-weight: 600; color: #121212; margin-bottom: 0.5rem; }
+.content-card h4 { font-size: 0.8rem; font-weight: 600; color: #121212; margin-bottom: 0.25rem; }
+.content-card p, .content-card ul { color: #525252; margin-bottom: 0.25rem; font-size: 0.7rem; line-height: 1.5; }
 .content-card ul { list-style: none; padding: 0; }
 .content-card ul li { display: flex; align-items: flex-start; margin-bottom: 0.25rem; }
 .bullet { display: inline-block; width: 6px; height: 6px; background-color: #E34037; border-radius: 50%; margin-right: 0.5rem; margin-top: 5px; flex-shrink: 0; }
@@ -175,7 +176,7 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 .faq-item summary {
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Reduced font size */
     font-weight: 600;
     padding: 0.75rem 1rem;
     cursor: pointer;
@@ -202,7 +203,7 @@ body {
 .faq-item p {
     padding: 0 1rem 0.75rem 1rem;
     margin: 0;
-    font-size: 0.75rem;
+    font-size: 0.7rem; /* Reduced font size */
     color: #525252;
     line-height: 1.6;
 }
@@ -216,14 +217,14 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 .trust-card h4 {
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Reduced font size */
     font-weight: 600;
     color: #121212;
     margin-top: 0;
     margin-bottom: 0.75rem;
 }
 .trust-card p {
-    font-size: 0.75rem;
+    font-size: 0.7rem; /* Reduced font size */
     color: #525252;
     margin-bottom: 1rem;
 }
@@ -243,7 +244,7 @@ body {
     /* ORIGINAL STYLES */
     background-color: #121212; 
     color: #a3a3a3; 
-    font-size: 0.85rem; /* Reduced font size */
+    font-size: 0.8rem; /* Reduced font size */
 }
 .footer-content { 
     display: flex; 
@@ -296,7 +297,7 @@ body {
     max-width: 1000px; 
 }
 .legal-content h1 { 
-    font-size: 1.2rem; /* Reduced font size */
+    font-size: 1.1rem; /* Reduced font size */
     font-weight: 700; 
     color: #121212; 
     margin-bottom: 1rem;
@@ -304,7 +305,7 @@ body {
     border-bottom: 2px solid #E34037; /* ACCENT LINE ADDED */
 }
 .legal-content h2 { 
-    font-size: 1.05rem; /* Reduced font size */
+    font-size: 1.0rem; /* Reduced font size */
     font-weight: 600; 
     color: #121212; 
     margin-top: 1.5rem; 
@@ -316,14 +317,14 @@ body {
     color: #525252; 
     margin-bottom: 1rem; 
     line-height: 1.6; 
-    font-size: 0.8rem; /* Reduced font size */
+    font-size: 0.75rem; /* Reduced font size */
 }
 .legal-content ul { 
     padding-left: 1.25rem; 
 }
 /* Responsive Table Styles */
 .legal-content table {
-    font-size: 0.7rem; /* Smaller font for table on mobile */
+    font-size: 0.65rem; /* Smaller font for table on mobile */
     word-break: break-word;
 }
 .legal-content th, .legal-content td {
@@ -359,7 +360,7 @@ body {
         display: block;
         padding: 0.4rem 1rem; /* Reduced padding for less space */
         text-align: left; /* Align text to the left */
-        font-size: 0.85rem; /* Slightly smaller font for compact view */
+        font-size: 0.8rem; /* Slightly smaller font for compact view */
     }
     /* --- END OF UPDATED STYLES --- */
 
@@ -372,10 +373,10 @@ body {
         text-align: center; 
     }
     .section-title { 
-        font-size: 1.3rem; 
+        font-size: 1.2rem; 
     }
     .section-title-secondary { 
-        font-size: 1.1rem; 
+        font-size: 1.0rem; 
     }
     .card-container {
         grid-template-columns: 1fr;
@@ -388,16 +389,16 @@ body {
         padding: 2rem;
     }
     .legal-content h1 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     .legal-content h2 {
         font-size: 1.1rem;
     }
     .legal-content p, .legal-content ul {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
     .legal-content table {
-        font-size: 0.85rem; /* Restore table font size */
+        font-size: 0.8rem; /* Restore table font size */
     }
     .legal-content th, .legal-content td {
         padding: 0.75rem; /* Restore table padding */
