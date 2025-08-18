@@ -8,10 +8,7 @@
     <meta name="keywords" content="inflation adjusted sip calculator, financial calculator, investment calculator, SIP, Lumpsum, SWP, RD, FD, mutual funds, personal finance, savings">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
-    
-    <!-- Calculator-Specific Stylesheet -->
     <link rel="stylesheet" href="calculators/financial-calculator/calculator-style.css">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,8 +16,6 @@
 
     <style>
         .hidden { display: none !important; }
-        
-        /* Custom styles for the new guides section */
         .featured-guides-section {
             padding: 1rem 0;
             margin: 0 auto;
@@ -30,15 +25,8 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             margin-top: 1rem;
         }
-
-        .featured-guides-section .section-title {
-            margin-bottom: 0.25rem;
-        }
-
-        .featured-guides-section .section-subtitle {
-            margin-bottom: 0.75rem;
-        }
-        
+        .featured-guides-section .section-title { margin-bottom: 0.25rem; }
+        .featured-guides-section .section-subtitle { margin-bottom: 0.75rem; }
         .guide-link {
             font-size: 0.8rem;
             font-weight: 600;
@@ -48,17 +36,12 @@
             transition: color 0.3s ease;
             align-self: flex-start;
         }
-        
-        .guide-link:hover {
-            color: #C22D2D; 
-        }
-
+        .guide-link:hover { color: #C22D2D; }
         .card-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1rem;
         }
-
         .content-card {
             display: flex;
             flex-direction: column;
@@ -71,26 +54,41 @@
             text-decoration: none;
             color: inherit;
         }
-
         .content-card:hover { 
             transform: translateY(-5px); 
             box-shadow: 0 12px 16px rgba(0,0,0,0.08); 
         }
-
         .content-card h3 { 
             font-size: 0.85rem; 
             font-weight: 600; 
             color: #121212; 
             margin-bottom: 0.5rem; 
         }
-
         .content-card p {
             font-size: 0.75rem;
             color: #525252;
             margin-bottom: 1rem;
         }
+        /* --- NEW: Notification Toast Style --- */
+        #notification-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2d3748;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        #notification-toast.show {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
-    <!-- Updated: JSON-LD Structured Data for both WebPage and FAQPage -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -105,30 +103,9 @@
         {
           "@type": "FAQPage",
           "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What is an SIP calculator with inflation adjustment?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "An SIP calculator with inflation adjustment is a financial tool that not only projects the future value of your Systematic Investment Plan (SIP) but also shows you what that future value will be worth in today's terms."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Why is my inflation-adjusted return lower than the total value?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Your total value shows the absolute amount of money you'll have, while the inflation-adjusted return (or 'real value') shows what that money can actually buy. Inflation reduces the purchasing power of money over time."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How does this tool help in better financial planning?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "By using a reliable financial calculator, you can set more realistic financial goals. It helps you calculate the actual target amount you need to achieve for future goals, ensuring you are not under-prepared."
-              }
-            }
+            { "@type": "Question", "name": "What is an SIP calculator with inflation adjustment?", "acceptedAnswer": { "@type": "Answer", "text": "An SIP calculator with inflation adjustment is a financial tool that not only projects the future value of your Systematic Investment Plan (SIP) but also shows you what that future value will be worth in today's terms." }},
+            { "@type": "Question", "name": "Why is my inflation-adjusted return lower than the total value?", "acceptedAnswer": { "@type": "Answer", "text": "Your total value shows the absolute amount of money you'll have, while the inflation-adjusted return (or 'real value') shows what that money can actually buy. Inflation reduces the purchasing power of money over time." }},
+            { "@type": "Question", "name": "How does this tool help in better financial planning?", "acceptedAnswer": { "@type": "Answer", "text": "By using a reliable financial calculator, you can set more realistic financial goals. It helps you calculate the actual target amount you need to achieve for future goals, ensuring you are not under-prepared." }}
           ]
         }
       ]
@@ -137,7 +114,6 @@
 </head>
 <body class="bg-gray-50">
 
-    <!-- Header will be loaded here -->
     <div id="header-placeholder"></div>
 
     <main class="container">
@@ -159,7 +135,7 @@
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
                     <div class="space-y-2">
-                        <!-- SIP Section -->
+                        <!-- Input sections for each calculator mode -->
                         <div id="sipSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg">
                             <div>
                                 <label for="sipAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="sipAmountLabel">Monthly SIP Amount (₹)</label>
@@ -185,7 +161,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Lumpsum Section -->
                         <div id="lumpsumSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="lumpsumAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="lumpsumAmountLabel">Lumpsum Amount (₹)</label>
@@ -196,7 +171,6 @@
                                 <p id="lumpsumAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹5,000 - ₹1 Crore.</p>
                             </div>
                         </div>
-                        <!-- RD Section -->
                         <div id="rdSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="rdAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="rdAmountLabel">Monthly RD Amount (₹)</label>
@@ -222,7 +196,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- FD Section -->
                         <div id="fdSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="fdAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="fdAmountLabel">FD Amount (₹)</label>
@@ -233,7 +206,6 @@
                                 <p id="fdAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1,000 - ₹1 Crore.</p>
                             </div>
                         </div>
-                        <!-- SWP Section -->
                         <div id="swpSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="initialCorpusSlider" class="block text-xs font-medium text-gray-600 mb-1" id="initialCorpusLabel">Initial Investment (₹)</label>
@@ -261,9 +233,7 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- Goal Planner Section -->
                         <div id="goalSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
-                            <!-- GOAL TEMPLATES - NEWLY ADDED -->
                             <div class="mb-2">
                                 <label class="block text-xs font-medium text-gray-600 mb-1">Goal Templates</label>
                                 <div class="flex flex-wrap gap-1">
@@ -297,7 +267,6 @@
                                 <p id="goalPeriodError" class="text-red-500 text-xxs mt-1 hidden">Period must be between 1 - 40 years.</p>
                             </div>
                         </div>
-                        <!-- Common Inputs Section -->
                         <div class="bg-blue-50/50 p-2 rounded-lg space-y-2">
                             <div>
                                 <label for="returnRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
@@ -316,7 +285,6 @@
                                 <p id="investmentPeriodError" class="text-red-500 text-xxs mt-1 hidden">Period must be between 1 - 40 years.</p>
                             </div>
                         </div>
-                        <!-- Inflation Section -->
                         <div class="bg-blue-50/50 p-2 rounded-lg">
                             <div class="flex items-center justify-between">
                                 <label for="inflationToggle" class="text-xs font-medium text-gray-600">Adjust for Inflation</label>
@@ -337,7 +305,7 @@
                     </div>
                     <!-- Results and Chart Section -->
                     <div class="flex flex-col">
-                        <!-- SIP Summary -->
+                        <!-- Summary Cards for each mode -->
                         <div id="sipSummary" class="bg-blue-50/50 p-2 rounded-lg" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">SIP Summary</h3>
@@ -352,7 +320,6 @@
                                 <div id="realValueSectionSIP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueSIP" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <!-- Lumpsum Summary -->
                         <div id="lumpsumSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">Lumpsum Summary</h3>
@@ -367,7 +334,6 @@
                                 <div id="realValueSectionLumpsum" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueLumpsum" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <!-- RD Summary -->
                         <div id="rdSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">RD Summary</h3>
@@ -382,7 +348,6 @@
                                 <div id="realValueSectionRD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueRD" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <!-- FD Summary -->
                         <div id="fdSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
                            <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">FD Summary</h3>
@@ -397,7 +362,6 @@
                                 <div id="realValueSectionFD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueFD" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <!-- SWP Summary -->
                         <div id="swpSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">SWP Summary</h3>
@@ -414,7 +378,6 @@
                                 <div id="realValueSectionSWP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Remaining:</span><span id="realRemainingCorpusSWP" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <!-- Goal Planner Summary -->
                         <div id="goalSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">Goal Planner Summary</h3>
@@ -429,17 +392,14 @@
                                 <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Monthly Investment:</span><span id="monthlyInvestmentGoal" class="text-lg font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <!-- Doughnut Chart -->
                         <div class="flex justify-center items-center h-32 sm:h-40 md:h-48 w-full relative mt-3">
                             <canvas id="investmentDoughnutChart"></canvas>
                         </div>
                     </div>
                 </div>
-                <!-- Growth Table Button -->
                 <div class="flex justify-center my-4">
                     <button id="toggleGrowthTableBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Show Yearly Growth</button>
                 </div>
-                <!-- Growth Table -->
                 <div id="growthTableContainer" class="hidden overflow-x-auto bg-white rounded-lg shadow-md mt-4 p-4 border border-gray-200">
                     <h3 class="text-center text-sm font-bold text-gray-800 mb-2">Yearly Investment Growth</h3>
                     <table class="min-w-full divide-y divide-gray-200">
@@ -455,7 +415,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Disclaimer -->
                 <div class="border-t border-gray-200 my-3 w-full"></div>
                 <p class="text-center text-gray-500 text-xxs leading-relaxed px-2">
                     <strong>Disclaimer:</strong> This calculator is for informational purposes only and does not constitute financial advice.
@@ -463,12 +422,10 @@
             </div>
         </div>
 
-        <!-- Featured Guides Section -->
         <section class="featured-guides-section">
             <h2 class="section-title">Featured Guides</h2>
             <p class="section-subtitle">Dive deeper into personal finance with our expert guides.</p>
             <div class="card-container">
-                <!-- FIX: Re-added the icon containers and SVGs -->
                 <a href="guides/mfguide.html" class="content-card">
                     <div class="icon-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
@@ -504,13 +461,14 @@
             </div>
         </section>
 
-        <!-- SEO Content Section (Dynamically Loaded) -->
         <section id="dynamic-content-area" class="seo-content"></section>
     </main>
 
-    <!-- Footer will be loaded here -->
     <div id="footer-placeholder"></div>
     
+    <!-- NEW: Notification Toast Element -->
+    <div id="notification-toast"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
