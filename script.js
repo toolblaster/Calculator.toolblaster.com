@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadComponent = (componentPath, placeholderId) => {
         const placeholder = document.getElementById(placeholderId);
         if (!placeholder) {
-            // If the placeholder element doesn't exist, resolve the promise immediately.
             return Promise.resolve(); 
         }
 
@@ -22,11 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.text();
             })
             .then(html => {
-                // Use outerHTML to replace the placeholder itself, which is cleaner for header/footer.
                 if (placeholderId === 'header-placeholder' || placeholderId === 'footer-placeholder') {
                     placeholder.outerHTML = html;
                 } else {
-                    // For other content, just fill the placeholder.
                     placeholder.innerHTML = html;
                 }
             })
@@ -38,13 +35,35 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
+    // --- NEW: Function to set the active navigation link ---
+    const setActiveNavLink = () => {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        navLinks.forEach(link => {
+            const linkPath = new URL(link.href, window.location.origin).pathname;
+
+            // Check for a direct match or handle the homepage case (which can be '/' or '/index.html')
+            if (linkPath === currentPath || ( (currentPath === '/' || currentPath === '/index.html') && (linkPath === '/' || linkPath === '/index.html') )) {
+                link.classList.add('active');
+
+                // If the active link is inside a dropdown, also highlight the main dropdown link
+                const dropdownMenu = link.closest('.dropdown-menu');
+                if (dropdownMenu) {
+                    const dropdownToggle = dropdownMenu.previousElementSibling;
+                    if (dropdownToggle) {
+                        dropdownToggle.classList.add('active');
+                    }
+                }
+            }
+        });
+    };
+
+
     // --- SECTION 2: PAGE INITIALIZATION ---
 
     const initializePage = () => {
-        // *** FIX: Determine the correct base path for assets ***
-        // This checks if the current page is inside the '/guides/' directory.
         const isGuidePage = window.location.pathname.includes('/guides/');
-        // If it is, the path needs to go up one level ('../'). Otherwise, it's the root ('').
         const basePath = isGuidePage ? '../' : '';
 
         const loadPromises = [
@@ -52,17 +71,15 @@ document.addEventListener('DOMContentLoaded', () => {
             loadComponent(`${basePath}assets/components/footer.html`, 'footer-placeholder')
         ];
 
-        // Dynamically load main page content only if the placeholder exists.
         if (document.getElementById('dynamic-content-area')) {
             loadPromises.push(loadComponent(`${basePath}assets/components/content.html`, 'dynamic-content-area'));
         }
 
-        // Once all components are loaded, initialize event listeners.
         Promise.all(loadPromises).then(() => {
             setupMobileMenu();
             setupDropdownMenu();
+            setActiveNavLink(); // <-- Call the new function here
 
-            // IMPORTANT: Only initialize the calculator if its container is present on the page.
             const calculatorContainer = document.querySelector('.calculator-container');
             if (calculatorContainer) {
                 initializeCalculator();
@@ -73,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- SECTION 3: Financial Calculator Logic ---
     function initializeCalculator() {
         'use strict';
-        // Helper to get elements by ID
         const getElem = (id) => document.getElementById(id);
 
         // --- Element Definitions ---
@@ -91,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const swpSection = getElem('swpSection');
         const goalSection = getElem('goalSection');
 
-        // Input Sliders and Fields
         const sipAmountSlider = getElem('sipAmountSlider');
         const sipAmountInput = getElem('sipAmountInput');
         const sipFrequencySelect = getElem('sipFrequency');
@@ -126,7 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const inflationRateSlider = getElem('inflationRateSlider');
         const inflationRateInput = getElem('inflationRateInput');
 
-        // Error Message Elements
         const errorMessages = {
           sipAmount: getElem('sipAmountError'), lumpsumAmount: getElem('lumpsumAmountError'),
           rdAmount: getElem('rdAmountError'), fdAmount: getElem('fdAmountError'),
@@ -136,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
           targetAmount: getElem('targetAmountError'), goalReturnRate: getElem('goalReturnRateError'), goalPeriod: getElem('goalPeriodError')
         };
         
-        // UI and Summary Elements
         const calculatorTitle = getElem('calculatorTitle');
         const calculatorDescription = getElem('calculatorDescription');
         const periodLabel = getElem('periodLabel');
@@ -180,7 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const expectedReturnsGoal = getElem('expectedReturnsGoal');
         const monthlyInvestmentGoal = getElem('monthlyInvestmentGoal');
 
-        // Table and Chart Elements
         const growthTableContainer = getElem('growthTableContainer');
         const growthTableBody = getElem('growthTableBody');
         const toggleGrowthTableBtn = getElem('toggleGrowthTableBtn');
@@ -210,7 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- Core Calculation Logic ---
         function updateCalculator() {
           let isFormValid = true;
-          // Validate inputs based on the current calculator mode
           if (currentMode !== 'goal') {
               isFormValid = validateSlider(returnRateSlider, errorMessages.returnRate) && validateSlider(investmentPeriodSlider, errorMessages.investmentPeriod);
               if (inflationToggle.checked) isFormValid = isFormValid && validateSlider(inflationRateSlider, errorMessages.inflationRate);
@@ -225,11 +236,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const investmentPeriodYears = (currentMode === 'goal' ? parseFloat(goalPeriodSlider.value) : parseFloat(investmentPeriodSlider.value));
           const annualInflationRate = inflationToggle.checked ? parseFloat(inflationRateSlider.value) / 100 : 0;
           
-          // Show/hide growth table based on mode
           toggleGrowthTableBtn.classList.toggle('hidden', currentMode === 'swp' || currentMode === 'goal');
           tableHeaderInvested.textContent = (currentMode === 'fd' || currentMode === 'lumpsum') ? 'Principal' : 'Invested';
           
-          // --- SIP Calculation ---
           if (currentMode === 'sip') {
             isFormValid = isFormValid && validateSlider(sipAmountSlider, errorMessages.sipAmount);
             if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
@@ -262,7 +271,6 @@ document.addEventListener('DOMContentLoaded', () => {
             updateDoughnutChart([investedAmount, currentCorpus - investedAmount], ['Invested', 'Returns'], ['#3B82F6', '#22C55E']);
             generateGrowthTable(yearlyGrowthData);
           
-          // --- Lumpsum Calculation ---
           } else if (currentMode === 'lumpsum') {
             isFormValid = isFormValid && validateSlider(lumpsumAmountSlider, errorMessages.lumpsumAmount);
             if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
@@ -283,7 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let year = 1; year <= investmentPeriodYears; year++) { currentCorpus *= (1 + annualReturnRate); yearlyGrowthData.push({ year, invested: investedAmount, returns: currentCorpus - investedAmount, total: currentCorpus }); }
             generateGrowthTable(yearlyGrowthData);
 
-          // --- RD Calculation ---
           } else if (currentMode === 'rd') {
             isFormValid = isFormValid && validateSlider(rdAmountSlider, errorMessages.rdAmount);
             if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
@@ -316,7 +323,6 @@ document.addEventListener('DOMContentLoaded', () => {
             updateDoughnutChart([investedAmount, currentCorpus - investedAmount], ['Invested', 'Returns'], ['#3B82F6', '#22C55E']);
             generateGrowthTable(yearlyGrowthData);
 
-          // --- FD Calculation ---
           } else if (currentMode === 'fd') {
             isFormValid = isFormValid && validateSlider(fdAmountSlider, errorMessages.fdAmount);
             if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
@@ -337,7 +343,6 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let year = 1; year <= investmentPeriodYears; year++) { currentCorpus *= (1 + annualReturnRate); yearlyGrowthData.push({ year, invested: investedAmount, returns: currentCorpus - investedAmount, total: currentCorpus }); }
             generateGrowthTable(yearlyGrowthData);
 
-          // --- SWP Calculation ---
           } else if (currentMode === 'swp') {
             isFormValid = isFormValid && validateSlider(initialCorpusSlider, errorMessages.initialCorpus) && validateSlider(withdrawalAmountSlider, errorMessages.withdrawalAmount);
             if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
@@ -369,7 +374,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else { realValueSectionSWP.classList.add('hidden'); }
             updateDoughnutChart([totalWithdrawn, totalInterest, corpus], ['Withdrawn', 'Interest', 'Remaining'], ['#10B981', '#6366F1', '#EF4444']);
 
-          // --- Goal Planner Calculation ---
           } else if (currentMode === 'goal') {
             isFormValid = isFormValid && validateSlider(targetAmountSlider, errorMessages.targetAmount) && validateSlider(goalReturnRateSlider, errorMessages.goalReturnRate) && validateSlider(goalPeriodSlider, errorMessages.goalPeriod);
             if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
@@ -381,7 +385,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const monthlyRate = annualRate / 12;
             let monthlyInvestment;
             
-            // Adjust the target amount for inflation before calculating the required SIP
             let inflatedTargetAmount = targetAmount;
             if (inflationToggle.checked) {
                 const inflationRate = parseFloat(inflationRateSlider.value) / 100;
@@ -408,7 +411,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const debouncedUpdate = debounce(updateCalculator, 250);
 
-        // --- UI Mode Switching ---
         function switchMode(newMode) {
           currentMode = newMode;
           [sipSection, lumpsumSection, rdSection, fdSection, swpSection, goalSection, sipSummary, lumpsumSummary, rdSummary, fdSummary, swpSummary, goalSummary].forEach(el => el.classList.add('hidden'));
@@ -416,7 +418,6 @@ document.addEventListener('DOMContentLoaded', () => {
           const inactiveClasses = 'bg-gray-200 text-gray-700 hover:bg-gray-300'.split(' ');
           [sipModeBtn, lumpsumModeBtn, rdModeBtn, fdModeBtn, swpModeBtn, goalModeBtn].forEach(btn => { btn.classList.remove(...activeClasses, ...inactiveClasses); btn.classList.add(...(btn.id.startsWith(newMode) ? activeClasses : inactiveClasses)); });
           
-          // Reset to default values for a clean slate
           if (newMode === 'sip') { 
             sipAmountSlider.value = 10000; sipAmountInput.value = 10000; sipIncreaseRateSlider.value = 0; sipIncreaseRateInput.value = 0; returnRateSlider.value = 12; returnRateInput.value = 12; investmentPeriodSlider.value = 10; investmentPeriodInput.value = 10; 
           } else if (newMode === 'lumpsum') { 
@@ -431,7 +432,6 @@ document.addEventListener('DOMContentLoaded', () => {
             targetAmountSlider.value = 5000000; targetAmountInput.value = 5000000; goalReturnRateSlider.value = 12; goalReturnRateInput.value = 12; goalPeriodSlider.value = 10; goalPeriodInput.value = 10; 
           }
           
-          // Update UI text and visibility based on mode
           if (newMode === 'sip') { sipSection.classList.remove('hidden'); sipSummary.classList.remove('hidden'); calculatorTitle.textContent = 'SIP Calculator'; calculatorDescription.textContent = 'Calculate the future value of your SIP investments.'; periodLabel.textContent = 'Investment Period (Years)'; } 
           else if (newMode === 'lumpsum') { lumpsumSection.classList.remove('hidden'); lumpsumSummary.classList.remove('hidden'); calculatorTitle.textContent = 'Lumpsum Calculator'; calculatorDescription.textContent = 'Calculate the future value of your one-time lumpsum investment.'; periodLabel.textContent = 'Investment Period (Years)'; } 
           else if (newMode === 'rd') { rdSection.classList.remove('hidden'); rdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'RD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your recurring deposits.'; periodLabel.textContent = 'Investment Period (Years)'; } 
@@ -443,7 +443,16 @@ document.addEventListener('DOMContentLoaded', () => {
           updateCalculator();
         }
 
-        // --- NEW: Share Functionality ---
+        function showNotification(message) {
+            const toast = getElem('notification-toast');
+            if (!toast) return;
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
         const handleShare = () => {
             const params = new URLSearchParams();
             params.set('mode', currentMode);
@@ -461,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 params.set('target', targetAmountSlider.value);
                 params.set('rate', goalReturnRateSlider.value);
                 params.set('period', goalPeriodSlider.value);
-            } // Extend for other modes as needed
+            }
             
             if (inflationToggle.checked) {
                 params.set('inflation', inflationRateSlider.value);
@@ -469,22 +478,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
 
-            // Use Web Share API if available, otherwise fallback to clipboard
             if (navigator.share) {
                 navigator.share({
                     title: 'Financial Calculator Plan',
                     text: 'Check out my investment plan!',
                     url: shareUrl,
-                })
-                .catch(console.error);
-            } else {
-                navigator.clipboard.writeText(shareUrl).then(() => {
-                    alert('Link copied to clipboard!'); // Replace with a better notification if possible
+                }).catch(err => {
+                    console.error("Share failed:", err.message);
                 });
+            } else {
+                const textArea = document.createElement("textarea");
+                textArea.value = shareUrl;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-9999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showNotification('Link copied to clipboard!');
+                } catch (err) {
+                    console.error('Fallback: Oops, unable to copy', err);
+                    showNotification('Could not copy link.');
+                }
+                document.body.removeChild(textArea);
             }
         };
 
-        // --- NEW: Load from URL Parameters ---
         const loadFromUrl = () => {
             const params = new URLSearchParams(window.location.search);
             const mode = params.get('mode');
@@ -492,7 +512,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mode) {
                 switchMode(mode);
 
-                // Pre-fill values based on URL parameters
                 if (mode === 'sip') {
                     sipAmountSlider.value = params.get('amount') || 10000;
                     sipIncreaseRateSlider.value = params.get('increase') || 0;
@@ -514,7 +533,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     inflationInputGroup.classList.remove('hidden');
                 }
                 
-                // Sync all number inputs with their corresponding sliders
                 document.querySelectorAll('input[type="range"]').forEach(slider => {
                     const input = getElem(slider.id.replace('Slider', 'Input'));
                     if (input) input.value = slider.value;
@@ -524,7 +542,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // --- Event Listener Setup ---
         function setupEventListeners() {
           const inputs = [ 
            { slider: sipAmountSlider, input: sipAmountInput }, { slider: lumpsumAmountSlider, input: lumpsumAmountInput }, 
@@ -536,7 +553,6 @@ document.addEventListener('DOMContentLoaded', () => {
            { slider: goalReturnRateSlider, input: goalReturnRateInput }, { slider: goalPeriodSlider, input: goalPeriodInput }
          ];
           
-          // Sync sliders and number inputs
           inputs.forEach(({ slider, input }) => { 
             if (slider && input) { 
               slider.addEventListener('input', () => { input.value = slider.value; updateSliderFill(slider); debouncedUpdate(); }); 
@@ -544,7 +560,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } 
           });
           
-          // Listen for changes on select dropdowns and the inflation toggle
           [sipFrequencySelect, rdFrequencySelect, withdrawalFrequencySelect, inflationToggle].forEach(el => { 
             if (el) { 
               el.addEventListener('change', () => { 
@@ -554,7 +569,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } 
           });
           
-          // Mode switching buttons
           sipModeBtn.addEventListener('click', () => switchMode('sip'));
           lumpsumModeBtn.addEventListener('click', () => switchMode('lumpsum'));
           rdModeBtn.addEventListener('click', () => switchMode('rd'));
@@ -562,7 +576,6 @@ document.addEventListener('DOMContentLoaded', () => {
           swpModeBtn.addEventListener('click', () => switchMode('swp'));
           goalModeBtn.addEventListener('click', () => switchMode('goal'));
 
-            // --- NEW: Goal Template Listeners ---
             document.querySelectorAll('.goal-template-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const goal = e.target.dataset.goal;
@@ -570,20 +583,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.target.classList.add('active');
 
                     if (goal === 'retirement') {
-                        targetAmountSlider.value = 10000000; // 1 Crore
+                        targetAmountSlider.value = 10000000;
                         goalPeriodSlider.value = 25;
                         goalReturnRateSlider.value = 12;
                     } else if (goal === 'education') {
-                        targetAmountSlider.value = 2500000; // 25 Lakhs
+                        targetAmountSlider.value = 2500000;
                         goalPeriodSlider.value = 15;
                         goalReturnRateSlider.value = 11;
                     } else if (goal === 'car') {
-                        targetAmountSlider.value = 1000000; // 10 Lakhs
+                        targetAmountSlider.value = 1000000;
                         goalPeriodSlider.value = 5;
                         goalReturnRateSlider.value = 9;
                     }
                     
-                    // Sync inputs with new slider values and recalculate
                     targetAmountInput.value = targetAmountSlider.value;
                     goalPeriodInput.value = goalPeriodSlider.value;
                     goalReturnRateInput.value = goalReturnRateSlider.value;
@@ -592,7 +604,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // --- NEW: Share Button Listeners ---
             document.querySelectorAll('.share-btn').forEach(btn => {
                 btn.addEventListener('click', handleShare);
             });
@@ -603,9 +614,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- Initial Setup Calls ---
         setupEventListeners();
-        loadFromUrl(); // Check for URL params on page load
+        loadFromUrl();
         document.querySelectorAll('.range-slider').forEach(updateSliderFill);
-        // If no URL params are present, default to SIP mode
         if (!window.location.search) {
              switchMode('sip');
         }
@@ -629,9 +639,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!dropdownToggle) return;
 
         dropdownToggle.addEventListener('click', function(e) {
-            // This logic is for touch devices where hover isn't an option.
             if (window.innerWidth <= 768) {
-                e.preventDefault(); // Prevent link navigation
+                e.preventDefault();
                 this.classList.toggle('open');
                 const menu = this.nextElementSibling;
                 
@@ -644,7 +653,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Start the page initialization process
     initializePage();
 
 });
