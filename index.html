@@ -22,15 +22,12 @@
         
         /* Custom styles for the new guides section */
         .featured-guides-section {
-            /* Reduced padding for a more compact feel */
             padding: 1rem 0;
             margin: 0 auto;
             max-width: 1000px;
-            /* Added background to make it stand out */
             background-color: #f0f4f8; 
             border-radius: 0.5rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            /* Reduced top margin to decrease space between sections */
             margin-top: 1rem;
         }
 
@@ -42,28 +39,24 @@
             margin-bottom: 0.75rem;
         }
         
-        /* Additional styling for the links inside the guide cards */
         .guide-link {
             font-size: 0.8rem;
             font-weight: 600;
-            /* Changed to match accent color */
             color: #E34037; 
             text-decoration: none;
-            margin-top: auto; /* Push the link to the bottom of the card */
+            margin-top: auto;
             transition: color 0.3s ease;
-            align-self: flex-start; /* Align link to the left */
+            align-self: flex-start;
         }
         
         .guide-link:hover {
-            /* Changed hover color for consistency */
             color: #C22D2D; 
         }
 
-        /* Update card container for 4 items */
         .card-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem; /* Increased gap for better spacing with 4 cards */
+            gap: 1rem;
         }
 
         .content-card {
@@ -75,7 +68,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #eee;
-            text-decoration: none; /* Make the whole card a clickable link */
+            text-decoration: none;
             color: inherit;
         }
 
@@ -166,6 +159,7 @@
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
                     <div class="space-y-2">
+                        <!-- SIP Section -->
                         <div id="sipSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg">
                             <div>
                                 <label for="sipAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="sipAmountLabel">Monthly SIP Amount (₹)</label>
@@ -191,6 +185,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Lumpsum Section -->
                         <div id="lumpsumSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="lumpsumAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="lumpsumAmountLabel">Lumpsum Amount (₹)</label>
@@ -201,6 +196,7 @@
                                 <p id="lumpsumAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹5,000 - ₹1 Crore.</p>
                             </div>
                         </div>
+                        <!-- RD Section -->
                         <div id="rdSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="rdAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="rdAmountLabel">Monthly RD Amount (₹)</label>
@@ -226,6 +222,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- FD Section -->
                         <div id="fdSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="fdAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="fdAmountLabel">FD Amount (₹)</label>
@@ -236,6 +233,7 @@
                                 <p id="fdAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1,000 - ₹1 Crore.</p>
                             </div>
                         </div>
+                        <!-- SWP Section -->
                         <div id="swpSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="initialCorpusSlider" class="block text-xs font-medium text-gray-600 mb-1" id="initialCorpusLabel">Initial Investment (₹)</label>
@@ -263,7 +261,17 @@
                                 </select>
                             </div>
                         </div>
+                        <!-- Goal Planner Section -->
                         <div id="goalSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
+                            <!-- GOAL TEMPLATES - NEWLY ADDED -->
+                            <div class="mb-2">
+                                <label class="block text-xs font-medium text-gray-600 mb-1">Goal Templates</label>
+                                <div class="flex flex-wrap gap-1">
+                                    <button class="goal-template-btn" data-goal="retirement">Retirement</button>
+                                    <button class="goal-template-btn" data-goal="education">Child's Education</button>
+                                    <button class="goal-template-btn" data-goal="car">Car Purchase</button>
+                                </div>
+                            </div>
                             <div>
                                 <label for="targetAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Target Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
@@ -289,6 +297,7 @@
                                 <p id="goalPeriodError" class="text-red-500 text-xxs mt-1 hidden">Period must be between 1 - 40 years.</p>
                             </div>
                         </div>
+                        <!-- Common Inputs Section -->
                         <div class="bg-blue-50/50 p-2 rounded-lg space-y-2">
                             <div>
                                 <label for="returnRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
@@ -307,6 +316,7 @@
                                 <p id="investmentPeriodError" class="text-red-500 text-xxs mt-1 hidden">Period must be between 1 - 40 years.</p>
                             </div>
                         </div>
+                        <!-- Inflation Section -->
                         <div class="bg-blue-50/50 p-2 rounded-lg">
                             <div class="flex items-center justify-between">
                                 <label for="inflationToggle" class="text-xs font-medium text-gray-600">Adjust for Inflation</label>
@@ -325,9 +335,16 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Results and Chart Section -->
                     <div class="flex flex-col">
+                        <!-- SIP Summary -->
                         <div id="sipSummary" class="bg-blue-50/50 p-2 rounded-lg" aria-live="polite">
-                            <h3 class="text-sm font-bold text-blue-800 mb-2 text-center">SIP Summary</h3>
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-sm font-bold text-blue-800">SIP Summary</h3>
+                                <button class="share-btn" aria-label="Share calculation results">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
+                                </button>
+                            </div>
                             <div class="space-y-1 text-xs">
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountSIP" class="font-semibold text-blue-700">₹0</span></div>
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsSIP" class="font-semibold text-green-700">₹0</span></div>
@@ -335,8 +352,14 @@
                                 <div id="realValueSectionSIP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueSIP" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
+                        <!-- Lumpsum Summary -->
                         <div id="lumpsumSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
-                            <h3 class="text-sm font-bold text-blue-800 mb-2 text-center">Lumpsum Summary</h3>
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-sm font-bold text-blue-800">Lumpsum Summary</h3>
+                                <button class="share-btn" aria-label="Share calculation results">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
+                                </button>
+                            </div>
                             <div class="space-y-1 text-xs">
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountLumpsum" class="font-semibold text-blue-700">₹0</span></div>
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsLumpsum" class="font-semibold text-green-700">₹0</span></div>
@@ -344,8 +367,14 @@
                                 <div id="realValueSectionLumpsum" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueLumpsum" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
+                        <!-- RD Summary -->
                         <div id="rdSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
-                            <h3 class="text-sm font-bold text-blue-800 mb-2 text-center">RD Summary</h3>
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-sm font-bold text-blue-800">RD Summary</h3>
+                                <button class="share-btn" aria-label="Share calculation results">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
+                                </button>
+                            </div>
                             <div class="space-y-1 text-xs">
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountRD" class="font-semibold text-blue-700">₹0</span></div>
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsRD" class="font-semibold text-green-700">₹0</span></div>
@@ -353,8 +382,14 @@
                                 <div id="realValueSectionRD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueRD" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
+                        <!-- FD Summary -->
                         <div id="fdSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
-                            <h3 class="text-sm font-bold text-blue-800 mb-2 text-center">FD Summary</h3>
+                           <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-sm font-bold text-blue-800">FD Summary</h3>
+                                <button class="share-btn" aria-label="Share calculation results">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
+                                </button>
+                            </div>
                             <div class="space-y-1 text-xs">
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountFD" class="font-semibold text-blue-700">₹0</span></div>
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsFD" class="font-semibold text-green-700">₹0</span></div>
@@ -362,8 +397,14 @@
                                 <div id="realValueSectionFD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueFD" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
+                        <!-- SWP Summary -->
                         <div id="swpSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
-                            <h3 class="text-sm font-bold text-blue-800 mb-2 text-center">SWP Summary</h3>
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-sm font-bold text-blue-800">SWP Summary</h3>
+                                <button class="share-btn" aria-label="Share calculation results">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
+                                </button>
+                            </div>
                             <div class="space-y-1 text-xs">
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Initial Corpus:</span><span id="initialCorpusSWP" class="font-semibold text-blue-700">₹0</span></div>
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Withdrawn:</span><span id="totalWithdrawnSWP" class="font-semibold text-green-700">₹0</span></div>
@@ -373,8 +414,14 @@
                                 <div id="realValueSectionSWP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Remaining:</span><span id="realRemainingCorpusSWP" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
+                        <!-- Goal Planner Summary -->
                         <div id="goalSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
-                            <h3 class="text-sm font-bold text-blue-800 mb-2 text-center">Goal Planner Summary</h3>
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-sm font-bold text-blue-800">Goal Planner Summary</h3>
+                                <button class="share-btn" aria-label="Share calculation results">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
+                                </button>
+                            </div>
                             <div class="space-y-1 text-xs">
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Target Amount:</span><span id="targetAmountGoal" class="font-semibold text-blue-700">₹0</span></div>
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Total Investment:</span><span id="totalInvestmentGoal" class="font-semibold text-green-700">₹0</span></div>
@@ -382,14 +429,17 @@
                                 <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Monthly Investment:</span><span id="monthlyInvestmentGoal" class="text-lg font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
+                        <!-- Doughnut Chart -->
                         <div class="flex justify-center items-center h-32 sm:h-40 md:h-48 w-full relative mt-3">
                             <canvas id="investmentDoughnutChart"></canvas>
                         </div>
                     </div>
                 </div>
+                <!-- Growth Table Button -->
                 <div class="flex justify-center my-4">
                     <button id="toggleGrowthTableBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Show Yearly Growth</button>
                 </div>
+                <!-- Growth Table -->
                 <div id="growthTableContainer" class="hidden overflow-x-auto bg-white rounded-lg shadow-md mt-4 p-4 border border-gray-200">
                     <h3 class="text-center text-sm font-bold text-gray-800 mb-2">Yearly Investment Growth</h3>
                     <table class="min-w-full divide-y divide-gray-200">
@@ -405,6 +455,7 @@
                         </tbody>
                     </table>
                 </div>
+                <!-- Disclaimer -->
                 <div class="border-t border-gray-200 my-3 w-full"></div>
                 <p class="text-center text-gray-500 text-xxs leading-relaxed px-2">
                     <strong>Disclaimer:</strong> This calculator is for informational purposes only and does not constitute financial advice.
@@ -412,12 +463,13 @@
             </div>
         </div>
 
-        <!-- Featured Guides Section - NEW CONTENT ADDED HERE -->
+        <!-- Featured Guides Section -->
         <section class="featured-guides-section">
             <h2 class="section-title">Featured Guides</h2>
             <p class="section-subtitle">Dive deeper into personal finance with our expert guides.</p>
             <div class="card-container">
-                <a href="guides.html" class="content-card">
+                <!-- FIX: Re-added the icon containers and SVGs -->
+                <a href="guides/mfguide.html" class="content-card">
                     <div class="icon-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
                     </div>
@@ -425,7 +477,7 @@
                     <p>Your comprehensive guide to mutual funds, SIP, and more.</p>
                     <span class="guide-link">Read More &rarr;</span>
                 </a>
-                <a href="tax-saving-guide.html" class="content-card">
+                <a href="guides/tax-saving-guide.html" class="content-card">
                     <div class="icon-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-plus"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
                     </div>
@@ -433,7 +485,7 @@
                     <p>Explore the best ways to save tax and grow your wealth under Section 80C.</p>
                     <span class="guide-link">Read More &rarr;</span>
                 </a>
-                <a href="retirement-planning-guide.html" class="content-card">
+                <a href="guides/retirement-planning-guide.html" class="content-card">
                     <div class="icon-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                     </div>
@@ -441,9 +493,9 @@
                     <p>Learn how to build a retirement corpus and create a steady income stream.</p>
                     <span class="guide-link">Read More &rarr;</span>
                 </a>
-                <a href="goal-based-investing.html" class="content-card">
+                <a href="guides/goal-based-investing.html" class="content-card">
                     <div class="icon-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><path d="M15 3.34a10 10 0 0 1 4.24 4.24M20.66 9a10 10 0 0 1-.34 4.24M20.66 15a10 10 0 0 1-4.24 4.24M15 20.66a10 10 0 0 1-4.24-.34M9 20.66a10 10 0 0 1-4.24-4.24M3.34 15a10 10 0 0 1 .34-4.24M3.34 9a10 10 0 0 1 4.24-4.24M9 3.34a10 10 0 0 1 4.24.34"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                     </div>
                     <h3>Goal-Based Investing</h3>
                     <p>A simple guide to planning for your financial goals, big or small.</p>
