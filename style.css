@@ -5,7 +5,7 @@ body {
     color: #121212;
     margin: 0;
     line-height: 1.6;
-    font-size: 15px; /* Set a smaller base font size */
+    font-size: 15px;
 }
 
 .container {
@@ -17,17 +17,15 @@ body {
 
 /* Header and Navigation */
 .site-header {
-    /* CONSTRAINED LAYOUT */
     max-width: 1000px;
-    margin: 0 auto 0.5rem; /* Reduced bottom margin for less space */
+    margin: 0 auto 0.5rem;
     width: 90%;
-    /* Reduced vertical padding to make header more compact */
     padding: 0.5rem 1.5rem; 
     border-radius: 0.5rem;
     border: 1px solid #eee;
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    position: relative; /* Added for positioning the mobile menu */
+    position: relative;
 }
 
 .main-nav {
@@ -37,7 +35,7 @@ body {
 }
 
 .logo {
-    font-size: 1.3rem; /* Reduced font size */
+    font-size: 1.3rem;
     font-weight: 700;
     color: #121212;
     text-decoration: none;
@@ -59,25 +57,26 @@ body {
     margin-left: 1.5rem;
 }
 
+/* UPDATED: Made all nav links flex containers for consistent alignment */
 .nav-links > li > a {
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: #121212;
     font-weight: 500;
-    font-size: 0.85rem; /* Reduced font size */
+    font-size: 0.85rem;
     transition: color 0.3s ease;
-    position: relative; /* Needed for the underline effect */
-    /* Removed padding to rely on parent's alignment */
-    padding-bottom: 3px; /* Minimal space for the line */
+    position: relative;
+    padding-bottom: 3px;
 }
 
-/* --- UPDATED Underline Effect --- */
 .nav-links > li > a::after {
     content: '';
     position: absolute;
     width: 100%;
-    transform: scaleX(0); /* Make underline hidden by default */
+    transform: scaleX(0);
     height: 2px;
-    bottom: 0; /* Positioned at the bottom of the link */
+    bottom: 0;
     left: 0;
     background-color: #E34037;
     transform-origin: bottom right;
@@ -91,23 +90,18 @@ body {
 
 .nav-links > li > a:hover::after,
 .nav-links > li > a.active::after {
-    transform: scaleX(1); /* Show underline on hover/active */
+    transform: scaleX(1);
     transform-origin: bottom left;
 }
-/* --- END of Underline Effect --- */
 
-/* --- UPDATED Dropdown Menu Styles --- */
 .dropdown {
     position: relative;
 }
 
 .dropdown > a {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem; /* Space between text and icon */
+    gap: 0.25rem;
 }
 
-/* Hide the old text-based arrow */
 .dropdown > a::after {
     content: '';
     display: none;
@@ -118,14 +112,14 @@ body {
 }
 
 .dropdown-menu {
-    display: none; /* Hidden by default */
+    display: none;
     position: absolute;
-    top: 100%; /* Position right below the parent */
+    top: 100%;
     left: 0;
     background-color: #ffffff;
-    min-width: 220px; /* Wider for better readability */
+    min-width: 220px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    z-index: 10; /* Ensure it's on top */
+    z-index: 10;
     list-style: none;
     padding: 0.5rem 0;
     margin: 0;
@@ -133,12 +127,10 @@ body {
     border: 1px solid #f0f0f0;
 }
 
-/* Show on hover for desktop */
 .dropdown:hover .dropdown-menu {
     display: block;
 }
 
-/* Rotate icon on hover (desktop) or when open (mobile) */
 .dropdown:hover .dropdown-icon,
 .dropdown > a.open .dropdown-icon {
     transform: rotate(180deg);
@@ -157,19 +149,15 @@ body {
     font-weight: 500;
     font-size: 0.8rem;
     transition: all 0.3s ease;
-    /* Make red accent line transparent by default */
     border-left: 3px solid transparent;
 }
 
-/* Hover and active effect for dropdown items */
 .dropdown-menu li a:hover,
 .dropdown-menu li a.active {
-    background-color: #fef2f2; /* Light red background */
-    color: #C22D2D; /* Darker red text */
-    border-left-color: #E34037; /* Show red accent line on hover/active */
+    background-color: #fef2f2;
+    color: #C22D2D;
+    border-left-color: #E34037;
 }
-/* --- END of Dropdown Styles --- */
-
 
 .hamburger {
     display: none;
@@ -177,7 +165,7 @@ body {
     background: none;
     border: none;
     padding: 0;
-    z-index: 10; /* Ensure hamburger is clickable */
+    z-index: 10;
 }
 
 .hamburger span {
@@ -206,12 +194,12 @@ body {
 }
 
 .section-title {
-    font-size: 1.3rem; /* Adjusted font size */
+    font-size: 1.3rem;
     margin-bottom: 0.5rem;
 }
 
 .section-title-secondary {
-    font-size: 1.0rem; /* Adjusted font size */
+    font-size: 1.0rem;
     margin-bottom: 0.5rem;
 }
 
@@ -228,9 +216,8 @@ body {
 .section-subtitle {
     text-align: center;
     color: #525252;
-    /* Reduced margin-bottom from 2rem to 1rem */
     margin: 0 auto 1rem auto;
-    font-size: 0.85rem; /* Reduced font size */
+    font-size: 0.85rem;
 }
 
 .content-section {
@@ -240,7 +227,6 @@ body {
 .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    /* Increased gap for a cleaner layout */
     gap: 1rem;
 }
 
@@ -256,7 +242,7 @@ body {
 }
 
 .content-card:hover { transform: translateY(-5px); box-shadow: 0 12px 16px rgba(0,0,0,0.08); }
-.content-card h3 { font-size: 0.85rem; font-weight: 500; color: #121212; margin-bottom: 0.5rem; } /* Adjusted font size */
+.content-card h3 { font-size: 0.85rem; font-weight: 500; color: #121212; margin-bottom: 0.5rem; }
 .content-card h4 { font-size: 0.8rem; font-weight: 600; color: #121212; margin-bottom: 0.25rem; }
 .content-card p, .content-card ul { color: #525252; margin-bottom: 0.25rem; font-size: 0.7rem; line-height: 1.5; }
 .content-card ul { list-style: none; padding: 0; }
@@ -279,7 +265,7 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 .faq-item summary {
-    font-size: 0.85rem; /* Reduced font size */
+    font-size: 0.85rem;
     font-weight: 600;
     padding: 0.75rem 1rem;
     cursor: pointer;
@@ -306,7 +292,7 @@ body {
 .faq-item p {
     padding: 0 1rem 0.75rem 1rem;
     margin: 0;
-    font-size: 0.7rem; /* Reduced font size */
+    font-size: 0.7rem;
     color: #525252;
     line-height: 1.6;
 }
@@ -320,14 +306,14 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 .trust-card h4 {
-    font-size: 0.85rem; /* Reduced font size */
+    font-size: 0.85rem;
     font-weight: 600;
     color: #121212;
     margin-top: 0;
     margin-bottom: 0.75rem;
 }
 .trust-card p {
-    font-size: 0.7rem; /* Reduced font size */
+    font-size: 0.7rem;
     color: #525252;
     margin-bottom: 1rem;
 }
@@ -390,19 +376,18 @@ body {
     transform-origin: bottom left; 
 }
 
-/* --- UPDATED Legal Pages & Guide Content Styles --- */
+/* Legal Pages & Guide Content Styles */
 .legal-content {
     background-color: #ffffff;
-    padding: 0; /* Remove padding to handle it internally */
-    margin: 1rem auto; /* Standardized top margin */
+    padding: 0;
+    margin: 1rem auto;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     border: 1px solid #eee;
     max-width: 1000px;
-    overflow: hidden; /* To contain the background of the header */
+    overflow: hidden;
 }
 
-/* NEW: Style for internal links in guides */
 .legal-content a {
     color: #E34037;
     font-weight: 600;
@@ -416,13 +401,12 @@ body {
     background-color: #fef2f2;
 }
 
-/* Create a distinct header card section */
 .legal-content h1 {
     background-color: #f9fafb;
     padding: 1.5rem 1.5rem 0.5rem 1.5rem;
     margin: 0;
     text-align: center;
-    font-size: 1.3rem; /* Adjusted font size */
+    font-size: 1.3rem;
     font-weight: 700;
     color: #121212;
     border-bottom: none;
@@ -435,19 +419,17 @@ body {
     text-align: center;
     font-size: 0.8rem;
     color: #525252;
-    border-bottom: 1px solid #eee; /* Add a separator */
+    border-bottom: 1px solid #eee;
 }
 
-/* Add padding to the rest of the content inside .legal-content */
 .legal-content > *:not(h1):not(h1 + p) {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
 }
 
-/* Re-apply original styles with new margin context */
 .legal-content h2 {
-    font-size: 1.0rem; /* Adjusted font size */
-    font-weight: 700; /* Bolder h2 */
+    font-size: 1.0rem;
+    font-weight: 700;
     color: #121212;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
@@ -466,60 +448,107 @@ body {
     padding-left: 1.25rem; 
 }
 
-/* --- UPDATED Table Styles --- */
 .legal-content table {
     font-size: 0.65rem;
     word-break: break-word;
     width: calc(100% - 3rem);
-    table-layout: fixed; /* Ensure columns are evenly spaced */
+    table-layout: fixed;
 }
 
 .legal-content th, .legal-content td {
     padding: 0.5rem;
-    vertical-align: top; /* Align text to the top */
+    vertical-align: top;
 }
 
 .legal-content td:first-child, .legal-content th:first-child {
-    width: 25%; /* Give the first column more space */
+    width: 25%;
 }
-/* --- END of Table Styles --- */
+
+/* Share Buttons Styles */
+.share-buttons-container {
+    padding: 1.5rem;
+    margin: 2rem 1.5rem 0 1.5rem;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.share-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #121212;
+    margin-bottom: 1rem;
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #e5e7eb;
+    background-color: #ffffff;
+    color: #4b5563;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+.share-btn.whatsapp:hover { background-color: #25D366; color: #fff; border-color: #25D366;}
+.share-btn.facebook:hover { background-color: #1877F2; color: #fff; border-color: #1877F2;}
+.share-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2;}
+.share-btn.linkedin:hover { background-color: #0A66C2; color: #fff; border-color: #0A66C2;}
+.share-btn.copy-link:hover { background-color: #6b7280; color: #fff; border-color: #6b7280;}
+
+.share-btn svg {
+    width: 20px;
+    height: 20px;
+}
 
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    /* --- UPDATED MOBILE MENU STYLES --- */
     .nav-links { 
         display: none; 
         flex-direction: column; 
         position: absolute; 
-        top: 55px; /* Position below the header */
-        right: 0; /* Align to the right */
-        width: 180px; /* Set a fixed width */
+        top: 55px;
+        right: 0;
+        width: 180px;
         background-color: #ffffff; 
-        box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Softer shadow */
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         border-radius: 0.5rem;
         border: 1px solid #f0f0f0;
-        padding: 0.5rem 0; /* Add some vertical padding */
-        z-index: 5; /* Ensure it's above other content */
+        padding: 0.5rem 0;
+        z-index: 5;
     }
     .nav-links.active { 
         display: flex; 
     }
     .nav-links li { 
-        margin: 0; /* Remove vertical margins */
+        margin: 0;
         width: 100%;
     }
     .nav-links > li > a {
         display: block;
-        padding: 0.4rem 1rem; /* Reduced padding for less space */
-        text-align: left; /* Align text to the left */
-        font-size: 0.8rem; /* Slightly smaller font for compact view */
+        padding: 0.4rem 1rem;
+        text-align: left;
+        font-size: 0.8rem;
     }
-    /* --- END OF UPDATED STYLES --- */
 
-    /* --- ADDED Dropdown Mobile Styles --- */
     .dropdown {
-        position: static; /* Reset position for in-flow layout */
+        position: static;
     }
     
     .dropdown > a {
@@ -534,17 +563,16 @@ body {
     }
 
     .dropdown-menu {
-        position: static; /* Reset position */
-        display: none; /* JS will handle display */
+        position: static;
+        display: none;
         width: 100%;
         box-shadow: none;
         border: none;
         border-top: 1px solid #f0f0f0;
         border-radius: 0;
-        padding: 0.5rem 0 0.5rem 1rem; /* Indent nested items */
-        background-color: #f9fafb; /* Slightly different bg for visual hierarchy */
+        padding: 0.5rem 0 0.5rem 1rem;
+        background-color: #f9fafb;
     }
-    /* --- END of Dropdown Mobile Styles --- */
 
     .hamburger { 
         display: block; 
@@ -565,25 +593,24 @@ body {
     }
 }
 
-/* Media query for larger screens to restore original sizes */
 @media (min-width: 768px) {
     .legal-content {
         padding: 0;
     }
     .legal-content h1 {
-        font-size: 1.5rem; /* Adjusted font size */
+        font-size: 1.5rem;
     }
     .legal-content h2 {
-        font-size: 1.1rem; /* Adjusted font size */
+        font-size: 1.1rem;
     }
     .legal-content p, .legal-content ul {
         color: #525252;
         font-size: 0.8rem;
     }
     .legal-content table {
-        font-size: 0.8rem; /* Restore table font size */
+        font-size: 0.8rem;
     }
     .legal-content th, .legal-content td {
-        padding: 0.75rem; /* Restore table padding */
+        padding: 0.75rem;
     }
 }
