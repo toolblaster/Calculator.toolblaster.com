@@ -59,6 +59,61 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // --- NEW: DYNAMIC GUIDES HUB LOGIC ---
+    const initializeGuidesHub = () => {
+        const guidesContainer = document.getElementById('guides-grid-container');
+        if (!guidesContainer) return; // Only run this code on the investingguides.html page
+
+        // --- To add a new guide, just add a new object to this list! ---
+        const guides = [
+            {
+                url: 'guides/emergency-fund-guide.html',
+                title: 'Building Your Financial Safety Net',
+                description: 'Learn the essential steps to create a robust emergency fund.'
+            },
+            {
+                url: 'guides/goal-based-investing.html',
+                title: 'A Roadmap to Your Dreams',
+                description: 'Discover how to align your investments with your life goals.'
+            },
+            {
+                url: 'guides/mfguide.html',
+                title: 'Your First Step into Investing',
+                description: 'A comprehensive beginner\'s guide to mutual funds and SIPs.'
+            },
+            {
+                url: 'guides/retirement-planning-guide.html',
+                title: 'Plan for Your Golden Years',
+                description: 'An in-depth look at retirement planning for a secure future.'
+            },
+            {
+                url: 'guides/tax-saving-guide.html',
+                title: 'Smart Tax-Saving Strategies',
+                description: 'Explore the best tax-saving investments under Section 80C.'
+            },
+            {
+                url: 'guides/risk-profile-quiz.html',
+                title: 'What\'s Your Investor Profile?',
+                description: 'Take our quick quiz to understand your risk tolerance.',
+                linkText: 'Take the Quiz &rarr;' // Custom link text for this card
+            }
+        ];
+
+        let guidesHTML = '';
+        guides.forEach(guide => {
+            const linkText = guide.linkText || 'Read More &rarr;'; // Use custom text or default
+            guidesHTML += `
+                <a href="${guide.url}" class="guide-card">
+                    <h2>${guide.title}</h2>
+                    <p>${guide.description}</p>
+                    <span class="read-more-link">${linkText}</span>
+                </a>
+            `;
+        });
+
+        guidesContainer.innerHTML = guidesHTML;
+    };
+
 
     // --- SECTION 2: PAGE INITIALIZATION ---
 
@@ -79,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setupMobileMenu();
             setupDropdownMenu();
             setActiveNavLink(); // <-- Call the new function here
+            initializeGuidesHub(); // <-- Call the new guides function
 
             const calculatorContainer = document.querySelector('.calculator-container');
             if (calculatorContainer) {
