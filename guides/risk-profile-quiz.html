@@ -13,6 +13,64 @@
     </script>
     
     <meta name="description" content="Take our quick and easy quiz to discover your personal risk profile. Understand if you are a conservative, balanced, or aggressive investor and get personalized recommendations.">
+    
+    <!-- NEW: JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      "name": "Investor Profile Quiz",
+      "description": "An interactive quiz to help users determine their investment risk profile (Conservative, Balanced, or Aggressive) and receive personalized financial tool recommendations.",
+      "hasPart": [
+        {
+          "@type": "Question",
+          "name": "When it comes to investing, which statement sounds most like you?",
+          "acceptedAnswer": [
+            { "@type": "Answer", "text": "I'm new to this and my main goal is to not lose the money I've saved." },
+            { "@type": "Answer", "text": "I'm willing to accept some ups and downs to get better returns than a savings account." },
+            { "@type": "Answer", "text": "I'm aiming for the highest possible growth, and I understand that involves taking bigger risks." }
+          ]
+        },
+        {
+          "@type": "Question",
+          "name": "If you saw your investment value drop by 20% in a month, what would you do?",
+          "acceptedAnswer": [
+            { "@type": "Answer", "text": "Sell immediately to cut my losses." },
+            { "@type": "Answer", "text": "Feel worried, but hold on and hope it recovers." },
+            { "@type": "Answer", "text": "See it as a sale and invest even more." }
+          ]
+        },
+        {
+          "@type": "Question",
+          "name": "How soon do you think you'll need to use the money you're investing?",
+          "acceptedAnswer": [
+            { "@type": "Answer", "text": "In the next 1-3 years." },
+            { "@type": "Answer", "text": "Sometime between 4 and 7 years from now." },
+            { "@type": "Answer", "text": "Not for at least 8 years or more." }
+          ]
+        },
+        {
+          "@type": "Question",
+          "name": "How much experience do you have with investing in things like stocks or mutual funds?",
+          "acceptedAnswer": [
+            { "@type": "Answer", "text": "None at all, I'm a complete beginner." },
+            { "@type": "Answer", "text": "I know the basics and have made a few investments." },
+            { "@type": "Answer", "text": "I'm very experienced and actively manage my own portfolio." }
+          ]
+        },
+        {
+          "@type": "Question",
+          "name": "Which of these trade-offs are you most comfortable making?",
+          "acceptedAnswer": [
+            { "@type": "Answer", "text": "I'd accept very low returns to ensure my money is 100% safe." },
+            { "@type": "Answer", "text": "I'd risk a small potential loss for a chance at moderate, inflation-beating returns." },
+            { "@type": "Answer", "text": "I'd risk a larger potential loss for a chance at high, market-beating returns." }
+          ]
+        }
+      ]
+    }
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -198,36 +256,49 @@
                 </div>
 
                 <form id="risk-quiz-form">
+                    <!-- Question 1 -->
                     <div class="question-block active" data-question-index="0">
-                        <p class="question-text">1. Imagine you've invested ₹1,00,000. After one year, the market has a sharp downturn and your investment is now worth ₹80,000. What is your first reaction?</p>
+                        <p class="question-text">1. When it comes to investing, which statement sounds most like you?</p>
                         <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q1" value="1" required> I feel anxious and immediately sell to prevent further losses.</label>
-                            <label class="option-label"><input type="radio" name="q1" value="2"> I'm concerned, but I'll hold on and wait for the market to recover.</label>
-                            <label class="option-label"><input type="radio" name="q1" value="3"> I see this as a great opportunity to invest more at a lower price.</label>
+                            <label class="option-label"><input type="radio" name="q1" value="1" required> "I'm new to this and my main goal is to not lose the money I've saved."</label>
+                            <label class="option-label"><input type="radio" name="q1" value="2"> "I'm willing to accept some ups and downs to get better returns than a savings account."</label>
+                            <label class="option-label"><input type="radio" name="q1" value="3"> "I'm aiming for the highest possible growth, and I understand that involves taking bigger risks."</label>
                         </div>
                     </div>
+                    <!-- Question 2 -->
                     <div class="question-block" data-question-index="1">
-                        <p class="question-text">2. What is your primary goal for your investments?</p>
+                        <p class="question-text">2. If you saw your investment value drop by 20% in a month, what would you do?</p>
                         <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q2" value="1" required> Protecting my initial capital is the most important thing. I can't afford to lose money.</label>
-                            <label class="option-label"><input type="radio" name="q2" value="2"> I'm looking for a balance of safety and growth. I'm okay with small fluctuations.</label>
-                            <label class="option-label"><input type="radio" name="q2" value="3"> Maximizing my returns is my main goal. I'm willing to take on significant risk for higher growth.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="1" required> Sell immediately to cut my losses.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="2"> Feel worried, but hold on and hope it recovers.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="3"> See it as a sale and invest even more.</label>
                         </div>
                     </div>
+                    <!-- Question 3 -->
                     <div class="question-block" data-question-index="2">
-                        <p class="question-text">3. How long do you plan to keep your money invested before you need to access a significant portion of it?</p>
+                        <p class="question-text">3. How soon do you think you'll need to use the money you're investing?</p>
                         <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q3" value="1" required> Less than 3 years.</label>
-                            <label class="option-label"><input type="radio" name="q3" value="2"> Between 3 and 7 years.</label>
-                            <label class="option-label"><input type="radio" name="q3" value="3"> More than 7 years.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="1" required> In the next 1-3 years.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="2"> Sometime between 4 and 7 years from now.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="3"> Not for at least 8 years or more.</label>
                         </div>
                     </div>
+                    <!-- Question 4 -->
                     <div class="question-block" data-question-index="3">
-                        <p class="question-text">4. Which of these investment outcomes would you be most comfortable with?</p>
+                        <p class="question-text">4. How much experience do you have with investing in things like stocks or mutual funds?</p>
                         <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q4" value="1" required> Low risk, with returns around 6-8% per year.</label>
-                            <label class="option-label"><input type="radio" name="q4" value="2"> Medium risk, with potential returns of 9-12% per year, but also the possibility of a small loss.</label>
-                            <label class="option-label"><input type="radio" name="q4" value="3"> High risk, with potential returns of over 12% per year, but also the possibility of a significant loss.</label>
+                            <label class="option-label"><input type="radio" name="q4" value="1" required> None at all, I'm a complete beginner.</label>
+                            <label class="option-label"><input type="radio" name="q4" value="2"> I know the basics and have made a few investments.</label>
+                            <label class="option-label"><input type="radio" name="q4" value="3"> I'm very experienced and actively manage my own portfolio.</label>
+                        </div>
+                    </div>
+                    <!-- Question 5 -->
+                    <div class="question-block" data-question-index="4">
+                        <p class="question-text">5. Which of these trade-offs are you most comfortable making?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q5" value="1" required> I'd accept very low returns to ensure my money is 100% safe.</label>
+                            <label class="option-label"><input type="radio" name="q5" value="2"> I'd risk a small potential loss for a chance at moderate, inflation-beating returns.</label>
+                            <label class="option-label"><input type="radio" name="q5" value="3"> I'd risk a larger potential loss for a chance at high, market-beating returns.</label>
                         </div>
                     </div>
                 </form>
@@ -292,7 +363,7 @@
 
             let currentQuestionIndex = 0;
             const userAnswers = {};
-            let isTransitioning = false; // --- FIX: Add transition flag ---
+            let isTransitioning = false;
 
             function showQuestion(index) {
                 questions.forEach((question, i) => {
@@ -304,7 +375,6 @@
             }
 
             function updateProgressBar() {
-                // --- FIX: Update progress based on current question index for smoother UX ---
                 const progress = (currentQuestionIndex / (questions.length - 1)) * 100;
                 progressBar.style.width = `${progress}%`;
             }
@@ -322,9 +392,9 @@
                 document.getElementById('balanced-result').style.display = 'none';
                 document.getElementById('aggressive-result').style.display = 'none';
 
-                if (score <= 5) {
+                if (score <= 7) {
                     document.getElementById('conservative-result').style.display = 'block';
-                } else if (score <= 9) {
+                } else if (score <= 12) {
                     document.getElementById('balanced-result').style.display = 'block';
                 } else {
                     document.getElementById('aggressive-result').style.display = 'block';
@@ -335,7 +405,6 @@
                 const options = question.querySelectorAll('.option-label');
                 options.forEach(label => {
                     label.addEventListener('click', () => {
-                        // --- FIX: Prevent clicks during transition ---
                         if (isTransitioning) return;
                         isTransitioning = true;
 
@@ -351,7 +420,7 @@
                             } else {
                                 calculateAndShowResults();
                             }
-                            isTransitioning = false; // --- FIX: Reset flag after transition ---
+                            isTransitioning = false;
                         }, 300);
                     });
                 });
