@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Investor Profile - Calculator.toolblaster</title>
+    
+    <script>
+      // Redirect directory URLs to the homepage
+      if (window.location.pathname !== '/' && window.location.pathname.endsWith('/')) {
+        window.location.href = '/';
+      }
+    </script>
+    
+    <meta name="description" content="Take our quick and easy quiz to discover your personal risk profile. Understand if you are a conservative, balanced, or aggressive investor and get personalized recommendations.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .quiz-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .question-block {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 1.5rem;
+        }
+        .question-block:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .question-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .option-label {
+            display: block;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-size: 0.9rem;
+        }
+        .option-label:hover {
+            background-color: #f9fafb;
+            border-color: #3b82f6;
+        }
+        .option-label input {
+            display: none;
+        }
+        .option-label.selected {
+            background-color: #eff6ff;
+            border-color: #2563eb;
+            color: #1e40af;
+            font-weight: 500;
+        }
+        .quiz-button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 2rem;
+        }
+        .quiz-button:hover {
+            background-color: #1d4ed8;
+        }
+        .quiz-button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+        .result-card {
+            display: none; /* Initially hidden */
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background-color: #f9fafb;
+        }
+        .result-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+        .result-description {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+        .recommendation-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #d1d5db;
+        }
+        .recommendation-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .recommendation-link {
+            display: inline-block;
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            margin: 0.25rem;
+            transition: all 0.2s;
+        }
+        .recommendation-link:hover {
+            background-color: #eff6ff;
+            border-color: #2563eb;
+            color: #1e40af;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <div class="quiz-container">
+            <div id="quiz-content">
+                <h1 class="text-2xl font-bold text-center text-gray-800 mb-2">What's Your Investor Profile?</h1>
+                <p class="text-center text-gray-500 mb-8">Answer these 4 simple questions to understand your risk tolerance and get personalized suggestions.</p>
+                
+                <form id="risk-quiz-form">
+                    <!-- Question 1 -->
+                    <div class="question-block">
+                        <p class="question-text">1. Imagine you've invested ₹1,00,000. After one year, the market has a sharp downturn and your investment is now worth ₹80,000. What is your first reaction?</p>
+                        <div class="options-container" data-question="1">
+                            <label class="option-label"><input type="radio" name="q1" value="1" required> I feel anxious and immediately sell to prevent further losses.</label>
+                            <label class="option-label"><input type="radio" name="q1" value="2"> I'm concerned, but I'll hold on and wait for the market to recover.</label>
+                            <label class="option-label"><input type="radio" name="q1" value="3"> I see this as a great opportunity to invest more at a lower price.</label>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="question-block">
+                        <p class="question-text">2. What is your primary goal for your investments?</p>
+                        <div class="options-container" data-question="2">
+                            <label class="option-label"><input type="radio" name="q2" value="1" required> Protecting my initial capital is the most important thing. I can't afford to lose money.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="2"> I'm looking for a balance of safety and growth. I'm okay with small fluctuations.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="3"> Maximizing my returns is my main goal. I'm willing to take on significant risk for higher growth.</label>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="question-block">
+                        <p class="question-text">3. How long do you plan to keep your money invested before you need to access a significant portion of it?</p>
+                        <div class="options-container" data-question="3">
+                            <label class="option-label"><input type="radio" name="q3" value="1" required> Less than 3 years.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="2"> Between 3 and 7 years.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="3"> More than 7 years.</label>
+                        </div>
+                    </div>
+
+                    <!-- Question 4 -->
+                    <div class="question-block">
+                        <p class="question-text">4. Which of these investment outcomes would you be most comfortable with?</p>
+                        <div class="options-container" data-question="4">
+                            <label class="option-label"><input type="radio" name="q4" value="1" required> Low risk, with returns around 6-8% per year.</label>
+                            <label class="option-label"><input type="radio" name="q4" value="2"> Medium risk, with potential returns of 9-12% per year, but also the possibility of a small loss.</label>
+                            <label class="option-label"><input type="radio" name="q4" value="3"> High risk, with potential returns of over 12% per year, but also the possibility of a significant loss.</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit-quiz-btn" class="quiz-button">Show My Profile</button>
+                </form>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-content">
+                <!-- Conservative Result -->
+                <div id="conservative-result" class="result-card">
+                    <h2 class="result-title">You are a Conservative Investor</h2>
+                    <p class="result-description">You prioritize the safety of your initial capital above all else. You are most comfortable with low-risk investments that offer predictable, stable returns, even if they are modest.</p>
+                    <div class="recommendation-section">
+                        <h3 class="recommendation-title">We recommend exploring:</h3>
+                        <a href="/index.html?mode=fd" class="recommendation-link">FD Calculator</a>
+                        <a href="/index.html?mode=rd" class="recommendation-link">RD Calculator</a>
+                        <a href="/guides/emergency-fund-guide.html" class="recommendation-link">Emergency Fund Guide</a>
+                    </div>
+                </div>
+                <!-- Balanced Result -->
+                <div id="balanced-result" class="result-card">
+                    <h2 class="result-title">You are a Balanced Investor</h2>
+                    <p class="result-description">You are looking for a healthy mix of safety and growth. You're willing to take on a moderate amount of risk to achieve better returns than traditional savings instruments, but you still value capital preservation.</p>
+                    <div class="recommendation-section">
+                        <h3 class="recommendation-title">We recommend exploring:</h3>
+                        <a href="/index.html?mode=lumpsum" class="recommendation-link">Lumpsum Calculator</a>
+                        <a href="/index.html?mode=goal" class="recommendation-link">Goal Planner</a>
+                        <a href="/guides/goal-based-investing.html" class="recommendation-link">Goal-Based Investing Guide</a>
+                    </div>
+                </div>
+                <!-- Aggressive Result -->
+                <div id="aggressive-result" class="result-card">
+                    <h2 class="result-title">You are an Aggressive Investor</h2>
+                    <p class="result-description">You are focused on maximizing your long-term growth and are comfortable taking on significant market risk to do so. You understand that market downturns are part of the journey to achieving high returns.</p>
+                    <div class="recommendation-section">
+                        <h3 class="recommendation-title">We recommend exploring:</h3>
+                        <a href="/index.html?mode=sip" class="recommendation-link">SIP Calculator</a>
+                        <a href="/index.html?mode=goal" class="recommendation-link">Goal Planner</a>
+                        <a href="/guides/retirement-planning-guide.html" class="recommendation-link">Retirement Planning Guide</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('risk-quiz-form');
+            if (!form) return;
+
+            const quizContent = document.getElementById('quiz-content');
+            const resultsContent = document.getElementById('results-content');
+            const conservativeResult = document.getElementById('conservative-result');
+            const balancedResult = document.getElementById('balanced-result');
+            const aggressiveResult = document.getElementById('aggressive-result');
+
+            // Add click listener to options for visual feedback
+            const allOptions = document.querySelectorAll('.option-label');
+            allOptions.forEach(label => {
+                label.addEventListener('click', () => {
+                    const questionContainer = label.closest('.options-container');
+                    // Remove 'selected' from siblings
+                    questionContainer.querySelectorAll('.option-label').forEach(sibling => {
+                        sibling.classList.remove('selected');
+                    });
+                    // Add 'selected' to clicked label
+                    label.classList.add('selected');
+                });
+            });
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                let score = 0;
+                const formData = new FormData(form);
+                for (let value of formData.values()) {
+                    score += parseInt(value, 10);
+                }
+
+                // Hide quiz and show results
+                quizContent.style.display = 'none';
+                resultsContent.style.display = 'block';
+
+                // Determine and display the correct profile
+                if (score <= 5) { // Conservative
+                    conservativeResult.style.display = 'block';
+                } else if (score <= 9) { // Balanced
+                    balancedResult.style.display = 'block';
+                } else { // Aggressive
+                    aggressiveResult.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
