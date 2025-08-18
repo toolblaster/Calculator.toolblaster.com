@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Guides - Calculator.toolblaster</title>
+    <meta name="description" content="Explore our comprehensive library of financial guides. Learn about investing, retirement planning, tax saving, and more to take control of your financial future.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .guide-card {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+        .guide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 16px rgba(0,0,0,0.08);
+        }
+        .guide-card h2 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #121212;
+            margin-bottom: 0.4rem;
+        }
+        .guide-card p {
+            font-size: 0.75rem;
+            color: #525252;
+            margin-bottom: 0.75rem;
+            flex-grow: 1;
+        }
+        .read-more-link {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #E34037;
+            text-decoration: none;
+            margin-top: auto;
+            transition: color 0.3s ease;
+        }
+        .read-more-link:hover {
+            color: #C22D2D;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <div class="legal-content">
+            <div class="text-center py-6 bg-gray-100 rounded-lg mb-6">
+                <h1 class="text-4xl font-extrabold text-gray-800 tracking-tight">Our Financial Guides</h1>
+                <p class="mt-3 text-lg text-gray-500 max-w-2xl mx-auto">A curated collection of articles to help you navigate your financial journey with confidence.</p>
+            </div>
+
+            <!-- This container will be filled automatically by our script -->
+            <div id="guides-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 px-4 pb-4">
+                <!-- Guide cards will be inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
