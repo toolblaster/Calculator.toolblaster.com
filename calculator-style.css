@@ -82,3 +82,34 @@
         font-size: 0.75rem; 
     } 
 }
+
+/* NEW: Styles for Goal Templates and Share Button */
+.goal-template-btn {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    background-color: #f3f4f6;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.goal-template-btn:hover, .goal-template-btn.active {
+    background-color: #3B82F6;
+    color: white;
+    border-color: #2563EB;
+}
+
+.share-btn {
+    padding: 0.25rem;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    transition: all 0.2s ease-in-out;
+}
+.share-btn:hover {
+    background-color: #e5e7eb;
+    color: #1f2937;
+}
