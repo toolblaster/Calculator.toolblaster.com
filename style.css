@@ -64,7 +64,8 @@ body {
     text-decoration: none;
     color: #121212;
     font-weight: 500;
-    font-size: 0.85rem;
+    /* --- FONT SIZE REDUCED --- */
+    font-size: 0.8rem; 
     transition: color 0.3s ease;
     position: relative;
     padding-bottom: 3px;
