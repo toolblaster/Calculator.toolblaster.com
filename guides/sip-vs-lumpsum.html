@@ -106,12 +106,15 @@
             padding-left: 0;
             margin-top: 1rem;
         }
+        /* UPDATED: This CSS now allows the text to wrap properly */
         .strategy-card li {
             font-size: 0.75rem;
             color: #525252;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: flex-start;
+            word-wrap: break-word; /* Ensures long words can break */
+            overflow-wrap: break-word; /* Another property for word breaking */
         }
         .strategy-card li svg {
             flex-shrink: 0;
@@ -187,7 +190,7 @@
                     </li>
                     <li>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        You want to leverage the superpower of <strong>Rupee Cost Averaging</strong>—automatically buying more when prices are low and less when they're high.
+                        You want to leverage the superpower of <strong>Rupee Cost Averaging</strong> automatically buying more when prices are low and less when they're high.
                     </li>
                 </ul>
 
@@ -262,6 +265,25 @@
             <h2>The Final Verdict: What's Best for You?</h2>
             <p>The best strategy often involves a combination of both. You can build the core of your portfolio with a disciplined SIP and deploy any additional, large sums of money as a Lumpsum investment when the opportunity arises. The most important step is to start. Whether you're a steady climber or a bold leaper, your financial future will thank you for taking action today.</p>
 
+            <!-- FAQ Section Moved to the End -->
+            <div class="content-section">
+                <h3 class="section-title-secondary">Frequently Asked Questions (FAQ)</h3>
+                <div class="faq-container">
+                    <details class="faq-item">
+                        <summary>Which gives higher returns: SIP or Lumpsum?</summary>
+                        <p>Statistically, if the market goes up over the long term, a Lumpsum investment will generally yield higher absolute returns because the entire amount is invested from day one, benefiting fully from compounding. However, a SIP can provide better-annualized returns (IRR) if the market is volatile, as it averages out the purchase cost. Lumpsum offers a higher potential reward but also carries a higher risk of bad timing.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can I switch from a SIP to a Lumpsum investment?</summary>
+                        <p>You don't really "switch" between them. A SIP is a method of investing regularly. You can stop your SIP at any time and the money you've invested will remain in the fund. If you later receive a large sum of money, you can make a separate Lumpsum investment into the same fund or a different one.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>What if I have a small lumpsum amount? Should I invest it at once?</summary>
+                        <p>If you have a smaller lumpsum amount (e.g., ₹25,000 or ₹50,000) and a long investment horizon (5+ years), it's generally fine to invest it all at once. The risk of timing the market is less significant with smaller amounts. Alternatively, you could use a Systematic Transfer Plan (STP), where you place the lumpsum in a low-risk liquid fund and transfer smaller amounts into an equity fund over a few months.</p>
+                    </details>
+                </div>
+            </div>
+            
             <!-- Share Buttons Section -->
             <div class="share-buttons-container">
                 <p class="share-title">Share this guide:</p>
@@ -281,25 +303,6 @@
                     <button class="share-btn copy-link" id="copy-link-btn" aria-label="Copy link">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                     </button>
-                </div>
-            </div>
-
-            <!-- FAQ Section Moved to the End -->
-            <div class="content-section">
-                <h3 class="section-title-secondary">Frequently Asked Questions (FAQ)</h3>
-                <div class="faq-container">
-                    <details class="faq-item">
-                        <summary>Which gives higher returns: SIP or Lumpsum?</summary>
-                        <p>Statistically, if the market goes up over the long term, a Lumpsum investment will generally yield higher absolute returns because the entire amount is invested from day one, benefiting fully from compounding. However, a SIP can provide better-annualized returns (IRR) if the market is volatile, as it averages out the purchase cost. Lumpsum offers a higher potential reward but also carries a higher risk of bad timing.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Can I switch from a SIP to a Lumpsum investment?</summary>
-                        <p>You don't really "switch" between them. A SIP is a method of investing regularly. You can stop your SIP at any time and the money you've invested will remain in the fund. If you later receive a large sum of money, you can make a separate Lumpsum investment into the same fund or a different one.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>What if I have a small lumpsum amount? Should I invest it at once?</summary>
-                        <p>If you have a smaller lumpsum amount (e.g., ₹25,000 or ₹50,000) and a long investment horizon (5+ years), it's generally fine to invest it all at once. The risk of timing the market is less significant with smaller amounts. Alternatively, you could use a Systematic Transfer Plan (STP), where you place the lumpsum in a low-risk liquid fund and transfer smaller amounts into an equity fund over a few months.</p>
-                    </details>
                 </div>
             </div>
 
