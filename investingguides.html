@@ -96,16 +96,28 @@
             box-shadow: 0 12px 16px rgba(0,0,0,0.08);
         }
         .guide-card h2 {
-            font-size: 0.85rem;
+            /* UPDATED: Font size reduced */
+            font-size: 0.8rem;
             font-weight: 700;
             color: #121212;
             margin-bottom: 0.4rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
         }
         .guide-card p {
-            font-size: 0.7rem;
+             /* UPDATED: Font size reduced */
+            font-size: 0.65rem;
             color: #525252;
             margin-bottom: 0.75rem;
             flex-grow: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
         }
         .guide-card .read-more-link {
             font-size: 0.75rem;
@@ -118,7 +130,6 @@
         .guide-card .read-more-link:hover {
             color: #C22D2D;
         }
-        /* Styles for the new pagination controls */
         #pagination-container button {
             padding: 0.5rem 1rem;
             border: 1px solid #d1d5db;
@@ -155,11 +166,10 @@
                 <p class="mt-2 text-md text-gray-500">A curated collection of articles to help you navigate your financial journey with confidence.</p>
             </div>
 
-            <div id="guides-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 px-4 pb-4">
+            <div id="guides-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-4 pb-4">
                 <!-- Guide cards will be inserted here by script.js -->
             </div>
             
-            <!-- NEW: Container for pagination buttons -->
             <div id="pagination-container" class="flex justify-center items-center gap-2 py-4">
                 <!-- Pagination buttons will be inserted here by script.js -->
             </div>
