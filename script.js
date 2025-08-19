@@ -1,5 +1,5 @@
 /**
- * This script handles all functionalities for the FinCal website.
+ * This script handles all functionalities for the Calculator.toolblaster website.
  * It loads components on every page and ONLY initializes the calculator
  * if it finds the calculator's HTML on the current page.
  */
@@ -54,25 +54,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- UPDATED: DYNAMIC GUIDES HUB LOGIC WITH PAGINATION ---
+    // --- DYNAMIC GUIDES HUB LOGIC WITH PAGINATION ---
     const initializeGuidesHub = () => {
         const guidesContainer = document.getElementById('guides-grid-container');
         const paginationContainer = document.getElementById('pagination-container');
         if (!guidesContainer) return;
 
-        // --- UPDATED: Card titles are now more direct and user-friendly ---
         const guides = [
-            { url: 'guides/emergency-fund-guide.html', title: 'Guide to Emergency Funds', description: 'Learn the essential steps to create a robust emergency fund.' },
-            { url: 'guides/goal-based-investing.html', title: 'Investing for Your Goals', description: 'Discover how to align your investments with your life goals.' },
-            { url: 'guides/mfguide.html', title: 'Beginner\'s Investing Guide', description: 'A comprehensive beginner\'s guide to mutual funds and SIPs.' },
-            { url: 'guides/retirement-planning-guide.html', title: 'Retirement Planning Guide', description: 'An in-depth look at retirement planning for a secure future.' },
-            { url: 'guides/tax-saving-guide.html', title: 'Guide to Saving Taxes', description: 'Explore the best tax-saving investments under Section 80C.' },
-            { url: 'guides/risk-profile-quiz.html', title: 'Find Your Investor Type', description: 'Take our quick quiz to understand your risk tolerance.', linkText: 'Take the Quiz &rarr;' }
-            // Add more guides here in the future. Once you have more than 15, pagination will appear.
+            { url: 'guides/emergency-fund-guide.html', title: 'Building Your Emergency Fund: A Step-by-Step Guide', description: 'Learn the essential steps to create a robust financial safety net.' },
+            { url: 'guides/goal-based-investing.html', title: 'Goal-Based Investing: Planning for Your Dreams', description: 'Discover how to align your investments with your life goals, big or small.' },
+            { url: 'guides/mfguide.html', title: 'A Beginner\'s Guide to Investing in India', description: 'A comprehensive beginner\'s guide to mutual funds and SIPs.' },
+            { url: 'guides/retirement-planning-guide.html', title: 'The Ultimate Guide to Retirement Planning in India', description: 'An in-depth look at retirement planning for a secure future.' },
+            { url: 'guides/tax-saving-guide.html', title: 'Complete Guide to Tax-Saving Investments in India (Section 80C)', description: 'Explore the best tax-saving investments under Section 80C.' },
+            { url: 'guides/risk-profile-quiz.html', title: 'Find Your Investor Profile', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz &rarr;' }
+            // Add more guides here in the future. Once you have more than 16, pagination will appear.
         ];
 
         let currentPage = 1;
-        const guidesPerPage = 15;
+        const guidesPerPage = 16;
 
         function displayGuides(page) {
             currentPage = page;
