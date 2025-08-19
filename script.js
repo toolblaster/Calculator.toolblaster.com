@@ -66,6 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
             { url: 'guides/mfguide.html', title: 'A Beginner\'s Guide to Investing in India', description: 'A comprehensive beginner\'s guide to mutual funds and SIPs.' },
             { url: 'guides/retirement-planning-guide.html', title: 'The Ultimate Guide to Retirement Planning in India', description: 'An in-depth look at retirement planning for a secure future.' },
             { url: 'guides/tax-saving-guide.html', title: 'Complete Guide to Tax-Saving Investments in India (Section 80C)', description: 'Explore the best tax-saving investments under Section 80C.' },
+            { url: 'guides/sip-vs-lumpsum.html', title: 'SIP vs. Lumpsum: The Ultimate Investment Showdown', description: 'Understand the pros and cons of SIP and Lumpsum investing to choose the right strategy.' },
+            { url: 'guides/sip-vs-swp.html', title: 'SIP vs. SWP: Building Wealth vs. Creating Income', description: 'Learn the difference between accumulating wealth with SIPs and generating income with SWPs.' },
             { url: 'guides/risk-profile-quiz.html', title: 'Find Your Investor Profile', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz &rarr;' }
             // Add more guides here in the future. Once you have more than 16, pagination will appear.
         ];
