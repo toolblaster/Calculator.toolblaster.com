@@ -158,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setupDropdownMenu();
             setActiveNavLink();
             initializeGuidesHub();
+            initializeShareButtons(); // Initialize share buttons on all pages
 
             const calculatorContainer = document.querySelector('.calculator-container');
             if (calculatorContainer) {
@@ -166,7 +167,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- SECTION 3: Financial Calculator Logic (remains unchanged) ---
+    // --- SECTION 3: UTILITY FUNCTIONS ---
+    function showNotification(message) {
+        const toast = document.getElementById('notification-toast');
+        if (!toast) {
+            const newToast = document.createElement('div');
+            newToast.id = 'notification-toast';
+            document.body.appendChild(newToast);
+            showNotification(message);
+            return;
+        }
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    // --- SECTION 4: Financial Calculator Logic ---
     function initializeCalculator() {
         'use strict';
         const getElem = (id) => document.getElementById(id);
@@ -519,16 +537,6 @@ document.addEventListener('DOMContentLoaded', () => {
           updateCalculator();
         }
 
-        function showNotification(message) {
-            const toast = getElem('notification-toast');
-            if (!toast) return;
-            toast.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
         const handleShare = () => {
             const params = new URLSearchParams();
             params.set('mode', currentMode);
@@ -697,7 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- SECTION 4: MOBILE NAVIGATION ---
+    // --- SECTION 5: MOBILE NAVIGATION ---
     const setupMobileMenu = () => {
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -709,7 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- SECTION 5: DROPDOWN MENU ---
+    // --- SECTION 6: DROPDOWN MENU ---
     const setupDropdownMenu = () => {
         const dropdownToggle = document.querySelector('.dropdown > a');
         if (!dropdownToggle) return;
@@ -727,6 +735,56 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+    };
+    
+    // --- SECTION 7: SHARE BUTTONS LOGIC ---
+    const initializeShareButtons = () => {
+        const shareContainer = document.querySelector('.share-buttons-container');
+        if (!shareContainer) return;
+
+        const pageUrl = window.location.href;
+        const pageTitle = document.title;
+        const encodedUrl = encodeURIComponent(pageUrl);
+        const encodedTitle = encodeURIComponent(pageTitle);
+
+        const shareLinks = {
+            whatsapp: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
+            facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+            twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+            linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`
+        };
+
+        const whatsappBtn = document.getElementById('share-whatsapp');
+        const facebookBtn = document.getElementById('share-facebook');
+        const twitterBtn = document.getElementById('share-twitter');
+        const linkedinBtn = document.getElementById('share-linkedin');
+        const copyLinkBtn = document.getElementById('copy-link-btn');
+
+        if (whatsappBtn) whatsappBtn.href = shareLinks.whatsapp;
+        if (facebookBtn) facebookBtn.href = shareLinks.facebook;
+        if (twitterBtn) twitterBtn.href = shareLinks.twitter;
+        if (linkedinBtn) linkedinBtn.href = shareLinks.linkedin;
+
+        if (copyLinkBtn) {
+            copyLinkBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const textArea = document.createElement("textarea");
+                textArea.value = pageUrl;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-9999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showNotification('Link copied to clipboard!');
+                } catch (err) {
+                    console.error('Fallback: Oops, unable to copy', err);
+                    showNotification('Could not copy link.');
+                }
+                document.body.removeChild(textArea);
+            });
+        }
     };
 
     initializePage();
