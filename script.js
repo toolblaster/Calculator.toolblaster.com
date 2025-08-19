@@ -35,19 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
-    // --- NEW: Function to set the active navigation link ---
     const setActiveNavLink = () => {
         const currentPath = window.location.pathname;
         const navLinks = document.querySelectorAll('.nav-links a');
 
         navLinks.forEach(link => {
             const linkPath = new URL(link.href, window.location.origin).pathname;
-
-            // Check for a direct match or handle the homepage case (which can be '/' or '/index.html')
             if (linkPath === currentPath || ( (currentPath === '/' || currentPath === '/index.html') && (linkPath === '/' || linkPath === '/index.html') )) {
                 link.classList.add('active');
-
-                // If the active link is inside a dropdown, also highlight the main dropdown link
                 const dropdownMenu = link.closest('.dropdown-menu');
                 if (dropdownMenu) {
                     const dropdownToggle = dropdownMenu.previousElementSibling;
@@ -59,59 +54,86 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- NEW: DYNAMIC GUIDES HUB LOGIC ---
+    // --- UPDATED: DYNAMIC GUIDES HUB LOGIC WITH PAGINATION ---
     const initializeGuidesHub = () => {
         const guidesContainer = document.getElementById('guides-grid-container');
-        if (!guidesContainer) return; // Only run this code on the investingguides.html page
+        const paginationContainer = document.getElementById('pagination-container');
+        if (!guidesContainer) return;
 
-        // --- To add a new guide, just add a new object to this list! ---
+        // --- UPDATED: Card titles are now more direct and user-friendly ---
         const guides = [
-            {
-                url: 'guides/emergency-fund-guide.html',
-                title: 'Building Your Financial Safety Net',
-                description: 'Learn the essential steps to create a robust emergency fund.'
-            },
-            {
-                url: 'guides/goal-based-investing.html',
-                title: 'A Roadmap to Your Dreams',
-                description: 'Discover how to align your investments with your life goals.'
-            },
-            {
-                url: 'guides/mfguide.html',
-                title: 'Your First Step into Investing',
-                description: 'A comprehensive beginner\'s guide to mutual funds and SIPs.'
-            },
-            {
-                url: 'guides/retirement-planning-guide.html',
-                title: 'Plan for Your Golden Years',
-                description: 'An in-depth look at retirement planning for a secure future.'
-            },
-            {
-                url: 'guides/tax-saving-guide.html',
-                title: 'Smart Tax-Saving Strategies',
-                description: 'Explore the best tax-saving investments under Section 80C.'
-            },
-            {
-                url: 'guides/risk-profile-quiz.html',
-                title: 'What\'s Your Investor Profile?',
-                description: 'Take our quick quiz to understand your risk tolerance.',
-                linkText: 'Take the Quiz &rarr;' // Custom link text for this card
-            }
+            { url: 'guides/emergency-fund-guide.html', title: 'Guide to Emergency Funds', description: 'Learn the essential steps to create a robust emergency fund.' },
+            { url: 'guides/goal-based-investing.html', title: 'Investing for Your Goals', description: 'Discover how to align your investments with your life goals.' },
+            { url: 'guides/mfguide.html', title: 'Beginner\'s Investing Guide', description: 'A comprehensive beginner\'s guide to mutual funds and SIPs.' },
+            { url: 'guides/retirement-planning-guide.html', title: 'Retirement Planning Guide', description: 'An in-depth look at retirement planning for a secure future.' },
+            { url: 'guides/tax-saving-guide.html', title: 'Guide to Saving Taxes', description: 'Explore the best tax-saving investments under Section 80C.' },
+            { url: 'guides/risk-profile-quiz.html', title: 'Find Your Investor Type', description: 'Take our quick quiz to understand your risk tolerance.', linkText: 'Take the Quiz &rarr;' }
+            // Add more guides here in the future. Once you have more than 15, pagination will appear.
         ];
 
-        let guidesHTML = '';
-        guides.forEach(guide => {
-            const linkText = guide.linkText || 'Read More &rarr;'; // Use custom text or default
-            guidesHTML += `
-                <a href="${guide.url}" class="guide-card">
-                    <h2>${guide.title}</h2>
-                    <p>${guide.description}</p>
-                    <span class="read-more-link">${linkText}</span>
-                </a>
-            `;
-        });
+        let currentPage = 1;
+        const guidesPerPage = 15;
 
-        guidesContainer.innerHTML = guidesHTML;
+        function displayGuides(page) {
+            currentPage = page;
+            guidesContainer.innerHTML = '';
+            const startIndex = (page - 1) * guidesPerPage;
+            const endIndex = startIndex + guidesPerPage;
+            const paginatedGuides = guides.slice(startIndex, endIndex);
+
+            let guidesHTML = '';
+            paginatedGuides.forEach(guide => {
+                const linkText = guide.linkText || 'Read More &rarr;';
+                guidesHTML += `
+                    <a href="${guide.url}" class="guide-card">
+                        <h2>${guide.title}</h2>
+                        <p>${guide.description}</p>
+                        <span class="read-more-link">${linkText}</span>
+                    </a>
+                `;
+            });
+            guidesContainer.innerHTML = guidesHTML;
+            setupPagination();
+        }
+
+        function setupPagination() {
+            if (!paginationContainer) return;
+            paginationContainer.innerHTML = '';
+            const pageCount = Math.ceil(guides.length / guidesPerPage);
+
+            if (pageCount <= 1) return; // Don't show pagination if there's only one page
+
+            // Previous button
+            const prevButton = document.createElement('button');
+            prevButton.innerHTML = '&laquo; Previous';
+            prevButton.disabled = currentPage === 1;
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) displayGuides(currentPage - 1);
+            });
+            paginationContainer.appendChild(prevButton);
+
+            // Page number buttons
+            for (let i = 1; i <= pageCount; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.innerText = i;
+                if (i === currentPage) {
+                    pageButton.classList.add('active');
+                }
+                pageButton.addEventListener('click', () => displayGuides(i));
+                paginationContainer.appendChild(pageButton);
+            }
+
+            // Next button
+            const nextButton = document.createElement('button');
+            nextButton.innerHTML = 'Next &raquo;';
+            nextButton.disabled = currentPage === pageCount;
+            nextButton.addEventListener('click', () => {
+                if (currentPage < pageCount) displayGuides(currentPage + 1);
+            });
+            paginationContainer.appendChild(nextButton);
+        }
+
+        displayGuides(1); // Initial display of the first page
     };
 
 
@@ -133,8 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
         Promise.all(loadPromises).then(() => {
             setupMobileMenu();
             setupDropdownMenu();
-            setActiveNavLink(); // <-- Call the new function here
-            initializeGuidesHub(); // <-- Call the new guides function
+            setActiveNavLink();
+            initializeGuidesHub();
 
             const calculatorContainer = document.querySelector('.calculator-container');
             if (calculatorContainer) {
@@ -143,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- SECTION 3: Financial Calculator Logic ---
+    // --- SECTION 3: Financial Calculator Logic (remains unchanged) ---
     function initializeCalculator() {
         'use strict';
         const getElem = (id) => document.getElementById(id);
@@ -257,13 +279,11 @@ document.addEventListener('DOMContentLoaded', () => {
         let investmentDoughnutChart;
         let currentMode = 'sip';
 
-        // --- Utility Functions ---
         const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
         const formatCurrency = (num) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(Math.round(num));
         const updateSliderFill = (slider) => { if (!slider) return; const percentage = ((slider.value - slider.min) / (slider.max - slider.min)) * 100; slider.style.setProperty('--fill-percentage', `${percentage}%`); };
         const validateSlider = (slider, errorElement) => { if (!slider || !errorElement) return true; const value = parseFloat(slider.value); const min = parseFloat(slider.min); const max = parseFloat(slider.max); const isValid = !isNaN(value) && value >= min && value <= max; errorElement.classList.toggle('hidden', isValid); return isValid; };
 
-        // --- Chart and Table Functions ---
         function updateDoughnutChart(data, labels, colors) {
           const chartData = { labels: labels, datasets: [{ data, backgroundColor: colors, hoverOffset: 4, borderRadius: 3, spacing: 1 }] };
           const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: window.innerWidth < 640 ? '60%' : '70%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` }, bodyFont: { family: 'Inter', size: window.innerWidth < 640 ? 8 : 10 }, titleFont: { family: 'Inter', size: window.innerWidth < 640 ? 8 : 10 }, padding: window.innerWidth < 640 ? 4 : 6, cornerRadius: 4 } } };
@@ -275,7 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
           data.forEach(yearData => { const row = document.createElement('tr'); row.className = 'hover:bg-gray-100 transition-colors'; row.innerHTML = `<td class="px-2 py-1 whitespace-nowrap">${yearData.year}</td><td class="px-2 py-1 whitespace-nowrap font-semibold text-blue-700">${formatCurrency(yearData.invested)}</td><td class="px-2 py-1 whitespace-nowrap font-semibold text-green-700">${formatCurrency(yearData.returns)}</td><td class="px-2 py-1 whitespace-nowrap font-bold text-purple-700">${formatCurrency(yearData.total)}</td>`; growthTableBody.appendChild(row); });
         }
 
-        // --- Core Calculation Logic ---
         function updateCalculator() {
           let isFormValid = true;
           if (currentMode !== 'goal') {
