@@ -15,81 +15,13 @@
       "@type": "CollectionPage",
       "name": "Financial Guides",
       "description": "A curated collection of articles and tools to help you navigate your financial journey with confidence. Explore guides on retirement planning, tax saving, mutual funds, and more.",
-      "url": "https://calculator.toolblaster.com/investingguides.html",
-      "mainEntity": {
-        "@type": "ItemList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "item": {
-              "@type": "Article",
-              "url": "https://calculator.toolblaster.com/guides/emergency-fund-guide.html",
-              "name": "Building Your Financial Safety Net"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "item": {
-              "@type": "Article",
-              "url": "https://calculator.toolblaster.com/guides/goal-based-investing.html",
-              "name": "A Roadmap to Your Dreams"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "item": {
-              "@type": "Article",
-              "url": "https://calculator.toolblaster.com/guides/mfguide.html",
-              "name": "Your First Step into Investing"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 4,
-            "item": {
-              "@type": "Article",
-              "url": "https://calculator.toolblaster.com/guides/retirement-planning-guide.html",
-              "name": "Plan for Your Golden Years"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 5,
-            "item": {
-              "@type": "Article",
-              "url": "https://calculator.toolblaster.com/guides/tax-saving-guide.html",
-              "name": "Smart Tax-Saving Strategies"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 6,
-            "item": {
-              "@type": "Quiz",
-              "url": "https://calculator.toolblaster.com/guides/risk-profile-quiz.html",
-              "name": "What's Your Investor Profile?"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 7,
-            "item": {
-              "@type": "Article",
-              "url": "https://calculator.toolblaster.com/guides/sip-vs-lumpsum.html",
-              "name": "SIP vs. Lumpsum: The Ultimate Investment Showdown"
-            }
-          }
-        ]
-      }
+      "url": "https://calculator.toolblaster.com/investingguides.html"
     }
     </script>
     <style>
         .guide-card {
             background-color: #ffffff;
-            border-radius: 0.5rem;
+            border-radius: 0.75rem;
             padding: 1.25rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -101,19 +33,19 @@
         }
         .guide-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 16px rgba(0,0,0,0.08);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
         }
         .guide-card h2 {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            color: #121212;
+            color: #1f2937;
             margin-bottom: 0.4rem;
-            line-height: 1.3;
+            line-height: 1.4;
         }
         .guide-card p {
-            font-size: 0.65rem;
-            color: #525252;
-            margin-bottom: 0.75rem;
+            font-size: 0.75rem;
+            color: #4b5563;
+            margin-bottom: 1rem;
             flex-grow: 1;
         }
         .guide-card .read-more-link {
@@ -123,9 +55,20 @@
             text-decoration: none;
             margin-top: auto;
             transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
         }
         .guide-card .read-more-link:hover {
             color: #C22D2D;
+        }
+        .guide-card .read-more-link svg {
+            width: 14px;
+            height: 14px;
+            margin-left: 4px;
+            transition: transform 0.3s ease;
+        }
+        .guide-card:hover .read-more-link svg {
+            transform: translateX(2px);
         }
         #pagination-container button {
             padding: 0.5rem 1rem;
@@ -159,39 +102,55 @@
             margin: 0.75rem auto 0 auto;
         }
         .guide-card-icon {
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
             color: #E34037;
-        }
-        .guide-card-content {
-            flex-grow: 1;
+            background-color: #fef2f2;
+            border-radius: 50%;
+            padding: 0.5rem;
+            width: 40px;
+            height: 40px;
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
+            justify-content: center;
         }
         .guides-grid-wrapper {
             background-color: #ffffff;
             border-radius: 0.5rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             border: 1px solid #eee;
+            padding: 1.5rem;
+        }
+        .filter-container-wrapper {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
             padding: 1rem;
+            margin-bottom: 1.5rem;
         }
         .filter-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #d1d5db;
-            border-radius: 999px; /* pill shape */
+            padding: 0.5rem 1.25rem;
+            border: 1px solid transparent;
+            border-radius: 999px;
             background-color: #ffffff;
             cursor: pointer;
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 600;
+            color: #475569;
             transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         .filter-btn:hover {
-            background-color: #f3f4f6;
+            background-color: #f1f5f9;
+            color: #1e293b;
         }
         .filter-btn.active {
             background-color: #E34037;
             color: white;
-            border-color: #E34037;
+            box-shadow: 0 4px 6px rgba(227, 64, 55, 0.2);
+        }
+        .featured-guide-card {
+            background: linear-gradient(135deg, #fef2f2 0%, #fce7f3 100%);
+            border: 1px solid #fbcfe8;
         }
     </style>
 </head>
@@ -201,16 +160,19 @@
 
     <main class="container">
         <div class="legal-content" style="background: none; border: none; box-shadow: none; padding: 0; margin-top: 1rem;">
-            <div class="text-center py-4 px-2 bg-slate-100 border border-slate-200 rounded-lg mb-4">
-                <h1 class="text-3xl font-extrabold text-slate-800 tracking-tight title-with-accent">Our Financial Guides</h1>
-                <p class="mt-2 text-md text-gray-600">A curated collection of articles and tools to help you navigate your financial journey with confidence.</p>
+            <div class="text-center py-6 px-4 bg-white border border-gray-200 rounded-lg mb-6 shadow-sm">
+                <h1 class="text-3xl font-extrabold text-gray-800 tracking-tight title-with-accent">Financial Knowledge Hub</h1>
+                <p class="mt-3 text-md text-gray-600 max-w-2xl mx-auto">Your complete resource for mastering personal finance. Explore our guides, use our tools, and build a secure financial future.</p>
             </div>
 
             <!-- Filter Buttons -->
-            <div id="guides-filter-container" class="flex justify-center gap-2 mb-4">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="guide">Guides</button>
-                <button class="filter-btn" data-filter="quiz">Quizzes & Tools</button>
+            <div class="filter-container-wrapper">
+                <h3 class="text-center text-sm font-semibold text-gray-500 mb-3">Filter by Category</h3>
+                <div id="guides-filter-container" class="flex justify-center gap-3">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="guide">Guides</button>
+                    <button class="filter-btn" data-filter="quiz">Quizzes & Tools</button>
+                </div>
             </div>
 
             <div class="guides-grid-wrapper">
@@ -218,7 +180,7 @@
                     <!-- Guide cards will be inserted here by script.js -->
                 </div>
                 
-                <div id="pagination-container" class="flex justify-center items-center gap-2 pt-4 mt-4 border-t border-gray-200">
+                <div id="pagination-container" class="flex justify-center items-center gap-2 pt-6 mt-6 border-t border-gray-200">
                     <!-- Pagination buttons will be inserted here by script.js -->
                 </div>
             </div>
