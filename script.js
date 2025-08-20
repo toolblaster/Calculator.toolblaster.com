@@ -54,98 +54,134 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- DYNAMIC GUIDES HUB LOGIC WITH PAGINATION & FILTERING ---
+    // --- DYNAMIC GUIDES HUB LOGIC (REFINED) ---
     const initializeGuidesHub = () => {
         const guidesContainer = document.getElementById('guides-grid-container');
         const paginationContainer = document.getElementById('pagination-container');
         const filterContainer = document.getElementById('guides-filter-container');
+        const searchInput = document.getElementById('search-input');
+        const recommendationsSection = document.getElementById('recommendations-section');
+        const recommendedGuidesContainer = document.getElementById('recommended-guides-container');
 
         if (!guidesContainer || !filterContainer) return;
 
         const allGuides = [
-            { url: 'guides/financial-health-guide.html', title: 'Your Guide to Financial Health & Wellness', description: 'Understand the pillars of financial health and get your personalized report card.', linkText: 'Read More &rarr;', type: 'guide' },
-            { url: 'guides/emergency-fund-guide.html', title: 'Your Step-by-Step Guide to Building an Emergency Fund', description: 'Learn the essential steps to create a robust financial safety net.', type: 'guide' },
-            { url: 'guides/goal-based-investing.html', title: 'Goal-Based Investing: A Roadmap to Your Dreams', description: 'Discover how to align your investments with your life goals, big or small.', type: 'guide' },
-            { url: 'guides/mfguide.html', title: 'A Beginner\'s Guide to Investing in India', description: 'A comprehensive beginner\'s guide to mutual funds and SIPs.', type: 'guide' },
-            { url: 'guides/retirement-planning-guide.html', title: 'Your Guide to a Happy and Stress-Free Retirement in India', description: 'An in-depth look at retirement planning for a secure future.', type: 'guide' },
-            { url: 'guides/tax-saving-guide.html', title: 'Your Friendly Guide to Smart Tax-Saving (Section 80C)', description: 'Explore the best tax-saving investments under Section 80C.', type: 'guide' },
-            { url: 'guides/sip-vs-lumpsum.html', title: 'SIP vs. Lumpsum: The Ultimate Investment Showdown', description: 'Understand the pros and cons of SIP and Lumpsum investing to choose the right strategy.', type: 'guide' },
-            { url: 'guides/sip-vs-swp.html', title: 'SIP vs. SWP: Building Your Wealth vs. Creating Your Paycheck', description: 'Learn the difference between accumulating wealth with SIPs and generating income with SWPs.', type: 'guide' },
-            { url: 'guides/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz &rarr;', type: 'quiz' },
-            { url: 'guides/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 12 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment &rarr;', type: 'quiz' }
+            // --- Content with new properties: icon, readTime, tags ---
+            { id: 'financial-health-guide', url: 'guides/financial-health-guide.html', title: 'Your Guide to Financial Health & Wellness', description: 'Understand the pillars of financial health and get your personalized report card.', linkText: 'Read More &rarr;', type: 'guide', tags: ['beginner', 'planning'], readTime: '6 min read', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>' },
+            { id: 'emergency-fund-guide', url: 'guides/emergency-fund-guide.html', title: 'Your Step-by-Step Guide to Building an Emergency Fund', description: 'Learn the essential steps to create a robust financial safety net.', type: 'guide', tags: ['beginner', 'safety'], readTime: '5 min read', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' },
+            { id: 'goal-based-investing', url: 'guides/goal-based-investing.html', title: 'Goal-Based Investing: A Roadmap to Your Dreams', description: 'Discover how to align your investments with your life goals, big or small.', type: 'guide', tags: ['planning', 'investing'], readTime: '4 min read', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>' },
+            { id: 'mfguide', url: 'guides/mfguide.html', title: 'A Beginner\'s Guide to Investing in India', description: 'A comprehensive beginner\'s guide to mutual funds and SIPs.', type: 'guide', tags: ['beginner', 'investing', 'mutual funds'], readTime: '7 min read', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>' },
+            { id: 'retirement-planning-guide', url: 'guides/retirement-planning-guide.html', title: 'Your Guide to a Happy and Stress-Free Retirement in India', description: 'An in-depth look at retirement planning for a secure future.', type: 'guide', tags: ['planning', 'retirement', 'long-term'], readTime: '8 min read', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>' },
+            { id: 'tax-saving-guide', url: 'guides/tax-saving-guide.html', title: 'Your Friendly Guide to Smart Tax-Saving (Section 80C)', description: 'Explore the best tax-saving investments under Section 80C.', type: 'guide', tags: ['tax-saving', 'planning'], readTime: '6 min read', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"/><path d="m2 10 8 6 8-6"/><path d="M12 22V12"/></svg>' },
+            { id: 'sip-vs-lumpsum', url: 'guides/sip-vs-lumpsum.html', title: 'SIP vs. Lumpsum: The Ultimate Investment Showdown', description: 'Understand the pros and cons of SIP and Lumpsum investing to choose the right strategy.', type: 'guide', tags: ['investing', 'strategy'], readTime: '5 min read', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg>' },
+            { id: 'sip-vs-swp', url: 'guides/sip-vs-swp.html', title: 'SIP vs. SWP: Building Your Wealth vs. Creating Your Paycheck', description: 'Learn the difference between accumulating wealth with SIPs and generating income with SWPs.', type: 'guide', tags: ['investing', 'retirement', 'strategy'], readTime: '5 min read', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>' },
+            { id: 'risk-profile-quiz', url: 'guides/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz &rarr;', type: 'quiz', tags: ['beginner', 'risk'], readTime: '3 min read', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>' },
+            { id: 'financial-health-assessment', url: 'guides/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 12 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment &rarr;', type: 'quiz', tags: ['beginner', 'planning'], readTime: '5 min read', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>' }
         ];
 
         let currentPage = 1;
         let currentFilter = 'all';
-        const guidesPerPage = 12;
+        let currentSearchQuery = '';
+        const guidesPerPage = 6;
 
-        function getFilteredGuides() {
-            if (currentFilter === 'all') {
-                return allGuides;
+        function getFilteredAndSearchedGuides() {
+            let filtered = allGuides;
+
+            // Apply filter
+            if (currentFilter !== 'all') {
+                if (currentFilter === 'beginner') {
+                    filtered = filtered.filter(guide => guide.tags.includes('beginner'));
+                } else {
+                    filtered = filtered.filter(guide => guide.type === currentFilter);
+                }
             }
-            return allGuides.filter(guide => guide.type === currentFilter);
+
+            // Apply search
+            if (currentSearchQuery) {
+                const query = currentSearchQuery.toLowerCase();
+                filtered = filtered.filter(guide => 
+                    guide.title.toLowerCase().includes(query) || 
+                    guide.description.toLowerCase().includes(query) ||
+                    guide.tags.some(tag => tag.toLowerCase().includes(query))
+                );
+            }
+            
+            return filtered;
+        }
+
+        function createGuideCardHTML(guide) {
+            const linkText = guide.linkText || 'Read More &rarr;';
+            return `
+                <a href="${guide.url}" class="guide-card">
+                    <div class="guide-card-icon">${guide.icon}</div>
+                    <h2>${guide.title}</h2>
+                    <p>${guide.description}</p>
+                    <div class="read-time">${guide.readTime}</div>
+                    <span class="read-more-link">${linkText} <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                </a>
+            `;
         }
 
         function displayGuides(page) {
             currentPage = page;
-            const filteredGuides = getFilteredGuides();
-            guidesContainer.innerHTML = '';
-            const startIndex = (page - 1) * guidesPerPage;
-            const endIndex = startIndex + guidesPerPage;
-            const paginatedGuides = filteredGuides.slice(startIndex, endIndex);
+            const filteredGuides = getFilteredAndSearchedGuides();
+            
+            guidesContainer.classList.add('fade-out');
 
-            if (paginatedGuides.length === 0) {
-                guidesContainer.innerHTML = `<p class="text-center text-gray-500 col-span-full">No items match the selected filter.</p>`;
-            } else {
-                let guidesHTML = '';
-                paginatedGuides.forEach(guide => {
-                    const linkText = guide.linkText || 'Read More &rarr;';
-                    guidesHTML += `
-                        <a href="${guide.url}" class="guide-card">
-                            <h2>${guide.title}</h2>
-                            <p>${guide.description}</p>
-                            <span class="read-more-link">${linkText}</span>
-                        </a>
-                    `;
-                });
-                guidesContainer.innerHTML = guidesHTML;
-            }
-            setupPagination();
+            setTimeout(() => {
+                guidesContainer.innerHTML = '';
+                const startIndex = (page - 1) * guidesPerPage;
+                const endIndex = startIndex + guidesPerPage;
+                const paginatedGuides = filteredGuides.slice(startIndex, endIndex);
+
+                if (paginatedGuides.length === 0) {
+                    guidesContainer.innerHTML = `<p class="text-center text-gray-500 col-span-full">No guides match your criteria.</p>`;
+                } else {
+                    paginatedGuides.forEach(guide => {
+                        guidesContainer.innerHTML += createGuideCardHTML(guide);
+                    });
+                }
+                guidesContainer.classList.remove('fade-out');
+                guidesContainer.classList.add('fade-in');
+                setupPagination();
+            }, 300); // Match timeout with CSS transition duration
         }
 
         function setupPagination() {
-            if (!paginationContainer) return;
             paginationContainer.innerHTML = '';
-            const filteredGuides = getFilteredGuides();
+            const filteredGuides = getFilteredAndSearchedGuides();
             const pageCount = Math.ceil(filteredGuides.length / guidesPerPage);
 
             if (pageCount <= 1) return;
 
-            const prevButton = document.createElement('button');
-            prevButton.innerHTML = '&laquo; Previous';
-            prevButton.disabled = currentPage === 1;
-            prevButton.addEventListener('click', () => {
-                if (currentPage > 1) displayGuides(currentPage - 1);
-            });
-            paginationContainer.appendChild(prevButton);
+            const createButton = (text, page, isDisabled = false) => {
+                const button = document.createElement('button');
+                button.innerHTML = text;
+                button.disabled = isDisabled;
+                if (page === currentPage) button.classList.add('active');
+                button.addEventListener('click', () => displayGuides(page));
+                return button;
+            };
 
+            paginationContainer.appendChild(createButton('&laquo; Prev', currentPage - 1, currentPage === 1));
             for (let i = 1; i <= pageCount; i++) {
-                const pageButton = document.createElement('button');
-                pageButton.innerText = i;
-                if (i === currentPage) {
-                    pageButton.classList.add('active');
-                }
-                pageButton.addEventListener('click', () => displayGuides(i));
-                paginationContainer.appendChild(pageButton);
+                paginationContainer.appendChild(createButton(i, i));
             }
-
-            const nextButton = document.createElement('button');
-            nextButton.innerHTML = 'Next &raquo;';
-            nextButton.disabled = currentPage === pageCount;
-            nextButton.addEventListener('click', () => {
-                if (currentPage < pageCount) displayGuides(currentPage + 1);
-            });
-            paginationContainer.appendChild(nextButton);
+            paginationContainer.appendChild(createButton('Next &raquo;', currentPage + 1, currentPage === pageCount));
+        }
+        
+        function showRecommendations() {
+            const recommendations = JSON.parse(sessionStorage.getItem('financialHealthRecommendations'));
+            if (recommendations && recommendations.length > 0) {
+                recommendedGuidesContainer.innerHTML = '';
+                recommendations.forEach(recId => {
+                    const guide = allGuides.find(g => g.id === recId);
+                    if (guide) {
+                        recommendedGuidesContainer.innerHTML += createGuideCardHTML(guide);
+                    }
+                });
+                recommendationsSection.classList.remove('hidden');
+            }
         }
 
         filterContainer.addEventListener('click', (e) => {
@@ -160,6 +196,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        searchInput.addEventListener('input', () => {
+            currentSearchQuery = searchInput.value;
+            displayGuides(1);
+        });
+        
+        showRecommendations();
         displayGuides(1);
     };
 
@@ -190,8 +232,45 @@ document.addEventListener('DOMContentLoaded', () => {
             if (calculatorContainer) {
                 initializeCalculator();
             }
+            
+            // Initialize quiz logic if on assessment page
+            if (window.location.pathname.includes('financial-health-assessment.html')) {
+                initializeFinancialHealthQuiz();
+            }
         });
     };
+    
+    // --- REFINED: Financial Health Quiz Logic for Recommendations ---
+    function initializeFinancialHealthQuiz() {
+        const quizForm = document.getElementById('health-quiz-form');
+        if (!quizForm) return;
+
+        // Simplified logic to find the "Submit" or final action button
+        const submitButton = quizForm.querySelector('button[type="submit"], .nav-button:last-of-type'); 
+        
+        // This is a placeholder. The actual logic is inside the quiz page itself.
+        // We'll add a listener to the final action that calculates results.
+        // The quiz page's own script will handle the calculation. We just need to
+        // store the result in sessionStorage.
+        
+        // This is a conceptual example of what the quiz's internal script should do on completion:
+        /*
+        function onQuizComplete(scores) {
+            const recommendations = [];
+            if (scores.emergency < 50) recommendations.push('emergency-fund-guide');
+            if (scores.savings < 50) recommendations.push('goal-based-investing');
+            if (scores.debt > 50) recommendations.push('financial-health-guide');
+            if (scores.investing < 50) recommendations.push('mfguide');
+            
+            // Store top 2 recommendations
+            sessionStorage.setItem('financialHealthRecommendations', JSON.stringify(recommendations.slice(0, 2)));
+            
+            // Redirect or show results as normal
+            window.location.href = 'investingguides.html';
+        }
+        */
+    }
+
 
     // --- SECTION 3: UTILITY FUNCTIONS ---
     function showNotification(message) {
@@ -210,8 +289,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // --- SECTION 4: Financial Calculator Logic ---
+    // --- SECTION 4: Financial Calculator Logic (No changes needed here) ---
     function initializeCalculator() {
+        // ... (The entire existing calculator logic remains unchanged)
         'use strict';
         const getElem = (id) => document.getElementById(id);
 
