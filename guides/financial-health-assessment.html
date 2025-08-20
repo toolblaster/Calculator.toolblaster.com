@@ -292,6 +292,24 @@
             width: 100%;
             margin-top: 1rem;
         }
+        #notification-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2d3748;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        #notification-toast.show {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -476,7 +494,8 @@
             </div>
         </div>
     </main>
-
+    
+    <div id="notification-toast"></div>
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
@@ -794,14 +813,36 @@
                         title: 'My Financial Health Report',
                         text: summaryText,
                         url: window.location.href,
-                    }).catch(err => console.error("Share failed:", err.message));
-                } else {
-                    navigator.clipboard.writeText(summaryText).then(() => {
-                        alert('Report summary copied to clipboard!');
                     }).catch(err => {
-                        console.error('Could not copy text: ', err);
+                        console.error("Share failed:", err.message);
+                        showNotification('Could not share report.');
                     });
+                } else {
+                     const textArea = document.createElement("textarea");
+                    textArea.value = summaryText;
+                    textArea.style.position = "fixed";
+                    textArea.style.left = "-9999px";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        showNotification('Report summary copied to clipboard!');
+                    } catch (err) {
+                        console.error('Fallback: Oops, unable to copy', err);
+                        showNotification('Could not copy report summary.');
+                    }
+                    document.body.removeChild(textArea);
                 }
+            }
+
+            function showNotification(message) {
+                const toast = document.getElementById('notification-toast');
+                toast.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
             }
 
             questions.forEach((question, index) => {
