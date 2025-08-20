@@ -158,7 +158,6 @@
             background-color: #E34037;
             margin: 0.75rem auto 0 auto;
         }
-        /* New styles for the improved design */
         .guide-card-icon {
             margin-bottom: 0.75rem;
             color: #E34037;
@@ -176,6 +175,24 @@
             border: 1px solid #eee;
             padding: 1rem;
         }
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 999px; /* pill shape */
+            background-color: #ffffff;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .filter-btn:hover {
+            background-color: #f3f4f6;
+        }
+        .filter-btn.active {
+            background-color: #E34037;
+            color: white;
+            border-color: #E34037;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -189,10 +206,16 @@
                 <p class="mt-2 text-md text-gray-600">A curated collection of articles and tools to help you navigate your financial journey with confidence.</p>
             </div>
 
+            <!-- Filter Buttons -->
+            <div id="guides-filter-container" class="flex justify-center gap-2 mb-4">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="guide">Guides</button>
+                <button class="filter-btn" data-filter="quiz">Quizzes & Tools</button>
+            </div>
+
             <div class="guides-grid-wrapper">
                 <div id="guides-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <!-- Guide cards will be inserted here by script.js -->
-                    <!-- This section is now dynamically populated by script.js -->
                 </div>
                 
                 <div id="pagination-container" class="flex justify-center items-center gap-2 pt-4 mt-4 border-t border-gray-200">
