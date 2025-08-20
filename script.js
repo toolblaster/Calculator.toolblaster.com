@@ -54,58 +54,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- DYNAMIC GUIDES HUB LOGIC WITH PAGINATION ---
+    // --- DYNAMIC GUIDES HUB LOGIC WITH PAGINATION & FILTERING ---
     const initializeGuidesHub = () => {
         const guidesContainer = document.getElementById('guides-grid-container');
         const paginationContainer = document.getElementById('pagination-container');
-        if (!guidesContainer) return;
+        const filterContainer = document.getElementById('guides-filter-container');
 
-        const guides = [
-            { url: 'guides/financial-health-guide.html', title: 'Your Guide to Financial Health & Wellness', description: 'Understand the pillars of financial health and get your personalized report card.', linkText: 'Read More &rarr;'},
-            { url: 'guides/emergency-fund-guide.html', title: 'Your Step-by-Step Guide to Building an Emergency Fund', description: 'Learn the essential steps to create a robust financial safety net.' },
-            { url: 'guides/goal-based-investing.html', title: 'Goal-Based Investing: A Roadmap to Your Dreams', description: 'Discover how to align your investments with your life goals, big or small.' },
-            { url: 'guides/mfguide.html', title: 'A Beginner\'s Guide to Investing in India', description: 'A comprehensive beginner\'s guide to mutual funds and SIPs.' },
-            { url: 'guides/retirement-planning-guide.html', title: 'Your Guide to a Happy and Stress-Free Retirement in India', description: 'An in-depth look at retirement planning for a secure future.' },
-            { url: 'guides/tax-saving-guide.html', title: 'Your Friendly Guide to Smart Tax-Saving (Section 80C)', description: 'Explore the best tax-saving investments under Section 80C.' },
-            { url: 'guides/sip-vs-lumpsum.html', title: 'SIP vs. Lumpsum: The Ultimate Investment Showdown', description: 'Understand the pros and cons of SIP and Lumpsum investing to choose the right strategy.' },
-            { url: 'guides/sip-vs-swp.html', title: 'SIP vs. SWP: Building Your Wealth vs. Creating Your Paycheck', description: 'Learn the difference between accumulating wealth with SIPs and generating income with SWPs.' },
-            { url: 'guides/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz &rarr;' }
-            // Add more guides here in the future. Once you have more than 12, pagination will appear.
+        if (!guidesContainer || !filterContainer) return;
+
+        const allGuides = [
+            { url: 'guides/financial-health-guide.html', title: 'Your Guide to Financial Health & Wellness', description: 'Understand the pillars of financial health and get your personalized report card.', linkText: 'Read More &rarr;', type: 'guide' },
+            { url: 'guides/emergency-fund-guide.html', title: 'Your Step-by-Step Guide to Building an Emergency Fund', description: 'Learn the essential steps to create a robust financial safety net.', type: 'guide' },
+            { url: 'guides/goal-based-investing.html', title: 'Goal-Based Investing: A Roadmap to Your Dreams', description: 'Discover how to align your investments with your life goals, big or small.', type: 'guide' },
+            { url: 'guides/mfguide.html', title: 'A Beginner\'s Guide to Investing in India', description: 'A comprehensive beginner\'s guide to mutual funds and SIPs.', type: 'guide' },
+            { url: 'guides/retirement-planning-guide.html', title: 'Your Guide to a Happy and Stress-Free Retirement in India', description: 'An in-depth look at retirement planning for a secure future.', type: 'guide' },
+            { url: 'guides/tax-saving-guide.html', title: 'Your Friendly Guide to Smart Tax-Saving (Section 80C)', description: 'Explore the best tax-saving investments under Section 80C.', type: 'guide' },
+            { url: 'guides/sip-vs-lumpsum.html', title: 'SIP vs. Lumpsum: The Ultimate Investment Showdown', description: 'Understand the pros and cons of SIP and Lumpsum investing to choose the right strategy.', type: 'guide' },
+            { url: 'guides/sip-vs-swp.html', title: 'SIP vs. SWP: Building Your Wealth vs. Creating Your Paycheck', description: 'Learn the difference between accumulating wealth with SIPs and generating income with SWPs.', type: 'guide' },
+            { url: 'guides/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz &rarr;', type: 'quiz' },
+            { url: 'guides/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 12 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment &rarr;', type: 'quiz' }
         ];
 
         let currentPage = 1;
+        let currentFilter = 'all';
         const guidesPerPage = 12;
+
+        function getFilteredGuides() {
+            if (currentFilter === 'all') {
+                return allGuides;
+            }
+            return allGuides.filter(guide => guide.type === currentFilter);
+        }
 
         function displayGuides(page) {
             currentPage = page;
+            const filteredGuides = getFilteredGuides();
             guidesContainer.innerHTML = '';
             const startIndex = (page - 1) * guidesPerPage;
             const endIndex = startIndex + guidesPerPage;
-            const paginatedGuides = guides.slice(startIndex, endIndex);
+            const paginatedGuides = filteredGuides.slice(startIndex, endIndex);
 
-            let guidesHTML = '';
-            paginatedGuides.forEach(guide => {
-                const linkText = guide.linkText || 'Read More &rarr;';
-                guidesHTML += `
-                    <a href="${guide.url}" class="guide-card">
-                        <h2>${guide.title}</h2>
-                        <p>${guide.description}</p>
-                        <span class="read-more-link">${linkText}</span>
-                    </a>
-                `;
-            });
-            guidesContainer.innerHTML = guidesHTML;
+            if (paginatedGuides.length === 0) {
+                guidesContainer.innerHTML = `<p class="text-center text-gray-500 col-span-full">No items match the selected filter.</p>`;
+            } else {
+                let guidesHTML = '';
+                paginatedGuides.forEach(guide => {
+                    const linkText = guide.linkText || 'Read More &rarr;';
+                    guidesHTML += `
+                        <a href="${guide.url}" class="guide-card">
+                            <h2>${guide.title}</h2>
+                            <p>${guide.description}</p>
+                            <span class="read-more-link">${linkText}</span>
+                        </a>
+                    `;
+                });
+                guidesContainer.innerHTML = guidesHTML;
+            }
             setupPagination();
         }
 
         function setupPagination() {
             if (!paginationContainer) return;
             paginationContainer.innerHTML = '';
-            const pageCount = Math.ceil(guides.length / guidesPerPage);
+            const filteredGuides = getFilteredGuides();
+            const pageCount = Math.ceil(filteredGuides.length / guidesPerPage);
 
-            if (pageCount <= 1) return; // Don't show pagination if there's only one page
+            if (pageCount <= 1) return;
 
-            // Previous button
             const prevButton = document.createElement('button');
             prevButton.innerHTML = '&laquo; Previous';
             prevButton.disabled = currentPage === 1;
@@ -114,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             paginationContainer.appendChild(prevButton);
 
-            // Page number buttons
             for (let i = 1; i <= pageCount; i++) {
                 const pageButton = document.createElement('button');
                 pageButton.innerText = i;
@@ -125,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 paginationContainer.appendChild(pageButton);
             }
 
-            // Next button
             const nextButton = document.createElement('button');
             nextButton.innerHTML = 'Next &raquo;';
             nextButton.disabled = currentPage === pageCount;
@@ -135,7 +148,19 @@ document.addEventListener('DOMContentLoaded', () => {
             paginationContainer.appendChild(nextButton);
         }
 
-        displayGuides(1); // Initial display of the first page
+        filterContainer.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                const filter = e.target.dataset.filter;
+                if (filter !== currentFilter) {
+                    currentFilter = filter;
+                    filterContainer.querySelector('.active').classList.remove('active');
+                    e.target.classList.add('active');
+                    displayGuides(1);
+                }
+            }
+        });
+
+        displayGuides(1);
     };
 
 
@@ -159,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setupDropdownMenu();
             setActiveNavLink();
             initializeGuidesHub();
-            initializeShareButtons(); // Initialize share buttons on all pages
+            initializeShareButtons(); 
 
             const calculatorContainer = document.querySelector('.calculator-container');
             if (calculatorContainer) {
