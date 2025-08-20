@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Health Assessment - Calculator.toolblaster</title>
+    
+    <meta name="description" content="Take our comprehensive quiz to assess your financial health. Get a personalized report card on your savings, debt, insurance, and investment habits.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      "name": "Financial Health Assessment",
+      "description": "An interactive quiz to help users assess their overall financial health, covering savings, debt, insurance, and investment risk profile, and receive a personalized report card.",
+      "hasPart": [
+        { "@type": "Question", "name": "What is your current age group?" },
+        { "@type": "Question", "name": "Which of these best describes your current life stage?"},
+        { "@type": "Question", "name": "What is your approximate monthly income?"},
+        { "@type": "Question", "name": "What percentage of your monthly income are you able to save or invest?" },
+        { "@type": "Question", "name": "Do you have an emergency fund that can cover at least 3-6 months of essential living expenses?" },
+        { "@type": "Question", "name": "Excluding a home loan, is your total monthly EMI more than 20% of your income?" },
+        { "@type": "Question", "name": "Which of these essential insurance policies do you have?" },
+        { "@type": "Question", "name": "When it comes to investing, which statement sounds most like you?" },
+        { "@type": "Question", "name": "If you saw your investment value drop by 20% in a month, what would you do?" },
+        { "@type": "Question", "name": "How soon do you think you'll need to use the money you're investing?" },
+        { "@type": "Question", "name": "How much experience do you have with investing in things like stocks or mutual funds?" },
+        { "@type": "Question", "name": "Which of these trade-offs are you most comfortable making?" }
+      ]
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .quiz-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        #progress-bar-container {
+            width: 100%;
+            background-color: #e5e7eb;
+            border-radius: 999px;
+            height: 8px;
+            margin-bottom: 2rem;
+        }
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #E34037;
+            border-radius: 999px;
+            transition: width 0.4s ease-in-out;
+        }
+        .question-block {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .question-block.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .question-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1f2d37;
+            margin-bottom: 1rem;
+        }
+        .option-label {
+            display: block;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-size: 0.75rem;
+        }
+        .option-label:hover {
+            background-color: #f9fafb;
+            border-color: #E34037;
+        }
+        .option-label input {
+            display: none;
+        }
+        .option-label.selected {
+            background-color: #fef2f2;
+            border-color: #E34037;
+            color: #C22D2D;
+            font-weight: 500;
+        }
+        #results-content { display: none; }
+        .report-card {
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background-color: #f9fafb;
+            animation: fadeIn 0.5s;
+        }
+        .overall-score-container {
+            margin-bottom: 2rem;
+        }
+        .score-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fef2f2;
+            border: 4px solid #E34037;
+        }
+        .score-text {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #C22D2D;
+        }
+        .score-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            text-align: left;
+        }
+        .pillar-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        .pillar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .pillar-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .pillar-rating {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.125rem 0.5rem;
+            border-radius: 999px;
+        }
+        .rating-green { background-color: #dcfce7; color: #166534; }
+        .rating-yellow { background-color: #fef9c3; color: #854d0e; }
+        .rating-red { background-color: #fee2e2; color: #991b1b; }
+        .pillar-advice {
+            font-size: 0.75rem;
+            color: #4b5563;
+            margin-bottom: 0.75rem;
+        }
+        .action-btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            background-color: #fef2f2;
+            color: #C22D2D;
+            border: 1px solid #fca5a5;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+        .action-btn:hover {
+            background-color: #C22D2D;
+            color: white;
+            border-color: #C22D2D;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+        .action-btn svg {
+            width: 12px;
+            height: 12px;
+        }
+        .results-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .results-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #374151;
+            color: white;
+            border: none;
+            padding: 0.35rem 0.8rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .results-btn:hover {
+            background-color: #4b5563;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 10px rgba(0,0,0,0.1);
+        }
+        #quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .nav-button {
+            background: none;
+            border: 1px solid #d1d5db;
+            color: #4b5563;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #f3f4f6;
+        }
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .title-with-accent {
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+        .title-with-accent::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #E34037;
+            margin: 0.75rem auto 0;
+        }
+        #priority-plan {
+            margin-bottom: 2rem;
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        #priority-plan h3 {
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        #priority-plan ol {
+            list-style-position: inside;
+            list-style-type: decimal;
+            text-align: left;
+        }
+        #priority-plan li {
+            font-size: 0.8rem;
+            color: #4b5563;
+            margin-bottom: 0.25rem;
+        }
+        /* Mini Calculator Styles */
+        .mini-calculator {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .mini-calc-input {
+            width: 100%;
+            padding: 0.25rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.25rem;
+            font-size: 0.7rem;
+            text-align: center;
+        }
+        .mini-calc-result {
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            color: #1f2937;
+        }
+        .mini-calc-result span {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #C22D2D;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <div class="quiz-container">
+            <div id="quiz-content">
+                <div class="text-center p-6 bg-gray-100 rounded-lg mb-8">
+                    <h1 class="text-xl font-bold text-gray-800 mb-2 title-with-accent">Your Financial Health Assessment</h1>
+                    <p class="text-gray-500 text-sm">Answer 12 quick questions to get your personalized financial report card.</p>
+                </div>
+                
+                <div id="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+
+                <form id="health-quiz-form">
+                    <!-- Questions -->
+                    <div class="question-block active" data-question-index="0">
+                        <p class="question-text">1. What is your current age group?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_age" value="1" required> Under 30</label>
+                            <label class="option-label"><input type="radio" name="q_age" value="2"> 30 - 40</label>
+                            <label class="option-label"><input type="radio" name="q_age" value="3"> 40 - 50</label>
+                            <label class="option-label"><input type="radio" name="q_age" value="4"> 50+</label>
+                        </div>
+                    </div>
+                     <div class="question-block" data-question-index="1">
+                        <p class="question-text">2. Which of these best describes your current life stage?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_stage" value="1" required> Single</label>
+                            <label class="option-label"><input type="radio" name="q_stage" value="2"> Married</label>
+                            <label class="option-label"><input type="radio" name="q_stage" value="3"> Married with Kids</label>
+                            <label class="option-label"><input type="radio" name="q_stage" value="4"> Nearing Retirement</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="2">
+                        <p class="question-text">3. What is your approximate monthly income?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_income" value="1" required> Less than ₹50,000</label>
+                            <label class="option-label"><input type="radio" name="q_income" value="2"> ₹50,000 - ₹1 Lakh</label>
+                            <label class="option-label"><input type="radio" name="q_income" value="3"> ₹1 Lakh - ₹2 Lakhs</label>
+                            <label class="option-label"><input type="radio" name="q_income" value="4"> More than ₹2 Lakhs</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="3">
+                        <p class="question-text">4. What percentage of your monthly income are you able to save or invest?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q1" value="1" required> Less than 10%</label>
+                            <label class="option-label"><input type="radio" name="q1" value="2"> 10% - 20%</label>
+                            <label class="option-label"><input type="radio" name="q1" value="3"> 20% - 30%</label>
+                            <label class="option-label"><input type="radio" name="q1" value="4"> More than 30%</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="4">
+                        <p class="question-text">5. Do you have an emergency fund that can cover at least 3-6 months of essential living expenses?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q2" value="1" required> No, I don't have one.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="2"> I have some savings, but not that much.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="3"> Yes, I'm fully covered.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="5">
+                        <p class="question-text">6. Excluding a home loan, is your total monthly EMI (for personal loans, car loans, credit cards) more than 20% of your income?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q3" value="1" required> Yes, it's significantly more than 20%.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="2"> It's around 20%.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="3"> No, it's well below 20%.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="6">
+                        <p class="question-text">7. Which of these essential insurance policies do you have?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q4" value="1" required> Neither</label>
+                            <label class="option-label"><input type="radio" name="q4" value="2"> Health Insurance only</label>
+                            <label class="option-label"><input type="radio" name="q4" value="3"> Term Life Insurance only</label>
+                            <label class="option-label"><input type="radio" name="q4" value="4"> Both Health and Term Life</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="7">
+                        <p class="question-text">8. When it comes to investing, which statement sounds most like you?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q5" value="1" required> "My main goal is to not lose the money I've saved."</label>
+                            <label class="option-label"><input type="radio" name="q5" value="2"> "I'm willing to accept some ups and downs for better returns."</label>
+                            <label class="option-label"><input type="radio" name="q5" value="3"> "I'm aiming for the highest possible growth, and I understand that involves bigger risks."</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="8">
+                        <p class="question-text">9. If you saw your investment value drop by 20% in a month, what would you do?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q6" value="1" required> Sell immediately to cut my losses.</label>
+                            <label class="option-label"><input type="radio" name="q6" value="2"> Feel worried, but hold on and hope it recovers.</label>
+                            <label class="option-label"><input type="radio" name="q6" value="3"> See it as a sale and invest even more.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="9">
+                        <p class="question-text">10. How soon do you think you'll need to use the money you're investing?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q7" value="1" required> In the next 1-3 years.</label>
+                            <label class="option-label"><input type="radio" name="q7" value="2"> Sometime between 4 and 7 years from now.</label>
+                            <label class="option-label"><input type="radio" name="q7" value="3"> Not for at least 8 years or more.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="10">
+                        <p class="question-text">11. How much experience do you have with investing in things like stocks or mutual funds?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q8" value="1" required> None at all, I'm a complete beginner.</label>
+                            <label class="option-label"><input type="radio" name="q8" value="2"> I know the basics and have made a few investments.</label>
+                            <label class="option-label"><input type="radio" name="q8" value="3"> I'm very experienced and actively manage my own portfolio.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="11">
+                        <p class="question-text">12. Which of these trade-offs are you most comfortable making?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q9" value="1" required> I'd accept very low returns to ensure my money is 100% safe.</label>
+                            <label class="option-label"><input type="radio" name="q9" value="2"> I'd risk a small potential loss for a chance at moderate, inflation-beating returns.</label>
+                            <label class="option-label"><input type="radio" name="q9" value="3"> I'd risk a larger potential loss for a chance at high, market-beating returns.</label>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="quiz-navigation">
+                    <button id="prev-btn" class="nav-button">Previous</button>
+                </div>
+            </div>
+
+            <div id="results-content">
+                <div class="report-card">
+                    <div class="overall-score-container">
+                        <div class="score-circle">
+                            <span id="overall-score" class="score-text">0</span>
+                        </div>
+                        <h2 class="score-title">Your Financial Health Score</h2>
+                    </div>
+
+                    <div id="priority-plan">
+                        <h3>Your Prioritized Action Plan</h3>
+                        <ol id="priority-list"></ol>
+                    </div>
+
+                    <div class="pillar-grid">
+                        <!-- Pillars will be dynamically inserted here -->
+                    </div>
+
+                    <div class="results-actions">
+                        <button id="share-report-btn" class="results-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+                            Share Report
+                        </button>
+                        <button class="results-btn retake-quiz-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+                            Retake Assessment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizContent = document.getElementById('quiz-content');
+            const resultsContent = document.getElementById('results-content');
+            const questions = document.querySelectorAll('.question-block');
+            const prevButton = document.getElementById('prev-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const retakeButtons = document.querySelectorAll('.retake-quiz-btn');
+            const shareButton = document.getElementById('share-report-btn');
+
+            let currentQuestionIndex = 0;
+            const userAnswers = {};
+            let isTransitioning = false;
+            let finalReport = {};
+
+            function showQuestion(index) {
+                questions.forEach((question, i) => {
+                    question.classList.toggle('active', i === index);
+                });
+                currentQuestionIndex = index;
+                prevButton.disabled = index === 0;
+                updateProgressBar();
+            }
+
+            function updateProgressBar() {
+                const progress = (currentQuestionIndex / (questions.length - 1)) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+
+            function animateValue(obj, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    obj.innerHTML = Math.floor(progress * (end - start) + start);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+            
+            function createActionButton(text, link, iconSvg) {
+                return `
+                    <a href="${link}" class="action-btn">
+                        ${iconSvg}
+                        <span>${text}</span>
+                    </a>
+                `;
+            }
+
+            function calculateAndShowResults() {
+                // Scoring Logic
+                const scores = {
+                    savings: (parseInt(userAnswers.q1, 10) -1) * 8.33,
+                    emergency: (parseInt(userAnswers.q2, 10) -1) * 12.5,
+                    debt: (parseInt(userAnswers.q3, 10) -1) * 12.5,
+                    insurance: (parseInt(userAnswers.q4, 10) -1) * 8.33,
+                    investing: (
+                        (parseInt(userAnswers.q5, 10) -1) +
+                        (parseInt(userAnswers.q6, 10) -1) +
+                        (parseInt(userAnswers.q7, 10) -1) +
+                        (parseInt(userAnswers.q8, 10) -1) +
+                        (parseInt(userAnswers.q9, 10) -1)
+                    ) * 2.5
+                };
+
+                const totalScore = Math.round(scores.savings + scores.emergency + scores.debt + scores.insurance + scores.investing);
+                const scoreElement = document.getElementById('overall-score');
+                animateValue(scoreElement, 0, totalScore, 1000);
+
+                const pillarGrid = document.querySelector('.pillar-grid');
+                pillarGrid.innerHTML = ''; // Clear previous results
+
+                const iconGoal = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>`;
+                const iconSIP = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg>`;
+                const iconGuide = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`;
+                const iconFD = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line></svg>`;
+                const iconLumpsum = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>`;
+
+                const pillars = [];
+
+                // Savings Pillar
+                let savingsPillar = { name: "Savings Rate", score: scores.savings };
+                if (userAnswers.q1 >= 3) {
+                    savingsPillar.rating = 'Excellent';
+                    savingsPillar.ratingClass = 'rating-green';
+                    savingsPillar.advice = 'Great job! You have a strong savings habit. Consider optimizing your investments.';
+                    savingsPillar.actions = createActionButton('Use Goal Planner', '../index.html?mode=goal', iconGoal);
+                } else if (userAnswers.q1 == 2) {
+                    savingsPillar.rating = 'Good';
+                    savingsPillar.ratingClass = 'rating-yellow';
+                    savingsPillar.advice = 'You\'re on the right track. See if you can increase your savings slightly to accelerate your goals.';
+                    savingsPillar.actions = createActionButton('Go to SIP Calculator', '../index.html?mode=sip', iconSIP);
+                } else {
+                    savingsPillar.rating = 'Needs Improvement';
+                    savingsPillar.ratingClass = 'rating-red';
+                    savingsPillar.advice = 'Making saving a priority is the first step. Start small and see how it grows.';
+                    savingsPillar.actions = createActionButton('Go to SIP Calculator', '../index.html?mode=sip', iconSIP);
+                }
+                pillars.push(savingsPillar);
+
+                // Emergency Fund Pillar
+                let emergencyPillar = { name: "Emergency Fund", score: scores.emergency };
+                if (userAnswers.q2 == 3) {
+                    emergencyPillar.rating = 'Prepared';
+                    emergencyPillar.ratingClass = 'rating-green';
+                    emergencyPillar.advice = 'Excellent! Your safety net is in place, allowing you to invest with confidence.';
+                    emergencyPillar.actions = '';
+                } else {
+                    emergencyPillar.rating = userAnswers.q2 == 2 ? 'Partially Prepared' : 'At Risk';
+                    emergencyPillar.ratingClass = userAnswers.q2 == 2 ? 'pillar-rating rating-yellow' : 'pillar-rating rating-red';
+                    emergencyPillar.advice = 'This should be a top priority to protect you from financial shocks.';
+                    emergencyPillar.actions = createActionButton('Read Emergency Fund Guide', 'emergency-fund-guide.html', iconGuide);
+                }
+                pillars.push(emergencyPillar);
+                
+                // Debt Pillar
+                let debtPillar = { name: "Debt Management", score: scores.debt };
+                if (userAnswers.q3 == 3) {
+                    debtPillar.rating = 'Healthy';
+                    debtPillar.ratingClass = 'rating-green';
+                    debtPillar.advice = 'Great work managing your debt. This gives you more freedom to invest for your goals.';
+                    debtPillar.actions = '';
+                } else {
+                    debtPillar.rating = userAnswers.q3 == 2 ? 'Caution' : 'High';
+                    debtPillar.ratingClass = userAnswers.q3 == 2 ? 'pillar-rating rating-yellow' : 'pillar-rating rating-red';
+                    let debtAdvice = 'High debt can hinder wealth creation. Prioritize paying it down.';
+                    if (userAnswers.q_income == 1) {
+                        debtAdvice = "At your income level, high EMIs can be very stressful. It's critical to focus on clearing this debt before making new investments."
+                    }
+                    debtPillar.advice = debtAdvice;
+                    debtPillar.actions = createActionButton('Read Investing Guides', '../investingguides.html', iconGuide);
+                }
+                pillars.push(debtPillar);
+
+                // Insurance Pillar
+                let insurancePillar = { name: "Insurance Shield", score: scores.insurance };
+                if (userAnswers.q4 == 4) {
+                    insurancePillar.rating = 'Well Protected';
+                    insurancePillar.ratingClass = 'rating-green';
+                    insurancePillar.advice = 'You\'ve taken the right steps to protect yourself and your family from financial shocks.';
+                    insurancePillar.actions = '';
+                } else {
+                    insurancePillar.rating = userAnswers.q4 > 1 ? 'Partially Protected' : 'Under-Insured';
+                    insurancePillar.ratingClass = userAnswers.q4 > 1 ? 'pillar-rating rating-yellow' : 'pillar-rating rating-red';
+                    let advice = 'This is a critical gap. ';
+                    if(userAnswers.q_stage == 3) { // Married with kids
+                        advice = 'With a family to support, being under-insured is a major risk. '
+                    }
+                    if(userAnswers.q4 == 1) advice += 'Having both Health and Term insurance is crucial.';
+                    if(userAnswers.q4 == 2) advice += 'You have Health Insurance, but a Term Life policy is vital to protect your family\'s future.';
+                    if(userAnswers.q4 == 3) advice += 'You have Term Life Insurance, but Health Insurance is essential to protect you from medical emergencies.';
+                    insurancePillar.advice = advice;
+                    insurancePillar.actions = createActionButton('Read Retirement Guide', 'retirement-planning-guide.html', iconGuide);
+                }
+                pillars.push(insurancePillar);
+
+                // Investing Pillar
+                const riskScore = parseInt(userAnswers.q5) + parseInt(userAnswers.q6) + parseInt(userAnswers.q7) + parseInt(userAnswers.q8) + parseInt(userAnswers.q9);
+                let investorPillar = { name: "Investor Profile", score: scores.investing };
+                if (riskScore <= 7) {
+                    investorPillar.rating = 'Conservative';
+                    investorPillar.ratingClass = 'rating-green';
+                    investorPillar.advice = 'You prioritize safety and capital protection.';
+                    investorPillar.actions = createActionButton('Go to FD Calculator', '../index.html?mode=fd', iconFD) + createActionButton('Go to RD Calculator', '../index.html?mode=rd', iconSIP);
+                } else if (riskScore <= 12) {
+                    investorPillar.rating = 'Balanced';
+                    investorPillar.ratingClass = 'rating-yellow';
+                    investorPillar.advice = 'You seek a mix of growth and safety.';
+                    investorPillar.actions = createActionButton('Use Goal Planner', '../index.html?mode=goal', iconGoal);
+                } else {
+                    investorPillar.rating = 'Aggressive';
+                    investorPillar.ratingClass = 'rating-red';
+                    investorPillar.advice = 'You are focused on long-term growth.';
+                    investorPillar.actions = createActionButton('Go to SIP Calculator', '../index.html?mode=sip', iconSIP) + createActionButton('Go to Lumpsum Calculator', '../index.html?mode=lumpsum', iconLumpsum);
+                }
+                pillars.push(investorPillar);
+
+                // Prioritized Action Plan
+                const sortedPillars = [...pillars].sort((a, b) => a.score - b.score);
+                const priorityList = document.getElementById('priority-list');
+                priorityList.innerHTML = `
+                    <li>Focus on improving your ${sortedPillars[0].name}.</li>
+                    <li>Your next step should be to work on your ${sortedPillars[1].name}.</li>
+                `;
+
+                // Render Pillars
+                pillars.forEach(p => {
+                    const pillarEl = document.createElement('div');
+                    pillarEl.className = 'pillar-card';
+                    pillarEl.innerHTML = `
+                        <div class="pillar-header">
+                            <h3 class="pillar-title">${p.name}</h3>
+                            <span class="pillar-rating ${p.ratingClass}">${p.rating}</span>
+                        </div>
+                        <p class="pillar-advice">${p.advice}</p>
+                        <div class="action-btn-container">${p.actions}</div>
+                    `;
+                    pillarGrid.appendChild(pillarEl);
+                });
+                
+                finalReport = {
+                    score: totalScore,
+                    priorities: [sortedPillars[0].name, sortedPillars[1].name],
+                    pillars: pillars
+                };
+
+                quizContent.style.display = 'none';
+                resultsContent.style.display = 'block';
+            }
+
+            function handleShareReport() {
+                if (!finalReport.score) return;
+                const summaryText = `I just took the Financial Health Assessment and got a score of ${finalReport.score}/100! My top priorities are to improve my ${finalReport.priorities[0]} and ${finalReport.priorities[1]}. Check out your own financial health here: ${window.location.href}`;
+
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'My Financial Health Report',
+                        text: summaryText,
+                        url: window.location.href,
+                    }).catch(err => console.error("Share failed:", err.message));
+                } else {
+                    navigator.clipboard.writeText(summaryText).then(() => {
+                        alert('Report summary copied to clipboard!');
+                    }).catch(err => {
+                        console.error('Could not copy text: ', err);
+                    });
+                }
+            }
+
+            questions.forEach((question, index) => {
+                const options = question.querySelectorAll('.option-label');
+                options.forEach(label => {
+                    label.addEventListener('click', () => {
+                        if (isTransitioning) return;
+                        isTransitioning = true;
+
+                        const radio = label.querySelector('input[type="radio"]');
+                        userAnswers[radio.name] = radio.value;
+
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        label.classList.add('selected');
+
+                        setTimeout(() => {
+                            if (currentQuestionIndex < questions.length - 1) {
+                                showQuestion(currentQuestionIndex + 1);
+                            } else {
+                                calculateAndShowResults();
+                            }
+                            isTransitioning = false;
+                        }, 300);
+                    });
+                });
+            });
+
+            prevButton.addEventListener('click', () => {
+                if (currentQuestionIndex > 0) {
+                    showQuestion(currentQuestionIndex - 1);
+                }
+            });
+
+            retakeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+                    document.querySelectorAll('.option-label.selected').forEach(l => l.classList.remove('selected'));
+                    document.getElementById('health-quiz-form').reset();
+                    
+                    resultsContent.style.display = 'none';
+                    quizContent.style.display = 'block';
+                    showQuestion(0);
+                });
+            });
+
+            shareButton.addEventListener('click', handleShareReport);
+
+            showQuestion(0);
+        });
+    </script>
+</body>
+</html>
