@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!guidesContainer) return;
 
         const guides = [
+            { url: 'guides/financial-health-guide.html', title: 'Your Guide to Financial Health & Wellness', description: 'Understand the pillars of financial health and get your personalized report card.', linkText: 'Read More &rarr;'},
             { url: 'guides/emergency-fund-guide.html', title: 'Building Your Emergency Fund: A Step-by-Step Guide', description: 'Learn the essential steps to create a robust financial safety net.' },
             { url: 'guides/goal-based-investing.html', title: 'Goal-Based Investing: Planning for Your Dreams', description: 'Discover how to align your investments with your life goals, big or small.' },
             { url: 'guides/mfguide.html', title: 'A Beginner\'s Guide to Investing in India', description: 'A comprehensive beginner\'s guide to mutual funds and SIPs.' },
@@ -511,20 +512,6 @@ document.addEventListener('DOMContentLoaded', () => {
           const activeClasses = 'bg-blue-600 text-white shadow-md'.split(' ');
           const inactiveClasses = 'bg-gray-200 text-gray-700 hover:bg-gray-300'.split(' ');
           [sipModeBtn, lumpsumModeBtn, rdModeBtn, fdModeBtn, swpModeBtn, goalModeBtn].forEach(btn => { btn.classList.remove(...activeClasses, ...inactiveClasses); btn.classList.add(...(btn.id.startsWith(newMode) ? activeClasses : inactiveClasses)); });
-          
-          if (newMode === 'sip') { 
-            sipAmountSlider.value = 10000; sipAmountInput.value = 10000; sipIncreaseRateSlider.value = 0; sipIncreaseRateInput.value = 0; returnRateSlider.value = 12; returnRateInput.value = 12; investmentPeriodSlider.value = 10; investmentPeriodInput.value = 10; 
-          } else if (newMode === 'lumpsum') { 
-            lumpsumAmountSlider.value = 500000; lumpsumAmountInput.value = 500000; returnRateSlider.value = 10; returnRateInput.value = 10; investmentPeriodSlider.value = 10; investmentPeriodInput.value = 10; 
-          } else if (newMode === 'rd') { 
-            rdAmountSlider.value = 5000; rdAmountInput.value = 5000; rdIncreaseRateSlider.value = 0; rdIncreaseRateInput.value = 0; returnRateSlider.value = 6.5; returnRateInput.value = 6.5; investmentPeriodSlider.value = 10; investmentPeriodInput.value = 10; 
-          } else if (newMode === 'fd') { 
-            fdAmountSlider.value = 100000; fdAmountInput.value = 100000; returnRateSlider.value = 7; returnRateInput.value = 7; investmentPeriodSlider.value = 5; investmentPeriodInput.value = 5; 
-          } else if (newMode === 'swp') { 
-            initialCorpusSlider.value = 2000000; initialCorpusInput.value = 2000000; withdrawalAmountSlider.value = 20000; withdrawalAmountInput.value = 20000; returnRateSlider.value = 8; returnRateInput.value = 8; investmentPeriodSlider.value = 20; investmentPeriodInput.value = 20; 
-          } else if (newMode === 'goal') { 
-            targetAmountSlider.value = 5000000; targetAmountInput.value = 5000000; goalReturnRateSlider.value = 12; goalReturnRateInput.value = 12; goalPeriodSlider.value = 10; goalPeriodInput.value = 10; 
-          }
           
           if (newMode === 'sip') { sipSection.classList.remove('hidden'); sipSummary.classList.remove('hidden'); calculatorTitle.textContent = 'SIP Calculator'; calculatorDescription.textContent = 'Calculate the future value of your SIP investments.'; periodLabel.textContent = 'Investment Period (Years)'; } 
           else if (newMode === 'lumpsum') { lumpsumSection.classList.remove('hidden'); lumpsumSummary.classList.remove('hidden'); calculatorTitle.textContent = 'Lumpsum Calculator'; calculatorDescription.textContent = 'Calculate the future value of your one-time lumpsum investment.'; periodLabel.textContent = 'Investment Period (Years)'; } 
