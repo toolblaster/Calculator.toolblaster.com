@@ -35,6 +35,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
@@ -132,7 +133,7 @@
         .score-title {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #1f2d37;
+            color: #1f2937;
         }
         .pillar-grid {
             display: grid;
@@ -284,6 +285,12 @@
             font-size: 0.8rem;
             color: #4b5563;
             margin-bottom: 0.25rem;
+        }
+        .chart-container {
+            position: relative;
+            height: 100px;
+            width: 100%;
+            margin-top: 1rem;
         }
     </style>
 </head>
@@ -487,6 +494,7 @@
             const userAnswers = {};
             let isTransitioning = false;
             let finalReport = {};
+            let savingsChart, debtChart;
 
             function showQuestion(index) {
                 questions.forEach((question, i) => {
@@ -522,6 +530,52 @@
                         <span>${text}</span>
                     </a>
                 `;
+            }
+
+            function createBarChart(canvasId, yourRate) {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                if (savingsChart) savingsChart.destroy();
+                savingsChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Your Rate', 'Recommended'],
+                        datasets: [{
+                            label: 'Savings Rate %',
+                            data: [yourRate, 20],
+                            backgroundColor: ['#fca5a5', '#86efac'],
+                            borderColor: ['#ef4444', '#22c55e'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { x: { beginAtZero: true, max: 40 } }
+                    }
+                });
+            }
+
+            function createPieChart(canvasId, emiPercentage) {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                if (debtChart) debtChart.destroy();
+                debtChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['EMIs', 'Remaining Income'],
+                        datasets: [{
+                            data: [emiPercentage, 100 - emiPercentage],
+                            backgroundColor: ['#ef4444', '#e5e7eb'],
+                            hoverOffset: 4
+                        }]
+                    },
+                     options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+                    }
+                });
             }
 
             function calculateAndShowResults() {
@@ -564,16 +618,12 @@
                     savingsPillar.ratingClass = 'rating-green';
                     savingsPillar.advice = 'Great job! You have a strong savings habit. Consider optimizing your investments.';
                     savingsPillar.actions = createActionButton('Use Goal Planner', '../index.html?mode=goal', iconGoal);
-                } else if (userAnswers.q1 == 2) {
-                    savingsPillar.rating = 'Good';
-                    savingsPillar.ratingClass = 'rating-yellow';
-                    savingsPillar.advice = 'You\'re on the right track. See if you can increase your savings slightly to accelerate your goals.';
-                    savingsPillar.actions = createActionButton('Go to SIP Calculator', '../index.html?mode=sip', iconSIP);
                 } else {
-                    savingsPillar.rating = 'Needs Improvement';
-                    savingsPillar.ratingClass = 'rating-red';
-                    savingsPillar.advice = 'Making saving a priority is the first step. Start small and see how it grows.';
+                    savingsPillar.rating = userAnswers.q1 == 2 ? 'Good' : 'Needs Improvement';
+                    savingsPillar.ratingClass = userAnswers.q1 == 2 ? 'rating-yellow' : 'rating-red';
+                    savingsPillar.advice = userAnswers.q1 == 2 ? 'You\'re on the right track. See if you can increase your savings slightly to accelerate your goals.' : 'Making saving a priority is the first step. Start small and see how it grows.';
                     savingsPillar.actions = createActionButton('Go to SIP Calculator', '../index.html?mode=sip', iconSIP);
+                    savingsPillar.chart = `<div class="chart-container"><canvas id="savingsRateChart"></canvas></div>`;
                 }
                 pillars.push(savingsPillar);
 
@@ -608,6 +658,7 @@
                     }
                     debtPillar.advice = debtAdvice;
                     debtPillar.actions = createActionButton('Read Investing Guides', '../investingguides.html', iconGuide);
+                    debtPillar.chart = `<div class="chart-container"><canvas id="debtPieChart"></canvas></div>`;
                 }
                 pillars.push(debtPillar);
 
@@ -708,10 +759,21 @@
                             <span class="pillar-rating ${p.ratingClass}">${p.rating}</span>
                         </div>
                         <p class="pillar-advice">${p.advice}</p>
+                        ${p.chart || ''}
                         <div class="action-btn-container">${p.actions}</div>
                     `;
                     pillarGrid.appendChild(pillarEl);
                 });
+
+                // Activate Charts if needed
+                if (savingsPillar.chart) {
+                    const savingsRateMap = { '1': 5, '2': 15, '3': 25, '4': 35 };
+                    createBarChart('savingsRateChart', savingsRateMap[userAnswers.q1]);
+                }
+                if (debtPillar.chart) {
+                    const debtRateMap = { '1': 30, '2': 20, '3': 10 };
+                    createPieChart('debtPieChart', debtRateMap[userAnswers.q3]);
+                }
                 
                 finalReport = {
                     score: totalScore,
