@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Habits Quiz: Discover Your Money Mindset - Calculator.toolblaster</title>
+    
+    <meta name="description" content="Take our Financial Habits Quiz to discover your money mindset and get a personalized score. Receive actionable advice and a 'What If' scenario to improve your financial habits.">
+    <meta name="keywords" content="financial habits, money mindset, financial quiz, personal finance, financial wellness, financial therapy, money management">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      "name": "Financial Habits Quiz",
+      "description": "An interactive quiz to help users assess their daily financial habits and discover their money mindset, providing a personalized score and actionable guidance.",
+      "hasPart": [
+        { "@type": "Question", "name": "How do you typically track your monthly expenses?" },
+        { "@type": "Question", "name": "What is your immediate feeling when you receive your monthly salary?" },
+        { "@type": "Question", "name": "How do you handle a sudden, unexpected expense (e.g., a car repair)?" },
+        { "@type": "Question", "name": "Which statement best describes your attitude towards debt?" },
+        { "@type": "Question", "name": "When you think about the stock market, which best describes your feeling?" },
+        { "@type": "Question", "name": "How often do you review your long-term financial goals?" },
+        { "@type": "Question", "name": "When it comes to saving, which phrase sounds most like you?" },
+        { "@type": "Question", "name": "Which of these best describes your current financial knowledge?" },
+        { "@type": "Question", "name": "What's your primary motivation for building wealth?" }
+      ]
+    }
+    </script>
+    
+    <style>
+        .quiz-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+            animation: fadeIn 0.5s;
+        }
+        #progress-bar-container {
+            width: 100%;
+            background-color: #e5e7eb;
+            border-radius: 999px;
+            height: 8px;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #E34037;
+            border-radius: 999px;
+            transition: width 0.4s ease-in-out;
+        }
+        .progress-text {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+        .question-block {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .question-block.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .question-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1f2d37;
+            margin-bottom: 1rem;
+        }
+        .option-label {
+            display: block;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-size: 0.75rem;
+        }
+        .option-label:hover {
+            background-color: #f9fafb;
+            border-color: #E34037;
+        }
+        .option-label input {
+            display: none;
+        }
+        .option-label.selected {
+            background-color: #fef2f2;
+            border-color: #E34037;
+            color: #C22D2D;
+            font-weight: 500;
+        }
+        #results-content { display: none; }
+        .report-card {
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background-color: #f9fafb;
+            animation: fadeIn 0.5s;
+        }
+        .result-icon-lg {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            color: #E34037;
+        }
+        .result-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #C22D2D;
+            margin-bottom: 0.5rem;
+        }
+        .result-description {
+            font-size: 0.75rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .score-container {
+            background-color: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .score-text {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #16a34a;
+            line-height: 1;
+            margin-top: 0.5rem;
+        }
+        .score-description {
+            font-size: 0.8rem;
+            color: #4b5563;
+        }
+        .pillar-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+        .pillar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            gap: 0.75rem;
+        }
+        .pillar-icon {
+            width: 24px;
+            height: 24px;
+            color: #E34037;
+        }
+        .pillar-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1f2d37;
+        }
+        .pillar-advice {
+            font-size: 0.75rem;
+            color: #4b5563;
+            margin-bottom: 0.75rem;
+        }
+        .action-btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            background-color: #fef2f2;
+            color: #C22D2D;
+            border: 1px solid #fca5a5;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+        .action-btn:hover {
+            background-color: #C22D2D;
+            color: white;
+            border-color: #C22D2D;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+        .action-btn svg {
+            width: 12px;
+            height: 12px;
+        }
+        .results-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .results-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #374151;
+            color: white;
+            border: none;
+            padding: 0.35rem 0.8rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .results-btn:hover {
+            background-color: #4b5563;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 10px rgba(0,0,0,0.1);
+        }
+        #quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .nav-button {
+            background: none;
+            border: 1px solid #d1d5db;
+            color: #4b5563;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #f3f4f6;
+        }
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .title-with-accent {
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+        .title-with-accent::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #E34037;
+            margin: 0.75rem auto 0;
+        }
+        #financial-therapy-container,
+        #what-if-scenario-container {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            text-align: left;
+            animation: fadeIn 0.5s;
+        }
+        .typing-animation {
+            font-size: 0.8rem;
+            color: #4b5563;
+        }
+        .chat-bubble {
+            background-color: #f3f4f6;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
+        .loading-dots:after {
+            content: ' .';
+            animation: ellipsis 1s infinite;
+        }
+        @keyframes ellipsis {
+            0% { content: ' .'; }
+            33% { content: ' ..'; }
+            66% { content: ' ...'; }
+        }
+        #notification-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2d3748;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        #notification-toast.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* New styles for improved results page layout */
+        .results-main-card {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: 1fr;
+            margin-top: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .results-main-card {
+                grid-template-columns: 1fr 2fr;
+                align-items: start;
+            }
+        }
+        .results-sidebar-card {
+            background-color: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            animation: fadeIn 0.5s;
+        }
+        .results-content-card {
+            background-color: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            animation: fadeIn 0.5s;
+        }
+        .results-score-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+        .results-score-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #16a34a;
+            line-height: 1;
+            margin-top: 0.5rem;
+        }
+        .results-score-subtitle {
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+        .mindset-card {
+            background-color: #fef2f2;
+            border: 1px solid #fca5a5;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+        }
+        .mindset-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #C22D2D;
+            margin-bottom: 0.25rem;
+        }
+        .mindset-description {
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+        .next-steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            .next-steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .pillar-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        /* New section styling for separate score and mindset */
+        .results-summary-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 640px) {
+             .results-summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .score-section,
+        .mindset-section {
+            background-color: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            animation: fadeIn 0.5s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <div class="quiz-container">
+            <div id="quiz-content">
+                <div class="text-center p-6 bg-red-50 rounded-lg mb-8">
+                    <h1 class="text-xl font-bold text-gray-800 mb-2 title-with-accent">Financial Habits Quiz</h1>
+                    <p class="text-gray-600 text-sm">Discover your money mindset and get actionable steps to improve your financial life.</p>
+                </div>
+                
+                <div id="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <p id="progress-text" class="progress-text">Starting the quiz...</p>
+
+                <form id="habits-quiz-form">
+                    <!-- Question 1: Tracking -->
+                    <div class="question-block active" data-question-index="0" data-progress-text="Assessing your tracking habits">
+                        <p class="question-text">1. How do you typically track your monthly expenses?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_tracking" value="1" required> I don't, I just hope for the best.</label>
+                            <label class="option-label"><input type="radio" name="q_tracking" value="2"> I glance at my bank statements once in a while.</label>
+                            <label class="option-label"><input type="radio" name="q_tracking" value="3"> I use a mental budget, but it's not very strict.</label>
+                            <label class="option-label"><input type="radio" name="q_tracking" value="4"> I use a spreadsheet or a budgeting app consistently.</label>
+                        </div>
+                    </div>
+                     <!-- Question 2: Salary Mindset -->
+                    <div class="question-block" data-question-index="1" data-progress-text="Gauging your salary mindset">
+                        <p class="question-text">2. What is your immediate feeling when you receive your monthly salary?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_salary_mindset" value="1" required> It's a race to spend it before it's gone.</label>
+                            <label class="option-label"><input type="radio" name="q_salary_mindset" value="2"> A sigh of relief, but then I worry about bills.</label>
+                            <label class="option-label"><input type="radio" name="q_salary_mindset" value="3"> I think about what bills to pay, then what to save and invest.</label>
+                            <label class="option-label"><input type="radio" name="q_salary_mindset" value="4"> It's a tool for my automated saving and investing plan.</label>
+                        </div>
+                    </div>
+                    <!-- Question 3: Unexpected Expenses -->
+                    <div class="question-block" data-question-index="2" data-progress-text="Testing your financial resilience">
+                        <p class="question-text">3. How do you handle a sudden, unexpected expense (e.g., a car repair)?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_emergency" value="1" required> I would put it on a credit card and worry later.</label>
+                            <label class="option-label"><input type="radio" name="q_emergency" value="2"> It would put a significant dent in my monthly budget.</label>
+                            <label class="option-label"><input type="radio" name="q_emergency" value="3"> I would use a small portion of my emergency fund.</label>
+                            <label class="option-label"><input type="radio" name="q_emergency" value="4"> I have a dedicated emergency fund to cover it without stress.</label>
+                        </div>
+                    </div>
+                    <!-- Question 4: Debt -->
+                    <div class="question-block" data-question-index="3" data-progress-text="Assessing your approach to debt">
+                        <p class="question-text">4. Which statement best describes your attitude towards debt?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_debt" value="1" required> I use credit cards for most purchases and carry a balance.</label>
+                            <label class="option-label"><input type="radio" name="q_debt" value="2"> I have some debt (e.g., a car loan), but it feels manageable.</label>
+                            <label class="option-label"><input type="radio" name="q_debt" value="3"> I only take on debt for major assets like a home loan and manage it carefully.</label>
+                            <label class="option-label"><input type="radio" name="q_debt" value="4"> I am debt-free and actively avoid all non-essential debt.</label>
+                        </div>
+                    </div>
+                    <!-- Question 5: Market Mindset -->
+                    <div class="question-block" data-question-index="4" data-progress-text="Understanding your investor profile">
+                        <p class="question-text">5. When you think about the stock market, which best describes your feeling?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_market_mindset" value="1" required> It's a casino; I'd rather keep my money in a savings account.</label>
+                            <label class="option-label"><input type="radio" name="q_market_mindset" value="2"> It feels too risky and complicated for me to get involved.</label>
+                            <label class="option-label"><input type="radio" name="q_market_mindset" value="3"> It’s a powerful tool, but I’m cautious about investing in it.</label>
+                            <label class="option-label"><input type="radio" name="q_market_mindset" value="4"> It's the best way to beat inflation and build long-term wealth.</label>
+                        </div>
+                    </div>
+                    <!-- Question 6: Goal Setting -->
+                    <div class="question-block" data-question-index="5" data-progress-text="Examining your goal-setting habits">
+                        <p class="question-text">6. How often do you review your long-term financial goals?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_goals" value="1" required> I don't have any specific long-term goals yet.</label>
+                            <label class="option-label"><input type="radio" name="q_goals" value="2"> I think about them occasionally, but don't have a formal plan.</label>
+                            <label class="option-label"><input type="radio" name="q_goals" value="3"> I review them once a year to stay on track.</label>
+                            <label class="option-label"><input type="radio" name="q_goals" value="4"> I have a detailed, written plan that I review quarterly or monthly.</label>
+                        </div>
+                    </div>
+                    <!-- Question 7: Saving Mentality -->
+                    <div class="question-block" data-question-index="6" data-progress-text="Uncovering your saving mentality">
+                        <p class="question-text">7. When it comes to saving, which phrase sounds most like you?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_saving_mentality" value="1" required> "I'll save whatever is left at the end of the month."</label>
+                            <label class="option-label"><input type="radio" name="q_saving_mentality" value="2"> "I save a little bit every month, but it's not a priority."</label>
+                            <label class="option-label"><input type="radio" name="q_saving_mentality" value="3"> "I pay my bills first, then save a fixed amount."</label>
+                            <label class="option-label"><input type="radio" name="q_saving_mentality" value="4"> "I pay myself first; saving is an automatic, non-negotiable expense."</label>
+                        </div>
+                    </div>
+                    <!-- Question 8: Investment Knowledge -->
+                    <div class="question-block" data-question-index="7" data-progress-text="Assessing your financial literacy">
+                        <p class="question-text">8. Which of these best describes your current financial knowledge?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_knowledge" value="1" required> I know very little about personal finance and investing.</label>
+                            <label class="option-label"><input type="radio" name="q_knowledge" value="2"> I know the basics, like what an FD and a mutual fund are.</label>
+                            <label class="option-label"><input type="radio" name="q_knowledge" value="3"> I'm comfortable with investing and read financial news regularly.</label>
+                            <label class="option-label"><input type="radio" name="q_knowledge" value="4"> I'm very experienced and can analyze investment products on my own.</label>
+                        </div>
+                    </div>
+                    <!-- Question 9: Motivation -->
+                    <div class="question-block" data-question-index="8" data-progress-text="Final step: uncovering your motivation">
+                        <p class="question-text">9. What's your primary motivation for building wealth?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_motivation" value="1" required> To keep up with friends and buy things I want.</label>
+                            <label class="option-label"><input type="radio" name="q_motivation" value="2"> To be able to afford a comfortable lifestyle and have a nice car.</label>
+                            <label class="option-label"><input type="radio" name="q_motivation" value="3"> To achieve specific life goals, like buying a home or a child's education.</label>
+                            <label class="option-label"><input type="radio" name="q_motivation" value="4"> To achieve true financial independence and freedom from worrying about money.</label>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="quiz-navigation">
+                    <button id="prev-btn" class="nav-button">Previous</button>
+                    <!-- "Next" button has been removed -->
+                </div>
+            </div>
+
+            <div id="results-content">
+                <div class="results-header-card text-center">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2 title-with-accent">Your Financial Habits Report</h2>
+                    <p class="text-gray-600 text-sm italic">Here is a snapshot of your financial habits and mindset.</p>
+                </div>
+                
+                <div class="results-summary-grid">
+                    <div class="score-section">
+                        <p class="results-score-title">Your Habit Score:</p>
+                        <span id="habit-score" class="results-score-value">0</span>
+                        <p class="results-score-subtitle">out of 36</p>
+                    </div>
+                    <div class="mindset-section">
+                        <p class="mindset-title">Your Money Mindset:</p>
+                        <p id="mindset-summary" class="mindset-description"></p>
+                    </div>
+                </div>
+
+                <div class="results-content-card">
+                    <div id="personalized-guidance">
+                        <h3 class="section-title-secondary text-center mb-4">Actionable Next Steps</h3>
+                        <div id="next-steps-container" class="next-steps-grid">
+                            <!-- Next steps will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-content-card" id="interactive-tools-container" style="display: none;">
+                    
+                    <div id="what-if-scenario-container" style="display: none;">
+                         <h3 class="text-lg font-semibold text-gray-800 mb-4">Your "What If" Scenario</h3>
+                         <div id="scenario-content">
+                             <!-- Dynamic content will be inserted here -->
+                         </div>
+                    </div>
+                    
+                    <div id="financial-therapy-container" style="display: none;">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Your Financial Therapy Session</h3>
+                        <p class="text-sm text-gray-500 mb-4">I'm here to provide some supportive, non-judgmental advice based on your quiz results. What would you like to talk about?</p>
+                        <div id="therapy-chat-box" class="space-y-3">
+                            <!-- Chat bubbles will be inserted here -->
+                        </div>
+                        <div class="flex mt-4">
+                            <input id="therapy-input" type="text" placeholder="Ask me anything about your results..." class="flex-grow p-2 border rounded-lg text-sm">
+                            <button id="therapy-send-btn" class="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button id="start-therapy-btn" class="results-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM14 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM8 16c1.5 1 4 1 5 0"/></svg>
+                        Start My Therapy
+                    </button>
+                    <button id="show-scenario-btn" class="results-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                        Show "What If"
+                    </button>
+                    <button id="retake-quiz-btn" class="results-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+                        Retake Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="notification-toast"></div>
+    <div id="footer-placeholder"></div>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizContent = document.getElementById('quiz-content');
+            const resultsContent = document.getElementById('results-content');
+            const questions = document.querySelectorAll('.question-block');
+            const prevBtn = document.getElementById('prev-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const retakeQuizBtn = document.getElementById('retake-quiz-btn');
+            const startTherapyBtn = document.getElementById('start-therapy-btn');
+            const showScenarioBtn = document.getElementById('show-scenario-btn');
+            const therapyContainer = document.getElementById('financial-therapy-container');
+            const whatIfContainer = document.getElementById('what-if-scenario-container');
+            const interactiveToolsContainer = document.getElementById('interactive-tools-container');
+            
+            let currentQuestionIndex = 0;
+            const userAnswers = {};
+            let isTransitioning = false;
+            let finalResults = {};
+
+            const questionGroups = [
+                { text: "Assessing your tracking habits", end: 0 },
+                { text: "Gauging your salary mindset", end: 1 },
+                { text: "Testing your financial resilience", end: 2 },
+                { text: "Assessing your approach to debt", end: 3 },
+                { text: "Understanding your investor profile", end: 4 },
+                { text: "Examining your goal-setting habits", end: 5 },
+                { text: "Uncovering your saving mentality", end: 6 },
+                { text: "Assessing your financial literacy", end: 7 },
+                { text: "Final step: uncovering your motivation", end: 8 }
+            ];
+
+            const iconMap = {
+                'chart.svg': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>`,
+                'shield.svg': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+                'debt.svg': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
+                'piggy-bank.svg': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5c-1.5 0-2.8.9-3.5 2-.7-1.1-2-2-3.5-2S9.2 5.9 8.5 7c-.7-1.1-2-2-3.5-2C2.9 5 2 6.1 2 7.5v7.5c0 1.4.9 2.5 2.5 2.5H16l4 4V7.5c0-1.4-.9-2.5-2.5-2.5zM12 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>`
+            };
+
+            function updateProgressText(index) {
+                const group = questionGroups.find(g => index <= g.end);
+                if (group) {
+                    progressText.textContent = group.text;
+                }
+            }
+
+            function showQuestion(index) {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                
+                questions.forEach(q => q.classList.remove('active'));
+                questions[index].classList.add('active');
+                currentQuestionIndex = index;
+                
+                prevBtn.disabled = index === 0;
+
+                const progress = (index / (questions.length - 1)) * 100;
+                progressBar.style.width = `${progress}%`;
+                updateProgressText(index);
+
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 500);
+            }
+            
+            function calculateResults() {
+                let score = 0;
+                let moneyMindset = '';
+                
+                const scores = {
+                    tracking: parseInt(userAnswers.q_tracking),
+                    salary: parseInt(userAnswers.q_salary_mindset),
+                    emergency: parseInt(userAnswers.q_emergency),
+                    debt: parseInt(userAnswers.q_debt),
+                    market: parseInt(userAnswers.q_market_mindset),
+                    goals: parseInt(userAnswers.q_goals),
+                    saving: parseInt(userAnswers.q_saving_mentality),
+                    knowledge: parseInt(userAnswers.q_knowledge),
+                    motivation: parseInt(userAnswers.q_motivation),
+                };
+
+                // Calculate total score, handling potential NaN
+                score = Object.values(scores).filter(v => !isNaN(v)).reduce((acc, val) => acc + val, 0);
+
+                // Determine Money Mindset based on a few key questions
+                if (scores.tracking <= 2 || scores.emergency <= 2 || scores.salary <= 2) {
+                    moneyMindset = "The Avoider";
+                } else if (scores.tracking >= 3 && scores.goals >= 3 && scores.saving >= 3) {
+                    moneyMindset = "The Planner";
+                } else {
+                    moneyMindset = "The Aspirant";
+                }
+
+                // Display final score
+                document.getElementById('habit-score').textContent = score;
+                document.getElementById('mindset-summary').textContent = `${moneyMindset}`;
+                
+                // Generate and display actionable next steps
+                const nextStepsContainer = document.getElementById('next-steps-container');
+                nextStepsContainer.innerHTML = '';
+                let nextStepsHtml = '';
+                let whatIfText = '';
+
+                if (scores.tracking < 3) {
+                    nextStepsHtml += createPillarCard("Get a Clear Picture", "Track your spending for at least one month. This is the first step to taking control.", "chart.svg", "Use Our Budget Tracker");
+                }
+                if (scores.emergency < 3) {
+                    nextStepsHtml += createPillarCard("Build Your Safety Net", "An emergency fund protects you from unexpected events without derailing your plans.", "shield.svg", "Read Emergency Fund Guide", "emergency-fund-guide.html");
+                }
+                if (scores.debt < 3) {
+                    nextStepsHtml += createPillarCard("Conquer High-Interest Debt", "Prioritizing high-interest debt frees up cash flow for saving and investing.", "debt.svg", "Read Debt Management Guide", "financial-health-guide.html");
+                }
+                if (scores.saving < 3) {
+                    nextStepsHtml += createPillarCard("Automate Your Savings", "Adopt a 'pay yourself first' mentality by setting up automatic SIPs or RDs.", "piggy-bank.svg", "Explore SIP Calculator", "../index.html?mode=sip");
+                    whatIfText = "What if you automated a monthly ₹5,000 SIP for the next 10 years? That small habit could grow into over ₹12 lakhs.";
+                } else {
+                     whatIfText = "What if you increased your monthly SIP by just 10% each year? Your corpus could be significantly larger than your current plan.";
+                }
+
+                nextStepsContainer.innerHTML = nextStepsHtml;
+                document.getElementById('scenario-content').innerHTML = `<p>${whatIfText}</p>`;
+
+                quizContent.style.display = 'none';
+                resultsContent.style.display = 'block';
+                
+                finalResults = { score, moneyMindset, scores };
+                sessionStorage.setItem('quizResults', JSON.stringify(finalResults));
+                
+                // Hide or show scenario/therapy buttons based on user's mindset and score
+                interactiveToolsContainer.style.display = 'block';
+                if(moneyMindset === "The Planner") {
+                    startTherapyBtn.style.display = 'none';
+                    showScenarioBtn.style.display = 'inline-flex';
+                    handleShowScenario();
+                } else {
+                    startTherapyBtn.style.display = 'inline-flex';
+                    showScenarioBtn.style.display = 'none';
+                    handleFinancialTherapy();
+                }
+            }
+            
+            function createPillarCard(title, advice, iconName, btnText, btnLink) {
+                const iconSvg = iconMap[iconName] || '';
+                return `
+                    <div class="pillar-card">
+                        <div class="pillar-header">
+                            <span class="pillar-icon">${iconSvg}</span>
+                            <h4 class="pillar-title">${title}</h4>
+                        </div>
+                        <p class="pillar-advice">${advice}</p>
+                        ${btnLink ? `<div class="action-btn-container"><a href="${btnLink}" class="action-btn">${btnText} &rarr;</a></div>` : ''}
+                    </div>
+                `;
+            }
+
+            function handleNext() {
+                const currentQuestion = questions[currentQuestionIndex];
+                const selectedOption = currentQuestion.querySelector('input[type="radio"]:checked');
+                if (!selectedOption) {
+                    return;
+                }
+                
+                if (currentQuestionIndex < questions.length - 1) {
+                    showQuestion(currentQuestionIndex + 1);
+                } else {
+                    calculateResults();
+                }
+            }
+
+            function handlePrevious() {
+                if (currentQuestionIndex > 0) {
+                    showQuestion(currentQuestionIndex - 1);
+                }
+            }
+
+            function handleRetake() {
+                Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+                document.querySelectorAll('.option-label.selected').forEach(l => l.classList.remove('selected'));
+                document.getElementById('habits-quiz-form').reset();
+                
+                resultsContent.style.display = 'none';
+                quizContent.style.display = 'block';
+                progressBar.style.width = '0%';
+                progressText.textContent = "Starting the quiz...";
+                showQuestion(0);
+            }
+            
+            async function handleFinancialTherapy() {
+                const results = finalResults;
+                if (!results) {
+                    showNotification("Please complete the quiz first.");
+                    return;
+                }
+                
+                whatIfContainer.style.display = 'none';
+                therapyContainer.style.display = 'block';
+
+                const therapySendBtn = document.getElementById('therapy-send-btn');
+                const therapyInput = document.getElementById('therapy-input');
+                const chatBox = document.getElementById('therapy-chat-box');
+                chatBox.innerHTML = '';
+
+                async function getTherapyResponse(userMessage) {
+                    const loadingMessage = document.createElement('div');
+                    loadingMessage.className = "flex";
+                    loadingMessage.innerHTML = `<div class="bg-gray-200 text-gray-800 p-3 rounded-lg max-w-[80%] mr-auto"><span class="typing-animation loading-dots">Thinking</span></div>`;
+                    chatBox.appendChild(loadingMessage);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+
+                    const prompt = `You are a friendly, compassionate, and non-judgmental financial coach. The user has just completed a financial habits quiz. Their score is ${results.score} out of 36 and their money mindset is identified as "${results.moneyMindset}". Their question is: "${userMessage}". Based on their results, provide a supportive and encouraging response that offers gentle, actionable advice. Keep the response concise and friendly.`;
+
+                    try {
+                        const response = await callGeminiAPI(prompt);
+                        chatBox.removeChild(loadingMessage);
+                        const botMessage = document.createElement('div');
+                        botMessage.className = "flex";
+                        botMessage.innerHTML = `<div class="bg-gray-200 text-gray-800 p-3 rounded-lg max-w-[80%] mr-auto"><p class="text-sm">${response}</p></div>`;
+                        chatBox.appendChild(botMessage);
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                    } catch (error) {
+                        console.error("Gemini API call failed:", error);
+                        chatBox.removeChild(loadingMessage);
+                        const errorMessage = document.createElement('div');
+                        errorMessage.className = "flex";
+                        errorMessage.innerHTML = `<div class="bg-gray-200 text-gray-800 p-3 rounded-lg max-w-[80%] mr-auto"><p class="text-sm">I'm sorry, I couldn't connect to the server right now. Please try again later.</p></div>`;
+                        chatBox.appendChild(errorMessage);
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                    }
+                }
+                
+                async function callGeminiAPI(prompt) {
+                    const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                    const payload = { contents: chatHistory };
+                    const apiKey = "";
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                    let response;
+                    let retries = 0;
+                    const maxRetries = 5;
+                    const baseDelay = 1000;
+
+                    while (retries < maxRetries) {
+                        try {
+                            response = await fetch(apiUrl, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(payload)
+                            });
+
+                            if (response.status === 429) { // Too Many Requests
+                                const delay = baseDelay * Math.pow(2, retries);
+                                retries++;
+                                await new Promise(resolve => setTimeout(resolve, delay));
+                                continue;
+                            }
+
+                            if (!response.ok) throw new Error(`API call failed with status: ${response.status}`);
+                            
+                            const result = await response.json();
+                            if (result.candidates && result.candidates.length > 0 &&
+                                result.candidates[0].content && result.candidates[0].content.parts &&
+                                result.candidates[0].content.parts.length > 0) {
+                                return result.candidates[0].content.parts[0].text;
+                            } else {
+                                throw new Error('Unexpected API response structure.');
+                            }
+
+                        } catch (error) {
+                            console.error(error);
+                            if (retries === maxRetries - 1) throw error;
+                            retries++;
+                            await new Promise(resolve => setTimeout(resolve, baseDelay * Math.pow(2, retries)));
+                        }
+                    }
+                    throw new Error('Failed to get a response from the API after multiple retries.');
+                }
+
+
+                therapySendBtn.addEventListener('click', async () => {
+                    const userMessage = therapyInput.value.trim();
+                    if (userMessage === "") return;
+
+                    const userChatBubble = document.createElement('div');
+                    userChatBubble.className = "flex";
+                    userChatBubble.innerHTML = `<div class="bg-blue-600 text-white p-3 rounded-lg max-w-[80%] ml-auto"><p class="text-sm">${userMessage}</p></div>`;
+                    chatBox.appendChild(userChatBubble);
+                    therapyInput.value = "";
+                    chatBox.scrollTop = chatBox.scrollHeight;
+
+                    await getTherapyResponse(userMessage);
+                });
+
+                therapyInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        therapySendBtn.click();
+                    }
+                });
+
+                const initialTherapyMessage = `Hello, I'm your financial coach. Based on your quiz results, your score is ${results.score} and your mindset is "${results.moneyMindset}". How can I help you get started on your financial journey today?`;
+                const botMessage = document.createElement('div');
+                botMessage.className = "flex";
+                botMessage.innerHTML = `<div class="bg-gray-200 text-gray-800 p-3 rounded-lg max-w-[80%] mr-auto"><p class="text-sm">${initialTherapyMessage}</p></div>`;
+                chatBox.appendChild(botMessage);
+            }
+
+            function handleShowScenario() {
+                therapyContainer.style.display = 'none';
+                whatIfContainer.style.display = 'block';
+            }
+
+            // Event Listeners
+            questions.forEach((question) => {
+                const options = question.querySelectorAll('.option-label');
+                options.forEach(label => {
+                    label.addEventListener('click', () => {
+                        const radio = label.querySelector('input[type="radio"]');
+                        userAnswers[radio.name] = radio.value;
+
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        label.classList.add('selected');
+                        
+                        setTimeout(() => {
+                           handleNext(); 
+                        }, 300);
+                    });
+                });
+            });
+            
+            prevBtn.addEventListener('click', handlePrevious);
+            retakeQuizBtn.addEventListener('click', handleRetake);
+            startTherapyBtn.addEventListener('click', handleFinancialTherapy);
+            showScenarioBtn.addEventListener('click', handleShowScenario);
+            
+            showQuestion(0);
+        });
+    </script>
+</body>
+</html>
