@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Habits Quiz: Discover Your Money Mindset - Calculator.toolblaster</title>
+    <title>Financial Habits Assessment Quiz: Discover Your Money Mindset - Calculator.toolblaster</title>
     
-    <meta name="description" content="Take our Financial Habits Quiz to discover your money mindset and get a personalized score. Receive actionable advice and a 'What If' scenario to improve your financial habits.">
-    <meta name="keywords" content="financial habits, money mindset, financial quiz, personal finance, financial wellness, financial therapy, money management">
+    <meta name="description" content="Take our Financial Habits Assessment Quiz to discover your money mindset and get a personalized score. Receive actionable advice and a 'What If' scenario to improve your financial habits.">
+    <meta name="keywords" content="financial habits, money mindset, financial quiz, personal finance, financial wellness, financial therapy, money management, financial habits assessment">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +16,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Quiz",
-      "name": "Financial Habits Quiz",
+      "name": "Financial Habits Assessment Quiz",
       "description": "An interactive quiz to help users assess their daily financial habits and discover their money mindset, providing a personalized score and actionable guidance.",
       "hasPart": [
         { "@type": "Question", "name": "How do you typically track your monthly expenses?" },
@@ -274,146 +274,16 @@
             background-color: #E34037;
             margin: 0.75rem auto 0;
         }
-        #financial-therapy-container,
-        #what-if-scenario-container {
-            display: none;
-            margin-top: 1rem;
-            padding: 1rem;
-            background-color: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            text-align: left;
-            animation: fadeIn 0.5s;
-        }
-        .typing-animation {
-            font-size: 0.8rem;
-            color: #4b5563;
-        }
-        .chat-bubble {
-            background-color: #f3f4f6;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            margin-top: 0.5rem;
-            font-size: 0.75rem;
-            line-height: 1.5;
-        }
-        .loading-dots:after {
-            content: ' .';
-            animation: ellipsis 1s infinite;
-        }
-        @keyframes ellipsis {
-            0% { content: ' .'; }
-            33% { content: ' ..'; }
-            66% { content: ' ...'; }
-        }
-        #notification-toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #2d3748;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-        }
-        #notification-toast.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* New styles for improved results page layout */
-        .results-main-card {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: 1fr;
-            margin-top: 1.5rem;
-        }
-        @media (min-width: 768px) {
-            .results-main-card {
-                grid-template-columns: 1fr 2fr;
-                align-items: start;
-            }
-        }
-        .results-sidebar-card {
-            background-color: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            animation: fadeIn 0.5s;
-        }
-        .results-content-card {
-            background-color: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            animation: fadeIn 0.5s;
-        }
-        .results-score-title {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #4b5563;
-        }
         .results-score-value {
-            font-size: 3rem;
-            font-weight: 800;
+            font-size: 2.5rem;
+            font-weight: 900;
             color: #16a34a;
             line-height: 1;
-            margin-top: 0.5rem;
         }
-        .results-score-subtitle {
-            font-size: 0.8rem;
-            color: #9ca3af;
-        }
-        .mindset-card {
-            background-color: #fef2f2;
-            border: 1px solid #fca5a5;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            text-align: center;
-        }
-        .mindset-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #C22D2D;
-            margin-bottom: 0.25rem;
-        }
-        .mindset-description {
-            font-size: 0.75rem;
-            color: #4b5563;
-        }
-        .next-steps-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        @media (min-width: 640px) {
-            .next-steps-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        .pillar-card {
-            background-color: #ffffff;
-            border: 1px solid #e5e7eb;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        /* New section styling for separate score and mindset */
         .results-summary-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1rem;
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
         @media (min-width: 640px) {
@@ -421,11 +291,10 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-        .score-section,
-        .mindset-section {
-            background-color: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
+        .score-section {
+            background-color: #dcfce7; /* Light green background */
+            border: 1px solid #bbf7d0; /* Green border */
+            border-radius: 0.75rem;
             padding: 1.5rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             animation: fadeIn 0.5s;
@@ -433,6 +302,165 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+        }
+        .mindset-section {
+            background-color: #fef2f2; /* Light red background */
+            border: 1px solid #fecaca; /* Red border */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            animation: fadeIn 0.5s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .mindset-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #C22D2D;
+            margin-top: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .mindset-icon {
+            width: 48px;
+            height: 48px;
+            color: #C22D2D;
+        }
+        .score-icon {
+            width: 48px;
+            height: 48px;
+            color: #16a34a;
+        }
+        .results-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .results-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #374151;
+            color: white;
+            border: none;
+            padding: 0.35rem 0.8rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .results-btn:hover {
+            background-color: #4b5563;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 10px rgba(0,0,0,0.1);
+        }
+        #quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .nav-button {
+            background: none;
+            border: 1px solid #d1d5db;
+            color: #4b5563;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #f3f4f6;
+        }
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .title-with-accent {
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+        .title-with-accent::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #E34037;
+            margin: 0.75rem auto 0;
+        }
+        .pillar-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: left;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .pillar-card:hover {
+            transform: translateY(-2px);
+        }
+        .pillar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            gap: 0.75rem;
+        }
+        .pillar-icon {
+            width: 24px;
+            height: 24px;
+            color: #E34037;
+        }
+        .pillar-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1f2d37;
+        }
+        .pillar-advice {
+            font-size: 0.75rem;
+            color: #4b5563;
+            margin-bottom: 0.75rem;
+        }
+        .action-btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            background-color: #fef2f2;
+            color: #C22D2D;
+            border: 1px solid #fca5a5;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+        .action-btn:hover {
+            background-color: #C22D2D;
+            color: white;
+            border-color: #C22D2D;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+        .action-btn svg {
+            width: 12px;
+            height: 12px;
         }
     </style>
 </head>
@@ -444,7 +472,7 @@
         <div class="quiz-container">
             <div id="quiz-content">
                 <div class="text-center p-6 bg-red-50 rounded-lg mb-8">
-                    <h1 class="text-xl font-bold text-gray-800 mb-2 title-with-accent">Financial Habits Quiz</h1>
+                    <h1 class="text-xl font-bold text-gray-800 mb-2 title-with-accent">Financial Habits Assessment Quiz</h1>
                     <p class="text-gray-600 text-sm">Discover your money mindset and get actionable steps to improve your financial life.</p>
                 </div>
                 
@@ -560,13 +588,15 @@
                 
                 <div class="results-summary-grid">
                     <div class="score-section">
-                        <p class="results-score-title">Your Habit Score:</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="score-icon"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+                        <p class="results-score-title mt-2">Your Habit Score:</p>
                         <span id="habit-score" class="results-score-value">0</span>
                         <p class="results-score-subtitle">out of 36</p>
                     </div>
                     <div class="mindset-section">
-                        <p class="mindset-title">Your Money Mindset:</p>
-                        <p id="mindset-summary" class="mindset-description"></p>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mindset-icon"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM14 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM8 16c1.5 1 4 1 5 0"/></svg>
+                        <p class="results-score-title mt-2">Your Money Mindset:</p>
+                        <p id="mindset-summary" class="mindset-title"></p>
                     </div>
                 </div>
 
@@ -579,37 +609,7 @@
                     </div>
                 </div>
 
-                <div class="results-content-card" id="interactive-tools-container" style="display: none;">
-                    
-                    <div id="what-if-scenario-container" style="display: none;">
-                         <h3 class="text-lg font-semibold text-gray-800 mb-4">Your "What If" Scenario</h3>
-                         <div id="scenario-content">
-                             <!-- Dynamic content will be inserted here -->
-                         </div>
-                    </div>
-                    
-                    <div id="financial-therapy-container" style="display: none;">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Your Financial Therapy Session</h3>
-                        <p class="text-sm text-gray-500 mb-4">I'm here to provide some supportive, non-judgmental advice based on your quiz results. What would you like to talk about?</p>
-                        <div id="therapy-chat-box" class="space-y-3">
-                            <!-- Chat bubbles will be inserted here -->
-                        </div>
-                        <div class="flex mt-4">
-                            <input id="therapy-input" type="text" placeholder="Ask me anything about your results..." class="flex-grow p-2 border rounded-lg text-sm">
-                            <button id="therapy-send-btn" class="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">Send</button>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="results-actions">
-                    <button id="start-therapy-btn" class="results-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM14 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM8 16c1.5 1 4 1 5 0"/></svg>
-                        Start My Therapy
-                    </button>
-                    <button id="show-scenario-btn" class="results-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                        Show "What If"
-                    </button>
                     <button id="retake-quiz-btn" class="results-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
                         Retake Quiz
@@ -632,11 +632,6 @@
             const progressBar = document.getElementById('progress-bar');
             const progressText = document.getElementById('progress-text');
             const retakeQuizBtn = document.getElementById('retake-quiz-btn');
-            const startTherapyBtn = document.getElementById('start-therapy-btn');
-            const showScenarioBtn = document.getElementById('show-scenario-btn');
-            const therapyContainer = document.getElementById('financial-therapy-container');
-            const whatIfContainer = document.getElementById('what-if-scenario-container');
-            const interactiveToolsContainer = document.getElementById('interactive-tools-container');
             
             let currentQuestionIndex = 0;
             const userAnswers = {};
@@ -724,7 +719,6 @@
                 const nextStepsContainer = document.getElementById('next-steps-container');
                 nextStepsContainer.innerHTML = '';
                 let nextStepsHtml = '';
-                let whatIfText = '';
 
                 if (scores.tracking < 3) {
                     nextStepsHtml += createPillarCard("Get a Clear Picture", "Track your spending for at least one month. This is the first step to taking control.", "chart.svg", "Use Our Budget Tracker");
@@ -737,31 +731,15 @@
                 }
                 if (scores.saving < 3) {
                     nextStepsHtml += createPillarCard("Automate Your Savings", "Adopt a 'pay yourself first' mentality by setting up automatic SIPs or RDs.", "piggy-bank.svg", "Explore SIP Calculator", "../index.html?mode=sip");
-                    whatIfText = "What if you automated a monthly ₹5,000 SIP for the next 10 years? That small habit could grow into over ₹12 lakhs.";
-                } else {
-                     whatIfText = "What if you increased your monthly SIP by just 10% each year? Your corpus could be significantly larger than your current plan.";
                 }
 
                 nextStepsContainer.innerHTML = nextStepsHtml;
-                document.getElementById('scenario-content').innerHTML = `<p>${whatIfText}</p>`;
-
+                
                 quizContent.style.display = 'none';
                 resultsContent.style.display = 'block';
                 
                 finalResults = { score, moneyMindset, scores };
                 sessionStorage.setItem('quizResults', JSON.stringify(finalResults));
-                
-                // Hide or show scenario/therapy buttons based on user's mindset and score
-                interactiveToolsContainer.style.display = 'block';
-                if(moneyMindset === "The Planner") {
-                    startTherapyBtn.style.display = 'none';
-                    showScenarioBtn.style.display = 'inline-flex';
-                    handleShowScenario();
-                } else {
-                    startTherapyBtn.style.display = 'inline-flex';
-                    showScenarioBtn.style.display = 'none';
-                    handleFinancialTherapy();
-                }
             }
             
             function createPillarCard(title, advice, iconName, btnText, btnLink) {
@@ -809,130 +787,6 @@
                 progressText.textContent = "Starting the quiz...";
                 showQuestion(0);
             }
-            
-            async function handleFinancialTherapy() {
-                const results = finalResults;
-                if (!results) {
-                    showNotification("Please complete the quiz first.");
-                    return;
-                }
-                
-                whatIfContainer.style.display = 'none';
-                therapyContainer.style.display = 'block';
-
-                const therapySendBtn = document.getElementById('therapy-send-btn');
-                const therapyInput = document.getElementById('therapy-input');
-                const chatBox = document.getElementById('therapy-chat-box');
-                chatBox.innerHTML = '';
-
-                async function getTherapyResponse(userMessage) {
-                    const loadingMessage = document.createElement('div');
-                    loadingMessage.className = "flex";
-                    loadingMessage.innerHTML = `<div class="bg-gray-200 text-gray-800 p-3 rounded-lg max-w-[80%] mr-auto"><span class="typing-animation loading-dots">Thinking</span></div>`;
-                    chatBox.appendChild(loadingMessage);
-                    chatBox.scrollTop = chatBox.scrollHeight;
-
-                    const prompt = `You are a friendly, compassionate, and non-judgmental financial coach. The user has just completed a financial habits quiz. Their score is ${results.score} out of 36 and their money mindset is identified as "${results.moneyMindset}". Their question is: "${userMessage}". Based on their results, provide a supportive and encouraging response that offers gentle, actionable advice. Keep the response concise and friendly.`;
-
-                    try {
-                        const response = await callGeminiAPI(prompt);
-                        chatBox.removeChild(loadingMessage);
-                        const botMessage = document.createElement('div');
-                        botMessage.className = "flex";
-                        botMessage.innerHTML = `<div class="bg-gray-200 text-gray-800 p-3 rounded-lg max-w-[80%] mr-auto"><p class="text-sm">${response}</p></div>`;
-                        chatBox.appendChild(botMessage);
-                        chatBox.scrollTop = chatBox.scrollHeight;
-                    } catch (error) {
-                        console.error("Gemini API call failed:", error);
-                        chatBox.removeChild(loadingMessage);
-                        const errorMessage = document.createElement('div');
-                        errorMessage.className = "flex";
-                        errorMessage.innerHTML = `<div class="bg-gray-200 text-gray-800 p-3 rounded-lg max-w-[80%] mr-auto"><p class="text-sm">I'm sorry, I couldn't connect to the server right now. Please try again later.</p></div>`;
-                        chatBox.appendChild(errorMessage);
-                        chatBox.scrollTop = chatBox.scrollHeight;
-                    }
-                }
-                
-                async function callGeminiAPI(prompt) {
-                    const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-                    const payload = { contents: chatHistory };
-                    const apiKey = "";
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-
-                    let response;
-                    let retries = 0;
-                    const maxRetries = 5;
-                    const baseDelay = 1000;
-
-                    while (retries < maxRetries) {
-                        try {
-                            response = await fetch(apiUrl, {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(payload)
-                            });
-
-                            if (response.status === 429) { // Too Many Requests
-                                const delay = baseDelay * Math.pow(2, retries);
-                                retries++;
-                                await new Promise(resolve => setTimeout(resolve, delay));
-                                continue;
-                            }
-
-                            if (!response.ok) throw new Error(`API call failed with status: ${response.status}`);
-                            
-                            const result = await response.json();
-                            if (result.candidates && result.candidates.length > 0 &&
-                                result.candidates[0].content && result.candidates[0].content.parts &&
-                                result.candidates[0].content.parts.length > 0) {
-                                return result.candidates[0].content.parts[0].text;
-                            } else {
-                                throw new Error('Unexpected API response structure.');
-                            }
-
-                        } catch (error) {
-                            console.error(error);
-                            if (retries === maxRetries - 1) throw error;
-                            retries++;
-                            await new Promise(resolve => setTimeout(resolve, baseDelay * Math.pow(2, retries)));
-                        }
-                    }
-                    throw new Error('Failed to get a response from the API after multiple retries.');
-                }
-
-
-                therapySendBtn.addEventListener('click', async () => {
-                    const userMessage = therapyInput.value.trim();
-                    if (userMessage === "") return;
-
-                    const userChatBubble = document.createElement('div');
-                    userChatBubble.className = "flex";
-                    userChatBubble.innerHTML = `<div class="bg-blue-600 text-white p-3 rounded-lg max-w-[80%] ml-auto"><p class="text-sm">${userMessage}</p></div>`;
-                    chatBox.appendChild(userChatBubble);
-                    therapyInput.value = "";
-                    chatBox.scrollTop = chatBox.scrollHeight;
-
-                    await getTherapyResponse(userMessage);
-                });
-
-                therapyInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        therapySendBtn.click();
-                    }
-                });
-
-                const initialTherapyMessage = `Hello, I'm your financial coach. Based on your quiz results, your score is ${results.score} and your mindset is "${results.moneyMindset}". How can I help you get started on your financial journey today?`;
-                const botMessage = document.createElement('div');
-                botMessage.className = "flex";
-                botMessage.innerHTML = `<div class="bg-gray-200 text-gray-800 p-3 rounded-lg max-w-[80%] mr-auto"><p class="text-sm">${initialTherapyMessage}</p></div>`;
-                chatBox.appendChild(botMessage);
-            }
-
-            function handleShowScenario() {
-                therapyContainer.style.display = 'none';
-                whatIfContainer.style.display = 'block';
-            }
 
             // Event Listeners
             questions.forEach((question) => {
@@ -954,8 +808,6 @@
             
             prevBtn.addEventListener('click', handlePrevious);
             retakeQuizBtn.addEventListener('click', handleRetake);
-            startTherapyBtn.addEventListener('click', handleFinancialTherapy);
-            showScenarioBtn.addEventListener('click', handleShowScenario);
             
             showQuestion(0);
         });
