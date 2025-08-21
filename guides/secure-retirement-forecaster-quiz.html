@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Retirement Forecaster Quiz - Calculator.toolblaster</title>
+    
+    <meta name="description" content="Assess your retirement readiness with our comprehensive calculator. Get a personalized report on your target corpus, projected savings, and the steps needed to secure your future.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .quiz-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        #progress-bar-container {
+            width: 100%;
+            background-color: #e5e7eb;
+            border-radius: 999px;
+            height: 8px;
+            margin-bottom: 2rem;
+        }
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #E34037;
+            border-radius: 999px;
+            transition: width 0.4s ease-in-out;
+        }
+        .question-block {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .question-block.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .question-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1f2d37;
+            margin-bottom: 1rem;
+        }
+        .option-label {
+            display: block;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-size: 0.75rem;
+        }
+        .option-label:hover {
+            background-color: #f9fafb;
+            border-color: #E34037;
+        }
+        .option-label input[type="radio"] {
+            display: none;
+        }
+        .option-label.selected {
+            background-color: #fef2f2;
+            border-color: #E34037;
+            color: #C22D2D;
+            font-weight: 500;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        #results-content { display: none; }
+        .report-card {
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background-color: #f9fafb;
+            animation: fadeIn 0.5s;
+        }
+        .results-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .results-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #374151;
+            color: white;
+            border: none;
+            padding: 0.35rem 0.8rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .results-btn:hover {
+            background-color: #4b5563;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 10px rgba(0,0,0,0.1);
+        }
+        #quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .nav-button {
+            background: #E34037;
+            border: 1px solid #E34037;
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #C22D2D;
+        }
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .title-with-accent::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #E34037;
+            margin: 0.75rem auto 0;
+        }
+        .chart-container {
+            height: 120px; /* More compact chart */
+            width: 100%;
+            margin: 1rem auto;
+        }
+        .text-xxs {
+            font-size: 0.65rem;
+            line-height: 0.8rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <div class="quiz-container">
+            <div id="quiz-content">
+                <div class="text-center p-6 bg-red-50 rounded-lg mb-8">
+                    <h1 class="text-xl font-bold text-gray-800 mb-2 title-with-accent">Secure Retirement Forecaster Quiz</h1>
+                    <p class="text-gray-600 text-sm">Answer a few questions to see if you're on track for a comfortable retirement.</p>
+                </div>
+                
+                <div id="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+
+                <form id="retirement-quiz-form">
+                    <div class="question-block active" data-question-index="0">
+                        <p class="question-text">1. What is your current age?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="currentAge" value="Under 25" required> Under 25</label>
+                            <label class="option-label"><input type="radio" name="currentAge" value="25-35" required> 25-35</label>
+                            <label class="option-label"><input type="radio" name="currentAge" value="36-45" required> 36-45</label>
+                            <label class="option-label"><input type="radio" name="currentAge" value="46+" required> 46+</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="1">
+                        <p class="question-text">2. At what age do you plan to retire?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="retirementAge" value="55" required> 55</label>
+                            <label class="option-label"><input type="radio" name="retirementAge" value="60" required> 60</label>
+                            <label class="option-label"><input type="radio" name="retirementAge" value="65" required> 65</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="2">
+                        <p class="question-text">3. What are your current monthly expenses?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="monthlyExpenses" value="Less than ₹30,000" required> Less than ₹30,000</label>
+                            <label class="option-label"><input type="radio" name="monthlyExpenses" value="₹30,000 - ₹60,000" required> ₹30,000 - ₹60,000</label>
+                            <label class="option-label"><input type="radio" name="monthlyExpenses" value="₹60,000 - ₹1 Lakh" required> ₹60,000 - ₹1 Lakh</label>
+                            <label class="option-label"><input type="radio" name="monthlyExpenses" value="More than ₹1 Lakh" required> More than ₹1 Lakh</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="3">
+                        <p class="question-text">4. How much have you already saved for retirement (EPF, PPF, MFs, etc.)?</p>
+                        <input type="number" name="currentSavings" class="input-field" placeholder="e.g., 500000" required>
+                    </div>
+                    <div class="question-block" data-question-index="4">
+                        <p class="question-text">5. How much are you currently investing for retirement each month?</p>
+                        <input type="number" name="monthlyInvestment" class="input-field" placeholder="e.g., 10000" required>
+                    </div>
+                </form>
+
+                <div id="quiz-navigation">
+                    <button id="prev-btn" class="nav-button" style="background: #6b7280; border-color: #6b7280;">Previous</button>
+                    <button id="next-btn" class="nav-button">Next</button>
+                </div>
+            </div>
+
+            <div id="results-content">
+                <!-- Results will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+    
+    <div id="footer-placeholder"></div>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('retirement-quiz-form');
+            const resultsContent = document.getElementById('results-content');
+            const quizContent = document.getElementById('quiz-content');
+            const prevButton = document.getElementById('prev-btn');
+            const nextButton = document.getElementById('next-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const questions = document.querySelectorAll('.question-block');
+
+            if (!quizForm) return;
+
+            let currentQuestionIndex = 0;
+            const userAnswers = {};
+            let isTransitioning = false;
+
+            function showQuestion(index) {
+                const isNumberInput = questions[index].querySelector('input[type="number"]');
+                nextButton.style.display = isNumberInput ? 'block' : 'none';
+
+                questions.forEach((q, i) => {
+                    q.classList.toggle('active', i === index);
+                });
+                currentQuestionIndex = index;
+                prevButton.disabled = index === 0;
+                updateProgressBar();
+            }
+            
+            function updateProgressBar() {
+                const progress = (currentQuestionIndex / (questions.length -1)) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+
+            function handleNext() {
+                 const currentQuestion = questions[currentQuestionIndex];
+                 const input = currentQuestion.querySelector('input');
+                 if (input.type === 'number' && !input.value) {
+                     alert('Please enter a value.');
+                     return;
+                 }
+                 userAnswers[input.name] = input.value;
+
+                 if (currentQuestionIndex < questions.length - 1) {
+                    showQuestion(currentQuestionIndex + 1);
+                 } else {
+                    calculateAndShowResults();
+                 }
+            }
+
+            function calculateAndShowResults() {
+                const ageMap = { 'Under 25': 23, '25-35': 30, '36-45': 40, '46+': 50 };
+                const expenseMap = { 'Less than ₹30,000': 25000, '₹30,000 - ₹60,000': 45000, '₹60,000 - ₹1 Lakh': 80000, 'More than ₹1 Lakh': 120000 };
+
+                const currentAge = ageMap[userAnswers.currentAge];
+                const retirementAge = parseInt(userAnswers.retirementAge);
+                const monthlyExpenses = expenseMap[userAnswers.monthlyExpenses];
+                const currentSavings = parseFloat(userAnswers.currentSavings);
+                const monthlyInvestment = parseFloat(userAnswers.monthlyInvestment);
+
+                const yearsToRetirement = retirementAge - currentAge;
+                if (yearsToRetirement <= 0) {
+                    alert("Retirement age must be greater than current age.");
+                    return;
+                }
+                const inflationRate = 0.06; // 6%
+                const expectedReturnPreRetirement = 0.12; // 12%
+                const expectedReturnPostRetirement = 0.08; // 8%
+
+                // 1. Calculate Target Corpus
+                const futureMonthlyExpenses = monthlyExpenses * Math.pow(1 + inflationRate, yearsToRetirement);
+                const annualExpensesAtRetirement = futureMonthlyExpenses * 12;
+                const realReturnPostRetirement = ((1 + expectedReturnPostRetirement) / (1 + inflationRate)) - 1;
+                const targetCorpus = (annualExpensesAtRetirement / realReturnPostRetirement) * (1 - Math.pow(1 / (1 + realReturnPostRetirement), 30));
+
+                // 2. Calculate Projected Corpus
+                const futureValueOfCurrentSavings = currentSavings * Math.pow(1 + expectedReturnPreRetirement, yearsToRetirement);
+                const monthlyReturnRate = expectedReturnPreRetirement / 12;
+                const totalMonths = yearsToRetirement * 12;
+                const futureValueOfSIP = monthlyInvestment * ((Math.pow(1 + monthlyReturnRate, totalMonths) - 1) / monthlyReturnRate) * (1 + monthlyReturnRate);
+                const projectedCorpus = futureValueOfCurrentSavings + futureValueOfSIP;
+
+                // 3. Calculate Gap and Required SIP
+                const shortfall = targetCorpus - projectedCorpus;
+                let requiredAdditionalSIP = 0;
+                if (shortfall > 0) {
+                    requiredAdditionalSIP = (shortfall * monthlyReturnRate) / ((Math.pow(1 + monthlyReturnRate, totalMonths) - 1) * (1 + monthlyReturnRate));
+                }
+                
+                displayResults({ targetCorpus, projectedCorpus, shortfall, requiredAdditionalSIP });
+            }
+            
+            function formatCurrency(num) {
+                return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(Math.round(num));
+            }
+
+            function displayResults(data) {
+                quizContent.style.display = 'none';
+                
+                const isShortfall = data.shortfall > 0;
+                const shortfallColor = isShortfall ? 'text-red-600' : 'text-green-600';
+                const shortfallText = isShortfall ? formatCurrency(data.shortfall) : 'Surplus of ' + formatCurrency(Math.abs(data.shortfall));
+
+                resultsContent.innerHTML = `
+                    <div class="report-card">
+                        <h2 class="text-lg font-bold text-gray-800 mb-2 title-with-accent">Your Retirement Report</h2>
+                        
+                        <div class="chart-container">
+                            <canvas id="retirementChart"></canvas>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 text-left my-4">
+                            <div class="bg-white p-2 rounded-lg shadow-sm">
+                                <p class="text-xxs text-gray-500">Target Corpus</p>
+                                <p class="font-bold text-md text-blue-600">${formatCurrency(data.targetCorpus)}</p>
+                            </div>
+                            <div class="bg-white p-2 rounded-lg shadow-sm">
+                                <p class="text-xxs text-gray-500">Projected Corpus</p>
+                                <p class="font-bold text-md text-green-600">${formatCurrency(data.projectedCorpus)}</p>
+                            </div>
+                             <div class="bg-white p-2 rounded-lg shadow-sm col-span-2">
+                                <p class="text-xxs text-gray-500">Retirement Status</p>
+                                <p class="font-bold text-md ${shortfallColor}">${shortfallText}</p>
+                            </div>
+                        </div>
+                        
+                        ${isShortfall ? `
+                        <div class="bg-red-50 border-l-4 border-red-500 p-3 text-left rounded-r-lg">
+                            <h3 class="font-bold text-red-800 text-sm">Action Plan</h3>
+                            <p class="text-xs text-red-700 mt-1">To bridge this gap, you need to invest an additional <strong class="text-base">${formatCurrency(data.requiredAdditionalSIP)}</strong> per month.</p>
+                        </div>
+                        ` : `
+                        <div class="bg-green-50 border-l-4 border-green-500 p-3 text-left rounded-r-lg">
+                             <h3 class="font-bold text-green-800 text-sm">Congratulations!</h3>
+                            <p class="text-xs text-green-700 mt-1">You are on track to meet your retirement goals. Keep up the great work!</p>
+                        </div>
+                        `}
+                        
+                        <div class="mt-4 text-left">
+                            <h4 class="text-sm font-bold text-gray-700 text-center mb-2">What's Next?</h4>
+                            <div class="flex justify-center gap-2">
+                                <a href="../index.html?mode=goal" class="flex items-center justify-center gap-2 bg-red-600 text-white font-semibold py-1 px-3 rounded-md hover:bg-red-700 transition transform hover:scale-105 text-xs">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                    <span>Goal Planner</span>
+                                </a>
+                                <a href="retirement-planning-guide.html" class="flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-800 font-semibold py-1 px-3 rounded-md hover:bg-gray-50 transition transform hover:scale-105 text-xs">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                                    <span>Read Guide</span>
+                                </a>
+                            </div>
+                        </div>
+
+                         <div class="results-actions">
+                            <button class="results-btn retake-quiz-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+                                Retake Assessment
+                            </button>
+                        </div>
+                    </div>
+                `;
+                resultsContent.style.display = 'block';
+                
+                // Create chart
+                const ctx = document.getElementById('retirementChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Projected', 'Target'],
+                        datasets: [{
+                            label: 'Corpus Amount',
+                            data: [data.projectedCorpus, data.targetCorpus],
+                            backgroundColor: ['#60a5fa', '#f87171'],
+                            borderColor: ['#2563eb', '#ef4444'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { x: { beginAtZero: true, ticks: { callback: value => formatCurrency(value).replace('₹', '') + ' ' } } }
+                    }
+                });
+                
+                document.querySelector('.retake-quiz-btn').addEventListener('click', () => {
+                    currentQuestionIndex = 0;
+                    Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+                    resultsContent.style.display = 'none';
+                    quizContent.style.display = 'block';
+                    showQuestion(0);
+                    prevButton.disabled = true;
+                });
+            }
+
+            // Event Listeners
+            questions.forEach((question, index) => {
+                const options = question.querySelectorAll('.option-label');
+                options.forEach(label => {
+                    label.addEventListener('click', () => {
+                        if (isTransitioning) return;
+                        isTransitioning = true;
+
+                        const radio = label.querySelector('input[type="radio"]');
+                        userAnswers[radio.name] = radio.value;
+                        
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        label.classList.add('selected');
+
+                        setTimeout(() => {
+                            if (currentQuestionIndex < questions.length - 1) {
+                                showQuestion(currentQuestionIndex + 1);
+                            } else {
+                                calculateAndShowResults();
+                            }
+                            isTransitioning = false;
+                        }, 300);
+                    });
+                });
+            });
+
+            nextButton.addEventListener('click', handleNext);
+            prevButton.addEventListener('click', () => {
+                if (currentQuestionIndex > 0) {
+                    showQuestion(currentQuestionIndex - 1);
+                }
+            });
+
+            // Initial setup
+            showQuestion(0);
+        });
+    </script>
+</body>
+</html>
