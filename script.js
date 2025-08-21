@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const allContent = [
             // --- Content with type property, no tags ---
-            { id: 'financial-health-guide', url: 'guides/financial-health-guide.html', title: 'Your Guide to Financial Health & Wellness', description: 'Understand the pillars of financial health and get your personalized report card.', linkText: 'Read More &rarr;', type: 'guide', readTime: '6 min read' },
+            { id: 'financial-health-guide', url: 'guides/financial-health-guide.html', title: 'Your Guide to Financial Health & Wellness', description: 'Understand the pillars of financial health and get your personalized report card.', linkText: 'Read More', type: 'guide', readTime: '6 min read' },
             { id: 'emergency-fund-guide', url: 'guides/emergency-fund-guide.html', title: 'Your Step-by-Step Guide to Building an Emergency Fund', description: 'Learn the essential steps to create a robust financial safety net.', type: 'guide', readTime: '5 min read' },
             { id: 'goal-based-investing', url: 'guides/goal-based-investing.html', title: 'Goal-Based Investing: A Roadmap to Your Dreams', description: 'Discover how to align your investments with your life goals, big or small.', type: 'guide', readTime: '4 min read' },
             { id: 'mfguide', url: 'guides/mfguide.html', title: 'A Beginner\'s Guide to Investing in India', description: 'A comprehensive beginner\'s guide to mutual funds and SIPs.', type: 'guide', readTime: '7 min read' },
@@ -76,9 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'sip-vs-lumpsum', url: 'guides/sip-vs-lumpsum.html', title: 'SIP vs. Lumpsum: The Ultimate Investment Showdown', description: 'Understand the pros and cons of SIP and Lumpsum investing to choose the right strategy.', type: 'guide', readTime: '5 min read' },
             { id: 'sip-vs-swp', url: 'guides/sip-vs-swp.html', title: 'SIP vs. SWP: Building Your Wealth vs. Creating Your Paycheck', description: 'Learn the difference between accumulating wealth with SIPs and generating income with SWPs.', type: 'guide', readTime: '5 min read' },
             // Added one more guide to test pagination
-            { id: 'new-guide', url: 'guides/mfguide.html', title: 'Advanced Investment Strategies', description: 'A look into advanced strategies for seasoned investors.', linkText: 'Read More &rarr;', type: 'guide', readTime: '9 min read' },
-            { id: 'risk-profile-quiz', url: 'guides/planning-tools/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz &rarr;', type: 'quiz', readTime: '3 min read' },
-            { id: 'financial-health-assessment', url: 'guides/planning-tools/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 15 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment &rarr;', type: 'quiz', readTime: '5 min read' }
+            { id: 'new-guide', url: 'guides/mfguide.html', title: 'Advanced Investment Strategies', description: 'A look into advanced strategies for seasoned investors.', linkText: 'Read More', type: 'guide', readTime: '9 min read' },
+            { id: 'risk-profile-quiz', url: 'guides/planning-tools/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz', type: 'quiz', readTime: '3 min read' },
+            { id: 'financial-health-assessment', url: 'guides/planning-tools/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 15 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment', type: 'quiz', readTime: '5 min read' }
         ];
 
         let currentPage = 1;
@@ -103,13 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function createCardHTML(item) {
-            const linkText = item.linkText || 'Read More &rarr;';
+            const linkText = item.linkText || 'Read More';
             return `
                 <a href="${item.url}" class="guide-card">
                     <h2>${item.title}</h2>
                     <p>${item.description}</p>
                     <div class="read-time">${item.readTime}</div>
-                    <span class="read-more-link">${linkText} <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                    <span class="read-more-link">${linkText}</span>
                 </a>
             `;
         }
@@ -177,12 +177,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         filterContainer.addEventListener('click', (e) => {
-            if (e.target.tagName === 'BUTTON') {
-                const filter = e.target.dataset.filter;
+            const button = e.target.closest('.filter-btn');
+            if (button) {
+                const filter = button.dataset.filter;
                 if (filter !== currentFilter) {
                     currentFilter = filter;
                     filterContainer.querySelector('.active').classList.remove('active');
-                    e.target.classList.add('active');
+                    button.classList.add('active');
                     searchInput.value = ''; // Clear search on filter change
                     currentSearchQuery = '';
                     displayContent(1);
