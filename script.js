@@ -75,8 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'tax-saving-guide', url: 'guides/tax-saving-guide.html', title: 'Your Friendly Guide to Smart Tax-Saving (Section 80C)', description: 'Explore the best tax-saving investments under Section 80C.', type: 'guide', readTime: '6 min read' },
             { id: 'sip-vs-lumpsum', url: 'guides/sip-vs-lumpsum.html', title: 'SIP vs. Lumpsum: The Ultimate Investment Showdown', description: 'Understand the pros and cons of SIP and Lumpsum investing to choose the right strategy.', type: 'guide', readTime: '5 min read' },
             { id: 'sip-vs-swp', url: 'guides/sip-vs-swp.html', title: 'SIP vs. SWP: Building Your Wealth vs. Creating Your Paycheck', description: 'Learn the difference between accumulating wealth with SIPs and generating income with SWPs.', type: 'guide', readTime: '5 min read' },
-            // Added one more guide to test pagination
-            { id: 'new-guide', url: 'guides/mfguide.html', title: 'Advanced Investment Strategies', description: 'A look into advanced strategies for seasoned investors.', linkText: 'Read More', type: 'guide', readTime: '9 min read' },
             { id: 'risk-profile-quiz', url: 'guides/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz', type: 'quiz', readTime: '3 min read' },
             { id: 'financial-health-assessment', url: 'guides/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 15 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment', type: 'quiz', readTime: '5 min read' }
         ];
@@ -104,11 +102,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function createCardHTML(item) {
             const linkText = item.linkText || 'Read More';
+            let iconSvg = '';
+            if (item.type === 'guide') {
+                iconSvg = `<svg class="guide-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`;
+            } else if (item.type === 'quiz') {
+                iconSvg = `<svg class="guide-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>`;
+            }
+
             return `
                 <a href="${item.url}" class="guide-card">
+                    <div class="flex items-center justify-between mb-2">
+                        
+                        <div class="read-time">${item.readTime}</div>
+                    </div>
                     <h2>${item.title}</h2>
                     <p>${item.description}</p>
-                    <div class="read-time">${item.readTime}</div>
                     <span class="read-more-link">${linkText}</span>
                 </a>
             `;
@@ -151,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.innerHTML = text;
                 button.disabled = isDisabled;
                 if (page === currentPage) button.classList.add('active');
+                button.classList.add('px-3', 'py-1', 'border', 'border-gray-300', 'rounded', 'hover:bg-gray-200', 'transition-colors');
                 button.addEventListener('click', () => displayContent(page));
                 return button;
             };
@@ -220,7 +229,12 @@ document.addEventListener('DOMContentLoaded', () => {
             setupMobileMenu();
             setupDropdownMenu();
             setActiveNavLink();
-            initializeGuidesHub();
+            
+            // Only initialize guides hub logic on the investingguides page
+            if (window.location.pathname.endsWith('investingguides.html') || window.location.pathname === '/investingguides.html') {
+                initializeGuidesHub();
+            }
+
             initializeShareButtons(); 
 
             const calculatorContainer = document.querySelector('.calculator-container');
