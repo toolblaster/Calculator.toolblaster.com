@@ -77,8 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'sip-vs-swp', url: 'guides/sip-vs-swp.html', title: 'SIP vs. SWP: Building Your Wealth vs. Creating Your Paycheck', description: 'Learn the difference between accumulating wealth with SIPs and generating income with SWPs.', type: 'guide', readTime: '5 min read' },
             // Added one more guide to test pagination
             { id: 'new-guide', url: 'guides/mfguide.html', title: 'Advanced Investment Strategies', description: 'A look into advanced strategies for seasoned investors.', linkText: 'Read More', type: 'guide', readTime: '9 min read' },
-            { id: 'risk-profile-quiz', url: 'guides/planning-tools/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz', type: 'quiz', readTime: '3 min read' },
-            { id: 'financial-health-assessment', url: 'guides/planning-tools/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 15 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment', type: 'quiz', readTime: '5 min read' }
+            { id: 'risk-profile-quiz', url: 'guides/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz', type: 'quiz', readTime: '3 min read' },
+            { id: 'financial-health-assessment', url: 'guides/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 15 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment', type: 'quiz', readTime: '5 min read' }
         ];
 
         let currentPage = 1;
