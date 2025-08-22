@@ -65,7 +65,7 @@ main {
 }
 
 .nav-links li {
-    margin-left: 1.5rem;
+    margin-left: 1rem; /* Reduced from 1.5rem */
 }
 
 .nav-links > li > a {
