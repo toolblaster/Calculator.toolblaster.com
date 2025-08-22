@@ -122,18 +122,29 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #fef2f2;
-            border: 4px solid #E34037;
+            transition: background-color 0.5s ease, border-color 0.5s ease;
         }
         .score-text {
             font-size: 1.75rem;
             font-weight: 800;
-            color: #C22D2D;
+            transition: color 0.5s ease;
         }
+        /* Dynamic Score Colors - 5 Levels */
+        .score-very-low { background-color: #fecaca; border: 4px solid #b91c1c; }
+        .score-very-low .score-text { color: #7f1d1d; }
+        .score-low { background-color: #fee2e2; border: 4px solid #ef4444; }
+        .score-low .score-text { color: #b91c1c; }
+        .score-medium { background-color: #fef9c3; border: 4px solid #f59e0b; }
+        .score-medium .score-text { color: #b45309; }
+        .score-good { background-color: #dcfce7; border: 4px solid #22c55e; }
+        .score-good .score-text { color: #15803d; }
+        .score-excellent { background-color: #bbf7d0; border: 4px solid #16a34a; }
+        .score-excellent .score-text { color: #14532d; }
+
         .score-title {
             font-size: 1.1rem;
             font-weight: 700;
-            color: #1f2937;
+            color: #1f2d37;
         }
         .pillar-grid {
             display: grid;
@@ -470,7 +481,7 @@
             <div id="results-content">
                 <div class="report-card">
                     <div class="overall-score-container">
-                        <div class="score-circle">
+                        <div id="score-circle" class="score-circle">
                             <span id="overall-score" class="score-text">0</span>
                         </div>
                         <h2 class="score-title">Your Financial Health Score</h2>
