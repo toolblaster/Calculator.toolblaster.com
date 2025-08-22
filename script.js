@@ -92,7 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'risk-profile-quiz', url: 'guides/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz', type: 'quiz' },
             { id: 'financial-health-assessment', url: 'guides/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 15 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment', type: 'quiz' },
             { id: 'financial-habits-assessment-quiz', url: 'guides/financial-habits-assessment-quiz.html', title: 'Financial Habits Assessment Quiz', description: 'Discover your money mindset and get a personalized score.', linkText: 'Take the Quiz', type: 'quiz' },
-            { id: 'secure-retirement-forecaster-quiz', url: 'guides/secure-retirement-forecaster-quiz.html', title: 'Secure Retirement Forecaster Quiz', description: 'Assess your retirement readiness and get a personalized report on your target corpus.', linkText: 'Take the Quiz', type: 'quiz' }
+            { id: 'secure-retirement-forecaster-quiz', url: 'guides/secure-retirement-forecaster-quiz.html', title: 'Secure Retirement Forecaster Quiz', description: 'Assess your retirement readiness and get a personalized report on your target corpus.', linkText: 'Take the Quiz', type: 'quiz' },
+            { id: 'are-you-on-track-to-become-a-millionaire-quiz', url: 'guides/are-you-on-track-to-become-a-millionaire-quiz.html', title: 'Are You on Track to Become a Millionaire? Quiz', description: 'Take this quick quiz to see if your financial habits are on track to build significant wealth.', linkText: 'Take the Quiz', type: 'quiz' }
         ];
 
         let currentPage = 1;
@@ -240,6 +241,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (window.location.pathname.includes('secure-retirement-forecaster-quiz.html')) {
                 initializeRetirementForecasterQuiz();
+            }
+            
+            if (window.location.pathname.includes('are-you-on-track-to-become-a-millionaire-quiz.html')) {
+                initializeMillionaireQuiz();
             }
         });
     };
@@ -466,6 +471,204 @@ document.addEventListener('DOMContentLoaded', () => {
 
         showQuestion(0);
     }
+    
+    // --- MILLIONAIRE QUIZ LOGIC ---
+    function initializeMillionaireQuiz() {
+        const getElem = id => document.getElementById(id);
+
+        const quizContent = getElem('quiz-content');
+        const resultsContent = getElem('results-content');
+        const questions = document.querySelectorAll('.question-block');
+        const prevButton = getElem('prev-btn');
+        const progressBar = getElem('progress-bar');
+        const retakeButtons = document.querySelectorAll('.retake-quiz-btn');
+        const finalScoreElem = getElem('overall-score');
+        const resultsMessageElem = getElem('results-message');
+        const actionPlanElem = getElem('action-plan');
+        const scoreCircle = getElem('score-circle');
+        const confettiContainer = getElem('confetti-container');
+        const recommendationGrid = getElem('recommendation-grid');
+
+        let currentQuestionIndex = 0;
+        const userAnswers = {};
+        let isTransitioning = false;
+        
+        const MAX_SCORE = 30;
+        const quizData = [
+            { id: 'q1', points: { 'a': 1, 'b': 2, 'c': 3 } }, { id: 'q2', points: { 'a': 1, 'b': 2, 'c': 3 } },
+            { id: 'q3', points: { 'a': 1, 'b': 2, 'c': 3 } }, { id: 'q4', points: { 'a': 1, 'b': 2, 'c': 3 } },
+            { id: 'q5', points: { 'a': 1, 'b': 2, 'c': 3 } }, { id: 'q6', points: { 'a': 1, 'b': 2, 'c': 3 } },
+            { id: 'q7', points: { 'a': 1, 'b': 2, 'c': 3 } }, { id: 'q8', points: { 'a': 1, 'b': 2, 'c': 3 } },
+            { id: 'q9', points: { 'a': 1, 'b': 2, 'c': 3 } }, { id: 'q10', points: { 'a': 1, 'b': 2, 'c': 3 } }
+        ];
+
+        function launchConfetti() {
+            const colors = ['#f87171', '#facc15', '#4ade80', '#6366f1', '#a855f7', '#ec4899'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = `${Math.random() * 1 + 2}s`;
+                confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+                confettiContainer.appendChild(confetti);
+            }
+            setTimeout(() => { confettiContainer.innerHTML = ''; }, 3000);
+        }
+
+        function showQuestion(index) {
+            questions.forEach((question, i) => question.classList.toggle('active', i === index));
+            currentQuestionIndex = index;
+            prevButton.disabled = index === 0;
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentQuestionIndex / (questions.length - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const recommendationMap = {
+            'sip-calculator': { title: 'SIP Calculator', subtitle: 'Plan a monthly investment.', url: '../index.html?mode=sip', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>` },
+            'lumpsum-calculator': { title: 'Lumpsum Calculator', subtitle: 'Model a one-time investment.', url: '../index.html?mode=lumpsum', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>` },
+            'goal-planner': { title: 'Goal Planner', subtitle: 'Find out what you need to invest for a specific target.', url: '../index.html?mode=goal', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>` },
+            'financial-health-guide': { title: 'Financial Health Guide', subtitle: 'A comprehensive guide to building a strong financial foundation.', url: './financial-health-guide.html', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-check"><path d="M8 2h4l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M12 2v2a4 4 0 0 0 4 4"/><path d="m12 18 2 2 4-4"/></svg>` },
+            'mfguide': { title: "Beginner's Guide to Investing", subtitle: 'Learn the fundamentals of mutual funds and more.', url: './mfguide.html', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-text"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/><path d="M12 7h.01"/><path d="M16 11h-4"/><path d="M16 15h-4"/></svg>` },
+            'tax-saving-guide': { title: 'Smart Tax-Saving Strategies', subtitle: 'Explore the best ways to save tax and grow your wealth.', url: './tax-saving-guide.html', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-plus"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>` }
+        };
+
+        function generateToolRecommendations(recommendations) {
+            recommendationGrid.innerHTML = '';
+            recommendations.forEach(recId => {
+                const rec = recommendationMap[recId];
+                if (rec) {
+                    const recCard = document.createElement('a');
+                    recCard.href = rec.url;
+                    recCard.className = `recommendation-card`;
+                    recCard.innerHTML = `<div class="rec-icon-container">${rec.icon}</div><h4 class="rec-title">${rec.title}</h4><p class="rec-subtitle">${rec.subtitle}</p>`;
+                    recommendationGrid.appendChild(recCard);
+                }
+            });
+        }
+
+        function getActionPlan(rawScore) {
+            let plan = { title: '', message: '', steps: [], recommendedGuides: [], scoreClass: '', textColorClass: '' };
+            if (rawScore <= 12) {
+                plan.title = "Action Plan: Build Your Foundation";
+                plan.message = "Your financial habits may be holding you back. Focus on the fundamentals like saving and budgeting to get started on the path to building wealth.";
+                plan.steps = [`<strong>Create a budget:</strong> Start with the basics. Track your income and expenses to understand where your money is going.`, `<strong>Set up an emergency fund:</strong> Aim for at least 3-6 months of living expenses. This is your safety net.`, `<strong>Reduce high-interest debt:</strong> Prioritize paying off credit cards and personal loans before you begin to invest.`];
+                plan.recommendedGuides = ['financial-health-guide', 'sip-calculator'];
+                plan.scoreClass = 'score-low';
+                plan.textColorClass = 'text-red-500';
+            } else if (rawScore <= 22) {
+                plan.title = "Action Plan: Optimize and Grow";
+                plan.message = "You have a good foundation for wealth-building, but there's room for improvement. Small changes can lead to big results over time.";
+                plan.steps = [`<strong>Increase your savings rate:</strong> Try to save a little more each month, even 1-2% more can make a big difference.`, `<strong>Automate investments:</strong> Set up a SIP to invest consistently without thinking about it.`, `<strong>Explore passive income:</strong> Read our guides on investing to explore how your money can work for you.`];
+                plan.recommendedGuides = ['mfguide', 'goal-planner'];
+                plan.scoreClass = 'score-medium';
+                plan.textColorClass = 'text-yellow-500';
+            } else {
+                plan.title = "Action Plan: Accelerate Your Wealth";
+                plan.message = "You're a financial superstar! Your habits are perfectly aligned with building significant wealth. Keep up the great work and stay disciplined.";
+                plan.steps = [`<strong>Review your portfolio:</strong> Regularly check your investments to ensure they align with your goals and risk tolerance.`, `<strong>Consider advanced strategies:</strong> Look into asset allocation, rebalancing, and tax-efficient investing.`, `<strong>Stay on top of your plan:</strong> Don't get complacent. Continue learning and adapting your plan as your financial situation evolves.`];
+                plan.recommendedGuides = ['lumpsum-calculator', 'tax-saving-guide'];
+                plan.scoreClass = 'score-high';
+                plan.textColorClass = 'text-green-500';
+                launchConfetti();
+            }
+            return plan;
+        }
+
+        function calculateAndShowResults() {
+            let rawScore = 0;
+            quizData.forEach(qData => {
+                const answerValue = userAnswers[qData.id];
+                rawScore += qData.points[answerValue] || 0;
+            });
+            
+            const finalScore = Math.round((rawScore / MAX_SCORE) * 100);
+            const actionPlan = getActionPlan(rawScore);
+
+            sessionStorage.setItem('financialHealthRecommendations', JSON.stringify(actionPlan.recommendedGuides));
+
+            animateValue(finalScoreElem, 0, finalScore, 1000);
+            resultsMessageElem.textContent = actionPlan.message;
+            
+            let actionPlanHTML = `<h3 class="font-bold text-lg">${actionPlan.title}</h3><ul class="mt-2 text-sm space-y-2">`;
+            actionPlan.steps.forEach(step => { actionPlanHTML += `<li>${step}</li>`; });
+            actionPlanHTML += `</ul>`;
+            actionPlanElem.innerHTML = actionPlanHTML;
+
+            scoreCircle.classList.add(actionPlan.scoreClass);
+            finalScoreElem.classList.add(actionPlan.textColorClass);
+            
+            generateToolRecommendations(actionPlan.recommendedGuides);
+
+            quizContent.style.display = 'none';
+            resultsContent.style.display = 'block';
+            
+            window.scrollTo({ top: document.querySelector('.quiz-container').offsetTop, behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+            resultsContent.style.display = 'none';
+            quizContent.style.display = 'block';
+            scoreCircle.classList.remove('score-low', 'score-medium', 'score-high');
+            finalScoreElem.classList.remove('text-red-500', 'text-yellow-500', 'text-green-500');
+            
+            document.querySelectorAll('.option-label.selected').forEach(l => l.classList.remove('selected'));
+            document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+            
+            showQuestion(currentQuestionIndex);
+        }
+        
+        questions.forEach((question, index) => {
+            const options = question.querySelectorAll('.option-label');
+            options.forEach(label => {
+                label.addEventListener('click', () => {
+                    if (isTransitioning) return;
+                    isTransitioning = true;
+                    
+                    const radio = label.querySelector('input[type="radio"]');
+                    userAnswers[radio.name] = radio.value;
+                    
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    label.classList.add('selected');
+
+                    setTimeout(() => {
+                        if (index < questions.length - 1) {
+                            showQuestion(index + 1);
+                        } else {
+                            calculateAndShowResults();
+                        }
+                        isTransitioning = false;
+                    }, 300);
+                });
+            });
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) showQuestion(currentQuestionIndex - 1);
+        });
+        
+        retakeButtons.forEach(button => button.addEventListener('click', resetQuiz));
+
+        showQuestion(0);
+    }
+
 
     // --- SECTION 5: MOBILE NAVIGATION ---
     const setupMobileMenu = () => {
