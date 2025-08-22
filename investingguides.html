@@ -27,8 +27,8 @@
             border-radius: 0.5rem;
             padding: 1rem; /* Smaller padding */
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid #e5e7eb;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            border: 1px solid #fca5a5; /* Red accent border */
             display: flex;
             flex-direction: column;
             text-decoration: none;
@@ -37,6 +37,7 @@
         .guide-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            border-color: #E34037;
         }
         .guide-card h2 { 
             font-size: 0.85rem; 
@@ -44,7 +45,7 @@
             margin-bottom: 0.25rem;
             margin-top: 0; /* Updated: Removed top margin */
         } 
-        .guide-card p { font-size: 0.65rem; color: #4b5563; margin-bottom: 0.5rem; flex-grow: 1; } /* Smaller */
+        .guide-card p { font-size: 0.6rem; color: #4b5563; margin-bottom: 0.5rem; flex-grow: 1; } /* Smaller */
         .guide-card .read-time { font-size: 0.65rem; font-weight: 500; color: #6b7280; margin-bottom: 0.5rem; } /* Smaller */
         .guide-card .read-more-link { font-size: 0.7rem; font-weight: 600; color: #E34037; } /* Smaller */
         
@@ -187,43 +188,6 @@
         .guides-grid-wrapper {
             padding: 1.5rem 1.5rem 0; /* Updated: removed bottom padding */
         }
-
-        /* --- COMPACT CTA BANNER --- */
-        .cta-banner {
-            margin: 1rem 1.5rem 0;
-            padding: 0.5rem 1rem;
-            background-color: #fff1f2;
-            border: 1px solid #fecaca;
-            border-left: 4px solid #ef4444;
-            border-radius: 0.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            gap: 0.25rem;
-        }
-        .cta-banner p {
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #374151;
-            margin: 0;
-        }
-        .cta-banner a {
-            font-size: 0.75rem;
-            font-weight: 700; /* Made the link bold */
-            color: #ef4444;
-            text-decoration: underline; /* Added an underline to the link */
-            transition: color 0.2s ease;
-        }
-        .cta-banner a:hover {
-            color: #c22d2d;
-        }
-        @media (max-width: 640px) {
-            .cta-banner {
-                flex-direction: column;
-            }
-        }
         
         /* New container for the main guides content */
         .main-guides-section-container {
@@ -251,12 +215,6 @@
         <div class="legal-content">
             <h1>Financial Guides & Planning Tools</h1>
             <p>Your complete resource for mastering personal finance. Explore our guides, use our tools, and build a secure financial future.</p>
-            
-             <!-- New CTA Banner -->
-            <div class="cta-banner">
-                <p>Not sure where to start? Get a personalized starting point.</p>
-                <a href="guides/financial-health-assessment.html">Take Free Financial Health Assessment &rarr;</a>
-            </div>
             
             <div class="main-guides-section-container">
               <!-- Emphasized Filter Section -->
