@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const progressBar = document.getElementById('progress-bar');
         const retakeButtons = document.querySelectorAll('.retake-quiz-btn');
         const shareButton = document.getElementById('share-report-btn');
-
+        
         let currentQuestionIndex = 0;
         const userAnswers = {};
         let isTransitioning = false;
@@ -348,6 +348,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function calculateAndShowResults() {
+            const scoreCircle = document.getElementById('score-circle');
+            if (!scoreCircle) {
+                console.error("Score circle element not found!");
+                return;
+            }
             // Scoring Logic
             const scores = {
                 savings: (parseInt(userAnswers.q1, 10) -1) * (100/3/7),
@@ -368,6 +373,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const totalScore = Math.round(scores.savings + scores.emergency + scores.debt + scores.insurance + scores.goal + scores.tax + scores.investing);
             const scoreElement = document.getElementById('overall-score');
             animateValue(scoreElement, 0, totalScore, 1000);
+
+            // Dynamic Score Color Logic
+            scoreCircle.className = 'score-circle'; // Reset classes
+            if (totalScore <= 20) {
+                scoreCircle.classList.add('score-very-low');
+            } else if (totalScore <= 40) {
+                scoreCircle.classList.add('score-low');
+            } else if (totalScore <= 60) {
+                scoreCircle.classList.add('score-medium');
+            } else if (totalScore <= 80) {
+                scoreCircle.classList.add('score-good');
+            } else {
+                scoreCircle.classList.add('score-excellent');
+            }
+
 
             const pillarGrid = document.querySelector('.pillar-grid');
             pillarGrid.innerHTML = ''; // Clear previous results
