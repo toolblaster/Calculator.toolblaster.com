@@ -251,7 +251,396 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- FINANCIAL HEALTH QUIZ LOGIC ---
     function initializeFinancialHealthQuiz() {
-        // Placeholder for the quiz logic
+        const quizContent = document.getElementById('quiz-content');
+        const resultsContent = document.getElementById('results-content');
+        const questions = document.querySelectorAll('.question-block');
+        const prevButton = document.getElementById('prev-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const retakeButtons = document.querySelectorAll('.retake-quiz-btn');
+        const shareButton = document.getElementById('share-report-btn');
+
+        let currentQuestionIndex = 0;
+        const userAnswers = {};
+        let isTransitioning = false;
+        let finalReport = {};
+        let savingsChart, debtChart;
+
+        function showQuestion(index) {
+            questions.forEach((question, i) => {
+                question.classList.toggle('active', i === index);
+            });
+            currentQuestionIndex = index;
+            prevButton.disabled = index === 0;
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentQuestionIndex / (questions.length - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        function createActionButton(text, link, iconSvg) {
+            return `
+                <a href="${link}" class="action-btn">
+                    ${iconSvg}
+                    <span>${text}</span>
+                </a>
+            `;
+        }
+
+        function createBarChart(canvasId, yourRate) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            if (savingsChart) savingsChart.destroy();
+            savingsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Your Rate', 'Recommended'],
+                    datasets: [{
+                        label: 'Savings Rate %',
+                        data: [yourRate, 20],
+                        backgroundColor: ['#fca5a5', '#86efac'],
+                        borderColor: ['#ef4444', '#22c55e'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { x: { beginAtZero: true, max: 40 } }
+                }
+            });
+        }
+
+        function createPieChart(canvasId, emiPercentage) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            if (debtChart) debtChart.destroy();
+            debtChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['EMIs', 'Remaining Income'],
+                    datasets: [{
+                        data: [emiPercentage, 100 - emiPercentage],
+                        backgroundColor: ['#ef4444', '#e5e7eb'],
+                        hoverOffset: 4
+                    }]
+                },
+                 options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+                }
+            });
+        }
+
+        function calculateAndShowResults() {
+            // Scoring Logic
+            const scores = {
+                savings: (parseInt(userAnswers.q1, 10) -1) * (100/3/7),
+                emergency: (parseInt(userAnswers.q2, 10) -1) * (100/2/7),
+                debt: (parseInt(userAnswers.q3, 10) -1) * (100/2/7),
+                insurance: (parseInt(userAnswers.q4, 10) -1) * (100/3/7),
+                goal: (parseInt(userAnswers.q_goal_started, 10) -1) * (100/1/7),
+                tax: (parseInt(userAnswers.q_tax, 10) -1) * (100/2/7),
+                investing: (
+                    (parseInt(userAnswers.q5, 10) -1) +
+                    (parseInt(userAnswers.q6, 10) -1) +
+                    (parseInt(userAnswers.q7, 10) -1) +
+                    (parseInt(userAnswers.q8, 10) -1) +
+                    (parseInt(userAnswers.q9, 10) -1)
+                ) * (100/10/7)
+            };
+
+            const totalScore = Math.round(scores.savings + scores.emergency + scores.debt + scores.insurance + scores.goal + scores.tax + scores.investing);
+            const scoreElement = document.getElementById('overall-score');
+            animateValue(scoreElement, 0, totalScore, 1000);
+
+            const pillarGrid = document.querySelector('.pillar-grid');
+            pillarGrid.innerHTML = ''; // Clear previous results
+
+            const iconGoal = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>`;
+            const iconSIP = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg>`;
+            const iconGuide = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`;
+            const iconFD = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line></svg>`;
+            const iconLumpsum = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>`;
+
+            const pillars = [];
+
+            // Savings Pillar
+            let savingsPillar = { name: "Savings Rate", score: scores.savings };
+            if (userAnswers.q1 >= 3) {
+                savingsPillar.rating = 'Excellent';
+                savingsPillar.ratingClass = 'rating-green';
+                savingsPillar.advice = 'Great job! You have a strong savings habit. Consider optimizing your investments.';
+                savingsPillar.actions = createActionButton('Use Goal Planner', '../index.html?mode=goal', iconGoal);
+            } else {
+                savingsPillar.rating = userAnswers.q1 == 2 ? 'Good' : 'Needs Improvement';
+                savingsPillar.ratingClass = userAnswers.q1 == 2 ? 'rating-yellow' : 'rating-red';
+                savingsPillar.advice = userAnswers.q1 == 2 ? 'You\'re on the right track. See if you can increase your savings slightly to accelerate your goals.' : 'Making saving a priority is the first step. Start small and see how it grows.';
+                savingsPillar.actions = createActionButton('Go to SIP Calculator', '../index.html?mode=sip', iconSIP);
+                savingsPillar.chart = `<div class="chart-container"><canvas id="savingsRateChart"></canvas></div>`;
+            }
+            pillars.push(savingsPillar);
+
+            // Emergency Fund Pillar
+            let emergencyPillar = { name: "Emergency Fund", score: scores.emergency };
+            if (userAnswers.q2 == 3) {
+                emergencyPillar.rating = 'Prepared';
+                emergencyPillar.ratingClass = 'rating-green';
+                emergencyPillar.advice = 'Excellent! Your safety net is in place, allowing you to invest with confidence.';
+                emergencyPillar.actions = '';
+            } else {
+                emergencyPillar.rating = userAnswers.q2 == 2 ? 'Partially Prepared' : 'At Risk';
+                emergencyPillar.ratingClass = userAnswers.q2 == 2 ? 'pillar-rating rating-yellow' : 'pillar-rating rating-red';
+                emergencyPillar.advice = 'This should be a top priority to protect you from financial shocks.';
+                emergencyPillar.actions = createActionButton('Read Emergency Fund Guide', 'emergency-fund-guide.html', iconGuide);
+            }
+            pillars.push(emergencyPillar);
+            
+            // Debt Pillar
+            let debtPillar = { name: "Debt Management", score: scores.debt };
+            if (userAnswers.q3 == 3) {
+                debtPillar.rating = 'Healthy';
+                debtPillar.ratingClass = 'rating-green';
+                debtPillar.advice = 'Great work managing your debt. This gives you more freedom to invest for your goals.';
+                debtPillar.actions = '';
+            } else {
+                debtPillar.rating = userAnswers.q3 == 2 ? 'Caution' : 'High';
+                debtPillar.ratingClass = userAnswers.q3 == 2 ? 'pillar-rating rating-yellow' : 'pillar-rating rating-red';
+                let debtAdvice = 'High debt can hinder wealth creation. Prioritize paying it down.';
+                if (userAnswers.q_income == 1) {
+                    debtAdvice = "At your income level, high EMIs can be very stressful. It's critical to focus on clearing this debt before making new investments."
+                }
+                debtPillar.advice = debtAdvice;
+                debtPillar.actions = createActionButton('Read Investing Guides', '../investingguides.html', iconGuide);
+                debtPillar.chart = `<div class="chart-container"><canvas id="debtPieChart"></canvas></div>`;
+            }
+            pillars.push(debtPillar);
+
+            // Insurance Pillar
+            let insurancePillar = { name: "Insurance Shield", score: scores.insurance };
+            if (userAnswers.q4 == 4) {
+                insurancePillar.rating = 'Well Protected';
+                insurancePillar.ratingClass = 'rating-green';
+                insurancePillar.advice = 'You\'ve taken the right steps to protect yourself and your family from financial shocks.';
+                insurancePillar.actions = '';
+            } else {
+                insurancePillar.rating = userAnswers.q4 > 1 ? 'Partially Protected' : 'Under-Insured';
+                insurancePillar.ratingClass = userAnswers.q4 > 1 ? 'pillar-rating rating-yellow' : 'pillar-rating rating-red';
+                let advice = 'This is a critical gap. ';
+                if(userAnswers.q_stage == 3) { // Married with kids
+                    advice = 'With a family to support, being under-insured is a major risk. '
+                }
+                if(userAnswers.q4 == 1) advice += 'Having both Health and Term insurance is crucial.';
+                if(userAnswers.q4 == 2) advice += 'You have Health Insurance, but a Term Life policy is vital to protect your family\'s future.';
+                if(userAnswers.q4 == 3) advice += 'You have Term Life Insurance, but Health Insurance is essential to protect you from medical emergencies.';
+                insurancePillar.advice = advice;
+                insurancePillar.actions = createActionButton('Read Retirement Guide', 'retirement-planning-guide.html', iconGuide);
+            }
+            pillars.push(insurancePillar);
+            
+            // Goal Readiness Pillar
+            let goalPillar = { name: "Goal Readiness", score: scores.goal };
+            if (userAnswers.q_goal_started == 2) {
+                goalPillar.rating = 'On Track';
+                goalPillar.ratingClass = 'rating-green';
+                goalPillar.advice = `It's great that you're already investing for ${userAnswers.q_goal}. Use our tools to ensure your plan is robust.`;
+                goalPillar.actions = createActionButton('Go to Goal Planner', '../index.html?mode=goal', iconGoal);
+            } else {
+                goalPillar.rating = 'Needs Planning';
+                goalPillar.ratingClass = 'rating-red';
+                goalPillar.advice = `You've identified ${userAnswers.q_goal} as your priority. The next step is to make a plan.`;
+                goalPillar.actions = createActionButton('Plan for Your Goal', '../index.html?mode=goal', iconGoal);
+            }
+            pillars.push(goalPillar);
+
+            // Tax Efficiency Pillar
+            let taxPillar = { name: "Tax Efficiency", score: scores.tax };
+            if (userAnswers.q_tax == 3) {
+                taxPillar.rating = 'Smart';
+                taxPillar.ratingClass = 'rating-green';
+                taxPillar.advice = 'Excellent! Investing throughout the year is the most efficient way to save tax and benefit from market movements.';
+                taxPillar.actions = createActionButton('Read Tax Guide', 'tax-saving-guide.html', iconGuide);
+            } else if (userAnswers.q_tax == 2) {
+                taxPillar.rating = 'Average';
+                taxPillar.ratingClass = 'rating-yellow';
+                taxPillar.advice = 'You\'re saving tax, but last-minute investing can mean missing out on growth. Consider a monthly ELSS SIP.';
+                taxPillar.actions = createActionButton('Read Tax Guide', 'tax-saving-guide.html', iconGuide);
+            } else {
+                taxPillar.rating = 'Needs Attention';
+                taxPillar.ratingClass = 'rating-red';
+                taxPillar.advice = 'You might be paying more tax than you need to. Planning your 80C investments can save you money.';
+                taxPillar.actions = createActionButton('Read Tax Guide', 'tax-saving-guide.html', iconGuide);
+            }
+            pillars.push(taxPillar);
+
+
+            // Investing Pillar
+            const riskScore = parseInt(userAnswers.q5) + parseInt(userAnswers.q6) + parseInt(userAnswers.q7) + parseInt(userAnswers.q8) + parseInt(userAnswers.q9);
+            let investorPillar = { name: "Investor Profile", score: scores.investing };
+            if (riskScore <= 7) {
+                investorPillar.rating = 'Conservative';
+                investorPillar.ratingClass = 'rating-green';
+                investorPillar.advice = 'You prioritize safety and capital protection.';
+                investorPillar.actions = createActionButton('Go to FD Calculator', '../index.html?mode=fd', iconFD) + createActionButton('Go to RD Calculator', '../index.html?mode=rd', iconSIP);
+            } else if (riskScore <= 12) {
+                investorPillar.rating = 'Balanced';
+                investorPillar.ratingClass = 'rating-yellow';
+                investorPillar.advice = 'You seek a mix of growth and safety.';
+                investorPillar.actions = createActionButton('Use Goal Planner', '../index.html?mode=goal', iconGoal);
+            } else {
+                investorPillar.rating = 'Aggressive';
+                investorPillar.ratingClass = 'rating-red';
+                investorPillar.advice = 'You are focused on long-term growth.';
+                investorPillar.actions = createActionButton('Go to SIP Calculator', '../index.html?mode=sip', iconSIP) + createActionButton('Go to Lumpsum Calculator', '../index.html?mode=lumpsum', iconLumpsum);
+            }
+            pillars.push(investorPillar);
+
+            // Prioritized Action Plan
+            const sortedPillars = [...pillars].sort((a, b) => a.score - b.score);
+            const priorityList = document.getElementById('priority-list');
+            priorityList.innerHTML = `
+                <li>Focus on improving your ${sortedPillars[0].name}.</li>
+                <li>Your next step should be to work on your ${sortedPillars[1].name}.</li>
+            `;
+
+            // Render Pillars
+            pillars.forEach(p => {
+                const pillarEl = document.createElement('div');
+                pillarEl.className = 'pillar-card';
+                pillarEl.innerHTML = `
+                    <div class="pillar-header">
+                        <h3 class="pillar-title">${p.name}</h3>
+                        <span class="pillar-rating ${p.ratingClass}">${p.rating}</span>
+                    </div>
+                    <p class="pillar-advice">${p.advice}</p>
+                    ${p.chart || ''}
+                    <div class="action-btn-container">${p.actions}</div>
+                `;
+                pillarGrid.appendChild(pillarEl);
+            });
+
+            // Activate Charts if needed
+            if (savingsPillar.chart) {
+                const savingsRateMap = { '1': 5, '2': 15, '3': 25, '4': 35 };
+                createBarChart('savingsRateChart', savingsRateMap[userAnswers.q1]);
+            }
+            if (debtPillar.chart) {
+                const debtRateMap = { '1': 30, '2': 20, '3': 10 };
+                createPieChart('debtPieChart', debtRateMap[userAnswers.q3]);
+            }
+            
+            finalReport = {
+                score: totalScore,
+                priorities: [sortedPillars[0].name, sortedPillars[1].name],
+                pillars: pillars
+            };
+
+            quizContent.style.display = 'none';
+            resultsContent.style.display = 'block';
+        }
+
+        function handleShareReport() {
+            if (!finalReport.score) return;
+            const summaryText = `I just took the Financial Health Assessment and got a score of ${finalReport.score}/100! My top priorities are to improve my ${finalReport.priorities[0]} and ${finalReport.priorities[1]}. Check out your own financial health here: ${window.location.href}`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Financial Health Report',
+                    text: summaryText,
+                    url: window.location.href,
+                }).catch(err => {
+                    console.error("Share failed:", err.message);
+                    showNotification('Could not share report.');
+                });
+            } else {
+                 const textArea = document.createElement("textarea");
+                textArea.value = summaryText;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-9999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showNotification('Report summary copied to clipboard!');
+                } catch (err) {
+                    console.error('Fallback: Oops, unable to copy', err);
+                    showNotification('Could not copy report summary.');
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function showNotification(message) {
+            const toast = document.getElementById('notification-toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        questions.forEach((question, index) => {
+            const options = question.querySelectorAll('.option-label');
+            options.forEach(label => {
+                label.addEventListener('click', () => {
+                    if (isTransitioning) return;
+                    isTransitioning = true;
+
+                    const radio = label.querySelector('input[type="radio"]');
+                    userAnswers[radio.name] = radio.value;
+
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    label.classList.add('selected');
+
+                    setTimeout(() => {
+                        if (currentQuestionIndex < questions.length - 1) {
+                            showQuestion(currentQuestionIndex + 1);
+                        } else {
+                            calculateAndShowResults();
+                        }
+                        isTransitioning = false;
+                    }, 300);
+                });
+            });
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                showQuestion(currentQuestionIndex - 1);
+            }
+        });
+
+        retakeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+                document.querySelectorAll('.option-label.selected').forEach(l => l.classList.remove('selected'));
+                document.getElementById('health-quiz-form').reset();
+                
+                resultsContent.style.display = 'none';
+                quizContent.style.display = 'block';
+                showQuestion(0);
+            });
+        });
+
+        shareButton.addEventListener('click', handleShareReport);
+
+        showQuestion(0);
     }
     
     // --- SECURE RETIREMENT FORECASTER QUIZ LOGIC ---
@@ -474,199 +863,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- MILLIONAIRE QUIZ LOGIC ---
     function initializeMillionaireQuiz() {
-        const getElem = id => document.getElementById(id);
-
-        const quizContent = getElem('quiz-content');
-        const resultsContent = getElem('results-content');
-        const questions = document.querySelectorAll('.question-block');
-        const prevButton = getElem('prev-btn');
-        const progressBar = getElem('progress-bar');
-        const retakeButtons = document.querySelectorAll('.retake-quiz-btn');
-        const finalScoreElem = getElem('overall-score');
-        const resultsMessageElem = getElem('results-message');
-        const actionPlanElem = getElem('action-plan');
-        const scoreCircle = getElem('score-circle');
-        const confettiContainer = getElem('confetti-container');
-        const recommendationGrid = getElem('recommendation-grid');
-
-        let currentQuestionIndex = 0;
-        const userAnswers = {};
-        let isTransitioning = false;
-        
-        const MAX_SCORE = 30;
-        const quizData = [
-            { id: 'q1', points: { 'a': 1, 'b': 2, 'c': 3 } }, { id: 'q2', points: { 'a': 1, 'b': 2, 'c': 3 } },
-            { id: 'q3', points: { 'a': 1, 'b': 2, 'c': 3 } }, { id: 'q4', points: { 'a': 1, 'b': 2, 'c': 3 } },
-            { id: 'q5', points: { 'a': 1, 'b': 2, 'c': 3 } }, { id: 'q6', points: { 'a': 1, 'b': 2, 'c': 3 } },
-            { id: 'q7', points: { 'a': 1, 'b': 2, 'c': 3 } }, { id: 'q8', points: { 'a': 1, 'b': 2, 'c': 3 } },
-            { id: 'q9', points: { 'a': 1, 'b': 2, 'c': 3 } }, { id: 'q10', points: { 'a': 1, 'b': 2, 'c': 3 } }
-        ];
-
-        function launchConfetti() {
-            const colors = ['#f87171', '#facc15', '#4ade80', '#6366f1', '#a855f7', '#ec4899'];
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = `${Math.random() * 100}vw`;
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDuration = `${Math.random() * 1 + 2}s`;
-                confetti.style.animationDelay = `${Math.random() * 0.5}s`;
-                confettiContainer.appendChild(confetti);
-            }
-            setTimeout(() => { confettiContainer.innerHTML = ''; }, 3000);
-        }
-
-        function showQuestion(index) {
-            questions.forEach((question, i) => question.classList.toggle('active', i === index));
-            currentQuestionIndex = index;
-            prevButton.disabled = index === 0;
-            updateProgressBar();
-        }
-
-        function updateProgressBar() {
-            const progress = (currentQuestionIndex / (questions.length - 1)) * 100;
-            progressBar.style.width = `${progress}%`;
-        }
-        
-        function animateValue(obj, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                obj.innerHTML = Math.floor(progress * (end - start) + start);
-                if (progress < 1) window.requestAnimationFrame(step);
-            };
-            window.requestAnimationFrame(step);
-        }
-
-        const recommendationMap = {
-            'sip-calculator': { title: 'SIP Calculator', subtitle: 'Plan a monthly investment.', url: '../index.html?mode=sip', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>` },
-            'lumpsum-calculator': { title: 'Lumpsum Calculator', subtitle: 'Model a one-time investment.', url: '../index.html?mode=lumpsum', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>` },
-            'goal-planner': { title: 'Goal Planner', subtitle: 'Find out what you need to invest for a specific target.', url: '../index.html?mode=goal', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>` },
-            'financial-health-guide': { title: 'Financial Health Guide', subtitle: 'A comprehensive guide to building a strong financial foundation.', url: './financial-health-guide.html', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-check"><path d="M8 2h4l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M12 2v2a4 4 0 0 0 4 4"/><path d="m12 18 2 2 4-4"/></svg>` },
-            'mfguide': { title: "Beginner's Guide to Investing", subtitle: 'Learn the fundamentals of mutual funds and more.', url: './mfguide.html', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-text"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/><path d="M12 7h.01"/><path d="M16 11h-4"/><path d="M16 15h-4"/></svg>` },
-            'tax-saving-guide': { title: 'Smart Tax-Saving Strategies', subtitle: 'Explore the best ways to save tax and grow your wealth.', url: './tax-saving-guide.html', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-plus"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>` }
-        };
-
-        function generateToolRecommendations(recommendations) {
-            recommendationGrid.innerHTML = '';
-            recommendations.forEach(recId => {
-                const rec = recommendationMap[recId];
-                if (rec) {
-                    const recCard = document.createElement('a');
-                    recCard.href = rec.url;
-                    recCard.className = `recommendation-card`;
-                    recCard.innerHTML = `<div class="rec-icon-container">${rec.icon}</div><h4 class="rec-title">${rec.title}</h4><p class="rec-subtitle">${rec.subtitle}</p>`;
-                    recommendationGrid.appendChild(recCard);
-                }
-            });
-        }
-
-        function getActionPlan(rawScore) {
-            let plan = { title: '', message: '', steps: [], recommendedGuides: [], scoreClass: '', textColorClass: '' };
-            if (rawScore <= 12) {
-                plan.title = "Action Plan: Build Your Foundation";
-                plan.message = "Your financial habits may be holding you back. Focus on the fundamentals like saving and budgeting to get started on the path to building wealth.";
-                plan.steps = [`<strong>Create a budget:</strong> Start with the basics. Track your income and expenses to understand where your money is going.`, `<strong>Set up an emergency fund:</strong> Aim for at least 3-6 months of living expenses. This is your safety net.`, `<strong>Reduce high-interest debt:</strong> Prioritize paying off credit cards and personal loans before you begin to invest.`];
-                plan.recommendedGuides = ['financial-health-guide', 'sip-calculator'];
-                plan.scoreClass = 'score-low';
-                plan.textColorClass = 'text-red-500';
-            } else if (rawScore <= 22) {
-                plan.title = "Action Plan: Optimize and Grow";
-                plan.message = "You have a good foundation for wealth-building, but there's room for improvement. Small changes can lead to big results over time.";
-                plan.steps = [`<strong>Increase your savings rate:</strong> Try to save a little more each month, even 1-2% more can make a big difference.`, `<strong>Automate investments:</strong> Set up a SIP to invest consistently without thinking about it.`, `<strong>Explore passive income:</strong> Read our guides on investing to explore how your money can work for you.`];
-                plan.recommendedGuides = ['mfguide', 'goal-planner'];
-                plan.scoreClass = 'score-medium';
-                plan.textColorClass = 'text-yellow-500';
-            } else {
-                plan.title = "Action Plan: Accelerate Your Wealth";
-                plan.message = "You're a financial superstar! Your habits are perfectly aligned with building significant wealth. Keep up the great work and stay disciplined.";
-                plan.steps = [`<strong>Review your portfolio:</strong> Regularly check your investments to ensure they align with your goals and risk tolerance.`, `<strong>Consider advanced strategies:</strong> Look into asset allocation, rebalancing, and tax-efficient investing.`, `<strong>Stay on top of your plan:</strong> Don't get complacent. Continue learning and adapting your plan as your financial situation evolves.`];
-                plan.recommendedGuides = ['lumpsum-calculator', 'tax-saving-guide'];
-                plan.scoreClass = 'score-high';
-                plan.textColorClass = 'text-green-500';
-                launchConfetti();
-            }
-            return plan;
-        }
-
-        function calculateAndShowResults() {
-            let rawScore = 0;
-            quizData.forEach(qData => {
-                const answerValue = userAnswers[qData.id];
-                rawScore += qData.points[answerValue] || 0;
-            });
-            
-            const finalScore = Math.round((rawScore / MAX_SCORE) * 100);
-            const actionPlan = getActionPlan(rawScore);
-
-            sessionStorage.setItem('financialHealthRecommendations', JSON.stringify(actionPlan.recommendedGuides));
-
-            animateValue(finalScoreElem, 0, finalScore, 1000);
-            resultsMessageElem.textContent = actionPlan.message;
-            
-            let actionPlanHTML = `<h3 class="font-bold text-lg">${actionPlan.title}</h3><ul class="mt-2 text-sm space-y-2">`;
-            actionPlan.steps.forEach(step => { actionPlanHTML += `<li>${step}</li>`; });
-            actionPlanHTML += `</ul>`;
-            actionPlanElem.innerHTML = actionPlanHTML;
-
-            scoreCircle.classList.add(actionPlan.scoreClass);
-            finalScoreElem.classList.add(actionPlan.textColorClass);
-            
-            generateToolRecommendations(actionPlan.recommendedGuides);
-
-            quizContent.style.display = 'none';
-            resultsContent.style.display = 'block';
-            
-            window.scrollTo({ top: document.querySelector('.quiz-container').offsetTop, behavior: 'smooth' });
-        }
-
-        function resetQuiz() {
-            currentQuestionIndex = 0;
-            Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
-            resultsContent.style.display = 'none';
-            quizContent.style.display = 'block';
-            scoreCircle.classList.remove('score-low', 'score-medium', 'score-high');
-            finalScoreElem.classList.remove('text-red-500', 'text-yellow-500', 'text-green-500');
-            
-            document.querySelectorAll('.option-label.selected').forEach(l => l.classList.remove('selected'));
-            document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
-            
-            showQuestion(currentQuestionIndex);
-        }
-        
-        questions.forEach((question, index) => {
-            const options = question.querySelectorAll('.option-label');
-            options.forEach(label => {
-                label.addEventListener('click', () => {
-                    if (isTransitioning) return;
-                    isTransitioning = true;
-                    
-                    const radio = label.querySelector('input[type="radio"]');
-                    userAnswers[radio.name] = radio.value;
-                    
-                    options.forEach(opt => opt.classList.remove('selected'));
-                    label.classList.add('selected');
-
-                    setTimeout(() => {
-                        if (index < questions.length - 1) {
-                            showQuestion(index + 1);
-                        } else {
-                            calculateAndShowResults();
-                        }
-                        isTransitioning = false;
-                    }, 300);
-                });
-            });
-        });
-
-        prevButton.addEventListener('click', () => {
-            if (currentQuestionIndex > 0) showQuestion(currentQuestionIndex - 1);
-        });
-        
-        retakeButtons.forEach(button => button.addEventListener('click', resetQuiz));
-
-        showQuestion(0);
+        // Placeholder for the quiz logic
     }
 
 
