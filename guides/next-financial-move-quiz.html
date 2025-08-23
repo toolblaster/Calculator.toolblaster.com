@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Financial Health Check: What's Your Next Move? - Calculator.toolblaster</title>
+    
+    <meta name="description" content="Take our advanced financial quiz to get a personalized primary and secondary action plan. Discover your next best move for building wealth and achieving financial security.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .quiz-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        #progress-bar-container {
+            width: 100%;
+            background-color: #e5e7eb;
+            border-radius: 999px;
+            height: 8px;
+            margin-bottom: 0.5rem;
+        }
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #E34037;
+            border-radius: 999px;
+            transition: width 0.4s ease-in-out;
+        }
+        .progress-text {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+        .question-block.active { display: block; }
+        .question-block { display: none; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .question-text { font-size: 0.85rem; font-weight: 600; color: #1f2d37; margin-bottom: 1rem; }
+        
+        .option-label {
+            display: block;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-size: 0.75rem;
+        }
+        .option-label:hover { background-color: #f9fafb; border-color: #E34037; }
+        .option-label input { display: none; }
+        .option-label.selected { background-color: #fef2f2; border-color: #E34037; color: #C22D2D; font-weight: 500; }
+        
+        #results-content { display: none; text-align: center; }
+        
+        .results-header {
+            background-color: #fef2f2;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #fca5a5;
+        }
+        #result-header-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1rem;
+            color: #C22D2D;
+        }
+        .result-title { font-size: 1.2rem; font-weight: 700; color: #1f2d37; margin-bottom: 0.25rem; }
+        .result-description { font-size: 0.8rem; color: #4b5563; }
+        
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            .action-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .action-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: left;
+            display: flex; /* UPDATED */
+            flex-direction: column; /* UPDATED */
+        }
+        .action-card.primary {
+            background-color: #fef2f2;
+            border-color: #fca5a5;
+        }
+        .action-card.secondary {
+            background-color: #eef2ff;
+            border-color: #c7d2fe;
+        }
+        .action-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .action-card-header .tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.125rem 0.5rem;
+            border-radius: 999px;
+            color: white;
+        }
+        .action-card.primary .action-card-header .tag { background-color: #C22D2D; }
+        .action-card.secondary .action-card-header .tag { background-color: #4338ca; }
+        .action-card-header h4 { font-size: 0.9rem; font-weight: 700; color: #1f2d37; }
+        .action-card .reason { 
+            font-size: 0.7rem; 
+            color: #4b5563; 
+            margin-bottom: 0.75rem; 
+            font-style: italic;
+            flex-grow: 1; /* UPDATED: This makes the text fill available space */
+        }
+        .action-card ul { list-style: none; padding: 0; }
+        .action-card li { margin-bottom: 0.5rem; }
+        .action-card a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+        .action-card.primary a { color: #C22D2D; }
+        .action-card.secondary a { color: #4f46e5; }
+        .action-card.primary a:hover { color: #991b1b; }
+        .action-card.secondary a:hover { color: #3730a3; }
+        .action-card a svg { width: 16px; height: 16px; }
+
+        .what-if-card {
+            background-color: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .what-if-card h5 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1f2d37;
+            margin-bottom: 0.75rem;
+        }
+        .what-if-body {
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+        .what-if-body strong {
+            color: #16a34a;
+        }
+
+        .title-with-accent::after {
+            content: ''; display: block; width: 50px; height: 3px;
+            background-color: #E34037; margin: 0.75rem auto 0;
+        }
+        #retake-quiz-btn {
+            margin-top: 1.5rem;
+            background-color: #374151; color: white; padding: 0.5rem 1rem;
+            border-radius: 0.375rem; font-size: 0.8rem; font-weight: 600;
+            cursor: pointer; transition: background-color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        #retake-quiz-btn:hover { background-color: #4b5563; }
+        
+        #quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .nav-button {
+            background: none;
+            border: 1px solid #d1d5db;
+            color: #4b5563;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #f3f4f6;
+        }
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <div class="quiz-container">
+            <div id="quiz-content">
+                <div class="text-center p-6 bg-red-50 rounded-lg mb-8">
+                    <h1 class="text-xl font-bold text-gray-800 mb-2 title-with-accent">What's Your Next Financial Move?</h1>
+                    <p class="text-gray-600 text-sm">This advanced check-up will give you a primary and secondary action plan for your finances.</p>
+                </div>
+                
+                <div id="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <p id="progress-text" class="progress-text">Step 1 of 6</p>
+
+                <form id="next-move-quiz-form">
+                    <div class="question-block active" data-question-index="0">
+                        <p class="question-text">1. Do you have a dedicated emergency fund that can cover at least 3 months of essential living expenses?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_emergency" value="no" required> No, not yet.</label>
+                            <label class="option-label"><input type="radio" name="q_emergency" value="yes"> Yes, I'm covered.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="1">
+                        <p class="question-text">2. Do you have any high-interest debt (like credit card balances you don't pay in full, or personal loans)?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_debt" value="yes" required> Yes, I have some.</label>
+                            <label class="option-label"><input type="radio" name="q_debt" value="no"> No, I'm clear of high-interest debt.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="2" data-condition='{"q_debt": "yes"}'>
+                        <p class="question-text">2a. What kind of high-interest debt is your main concern?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_debt_type" value="credit_card" required> Credit Card balances</label>
+                            <label class="option-label"><input type="radio" name="q_debt_type" value="personal_loan"> Personal Loan</label>
+                            <label class="option-label"><input type="radio" name="q_debt_type" value="other"> Other high-interest loans</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="3">
+                        <p class="question-text">3. Roughly what percentage of your monthly income are you able to save or invest?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_savings_rate" value="low" required> Less than 10%</label>
+                            <label class="option-label"><input type="radio" name="q_savings_rate" value="medium"> 10% - 20%</label>
+                            <label class="option-label"><input type="radio" name="q_savings_rate" value="high"> More than 20%</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="4">
+                        <p class="question-text">4. Have you planned and started your tax-saving investments (under Section 80C) for this financial year?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_tax" value="no" required> No, I usually do it at the last minute.</label>
+                            <label class="option-label"><input type="radio" name="q_tax" value="yes"> Yes, my plan is in place and automated.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="5">
+                        <p class="question-text">5. Are you consistently investing every month for your long-term goals (like retirement)?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_investing" value="no" required> No, I'm not investing regularly yet.</label>
+                            <label class="option-label"><input type="radio" name="q_investing" value="yes"> Yes, I have a regular investment plan (like a SIP).</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="6">
+                        <p class="question-text">6. When you think about investing for the long term (5+ years), what is your primary goal?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_risk" value="low" required> Protecting my original capital is most important.</label>
+                            <label class="option-label"><input type="radio" name="q_risk" value="medium"> I'm looking for a balance of safety and growth.</label>
+                            <label class="option-label"><input type="radio" name="q_risk" value="high"> I want the highest possible growth, and I'm comfortable with volatility.</label>
+                        </div>
+                    </div>
+                </form>
+                
+                <div id="quiz-navigation">
+                    <button id="prev-btn" class="nav-button">Previous</button>
+                </div>
+            </div>
+
+            <div id="results-content">
+                <!-- Results will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+    
+    <div id="footer-placeholder"></div>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizContent = document.getElementById('quiz-content');
+            const resultsContent = document.getElementById('results-content');
+            const allQuestions = Array.from(document.querySelectorAll('.question-block'));
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const prevBtn = document.getElementById('prev-btn');
+            
+            let userAnswers = {};
+            let visibleQuestions = [];
+            let currentVisibleIndex = 0;
+
+            const resultsMap = {
+                'emergency': {
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
+                    title: "Build Your Emergency Fund",
+                    reason: "This is your financial foundation. Without it, any unexpected event can derail your entire plan.",
+                    whatIf: "<strong>What If?</strong> Saving just ₹5,000 a month in a Recurring Deposit for one year would give you a safety net of over <strong>₹60,000</strong>.",
+                    links: [
+                        { text: 'Guide to Emergency Funds', url: 'emergency-fund-guide.html' },
+                        { text: 'Use the RD Calculator', url: '../index.html?mode=rd' }
+                    ]
+                },
+                'debt': {
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
+                    title: "Tackle High-Interest Debt",
+                    reason: "High-interest debt acts like 'reverse compounding'—it actively works against your wealth. Clearing it is a guaranteed return.",
+                    whatIf: "<strong>What If?</strong> Paying an extra ₹2,000/month on a ₹50,000 credit card balance (at 36% APR) could save you thousands in interest and get you debt-free years sooner.",
+                    links: [
+                        { text: 'Guide on Debt Management', url: 'financial-health-guide.html' },
+                        { text: 'Assess Your Full Financial Health', url: 'financial-health-assessment.html' }
+                    ]
+                },
+                'savings': {
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>`,
+                    title: "Focus on Increasing Savings",
+                    reason: "You can't invest what you don't save. Increasing your savings rate is the fuel for all your future financial goals.",
+                    whatIf: "<strong>What If?</strong> Increasing your savings by just 5% of a ₹50,000 monthly income means an extra ₹30,000 invested per year. In 10 years, that alone could be worth over <strong>₹7 Lakhs</strong>.",
+                    links: [
+                        { text: 'Guide to Financial Health', url: 'financial-health-guide.html' },
+                        { text: 'Take the Financial Habits Quiz', url: 'financial-habits-assessment-quiz.html' }
+                    ]
+                },
+                'tax': {
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+                    title: "Plan Your Tax-Saving",
+                    reason: "Smart tax planning isn't just about saving tax; it's a great opportunity to build wealth through instruments like ELSS.",
+                    whatIf: "<strong>What If?</strong> Investing ₹12,500/month in an ELSS SIP to save tax could grow to over <strong>₹25 Lakhs</strong> in 10 years (assuming 12% returns).",
+                    links: [
+                        { text: 'Guide to Smart Tax-Saving', url: 'tax-saving-guide.html' },
+                        { text: 'Start an ELSS SIP', url: '../index.html?mode=sip' }
+                    ]
+                },
+                'investing': {
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>`,
+                    title: "Start Systematic Investing (SIP)",
+                    reason: "You have a solid base. Now it's time to put your money to work and let compounding build your long-term wealth.",
+                    whatIf: "<strong>What If?</strong> A ₹10,000 monthly SIP for your retirement could grow to over <strong>₹1 Crore</strong> in 25 years (assuming 12% returns).",
+                    links: [
+                        { text: 'Guide: SIP vs. Lumpsum', url: 'sip-vs-lumpsum.html' },
+                        { text: 'Project Your Growth with the SIP Calculator', url: '../index.html?mode=sip' }
+                    ]
+                },
+                'optimize': {
+                    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
+                    title: "Optimize Your Portfolio",
+                    reason: "You've mastered the basics. Now, focus on aligning your investments perfectly with your life goals for maximum efficiency.",
+                    whatIf: "<strong>What If?</strong> By aligning specific investments to your goals, you ensure you're taking the right amount of risk and can potentially reach your targets sooner.",
+                    links: [
+                        { text: 'Guide to Goal-Based Investing', url: 'goal-based-investing.html' },
+                        { text: 'Use the Goal Planner for Your Next Dream', url: '../index.html?mode=goal' }
+                    ]
+                }
+            };
+
+            function updateVisibleQuestions() {
+                visibleQuestions = allQuestions.filter(q => {
+                    const conditionAttr = q.dataset.condition;
+                    if (!conditionAttr) return true;
+                    const condition = JSON.parse(conditionAttr);
+                    const [key, value] = Object.entries(condition)[0];
+                    return userAnswers[key] === value;
+                });
+                updateProgress();
+            }
+
+            function showCurrentQuestion() {
+                allQuestions.forEach(q => q.classList.remove('active'));
+                if (visibleQuestions[currentVisibleIndex]) {
+                    visibleQuestions[currentVisibleIndex].classList.add('active');
+                }
+                prevBtn.disabled = currentVisibleIndex === 0;
+                updateProgress();
+            }
+
+            function updateProgress() {
+                const progress = visibleQuestions.length > 1 ? (currentVisibleIndex / (visibleQuestions.length - 1)) * 100 : 100;
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `Step ${currentVisibleIndex + 1} of ${visibleQuestions.length}`;
+            }
+
+            function generateActionLinks(links) {
+                return links.map(link => `
+                    <li>
+                        <a href="${link.url}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                            ${link.text}
+                        </a>
+                    </li>
+                `).join('');
+            }
+
+            function displayResults(primaryKey, secondaryKey) {
+                const primary = resultsMap[primaryKey];
+                const secondary = resultsMap[secondaryKey];
+
+                resultsContent.innerHTML = `
+                    <div class="results-header">
+                        <div id="result-header-icon">${primary.icon}</div>
+                        <h2 class="result-title">${primary.title}</h2>
+                        <p class="result-description">This is your most critical next step. Below, you'll find your primary and secondary actions to take.</p>
+                    </div>
+                    
+                    <div class="action-grid">
+                        <div class="action-card primary">
+                            <div class="action-card-header">
+                                <span class="tag">Primary Action</span>
+                                <h4>${primary.title}</h4>
+                            </div>
+                            <p class="reason">${primary.reason}</p>
+                            <ul>${generateActionLinks(primary.links)}</ul>
+                            <div class="what-if-card">
+                                <h5>Impact Scenario</h5>
+                                <p class="what-if-body">${primary.whatIf}</p>
+                            </div>
+                        </div>
+                        <div class="action-card secondary">
+                             <div class="action-card-header">
+                                <span class="tag">Secondary Action</span>
+                                <h4>${secondary.title}</h4>
+                            </div>
+                            <p class="reason">${secondary.reason}</p>
+                            <ul>${generateActionLinks(secondary.links)}</ul>
+                             <div class="what-if-card">
+                                <h5>Impact Scenario</h5>
+                                <p class="what-if-body">${secondary.whatIf}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="retake-quiz-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+                        <span>Take the Quiz Again</span>
+                    </button>
+                `;
+
+                quizContent.style.display = 'none';
+                resultsContent.style.display = 'block';
+                
+                document.getElementById('retake-quiz-btn').addEventListener('click', resetQuiz);
+            }
+
+            function calculateResults() {
+                const scores = {
+                    emergency: userAnswers.q_emergency === 'yes' ? 10 : 0,
+                    debt: userAnswers.q_debt === 'no' ? 10 : 1,
+                    savings: userAnswers.q_savings_rate === 'low' ? 2 : (userAnswers.q_savings_rate === 'medium' ? 5 : 10),
+                    tax: userAnswers.q_tax === 'yes' ? 10 : 3,
+                    investing: userAnswers.q_investing === 'yes' ? 10 : 4
+                };
+
+                if (scores.emergency === 0) {
+                    displayResults('emergency', scores.debt === 1 ? 'debt' : 'savings');
+                    return;
+                }
+                if (scores.debt === 1) {
+                    displayResults('debt', 'savings');
+                    return;
+                }
+                 if (scores.savings === 2) {
+                    displayResults('savings', 'tax');
+                    return;
+                }
+
+                const sortedPriorities = Object.entries(scores)
+                    .sort(([,a],[,b]) => a-b)
+                    .map(([key]) => key);
+
+                if (scores.investing === 10 && scores.tax === 10 && scores.savings === 10) {
+                     displayResults('optimize', 'investing');
+                } else {
+                    displayResults(sortedPriorities[0], sortedPriorities[1]);
+                }
+            }
+
+            function resetQuiz() {
+                userAnswers = {};
+                currentVisibleIndex = 0;
+                document.querySelectorAll('.option-label.selected').forEach(l => l.classList.remove('selected'));
+                resultsContent.style.display = 'none';
+                quizContent.style.display = 'block';
+                updateVisibleQuestions();
+                showCurrentQuestion();
+            }
+
+            function handlePrevious() {
+                if (currentVisibleIndex > 0) {
+                    currentVisibleIndex--;
+                    showCurrentQuestion();
+                }
+            }
+
+            allQuestions.forEach(question => {
+                const options = question.querySelectorAll('.option-label');
+                options.forEach(label => {
+                    label.addEventListener('click', () => {
+                        const radio = label.querySelector('input[type="radio"]');
+                        userAnswers[radio.name] = radio.value;
+                        
+                        const parentQuestionBlock = radio.closest('.question-block');
+                        parentQuestionBlock.querySelectorAll('.option-label').forEach(opt => opt.classList.remove('selected'));
+                        label.classList.add('selected');
+                        
+                        setTimeout(() => {
+                            updateVisibleQuestions();
+                            
+                            const nextUnansweredIndex = visibleQuestions.findIndex(q => {
+                                const input = q.querySelector('input[type="radio"]');
+                                return !userAnswers.hasOwnProperty(input.name);
+                            });
+
+                            if (nextUnansweredIndex !== -1) {
+                                currentVisibleIndex = visibleQuestions.indexOf(visibleQuestions[nextUnansweredIndex]);
+                                showCurrentQuestion();
+                            } else {
+                                calculateResults();
+                            }
+                        }, 300);
+                    });
+                });
+            });
+
+            prevBtn.addEventListener('click', handlePrevious);
+
+            // Initial setup
+            updateVisibleQuestions();
+            showCurrentQuestion();
+        });
+    </script>
+</body>
+</html>
