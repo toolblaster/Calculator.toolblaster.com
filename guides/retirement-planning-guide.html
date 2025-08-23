@@ -130,6 +130,63 @@
             margin-bottom: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+        /* --- NEW: Mini Calculator Styles --- */
+        .mini-calculator {
+            background-color: #fef2f2; /* Light red background */
+            border: 1px solid #fca5a5; /* Red border */
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .mini-calculator-icon {
+            width: 32px;
+            height: 32px;
+            color: #E34037;
+            margin: 0 auto 0.5rem;
+        }
+        .mini-calculator-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .mini-calculator-input {
+            width: 100%;
+            max-width: 200px;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 0.8rem;
+            text-align: center;
+            margin: 0 auto 0.75rem;
+        }
+        .mini-calculator-result {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #4b5563;
+        }
+        .mini-calculator-result-value {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #C22D2D;
+        }
+        .mini-calculator-affiliate {
+            text-align: center;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #fca5a5;
+            font-size: 0.65rem; /* very small text */
+            color: #6b7280; /* muted color */
+        }
+        .mini-calculator-affiliate a {
+            color: #3b82f6; /* blue link color */
+            text-decoration: none;
+        }
+        .mini-calculator-affiliate a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -160,7 +217,25 @@
                     <li><strong>Simple Calculation:</strong> To use this rule, estimate your ideal annual expenses in retirement and multiply that number by 25. For example, if you think you'll need ₹12 lakh per year, your target corpus would be ₹3 crore (12,00,000 x 25).</li>
                     <li><strong>The Inflation Factor:</strong> Remember, ₹12 lakh today won't have the same purchasing power in 20 or 30 years. It's crucial to account for inflation when estimating your future expenses.</li>
                 </ul>
-                <p><strong>Ready to find your personalized number?</strong> Use our advanced <strong><a href="../index.html?mode=goal">Goal Planning calculator</a></strong> on the homepage to see what it takes to build your dream retirement fund, with inflation properly factored in.</p>
+                
+                <!-- NEW: Mini Calculator Embedded Here -->
+                <div id="mini-calc-retirement" class="mini-calculator">
+                    <div class="mini-calculator-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                    </div>
+                    <h4 class="mini-calculator-title">Quick Corpus Estimator</h4>
+                    <input type="number" id="annual-expenses-input" class="mini-calculator-input" placeholder="Enter Annual Expenses (e.g., 1200000)">
+                    <div id="retirement-corpus-result" class="mini-calculator-result">
+                        Your Target Corpus is:
+                        <span id="corpus-value" class="mini-calculator-result-value">₹0</span>
+                    </div>
+                    <!-- AFFILIATE LINK ADDED -->
+                    <div class="mini-calculator-affiliate">
+                        <a href="https://upstox.onelink.me/0H1s/2JAL6D" target="_blank" rel="noopener noreferrer">Start investing with Upstox</a>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem;"><strong>Ready to find your personalized number?</strong> Use our advanced <strong><a href="../index.html?mode=goal">Goal Planning calculator</a></strong> on the homepage to see what it takes to build your dream retirement fund, with inflation properly factored in.</p>
             </div>
 
             <div class="content-section-card">
@@ -300,6 +375,8 @@
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
+    <!-- NEW: Script for mini calculators -->
+    <script src="mini-calculators.js" defer></script>
 
 </body>
 </html>
