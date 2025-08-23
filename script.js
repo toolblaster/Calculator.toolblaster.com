@@ -95,8 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'financial-habits-assessment-quiz', url: 'guides/financial-habits-assessment-quiz.html', title: 'Financial Habits Assessment Quiz', description: 'Discover your money mindset and get a personalized score.', linkText: 'Take the Quiz', type: 'quiz' },
             { id: 'secure-retirement-forecaster-quiz', url: 'guides/secure-retirement-forecaster-quiz.html', title: 'Secure Retirement Forecaster Quiz', description: 'Assess your retirement readiness and get a personalized report on your target corpus.', linkText: 'Take the Quiz', type: 'quiz' },
             { id: 'are-you-on-track-to-become-a-millionaire-quiz', url: 'guides/are-you-on-track-to-become-a-millionaire-quiz.html', title: 'Are You on Track to Become a Millionaire? Quiz', description: 'Take this quick quiz to see if your financial habits are on track to build significant wealth.', linkText: 'Take the Quiz', type: 'quiz' },
-            { id: 'next-financial-move-quiz', url: 'guides/next-financial-move-quiz.html', title: 'What\'s Your Next Financial Move?', description: 'Take this advanced quiz to get a primary and secondary action plan for your finances.', linkText: 'Take the Quiz', type: 'quiz' },
-            { id: 'personal-budget-tracker', url: 'tracker-tool/personal-budget-tracker.html', title: 'Personal Budget Tracker', description: 'Track your income and expenses to take control of your financial life.', linkText: 'Launch Tracker', type: 'tracker' }
+            { id: 'next-financial-move-quiz', url: 'guides/next-financial-move-quiz.html', title: 'What\'s Your Next Financial Move?', description: 'Take this advanced quiz to get a primary and secondary action plan for your finances.', linkText: 'Take the Quiz', type: 'quiz' }
         ];
 
         let currentPage = 1;
