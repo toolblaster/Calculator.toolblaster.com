@@ -234,6 +234,82 @@
             width: 35% !important; 
             word-wrap: break-word;
         }
+        /* --- NEW: Mini Calculator Styles --- */
+        .mini-calculator {
+            background-color: #fef2f2; /* Light red background */
+            border: 1px solid #fca5a5; /* Red border */
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+        .mini-calculator-icon {
+            width: 32px;
+            height: 32px;
+            color: #E34037;
+            margin: 0 auto 0.5rem;
+        }
+        .mini-calculator-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+        .mini-calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            align-items: center;
+        }
+        .mini-calculator-input-group {
+            text-align: center;
+        }
+        .mini-calculator-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #4b5563;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .mini-calculator-input {
+            width: 100%;
+            max-width: 150px;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 0.8rem;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .mini-calculator-result {
+            font-size: 0.8rem;
+            color: #4b5563;
+        }
+        .mini-calculator-result-value {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #C22D2D;
+        }
+        .mini-calculator-affiliate {
+            text-align: center;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #fca5a5;
+            font-size: 0.65rem; /* very small text */
+            color: #6b7280; /* muted color */
+        }
+        .mini-calculator-affiliate a {
+            color: #3b82f6; /* blue link color */
+            text-decoration: none;
+        }
+        .mini-calculator-affiliate a:hover {
+            text-decoration: underline;
+        }
+        /* NEW: Class for list tick icons */
+        .list-tick-icon {
+            stroke: #E34037;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -253,18 +329,39 @@
                 <p class="text-sm font-semibold text-gray-700">This strategy is perfect for you if:</p>
                 <ul>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M5 13l4 4L19 7"></path></svg>
                         You earn a regular monthly salary and want to build a disciplined saving habit.
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M5 13l4 4L19 7"></path></svg>
                         You're new to investing and want to start without the stress of timing the market.
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M5 13l4 4L19 7"></path></svg>
                         You want to leverage the superpower of Rupee Cost Averaging automatically buying more when prices are low and less when they're high.
                     </li>
                 </ul>
+
+                <!-- NEW: Rupee Cost Averaging Mini Calculator -->
+                <div id="mini-calc-rca" class="mini-calculator">
+                    <div class="mini-calculator-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                    </div>
+                    <h4 class="mini-calculator-title">See Rupee Cost Averaging in Action</h4>
+                    <p class="text-xs text-gray-600 mb-4 text-center">Invest ₹10,000 at different market prices (NAV) to see how many units you get.</p>
+                    <div class="mini-calculator-grid">
+                        <div class="mini-calculator-input-group">
+                            <label for="rca-nav-1" class="mini-calculator-label">Scenario 1: NAV</label>
+                            <input type="number" id="rca-nav-1" class="mini-calculator-input" value="100">
+                            <div class="mini-calculator-result">Units Bought: <span id="rca-units-1" class="mini-calculator-result-value">100.00</span></div>
+                        </div>
+                        <div class="mini-calculator-input-group">
+                            <label for="rca-nav-2" class="mini-calculator-label">Scenario 2: NAV</label>
+                            <input type="number" id="rca-nav-2" class="mini-calculator-input" value="90">
+                            <div class="mini-calculator-result">Units Bought: <span id="rca-units-2" class="mini-calculator-result-value">111.11</span></div>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="recommendation-box">
                     <h3 class="recommendation-title">Does the Steady Climb Sound Like You?</h3>
@@ -281,15 +378,15 @@
                 <p class="text-sm font-semibold text-gray-700">This strategy is perfect for you if:</p>
                 <ul>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M5 13l4 4L19 7"></path></svg>
                         You've received a large sum of money, like a bonus, inheritance, or from a property sale.
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M5 13l4 4L19 7"></path></svg>
                         You're a seasoned investor who believes the market is currently undervalued and presents a good entry point.
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M5 13l4 4L19 7"></path></svg>
                         You want to give your money the full benefit of the Power of Compounding from day one.
                     </li>
                 </ul>
@@ -331,14 +428,14 @@
                                 <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">One-time, single large amount</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.75rem; border: 1-px solid #eee; font-size: 0.7rem;">Risk Factor</td>
+                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Risk Factor</td>
                                 <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Minimizes risk through Rupee Cost Averaging</td>
                                 <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Higher risk due to market timing</td>
                             </tr>
                             <tr>
                                 <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Best For</td>
                                 <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Salaried individuals, long-term goals, beginners</td>
-                                <td style="padding: 0.75rem; border: 1-px solid #eee; font-size: 0.7rem;">Large cash surplus, market dips, experienced investors</td>
+                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Large cash surplus, market dips, experienced investors</td>
                             </tr>
                             <tr>
                                 <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Key Advantage</td>
@@ -415,6 +512,8 @@
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
+    <!-- NEW: Script for mini calculators -->
+    <script src="mini-calculators.js" defer></script>
 
 </body>
 </html>
