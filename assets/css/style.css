@@ -96,7 +96,7 @@ main {
 }
 
 .nav-links li {
-    margin-left: 0.7rem; 
+    margin-left: 0.9rem; /* UPDATED: Increased spacing */
 }
 
 .nav-links > li > a {
