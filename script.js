@@ -93,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'financial-health-assessment', url: 'guides/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 15 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment', type: 'quiz' },
             { id: 'financial-habits-assessment-quiz', url: 'guides/financial-habits-assessment-quiz.html', title: 'Financial Habits Assessment Quiz', description: 'Discover your money mindset and get a personalized score.', linkText: 'Take the Quiz', type: 'quiz' },
             { id: 'secure-retirement-forecaster-quiz', url: 'guides/secure-retirement-forecaster-quiz.html', title: 'Secure Retirement Forecaster Quiz', description: 'Assess your retirement readiness and get a personalized report on your target corpus.', linkText: 'Take the Quiz', type: 'quiz' },
-            { id: 'are-you-on-track-to-become-a-millionaire-quiz', url: 'guides/are-you-on-track-to-become-a-millionaire-quiz.html', title: 'Are You on Track to Become a Millionaire? Quiz', description: 'Take this quick quiz to see if your financial habits are on track to build significant wealth.', linkText: 'Take the Quiz', type: 'quiz' }
+            { id: 'are-you-on-track-to-become-a-millionaire-quiz', url: 'guides/are-you-on-track-to-become-a-millionaire-quiz.html', title: 'Are You on Track to Become a Millionaire? Quiz', description: 'Take this quick quiz to see if your financial habits are on track to build significant wealth.', linkText: 'Take the Quiz', type: 'quiz' },
+            { id: 'personal-budget-tracker', url: 'tracker-tool/personal-budget-tracker.html', title: 'Personal Budget Tracker', description: 'Track your income and expenses to take control of your financial life.', linkText: 'Launch Tracker', type: 'tracker' }
         ];
 
         let currentPage = 1;
@@ -212,8 +213,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- SECTION 2: PAGE INITIALIZATION ---
 
     const initializePage = () => {
-        const isGuidePage = window.location.pathname.includes('/guides/');
-        const basePath = isGuidePage ? '../' : '';
+        // This function will now handle all subdirectories by checking the URL path
+        const isSubdirectoryPage = window.location.pathname.includes('/guides/') || window.location.pathname.includes('/tracker-tool/');
+        const basePath = isSubdirectoryPage ? '../' : '';
 
         const loadPromises = [
             loadComponent(`${basePath}assets/components/header.html`, 'header-placeholder'),
