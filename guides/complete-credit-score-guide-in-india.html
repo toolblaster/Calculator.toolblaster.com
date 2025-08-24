@@ -150,6 +150,12 @@
             gap: 1rem;
             margin-top: 1rem;
         }
+        /* Media query to force a 3-column layout on large screens */
+        @media (min-width: 1024px) {
+            .credit-card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
         .credit-card-card {
             background-color: #fff;
             border: 1px solid #e5e7eb;
