@@ -103,6 +103,9 @@
     </script>
 
     <style>
+        body {
+            background-color: #ffffff; /* Set a static white background for the body */
+        }
         .content-section-card {
             background-color: #ffffff;
             border: 1px solid #e5e7eb;
@@ -112,14 +115,15 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
         .asset-card {
+            background-color: #ffffff; /* Set a static white background for asset cards */
             padding: 1.25rem;
             border-radius: 0.5rem;
             border: 1px solid #d1d5db;
-            transition: all 0.2s;
         }
+        /* Remove hover effect from asset cards */
         .asset-card:hover {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
+            transform: none; /* Remove transform on hover */
         }
         .asset-icon {
             color: #E34037;
@@ -174,6 +178,39 @@
             color: #C22D2D;
             display: block;
          }
+        .recommendation-box {
+            background-color: #fef2f2; /* Light red background for the CTA box */
+            border: 1px solid #fca5a5;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+        .recommendation-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #E34037;
+        }
+        .recommendation-description {
+            font-size: 0.8rem;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .recommendation-btn {
+            display: inline-block;
+            background-color: transparent; /* Changed to transparent */
+            color: #E34037; /* Changed to red color */
+            border: 1px solid #E34037; /* Added a border for the button look */
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.375rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: none; /* Removed transition for hover effect */
+        }
+        .recommendation-btn:hover {
+            background-color: transparent; /* Keep the same color on hover */
+            color: #C22D2D; /* A slightly darker red for hover effect on text */
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -191,7 +228,6 @@
             <div class="content-section-card">
                 <h2>What is the Stock Market? 📈</h2>
                 <p>At its core, the stock market is simply a place where people buy and sell shares of publicly-held companies. When a company wants to raise money to grow, it sells small pieces of ownership called <strong>shares</strong> or <strong>stocks</strong>. When you buy a share, you become a part-owner of that company. In India, the two main stock exchanges are the National Stock Exchange (NSE) and the Bombay Stock Exchange (BSE).</p>
-                <p>The price of a stock changes constantly based on demand, a company's performance, and overall market sentiment. For beginners, it's not about trying to predict these daily fluctuations, but rather understanding that by owning a piece of a profitable company, you are investing in its long-term growth and success.</p>
             </div>
 
             <!-- Section 2: Direct vs. Indirect Investing -->
@@ -220,6 +256,45 @@
                     <h3 class="recommendation-title">Ready to Start Your Journey?</h3>
                     <p class="recommendation-description">The simplest way to begin is with a Mutual Fund SIP. Our calculator can show you how.</p>
                     <a href="../index.html?mode=sip" class="recommendation-btn">Calculate Your SIP Now &rarr;</a>
+                </div>
+            </div>
+
+            <!-- New Section: How to Start Investing in Stocks -->
+            <div class="content-section-card">
+                <h2>How to Start Investing in Stocks 🚀</h2>
+                <p>If you've decided to take the plunge and start direct investing, here's a straightforward, step-by-step guide to get you started. This process is simpler than you might think!</p>
+                <div class="space-y-4 mt-4">
+                    <div>
+                        <h4>1. Open a Demat and Trading Account</h4>
+                        <p>To trade in the stock market, you need two types of accounts, which are usually opened together with a single broker:</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><strong>Demat Account:</strong> This is where your shares are held electronically. Think of it as a bank account for your stocks.</li>
+                            <li><strong>Trading Account:</strong> This is the account you use to place 'buy' and 'sell' orders in the market.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>2. Choose a Brokerage Firm</h4>
+                        <p>Your brokerage firm is your gateway to the stock market. Choose a broker that fits your needs. Key factors to consider include:</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><strong>Brokerage Charges:</strong> Look for low, flat-rate fees for trading.</li>
+                            <li><strong>User Interface:</strong> The platform should be easy to use for a beginner.</li>
+                            <li><strong>Customer Support:</strong> Good customer service can be crucial when you have questions.</li>
+                            <li><strong>Research and Tools:</strong> Some brokers provide research reports and analytics to help you make decisions.</li>
+                        </ul>
+                        <div class="recommendation-box text-center mt-6">
+                            <h3 class="recommendation-title">Ready to open a Demat Account?</h3>
+                            <p class="recommendation-description">Get started with a trusted brokerage partner and begin your investing journey today.</p>
+                            <a href="https://upstox.onelink.me/0H1s/2JAL6D" class="recommendation-btn" target="_blank" rel="noopener noreferrer">Open an Upstox Account &rarr;</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>3. Fund Your Trading Account</h4>
+                        <p>Once your accounts are set up, you'll need to transfer money from your bank account to your trading account. This money is what you will use to purchase shares.</p>
+                    </div>
+                    <div>
+                        <h4>4. Place Your First Order</h4>
+                        <p>After funding your account, you can search for a company you want to invest in. Before you buy, set a budget for your first investment. Start with a small, manageable amount and consider investing in well-established, stable companies that you understand.</p>
+                    </div>
                 </div>
             </div>
 
