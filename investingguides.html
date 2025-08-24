@@ -6,16 +6,64 @@
     <title>Financial Guides & Assessment Quizzes - Calculator.toolblaster</title>
     <meta name="description" content="Explore our comprehensive library of financial guides and planning tools. Learn about investing, retirement planning, tax saving, and more to take control of your financial future.">
     
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Financial Guides & Assessment Quizzes - Calculator.toolblaster">
+    <meta property="og:description" content="Explore our comprehensive library of financial guides, quizzes, and tools to master your personal finances.">
+    <meta property="og:image" content="https://calculator.toolblaster.com/assets/images/investing-guides-og-image.png">
+    <meta property="og:url" content="https://calculator.toolblaster.com/investingguides.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Financial Guides & Assessment Quizzes - Calculator.toolblaster">
+    <meta name="twitter:description" content="Explore our comprehensive library of financial guides, quizzes, and tools to master your personal finances.">
+    <meta name="twitter:image" content="https://calculator.toolblaster.com/assets/images/investing-guides-twitter-image.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": "Financial Guides & Assessment Quizzes",
-      "description": "A curated collection of articles and tools to help you navigate your financial journey with confidence. Explore guides on retirement planning, tax saving, mutual funds, and more.",
-      "url": "https://calculator.toolblaster.com/investingguides.html"
+      "@graph": [
+        {
+          "@type": "CollectionPage",
+          "name": "Financial Guides & Assessment Quizzes",
+          "description": "A curated collection of articles and tools to help you navigate your financial journey with confidence. Explore guides on retirement planning, tax saving, mutual funds, and more.",
+          "url": "https://calculator.toolblaster.com/investingguides.html"
+        },
+        {
+          "@type": "HowTo",
+          "name": "Your 4-Step Financial Action Plan",
+          "description": "A step-by-step guide to taking control of your financial life, from assessment to action.",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "name": "Step 1: Assess Your Situation",
+              "text": "Take our 'What's Your Next Financial Move?' quiz to get a clear, prioritized starting point based on your current financial standing.",
+              "url": "https://calculator.toolblaster.com/guides/next-financial-move-quiz.html"
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Step 2: Set Clear Goals",
+              "text": "Use our Goal Planner to turn your financial dreams into concrete numbers. Calculate exactly how much you need to invest to reach your targets.",
+              "url": "https://calculator.toolblaster.com/index.html?mode=goal"
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Step 3: Choose the Right Tools",
+              "text": "Explore our guides on different investment products like SIPs, Mutual Funds, and RDs to select the best tools for your specific goals.",
+              "url": "https://calculator.toolblaster.com/guides/mfguide.html"
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Step 4: Automate & Review",
+              "text": "Learn how to set up automatic investments to build discipline and review our guides on financial health to stay on track.",
+              "url": "https://calculator.toolblaster.com/guides/financial-health-guide.html"
+            }
+          ]
+        }
+      ]
     }
     </script>
     <style>
@@ -199,6 +247,45 @@
             margin: 1.5rem; /* Reduced margin */
         }
         
+        /* NEW: How-To Section Styles */
+        .how-to-section {
+            padding: 1.5rem;
+        }
+        .how-to-card {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+        }
+        .how-to-card .step-number {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            border-radius: 50%;
+            background-color: #E34037;
+            color: white;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .how-to-card h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .how-to-card p {
+            font-size: 0.7rem;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .how-to-card a {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #C22D2D;
+            text-decoration: none;
+        }
+        
         @media (max-width: 768px) {
             .main-guides-section-container {
                 margin: 1.5rem 0;
@@ -250,6 +337,40 @@
                   <div id="pagination-container" class="flex justify-center items-center gap-2 pt-6 mt-6 border-t border-gray-200">
                       <!-- Pagination buttons will be inserted here by script.js -->
                   </div>
+              </div>
+
+              <!-- NEW: How-To Section -->
+              <div class="how-to-section">
+                <div class="text-center mb-4">
+                    <h2 class="section-title">Your 4-Step Financial Action Plan</h2>
+                    <p class="text-gray-600 mt-3">Follow this simple roadmap to take control of your financial life, one step at a time.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+                    <div class="how-to-card">
+                        <span class="step-number">1</span>
+                        <h3>Assess Your Situation</h3>
+                        <p>Get a clear starting point. Our quiz will identify your top priority right now.</p>
+                        <a href="guides/next-financial-move-quiz.html">Take the Quiz &rarr;</a>
+                    </div>
+                    <div class="how-to-card">
+                        <span class="step-number">2</span>
+                        <h3>Set Clear Goals</h3>
+                        <p>Turn your dreams into numbers. Calculate what you need to invest for your future.</p>
+                        <a href="index.html?mode=goal">Use the Goal Planner &rarr;</a>
+                    </div>
+                    <div class="how-to-card">
+                        <span class="step-number">3</span>
+                        <h3>Choose the Right Tools</h3>
+                        <p>Learn about different investment options to find the best fit for your goals.</p>
+                        <a href="guides/mfguide.html">Read Investing Guides &rarr;</a>
+                    </div>
+                    <div class="how-to-card">
+                        <span class="step-number">4</span>
+                        <h3>Automate & Review</h3>
+                        <p>Build discipline through automation and stay on track with regular check-ins.</p>
+                        <a href="guides/financial-health-guide.html">Learn About Financial Health &rarr;</a>
+                    </div>
+                </div>
               </div>
   
               <!-- Learning Paths Section -->
