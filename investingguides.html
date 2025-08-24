@@ -70,6 +70,21 @@
         /* --- Compact & Visually Distinct Styles --- */
         body { font-size: 13px; } /* Reduced base font size */
         
+        /* New wrapper for distinct sections */
+        .content-block-wrapper {
+            background-color: #fff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            margin: 1.5rem;
+        }
+        /* Color border for each section wrapper */
+        .guides-block { border-color: #E34037; }
+        .how-to-block { border-color: #4CAF50; } /* A green color for this section */
+        .learning-paths-block { border-color: #2196F3; } /* A blue color for this section */
+
+
         .guide-card {
             background-color: #ffffff;
             border-radius: 0.5rem;
@@ -103,7 +118,7 @@
             position: sticky;
             top: 0;
             z-index: 10;
-            background-color: rgba(249, 250, 251, 0.8);
+            background-color: #fdf2f2; /* Light red accent color */
             -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
             padding: 0.75rem 0; /* Tighter padding */
@@ -135,7 +150,7 @@
             border-radius: 0.5rem;
             background-color: #ffffff;
             cursor: pointer;
-            font-size: 0.75rem; /* Smaller */
+            font-size: 0.65rem; /* Smaller font size */
             font-weight: 600;
             color: #374151;
             transition: all 0.2s ease;
@@ -172,11 +187,8 @@
 
         /* --- REFINED LEARNING PATHS SECTION --- */
         .learning-paths-section {
-            background-color: #f3f4f6;
             padding: 1rem; /* Tighter */
-            margin: 0; /* Updated: removed margin to stretch to border */
-            border-radius: 0.75rem;
-            border: 1px solid #e5e7eb;
+            background-color: #f3f4f6;
         }
         .section-title {
             font-size: 1.1rem; /* Smaller */
@@ -234,25 +246,17 @@
         
         /* Grid Section */
         .guides-grid-wrapper {
-            padding: 1.5rem 1.5rem 0; /* Updated: removed bottom padding */
-        }
-        
-        /* New container for the main guides content */
-        .main-guides-section-container {
-            background-color: #fff;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e5e7eb;
-            overflow: hidden; /* Ensures borders are contained */
-            margin: 1.5rem; /* Reduced margin */
+            padding: 1.5rem;
+            background-color: #f9fafb;
         }
         
         /* NEW: How-To Section Styles */
         .how-to-section {
             padding: 1.5rem;
+            background-color: #f9fafb;
         }
         .how-to-card {
-            background-color: #f9fafb;
+            background-color: #ffffff; /* Card backgrounds are now white */
             border: 1px solid #e5e7eb;
             border-radius: 0.5rem;
             padding: 1rem;
@@ -286,9 +290,27 @@
             text-decoration: none;
         }
         
+        /* Updated grid to be mobile-first and 2 columns */
+        #recommended-guides-container, #guides-grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        /* Media query to switch to 3 columns on large screens */
+        @media (min-width: 1024px) {
+            #recommended-guides-container, #guides-grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* How-to and learning paths grids responsive adjustments */
         @media (max-width: 768px) {
-            .main-guides-section-container {
+            .content-block-wrapper {
                 margin: 1.5rem 0;
+            }
+            .how-to-section .grid, .learning-paths-section .grid {
+                grid-template-columns: repeat(1, 1fr);
             }
         }
 
@@ -303,8 +325,8 @@
             <h1>Financial Guides & Assessment Quizzes</h1>
             <p>Your complete resource for mastering personal finance. Explore our guides, use our tools, and build a secure financial future.</p>
             
-            <div class="main-guides-section-container">
-              <!-- Emphasized Filter Section -->
+            <!-- Explore Our Content Section -->
+            <div class="content-block-wrapper guides-block">
               <div class="filter-section-sticky-wrapper">
                   <div class="filter-container-wrapper">
                       <h3 class="filter-title">Explore Our Content</h3>
@@ -338,81 +360,85 @@
                       <!-- Pagination buttons will be inserted here by script.js -->
                   </div>
               </div>
+            </div>
 
-              <!-- How-To Section -->
-              <div class="how-to-section">
-                <div class="text-center mb-4">
-                    <h2 class="section-title">Your 4-Step Financial Action Plan</h2>
-                    <p class="text-gray-600 mt-3">Follow this simple roadmap to take control of your financial life, one step at a time.</p>
+            <!-- Your 4-Step Financial Action Plan Section -->
+            <div class="content-block-wrapper how-to-block">
+                <div class="how-to-section">
+                    <div class="text-center mb-4">
+                        <h2 class="section-title">Your 4-Step Financial Action Plan</h2>
+                        <p class="text-gray-600 mt-3">Follow this simple roadmap to take control of your financial life, one step at a time.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+                        <div class="how-to-card">
+                            <span class="step-number">1</span>
+                            <h3>Assess Your Situation</h3>
+                            <p>Get a clear starting point. Our quiz will identify your top priority right now.</p>
+                            <a href="guides/next-financial-move-quiz.html">Take the Quiz &rarr;</a>
+                        </div>
+                        <div class="how-to-card">
+                            <span class="step-number">2</span>
+                            <h3>Set Clear Goals</h3>
+                            <p>Turn your dreams into numbers. Calculate what you need to invest for your future.</p>
+                            <a href="index.html?mode=goal">Use the Goal Planner &rarr;</a>
+                        </div>
+                        <div class="how-to-card">
+                            <span class="step-number">3</span>
+                            <h3>Choose the Right Tools</h3>
+                            <p>Learn about different investment options to find the best fit for your goals.</p>
+                            <a href="guides/mfguide.html">Read Investing Guides &rarr;</a>
+                        </div>
+                        <div class="how-to-card">
+                            <span class="step-number">4</span>
+                            <h3>Automate & Review</h3>
+                            <p>Build discipline through automation and stay on track with regular check-ins.</p>
+                            <a href="guides/financial-health-guide.html">Learn About Financial Health &rarr;</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-                    <div class="how-to-card">
-                        <span class="step-number">1</span>
-                        <h3>Assess Your Situation</h3>
-                        <p>Get a clear starting point. Our quiz will identify your top priority right now.</p>
-                        <a href="guides/next-financial-move-quiz.html">Take the Quiz &rarr;</a>
-                    </div>
-                    <div class="how-to-card">
-                        <span class="step-number">2</span>
-                        <h3>Set Clear Goals</h3>
-                        <p>Turn your dreams into numbers. Calculate what you need to invest for your future.</p>
-                        <a href="index.html?mode=goal">Use the Goal Planner &rarr;</a>
-                    </div>
-                    <div class="how-to-card">
-                        <span class="step-number">3</span>
-                        <h3>Choose the Right Tools</h3>
-                        <p>Learn about different investment options to find the best fit for your goals.</p>
-                        <a href="guides/mfguide.html">Read Investing Guides &rarr;</a>
-                    </div>
-                    <div class="how-to-card">
-                        <span class="step-number">4</span>
-                        <h3>Automate & Review</h3>
-                        <p>Build discipline through automation and stay on track with regular check-ins.</p>
-                        <a href="guides/financial-health-guide.html">Learn About Financial Health &rarr;</a>
-                    </div>
-                </div>
-              </div>
+            </div>
   
-              <!-- Learning Paths Section -->
-              <div class="learning-paths-section">
-                  <div class="text-center mb-4">
-                      <h2 class="section-title">Start Your Learning Path</h2>
-                      <p class="text-gray-600 mt-3">Don't know where to begin? Follow one of our curated paths to build your knowledge from the ground up.</p>
-                  </div>
-                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                      <!-- Path 1: First-Time Investor -->
-                      <div class="learning-path-card">
-                          <h3>For the First-Time Investor</h3>
-                          <p>Your journey to building wealth starts here. Follow these steps to go from beginner to confident investor.</p>
-                          <ol class="list-none p-0 counter-reset-step-counter">
-                              <li class="counter-increment-step-counter mb-2"><a href="guides/mfguide.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">Understand the Basics</a></li>
-                              <li class="counter-increment-step-counter mb-2"><a href="guides/emergency-fund-guide.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">Build Your Safety Net</a></li>
-                              <li class="counter-increment-step-counter mb-2"><a href="guides/sip-vs-lumpsum.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">Choose Your Strategy</a></li>
-                              <li class="counter-increment-step-counter"><a href="guides/sip-vs-rd.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">SIP vs. RD Explained</a></li>
-                          </ol>
-                      </div>
-                      <!-- Path 2: Retirement Ready -->
-                      <div class="learning-path-card">
-                          <h3>Planning for Retirement</h3>
-                          <p>Secure your golden years with this step-by-step guide to planning for a comfortable and stress-free retirement.</p>
-                          <ol class="list-none p-0 counter-reset-step-counter">
-                              <li class="counter-increment-step-counter mb-2"><a href="guides/retirement-planning-guide.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">The Complete Roadmap</a></li>
-                              <li class="counter-increment-step-counter mb-2"><a href="guides/sip-vs-swp.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">From Saving to Income</a></li>
-                              <li class="counter-increment-step-counter"><a href="guides/secure-retirement-forecaster-quiz.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">Forecast Your Retirement</a></li>
-                          </ol>
-                      </div>
-                      <!-- Path 3: Essential Tools -->
-                      <div class="learning-path-card">
-                          <h3>Essential Financial Tools</h3>
-                          <p>Put your knowledge into action. Use our powerful calculators and quizzes to plan your financial future with precision.</p>
-                          <ol class="list-none p-0 counter-reset-step-counter">
-                              <li class="counter-increment-step-counter mb-2"><a href="index.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">All-in-One Calculator</a></li>
-                              <li class="counter-increment-step-counter mb-2"><a href="guides/next-financial-move-quiz.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">Find Your Next Step Quiz</a></li>
-                              <li class="counter-increment-step-counter"><a href="guides/financial-health-assessment.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">Full Health Assessment</a></li>
-                          </ol>
-                      </div>
-                  </div>
-              </div>
+            <!-- Learning Paths Section -->
+            <div class="content-block-wrapper learning-paths-block">
+                <div class="learning-paths-section">
+                    <div class="text-center mb-4">
+                        <h2 class="section-title">Start Your Learning Path</h2>
+                        <p class="text-gray-600 mt-3">Don't know where to begin? Follow one of our curated paths to build your knowledge from the ground up.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                        <!-- Path 1: First-Time Investor -->
+                        <div class="learning-path-card">
+                            <h3>For the First-Time Investor</h3>
+                            <p>Your journey to building wealth starts here. Follow these steps to go from beginner to confident investor.</p>
+                            <ol class="list-none p-0 counter-reset-step-counter">
+                                <li class="counter-increment-step-counter mb-2"><a href="guides/mfguide.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">Understand the Basics</a></li>
+                                <li class="counter-increment-step-counter mb-2"><a href="guides/emergency-fund-guide.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">Build Your Safety Net</a></li>
+                                <li class="counter-increment-step-counter mb-2"><a href="guides/sip-vs-lumpsum.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">Choose Your Strategy</a></li>
+                                <li class="counter-increment-step-counter"><a href="guides/sip-vs-rd.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">SIP vs. RD Explained</a></li>
+                            </ol>
+                        </div>
+                        <!-- Path 2: Retirement Ready -->
+                        <div class="learning-path-card">
+                            <h3>Planning for Retirement</h3>
+                            <p>Secure your golden years with this step-by-step guide to planning for a comfortable and stress-free retirement.</p>
+                            <ol class="list-none p-0 counter-reset-step-counter">
+                                <li class="counter-increment-step-counter mb-2"><a href="guides/retirement-planning-guide.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">The Complete Roadmap</a></li>
+                                <li class="counter-increment-step-counter mb-2"><a href="guides/sip-vs-swp.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">From Saving to Income</a></li>
+                                <li class="counter-increment-step-counter"><a href="guides/secure-retirement-forecaster-quiz.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">Forecast Your Retirement</a></li>
+                            </ol>
+                        </div>
+                        <!-- Path 3: Essential Tools -->
+                        <div class="learning-path-card">
+                            <h3>Essential Financial Tools</h3>
+                            <p>Put your knowledge into action. Use our powerful calculators and quizzes to plan your financial future with precision.</p>
+                            <ol class="list-none p-0 counter-reset-step-counter">
+                                <li class="counter-increment-step-counter mb-2"><a href="index.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">All-in-One Calculator</a></li>
+                                <li class="counter-increment-step-counter mb-2"><a href="guides/next-financial-move-quiz.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">Find Your Next Step Quiz</a></li>
+                                <li class="counter-increment-step-counter"><a href="guides/financial-health-assessment.html" class="flex items-center no-underline text-sm font-medium text-gray-700 p-2 rounded-md bg-gray-50 hover:bg-red-50 hover:text-red-700 transition">Full Health Assessment</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
