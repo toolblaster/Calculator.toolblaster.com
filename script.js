@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentPage = 1;
         let currentFilter = 'guide'; // Default to 'guide'
         let currentSearchQuery = '';
-        const itemsPerPage = 9;
+        const itemsPerPage = 12; // This value was changed from 9 to 12
 
         function getFilteredAndSearchedContent() {
             let filtered = allContent.filter(item => item.type === currentFilter);
