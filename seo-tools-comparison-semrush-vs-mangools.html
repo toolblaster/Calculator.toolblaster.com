@@ -606,6 +606,30 @@
                             <div class="quiz-option border p-4 rounded" data-value="high">$100+</div>
                         </div>
                     </div>
+                    <div id="question3" class="quiz-question hidden">
+                        <p class="font-bold">What is your primary role?</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                            <div class="quiz-option border p-4 rounded" data-value="blogger">Solo Blogger / Content Creator</div>
+                            <div class="quiz-option border p-4 rounded" data-value="freelancer">Freelancer / Small Business Owner</div>
+                            <div class="quiz-option border p-4 rounded" data-value="agency">Part of a Marketing Team / Agency</div>
+                        </div>
+                    </div>
+                    <div id="question4" class="quiz-question hidden">
+                        <p class="font-bold">What is your most important SEO task?</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                            <div class="quiz-option border p-4 rounded" data-value="keywords">Finding new keywords and content ideas.</div>
+                            <div class="quiz-option border p-4 rounded" data-value="audits">Conducting in-depth technical audits of websites.</div>
+                            <div class="quiz-option border p-4 rounded" data-value="reporting">Tracking rankings and creating reports for clients.</div>
+                        </div>
+                    </div>
+                    <div id="question5" class="quiz-question hidden">
+                        <p class="font-bold">How important are automated reports and team collaboration features to you?</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                            <div class="quiz-option border p-4 rounded" data-value="not_important">Not important at all.</div>
+                            <div class="quiz-option border p-4 rounded" data-value="nice_to_have">Nice to have, but not essential.</div>
+                            <div class="quiz-option border p-4 rounded" data-value="critical">Absolutely critical for my workflow.</div>
+                        </div>
+                    </div>
                     <div id="quiz-result" class="hidden text-center mt-4">
                         <h3 class="text-lg font-bold">Your Recommended Tool:</h3>
                         <p id="tool-recommendation" class="text-xl font-bold text-green-600"></p>
@@ -645,9 +669,7 @@
 
                     answers[questionId] = answerValue;
                     
-                    // Remove selection from other options
                     questionDiv.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
-                    // Add selection to clicked option
                     e.target.classList.add('selected');
 
                     const currentQuestionIndex = Array.from(questions).indexOf(questionDiv);
@@ -664,10 +686,26 @@
             function showResult() {
                 questions.forEach(q => q.classList.add('hidden'));
                 
-                let recommendation = 'Mangools';
-                if (answers.question1 === 'pro' || answers.question2 === 'high') {
-                    recommendation = 'SEMrush';
-                }
+                let semrushPoints = 0;
+                let mangoolsPoints = 0;
+
+                // Logic based on answers
+                if (answers.question1 === 'pro' || answers.question1 === 'agency') semrushPoints += 2;
+                if (answers.question1 === 'beginner') mangoolsPoints += 2;
+
+                if (answers.question2 === 'high') semrushPoints += 2;
+                if (answers.question2 === 'low') mangoolsPoints += 2;
+
+                if (answers.question3 === 'agency') semrushPoints += 2;
+                if (answers.question3 === 'blogger' || answers.question3 === 'freelancer') mangoolsPoints +=1;
+                
+                if (answers.question4 === 'audits' || answers.question4 === 'reporting') semrushPoints += 2;
+                if (answers.question4 === 'keywords') mangoolsPoints += 2;
+
+                if (answers.question5 === 'critical') semrushPoints += 2;
+                if (answers.question5 === 'not_important') mangoolsPoints += 2;
+
+                const recommendation = semrushPoints > mangoolsPoints ? 'SEMrush' : 'Mangools';
 
                 recommendationText.textContent = recommendation;
                 resultContainer.classList.remove('hidden');
