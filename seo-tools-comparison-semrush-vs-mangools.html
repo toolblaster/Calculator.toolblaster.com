@@ -359,6 +359,38 @@
                 padding: 0.75rem;
             }
         }
+
+        /* NEW STYLES FOR SECTION WRAPPERS */
+        .section-wrapper {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+        }
+        
+        /* Specific border colors for visual pop */
+        .intro-section {
+            border: 2px solid #E34037; /* Red accent */
+        }
+        .comparison-table-section {
+            border: 2px solid #1cb27f; /* Green accent */
+        }
+        .highlights-section {
+            border: 2px solid #ff6e00; /* Orange accent */
+        }
+        .pros-cons-section {
+            border: 2px solid #3b82f6; /* Blue accent */
+        }
+        .ratings-section {
+            border: 2px solid #f59e0b; /* Yellow accent */
+        }
+        .pricing-section {
+            border: 2px solid #8b5cf6; /* Purple accent */
+        }
+        .quiz-section {
+            border: 2px solid #f43f5e; /* Pink accent */
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -370,7 +402,7 @@
             <h1>Boost Your Website Rankings With the Right SEO Tools</h1>
             <p>In today’s highly competitive digital marketing landscape, success isn’t just about creating great content—it’s about having powerful insights and data at your fingertips. Whether you're a blogger working to grow your audience, an affiliate marketer looking to scale, an agency managing multiple clients, or even a small business owner trying to appear on Page 1 of Google, choosing the right SEO toolkit is crucial. This SEO software comparison between SEMrush and Mangools shows you exactly which tool fits your goals, workflow, and budget.</p>
     
-            <div class="content-section-card bg-gray-50">
+            <div class="section-wrapper intro-section">
                 <h2>This Page Delivers:</h2>
                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-4">
                     <li>✅ A feature-by-feature breakdown across 35+ SEO capabilities</li>
@@ -387,7 +419,7 @@
                 </div>
             </div>
     
-            <div class="content-section-card">
+            <div class="section-wrapper">
                 <h2>Why SEO Tools Are Essential</h2>
                 <p>Modern SEO is more competitive, AI-driven, and data-intensive. Without proper tools, you're essentially flying blind. Here's what top SEO tools help with:</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
@@ -424,61 +456,63 @@
                 </div>
             </div>
             
-            <div class="content-section-card overflow-x-auto bg-gray-50">
+            <div class="section-wrapper comparison-block">
                 <h2 class="text-center">⚔️ Comparison – SEMrush vs Mangools (35-Point Feature Breakdown)</h2>
-                <table class="comparison-table w-full mt-4">
-                    <thead>
-                        <tr class="bg-gray-100">
-                            <th class="text-left">Feature</th>
-                            <th class="text-left">SEMrush</th>
-                            <th class="text-left">Mangools</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>🔍 Keyword Research</td><td>✅ 24B+ keywords, clusters, AI suggestions</td><td>✅ KWFinder with clean UI and trendlines</td></tr>
-                        <tr><td>🧠 Keyword Intent Detection</td><td>✅ NLP-based intent tags</td><td>❌ Not supported</td></tr>
-                        <tr><td>📊 Search Volume Accuracy</td><td>✅ Based on proprietary and partner data</td><td>✅ Uses Google Planner, Moz, and Majestic</td></tr>
-                        <tr><td>💬 Question-Based Keywords</td><td>✅ Built-in filter</td><td>⚠️ Manually filtered</td></tr>
-                        <tr><td>🧩 Keyword Clustering</td><td>✅ Auto-grouping with semantic logic</td><td>❌ Manual only</td></tr>
-                        <tr><td>📌 SERP Feature Filters</td><td>✅ Track all Google SERP elements</td><td>⚠️ Limited feature coverage</td></tr>
-                        <tr><td>🔗 Backlink Index</td><td>✅ Live + historic links, toxic analysis</td><td>✅ LinkMiner with Moz/Majestic index</td></tr>
-                        <tr><td>🚫 Disavow File Export</td><td>✅ Auto-export disavow-ready files</td><td>❌ No disavow support</td></tr>
-                        <tr><td>🧼 Toxic Link Audit</td><td>✅ AI-based spam score</td><td>❌ Not available</td></tr>
-                        <tr><td>🆚 Competitor Domain Analysis</td><td>✅ Full domain/URL-level benchmarking</td><td>✅ SERPChecker domain strength comparison</td></tr>
-                        <tr><td>🌐 Organic Traffic Estimations</td><td>✅ Competitor traffic, sources, channel breakdown</td><td>⚠️ Surface-level metrics only</td></tr>
-                        <tr><td>🛠️ Site Audit Checks</td><td>✅ 130+ issues scanned, Core Vitals</td><td>⚠️ Basic health checks</td></tr>
-                        <tr><td>⚙️ Core Web Vitals Report</td><td>✅ CLS, LCP, FID reports + fixes</td><td>❌ No direct support</td></tr>
-                        <tr><td>📲 Mobile vs Desktop Audit</td><td>✅ Separate crawling and usability checks</td><td>⚠️ Unified reports</td></tr>
-                        <tr><td>📈 Rank Tracking</td><td>✅ Local/Global + device split, volatility alerts</td><td>✅ SERPWatcher with geo & mobile checks</td></tr>
-                        <tr><td>🗓️ Historical Rank Trends</td><td>✅ View rank evolution over time</td><td>⚠️ Limited trend graph</td></tr>
-                        <tr><td>✍️ Content Optimization</td><td>✅ NLP, readability, semantic gap analysis</td><td>✅ SERP-based suggestions</td></tr>
-                        <tr><td>🧠 Topic Ideation Tools</td><td>✅ Keyword Magic, Topic Research</td><td>⚠️ Manual brainstorming</td></tr>
-                        <tr><td>📑 SEO Content Brief Generator</td><td>✅ AI-generated briefs</td><td>❌ Not available</td></tr>
-                        <tr><td>💻 UI Design & Usability</td><td>⚠️ Complex interface for pros</td><td>✅ Beautiful UI with visuals</td></tr>
-                        <tr><td>👥 Collaboration & Team Access</td><td>✅ Multi-user, role-based</td><td>⚠️ Single user or manual sharing</td></tr>
-                        <tr><td>📤 Export Options</td><td>✅ PDF, CSV, scheduled email, white-label</td><td>⚠️ CSV download only</td></tr>
-                        <tr><td>📦 Reporting Automation</td><td>✅ Auto reports + dashboards</td><td>❌ Manual export only</td></tr>
-                        <tr><td>🔗 Integrations</td><td>✅ GA, GSC, Ads, Looker Studio, Zapier</td><td>⚠️ Basic integrations</td></tr>
-                        <tr><td>📡 SERP Volatility Alerts</td><td>✅ Track daily SERP changes</td><td>❌ Not included</td></tr>
-                        <tr><td>🔌 API Access</td><td>✅ On higher plans</td><td>❌ No API</td></tr>
-                        <tr><td>🧪 Data Refresh Rate</td><td>✅ Daily updates</td><td>✅ Regular, source-dependent</td></tr>
-                        <tr><td>🌐 Multilingual Support</td><td>✅ 10+ UI languages, regional SERPs</td><td>✅ Multiple languages, localised dashboards</td></tr>
-                        <tr><td>📱 Mobile App</td><td>⚠️ No native app, responsive dashboard</td><td>✅ Mobile-optimised, fast UI</td></tr>
-                        <tr><td>🎓 Training Library</td><td>✅ SEMrush Academy, webinars</td><td>✅ Blog, video guides</td></tr>
-                        <tr><td>🧠 SEO Scorecards</td><td>✅ Site score, keyword health</td><td>⚠️ Simplified scores</td></tr>
-                        <tr><td>🎯 PPC & Ad Data</td><td>✅ Competitor ad copy, keyword spend</td><td>❌ No PPC data</td></tr>
-                        <tr><td>📈 Traffic Analytics Suite</td><td>✅ Competitor visit data, bounce rate</td><td>❌ Not available</td></tr>
-                        <tr><td>📌 Local SEO Tools</td><td>✅ GMB tracking, map pack, reviews</td><td>✅ City-based tracking only</td></tr>
-                        <tr><td>💳 Free Trial</td><td>✅ 7-day full trial</td><td>✅ 10-day trial, no credit card</td></tr>
-                    </tbody>
-                </table>
-                 <div class="text-center mt-4 space-x-4">
+                <div class="overflow-x-auto">
+                    <table class="comparison-table w-full mt-4">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="text-left">Feature</th>
+                                <th class="text-left">SEMrush</th>
+                                <th class="text-left">Mangools</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>🔍 Keyword Research</td><td>✅ 24B+ keywords, clusters, AI suggestions</td><td>✅ KWFinder with clean UI and trendlines</td></tr>
+                            <tr><td>🧠 Keyword Intent Detection</td><td>✅ NLP-based intent tags</td><td>❌ Not supported</td></tr>
+                            <tr><td>📊 Search Volume Accuracy</td><td>✅ Based on proprietary and partner data</td><td>✅ Uses Google Planner, Moz, and Majestic</td></tr>
+                            <tr><td>💬 Question-Based Keywords</td><td>✅ Built-in filter</td><td>⚠️ Manually filtered</td></tr>
+                            <tr><td>🧩 Keyword Clustering</td><td>✅ Auto-grouping with semantic logic</td><td>❌ Manual only</td></tr>
+                            <tr><td>📌 SERP Feature Filters</td><td>✅ Track all Google SERP elements</td><td>⚠️ Limited feature coverage</td></tr>
+                            <tr><td>🔗 Backlink Index</td><td>✅ Live + historic links, toxic analysis</td><td>✅ LinkMiner with Moz/Majestic index</td></tr>
+                            <tr><td>🚫 Disavow File Export</td><td>✅ Auto-export disavow-ready files</td><td>❌ No disavow support</td></tr>
+                            <tr><td>🧼 Toxic Link Audit</td><td>✅ AI-based spam score</td><td>❌ Not available</td></tr>
+                            <tr><td>🆚 Competitor Domain Analysis</td><td>✅ Full domain/URL-level benchmarking</td><td>✅ SERPChecker domain strength comparison</td></tr>
+                            <tr><td>🌐 Organic Traffic Estimations</td><td>✅ Competitor traffic, sources, channel breakdown</td><td>⚠️ Surface-level metrics only</td></tr>
+                            <tr><td>🛠️ Site Audit Checks</td><td>✅ 130+ issues scanned, Core Vitals</td><td>⚠️ Basic health checks</td></tr>
+                            <tr><td>⚙️ Core Web Vitals Report</td><td>✅ CLS, LCP, FID reports + fixes</td><td>❌ No direct support</td></tr>
+                            <tr><td>📲 Mobile vs Desktop Audit</td><td>✅ Separate crawling and usability checks</td><td>⚠️ Unified reports</td></tr>
+                            <tr><td>📈 Rank Tracking</td><td>✅ Local/Global + device split, volatility alerts</td><td>✅ SERPWatcher with geo & mobile checks</td></tr>
+                            <tr><td>🗓️ Historical Rank Trends</td><td>✅ View rank evolution over time</td><td>⚠️ Limited trend graph</td></tr>
+                            <tr><td>✍️ Content Optimization</td><td>✅ NLP, readability, semantic gap analysis</td><td>✅ SERP-based suggestions</td></tr>
+                            <tr><td>🧠 Topic Ideation Tools</td><td>✅ Keyword Magic, Topic Research</td><td>⚠️ Manual brainstorming</td></tr>
+                            <tr><td>📑 SEO Content Brief Generator</td><td>✅ AI-generated briefs</td><td>❌ Not available</td></tr>
+                            <tr><td>💻 UI Design & Usability</td><td>⚠️ Complex interface for pros</td><td>✅ Beautiful UI with visuals</td></tr>
+                            <tr><td>👥 Collaboration & Team Access</td><td>✅ Multi-user, role-based</td><td>⚠️ Single user or manual sharing</td></tr>
+                            <tr><td>📤 Export Options</td><td>✅ PDF, CSV, scheduled email, white-label</td><td>⚠️ CSV download only</td></tr>
+                            <tr><td>📦 Reporting Automation</td><td>✅ Auto reports + dashboards</td><td>❌ Manual export only</td></tr>
+                            <tr><td>🔗 Integrations</td><td>✅ GA, GSC, Ads, Looker Studio, Zapier</td><td>⚠️ Basic integrations</td></tr>
+                            <tr><td>📡 SERP Volatility Alerts</td><td>✅ Track daily SERP changes</td><td>❌ Not included</td></tr>
+                            <tr><td>🔌 API Access</td><td>✅ On higher plans</td><td>❌ No API</td></tr>
+                            <tr><td>🧪 Data Refresh Rate</td><td>✅ Daily updates</td><td>✅ Regular, source-dependent</td></tr>
+                            <tr><td>🌐 Multilingual Support</td><td>✅ 10+ UI languages, regional SERPs</td><td>✅ Multiple languages, localised dashboards</td></tr>
+                            <tr><td>📱 Mobile App</td><td>⚠️ No native app, responsive dashboard</td><td>✅ Mobile-optimised, fast UI</td></tr>
+                            <tr><td>🎓 Training Library</td><td>✅ SEMrush Academy, webinars</td><td>✅ Blog, video guides</td></tr>
+                            <tr><td>🧠 SEO Scorecards</td><td>✅ Site score, keyword health</td><td>⚠️ Simplified scores</td></tr>
+                            <tr><td>🎯 PPC & Ad Data</td><td>✅ Competitor ad copy, keyword spend</td><td>❌ No PPC data</td></tr>
+                            <tr><td>📈 Traffic Analytics Suite</td><td>✅ Competitor visit data, bounce rate</td><td>❌ Not available</td></tr>
+                            <tr><td>📌 Local SEO Tools</td><td>✅ GMB tracking, map pack, reviews</td><td>✅ City-based tracking only</td></tr>
+                            <tr><td>💳 Free Trial</td><td>✅ 7-day full trial</td><td>✅ 10-day trial, no credit card</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center mt-4 space-x-4">
                     <a href="#" class="cta-button cta-semrush">🚀 Try SEMrush – 7-Day Trial</a>
                     <a href="https://mangools.com#a5ebaddebfeebf80fc747e102" class="cta-button cta-mangools">🌱 Start Mangools – 10-Day Free Access</a>
                 </div>
             </div>
     
-            <div class="content-section-card">
+            <div class="section-wrapper highlights-section">
                 <h2>✅ Tool Highlights (Detailed Feature Breakdown)</h2>
                 
                 <div class="mt-4">
@@ -526,7 +560,7 @@
                 </div>
             </div>
     
-            <div class="content-section-card bg-gray-50">
+            <div class="section-wrapper pros-cons-section bg-gray-50">
                 <h2>Pros and Cons: A Quick Summary</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div>
@@ -568,7 +602,7 @@
                 </div>
             </div>
     
-            <div class="content-section-card">
+            <div class="section-wrapper ratings-section">
                 <h2>⭐ Star Ratings</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div>
@@ -594,7 +628,7 @@
                 </div>
             </div>
     
-            <div class="content-section-card bg-gray-50">
+            <div class="section-wrapper pricing-section bg-gray-50">
                 <h2>📊 Pricing and Plans at a Glance</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div>
@@ -642,7 +676,7 @@
                 </div>
             </div>
     
-            <div class="content-section-card">
+            <div class="section-wrapper">
                 <h2>✅ Buyer’s Guide – How to Choose the Right SEO Tool</h2>
                 <div class="mt-4">
                     <h3 class="font-bold">🧭 Step 1: Clarify Your SEO Objectives</h3>
@@ -666,7 +700,7 @@
                 </div>
             </div>
     
-            <div class="content-section-card bg-gray-50">
+            <div class="section-wrapper bg-gray-50">
                 <h2>🚀 Making the Most of Your Free Trial: A 7-Day Action Plan</h2>
                 <p>A free trial is your best opportunity to see if a tool fits your workflow. Don't just click around—follow this plan to test the core features that deliver the most value.</p>
                 <ul class="list-disc list-inside mt-4 text-sm">
@@ -680,7 +714,7 @@
                 </ul>
             </div>
     
-            <div class="content-section-card">
+            <div class="section-wrapper">
                 <h2>🎯 The Final Verdict: Which Tool Is Right for You?</h2>
                 <p>After a deep dive into features, pricing, and use cases, the choice becomes clearer. It’s not about which tool is "better," but which tool is *right for you*.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
@@ -689,8 +723,8 @@
                         <ul class="list-disc list-inside text-sm mt-2">
                             <li>You're a blogger, freelancer, or run a niche affiliate site.</li>
                             <li>You prioritize ease of use and a beautiful, fast interface.</li>
-                            <li>Your budget is a key consideration.</li>
                             <li>You need strong core features without enterprise-level complexity.</li>
+                            <li>Your budget is a key consideration.</li>
                         </ul>
                     </div>
                     <div>
@@ -705,49 +739,7 @@
                 </div>
             </div>
     
-            <div class="content-section-card bg-gray-50">
-                <h2>📘 Real User Case Studies</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                    <div class="feature-card">
-                        <h3 class="font-bold">👨‍💼 Luca – Agency Growth with SEMrush</h3>
-                        <p class="text-sm italic">"SEMrush became our sales weapon – it proved our expertise before we even pitched."</p>
-                        <p class="font-bold text-green-600 mt-2">Result: 3 to 11 clients; revenue up 220% in 6 months</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3 class="font-bold">👩‍🍳 Emma – Blog Traffic Boost with Mangools</h3>
-                        <p class="text-sm italic">"Simplicity and strategy beat guesswork when using the right SEO tool."</p>
-                        <p class="font-bold text-green-600 mt-2">Result: 4X organic traffic in 5 months; landed sponsorships</p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="content-section-card">
-                <h2>❓ Frequently Asked Questions</h2>
-                <div class="faq-container mt-4">
-                    <details class="faq-item">
-                        <summary>New to SEO? Which tool should I start with?</summary>
-                        <p>✅ Try Mangools – it's extremely beginner-friendly.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Running an agency? Which is better?</summary>
-                        <p>🎯 Use SEMrush – it's built for scaling and managing multiple clients.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Which is better for Local SEO?</summary>
-                        <p>🗺️ Both work well, but Mangools is often easier for regional tracking.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Can I use these tools on mobile?</summary>
-                        <p>📲 Both are mobile-friendly, but Mangools has a smoother mobile UI.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Do they offer a free trial?</summary>
-                        <p>🧪 Yes: SEMrush offers a 7-day trial, and Mangools offers a 10-day trial with no credit card required.</p>
-                    </details>
-                </div>
-            </div>
-    
-            <div class="content-section-card bg-gray-50">
+            <div class="section-wrapper quiz-section bg-gray-50">
                 <h2>🧠 Bonus: Interactive Tool Selector Quiz</h2>
                 <p class="text-center">Find Your Perfect SEO Tool in 20 Seconds</p>
                 <div id="quiz-container" class="mt-4">
@@ -798,14 +790,13 @@
                 </div>
             </div>
     
-            <div class="content-section-card">
-                <h2>🎯 Final CTA</h2>
-                <p class="text-center">Ready to Grow with the Right SEO Tool?</p>
+            <div class="section-wrapper">
+                <h2 class="text-center">🚀 Ready to Take Control of Your SEO?</h2>
+                <p class="text-center">Click below to start your free trial and discover which tool will help you dominate the search rankings.</p>
                 <div class="text-center mt-4 space-x-4">
                     <a href="#" class="cta-button cta-semrush">🚀 Try SEMrush – 7-Day Trial</a>
                     <a href="https://mangools.com#a5ebaddebfeebf80fc747e102" class="cta-button cta-mangools">🌱 Start Mangools – 10-Day Free Access</a>
                 </div>
-                <p class="text-center text-sm mt-4">You don’t need both — just the right one for your goals.</p>
             </div>
         </div>
     </main>
