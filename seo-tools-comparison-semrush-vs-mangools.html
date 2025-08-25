@@ -183,6 +183,7 @@
         }
         .cta-semrush:hover {
             background-color: #e66300;
+            color: white !important; /* Ensure text remains white on hover */
         }
         .cta-mangools {
             background-color: #1cb27f;
@@ -190,6 +191,7 @@
         }
         .cta-mangools:hover {
             background-color: #178f66;
+            color: white !important; /* Ensure text remains white on hover */
         }
         .quiz-option {
             cursor: pointer;
@@ -267,9 +269,10 @@
             border-bottom: 1px solid #fde2e1;
             transition: all 0.3s ease;
         }
+        /* Updated hover rule for all links inside legal-content */
         .legal-content a:hover {
-            color: var(--accent-color-dark);
-            background-color: var(--link-hover-bg);
+            color: var(--accent-color-dark) !important; 
+            background-color: var(--link-hover-bg) !important;
         }
         .legal-content h1 {
             background-color: var(--section-bg-alt);
