@@ -8,31 +8,47 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     /**
-     * NEW: Centralized function to add the affiliate link.
-     * This function creates and appends the affiliate link to any given calculator element.
+     * Centralized function to add the affiliate links.
+     * This function creates and appends the affiliate links to any given calculator element.
      * @param {HTMLElement} calculatorElement - The main container div of the mini-calculator.
      */
-    function addAffiliateLink(calculatorElement) {
+    function addAffiliateLinks(calculatorElement) {
+        // Check if an affiliate container already exists to prevent duplication
+        if (calculatorElement.querySelector('.mini-calculator-affiliate')) {
+            return;
+        }
+
         const affiliateContainer = document.createElement('div');
         affiliateContainer.className = 'mini-calculator-affiliate';
 
-        const affiliateLink = document.createElement('a');
-        affiliateLink.href = 'https://upstox.onelink.me/0H1s/2JAL6D';
-        affiliateLink.target = '_blank';
-        affiliateLink.rel = 'noopener noreferrer';
-        affiliateLink.className = 'inline-flex items-center';
-        affiliateLink.innerHTML = `
-            Start investing with Upstox
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        `;
+        // Upstox Link
+        const upstoxLink = document.createElement('a');
+        upstoxLink.href = 'https://upstox.onelink.me/0H1s/2JAL6D';
+        upstoxLink.target = '_blank';
+        upstoxLink.rel = 'noopener noreferrer';
+        upstoxLink.textContent = 'Start investing with Upstox';
+        
+        // 5paisa Link
+        const paisaLink = document.createElement('a');
+        paisaLink.href = 'https://www.5paisa.com/demat-account?ReferralCode=54285431&ReturnUrl=invest-open-account'; // Please replace with your actual affiliate link if different
+        paisaLink.target = '_blank';
+        paisaLink.rel = 'noopener noreferrer';
+        paisaLink.textContent = 'Start investing with 5paisa';
+        
+        // Separator
+        const separator = document.createElement('span');
+        separator.className = 'mx-2';
+        separator.textContent = '|';
 
-        affiliateContainer.appendChild(affiliateLink);
+        affiliateContainer.appendChild(upstoxLink);
+        affiliateContainer.appendChild(separator);
+        affiliateContainer.appendChild(paisaLink);
         calculatorElement.appendChild(affiliateContainer);
     }
 
     /**
      * Initializes the Retirement Corpus Mini-Calculator.
-     * Finds the calculator by its ID, attaches an event listener, and performs the calculation.
+     * Finds the calculator by its ID, attaches an event listener, performs the calculation, and adds links.
      */
     function initRetirementCorpusCalculator() {
         const calculator = document.getElementById('mini-calc-retirement');
@@ -42,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const expensesInput = document.getElementById('annual-expenses-input');
         const resultValue = document.getElementById('corpus-value');
+        
+        if (!expensesInput || !resultValue) return;
         
         const formatCurrency = (num) => {
             if (isNaN(num) || num <= 0) return '₹0';
@@ -63,8 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         expensesInput.addEventListener('input', calculateCorpus);
-        // Automatically add the affiliate link
-        addAffiliateLink(calculator);
+        // Automatically add the affiliate links
+        addAffiliateLinks(calculator);
     }
 
     /**
@@ -82,6 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const unitsResult1 = document.getElementById('rca-units-1');
         const unitsResult2 = document.getElementById('rca-units-2');
         
+        if (!navInput1 || !navInput2 || !unitsResult1 || !unitsResult2) return;
+
         const investmentAmount = 10000;
 
         const calculateUnits = (navInput, unitsResult) => {
@@ -100,8 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
         calculateUnits(navInput1, unitsResult1);
         calculateUnits(navInput2, unitsResult2);
 
-        // Automatically add the affiliate link
-        addAffiliateLink(calculator);
+        // Automatically add the affiliate links
+        addAffiliateLinks(calculator);
     }
 
 
@@ -110,3 +130,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initRcaCalculator(); 
 
 });
+
