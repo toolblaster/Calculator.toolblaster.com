@@ -183,6 +183,31 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .pros-cons-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .pros-cons-grid h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.75rem;
+        }
+        .pros-cons-grid ul {
+            margin-top: 0;
+        }
+        .list-tick-icon {
+             color: #16a34a;
+        }
+        .list-cross-icon {
+            color: #ef4444; /* Red color for disadvantages */
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -202,15 +227,15 @@
                 <p class="text-sm font-semibold text-gray-700">A SIP is ideal for:</p>
                 <ul>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>Building a retirement corpus over your working life.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>Saving for long-term goals like a child's education or a down payment on a house.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>Anyone who wants to invest in the equity market without the stress of timing it perfectly.</span>
                     </li>
                 </ul>
@@ -230,15 +255,15 @@
                 <p class="text-sm font-semibold text-gray-700">An SWP is ideal for:</p>
                 <ul>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>Retirees seeking a regular "pension" from their investments.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>Individuals who need to fund regular, known expenses from their savings.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>Anyone looking for a smarter, more tax-efficient alternative to traditional income options like FDs or dividends.</span>
                     </li>
                 </ul>
@@ -285,6 +310,47 @@
                 </table>
             </div>
 
+            <!-- Advantages and Disadvantages Section -->
+            <div class="strategy-card">
+                <h2 class="strategy-title">Advantages & Disadvantages</h2>
+                <div class="pros-cons-grid">
+                    <div>
+                        <h3>SIP: Pros & Cons</h3>
+                        <ul>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <span><strong>Advantage:</strong> Builds discipline and removes emotional decision-making.</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <span><strong>Advantage:</strong> Mitigates risk through Rupee Cost Averaging, ideal for volatile markets.</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-cross-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                <span><strong>Disadvantage:</strong> In a continuously rising market, it may generate lower returns than a lumpsum investment.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>SWP: Pros & Cons</h3>
+                        <ul>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <span><strong>Advantage:</strong> Provides a predictable, regular income stream for retirees.</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <span><strong>Advantage:</strong> More tax-efficient than receiving dividends or FD interest.</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-cross-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                <span><strong>Disadvantage:</strong> A high withdrawal rate or a market downturn can deplete the corpus faster than planned.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <div class="strategy-card">
                 <h2 class="strategy-title">The Investor's Lifecycle: From SIP to SWP</h2>
                 <p class="strategy-subtitle">A successful financial plan seamlessly transitions from a SIP phase to an SWP phase. Consider Priya's journey:</p>
@@ -310,15 +376,15 @@
                 <p class="strategy-subtitle">Setting up an SWP requires careful planning. Here are three key tips:</p>
                 <ul>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span><strong>Choose the Right Fund:</strong> An SWP is best suited for less volatile funds like hybrid or debt funds to ensure consistency in your income stream.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span><strong>Determine a Safe Withdrawal Rate (SWR):</strong> A common rule of thumb is the 4% rule, but this can vary. Your SWR should ideally be lower than your fund's expected long-term return to prevent your corpus from depleting too quickly.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span><strong>Review Annually:</strong> Review your SWP annually to account for inflation and market performance. You may need to adjust your withdrawal amount to ensure your corpus lasts as long as you need it to.</span>
                     </li>
                 </ul>
@@ -396,3 +462,4 @@
 
 </body>
 </html>
+
