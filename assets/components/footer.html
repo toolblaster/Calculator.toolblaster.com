@@ -1,12 +1,51 @@
 <!-- 
-  This is the reusable footer file. 
-  The footer bar is full-width, but the inner container constrains the content.
+  UPDATED Reusable Footer File
+  This footer has been redesigned into a responsive 3-column layout to improve navigation and provide more useful links.
+  The copyright notice is now in a separate, centered bottom bar.
 -->
 <footer class="site-footer">
     <div class="container">
         <div class="footer-content">
+            <!-- Column 1: Brand and About -->
+            <div class="footer-column">
+                <a href="/index.html" class="logo flex items-center" style="font-size: 1.1rem; color: #ffffff;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.25rem;">
+                        <rect width="16" height="20" x="4" y="2" rx="2"/>
+                        <path d="M8 6h8"/><path d="M8 10h8"/><path d="M8 14h8"/><path d="M15 18h1"/>
+                    </svg>
+                    Calculator<span class="logo-accent">.</span>toolblaster
+                </a>
+                <p class="footer-about">
+                    An all-in-one financial calculator to plan your investments with precision. Empowering you to make smarter financial decisions.
+                </p>
+            </div>
+
+            <!-- Column 2: Calculators -->
+            <div class="footer-column">
+                <h4 class="footer-heading">Calculators</h4>
+                <ul class="footer-links">
+                    <li><a href="/index.html?mode=sip">SIP Calculator</a></li>
+                    <li><a href="/index.html?mode=lumpsum">Lumpsum Calculator</a></li>
+                    <li><a href="/index.html?mode=swp">SWP Calculator</a></li>
+                    <li><a href="/index.html?mode=fd">FD & RD Calculators</a></li>
+                    <li><a href="/index.html?mode=goal">Goal Planner</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Popular Guides -->
+            <div class="footer-column">
+                <h4 class="footer-heading">Popular Guides</h4>
+                <ul class="footer-links">
+                    <li><a href="/guides/retirement-planning-guide.html">Retirement Planning</a></li>
+                    <li><a href="/guides/tax-saving-guide.html">Tax Saving (80C)</a></li>
+                    <li><a href="/guides/sip-vs-lumpsum.html">SIP vs Lumpsum</a></li>
+                    <li><a href="/guides/financial-health-guide.html">Financial Health</a></li>
+                    <li><a href="/investingguides.html">All Guides</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
             <p>&copy; 2025 Calculator.toolblaster All Rights Reserved.</p>
-            <!-- The links to the disclaimer and privacy policy have been removed -->
         </div>
     </div>
 </footer>
