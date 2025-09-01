@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'credit-score-guide', url: 'guides/complete-credit-score-guide-in-india.html', title: 'Your Guide to Understanding & Improving Your Credit Score', description: 'A complete guide to your CIBIL score, why it matters, and how to improve it.', linkText: 'Read More', type: 'guide' },
             // NEWLY ADDED: Stock market guide
             { id: 'stock-market-guide', url: 'guides/stock-market-guide-in-india.html', title: 'A Complete Beginner\'s Guide to the Stock Market', description: 'Learn the basics of stock market investing, from demat accounts to technical analysis.', linkText: 'Read More', type: 'guide' },
+            { id: '5paisa-vs-upstox', url: 'guides/5paisa-vs-upstox.html', title: '5paisa vs. Upstox: The Ultimate Broker Showdown', description: 'A deep-dive comparison to help you choose the best trading account in India.', linkText: 'Read More', type: 'guide' },
             { id: 'risk-profile-quiz', url: 'guides/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz', type: 'quiz' },
             { id: 'financial-health-assessment', url: 'guides/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 15 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment', type: 'quiz' },
             { id: 'financial-habits-assessment-quiz', url: 'guides/financial-habits-assessment-quiz.html', title: 'Financial Habits Assessment Quiz', description: 'Discover your money mindset and get a personalized score.', linkText: 'Take the Quiz', type: 'quiz' },
@@ -736,17 +737,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const expectedReturnPreRetirement = 0.12; // 12%
             const expectedReturnPostRetirement = 0.08; // 8%
 
+            // 1. Calculate Target Corpus
             const futureMonthlyExpenses = monthlyExpenses * Math.pow(1 + inflationRate, yearsToRetirement);
             const annualExpensesAtRetirement = futureMonthlyExpenses * 12;
             const realReturnPostRetirement = ((1 + expectedReturnPostRetirement) / (1 + inflationRate)) - 1;
             const targetCorpus = (annualExpensesAtRetirement / realReturnPostRetirement) * (1 - Math.pow(1 / (1 + realReturnPostRetirement), 30));
 
+            // 2. Calculate Projected Corpus
             const futureValueOfCurrentSavings = currentSavings * Math.pow(1 + expectedReturnPreRetirement, yearsToRetirement);
             const monthlyReturnRate = expectedReturnPreRetirement / 12;
             const totalMonths = yearsToRetirement * 12;
             const futureValueOfSIP = monthlyInvestment * ((Math.pow(1 + monthlyReturnRate, totalMonths) - 1) / monthlyReturnRate) * (1 + monthlyReturnRate);
             const projectedCorpus = futureValueOfCurrentSavings + futureValueOfSIP;
 
+            // 3. Calculate Gap and Required SIP
             const shortfall = targetCorpus - projectedCorpus;
             let requiredAdditionalSIP = 0;
             if (shortfall > 0) {
@@ -770,9 +774,11 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsContent.innerHTML = `
                 <div class="report-card">
                     <h2 class="text-lg font-bold text-gray-800 mb-2 title-with-accent">Your Retirement Report</h2>
+                    
                     <div class="chart-container">
                         <canvas id="retirementChart"></canvas>
                     </div>
+
                     <div class="grid grid-cols-2 gap-2 text-left my-4">
                         <div class="bg-white p-2 rounded-lg shadow-sm">
                             <p class="text-xxs text-gray-500">Target Corpus</p>
@@ -804,9 +810,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h4 class="text-sm font-bold text-gray-700 text-center mb-2">What's Next?</h4>
                         <div class="flex justify-center gap-2">
                             <a href="../index.html?mode=goal" class="flex items-center justify-center gap-2 bg-red-600 text-white font-semibold py-1 px-3 rounded-md hover:bg-red-700 transition transform hover:scale-105 text-xs">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                                 <span>Goal Planner</span>
                             </a>
                             <a href="retirement-planning-guide.html" class="flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-800 font-semibold py-1 px-3 rounded-md hover:bg-gray-50 transition transform hover:scale-105 text-xs">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
                                 <span>Read Guide</span>
                             </a>
                         </div>
@@ -814,6 +822,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                      <div class="results-actions">
                         <button class="results-btn retake-quiz-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
                             Retake Assessment
                         </button>
                     </div>
@@ -821,6 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             resultsContent.style.display = 'block';
             
+            // Create chart
             const ctx = document.getElementById('retirementChart').getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
@@ -853,14 +863,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Event Listeners
         questions.forEach((question, index) => {
             const options = question.querySelectorAll('.option-label');
             options.forEach(label => {
                 label.addEventListener('click', () => {
                     if (isTransitioning) return;
                     isTransitioning = true;
+
                     const radio = label.querySelector('input[type="radio"]');
                     userAnswers[radio.name] = radio.value;
+                    
                     options.forEach(opt => opt.classList.remove('selected'));
                     label.classList.add('selected');
 
@@ -883,6 +896,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Initial setup
         showQuestion(0);
     }
     
