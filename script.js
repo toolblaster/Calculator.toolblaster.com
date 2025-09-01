@@ -217,8 +217,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- SECTION 2: PAGE INITIALIZATION ---
 
     const initializePage = () => {
-        // This function will now handle all subdirectories by checking the URL path
-        const isSubdirectoryPage = window.location.pathname.includes('/guides/') || window.location.pathname.includes('/tracker-tool/');
+        // UPDATED: Added '/legal/' to the subdirectory check
+        const isSubdirectoryPage = window.location.pathname.includes('/guides/') || window.location.pathname.includes('/legal/') || window.location.pathname.includes('/tracker-tool/');
         const basePath = isSubdirectoryPage ? '../' : '';
 
         const loadPromises = [
