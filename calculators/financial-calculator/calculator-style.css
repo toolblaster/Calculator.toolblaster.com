@@ -6,7 +6,7 @@
     box-sizing: border-box;
     width: 100%;
     max-width: 800px; /* Aligned with the main container */
-    margin: 1rem auto;
+    margin: 0.5rem auto 1rem; /* MODIFIED: Set top margin to 0.5rem and bottom to 1rem */
     font-family: 'Inter', sans-serif;
     background-color: #f9fafb;
     padding: 0.5rem;
@@ -113,3 +113,4 @@
     background-color: #e5e7eb;
     color: #1f2937;
 }
+
