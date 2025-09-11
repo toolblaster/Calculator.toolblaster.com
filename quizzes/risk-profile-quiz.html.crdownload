@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Investor Profile - Calculator.toolblaster</title>
+    
+    <script>
+      // Redirect directory URLs to the homepage
+      if (window.location.pathname !== '/' && window.location.pathname.endsWith('/')) {
+        window.location.href = '/';
+      }
+    </script>
+    
+    <meta name="description" content="Take our quick and easy quiz to discover your personal risk profile. Understand if you are a conservative, balanced, or aggressive investor and get personalized recommendations.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      "name": "Investor Profile Quiz",
+      "description": "An interactive quiz to help users determine their investment risk profile (Conservative, Balanced, or Aggressive) and receive personalized financial tool recommendations.",
+      "hasPart": [
+        {
+          "@type": "Question",
+          "name": "When it comes to investing, which statement sounds most like you?",
+          "acceptedAnswer": [
+            { "@type": "Answer", "text": "I'm new to this and my main goal is to not lose the money I've saved." },
+            { "@type": "Answer", "text": "I'm willing to accept some ups and downs to get better returns than a savings account." },
+            { "@type": "Answer", "text": "I'm aiming for the highest possible growth, and I understand that involves taking bigger risks." }
+          ]
+        },
+        {
+          "@type": "Question",
+          "name": "If you saw your investment value drop by 20% in a month, what would you do?",
+          "acceptedAnswer": [
+            { "@type": "Answer", "text": "Sell immediately to cut my losses." },
+            { "@type": "Answer", "text": "Feel worried, but hold on and hope it recovers." },
+            { "@type": "Answer", "text": "See it as a sale and invest even more." }
+          ]
+        },
+        {
+          "@type": "Question",
+          "name": "How soon do you think you'll need to use the money you're investing?",
+          "acceptedAnswer": [
+            { "@type": "Answer", "text": "In the next 1-3 years." },
+            { "@type": "Answer", "text": "Sometime between 4 and 7 years from now." },
+            { "@type": "Answer", "text": "Not for at least 8 years or more." }
+          ]
+        },
+        {
+          "@type": "Question",
+          "name": "How much experience do you have with investing in things like stocks or mutual funds?",
+          "acceptedAnswer": [
+            { "@type": "Answer", "text": "None at all, I'm a complete beginner." },
+            { "@type": "Answer", "text": "I know the basics and have made a few investments." },
+            { "@type": "Answer", "text": "I'm very experienced and actively manage my own portfolio." }
+          ]
+        },
+        {
+          "@type": "Question",
+          "name": "Which of these trade-offs are you most comfortable making?",
+          "acceptedAnswer": [
+            { "@type": "Answer", "text": "I'd accept very low returns to ensure my money is 100% safe." },
+            { "@type": "Answer", "text": "I'd risk a small potential loss for a chance at moderate, inflation-beating returns." },
+            { "@type": "Answer", "text": "I'd risk a larger potential loss for a chance at high, market-beating returns." }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .quiz-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        #progress-bar-container {
+            width: 100%;
+            background-color: #e5e7eb;
+            border-radius: 999px;
+            height: 8px;
+            margin-bottom: 2rem;
+        }
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #E34037;
+            border-radius: 999px;
+            transition: width 0.4s ease-in-out;
+        }
+        .question-block {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .question-block.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .question-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1f2d37;
+            margin-bottom: 1rem;
+        }
+        .option-label {
+            display: block;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-size: 0.75rem;
+        }
+        .option-label:hover {
+            background-color: #f9fafb;
+            border-color: #E34037;
+        }
+        .option-label input {
+            display: none;
+        }
+        .option-label.selected {
+            background-color: #fef2f2;
+            border-color: #E34037;
+            color: #C22D2D;
+            font-weight: 500;
+        }
+        #results-content { display: none; }
+        .report-card {
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background-color: #f9fafb;
+            animation: fadeIn 0.5s;
+        }
+        .result-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1rem auto;
+            color: #C22D2D;
+        }
+        .result-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #C22D2D;
+            margin-bottom: 0.5rem;
+        }
+        .result-description {
+            font-size: 0.75rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+        .recommendation-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        .recommendation-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .action-btn-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            background-color: #fef2f2;
+            color: #C22D2D;
+            border: 1px solid #fca5a5;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .action-btn:hover {
+            background-color: #C22D2D;
+            color: white;
+            border-color: #C22D2D;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .action-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+        .results-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .results-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #374151;
+            color: white;
+            border: none;
+            padding: 0.35rem 0.8rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .results-btn:hover {
+            background-color: #4b5563;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 10px rgba(0,0,0,0.1);
+        }
+        #quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .nav-button {
+            background: none;
+            border: 1px solid #d1d5db;
+            color: #4b5563;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #f3f4f6;
+        }
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .title-with-accent::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #E34037;
+            margin: 0.75rem auto 0;
+        }
+        #notification-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2d3748;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        #notification-toast.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <div class="quiz-container">
+            <div id="quiz-content">
+                <div class="text-center p-6 bg-red-50 rounded-lg mb-8">
+                    <h1 class="text-xl font-bold text-gray-800 mb-2 title-with-accent">What's Your Investor Profile?</h1>
+                    <p class="text-gray-600 text-sm">Answer 5 quick questions to reveal your risk tolerance and get personalized suggestions.</p>
+                </div>
+                
+                <div id="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+
+                <form id="risk-quiz-form">
+                    <div class="question-block active" data-question-index="0">
+                        <p class="question-text">1. When it comes to investing, which statement sounds most like you?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q1" value="1" required> "I'm new to this and my main goal is to not lose the money I've saved."</label>
+                            <label class="option-label"><input type="radio" name="q1" value="2"> "I'm willing to accept some ups and downs to get better returns than a savings account."</label>
+                            <label class="option-label"><input type="radio" name="q1" value="3"> "I'm aiming for the highest possible growth, and I understand that involves taking bigger risks."</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="1">
+                        <p class="question-text">2. If you saw your investment value drop by 20% in a month, what would you do?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q2" value="1" required> Sell immediately to cut my losses.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="2"> Feel worried, but hold on and hope it recovers.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="3"> See it as a sale and invest even more.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="2">
+                        <p class="question-text">3. How soon do you think you'll need to use the money you're investing?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q3" value="1" required> In the next 1-3 years.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="2"> Sometime between 4 and 7 years from now.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="3"> Not for at least 8 years or more.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="3">
+                        <p class="question-text">4. How much experience do you have with investing in things like stocks or mutual funds?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q4" value="1" required> None at all, I'm a complete beginner.</label>
+                            <label class="option-label"><input type="radio" name="q4" value="2"> I know the basics and have made a few investments.</label>
+                            <label class="option-label"><input type="radio" name="q4" value="3"> I'm very experienced and actively manage my own portfolio.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="4">
+                        <p class="question-text">5. Which of these trade-offs are you most comfortable making?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q5" value="1" required> I'd accept very low returns to ensure my money is 100% safe.</label>
+                            <label class="option-label"><input type="radio" name="q5" value="2"> I'd risk a small potential loss for a chance at moderate, inflation-beating returns.</label>
+                            <label class="option-label"><input type="radio" name="q5" value="3"> I'd risk a larger potential loss for a chance at high, market-beating returns.</label>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="quiz-navigation">
+                    <button id="prev-btn" class="nav-button">Previous</button>
+                </div>
+            </div>
+
+            <div id="results-content">
+                <!-- Results will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <div id="notification-toast"></div>
+    <div id="footer-placeholder"></div>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizContent = document.getElementById('quiz-content');
+            const resultsContent = document.getElementById('results-content');
+            const questions = document.querySelectorAll('.question-block');
+            const prevButton = document.getElementById('prev-btn');
+            const progressBar = document.getElementById('progress-bar');
+            
+            let currentQuestionIndex = 0;
+            const userAnswers = {};
+            let isTransitioning = false;
+            let finalResultData = {};
+
+            function showQuestion(index) {
+                questions.forEach((question, i) => {
+                    question.classList.toggle('active', i === index);
+                });
+                currentQuestionIndex = index;
+                prevButton.disabled = index === 0;
+                updateProgressBar();
+            }
+
+            function updateProgressBar() {
+                const progress = (currentQuestionIndex / (questions.length - 1)) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            function calculateAndShowResults() {
+                let score = 0;
+                for (const q in userAnswers) {
+                    score += parseInt(userAnswers[q], 10);
+                }
+
+                const resultProfiles = {
+                    conservative: {
+                        title: 'You are a Conservative Investor',
+                        icon: `<svg class="result-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
+                        description: 'You prioritize the safety of your initial capital above all else. You are most comfortable with low-risk investments that offer predictable, stable returns, even if they are modest.',
+                        recommendations: [
+                            { text: 'FD Calculator', link: '../index.html?mode=fd', icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line></svg>` },
+                            { text: 'RD Calculator', link: '../index.html?mode=rd', icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 6v6l4 2"></path></svg>` },
+                            { text: 'Emergency Fund Guide', link: 'emergency-fund-guide.html', icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>` }
+                        ]
+                    },
+                    balanced: {
+                        title: 'You are a Balanced Investor',
+                        icon: `<svg class="result-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"></path><path d="M16 16l-4-4-4 4"></path><path d="M8 8l4 4 4-4"></path></svg>`,
+                        description: 'You are looking for a healthy mix of safety and growth. You\'re willing to take on a moderate amount of risk to achieve better returns than traditional savings instruments, but you still value capital preservation.',
+                        recommendations: [
+                            { text: 'Lumpsum Calculator', link: '../index.html?mode=lumpsum', icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>` },
+                            { text: 'Goal Planner', link: '../index.html?mode=goal', icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>` },
+                            { text: 'Goal-Based Investing', link: 'goal-based-investing.html', icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>` }
+                        ]
+                    },
+                    aggressive: {
+                        title: 'You are an Aggressive Investor',
+                        icon: `<svg class="result-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>`,
+                        description: 'You are focused on maximizing your long-term growth and are comfortable taking on significant market risk to do so. You understand that market downturns are part of the journey to achieving high returns.',
+                        recommendations: [
+                            { text: 'SIP Calculator', link: '../index.html?mode=sip', icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg>` },
+                            { text: 'Goal Planner', link: '../index.html?mode=goal', icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>` },
+                            { text: 'Retirement Planning', link: 'retirement-planning-guide.html', icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>` }
+                        ]
+                    }
+                };
+                
+                if (score <= 7) {
+                    finalResultData = resultProfiles.conservative;
+                } else if (score <= 12) {
+                    finalResultData = resultProfiles.balanced;
+                } else {
+                    finalResultData = resultProfiles.aggressive;
+                }
+
+                let recommendationsHTML = finalResultData.recommendations.map(rec => `
+                    <a href="${rec.link}" class="action-btn">
+                        ${rec.icon}
+                        <span>${rec.text}</span>
+                    </a>
+                `).join('');
+
+                resultsContent.innerHTML = `
+                    <div class="report-card">
+                        ${finalResultData.icon}
+                        <h2 class="result-title">${finalResultData.title}</h2>
+                        <p class="result-description">${finalResultData.description}</p>
+                        
+                        <div class="recommendation-section">
+                            <h3 class="recommendation-title">We recommend exploring:</h3>
+                            <div class="action-btn-container">
+                                ${recommendationsHTML}
+                            </div>
+                        </div>
+                        
+                        <div class="results-actions">
+                             <button id="share-report-btn" class="results-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+                                Share Report
+                            </button>
+                            <button class="results-btn retake-quiz-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+                                Retake Quiz
+                            </button>
+                        </div>
+                        <!-- New Disclaimer -->
+                        <p class="text-xs font-light text-gray-500 mt-6 pt-4 border-t border-gray-200">
+                            <strong>Privacy Guarantee:</strong> We do not ask for personal details and none of your answers or results are stored. This quiz is completely anonymous.
+                        </p>
+                    </div>
+                `;
+
+                quizContent.style.display = 'none';
+                resultsContent.style.display = 'block';
+
+                // Re-attach event listeners for the new buttons
+                document.querySelector('.retake-quiz-btn').addEventListener('click', handleRetakeQuiz);
+                document.getElementById('share-report-btn').addEventListener('click', handleShareReport);
+            }
+
+            function handleRetakeQuiz() {
+                Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+                document.querySelectorAll('.option-label.selected').forEach(l => l.classList.remove('selected'));
+                document.getElementById('risk-quiz-form').reset();
+                
+                resultsContent.style.display = 'none';
+                resultsContent.innerHTML = '';
+                quizContent.style.display = 'block';
+                showQuestion(0);
+            }
+            
+            function handleShareReport() {
+                if (!finalResultData.title) return;
+                const summaryText = `I just took the Investor Profile Quiz and found out I'm a ${finalResultData.title.split(' are a ')[1]}! Find out your profile here: ${window.location.href}`;
+
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'My Investor Profile',
+                        text: summaryText,
+                        url: window.location.href,
+                    }).catch(err => {
+                        console.error("Share failed:", err.message);
+                        showNotification('Could not share report.');
+                    });
+                } else {
+                     const textArea = document.createElement("textarea");
+                    textArea.value = summaryText;
+                    textArea.style.position = "fixed";
+                    textArea.style.left = "-9999px";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        showNotification('Report summary copied to clipboard!');
+                    } catch (err) {
+                        console.error('Fallback: Oops, unable to copy', err);
+                        showNotification('Could not copy report summary.');
+                    }
+                    document.body.removeChild(textArea);
+                }
+            }
+
+            questions.forEach((question, index) => {
+                const options = question.querySelectorAll('.option-label');
+                options.forEach(label => {
+                    label.addEventListener('click', () => {
+                        if (isTransitioning) return;
+                        isTransitioning = true;
+
+                        const radio = label.querySelector('input[type="radio"]');
+                        userAnswers[radio.name] = radio.value;
+
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        label.classList.add('selected');
+
+                        setTimeout(() => {
+                            if (currentQuestionIndex < questions.length - 1) {
+                                showQuestion(currentQuestionIndex + 1);
+                            } else {
+                                calculateAndShowResults();
+                            }
+                            isTransitioning = false;
+                        }, 300);
+                    });
+                });
+            });
+
+            prevButton.addEventListener('click', () => {
+                if (currentQuestionIndex > 0) {
+                    showQuestion(currentQuestionIndex - 1);
+                }
+            });
+
+            showQuestion(0);
+        });
+    </script>
+</body>
+</html>

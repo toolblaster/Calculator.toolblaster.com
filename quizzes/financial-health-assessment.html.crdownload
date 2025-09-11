@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Health Assessment - Calculator.toolblaster</title>
+    
+    <meta name="description" content="Take our comprehensive quiz to assess your financial health. Get a personalized report card on your savings, debt, insurance, and investment habits.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      "name": "Financial Health Assessment",
+      "description": "An interactive quiz to help users assess their overall financial health, covering savings, debt, insurance, and investment risk profile, and receive a personalized report card.",
+      "hasPart": [
+        { "@type": "Question", "name": "What is your current age group?" },
+        { "@type": "Question", "name": "Which of these best describes your current life stage?"},
+        { "@type": "Question", "name": "What is your approximate monthly income?"},
+        { "@type": "Question", "name": "What is your single most important long-term financial goal?"},
+        { "@type": "Question", "name": "Have you started investing specifically for this goal?"},
+        { "@type": "Question", "name": "How do you typically handle your tax-saving investments under Section 80C?"},
+        { "@type": "Question", "name": "What percentage of your monthly income are you able to save or invest?" },
+        { "@type": "Question", "name": "Do you have an emergency fund that can cover at least 3-6 months of essential living expenses?" },
+        { "@type": "Question", "name": "Excluding a home loan, is your total monthly EMI more than 20% of your income?" },
+        { "@type": "Question", "name": "Which of these essential insurance policies do you have?" },
+        { "@type": "Question", "name": "When it comes to investing, which statement sounds most like you?" },
+        { "@type": "Question", "name": "If you saw your investment value drop by 20% in a month, what would you do?" },
+        { "@type": "Question", "name": "How soon do you think you'll need to use the money you're investing?" },
+        { "@type": "Question", "name": "How much experience do you have with investing in things like stocks or mutual funds?" },
+        { "@type": "Question", "name": "Which of these trade-offs are you most comfortable making?" }
+      ]
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .quiz-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        #progress-bar-container {
+            width: 100%;
+            background-color: #e5e7eb;
+            border-radius: 999px;
+            height: 8px;
+            margin-bottom: 2rem;
+        }
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #E34037;
+            border-radius: 999px;
+            transition: width 0.4s ease-in-out;
+        }
+        .question-block {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .question-block.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .question-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1f2d37;
+            margin-bottom: 1rem;
+        }
+        .option-label {
+            display: block;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-size: 0.75rem;
+        }
+        .option-label:hover {
+            background-color: #f9fafb;
+            border-color: #E34037;
+        }
+        .option-label input {
+            display: none;
+        }
+        .option-label.selected {
+            background-color: #fef2f2;
+            border-color: #E34037;
+            color: #C22D2D;
+            font-weight: 500;
+        }
+        #results-content { display: none; }
+        .report-card {
+            text-align: center;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background-color: #f9fafb;
+            animation: fadeIn 0.5s;
+        }
+        .overall-score-container {
+            margin-bottom: 1rem;
+        }
+        .score-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.5s ease, border-color 0.5s ease;
+        }
+        .score-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            transition: color 0.5s ease;
+        }
+        /* Dynamic Score Colors - 5 Levels */
+        .score-very-low { background-color: #fecaca; border: 4px solid #b91c1c; }
+        .score-very-low .score-text { color: #7f1d1d; }
+        .score-low { background-color: #fee2e2; border: 4px solid #ef4444; }
+        .score-low .score-text { color: #b91c1c; }
+        .score-medium { background-color: #fef9c3; border: 4px solid #f59e0b; }
+        .score-medium .score-text { color: #b45309; }
+        .score-good { background-color: #dcfce7; border: 4px solid #22c55e; }
+        .score-good .score-text { color: #15803d; }
+        .score-excellent { background-color: #bbf7d0; border: 4px solid #16a34a; }
+        .score-excellent .score-text { color: #14532d; }
+
+        .score-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            text-align: left;
+        }
+        @media (min-width: 640px) {
+            .pillar-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .pillar-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+        .pillar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .pillar-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .pillar-rating {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.125rem 0.5rem;
+            border-radius: 999px;
+        }
+        .rating-green { background-color: #dcfce7; color: #166534; }
+        .rating-yellow { background-color: #fef9c3; color: #854d0e; }
+        .rating-red { background-color: #fee2e2; color: #991b1b; }
+        .pillar-advice {
+            font-size: 0.65rem;
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+        }
+        .action-btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            margin-top: 0.5rem;
+        }
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            background-color: #fef2f2;
+            color: #C22D2D;
+            border: 1px solid #fca5a5;
+            padding: 0.125rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+        .action-btn:hover {
+            background-color: #C22D2D;
+            color: white;
+            border-color: #C22D2D;
+            transform: translateY(-1px);
+        }
+        .action-btn svg {
+            width: 10px;
+            height: 10px;
+        }
+        .results-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .results-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #374151;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.7rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.65rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .results-btn:hover {
+            background-color: #4b5563;
+            transform: translateY(-1px);
+        }
+        #quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .nav-button {
+            background: none;
+            border: 1px solid #d1d5db;
+            color: #4b5563;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #f3f4f6;
+        }
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .title-with-accent {
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+        .title-with-accent::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #E34037;
+            margin: 0.75rem auto 0;
+        }
+        #priority-plan {
+            margin-bottom: 1rem;
+            background-color: #fff;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        #priority-plan h3 {
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        #priority-plan ol {
+            list-style-position: inside;
+            list-style-type: decimal;
+            text-align: left;
+        }
+        #priority-plan li {
+            font-size: 0.7rem;
+            color: #4b5563;
+            margin-bottom: 0.25rem;
+        }
+        .chart-container {
+            position: relative;
+            height: 100px;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        #notification-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2d3748;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        #notification-toast.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <div class="quiz-container">
+            <div id="quiz-content">
+                <div class="text-center p-6 bg-red-50 rounded-lg mb-8">
+                    <h1 class="text-xl font-bold text-gray-800 mb-2 title-with-accent">Your Financial Health Assessment</h1>
+                    <p class="text-gray-600 text-sm">Answer 15 quick questions to get your personalized financial report card.</p>
+                </div>
+                
+                <div id="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+
+                <form id="health-quiz-form">
+                    <!-- Questions -->
+                    <div class="question-block active" data-question-index="0">
+                        <p class="question-text">1. What is your current age group?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_age" value="1" required> Under 30</label>
+                            <label class="option-label"><input type="radio" name="q_age" value="2"> 30 - 40</label>
+                            <label class="option-label"><input type="radio" name="q_age" value="3"> 40 - 50</label>
+                            <label class="option-label"><input type="radio" name="q_age" value="4"> 50+</label>
+                        </div>
+                    </div>
+                     <div class="question-block" data-question-index="1">
+                        <p class="question-text">2. Which of these best describes your current life stage?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_stage" value="1" required> Single</label>
+                            <label class="option-label"><input type="radio" name="q_stage" value="2"> Married</label>
+                            <label class="option-label"><input type="radio" name="q_stage" value="3"> Married with Kids</label>
+                            <label class="option-label"><input type="radio" name="q_stage" value="4"> Nearing Retirement</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="2">
+                        <p class="question-text">3. What is your approximate monthly income?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q_income" value="1" required> Less than ₹50,000</label>
+                            <label class="option-label"><input type="radio" name="q_income" value="2"> ₹50,000 - ₹1 Lakh</label>
+                            <label class="option-label"><input type="radio" name="q_income" value="3"> ₹1 Lakh - ₹2 Lakhs</label>
+                            <label class="option-label"><input type="radio" name="q_income" value="4"> More than ₹2 Lakhs</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="3">
+                        <p class="question-text">4. What is your single most important long-term financial goal?</p>
+                        <div class="options-container">
+                           <label class="option-label"><input type="radio" name="q_goal" value="Retirement" required> Retirement</label>
+                           <label class="option-label"><input type="radio" name="q_goal" value="Child's Education"> Child's Education</label>
+                           <label class="option-label"><input type="radio" name="q_goal" value="Buying a Home"> Buying a Home</label>
+                           <label class="option-label"><input type="radio" name="q_goal" value="Wealth Creation"> General Wealth Creation</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="4">
+                        <p class="question-text">5. Have you started investing specifically for this goal?</p>
+                        <div class="options-container">
+                           <label class="option-label"><input type="radio" name="q_goal_started" value="1" required> No, not yet</label>
+                           <label class="option-label"><input type="radio" name="q_goal_started" value="2"> Yes, I have a plan</label>
+                        </div>
+                    </div>
+                     <div class="question-block" data-question-index="5">
+                        <p class="question-text">6. How do you typically handle your tax-saving investments under Section 80C?</p>
+                        <div class="options-container">
+                           <label class="option-label"><input type="radio" name="q_tax" value="1" required> I don't really plan for it</label>
+                           <label class="option-label"><input type="radio" name="q_tax" value="2"> I invest a lumpsum at the end of the year (Jan-Mar)</label>
+                           <label class="option-label"><input type="radio" name="q_tax" value="3"> I invest regularly throughout the year (e.g., via SIP)</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="6">
+                        <p class="question-text">7. What percentage of your monthly income are you able to save or invest?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q1" value="1" required> Less than 10%</label>
+                            <label class="option-label"><input type="radio" name="q1" value="2"> 10% - 20%</label>
+                            <label class="option-label"><input type="radio" name="q1" value="3"> 20% - 30%</label>
+                            <label class="option-label"><input type="radio" name="q1" value="4"> More than 30%</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="7">
+                        <p class="question-text">8. Do you have an emergency fund that can cover at least 3-6 months of essential living expenses?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q2" value="1" required> No, I don't have one.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="2"> I have some savings, but not that much.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="3"> Yes, I'm fully covered.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="8">
+                        <p class="question-text">9. Excluding a home loan, is your total monthly EMI (for personal loans, car loans, credit cards) more than 20% of your income?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q3" value="1" required> Yes, it's significantly more than 20%.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="2"> It's around 20%.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="3"> No, it's well below 20%.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="9">
+                        <p class="question-text">10. Which of these essential insurance policies do you have?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q4" value="1" required> Neither</label>
+                            <label class="option-label"><input type="radio" name="q4" value="2"> Health Insurance only</label>
+                            <label class="option-label"><input type="radio" name="q4" value="3"> Term Life Insurance only</label>
+                            <label class="option-label"><input type="radio" name="q4" value="4"> Both Health and Term Life</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="10">
+                        <p class="question-text">11. When it comes to investing, which statement sounds most like you?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q5" value="1" required> "My main goal is to not lose the money I've saved."</label>
+                            <label class="option-label"><input type="radio" name="q5" value="2"> "I'm willing to accept some ups and downs for better returns."</label>
+                            <label class="option-label"><input type="radio" name="q5" value="3"> "I'm aiming for the highest possible growth, and I understand that involves bigger risks."</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="11">
+                        <p class="question-text">12. If you saw your investment value drop by 20% in a month, what would you do?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q6" value="1" required> Sell immediately to cut my losses.</label>
+                            <label class="option-label"><input type="radio" name="q6" value="2"> Feel worried, but hold on and hope it recovers.</label>
+                            <label class="option-label"><input type="radio" name="q6" value="3"> See it as a sale and invest even more.</label>
+                        </div>
+                    </div>
+                     <div class="question-block" data-question-index="12">
+                        <p class="question-text">13. How soon do you think you'll need to use the money you're investing?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q7" value="1" required> In the next 1-3 years.</label>
+                            <label class="option-label"><input type="radio" name="q7" value="2"> Sometime between 4 and 7 years from now.</label>
+                            <label class="option-label"><input type="radio" name="q7" value="3"> Not for at least 8 years or more.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="13">
+                        <p class="question-text">14. How much experience do you have with investing in things like stocks or mutual funds?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q8" value="1" required> None at all, I'm a complete beginner.</label>
+                            <label class="option-label"><input type="radio" name="q8" value="2"> I know the basics and have made a few investments.</label>
+                            <label class="option-label"><input type="radio" name="q8" value="3"> I'm very experienced and actively manage my own portfolio.</label>
+                        </div>
+                    </div>
+                    <div class="question-block" data-question-index="14">
+                        <p class="question-text">15. Which of these trade-offs are you most comfortable making?</p>
+                        <div class="options-container">
+                            <label class="option-label"><input type="radio" name="q9" value="1" required> I'd accept very low returns to ensure my money is 100% safe.</label>
+                            <label class="option-label"><input type="radio" name="q9" value="2"> I'd risk a small potential loss for a chance at moderate, inflation-beating returns.</label>
+                            <label class="option-label"><input type="radio" name="q9" value="3"> I'd risk a larger potential loss for a chance at high, market-beating returns.</label>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="quiz-navigation">
+                    <button id="prev-btn" class="nav-button">Previous</button>
+                </div>
+            </div>
+
+            <div id="results-content">
+                <div class="report-card">
+                    <div class="overall-score-container">
+                        <div id="score-circle" class="score-circle">
+                            <span id="overall-score" class="score-text">0</span>
+                        </div>
+                        <h2 class="score-title">Your Financial Health Score</h2>
+                    </div>
+
+                    <div id="priority-plan">
+                        <h3>Your Prioritized Action Plan</h3>
+                        <ol id="priority-list"></ol>
+                    </div>
+
+                    <div class="pillar-grid">
+                        <!-- Pillars will be dynamically inserted here -->
+                    </div>
+
+                    <div class="results-actions">
+                        <button id="share-report-btn" class="results-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+                            Share Report
+                        </button>
+                        <button class="results-btn retake-quiz-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+                            Retake Assessment
+                        </button>
+                    </div>
+                    <!-- New Disclaimer -->
+                    <p class="text-xs font-light text-gray-500 mt-6 pt-4 border-t border-gray-200">
+                        <strong>Privacy Guarantee:</strong> We do not ask for personal details and none of your answers or results are stored. This assessment is completely anonymous.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="notification-toast"></div>
+    <div id="footer-placeholder"></div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
