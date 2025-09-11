@@ -209,9 +209,14 @@ document.addEventListener('DOMContentLoaded', () => {
             loadComponent(`${basePath}assets/components/footer.html`, 'footer-placeholder')
         ];
 
-        if (document.getElementById('dynamic-content-area')) {
-             loadPromises.push(loadComponent(`${basePath}assets/components/content.html`, 'dynamic-content-area'));
+        // NEW FIX: Only load general content on the homepage
+        if (path === '/' || path.endsWith('index.html')) {
+            const contentArea = document.getElementById('dynamic-content-area');
+            if(contentArea) {
+                loadPromises.push(loadComponent(`${basePath}assets/components/content.html`, 'dynamic-content-area'));
+            }
         }
+
 
         Promise.all(loadPromises).then(() => {
             setupMobileMenu();
