@@ -234,18 +234,20 @@ function initializeTaxCalculator() {
     function loadFromUrl() {
         const params = new URLSearchParams(window.location.search);
         if (params.has('salary')) {
-            grossSalaryInput.value = params.get('salary');
+            grossSalaryInput.value = params.get('salary') || 1200000;
             taxpayerProfileSelect.value = params.get('profile') || 'regular';
-            deduction80cInput.value = params.get('d80c') || '150000';
-            homeLoanInterestInput.value = params.get('d24') || '0';
-            deductionNpsInput.value = params.get('dnps') || '0';
-            otherDeductionsInput.value = params.get('dother') || '0';
+            deduction80cInput.value = params.get('d80c') || 150000;
+            homeLoanInterestInput.value = params.get('d24') || 0;
+            deductionNpsInput.value = params.get('dnps') || 0;
+            otherDeductionsInput.value = params.get('dother') || 0;
             
             // Sync sliders
             [grossSalarySlider, deduction80cSlider, homeLoanInterestSlider, deductionNpsSlider, otherDeductionsSlider].forEach(slider => {
                 const input = getElem(slider.id.replace('Slider', 'Input'));
-                slider.value = input.value;
-                updateSliderFill(slider);
+                if(input && slider) { // Defensive check
+                    slider.value = input.value;
+                    updateSliderFill(slider);
+                }
             });
             
             updateCalculator();
@@ -263,27 +265,29 @@ function initializeTaxCalculator() {
       ];
       
       inputs.forEach(({ slider, input }) => {
-        slider.addEventListener('input', () => { input.value = slider.value; updateSliderFill(slider); debouncedUpdate(); });
-        input.addEventListener('input', () => { slider.value = input.value; updateSliderFill(slider); debouncedUpdate(); });
+        if (slider && input) {
+          slider.addEventListener('input', () => { input.value = slider.value; updateSliderFill(slider); debouncedUpdate(); });
+          input.addEventListener('input', () => { slider.value = input.value; updateSliderFill(slider); debouncedUpdate(); });
+        }
       });
       
-      taxpayerProfileSelect.addEventListener('change', updateCalculator);
+      if(taxpayerProfileSelect) taxpayerProfileSelect.addEventListener('change', updateCalculator);
       
-      toggleDetailsBtn.addEventListener('click', () => {
+      if(toggleDetailsBtn) toggleDetailsBtn.addEventListener('click', () => {
           detailsTableContainer.classList.toggle('hidden');
           toggleDetailsBtn.textContent = detailsTableContainer.classList.contains('hidden') ? 'Show Calculation Details' : 'Hide Calculation Details';
       });
 
       // Modal event listeners
-      shareReportBtn.addEventListener('click', populateAndShowModal);
-      closeModalBtn.addEventListener('click', () => shareModal.classList.add('hidden'));
+      if(shareReportBtn) shareReportBtn.addEventListener('click', populateAndShowModal);
+      if(closeModalBtn) closeModalBtn.addEventListener('click', () => shareModal.classList.add('hidden'));
       window.addEventListener('click', (event) => { if (event.target == shareModal) shareModal.classList.add('hidden'); });
-      copyUrlBtn.addEventListener('click', () => {
+      if(copyUrlBtn) copyUrlBtn.addEventListener('click', () => {
           shareUrlInput.select();
           document.execCommand('copy');
           showNotification('Link copied to clipboard!');
       });
-      printReportBtn.addEventListener('click', () => {
+      if(printReportBtn) printReportBtn.addEventListener('click', () => {
          const modalContent = getElem('modalReportContent');
          modalContent.classList.add('print-area');
          window.print();
