@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Assessment Quizzes - Calculator.toolblaster</title>
+    <meta name="description" content="Explore our suite of financial quizzes to assess your risk profile, check your financial health, and discover your next best financial move.">
+    <meta name="keywords" content="financial quiz, financial assessment, risk profile quiz, retirement calculator, money mindset, financial health check, investment quiz india">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Financial Assessment Quizzes",
+      "description": "A curated collection of interactive tools to help you assess your financial health, understand your investor profile, and plan for your future.",
+      "url": "https://calculator.toolblaster.com/quizzes/",
+      "hasPart": [
+        {
+          "@type": "Quiz",
+          "name": "Financial Health Assessment",
+          "url": "https://calculator.toolblaster.com/quizzes/financial-health-assessment.html",
+          "description": "Get a personalized financial report card and a prioritized action plan."
+        },
+        {
+          "@type": "Quiz",
+          "name": "What's Your Investor Profile?",
+          "url": "https://calculator.toolblaster.com/quizzes/risk-profile-quiz.html",
+          "description": "Understand your tolerance for investment risks and get personalized suggestions."
+        },
+        {
+          "@type": "Quiz",
+          "name": "Secure Retirement Forecaster",
+          "url": "https://calculator.toolblaster.com/quizzes/secure-retirement-forecaster-quiz.html",
+          "description": "Assess your retirement readiness and calculate your savings gap."
+        },
+        {
+          "@type": "Quiz",
+          "name": "What's Your Next Financial Move?",
+          "url": "https://calculator.toolblaster.com/quizzes/next-financial-move-quiz.html",
+          "description": "Get a primary and secondary action plan for your finances."
+        },
+        {
+          "@type": "Quiz",
+          "name": "Financial Habits Assessment",
+          "url": "https://calculator.toolblaster.com/quizzes/financial-habits-assessment-quiz.html",
+          "description": "Discover your money mindset and get actionable steps for improvement."
+        },
+        {
+          "@type": "Quiz",
+          "name": "Millionaire Track Quiz",
+          "url": "https://calculator.toolblaster.com/quizzes/are-you-on-track-to-become-a-millionaire-quiz.html",
+          "description": "See if your daily habits align with building long-term wealth."
+        }
+      ]
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        /* Compact and refined styles for the page header */
+        .page-header {
+            background: linear-gradient(to bottom, #fef2f2, #ffffff); /* Subtle red-to-white gradient */
+            padding: 2rem 1.5rem; /* Reduced vertical padding */
+            margin-bottom: 1.5rem; /* Reduced bottom margin */
+            border-radius: 0.75rem;
+            border: 1px solid #fca5a5;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        /* Compact and refined styles for the quiz cards */
+        .quiz-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.25rem; /* Reduced padding */
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .quiz-card-icon {
+            width: 40px; /* Reduced icon size */
+            height: 40px; /* Reduced icon size */
+            margin: 0 auto 0.75rem; /* Reduced bottom margin */
+            color: #E34037;
+        }
+        .quiz-card-title {
+            font-size: 0.9rem; /* Reduced font size */
+            font-weight: 700;
+            color: #1f2f37;
+            margin-bottom: 0.5rem;
+        }
+        .quiz-card-description {
+            font-size: 0.75rem; /* Reduced font size */
+            color: #4b5563;
+            flex-grow: 1;
+            margin-bottom: 1rem; /* Reduced bottom margin */
+        }
+        .quiz-card-button {
+            display: inline-block;
+            background-color: #E34037;
+            color: white;
+            padding: 0.5rem 1rem; /* Reduced padding */
+            border-radius: 0.5rem;
+            font-size: 0.8rem; /* Reduced font size */
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .quiz-card-button:hover {
+            background-color: #C22D2D;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div id="header-placeholder"></div>
+
+    <main class="container my-6"> <!-- Reduced vertical margin for main container -->
+        <div class="legal-content" style="padding: 1.5rem;">
+            <!-- The visually distinct header section -->
+            <div class="page-header">
+                <h1 class="text-3xl font-extrabold text-gray-800 tracking-tight">Financial Assessment Quizzes</h1>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Discover insights into your financial habits, assess your risk tolerance, and get personalized action plans to guide your financial journey.</p>
+            </div>
+    
+            <!-- The main content area with quiz cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> <!-- Reduced gap -->
+                <!-- Quiz Card 1: Financial Health Assessment -->
+                <a href="financial-health-assessment.html" class="quiz-card">
+                    <div class="quiz-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+                    </div>
+                    <h2 class="quiz-card-title">Financial Health Assessment</h2>
+                    <p class="quiz-card-description">Answer 15 quick questions to get your personalized financial report card and a prioritized action plan.</p>
+                    <span class="quiz-card-button">Take the Assessment</span>
+                </a>
+    
+                <!-- Quiz Card 2: Risk Profile Quiz -->
+                <a href="risk-profile-quiz.html" class="quiz-card">
+                    <div class="quiz-card-icon">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h2 class="quiz-card-title">What's Your Investor Profile?</h2>
+                    <p class="quiz-card-description">Take our quick quiz to understand your tolerance for investment risks and get personalized suggestions.</p>
+                    <span class="quiz-card-button">Take the Quiz</span>
+                </a>
+    
+                <!-- Quiz Card 3: Secure Retirement Forecaster -->
+                <a href="secure-retirement-forecaster-quiz.html" class="quiz-card">
+                    <div class="quiz-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h2 class="quiz-card-title">Secure Retirement Forecaster</h2>
+                    <p class="quiz-card-description">Assess your retirement readiness and get a personalized report on your target corpus and savings gap.</p>
+                    <span class="quiz-card-button">Take the Quiz</span>
+                </a>
+    
+                <!-- Quiz Card 4: Next Financial Move -->
+                <a href="next-financial-move-quiz.html" class="quiz-card">
+                    <div class="quiz-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </div>
+                    <h2 class="quiz-card-title">What's Your Next Financial Move?</h2>
+                    <p class="quiz-card-description">This advanced check-up will give you a primary and secondary action plan for your finances.</p>
+                    <span class="quiz-card-button">Take the Quiz</span>
+                </a>
+    
+                <!-- Quiz Card 5: Financial Habits Assessment -->
+                <a href="financial-habits-assessment-quiz.html" class="quiz-card">
+                    <div class="quiz-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM14 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM8 16c1.5 1 4 1 5 0"/></svg>
+                    </div>
+                    <h2 class="quiz-card-title">Financial Habits Assessment</h2>
+                    <p class="quiz-card-description">Discover your money mindset and get actionable steps to improve your financial life.</p>
+                    <span class="quiz-card-button">Take the Quiz</span>
+                </a>
+    
+                <!-- Quiz Card 6: Millionaire Track -->
+                <a href="are-you-on-track-to-become-a-millionaire-quiz.html" class="quiz-card">
+                    <div class="quiz-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h2 class="quiz-card-title">Millionaire Track Quiz</h2>
+                    <p class="quiz-card-description">Answer a few questions to see if your daily habits align with building long-term, significant wealth.</p>
+                    <span class="quiz-card-button">Take the Quiz</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../script.js"></script>
+
+</body>
+</html>
+
