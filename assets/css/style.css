@@ -36,14 +36,11 @@ body {
     line-height: 1.6;
     font-size: 15px;
     transition: background-color 0.3s ease, color 0.3s ease;
-
-    /* Sticky Footer Styles */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Main Content Area Style */
 main {
     flex-grow: 1;
 }
@@ -56,7 +53,6 @@ main {
     margin-right: auto;
 }
 
-/* Header and Navigation */
 .site-header {
     max-width: 1000px;
     margin: 0 auto 0.5rem;
@@ -96,7 +92,7 @@ main {
 }
 
 .nav-links li {
-    margin-left: 0.9rem; /* UPDATED: Increased spacing */
+    margin-left: 0.9rem;
 }
 
 .nav-links > li > a {
@@ -221,7 +217,6 @@ main {
     transition: all 0.3s ease-in-out;
 }
 
-/* Dark Mode Toggle */
 .dark-mode-toggle {
     background: none;
     border: none;
@@ -241,7 +236,6 @@ main {
 .light-mode .moon-icon { display: none; }
 
 
-/* SEO Content Section Styles */
 .seo-content {
     padding: 2rem 0;
     max-width: 1000px;
@@ -313,7 +307,6 @@ main {
 .content-card ul li { display: flex; align-items: flex-start; margin-bottom: 0.25rem; }
 .bullet { display: inline-block; width: 6px; height: 6px; background-color: var(--accent-color); border-radius: 50%; margin-right: 0.5rem; margin-top: 5px; flex-shrink: 0; }
 
-/* FAQ Section Styles */
 .faq-container {
     max-width: 700px;
     margin: 0 auto;
@@ -361,7 +354,6 @@ main {
     line-height: 1.6;
 }
 
-/* Trustworthiness Section Styles */
 .trust-card {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -386,7 +378,6 @@ main {
     margin-bottom: 0;
 }
 
-/* --- UPDATED FOOTER STYLES --- */
 .site-footer { 
     max-width: 1000px;
     width: 90%;
@@ -452,15 +443,12 @@ main {
 }
 
 .footer-bottom-bar {
-    border-top: 1px solid #374151; /* Darker border */
+    border-top: 1px solid #374151;
     text-align: center;
     padding: 1rem 0;
     font-size: 0.7rem;
 }
-/* --- END OF UPDATED FOOTER STYLES --- */
 
-
-/* Legal Pages & Guide Content Styles */
 .legal-content {
     background-color: var(--card-bg);
     padding: 0;
@@ -485,13 +473,6 @@ main {
     color: var(--accent-color-dark);
     background-color: var(--link-hover-bg);
 }
-
-/* --- FIX for Button Styles inside legal-content --- */
-.legal-content a.btn-primary,
-.legal-content a.btn-secondary {
-    border-bottom: 2px solid; /* Overrides the default link style */
-}
-/* --- END of FIX --- */
 
 .legal-content h1 {
     background-color: var(--section-bg-alt);
@@ -571,7 +552,6 @@ main {
     background-color: var(--section-bg-alt);
 }
 
-/* Share Buttons Styles */
 .share-buttons-container {
     padding: 1.5rem;
     margin: 2rem 1.5rem 0 1.5rem;
@@ -623,89 +603,99 @@ main {
     height: 20px;
 }
 
-/* --- UNIVERSAL COMPONENT STYLES --- */
-
-/* CTA Button Styles */
-.btn-primary, .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem; /* Compact padding */
-    border-radius: 0.375rem;
+/* --- UNIVERSAL CTA BUTTON STYLES (ROBUST VERSION) --- */
+.btn-primary, a.btn-primary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    border-radius: 0.375rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease-in-out !important;
     text-decoration: none !important;
-    font-weight: 600;
-    font-size: 0.75rem; /* Smaller font */
-    transition: all 0.2s ease-in-out;
-    border-width: 2px;
-    border-style: solid;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background-color: var(--accent-color-dark);
+    border: 2px solid var(--accent-color) !important;
+    background-color: var(--accent-color) !important;
     color: white !important;
-    border-color: var(--accent-color-dark);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
 }
 
-.btn-primary:hover {
-    background-color: var(--card-bg);
+.btn-primary:hover, a.btn-primary:hover {
+    background-color: #ffffff !important;
     color: var(--accent-color-dark) !important;
-    border-color: var(--accent-color-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 7px 10px rgba(0,0,0,0.1);
+    border-color: var(--accent-color-dark) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 7px 10px rgba(0,0,0,0.1) !important;
 }
 
-.btn-secondary {
-    background-color: transparent;
+.btn-secondary, a.btn-secondary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    border-radius: 0.375rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease-in-out !important;
+    text-decoration: none !important;
+    border: 2px solid var(--accent-color) !important;
+    background-color: transparent !important;
     color: var(--accent-color) !important;
-    border-color: var(--accent-color);
 }
 
-.btn-secondary:hover {
-    background-color: var(--link-hover-bg);
+.btn-secondary:hover, a.btn-secondary:hover {
+    background-color: #fef2f2 !important;
+    border-color: var(--accent-color-dark) !important;
     color: var(--accent-color-dark) !important;
-    border-color: var(--accent-color-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transform: translateY(-2px) !important;
 }
 
-
-/* Alert Box Styles */
+/* Universal Alert Box Styles */
 .alert {
     padding: 1rem;
     border-radius: 0.5rem;
-    margin: 1rem 0;
-    border: 1px solid;
+    border-left-width: 4px;
     font-size: 0.8rem;
 }
-
 .alert-title {
     font-weight: 700;
     margin-bottom: 0.25rem;
     font-size: 0.9rem;
 }
-
 .alert-info {
     background-color: #eff6ff;
-    border-color: #93c5fd;
+    border-color: #3b82f6;
     color: #1e40af;
 }
 .alert-info .alert-title {
     color: #1d4ed8;
 }
-
 .alert-success {
     background-color: #f0fdf4;
-    border-color: #86efac;
+    border-color: #22c55e;
     color: #15803d;
 }
 .alert-success .alert-title {
     color: #166534;
 }
 
+/* Specificity fix for links within legal content */
+.legal-content a.btn-primary,
+.legal-content a.btn-secondary {
+    border-bottom: 2px solid var(--accent-color) !important;
+}
+.legal-content a.btn-primary:hover {
+     border-bottom: 2px solid var(--accent-color-dark) !important;
+}
+.legal-content a.btn-secondary:hover {
+     border-bottom: 2px solid var(--accent-color-dark) !important;
+}
 
-/* Responsive Styles */
+
 @media (max-width: 768px) {
     .nav-links { 
         display: none; 
