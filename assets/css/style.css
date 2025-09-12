@@ -717,3 +717,63 @@ main {
         padding: 0.75rem;
     }
 }
+
+/* --- Global Call-to-Action Button Styles (Compact & Thin) --- */
+
+/* Primary CTA Button (Red Accent) */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--accent-color); /* Red background */
+    color: #ffffff !important;
+    border: 2px solid var(--accent-color);
+    padding: 0.5rem 1.2rem; /* Reduced Padding */
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-size: 0.8rem; /* Reduced Font Size */
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(227, 64, 55, 0.2); /* Slightly reduced shadow */
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    background-color: #ffffff;
+    color: var(--accent-color-dark) !important;
+    border-color: var(--accent-color-dark);
+    transform: translateY(-2px); /* Slightly less lift */
+    box-shadow: 0 6px 14px rgba(227, 64, 55, 0.25);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(227, 64, 55, 0.2);
+}
+
+/* Secondary CTA Button (Black Outline) */
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    color: var(--text-color) !important; /* Black text */
+    border: 2px solid #d1d5db; /* Neutral gray border */
+    padding: 0.4rem 1rem; /* Reduced Padding */
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-size: 0.8rem; /* Reduced Font Size */
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background-color: var(--section-bg-alt); /* Light gray background on hover */
+    border-color: #9ca3af; /* Darker gray border on hover */
+    color: var(--text-color) !important;
+    transform: translateY(-2px);
+}
