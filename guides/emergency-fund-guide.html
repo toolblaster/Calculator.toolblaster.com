@@ -25,6 +25,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <script type="application/ld+json">
@@ -106,6 +107,31 @@
             margin-bottom: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+        .icon-list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .icon-list-item svg {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            margin-right: 1rem;
+            margin-top: 3px;
+            color: #E34037;
+        }
+        .insight-card {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+        .insight-card p {
+            flex-grow: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -115,26 +141,57 @@
     <main class="container">
         <div class="legal-content">
             <h1>Your Step-by-Step Guide to Building an Emergency Fund</h1>
-            <p>Before you start investing for your future, it's essential to protect your present. An emergency fund is your personal financial safety net, designed to cover unexpected life events without derailing your long-term goals or forcing you into debt. This guide will walk you through everything you need to know.</p>
+            <p>Before you start investing for your future, it's essential to <strong>protect your present</strong>. An emergency fund is your personal financial safety net, designed to cover unexpected life events without derailing your long-term goals or forcing you into debt. This guide will walk you through everything you need to know.</p>
 
             <div class="content-section-card">
                 <h2>What is an Emergency Fund and Why Do You Need One?</h2>
-                <p>An emergency fund is a pool of money set aside specifically for unforeseen financial challenges. Think of it as a buffer against life's curveballs. Imagine a scenario where your car breaks down unexpectedly, or a medical issue arises. Without an emergency fund, you might be forced to sell your long-term investments at an inopportune time or take on high-interest credit card debt, both of which can be detrimental to your financial health.</p>
+                <p>An emergency fund is a pool of money set aside specifically for unforeseen financial challenges. Think of it as a <strong>buffer against life's curveballs</strong>. Imagine a scenario where your car breaks down unexpectedly, or a medical issue arises. Without an emergency fund, you might be forced to sell your long-term investments at an inopportune time or take on high-interest credit card debt, both of which can be detrimental to your financial health.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 text-center">
+                    <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <h4 class="font-semibold text-sm">Protects Investments</h4>
+                        <p class="text-xs text-gray-600">Prevents you from selling long-term investments at the wrong time.</p>
+                    </div>
+                     <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-500 mx-auto mb-2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                        <h4 class="font-semibold text-sm">Reduces Stress</h4>
+                        <p class="text-xs text-gray-600">Provides peace of mind, knowing you can handle unexpected expenses.</p>
+                    </div>
+                </div>
             </div>
 
             <div class="content-section-card bg-gray-50">
-                <h2>Step 1: How Much Should You Save? A Tale of Two Professionals</h2>
-                <p>The golden rule is to save 3 to 6 months' worth of your essential living expenses. Let's consider two individuals:</p>
-                <ul>
-                    <li><strong>Priya, a Salaried Employee:</strong> Priya has a stable job with a predictable income. For her, a 3-month fund covering her rent, utilities, and basic needs provides a solid safety net against unforeseen events.</li>
-                    <li><strong>Amit, a Freelancer:</strong> Amit's income can be variable. To account for this, he aims for a 6-month emergency fund. This larger buffer gives him peace of mind during slower work periods and ensures he can cover his expenses without stress.</li>
+                <h2>Step 1: How Much Should You Save?</h2>
+                <p>The golden rule is to save <strong>3 to 6 months' worth</strong> of your essential living expenses. Your ideal amount depends on your financial stability:</p>
+                 <ul class="mt-4 space-y-4">
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                        <div>
+                            <h4 class="font-semibold">For Salaried Employees (Stable Income)</h4>
+                            <p>Aim for <strong>3 months</strong> of essential expenses. This includes rent/EMI, utilities, groceries, and insurance premiums.</p>
+                        </div>
+                    </li>
+                     <li class="icon-list-item">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                        <div>
+                            <h4 class="font-semibold">For Freelancers/Business Owners (Variable Income)</h4>
+                            <p>Aim for <strong>6 months</strong> of essential expenses. This larger buffer provides extra security during lean periods.</p>
+                        </div>
+                    </li>
                 </ul>
-                <p>Calculate your essential expenses—rent, groceries, EMIs, and insurance—and decide whether a 3 or 6-month fund is right for your situation.</p>
+            </div>
+            
+            <div class="content-section-card">
+                <h2 class="section-title-secondary">Visualizing Your Progress: Reaching Your Goal</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">Saving for an emergency fund can feel like a long journey. This chart shows how a consistent saving of <strong>₹10,000 per month</strong> can help you build a <strong>₹1.2 Lakh</strong> fund in just one year.</p>
+                <div class="h-64 md:h-80 w-full mx-auto">
+                   <canvas id="emergencyFundChart"></canvas>
+                </div>
             </div>
 
             <div class="content-section-card">
                 <h2>Step 2: Where Should You Keep Your Emergency Fund?</h2>
-                <p>The two most important criteria for an emergency fund are safety and liquidity. You need to be able to access your money quickly and without any risk of losing the principal amount. Here are the best options:</p>
+                <p>The two most important criteria for an emergency fund are <strong>safety and liquidity</strong>. You need to be able to access your money quickly and without any risk of losing the principal amount. Here are the best options:</p>
                 
                 <table style="width:100%; border-collapse: collapse; margin-bottom: 1rem;">
                     <thead>
@@ -165,32 +222,87 @@
             </div>
 
             <div class="content-section-card bg-gray-50">
-                <h2>Step 3: Building Your Fund and When to Use It</h2>
-                <p>The most effective way to build your fund is to automate it. Set up a recurring monthly transfer from your salary account to your emergency fund account. Treat it like an EMI. This disciplined approach ensures you build your safety net consistently. For example, setting up an automatic transfer of ₹5,000 each month can help you build a ₹60,000 fund in just one year without feeling the pinch.</p>
-                <p>Remember to only use this fund for genuine emergencies. After you use any amount from it, your top financial priority should be to replenish it back to its target level.</p>
-            </div>
-
-            <div class="content-section-card">
-                <h2>Beyond the Basics: Advanced Emergency Fund Strategies</h2>
-                <ul>
-                    <li><strong>The Tiered Approach:</strong> For a more optimized strategy, consider a tiered emergency fund. Keep one month's expenses in a high-yield savings account for immediate access. The rest can be invested in liquid mutual funds, which may offer slightly better returns without sacrificing liquidity.</li>
-                    <li><strong>Insurance as Your First Line of Defense:</strong> A robust health and term life insurance policy can protect your emergency fund from being wiped out by a major medical event or loss of income. Think of insurance as a critical partner to your emergency fund.</li>
+                <h2 class="section-title-secondary">Step 3: The Action Plan: Build, Use, and Refill</h2>
+                <p class="text-sm text-gray-500 mb-6 text-center">Building your fund is just the beginning. Knowing how to manage it is key to long-term financial security.</p>
+                <ul class="space-y-4">
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/><path d="M16 12H8"/></svg>
+                        <div>
+                            <h4 class="font-semibold">Automate Your Savings</h4>
+                            <p>The most effective way to build your fund is to <strong>"pay yourself first."</strong> Set up a recurring monthly transfer from your salary account to your emergency fund account. Treat it like an EMI to build your safety net consistently without relying on willpower.</p>
+                        </div>
+                    </li>
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <div>
+                            <h4 class="font-semibold">Define a True Emergency</h4>
+                            <p>An emergency is something that is <strong>urgent, unexpected, and necessary</strong>. A sudden medical expense or essential car repair is an emergency. A flash sale on a new phone is not. Be disciplined about what you use the fund for.</p>
+                        </div>
+                    </li>
+                    <li class="icon-list-item">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.88.99 6.6 2.6l-2.1 2.1"/><path d="M21 7v5h-5"/></svg>
+                        <div>
+                            <h4 class="font-semibold">Replenish After Use</h4>
+                            <p>If you have to dip into your fund, your <strong>top financial priority</strong> should be to build it back up to its target level. Pause other discretionary spending or investing until your safety net is fully restored.</p>
+                        </div>
+                    </li>
                 </ul>
+            </div>
+            
+            <div class="content-section-card">
+                <h2 class="section-title-secondary">Emergency Fund Dos and Don'ts</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div>
+                        <h3 class="font-bold text-lg text-green-600 mb-2">What to Do ✅</h3>
+                        <ul class="space-y-2">
+                           <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><p class="text-xs"><strong>Keep it separate</strong> from your daily spending account to avoid temptation.</p></li>
+                           <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><p class="text-xs"><strong>Automate</strong> your savings to build the fund effortlessly.</p></li>
+                           <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><p class="text-xs"><strong>Replenish it</strong> immediately after any withdrawal.</p></li>
+                           <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><p class="text-xs"><strong>Review it annually</strong> to ensure it still meets your needs.</p></li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h3 class="font-bold text-lg text-red-600 mb-2">What to Avoid ❌</h3>
+                         <ul class="space-y-2">
+                           <li class="flex items-start"><span class="text-red-500 mr-2">✖</span><p class="text-xs"><strong>Don't</strong> invest it in high-risk assets like stocks.</p></li>
+                           <li class="flex items-start"><span class="text-red-500 mr-2">✖</span><p class="text-xs"><strong>Don't</strong> use it for planned expenses like vacations or down payments.</p></li>
+                           <li class="flex items-start"><span class="text-red-500 mr-2">✖</span><p class="text-xs"><strong>Don't</strong> lock it up in long-term investments with low liquidity.</p></li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">✖</span><p class="text-xs"><strong>Don't</strong> stop saving once you reach your goal; let it be your financial foundation.</p></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="content-section-card bg-gray-50">
-                <h2>Key Takeaways for Your Emergency Fund</h2>
-                <ul>
-                    <li><strong>Start Small, but Start Now:</strong> Even a small amount saved regularly can grow into a substantial safety net over time.</li>
-                    <li><strong>Automate Your Savings:</strong> The "pay yourself first" method is the most effective way to build your fund without relying on willpower.</li>
-                    <li><strong>Keep it Separate and Sacred:</strong> Your emergency fund should be used for true emergencies only. A separate account helps maintain this discipline.</li>
-                    <li><strong>Review and Adapt:</strong> As your life changes, so will your financial needs. Review your emergency fund annually to ensure it's still adequate for your circumstances.</li>
-                </ul>
+                <h2 class="section-title-secondary">Your Emergency Fund Golden Rules</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                    <div class="insight-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <h4 class="font-semibold text-sm">Start Now</h4>
+                        <p class="text-xs text-gray-600">Even a small amount saved regularly can grow into a substantial safety net over time.</p>
+                    </div>
+                    <div class="insight-card">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.88.99 6.6 2.6l-2.1 2.1"/><path d="M21 7v5h-5"/></svg>
+                        <h4 class="font-semibold text-sm">Automate It</h4>
+                        <p class="text-xs text-gray-600">The "pay yourself first" method is the most effective way to build your fund without relying on willpower.</p>
+                    </div>
+                    <div class="insight-card">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <h4 class="font-semibold text-sm">Keep it Sacred</h4>
+                        <p class="text-xs text-gray-600">Your emergency fund should be used for true emergencies only. A separate account helps maintain this discipline.</p>
+                    </div>
+                    <div class="insight-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><path d="m9 16 2 2 4-4"/></svg>
+                        <h4 class="font-semibold text-sm">Review Annually</h4>
+                        <p class="text-xs text-gray-600">As your life changes, review your fund to ensure it's still adequate for your circumstances.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="content-section-card">
-                <h2>Final Overview</h2>
-                <p>Building an emergency fund is the foundational step of a sound financial plan. It provides peace of mind and the stability needed to invest for your future with confidence. By following these steps and pro-tips, you can create a robust financial shield for you and your family.</p>
+            <div class="content-section-card text-center">
+                <h2 class="section-title-secondary">Final Overview</h2>
+                <p>Building an emergency fund is the <strong>foundational step</strong> of a sound financial plan. It provides peace of mind and the stability needed to invest for your future with confidence. By following these steps, you can create a robust financial shield for you and your family.</p>
+                <a href="../index.html?mode=rd" class="btn-primary mt-4">Plan Your Savings with the RD Calculator</a>
             </div>
 
             <div class="content-section-card bg-gray-50">
@@ -199,7 +311,7 @@
                 <ul>
                     <li><strong><a href="financial-health-guide.html">Your Guide to Financial Health:</a></strong> Understand the other key pillars of a strong financial life.</li>
                     <li><strong><a href="goal-based-investing.html">Plan Your Investments:</a></strong> Learn how to invest with a clear purpose and strategy.</li>
-                    <li><strong><a href="../index.html?mode=rd">RD Calculator:</a></strong> Use our Recurring Deposit calculator to plan how to build your emergency fund systematically.</li>
+                    <li><strong><a href="../quizzes/financial-health-assessment.html">Assess Your Financial Health:</a></strong> Take our quiz to get a full report card on your financial well-being.</li>
                 </ul>
             </div>
 
@@ -208,15 +320,15 @@
                 <div class="faq-container">
                     <details class="faq-item">
                         <summary>Should I invest my emergency fund for higher returns?</summary>
-                        <p>No. The primary purpose of an emergency fund is not to generate high returns, but to provide safety and quick accessibility (liquidity). Investing it in high-risk assets like stocks could mean the value is down when you need the money most. Stick to safe, liquid options like savings accounts or liquid funds.</p>
+                        <p><strong>No</strong>. The primary purpose of an emergency fund is not to generate high returns, but to provide <strong>safety and quick accessibility (liquidity)</strong>. Investing it in high-risk assets like stocks could mean the value is down when you need the money most. Stick to safe, liquid options like savings accounts or liquid funds.</p>
                     </details>
                     <details class="faq-item">
                         <summary>What's the difference between an emergency fund and regular savings?</summary>
-                        <p>Regular savings are typically for specific, planned goals (like a vacation or a down payment), while an emergency fund is strictly for unplanned, urgent financial needs. You should not dip into your emergency fund for non-emergency expenses.</p>
+                        <p>Regular savings are typically for <strong>specific, planned goals</strong> (like a vacation or a down payment), while an emergency fund is strictly for <strong>unplanned, urgent</strong> financial needs. You should not dip into your emergency fund for non-emergency expenses.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Can I use my credit card as an emergency fund?</summary>
-                        <p>A credit card can be a temporary tool for immediate payments, but it is not a substitute for an emergency fund. Relying on a credit card is essentially taking on high-interest debt, which can worsen a financial crisis. An emergency fund is your own money, which costs you nothing to use.</p>
+                        <p>A credit card can be a temporary tool for immediate payments, but it is <strong>not a substitute</strong> for an emergency fund. Relying on a credit card is essentially taking on high-interest debt, which can worsen a financial crisis. An emergency fund is your own money, which costs you nothing to use.</p>
                     </details>
                 </div>
             </div>
@@ -247,6 +359,54 @@
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('emergencyFundChart');
+            if(ctx) {
+                const labels = [];
+                const data = [];
+                let cumulativeAmount = 0;
+                for (let i = 1; i <= 12; i++) {
+                    labels.push(`Month ${i}`);
+                    cumulativeAmount += 10000;
+                    data.push(cumulativeAmount);
+                }
 
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Emergency Fund Growth',
+                            data: data,
+                            backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                            borderColor: 'rgba(37, 99, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => `Total Saved: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.y)}`
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value)
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
