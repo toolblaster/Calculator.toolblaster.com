@@ -136,34 +136,6 @@
             margin-right: 0.75rem;
             margin-top: 3px;
         }
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.5rem 1.25rem;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.8rem;
-            transition: all 0.2s;
-            border: 2px solid transparent;
-        }
-        .cta-button svg {
-            margin-left: 0.5rem;
-            width: 14px;
-            height: 14px;
-        }
-        .cta-red-accent {
-            background-color: #E34037;
-            color: white !important;
-            border-color: #E34037;
-        }
-        .cta-red-accent:hover {
-            background-color: #ffffff;
-            color: #C22D2D !important;
-            border-color: #C22D2D;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
         .persona-card {
             background-color: #f9fafb;
             border-left: 4px solid #E34037;
@@ -182,6 +154,21 @@
             color: #4b5563;
             line-height: 1.6;
         }
+         /* --- NEW STYLES --- */
+         .prominent-section {
+            background-color: #fef2f2;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+        }
+        .prominent-section h2 {
+            text-align: left;
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 1rem;
+        }
+        .prominent-section h2::after {
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -198,22 +185,22 @@
                 <p>Before we dive deep, here's a quick snapshot to help you orient yourself:</p>
                 <ul class="space-y-2">
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
                         <span><strong>5paisa is for the Value-Seeking, All-in-One Investor:</strong> If you're looking for a single platform that offers trading, mutual funds, insurance, and loans, all under a cost-effective, flat-fee model, 5paisa is a strong contender.</span>
                     </li>
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
-                        <span><strong>Upstox is for the Tech-Savvy Trader and Beginner:</strong> If your priority is a beautiful, intuitive, and powerful trading experience, especially for active trading and charting, Upstox's platform is hard to beat. It's also incredibly welcoming for newcomers.</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                        <span><strong>Upstox is for the Tech-Savvy Trader and Beginner:</strong> If your priority is a beautiful, intuitive, and powerful trading experience, especially for active trading and charting, Upstox's platform is hard to beat. It's also incredibly welcoming for newcomers, as we detail in our <a href="stock-market-guide-in-india.html">Beginner's Guide to the Stock Market</a>.</span>
                     </li>
                 </ul>
                 <div class="flex flex-wrap justify-center items-center mt-6 gap-2 sm:gap-4">
-                    <a href="https://www.5paisa.com/demat-account?ReferralCode=54285431&ReturnUrl=invest-open-account" class="cta-button cta-red-accent" target="_blank" rel="noopener sponsored noreferrer">
+                    <a href="https://www.5paisa.com/demat-account?ReferralCode=54285431&ReturnUrl=invest-open-account" class="btn-primary" target="_blank" rel="noopener sponsored noreferrer">
                         <span>Open a 5paisa Account</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-2 w-4 h-4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                     </a>
-                    <a href="https://upstox.onelink.me/0H1s/2JAL6D" class="cta-button cta-red-accent" target="_blank" rel="noopener sponsored noreferrer">
+                    <a href="https://upstox.onelink.me/0H1s/2JAL6D" class="btn-primary" target="_blank" rel="noopener sponsored noreferrer">
                         <span>Open an Upstox Account</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-2 w-4 h-4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                     </a>
                 </div>
             </div>
@@ -259,7 +246,10 @@
                         </tbody>
                     </table>
                 </div>
-                <p class="mt-4 text-xs text-gray-600"><strong>Key Takeaway:</strong> For long-term investors who primarily buy and hold stocks (delivery), Upstox's zero brokerage fee is a clear winner. For active traders in intraday or F&O, both are competitively priced with a flat-fee model.</p>
+                <div class="alert alert-success mt-4">
+                    <h3 class="alert-title">Key Takeaway</h3>
+                    <p>For long-term investors who primarily buy and hold stocks (delivery), Upstox's zero brokerage fee is a clear winner. For active traders in intraday or F&O, both are competitively priced with a flat-fee model.</p>
+                </div>
             </div>
 
             <div class="content-section-card">
@@ -286,65 +276,55 @@
                 </div>
             </div>
 
-            <div class="content-section-card bg-gray-50">
+            <div class="content-section-card prominent-section">
                 <h2>The User Experience: Platform and Trading Tools</h2>
                 <p>A broker is only as good as its trading platform. A clunky, slow interface can be a deal-breaker. Here's how the two compare in terms of user experience.</p>
-                <h3>5paisa: The Integrated Powerhouse</h3>
+                
+                <h3 class="font-semibold text-lg mt-4 mb-2">5paisa: The Integrated Powerhouse</h3>
                 <ul class="space-y-2">
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span><strong>All-in-One Platform:</strong> 5paisa's strength lies in its integrated ecosystem. You can access stocks, mutual funds, insurance, and loans from a single login, which is a huge convenience.</span>
                     </li>
                     <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span><strong>Research Tools:</strong> They offer a range of research tools, including Smart Investor and Swing Trader, which provide actionable, algorithm-based trading ideas. This is a big plus for investors who want guidance.</span>
-                    </li>
-                    <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                        <span><strong>Platform Options:</strong> They offer a mobile app, a web-based platform, and a desktop terminal, catering to all types of users.</span>
                     </li>
                 </ul>
 
-                <h3 class="mt-6">Upstox: The Trader's Delight</h3>
+                <h3 class="font-semibold text-lg mt-6 mb-2">Upstox: The Trader's Delight</h3>
                 <ul class="space-y-2">
                     <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span><strong>Intuitive and Fast:</strong> Upstox is renowned for its clean, fast, and user-friendly interface. It's incredibly easy for beginners to navigate and powerful enough for pro traders.</span>
                     </li>
                     <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span><strong>Superior Charting:</strong> With deep integration of TradingView charts, Upstox offers one of the best technical analysis experiences in the industry, complete with hundreds of indicators and drawing tools.</span>
-                    </li>
-                    <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                        <span><strong>Innovative Features:</strong> Upstox consistently rolls out new features like GTT (Good Till Triggered) orders and options strategy builders, which are a boon for serious traders.</span>
                     </li>
                 </ul>
             </div>
-
+            
+            <!-- NEW SECTION: Mobile App Face-Off -->
             <div class="content-section-card">
                 <h2>📱 The Mobile App Face-Off</h2>
                 <p>In an era where most retail investing happens on the go, the quality of the mobile app is paramount. A seamless mobile experience can be the deciding factor.</p>
-                
-                <ul class="space-y-2">
+                <ul class="space-y-3 mt-4">
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span><strong>User Interface (UI):</strong> Upstox generally wins here with a cleaner, more minimalist design that is very easy for beginners to pick up. 5paisa's app is feature-rich but can feel slightly more cluttered due to the sheer number of services it offers.</span>
                     </li>
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span><strong>Speed & Stability:</strong> Both apps are well-optimized, but users often report that Upstox feels slightly faster and more responsive, especially during peak trading hours.</span>
                     </li>
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                        <span><strong>Feature Parity:</strong> Upstox does a slightly better job of translating its powerful web features (like advanced charting) to its mobile app. 5paisa's app is comprehensive but some advanced research features are best accessed on the web.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span><strong>App Store Ratings:</strong> Both apps consistently receive high ratings (typically 4.0+) on both the Google Play Store and Apple App Store, indicating a high level of user satisfaction.</span>
                     </li>
                 </ul>
             </div>
+
 
             <div class="content-section-card bg-gray-50">
                 <h2>Beyond the Basics: The 'X-Factor' Features</h2>
@@ -354,11 +334,11 @@
                         <h4 class="font-semibold text-lg">5paisa's X-Factor</h4>
                         <ul class="mt-2 space-y-2">
                             <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                                 <span><strong>Comprehensive Financial Services:</strong> The ability to manage your investments, take out a personal loan, and buy insurance all in one place is a unique and powerful proposition.</span>
                             </li>
                             <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                                 <span><strong>Margin Trading Facility (MTF):</strong> They offer a very competitive MTF, allowing you to leverage your capital for short-term trading opportunities.</span>
                             </li>
                         </ul>
@@ -367,11 +347,11 @@
                         <h4 class="font-semibold text-lg">Upstox's X-Factor</h4>
                         <ul class="mt-2 space-y-2">
                             <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
                                 <span><strong>API for Algo Trading:</strong> For developers and quantitative traders, Upstox provides a robust API to build and deploy their own automated trading strategies.</span>
                             </li>
                             <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                                 <span><strong>Strong Educational Content:</strong> Upstox invests heavily in educating its users through webinars, blogs, and tutorials, making it a great learning platform for beginners.</span>
                             </li>
                         </ul>
@@ -384,20 +364,16 @@
                 <p>A smooth start can set the tone for your entire investing experience. Here’s what you can expect when you sign up.</p>
                 <ul class="space-y-2 mt-4">
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span><strong>Documents Required:</strong> Both platforms require the standard set of documents for e-KYC: your PAN card, Aadhaar card (linked with your mobile number), a clear signature, and bank proof (like a cancelled cheque or bank statement).</span>
                     </li>
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span><strong>e-KYC Process:</strong> Both 5paisa and Upstox offer a fully digital, paperless account opening process that can be completed from your phone or computer in minutes.</span>
                     </li>
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span><strong>Activation Time:</strong> Typically, accounts on both platforms are activated within 24-48 hours after the successful submission of all documents.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                        <span><strong>Initial Support:</strong> Both provide guidance through the onboarding process, but Upstox's step-by-step instructions are often cited as being slightly more user-friendly for absolute beginners.</span>
                     </li>
                 </ul>
             </div>
@@ -407,23 +383,19 @@
                 <p>When you have a question or an issue, reliable customer support is non-negotiable. Here's how the two brokers compare in this crucial area.</p>
                 <ul class="space-y-2">
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span><strong>Support Channels:</strong> Both offer multiple channels, including phone support, email, and a ticketing system. Upstox also has a prominent chatbot for instant query resolution.</span>
                     </li>
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span><strong>Response Time:</strong> This can vary, but generally, both platforms have improved their response times significantly. Upstox's chatbot can often provide faster answers for common questions.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                        <span><strong>Knowledge Base:</strong> Both brokers maintain extensive online knowledge bases and FAQs on their websites, which can resolve most common queries without needing to contact support.</span>
                     </li>
                 </ul>
             </div>
 
             <div class="content-section-card">
                 <h2>🎯 The Verdict for Your Persona</h2>
-                <p>The best tool depends on who you are as an investor. Find your profile below for a direct recommendation.</p>
+                <p>The best tool depends on who you are as an investor. Find your profile below for a direct recommendation. Not sure what your profile is? <a href="../quizzes/risk-profile-quiz.html">Take our Investor Profile Quiz!</a></p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div class="persona-card">
                         <h4>For the Absolute Beginner</h4>
@@ -435,7 +407,7 @@
                     </div>
                      <div class="persona-card">
                         <h4>For the Long-Term "Buy & Hold" Investor</h4>
-                        <p><strong>Winner: Upstox.</strong> The zero brokerage on equity delivery is a massive long-term advantage, ensuring that costs don't eat into your returns over the years.</p>
+                        <p><strong>Winner: Upstox.</strong> The zero brokerage on equity delivery is a massive long-term advantage, ensuring that costs don't eat into your returns over the years. This is a key part of any <a href="../index.html?mode=lumpsum">lumpsum investment strategy</a>.</p>
                     </div>
                      <div class="persona-card">
                         <h4>For the "All-in-One" Financial User</h4>
@@ -443,13 +415,13 @@
                     </div>
                 </div>
                  <div class="flex flex-wrap justify-center items-center mt-6 gap-2 sm:gap-4">
-                    <a href="https://www.5paisa.com/demat-account?ReferralCode=54285431&ReturnUrl=invest-open-account" class="cta-button cta-red-accent" target="_blank" rel="noopener sponsored noreferrer">
+                    <a href="https://www.5paisa.com/demat-account?ReferralCode=54285431&ReturnUrl=invest-open-account" class="btn-primary" target="_blank" rel="noopener sponsored noreferrer">
                         <span>Open a 5paisa Account</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-2 w-4 h-4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                     </a>
-                    <a href="https://upstox.onelink.me/0H1s/2JAL6D" class="cta-button cta-red-accent" target="_blank" rel="noopener sponsored noreferrer">
+                    <a href="https://upstox.onelink.me/0H1s/2JAL6D" class="btn-primary" target="_blank" rel="noopener sponsored noreferrer">
                         <span>Open an Upstox Account</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-2 w-4 h-4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                     </a>
                 </div>
             </div>
@@ -495,3 +467,4 @@
 
 </body>
 </html>
+
