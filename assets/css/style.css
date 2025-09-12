@@ -486,6 +486,13 @@ main {
     background-color: var(--link-hover-bg);
 }
 
+/* --- FIX for Button Styles inside legal-content --- */
+.legal-content a.btn-primary,
+.legal-content a.btn-secondary {
+    border-bottom: 2px solid; /* Overrides the default link style */
+}
+/* --- END of FIX --- */
+
 .legal-content h1 {
     background-color: var(--section-bg-alt);
     padding: 1.5rem 1.5rem 0.5rem 1.5rem;
@@ -616,6 +623,87 @@ main {
     height: 20px;
 }
 
+/* --- UNIVERSAL COMPONENT STYLES --- */
+
+/* CTA Button Styles */
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem; /* Compact padding */
+    border-radius: 0.375rem;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 0.75rem; /* Smaller font */
+    transition: all 0.2s ease-in-out;
+    border-width: 2px;
+    border-style: solid;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--accent-color-dark);
+    color: white !important;
+    border-color: var(--accent-color-dark);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+    background-color: var(--card-bg);
+    color: var(--accent-color-dark) !important;
+    border-color: var(--accent-color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 10px rgba(0,0,0,0.1);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--accent-color) !important;
+    border-color: var(--accent-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--link-hover-bg);
+    color: var(--accent-color-dark) !important;
+    border-color: var(--accent-color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+
+/* Alert Box Styles */
+.alert {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    border: 1px solid;
+    font-size: 0.8rem;
+}
+
+.alert-title {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.alert-info {
+    background-color: #eff6ff;
+    border-color: #93c5fd;
+    color: #1e40af;
+}
+.alert-info .alert-title {
+    color: #1d4ed8;
+}
+
+.alert-success {
+    background-color: #f0fdf4;
+    border-color: #86efac;
+    color: #15803d;
+}
+.alert-success .alert-title {
+    color: #166534;
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
@@ -716,101 +804,4 @@ main {
     .legal-content th, .legal-content td {
         padding: 0.75rem;
     }
-}
-
-/* --- Global Call-to-Action Button Styles (Compact & Thin) --- */
-
-/* Primary CTA Button (Red Accent) */
-.btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background-color: var(--accent-color); /* Red background */
-    color: #ffffff !important;
-    border: 2px solid var(--accent-color);
-    padding: 0.5rem 1.2rem; /* Reduced Padding */
-    border-radius: 0.375rem;
-    cursor: pointer;
-    font-size: 0.8rem; /* Reduced Font Size */
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(227, 64, 55, 0.2); /* Slightly reduced shadow */
-    letter-spacing: 0.5px;
-}
-
-.btn-primary:hover {
-    background-color: #ffffff;
-    color: var(--accent-color-dark) !important;
-    border-color: var(--accent-color-dark);
-    transform: translateY(-2px); /* Slightly less lift */
-    box-shadow: 0 6px 14px rgba(227, 64, 55, 0.25);
-}
-
-.btn-primary:active {
-    transform: translateY(-1px);
-    box-shadow: 0 3px 6px rgba(227, 64, 55, 0.2);
-}
-
-/* Secondary CTA Button (Black Outline) */
-.btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background-color: transparent;
-    color: var(--text-color) !important; /* Black text */
-    border: 2px solid #d1d5db; /* Neutral gray border */
-    padding: 0.4rem 1rem; /* Reduced Padding */
-    border-radius: 0.375rem;
-    cursor: pointer;
-    font-size: 0.8rem; /* Reduced Font Size */
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
-}
-
-.btn-secondary:hover {
-    background-color: var(--section-bg-alt); /* Light gray background on hover */
-    border-color: #9ca3af; /* Darker gray border on hover */
-    color: var(--text-color) !important;
-    transform: translateY(-2px);
-}
-
-/* --- NEW: Universal Alert Box Styles --- */
-.alert {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border-width: 1px;
-    border-left-width: 4px;
-    font-size: 0.8rem;
-    margin: 1rem 0;
-}
-
-.alert-title {
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-}
-
-/* Info Alert (Blue) */
-.alert-info {
-    background-color: #eff6ff; /* bg-blue-50 */
-    border-color: #dbeafe; /* border-blue-200 */
-    border-left-color: #3b82f6; /* border-l-blue-500 */
-    color: #1e40af; /* text-blue-800 */
-}
-.alert-info .alert-title {
-    color: #1d4ed8; /* text-blue-700 */
-}
-
-/* Success Alert (Green) */
-.alert-success {
-    background-color: #f0fdf4; /* bg-green-50 */
-    border-color: #dcfce7; /* border-green-200 */
-    border-left-color: #22c55e; /* border-l-green-500 */
-    color: #166534; /* text-green-800 */
-}
-.alert-success .alert-title {
-    color: #15803d; /* text-green-700 */
 }
