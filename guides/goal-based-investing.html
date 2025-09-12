@@ -3,27 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goal-Based Investing: Planning for Your Dreams - Calculator.toolblaster</title>
-    <meta name="description" content="A simple and actionable guide to goal-based investing in India from Calculator.toolblaster. Learn how to plan for short-term, medium-term, and long-term goals like buying a car, child's education, or retirement.">
+    <title>Goal-Based Investing: A Visual Guide to Planning Your Dreams - Calculator.toolblaster</title>
+    <meta name="description" content="A beautiful, simple, and actionable guide to goal-based investing in India from Calculator.toolblaster. Learn how to plan for short-term, medium-term, and long-term goals like buying a car, child's education, or retirement.">
     <meta name="keywords" content="goal based investing, financial goals, investment planning, short term goals, long term goals, retirement planning, child education plan">
 
     <!-- Canonical Tag -->
     <link rel="canonical" href="https://calculator.toolblaster.com/guides/goal-based-investing.html">
 
     <!-- Open Graph Tags (for Facebook, LinkedIn, etc.) -->
-    <meta property="og:title" content="Goal-Based Investing: Planning for Your Dreams - Calculator.toolblaster">
-    <meta property="og:description" content="A simple and actionable guide to goal-based investing in India from Calculator.toolblaster. Learn how to plan for short-term, medium-term, and long-term goals.">
+    <meta property="og:title" content="Goal-Based Investing: A Visual Guide to Planning Your Dreams - Calculator.toolblaster">
+    <meta property="og:description" content="A beautiful, simple, and actionable guide to goal-based investing in India from Calculator.toolblaster. Learn how to plan for short-term, medium-term, and long-term goals.">
     <meta property="og:image" content="https://calculator.toolblaster.com/assets/images/goal-based-investing-og-image.png">
     <meta property="og:url" content="https://calculator.toolblaster.com/guides/goal-based-investing.html">
     <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2025-09-12T19:41:00+05:30" />
+    <meta property="article:author" content="Calculator.toolblaster" />
+
 
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Goal-Based Investing: Planning for Your Dreams - Calculator.toolblaster">
-    <meta name="twitter:description" content="A simple and actionable guide to goal-based investing in India from Calculator.toolblaster. Learn how to plan for short-term, medium-term, and long-term goals.">
+    <meta name="twitter:title" content="Goal-Based Investing: A Visual Guide to Planning Your Dreams - Calculator.toolblaster">
+    <meta name="twitter:description" content="A beautiful, simple, and actionable guide to goal-based investing in India from Calculator.toolblaster. Learn how to plan for short-term, medium-term, and long-term goals.">
     <meta name="twitter:image" content="https://calculator.toolblaster.com/assets/images/goal-based-investing-twitter-image.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
 
@@ -32,11 +36,20 @@
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "WebPage",
-          "name": "Goal-Based Investing: Planning for Your Dreams",
+          "@type": "Article",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://calculator.toolblaster.com/guides/goal-based-investing.html"
+          },
+          "headline": "Goal-Based Investing: A Roadmap to Your Dreams",
           "description": "A simple and actionable guide to goal-based investing in India. Learn how to plan for short-term, medium-term, and long-term goals like buying a car, child's education, or retirement.",
-          "url": "https://domain.com/guides/goal-based-investing.html",
-          "inLanguage": "en-IN"
+          "author": { "@type": "Organization", "name": "Calculator.toolblaster" },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Calculator.toolblaster",
+            "logo": { "@type": "ImageObject", "url": "https://calculator.toolblaster.com/assets/images/logo.png" }
+          },
+          "datePublished": "2025-09-12"
         },
         {
           "@type": "FAQPage",
@@ -74,6 +87,15 @@
               }
             }
           ]
+        },
+        {
+          "@type": "HowTo",
+          "name": "How to Start Goal-Based Investing",
+          "step": [
+            { "@type": "HowToStep", "name": "Step 1: Define & Quantify Your Goal", "text": "Be specific. Don't just say 'buy a car.' Say 'buy a car that costs ₹10 Lakhs in 5 years.' Giving your goal a number and a deadline makes it real." },
+            { "@type": "HowToStep", "name": "Step 2: Use a Goal Planning Calculator", "text": "Use our Goal Planning Calculator to enter your target amount and timeline. It will tell you exactly how much you need to invest each month, removing all guesswork." },
+            { "@type": "HowToStep", "name": "Step 3: Automate Your Investment", "text": "Set up a SIP for the calculated amount. The 'pay yourself first' approach is the easiest and most powerful way to stay disciplined and ensure you reach your goal." }
+          ]
         }
       ]
     }
@@ -87,6 +109,68 @@
             margin-bottom: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+        .goal-card {
+            background-color: #fff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        .goal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .goal-card .icon-container {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #fca5a5;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -38px;
+            top: 0;
+            height: 30px;
+            width: 30px;
+            background: #E34037;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border: 4px solid #fef2f2;
+        }
+        .insight-card {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -96,91 +180,161 @@
     <main class="container">
         <div class="legal-content">
             <h1>Goal-Based Investing: A Roadmap to Your Dreams</h1>
-            <p>We all have dreams—a new car, a home of our own, a comfortable retirement. But turning those dreams into reality requires a plan. This is where goal-based investing comes in. Instead of just saving money, you'll be giving every rupee a job and a purpose, making your financial journey more meaningful and a lot more effective.</p>
-
+            <p>We all have dreams, such as a new car, a home of our own, or a comfortable retirement. But turning those dreams into reality requires a plan. This is where goal-based investing comes in. Instead of just saving money, you'll be <strong>giving every rupee a job and a purpose</strong>, making your financial journey more meaningful and a lot more effective.</p>
+            
             <div class="content-section-card">
-                <h2>Why Goal-Based Investing Matters</h2>
-                <p>It’s easy to get lost in the world of investments. But with a clear goal in mind, your path becomes simple. Goal-based investing helps you:</p>
-                <ul>
-                    <li><strong>Stay Focused:</strong> It provides a clear target, keeping you motivated to save and invest consistently.</li>
-                    <li><strong>Choose Wisely:</strong> Your goal's timeline and size will automatically tell you which investment is right for you.</li>
-                    <li><strong>Manage Risk:</strong> You'll know exactly how much risk to take on for each goal, ensuring you don’t put your emergency fund in a high-risk stock.</li>
-                    <li><strong>Enjoy Peace of Mind:</strong> Knowing you have a solid plan for each of your life's milestones is truly priceless.</li>
-                </ul>
+                <h2 class="section-title-secondary">Why Goal-Based Investing is a Game-Changer</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">It’s easy to get lost in the world of investments. But with a clear goal in mind, your path becomes simple. Goal-based investing helps you:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="insight-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        <h4 class="font-semibold text-sm">Stay Focused</h4><p class="text-xs text-gray-600">A clear target keeps you motivated and turns dreams into actionable plans.</p>
+                    </div>
+                    <div class="insight-card">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <h4 class="font-semibold text-sm">Choose Wisely</h4><p class="text-xs text-gray-600">Your goal's timeline automatically tells you which investment is right for the job.</p>
+                    </div>
+                    <div class="insight-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <h4 class="font-semibold text-sm">Manage Risk</h4><p class="text-xs text-gray-600">It prevents putting short-term money into high-risk assets, protecting your capital.</p>
+                    </div>
+                    <div class="insight-card">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                        <h4 class="font-semibold text-sm">Enjoy Peace of Mind</h4><p class="text-xs text-gray-600">Knowing you have a solid plan for each of life's milestones is truly priceless.</p>
+                    </div>
+                </div>
             </div>
 
             <div class="content-section-card bg-gray-50">
-                <h2>Your Goals, Your Plan: A Tale of Two Investors</h2>
-                <p>The secret to goal-based investing is matching your investment strategy to your timeline. Let's see how two different investors, Priya and Amit, approach their goals:</p>
-                
-                <h3>Priya's Short-Term Goal: A Vacation in 2 Years</h3>
-                <p>Priya wants to take a trip to Europe in two years. Since her goal is short-term, her priority is to protect her savings from market volatility. She chooses low-risk options to ensure the money is there when she needs it.</p>
-                <ul>
-                    <li><strong>Best Investments for Priya:</strong> High-yield savings accounts, Liquid Mutual Funds, or Short-Term Fixed Deposits.</li>
-                    <li><strong>Why?</strong> These options protect her money from market risk and ensure she can access it quickly for her trip.</li>
-                </ul>
-
-                <h3>Amit's Long-Term Goal: Retirement in 25 Years</h3>
-                <p>Amit is planning for retirement, which is more than two decades away. With a long time horizon, he can afford to take on more risk for the potential of higher returns. He understands that while the market may have its ups and downs, it tends to grow over the long term.</p>
-                <ul>
-                    <li><strong>Best Investments for Amit:</strong> Equity Mutual Funds (via SIP), EPF, PPF, or NPS.</li>
-                    <li><strong>Why?</strong> Equities have historically provided the best returns over the long term, helping his money grow faster than inflation. SIPs are a great way for him to stay disciplined and average out his investment cost.</li>
-                </ul>
+                <h2 class="section-title-secondary">Your Goals, Your Plan: Matching Strategy to Timeline</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">The secret to goal-based investing is matching your investment strategy to your timeline. Let's see how this works for different goals.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Short-Term -->
+                    <div class="goal-card border-t-4 border-blue-500">
+                        <div class="icon-container bg-blue-100 text-blue-600"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                        <h3 class="font-bold text-lg text-blue-800">Short-Term Goals</h3>
+                        <p class="text-xs font-semibold text-gray-500 mb-2">(1-3 Years)</p>
+                        <p class="text-sm text-gray-600 mb-4"><strong>Examples:</strong> Vacation, new gadget, down payment for a bike.</p>
+                        <h4 class="font-semibold text-xs mb-2 text-gray-700">Priority: Capital Safety</h4>
+                        <div class="bg-blue-50 p-2 rounded-lg text-xs text-blue-700"><strong>Best Investments:</strong> High-yield Savings A/C, Liquid Funds, <a href="sip-vs-rd.html" class="font-semibold">RDs</a>, Short-Term FDs.</div>
+                    </div>
+                    <!-- Medium-Term -->
+                    <div class="goal-card border-t-4 border-yellow-500">
+                         <div class="icon-container bg-yellow-100 text-yellow-600"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><path d="M16 16-4-4-4 4"/><path d="M8 8l4 4 4-4"/></svg></div>
+                        <h3 class="font-bold text-lg text-yellow-800">Medium-Term Goals</h3>
+                        <p class="text-xs font-semibold text-gray-500 mb-2">(3-7 Years)</p>
+                        <p class="text-sm text-gray-600 mb-4"><strong>Examples:</strong> Car down payment, home renovation.</p>
+                        <h4 class="font-semibold text-xs mb-2 text-gray-700">Priority: Balanced Growth</h4>
+                        <div class="bg-yellow-50 p-2 rounded-lg text-xs text-yellow-700"><strong>Best Investments:</strong> Hybrid Mutual Funds, Debt Funds, Corporate Bonds.</div>
+                    </div>
+                    <!-- Long-Term -->
+                    <div class="goal-card border-t-4 border-green-500">
+                       <div class="icon-container bg-green-100 text-green-600"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg></div>
+                        <h3 class="font-bold text-lg text-green-800">Long-Term Goals</h3>
+                        <p class="text-xs font-semibold text-gray-500 mb-2">(7+ Years)</p>
+                        <p class="text-sm text-gray-600 mb-4"><strong>Examples:</strong> <a href="retirement-planning-guide.html" class="font-semibold">Retirement</a>, child's education, buying a home.</p>
+                         <h4 class="font-semibold text-xs mb-2 text-gray-700">Priority: Wealth Creation</h4>
+                        <div class="bg-green-50 p-2 rounded-lg text-xs text-green-700"><strong>Best Investments:</strong> Equity <a href="mfguide.html" class="font-semibold">Mutual Funds (SIP)</a>, PPF, NPS.</div>
+                    </div>
+                </div>
             </div>
 
+            <!-- CORRECTED SECTION: Visualizing Your Strategy -->
             <div class="content-section-card">
-                <h2>Investment Strategy at a Glance</h2>
-                <table style="width:100%; border-collapse: collapse; margin-bottom: 1rem;">
-                    <thead>
-                        <tr style="background-color: #f7f7f7;">
-                            <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left;">Goal Horizon</th>
-                            <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left;">Risk Level</th>
-                            <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left;">Focus</th>
-                            <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left;">Example Investments</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;"><strong>Short-Term (1-3 yrs)</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Low</td>
-                            <td style="padding-bottom: 0.75rem; border: 1px solid #eee;">Capital Safety & Liquidity</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Savings A/C, Liquid Funds, FDs</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;"><strong>Medium-Term (3-7 yrs)</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Medium</td>
-                            <td style="padding-bottom: 0.75rem; border: 1px solid #eee;">Balanced Growth & Safety</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Hybrid Funds, Debt Funds</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;"><strong>Long-Term (7+ yrs)</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">High</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Wealth Creation & Growth</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Equity Mutual Funds, PPF, NPS</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h2 class="section-title-secondary">Visualizing Your Strategy: Risk vs. Time Horizon</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">The core of goal-based investing is matching the right risk level to your goal's timeline. This matrix shows the ideal combination.</p>
+                <div class="grid grid-cols-3 gap-2 text-xs items-stretch">
+                    <!-- Column Headers -->
+                    <div></div> <!-- Empty top-left corner -->
+                    <div class="font-bold text-center p-2 flex items-end justify-center">Short-Term (1-3 Yrs)</div>
+                    <div class="font-bold text-center p-2 flex items-end justify-center">Long-Term (7+ Yrs)</div>
+            
+                    <!-- High Risk Row -->
+                    <div class="font-bold flex items-center justify-center p-2 text-center">High Risk</div>
+                    <div class="bg-red-100 text-red-800 p-4 rounded-lg text-center flex items-center justify-center"><strong>DANGEROUS:</strong> High risk of capital loss when you need the money.</div>
+                    <div class="bg-green-100 text-green-800 p-4 rounded-lg text-center flex items-center justify-center"><strong>IDEAL:</strong> You have time to ride out market volatility for maximum growth potential.</div>
+            
+                    <!-- Low Risk Row -->
+                    <div class="font-bold flex items-center justify-center p-2 text-center">Low Risk</div>
+                    <div class="bg-green-100 text-green-800 p-4 rounded-lg text-center flex items-center justify-center"><strong>IDEAL:</strong> Your money is safe and accessible for your upcoming goal.</div>
+                    <div class="bg-yellow-100 text-yellow-800 p-4 rounded-lg text-center flex items-center justify-center"><strong>SAFE BUT SLOW:</strong> Your money won't grow fast enough to beat inflation significantly.</div>
+                </div>
             </div>
             
-            <div class="content-section-card bg-gray-50">
-                <h2>Final Overview: Your Goal-Based Investing Action Plan</h2>
-                <p>Ready to start? Here’s your simple checklist to get going:</p>
-                <ul>
-                    <li><strong>Write down your goals:</strong> Be specific. What is the goal? How much will it cost? When do you need the money?</li>
-                    <li><strong>Use the Goal Planner:</strong> Head over to our <a href="../index.html?mode=goal">home page</a> to use the Goal Planner. Enter your target amount and timeline to see how much you need to invest each month.</li>
-                    <li><strong>Automate your investments:</strong> Set up a SIP or a recurring transfer. The "pay yourself first" approach is the easiest way to stay disciplined.</li>
-                    <li><strong>Review regularly:</strong> Life changes. Check your progress at least once a year and make adjustments to your plan as needed.</li>
-                </ul>
+            <div class="content-section-card">
+                 <h2 class="section-title-secondary">The Power of Starting Early: A Visual Comparison</h2>
+                 <p class="text-center text-sm text-gray-500 mb-6">This chart shows the magic of compounding. See how a 10-year delay impacts the final corpus of two investors, Priya and Amit, who both invest ₹10,000 per month for their retirement.</p>
+                 <div class="h-64 md:h-80 w-full mx-auto">
+                    <canvas id="compoundingChart"></canvas>
+                 </div>
             </div>
 
             <div class="content-section-card">
-                <h2 class="section-title-secondary">Continue Your Journey</h2>
-                <p>Goal-based investing is a powerful concept. Learn more with these related guides:</p>
-                <ul>
-                    <li><strong><a href="sip-vs-lumpsum.html">SIP vs. Lumpsum:</a></strong> Decide on the best strategy to fund your goals.</li>
-                    <li><strong><a href="retirement-planning-guide.html">Retirement Planning Guide:</a></strong> Apply these principles to your most important long-term goal.</li>
-                    <li><strong><a href="../index.html?mode=goal">Goal Planning Calculator:</a></strong> Turn your dreams into numbers with our dedicated planning tool.</li>
-                </ul>
+                 <h2 class="section-title-secondary">The 3-Step Goal-Setting Formula</h2>
+                 <p class="text-center text-sm text-gray-500 mb-8">Ready to start? Here’s your simple checklist to turn vague dreams into specific, actionable investment goals.</p>
+                 <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot">1</div>
+                        <h4 class="font-bold text-gray-800">Define & Quantify</h4>
+                        <p class="text-sm text-gray-600">Be specific. Don't just say "buy a car." Say "buy a car that costs <strong>₹10 Lakhs</strong> in <strong>5 years</strong>." Giving your goal a number and a deadline makes it real.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">2</div>
+                        <h4 class="font-bold text-gray-800">Use the Goal Planner</h4>
+                        <p class="text-sm text-gray-600">Head over to our <a href="../index.html?mode=goal"><strong>Goal Planning Calculator</strong></a>. Enter your target amount and timeline to see exactly how much you need to invest each month. This removes all the guesswork.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">3</div>
+                        <h4 class="font-bold text-gray-800">Automate Your Investment</h4>
+                        <p class="text-sm text-gray-600">Set up a <a href="sip-vs-lumpsum.html" class="font-semibold">SIP</a> for the amount calculated in Step 2. The "pay yourself first" approach is the easiest and most powerful way to stay disciplined and ensure you reach your goal.</p>
+                    </div>
+                 </div>
+            </div>
+
+            <div class="content-section-card bg-red-50 border-l-4 border-red-500">
+                <h2 class="section-title-secondary text-red-800">Common Mistakes to Avoid</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-600 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><h4 class="font-semibold text-sm">Using the Wrong Tool for the Job</h4><p class="text-xs text-gray-700">Investing in equities for a goal that's only one year away is a recipe for disaster. Always match the investment's risk profile with your goal's timeline.</p></div>
+                    </div>
+                    <div class="flex items-start">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-600 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><h4 class="font-semibold text-sm">Forgetting About Inflation</h4><p class="text-xs text-gray-700">A goal that costs ₹20 Lakhs today will cost much more in 15 years. Always use an <a href="../index.html" class="font-semibold">inflation-adjusted calculator</a> to find your true target amount.</p></div>
+                    </div>
+                    <div class="flex items-start">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-600 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><h4 class="font-semibold text-sm">Mixing All Your Investments</h4><p class="text-xs text-gray-700">Keeping all your goal investments in a single pot makes it hard to track progress. Use separate funds or folios for each major goal.</p></div>
+                    </div>
+                     <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-600 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><h4 class="font-semibold text-sm">Not Having an Emergency Fund</h4><p class="text-xs text-gray-700">A sudden financial shock can force you to liquidate your goal investments prematurely. Build your <a href="emergency-fund-guide.html" class="font-semibold">emergency fund</a> first.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section-card bg-gray-50">
+                <h2 class="section-title-secondary">Navigating Common Roadblocks</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">Even with a plan, you'll face challenges. Here’s how to handle them without derailing your progress.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mr-3 flex-shrink-0"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <div><h4 class="font-semibold">Roadblock: Market Volatility</h4><p class="text-xs text-gray-600">Seeing your investment value drop can be scary. <strong>Solution:</strong> Remember your timeline. Short-term drops are irrelevant for a long-term goal. A SIP automatically helps you take advantage of these dips.</p></div>
+                    </div>
+                     <div class="flex items-start">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mr-3 flex-shrink-0"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <div><h4 class="font-semibold">Roadblock: Changing Goals</h4><p class="text-xs text-gray-600">Life happens. Your priorities might change. <strong>Solution:</strong> Review your goals annually. It's okay to adjust your plan, pause a non-critical goal, or reallocate funds as your life evolves.</p></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section-card text-center">
+                <h2 class="section-title-secondary">Take the Next Step</h2>
+                <p class="mb-4 text-sm">Now that you understand the power of goal-based investing, put your knowledge into action.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../index.html?mode=goal" class="btn-primary">Use the Goal Planner</a>
+                    <a href="retirement-planning-guide.html" class="btn-secondary">Read Retirement Guide</a>
+                </div>
             </div>
 
             <div class="content-section-card bg-gray-50">
@@ -205,32 +359,94 @@
                 </div>
             </div>
 
-            <div class="share-buttons-container">
+             <div class="share-buttons-container" style="margin: 0;">
                 <p class="share-title">Share this guide:</p>
                 <div class="share-buttons">
-                    <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank" aria-label="Share on WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.35 3.48 16.81L2 22L7.33 20.55C8.75 21.33 10.35 21.79 12.04 21.79C17.5 21.79 21.95 17.34 21.95 11.88C21.95 6.42 17.5 2 12.04 2M12.04 3.64C16.57 3.64 20.25 7.32 20.25 11.85C20.25 16.38 16.57 20.06 12.04 20.06C10.56 20.06 9.14 19.68 7.9 18.98L7.54 18.78L4.45 19.65L5.35 16.62L5.13 16.27C4.34 15.05 3.96 13.5 3.96 11.88C3.96 7.35 7.64 3.64 12.04 3.64M9.01 7.4C8.86 7.4 8.71 7.4 8.57 7.4C8.37 7.4 8.1 7.49 7.89 7.85C7.68 8.21 7.03 8.81 7.03 9.94C7.03 11.07 7.92 12.14 8.07 12.31C8.21 12.48 10.03 15.34 12.87 16.59C15.72 17.84 15.72 17.34 16.19 17.29C16.66 17.24 17.63 16.68 17.84 16.09C18.05 15.5 18.05 15.03 17.98 14.91C17.91 14.78 17.77 14.7 17.53 14.58C17.3 14.46 15.98 13.83 15.74 13.73C15.51 13.64 15.37 13.59 15.22 13.83C15.08 14.07 14.54 14.7 14.4 14.84C14.26 14.98 14.11 15.01 13.88 14.89C13.64 14.77 12.71 14.45 11.61 13.48C10.71 12.7 10.09 11.76 9.92 11.49C9.75 11.22 9.89 11.09 10.03 10.96C10.16 10.83 10.3 10.65 10.43 10.5C10.56 10.35 10.61 10.23 10.73 10.03C10.86 9.83 10.78 9.64 10.71 9.5C10.65 9.36 10.11 8.04 9.87 7.47C9.64 6.9 9.4 6.98 9.25 6.98L9.01 7.4Z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn facebook" id="share-facebook" target="_blank" aria-label="Share on Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn twitter" id="share-twitter" target="_blank" aria-label="Share on Twitter">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.35 0 11.37-6.08 11.37-11.37 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.98-2.08z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn linkedin" id="share-linkedin" target="_blank" aria-label="Share on LinkedIn">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.5 2.5-2.5c1.6 0 2.5 1.2 2.5 2.5 0 1.3-1 2.5-2.5 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"></path></svg>
-                    </a>
-                    <button class="share-btn copy-link" id="copy-link-btn" aria-label="Copy link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    </button>
+                    <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.35 3.48 16.81L2 22L7.33 20.55C8.75 21.33 10.35 21.79 12.04 21.79C17.5 21.79 21.95 17.34 21.95 11.88C21.95 6.42 17.5 2 12.04 2M12.04 3.64C16.57 3.64 20.25 7.32 20.25 11.85C20.25 16.38 16.57 20.06 12.04 20.06C10.56 20.06 9.14 19.68 7.9 18.98L7.54 18.78L4.45 19.65L5.35 16.62L5.13 16.27C4.34 15.05 3.96 13.5 3.96 11.88C3.96 7.35 7.64 3.64 12.04 3.64M9.01 7.4C8.86 7.4 8.71 7.4 8.57 7.4C8.37 7.4 8.1 7.49 7.89 7.85C7.68 8.21 7.03 8.81 7.03 9.94C7.03 11.07 7.92 12.14 8.07 12.31C8.21 12.48 10.03 15.34 12.87 16.59C15.72 17.84 15.72 17.34 16.19 17.29C16.66 17.24 17.63 16.68 17.84 16.09C18.05 15.5 18.05 15.03 17.98 14.91C17.91 14.78 17.77 14.7 17.53 14.58C17.3 14.46 15.98 13.83 15.74 13.73C15.51 13.64 15.37 13.59 15.22 13.83C15.08 14.07 14.54 14.7 14.4 14.84C14.26 14.98 14.11 15.01 13.88 14.89C13.64 14.77 12.71 14.45 11.61 13.48C10.71 12.7 10.09 11.76 9.92 11.49C9.75 11.22 9.89 11.09 10.03 10.96C10.16 10.83 10.3 10.65 10.43 10.5C10.56 10.35 10.61 10.23 10.73 10.03C10.86 9.83 10.78 9.64 10.71 9.5C10.65 9.36 10.11 8.04 9.87 7.47C9.64 6.9 9.4 6.98 9.25 6.98L9.01 7.4Z"></path></svg></a>
+                    <a href="#" class="share-btn facebook" id="share-facebook" target="_blank" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"></path></svg></a>
+                    <a href="#" class="share-btn twitter" id="share-twitter" target="_blank" aria-label="Share on Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.35 0 11.37-6.08 11.37-11.37 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.98-2.08z"></path></svg></a>
+                    <a href="#" class="share-btn linkedin" id="share-linkedin" target="_blank" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.5 2.5-2.5c1.6 0 2.5 1.2 2.5 2.5 0 1.3-1 2.5-2.5 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"></path></svg></a>
+                    <button class="share-btn copy-link" id="copy-link-btn" aria-label="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
-            </div>
+             </div>
         </div>
     </main>
 
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('compoundingChart');
+            if(ctx) {
+                // Data for two investors
+                // Both invest ₹10,000/month at 12% p.a.
+                // Priya starts at 25 and invests for 35 years
+                // Amit starts at 35 and invests for 25 years
+                
+                const calculateFutureValue = (monthlyInvestment, years, rate) => {
+                    const monthlyRate = rate / 12;
+                    const months = years * 12;
+                    const futureValue = monthlyInvestment * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate * (1 + monthlyRate);
+                    return futureValue;
+                };
 
+                const priyaFV = calculateFutureValue(10000, 35, 0.12);
+                const amitFV = calculateFutureValue(10000, 25, 0.12);
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Priya (Starts at 25)', 'Amit (Starts at 35)'],
+                        datasets: [{
+                            label: 'Final Corpus (in Crores)',
+                            data: [priyaFV / 10000000, amitFV / 10000000], // in Crores
+                            backgroundColor: [
+                                'rgba(34, 197, 94, 0.7)',
+                                'rgba(239, 68, 68, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(22, 163, 74, 1)',
+                                'rgba(220, 38, 38, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(context.parsed.y * 10000000);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Final Corpus (in Crores)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
