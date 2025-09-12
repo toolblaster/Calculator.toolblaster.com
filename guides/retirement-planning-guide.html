@@ -25,6 +25,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <script type="application/ld+json">
@@ -178,6 +179,13 @@
             margin-right: 0.75rem;
             margin-top: 3px;
         }
+        .pillar-card {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -187,37 +195,65 @@
     <main class="container">
         <div class="legal-content">
             <h1>Your Guide to a Happy and Stress-Free Retirement in India</h1>
-            <p>Retirement. For many, the word brings up images of freedom, travel, and pursuing long-held passions. But it can also bring a sense of anxiety. Will I have enough? How do I even start? This guide is here to replace that anxiety with confidence. Think of retirement planning not as a chore, but as designing the longest and most rewarding holiday of your life. A thoughtful plan today is the ticket to a comfortable, secure, and truly golden tomorrow.</p>
+            <p>Retirement. For many, the word brings up images of freedom, travel, and pursuing long-held passions. But it can also bring a sense of anxiety. Will I have enough? How do I even start? This guide is here to replace that anxiety with confidence. Think of retirement planning not as a chore, but as <strong>designing the longest and most rewarding holiday of your life</strong>. A thoughtful plan today is the ticket to a comfortable, secure, and truly golden tomorrow.</p>
 
             <div class="content-section-card">
-                <h2>Why Starting Early is Your Financial Superpower</h2>
-                <p>The single most powerful tool in your investment arsenal isn't a secret stock tip or a complex strategy—it's <strong>time</strong>. Thanks to the magic of <strong>compounding</strong>, your money doesn't just grow; it starts to grow on its own. The earlier you start, the less you have to invest to reach your goals. The lesson? The best time to start investing was yesterday. The second-best time is today.</p>
+                <h2 class="section-title-secondary">Why Starting Early is Your Financial Superpower</h2>
+                <p>The single most powerful tool in your investment arsenal isn't a secret stock tip or a complex strategy. It's <strong>time</strong>. Thanks to the magic of <strong>compounding</strong>, your money doesn't just grow; it starts to grow on its own. The earlier you start, the less you have to invest to reach your goals. The lesson? The best time to start investing was yesterday. <strong>The second-best time is today.</strong></p>
             </div>
             
-            <!-- NEW SECTION: Hidden Villains -->
-            <div class="content-section-card bg-red-50 border-l-4 border-red-500">
-                <h2 class="section-title-secondary text-red-800">Beware the Hidden Villains of Retirement</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div class="content-section-card">
+                <h2 class="section-title-secondary">The Power of Compounding: Your Greatest Ally</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">Compounding is often called the "eighth wonder of the world." It's the process where your investment returns start earning their own returns, creating a snowball effect. The chart below shows the incredible difference between simple interest and compound interest on a <strong>₹1 Lakh investment</strong> over 30 years at 12% p.a.</p>
+                 <div class="h-64 md:h-80 w-full mx-auto">
+                   <canvas id="compoundingChart"></canvas>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                     <div class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-red-600 mr-3 flex-shrink-0"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        <div>
-                            <h4 class="font-semibold">Inflation: The Silent Wealth-Eroder</h4>
-                            <p class="text-xs text-gray-700">A corpus of ₹1 Crore today won't buy the same lifestyle in 20 years. Your investments must grow faster than inflation to maintain your purchasing power.</p>
-                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-500 mr-3 flex-shrink-0"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+                        <div><h4 class="font-semibold text-sm">Time is Key</h4><p class="text-xs text-gray-600">The longer your money is invested, the more powerful the compounding effect becomes.</p></div>
                     </div>
                      <div class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-red-600 mr-3 flex-shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v6"/><path d="M15 11h-6"/></svg>
-                        <div>
-                            <h4 class="font-semibold">Healthcare Costs</h4>
-                            <p class="text-xs text-gray-700">Medical expenses tend to rise faster than general inflation. A robust health insurance policy is non-negotiable to protect your main retirement fund.</p>
-                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-500 mr-3 flex-shrink-0"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.88.99 6.6 2.6l-2.1 2.1"/><path d="M21 7v5h-5"/></svg>
+                        <div><h4 class="font-semibold text-sm">Reinvest Returns</h4><p class="text-xs text-gray-600">For compounding to work, you must reinvest any dividends or interest you earn back into the investment.</p></div>
                     </div>
+                     <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-500 mr-3 flex-shrink-0"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                        <div><h4 class="font-semibold text-sm">Consistency Matters</h4><p class="text-xs text-gray-600">Regular contributions, like with a SIP, continuously add fuel to the compounding engine.</p></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section-card bg-gray-50">
+                <h2 class="section-title-secondary">The Three Pillars of a Secure Retirement</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">A successful retirement plan is built on three strong pillars. Neglecting any one of them can make your entire structure unstable.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="pillar-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-red-500 mx-auto mb-2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                        <h4 class="font-semibold text-sm">A Sufficient Corpus</h4><p class="text-xs text-gray-600">This is the total amount of money you need to accumulate to fund your retirement lifestyle without running out of money.</p>
+                    </div>
+                     <div class="pillar-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-red-500 mx-auto mb-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v6"/><path d="M15 11h-6"/></svg>
+                        <h4 class="font-semibold text-sm">Healthcare Protection</h4><p class="text-xs text-gray-600">A robust health insurance plan is non-negotiable to protect your main retirement fund from being wiped out by medical emergencies.</p>
+                    </div>
+                     <div class="pillar-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-red-500 mx-auto mb-2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/><path d="M16 12H8"/></svg>
+                        <h4 class="font-semibold text-sm">A Regular Income Stream</h4><p class="text-xs text-gray-600">Your corpus needs to be invested in a way that generates a regular, predictable income, like a monthly pension, to cover your expenses.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section-card">
+                <h2 class="section-title-secondary">The Inflation Effect: Why Your Savings Need to Grow</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">This chart shows what happens to <strong>₹10 Lakhs</strong> over 20 years with an average inflation of 6%. While you still have ₹10 Lakhs, it will only buy you what <strong>₹3.1 Lakhs</strong> buys today.</p>
+                <div class="h-64 md:h-80 w-full mx-auto">
+                   <canvas id="inflationChart"></canvas>
                 </div>
             </div>
 
             <div class="content-section-card bg-gray-50">
                 <h2>Figuring Out Your Magic Number: The Retirement Corpus</h2>
-                <p>So, how much do you actually need to save? While the exact number is personal, a popular guideline is the <strong>4% Withdrawal Rule</strong>. It suggests your corpus should be <strong>25 times</strong> your estimated annual expenses in your first year of retirement. For example, if you think you'll need ₹12 lakh per year, your target corpus would be ₹3 crore.</p>
+                <p>So, how much do you actually need to save? While the exact number is personal, a popular guideline is the <strong>4% Withdrawal Rule</strong>. It suggests your corpus should be <strong>25 times</strong> your estimated annual expenses in your first year of retirement. For example, if you think you'll need <strong>₹12 lakh per year</strong>, your target corpus would be <strong>₹3 crore</strong>.</p>
                 
                 <div id="mini-calc-retirement" class="mini-calculator">
                     <div class="mini-calculator-icon">
@@ -238,6 +274,39 @@
             </div>
 
             <div class="content-section-card">
+                <h2 class="section-title-secondary">Asset Allocation Strategy: A Sample Retirement Portfolio</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">A diversified portfolio is key to managing risk. This is a sample asset allocation for a <strong>35-year-old investor</strong> in their accumulation phase. Your ideal mix will depend on your age and risk tolerance.</p>
+                <div class="h-64 md:h-80 w-full max-w-sm mx-auto">
+                    <canvas id="assetAllocationChart"></canvas>
+                </div>
+                <p class="text-center text-xs text-gray-500 mt-4">As you get closer to retirement, you should gradually reduce equity and increase your allocation to safer debt instruments.</p>
+            </div>
+            
+            <div class="content-section-card">
+                <h2 class="section-title-secondary">Comparing Your Retirement Options: A Quick Guide</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">Choosing the right investment vehicles is crucial. Here’s a quick comparison of the most popular retirement tools in India.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3">Instrument</th>
+                                <th class="px-6 py-3">Best For</th>
+                                <th class="px-6 py-3">Risk Level</th>
+                                <th class="px-6 py-3">Returns</th>
+                                <th class="px-6 py-3">Lock-in</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b"><td class="px-6 py-4 font-medium">EPF</td><td class="px-6 py-4">Salaried Employees</td><td class="px-6 py-4">Low</td><td class="px-6 py-4">Govt. Declared</td><td class="px-6 py-4">Till Retirement</td></tr>
+                            <tr class="bg-gray-50 border-b"><td class="px-6 py-4 font-medium">PPF</td><td class="px-6 py-4">Conservative Savers</td><td class="px-6 py-4">Risk-Free</td><td class="px-6 py-4">Guaranteed & Tax-Free</td><td class="px-6 py-4">15 Years</td></tr>
+                            <tr class="bg-white border-b"><td class="px-6 py-4 font-medium">NPS</td><td class="px-6 py-4">Balanced Investors</td><td class="px-6 py-4">Medium</td><td class="px-6 py-4">Market-linked (Equity + Debt)</td><td class="px-6 py-4">Till Age 60</td></tr>
+                            <tr class="bg-gray-50"><td class="px-6 py-4 font-medium">Mutual Funds (SIP)</td><td class="px-6 py-4">Growth Seekers</td><td class="px-6 py-4">High</td><td class="px-6 py-4">Market-linked (High Potential)</td><td class="px-6 py-4">None (but long-term advised)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-section-card">
                 <h2>Your Toolkit: Top Retirement Investments in India</h2>
                 <p>Building a solid retirement corpus requires using the right tools. Here are the most effective investment options available in India:</p>
                 
@@ -245,28 +314,50 @@
                     <li class="flex items-start">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
                         <div>
-                            <strong>EPF (Employees' Provident Fund):</strong> Your automatic retirement savings plan if you're a salaried employee. A safe and steady foundation.
+                            <strong>EPF (Employees' Provident Fund):</strong> Your automatic retirement savings plan if you're a salaried employee. A <strong>safe and steady</strong> foundation.
                         </div>
                     </li>
                      <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         <div>
-                            <strong>PPF (Public Provident Fund):</strong> A fantastic, government-backed option for everyone with tax-free, guaranteed returns. Ideal for risk-free savings.
+                            <strong>PPF (Public Provident Fund):</strong> A fantastic, government-backed option for everyone with <strong>tax-free, guaranteed returns</strong>. Ideal for risk-free savings.
                         </div>
                     </li>
                      <li class="flex items-start">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/><path d="M16 12H8"/></svg>
                         <div>
-                            <strong>NPS (National Pension System):</strong> A smart, low-cost pension scheme that invests in a mix of stocks and bonds, with extra tax benefits.
+                            <strong>NPS (National Pension System):</strong> A smart, low-cost pension scheme that invests in a mix of stocks and bonds, with <strong>extra tax benefits</strong>.
                         </div>
                     </li>
                      <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
                         <div>
-                            <strong>Mutual Funds (via SIP):</strong> The most powerful engine for wealth creation. Equity SIPs consistently beat inflation over the long term, making them essential for building a large corpus.
+                            <strong>Mutual Funds (via SIP):</strong> The most powerful engine for wealth creation. Equity SIPs <strong>consistently beat inflation</strong> over the long term, making them essential for building a large corpus.
                         </div>
                     </li>
                 </ul>
+            </div>
+            
+            <div class="content-section-card bg-red-50 border-l-4 border-red-500">
+                <h2 class="section-title-secondary text-red-800">Common Retirement Pitfalls to Avoid</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-600 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><h4 class="font-semibold text-sm">Underestimating Inflation</h4><p class="text-xs text-gray-700">A lifestyle that costs <strong>₹50,000/month today</strong> could cost over <strong>₹2 Lakhs/month</strong> in 25 years. Your plan must account for rising costs.</p></div>
+                    </div>
+                     <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-600 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><h4 class="font-semibold text-sm">Starting Too Late</h4><p class="text-xs text-gray-700">Delaying your investments by just a few years can mean needing to invest <strong>double the amount</strong> each month to reach the same goal due to lost compounding.</p></div>
+                    </div>
+                     <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-600 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><h4 class="font-semibold text-sm">Being Too Conservative</h4><p class="text-xs text-gray-700">Relying only on FDs and savings accounts for a long-term goal like retirement means your money is likely <strong>losing value</strong> to inflation over time.</p></div>
+                    </div>
+                     <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-600 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><h4 class="font-semibold text-sm">Ignoring Healthcare Costs</h4><p class="text-xs text-gray-700">Healthcare inflation is often much higher than general inflation. A dedicated health insurance plan is <strong>essential</strong> to protect your main corpus.</p></div>
+                    </div>
+                </div>
             </div>
 
             <div class="content-section-card bg-gray-50">
@@ -281,67 +372,64 @@
                     <li class="flex items-start">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <div>
-                            <strong>Start Today, No Matter How Small:</strong> Don't wait. The power of compounding means that time is your most valuable asset.
+                            <strong>Start Today, No Matter How Small:</strong> Don't wait. The power of compounding means that <strong>time is your most valuable asset</strong>.
                         </div>
                     </li>
                      <li class="flex items-start">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <div>
-                            <strong>Picture Your Future Self:</strong> Visualize your ideal retirement. Knowing what you're saving for provides powerful motivation.
+                            <strong>Picture Your Future Self:</strong> Visualize your ideal retirement. Knowing what you're saving for provides <strong>powerful motivation</strong>.
                         </div>
                     </li>
                      <li class="flex items-start">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <div>
-                             <strong>Automate Your Savings:</strong> Set up SIPs to make saving effortless. This "pay yourself first" approach builds discipline without willpower.
+                             <strong>Automate Your Savings:</strong> Set up SIPs to make saving effortless. This <strong>"pay yourself first"</strong> approach builds discipline without willpower.
                         </div>
                     </li>
                      <li class="flex items-start">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <div>
-                             <strong>Review and Adjust Annually:</strong> Your life will change. Conduct a quick annual review of your portfolio to stay on track.
+                             <strong>Review and Adjust Annually:</strong> Your life will change. Conduct a <strong>quick annual review</strong> of your portfolio to stay on track.
                         </div>
                     </li>
                 </ul>
             </div>
             
-            <!-- FAQ Section -->
             <div class="content-section-card bg-gray-50">
                 <h3 class="section-title-secondary">Frequently Asked Questions (FAQ)</h3>
                 <div class="faq-container">
                     <details class="faq-item">
                         <summary>How much money is enough to retire in India?</summary>
-                        <p>A popular guideline is the '4% Withdrawal Rule.' This suggests your retirement corpus should be 25 times your estimated annual expenses in your first year of retirement. For example, if you estimate needing ₹1 lakh per month (₹12 lakh per year), you should aim for a corpus of at least ₹3 crore. It's also crucial to factor in inflation to ensure your purchasing power isn't eroded over time.</p>
+                        <p>A popular guideline is the '4% Withdrawal Rule.' This suggests your retirement corpus should be <strong>25 times</strong> your estimated annual expenses in your first year of retirement. For example, if you estimate needing ₹1 lakh per month (₹12 lakh per year), you should aim for a corpus of at least <strong>₹3 crore</strong>. It's also crucial to factor in inflation to ensure your purchasing power isn't eroded over time.</p>
                     </details>
                     <details class="faq-item">
                         <summary>What is the best age to start planning for retirement?</summary>
-                        <p>The best age is as soon as you receive your first paycheck. The earlier you start, the more you benefit from the power of compounding, where your investment returns start earning their own returns. A small amount invested in your 20s can grow to be significantly larger than a much bigger amount invested in your 40s.</p>
+                        <p>The best age is as soon as you receive your <strong>first paycheck</strong>. The earlier you start, the more you benefit from the power of compounding, where your investment returns start earning their own returns. A small amount invested in your 20s can grow to be significantly larger than a much bigger amount invested in your 40s.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Which is better for retirement: NPS or a Mutual Fund SIP?</summary>
-                        <p>This depends on your risk appetite and financial discipline. NPS is a dedicated, low-cost pension scheme with tax benefits, making it ideal for conservative investors who want a structured retirement product. An equity Mutual Fund SIP offers higher potential returns and greater flexibility but comes with market risk, making it suitable for those with a higher risk tolerance and a long-term investment horizon.</p>
+                        <p>This depends on your risk appetite and financial discipline. <strong>NPS</strong> is a dedicated, low-cost pension scheme with tax benefits, making it ideal for conservative investors. An <strong>equity Mutual Fund SIP</strong> offers higher potential returns and greater flexibility but comes with market risk, making it suitable for those with a higher risk tolerance and a long-term investment horizon.</p>
                     </details>
                      <details class="faq-item">
                         <summary>How do I plan for inflation in retirement?</summary>
-                        <p>Planning for inflation is critical. You need to invest in assets that can provide returns higher than the average inflation rate (historically 5-6% in India). This is why a portion of your portfolio should be in growth assets like equity mutual funds. When calculating your retirement corpus, you should estimate your future expenses by inflating your current expenses at a realistic rate. Our inflation-adjusted calculator can help you with this.</p>
+                        <p>Planning for inflation is critical. You need to invest in assets that can provide returns <strong>higher than the average inflation rate</strong> (historically 5-6% in India). This is why a portion of your portfolio should be in growth assets like equity mutual funds. When calculating your retirement corpus, you should estimate your future expenses by inflating your current expenses at a realistic rate. Our inflation-adjusted calculator can help you with this.</p>
                     </details>
                     <details class="faq-item">
                         <summary>What about healthcare costs in retirement?</summary>
-                        <p>This is a crucial point many people miss. Healthcare inflation is often higher than general inflation. Your retirement corpus should include a separate, dedicated fund for medical expenses. It is highly recommended to buy a comprehensive health insurance policy early in life and ensure it provides coverage in your senior years. Relying solely on your savings for major medical events can deplete your corpus much faster than anticipated.</p>
+                        <p>This is a crucial point many people miss. Healthcare inflation is often <strong>higher than general inflation</strong>. Your retirement corpus should include a separate, dedicated fund for medical expenses. It is highly recommended to buy a comprehensive health insurance policy early in life and ensure it provides coverage in your senior years. Relying solely on your savings for major medical events can deplete your corpus much faster than anticipated.</p>
                     </details>
                     <details class="faq-item">
                         <summary>How should my investment strategy change as I get closer to retirement?</summary>
-                        <p>Your strategy should shift from wealth creation to capital preservation. When you're young, you can afford to have a higher allocation to equities (70-80%) for growth. As you approach retirement (e.g., within the last 5-7 years), you should gradually reduce your equity exposure and move funds to safer debt instruments like debt mutual funds or fixed deposits. This process, known as 'rebalancing,' protects your accumulated corpus from any sudden stock market downturns right before you need the money.</p>
+                        <p>Your strategy should shift from <strong>wealth creation to capital preservation</strong>. When you're young, you can afford to have a higher allocation to equities (70-80%) for growth. As you approach retirement (e.g., within the last 5-7 years), you should gradually reduce your equity exposure and move funds to safer debt instruments. This process, known as <strong>'rebalancing,'</strong> protects your accumulated corpus from any sudden stock market downturns.</p>
                     </details>
                 </div>
             </div>
 
-            <!-- Share Buttons Section -->
             <div class="share-buttons-container">
                 <p class="share-title">Share this guide:</p>
                 <div class="share-buttons">
-                    <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank" aria-label="Share on WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.35 3.48 16.81L2 22L7.33 20.55C8.75 21.33 10.35 21.79 12.04 21.79C17.5 21.79 21.95 17.34 21.95 11.88C21.95 6.42 17.5 2 12.04 2M12.04 3.64C16.57 3.64 20.25 7.32 20.25 11.85C20.25 16.38 16.57 20.06 12.04 20.06C10.56 20.06 9.14 19.68 7.9 18.98L7.54 18.78L4.45 19.65L5.35 16.62L5.13 16.27C4.34 15.05 3.96 13.5 3.96 11.88C3.96 7.35 7.64 3.64 12.04 3.64M9.01 7.4C8.86 7.4 8.71 7.4 8.57 7.4C8.37 7.4 8.1 7.49 7.89 7.85C7.68 8.21 7.03 8.81 7.03 9.94C7.03 11.07 7.92 12.14 8.07 12.31C8.21 12.48 10.03 15.34 12.87 16.59C15.72 17.84 15.72 17.34 16.19 17.29C16.66 17.24 17.63 16.68 17.84 16.09C18.05 15.5 18.05 15.03 17.98 14.91C17.91 14.78 17.77 14.7 17.53 14.58C17.3 14.46 15.98 13.83 15.74 13.73C15.51 13.64 15.37 13.59 15.22 13.83C15.08 14.07 14.54 14.7 14.4 14.84C14.26 14.98 14.11 15.01 13.88 14.89C13.64 14.77 12.71 14.45 11.61 13.48C10.71 12.7 10.09 11.76 9.92 11.49C9.75 11.22 9.89 11.09 10.03 10.96C10.16 10.83 10.3 10.65 10.43 10.5C10.56 10.35 10.61 10.23 10.73 10.03C10.86 9.83 10.78 9.64 10.71 9.5C10.65 9.36 10.11 8.04 9.87 7.47C9.64 6.9 9.4 6.98 9.25 6.98L9.01 7.4Z"></path></svg>
+                    <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.35 3.48 16.81L2 22L7.33 20.55C8.75 21.33 10.35 21.79 12.04 21.79C17.5 21.79 21.95 17.34 21.95 11.88C21.95 6.42 17.5 2 12.04 2M12.04 3.64C16.57 3.64 20.25 7.32 20.25 11.85C20.25 16.38 16.57 20.06 12.04 20.06C10.56 20.06 9.14 19.68 7.9 18.98L7.54 18.78L4.45 19.65L5.35 16.62L5.13 16.27C4.34 15.05 3.96 13.5 3.96 11.88C3.96 7.35 7.64 3.64 12.04 3.64M9.01 7.4C8.86 7.4 8.71 7.4 8.57 7.4C8.37 7.4 8.1 7.49 7.89 7.85C7.68 8.21 7.03 8.81 7.03 9.94C7.03 11.07 7.92 12.14 8.07 12.31C8.21 12.48 10.03 15.34 12.87 16.59C15.72 17.84 15.72 17.34 16.19 17.29C16.66 17.24 17.63 16.68 17.84 16.09C18.05 15.5 18.05 15.03 17.98 14.91C17.91 14.78 17.77 14.7 17.53 14.58C17.3 14.46 15.98 13.83 15.74 13.73C15.51 13.64 15.37 13.59 15.22 13.83C15.08 14.07 14.54 14.7 14.4 14.84C14.26 14.98 14.11 15.01 13.88 14.89C13.64 14.77 12.71 14.45 11.61 13.48C10.71 12.7 10.09 11.76 9.92 11.49C9.75 11.22 9.89 11.09 10.03 10.96C10.16 10.83 10.3 10.65 10.43 10.5C10.56 10.35 10.61 10.23 10.73 10.03C10.86 9.83 10.78 9.64 10.71 9.5C10.65 9.36 10.11 8.04 9.87 7.47C9.64 6.9 9.4 6.98 9.25 6.98L9.01 7.4Z"></path></svg>
                     </a>
                     <a href="#" class="share-btn facebook" id="share-facebook" target="_blank" aria-label="Share on Facebook">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"></path></svg>
@@ -365,6 +453,172 @@
 
     <script src="../script.js"></script>
     <script src="mini-calculators.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inflationCtx = document.getElementById('inflationChart');
+            if(inflationCtx) {
+                const initialAmount = 1000000;
+                const inflationRate = 0.06;
+                const years = 20;
+                const realValue = initialAmount / Math.pow(1 + inflationRate, years);
 
+                new Chart(inflationCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Nominal Value', 'Real Value (Purchasing Power)'],
+                        datasets: [{
+                            label: 'Value after 20 Years',
+                            data: [initialAmount, realValue],
+                            backgroundColor: [
+                                'rgba(59, 130, 246, 0.7)',
+                                'rgba(239, 68, 68, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(37, 99, 235, 1)',
+                                'rgba(220, 38, 38, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => `${context.label}: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.x)}`
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: {
+                                     callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value)
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const assetCtx = document.getElementById('assetAllocationChart');
+            if (assetCtx) {
+                new Chart(assetCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Equity Mutual Funds', 'Debt (PPF, EPF, Debt Funds)', 'Gold/Alternatives'],
+                        datasets: [{
+                            label: 'Asset Allocation',
+                            data: [60, 30, 10],
+                            backgroundColor: [
+                                'rgba(22, 163, 74, 0.7)',  // Green for Equity
+                                'rgba(59, 130, 246, 0.7)', // Blue for Debt
+                                'rgba(245, 158, 11, 0.7)'  // Amber for Gold
+                            ],
+                            borderColor: [
+                                'rgba(22, 163, 74, 1)',
+                                'rgba(37, 99, 235, 1)',
+                                'rgba(217, 119, 6, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed !== null) {
+                                            label += context.parsed + '%';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            const compoundingCtx = document.getElementById('compoundingChart');
+            if(compoundingCtx) {
+                const years = 30;
+                const principal = 100000;
+                const rate = 0.12;
+                let labels = [];
+                let compoundData = [];
+                let simpleData = [];
+                let currentCompoundValue = principal;
+                
+                for(let i = 0; i <= years; i++) {
+                    labels.push(`Year ${i}`);
+                    simpleData.push(principal + (principal * rate * i));
+                    if (i > 0) {
+                        currentCompoundValue *= (1 + rate);
+                    }
+                    compoundData.push(currentCompoundValue);
+                }
+
+                new Chart(compoundingCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Compound Growth',
+                                data: compoundData,
+                                borderColor: 'rgba(34, 197, 94, 1)',
+                                backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                                fill: true,
+                                tension: 0.1
+                            },
+                            {
+                                label: 'Simple Growth',
+                                data: simpleData,
+                                borderColor: 'rgba(239, 68, 68, 1)',
+                                backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                                fill: true,
+                                tension: 0.1
+                            }
+                        ]
+                    },
+                     options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                             tooltip: {
+                                callbacks: {
+                                    label: (context) => `${context.dataset.label}: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.y)}`
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value)
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
 </body>
 </html>
