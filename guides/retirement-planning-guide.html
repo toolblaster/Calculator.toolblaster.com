@@ -130,10 +130,9 @@
             margin-bottom: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-        /* --- NEW: Mini Calculator Styles --- */
         .mini-calculator {
-            background-color: #fef2f2; /* Light red background */
-            border: 1px solid #fca5a5; /* Red border */
+            background-color: #fef2f2;
+            border: 1px solid #fca5a5;
             border-radius: 0.5rem;
             padding: 1rem;
             margin-top: 1.5rem;
@@ -172,143 +171,137 @@
             font-weight: 800;
             color: #C22D2D;
         }
-        .mini-calculator-affiliate {
-            text-align: center;
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid #fca5a5;
-            font-size: 0.65rem; /* very small text */
-            color: #6b7280; /* muted color */
-        }
-        .mini-calculator-affiliate a {
-            color: #3b82f6; /* blue link color */
-            text-decoration: none;
-        }
-        .mini-calculator-affiliate a:hover {
-            text-decoration: underline;
+        .list-icon {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            margin-right: 0.75rem;
+            margin-top: 3px;
         }
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <!-- Header will be loaded here -->
     <div id="header-placeholder"></div>
 
-    <!-- Main Content -->
     <main class="container">
         <div class="legal-content">
             <h1>Your Guide to a Happy and Stress-Free Retirement in India</h1>
             <p>Retirement. For many, the word brings up images of freedom, travel, and pursuing long-held passions. But it can also bring a sense of anxiety. Will I have enough? How do I even start? This guide is here to replace that anxiety with confidence. Think of retirement planning not as a chore, but as designing the longest and most rewarding holiday of your life. A thoughtful plan today is the ticket to a comfortable, secure, and truly golden tomorrow.</p>
 
             <div class="content-section-card">
-                <h2>Why Starting Early is Your Financial Superpower: A Story of Two Friends</h2>
-                <p>The single most powerful tool in your investment arsenal isn't a secret stock tip or a complex strategy—it's <strong>time</strong>. Thanks to the magic of <strong>compounding</strong>, your money doesn't just grow; it starts to grow on its own. Let's consider two friends, Rohan and Sameer.</p>
-                <ul>
-                    <li><strong>Rohan</strong> starts investing ₹5,000 per month at age 25.</li>
-                    <li><strong>Sameer</strong> waits until he's 35 to start investing, but he invests ₹10,000 per month to catch up.</li>
-                </ul>
-                <p>Even though Sameer invests double the amount, by the time they both reach age 60, Rohan's portfolio will likely be significantly larger. This is because his money had an extra 10 years to compound and grow. The lesson? The best time to start investing was yesterday. The second-best time is today.</p>
+                <h2>Why Starting Early is Your Financial Superpower</h2>
+                <p>The single most powerful tool in your investment arsenal isn't a secret stock tip or a complex strategy—it's <strong>time</strong>. Thanks to the magic of <strong>compounding</strong>, your money doesn't just grow; it starts to grow on its own. The earlier you start, the less you have to invest to reach your goals. The lesson? The best time to start investing was yesterday. The second-best time is today.</p>
+            </div>
+            
+            <!-- NEW SECTION: Hidden Villains -->
+            <div class="content-section-card bg-red-50 border-l-4 border-red-500">
+                <h2 class="section-title-secondary text-red-800">Beware the Hidden Villains of Retirement</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-red-600 mr-3 flex-shrink-0"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <div>
+                            <h4 class="font-semibold">Inflation: The Silent Wealth-Eroder</h4>
+                            <p class="text-xs text-gray-700">A corpus of ₹1 Crore today won't buy the same lifestyle in 20 years. Your investments must grow faster than inflation to maintain your purchasing power.</p>
+                        </div>
+                    </div>
+                     <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-red-600 mr-3 flex-shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v6"/><path d="M15 11h-6"/></svg>
+                        <div>
+                            <h4 class="font-semibold">Healthcare Costs</h4>
+                            <p class="text-xs text-gray-700">Medical expenses tend to rise faster than general inflation. A robust health insurance policy is non-negotiable to protect your main retirement fund.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="content-section-card bg-gray-50">
                 <h2>Figuring Out Your Magic Number: The Retirement Corpus</h2>
-                <p>So, how much do you actually need to save? While the exact number is personal, a popular guideline is the <strong>4% Withdrawal Rule</strong>. It suggests you can safely withdraw 4% of your total savings in your first year of retirement, and then adjust that amount for inflation each subsequent year, without running out of money for about 30 years.</p>
-                <ul>
-                    <li><strong>Simple Calculation:</strong> To use this rule, estimate your ideal annual expenses in retirement and multiply that number by 25. For example, if you think you'll need ₹12 lakh per year, your target corpus would be ₹3 crore (12,00,000 x 25).</li>
-                    <li><strong>The Inflation Factor:</strong> Remember, ₹12 lakh today won't have the same purchasing power in 20 or 30 years. It's crucial to account for inflation when estimating your future expenses.</li>
-                </ul>
+                <p>So, how much do you actually need to save? While the exact number is personal, a popular guideline is the <strong>4% Withdrawal Rule</strong>. It suggests your corpus should be <strong>25 times</strong> your estimated annual expenses in your first year of retirement. For example, if you think you'll need ₹12 lakh per year, your target corpus would be ₹3 crore.</p>
                 
-                <!-- NEW: Mini Calculator Embedded Here -->
                 <div id="mini-calc-retirement" class="mini-calculator">
                     <div class="mini-calculator-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                     </div>
-                    <h4 class="mini-calculator-title">Quick Corpus Estimator</h4>
+                    <h4 class="mini-calculator-title">Quick Corpus Estimator (4% Rule)</h4>
                     <input type="number" id="annual-expenses-input" class="mini-calculator-input" placeholder="Enter Annual Expenses (e.g., 1200000)">
                     <div id="retirement-corpus-result" class="mini-calculator-result">
                         Your Target Corpus is:
                         <span id="corpus-value" class="mini-calculator-result-value">₹0</span>
                     </div>
-                    <!-- AFFILIATE LINK WILL BE ADDED DYNAMICALLY BY mini-calculators.js -->
                 </div>
 
-                <p style="margin-top: 1.5rem;"><strong>Ready to find your personalized number?</strong> Use our advanced <strong><a href="../index.html?mode=goal">Goal Planning calculator</a></strong> on the homepage to see what it takes to build your dream retirement fund, with inflation properly factored in.</p>
+                <div class="alert alert-info mt-4 text-center">
+                    <h3 class="alert-title">Need a more precise calculation?</h3>
+                    <p>Use our <a href="../index.html?mode=goal">Goal Planning Calculator</a> or <a href="../quizzes/secure-retirement-forecaster-quiz.html">Retirement Forecaster Quiz</a> for a detailed, inflation-adjusted plan.</p>
+                </div>
             </div>
 
             <div class="content-section-card">
                 <h2>Your Toolkit: Top Retirement Investments in India</h2>
                 <p>Building a solid retirement corpus requires using the right tools. Here are the most effective investment options available in India:</p>
                 
-                <h3>1. EPF (Employees' Provident Fund)</h3>
-                <p>If you're a salaried employee, you're already on the right track. EPF is your automatic retirement savings plan, with both you and your employer contributing 12% of your basic salary each month. It's a safe and steady foundation for your future.</p>
-
-                <h3>2. PPF (Public Provident Fund)</h3>
-                <p>PPF is a fantastic, government-backed option for everyone, including self-employed individuals. With a 15-year tenure and tax-free, guaranteed returns, it's a reliable way to build a risk-free nest egg for your long-term goals.</p>
-
-                <h3>3. NPS (National Pension System)</h3>
-                <p>NPS is a smart, low-cost pension scheme specifically designed for retirement. It invests your money in a mix of stocks and bonds, based on your risk preference. It also comes with an additional tax deduction of up to ₹50,000 under Section 80CCD(1B), over and above the 80C limit.</p>
-
-                <h3>4. Mutual Funds (via SIP)</h3>
-                <p>For those comfortable with market fluctuations, a Systematic Investment Plan (SIP) in a diversified equity mutual fund is the most powerful engine for wealth creation. Over the long term, equities have consistently provided returns that beat inflation by a healthy margin, making them essential for building a large corpus.</p>
+                <ul class="space-y-4 mt-4">
+                    <li class="flex items-start">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                        <div>
+                            <strong>EPF (Employees' Provident Fund):</strong> Your automatic retirement savings plan if you're a salaried employee. A safe and steady foundation.
+                        </div>
+                    </li>
+                     <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <div>
+                            <strong>PPF (Public Provident Fund):</strong> A fantastic, government-backed option for everyone with tax-free, guaranteed returns. Ideal for risk-free savings.
+                        </div>
+                    </li>
+                     <li class="flex items-start">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/><path d="M16 12H8"/></svg>
+                        <div>
+                            <strong>NPS (National Pension System):</strong> A smart, low-cost pension scheme that invests in a mix of stocks and bonds, with extra tax benefits.
+                        </div>
+                    </li>
+                     <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                        <div>
+                            <strong>Mutual Funds (via SIP):</strong> The most powerful engine for wealth creation. Equity SIPs consistently beat inflation over the long term, making them essential for building a large corpus.
+                        </div>
+                    </li>
+                </ul>
             </div>
 
             <div class="content-section-card bg-gray-50">
                 <h2>From Savings to Salary: Your Post-Retirement Income Plan</h2>
-                <p>Once you've accumulated your corpus, the next step is to generate a regular income from it. This is where a <strong>Systematic Withdrawal Plan (SWP)</strong> comes in. An SWP allows you to withdraw a fixed amount from your mutual fund investments every month, creating a "pension" while the rest of your money stays invested and continues to grow.</p>
-                <p><strong>Curious about your post-retirement salary?</strong> Use our <strong><a href="../index.html?mode=swp">SWP calculator</a></strong> on the homepage to see how you can create a reliable income stream for life.</p>
+                <p>Once you've accumulated your corpus, the next step is to generate a regular income from it. This is where a <strong>Systematic Withdrawal Plan (SWP)</strong> comes in. It's the reverse of a SIP. An SWP allows you to withdraw a fixed amount from your mutual fund investments every month, creating a "pension" while the rest of your money stays invested and continues to grow. Learn more in our <a href="sip-vs-swp.html">SIP vs. SWP guide</a>.</p>
+                <a href="../index.html?mode=swp" class="btn-primary mt-4">Model Your SWP Income</a>
             </div>
 
             <div class="content-section-card">
-                <h2>At a Glance: Comparing Your Retirement Options</h2>
-                <table style="width:100%; border-collapse: collapse; margin-bottom: 1rem;">
-                    <thead>
-                        <tr style="background-color: #f7f7f7;">
-                            <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left;">Instrument</th>
-                            <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left;">Risk Level</th>
-                            <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left;">Returns</th>
-                            <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left;">Best For</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;"><strong>EPF / PPF</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Risk-Free</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Guaranteed (Govt. set) & Tax-Free</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Safe, foundational savings and capital protection.</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;"><strong>NPS</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Low to Medium</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Market-linked (mix of equity/debt)</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Dedicated pension with extra tax benefits.</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;"><strong>Mutual Funds (SIP)</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">High</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Market-linked (high potential for growth)</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Aggressive wealth and inflation-beating corpus creation.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="content-section-card bg-gray-50">
-                <h2>Your Simple Retirement Checklist</h2>
-                <ul>
-                    <li><strong>Start Today, No Matter How Small:</strong> Don't wait for the "perfect" time. The best time to plant a tree was 20 years ago. The second best time is now. Start with what you can afford.</li>
-                    <li><strong>Picture Your Future Self:</strong> Don't just save for a number. Visualize your ideal retirement. This motivation will keep you on track and help you plan better.</li>
-                    <li><strong>Make it Automatic:</strong> Set up your SIPs and other investments to be debited automatically. This "pay yourself first" approach builds discipline without effort.</li>
-                    <li><strong>Check In Once a Year:</strong> Life changes, and so should your plan. Take a quick look at your portfolio annually to ensure you're still on the right path and increase your contributions if you can.</li>
-                </ul>
-            </div>
-
-            <div class="content-section-card">
-                <h2 class="section-title-secondary">Continue Your Journey</h2>
-                <p>Retirement planning is a big topic. Dive deeper with these related guides and tools:</p>
-                <ul>
-                    <li><strong><a href="sip-vs-swp.html">SIP vs. SWP:</a></strong> Understand the difference between building your wealth and creating an income from it.</li>
-                    <li><strong><a href="mfguide.html">Beginner's Guide to Investing:</a></strong> Get a solid foundation on mutual funds, the engine of modern retirement planning.</li>
-                    <li><strong><a href="../index.html">Financial Calculators:</a></strong> Use our suite of tools to calculate your SIP, SWP, and other investment returns.</li>
+                <h2 class="section-title-secondary">Your Simple Retirement Checklist</h2>
+                <ul class="space-y-4 mt-4">
+                    <li class="flex items-start">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <div>
+                            <strong>Start Today, No Matter How Small:</strong> Don't wait. The power of compounding means that time is your most valuable asset.
+                        </div>
+                    </li>
+                     <li class="flex items-start">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <div>
+                            <strong>Picture Your Future Self:</strong> Visualize your ideal retirement. Knowing what you're saving for provides powerful motivation.
+                        </div>
+                    </li>
+                     <li class="flex items-start">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <div>
+                             <strong>Automate Your Savings:</strong> Set up SIPs to make saving effortless. This "pay yourself first" approach builds discipline without willpower.
+                        </div>
+                    </li>
+                     <li class="flex items-start">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <div>
+                             <strong>Review and Adjust Annually:</strong> Your life will change. Conduct a quick annual review of your portfolio to stay on track.
+                        </div>
+                    </li>
                 </ul>
             </div>
             
@@ -343,7 +336,7 @@
                 </div>
             </div>
 
-            <!-- NEW: Share Buttons Section -->
+            <!-- Share Buttons Section -->
             <div class="share-buttons-container">
                 <p class="share-title">Share this guide:</p>
                 <div class="share-buttons">
@@ -368,11 +361,9 @@
         </div>
     </main>
 
-    <!-- Footer will be loaded here -->
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
-    <!-- NEW: Script for mini calculators -->
     <script src="mini-calculators.js" defer></script>
 
 </body>
