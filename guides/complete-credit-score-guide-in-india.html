@@ -150,7 +150,6 @@
             gap: 1rem;
             margin-top: 1rem;
         }
-        /* Media query to force a 3-column layout on large screens */
         @media (min-width: 1024px) {
             .credit-card-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -184,17 +183,17 @@
         }
         .credit-card-card .apply-btn:hover {
             background-color: #C22D2D;
-            color: #fff; /* Fix for the text color on hover */
+            color: #fff;
         }
         .affiliate-section {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            background-color: #eff6ff; /* A light blue background */
+            background-color: #eff6ff;
             border: 1px solid #dbeafe;
             border-radius: 0.75rem;
-            padding: 1.5rem 1rem; /* Decreased padding here */
+            padding: 1.5rem 1rem;
             margin-top: 2rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
@@ -202,7 +201,7 @@
             font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            color: #1e40af; /* A darker blue color for the heading */
+            color: #1e40af;
         }
         .affiliate-section p {
             font-size: 1rem;
@@ -340,21 +339,43 @@
                 </table>
             </div>
 
+            <!-- IMPROVED MYTHS SECTION -->
             <div class="content-section-card bg-gray-50">
                 <h2>Credit Score Myths vs. Realities</h2>
                 <p>There's a lot of misinformation out there about credit scores. Let's clear up a few common myths that could be holding you back.</p>
-                <div class="space-y-4 mt-4">
-                    <div>
-                        <h4><strong>Myth:</strong> You need to have debt to build a credit score.</h4>
-                        <p><strong>Reality:</strong> Not at all. You don't need to pay interest to build a score. You simply need to use a credit product and pay it off responsibly. Using a credit card for your regular monthly spending and paying the bill in full before the due date is one of the best ways to build a strong score without ever paying a rupee in interest.</p>
+                <div class="space-y-6 mt-6">
+                    <!-- Myth 1 -->
+                    <div class="p-4 rounded-lg border bg-white">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-red-500 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                            <h4 class="font-bold text-gray-800">Myth: "You need to have debt to build a credit score."</h4>
+                        </div>
+                        <div class="flex items-start mt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <p class="text-sm text-gray-600"><strong>Reality:</strong> Not at all. You don't need to pay interest to build a score. Simply using a credit card for regular spending and paying the bill in full every month is one of the best ways to build a strong score without ever paying a rupee in interest.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h4><strong>Myth:</strong> Closing old, unused credit cards is good for your score.</h4>
-                        <p><strong>Reality:</strong> This is one of the most damaging myths. Closing an old card actually hurts your score in two ways: it shortens the average age of your credit history and it increases your overall credit utilization ratio, both of which are negative signals to lenders.</p>
+                    <!-- Myth 2 -->
+                    <div class="p-4 rounded-lg border bg-white">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-red-500 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                            <h4 class="font-bold text-gray-800">Myth: "Closing old, unused credit cards is good for your score."</h4>
+                        </div>
+                        <div class="flex items-start mt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <p class="text-sm text-gray-600"><strong>Reality:</strong> This is one of the most damaging myths. Closing an old card actually hurts your score in two ways: it shortens the average age of your credit history and it increases your overall credit utilization ratio, both of which are negative signals to lenders.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h4><strong>Myth:</strong> A high income automatically means a high credit score.</h4>
-                        <p><strong>Reality:</strong> Your salary is not a direct factor in your credit score calculation. A person with a modest income who pays all their bills on time will have a much better score than a high-earner who is frequently late with payments.</p>
+                    <!-- Myth 3 -->
+                    <div class="p-4 rounded-lg border bg-white">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-red-500 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                             <h4 class="font-bold text-gray-800">Myth: "A high income automatically means a high credit score."</h4>
+                        </div>
+                         <div class="flex items-start mt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <p class="text-sm text-gray-600"><strong>Reality:</strong> Your salary is not a direct factor in your credit score calculation. A person with a modest income who pays all their bills on time will have a much better score than a high-earner who is frequently late with payments.</p>
+                        </div>
                     </div>
                 </div>
             </div>
