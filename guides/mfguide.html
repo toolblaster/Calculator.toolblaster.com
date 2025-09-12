@@ -25,6 +25,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <script type="application/ld+json">
@@ -80,9 +81,6 @@
     }
     </script>
      <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
         .content-section-card {
             background-color: #ffffff;
             border: 1px solid #e5e7eb;
@@ -151,6 +149,18 @@
             font-weight: bold;
             border: 4px solid #fef2f2;
         }
+        .insight-card {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+        .insight-card p {
+            flex-grow: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -216,6 +226,66 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+            
+            <div class="content-section-card">
+                <h2 class="section-title-secondary">Types of Mutual Funds: Choosing Your Basket</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">Not all mutual funds are the same. They are broadly categorized by where they invest your money. Understanding these types is the key to matching your investment to your goal.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green-500 mr-3 flex-shrink-0"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                            <div><h4 class="font-semibold">Equity Funds</h4><p class="text-xs text-gray-600">Invest primarily in stocks. High-risk, but with the potential for high returns. Best for long-term goals like retirement.</p></div>
+                        </div>
+                        <div class="flex items-start">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-500 mr-3 flex-shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <div><h4 class="font-semibold">Debt Funds</h4><p class="text-xs text-gray-600">Invest in fixed-income instruments like bonds. Lower risk and more stable returns. Ideal for short-term goals and capital preservation.</p></div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-yellow-500 mr-3 flex-shrink-0"><path d="M12 3v18M3 12h18"/><path d="M16 16-4-4-4 4"/><path d="M8 8l4 4 4-4"/></svg>
+                            <div><h4 class="font-semibold">Hybrid Funds</h4><p class="text-xs text-gray-600">A mix of both equity and debt, offering a balance between growth and stability. A good starting point for moderate-risk investors.</p></div>
+                        </div>
+                    </div>
+                    <div class="h-48 md:h-64 w-full max-w-xs mx-auto">
+                        <canvas id="fundTypeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section-card bg-gray-50">
+                <h2 class="section-title-secondary">Anatomy of a Mutual Fund: What's Inside?</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">Let's look inside a typical balanced hybrid fund. A doughnut chart helps visualize how your money is spread across different types of assets to balance risk and reward.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="h-48 md:h-64 w-full max-w-xs mx-auto">
+                        <canvas id="anatomyChart"></canvas>
+                    </div>
+                     <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green-500 mr-3 flex-shrink-0"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            <div><h4 class="font-semibold">Large-Cap Stocks (40%)</h4><p class="text-xs text-gray-600">Shares of large, well-established companies. They provide stability and steady growth.</p></div>
+                        </div>
+                         <div class="flex items-start">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green-500 mr-3 flex-shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <div><h4 class="font-semibold">Mid-Cap Stocks (25%)</h4><p class="text-xs text-gray-600">Shares of medium-sized companies with high growth potential, but also higher risk.</p></div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-500 mr-3 flex-shrink-0"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            <div><h4 class="font-semibold">Bonds (30%)</h4><p class="text-xs text-gray-600">Fixed-income instruments that provide stability and regular interest payments to the portfolio.</p></div>
+                        </div>
+                         <div class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-gray-500 mr-3 flex-shrink-0"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            <div><h4 class="font-semibold">Cash & Equivalents (5%)</h4><p class="text-xs text-gray-600">A small portion kept in cash or cash-like instruments to manage fund redemptions and seize new opportunities.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section-card">
+                <h2>Understanding Market Cycles: Bull vs. Bear Markets</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">The stock market moves in cycles. A "Bull Market" is a period of sustained growth, while a "Bear Market" is a period of decline. The chart below illustrates these cycles. As a long-term investor, your goal is not to predict these cycles but to stay invested through them to capture the overall upward trend.</p>
+                 <div class="h-64 md:h-80 w-full mx-auto">
+                   <canvas id="marketCycleChart"></canvas>
+                </div>
             </div>
 
             <div class="content-section-card bg-gray-50">
@@ -500,7 +570,125 @@
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const marketCycleCtx = document.getElementById('marketCycleChart');
+            if(marketCycleCtx) {
+                const labels = ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6', 'Year 7', 'Year 8'];
+                const data = [100, 120, 150, 130, 110, 140, 170, 200]; // Sample data
+
+                new Chart(marketCycleCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Market Index Value',
+                            data: data,
+                            borderColor: 'rgba(22, 163, 74, 1)',
+                            backgroundColor: 'rgba(22, 163, 74, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { y: { beginAtZero: false, ticks: { display: false } }, x: { grid: { display: false } } }
+                    }
+                });
+            }
+
+            const fundTypeCtx = document.getElementById('fundTypeChart');
+            if (fundTypeCtx) {
+                new Chart(fundTypeCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Equity', 'Debt'],
+                        datasets: [{
+                            label: 'Hybrid Fund Allocation',
+                            data: [65, 35],
+                            backgroundColor: [
+                                'rgba(34, 197, 94, 0.7)',  // Green for Equity
+                                'rgba(59, 130, 246, 0.7)' // Blue for Debt
+                            ],
+                            borderColor: [
+                                'rgba(22, 163, 74, 1)',
+                                'rgba(37, 99, 235, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.label}: ${context.parsed}%`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            const anatomyCtx = document.getElementById('anatomyChart');
+            if (anatomyCtx) {
+                new Chart(anatomyCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Large Cap Stocks', 'Mid Cap Stocks', 'Bonds', 'Cash & Equivalents'],
+                        datasets: [{
+                            label: 'Asset Allocation',
+                            data: [40, 25, 30, 5],
+                            backgroundColor: [
+                                'rgba(22, 163, 74, 0.8)',
+                                'rgba(34, 197, 94, 0.6)',
+                                'rgba(59, 130, 246, 0.7)',
+                                'rgba(156, 163, 175, 0.7)'
+                            ],
+                             borderColor: '#ffffff',
+                             borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    boxWidth: 12,
+                                    font: { size: 10 }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed !== null) {
+                                            label += context.parsed + '%';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
 
 </body>
 </html>
-
