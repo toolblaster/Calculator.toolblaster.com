@@ -777,3 +777,40 @@ main {
     color: var(--text-color) !important;
     transform: translateY(-2px);
 }
+
+/* --- NEW: Universal Alert Box Styles --- */
+.alert {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    border-left-width: 4px;
+    font-size: 0.8rem;
+    margin: 1rem 0;
+}
+
+.alert-title {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+/* Info Alert (Blue) */
+.alert-info {
+    background-color: #eff6ff; /* bg-blue-50 */
+    border-color: #dbeafe; /* border-blue-200 */
+    border-left-color: #3b82f6; /* border-l-blue-500 */
+    color: #1e40af; /* text-blue-800 */
+}
+.alert-info .alert-title {
+    color: #1d4ed8; /* text-blue-700 */
+}
+
+/* Success Alert (Green) */
+.alert-success {
+    background-color: #f0fdf4; /* bg-green-50 */
+    border-color: #dcfce7; /* border-green-200 */
+    border-left-color: #22c55e; /* border-l-green-500 */
+    color: #166534; /* text-green-800 */
+}
+.alert-success .alert-title {
+    color: #15803d; /* text-green-700 */
+}
