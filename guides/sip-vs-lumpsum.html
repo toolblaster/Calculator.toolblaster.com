@@ -139,7 +139,7 @@
             margin-bottom: 1rem;
         }
         .strategy-card ul {
-            list-style: none; /* Removed default list styling */
+            list-style: none;
             padding-left: 0;
             margin-top: 1rem;
         }
@@ -159,85 +159,9 @@
             margin-right: 0.5rem;
             margin-top: 2px;
         }
-        .recommendation-box {
-            text-align: center;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            background-color: #fef2f2; 
-            border: 1px solid #fca5a5;
-            transition: all 0.3s ease;
-        }
-        .recommendation-box:hover {
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-        .recommendation-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 0.5rem;
-        }
-        .recommendation-description {
-            font-size: 0.7rem;
-            color: #4b5563;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-        .recommendation-box a.recommendation-btn {
-            display: inline-block;
-            background-color: #C22D2D;
-            color: #ffffff;
-            border: 2px solid #C22D2D;
-            padding: 0.5rem 1.25rem;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        .recommendation-box a.recommendation-btn:hover {
-            background-color: #ffffff;
-            color: #C22D2D;
-            border-color: #C22D2D;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        /* New styles for responsive list items in "How to Choose" section */
-        .choose-list li {
-            font-size: 0.75rem;
-            color: #525252;
-            margin-bottom: 1rem;
-        }
-        .choose-list strong {
-            display: inline;
-            margin-right: 0.5rem;
-        }
-        @media (max-width: 640px) {
-            .choose-list li {
-                display: flex;
-                flex-direction: column;
-            }
-            .choose-list strong {
-                display: block;
-                margin-bottom: 0.25rem;
-            }
-            /* New rule for Continue Your Journey section */
-            .legal-content ul li strong {
-                display: block;
-            }
-        }
-        /* New styles for the comparison table on mobile */
-        .comparison-table th:first-child,
-        .comparison-table td:first-child {
-            width: 35% !important; 
-            word-wrap: break-word;
-        }
-        /* --- NEW: Mini Calculator Styles --- */
         .mini-calculator {
-            background-color: #fef2f2; /* Light red background */
-            border: 1px solid #fca5a5; /* Red border */
+            background-color: #fef2f2;
+            border: 1px solid #fca5a5;
             border-radius: 0.5rem;
             padding: 1rem;
             margin-top: 1.5rem;
@@ -291,26 +215,12 @@
             font-weight: 800;
             color: #C22D2D;
         }
-        .mini-calculator-affiliate {
-            text-align: center;
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid #fca5a5;
-            font-size: 0.65rem; /* very small text */
-            color: #6b7280; /* muted color */
-        }
-        .mini-calculator-affiliate a {
-            color: #3b82f6; /* blue link color */
-            text-decoration: none;
-        }
-        .mini-calculator-affiliate a:hover {
-            text-decoration: underline;
-        }
-        /* NEW: Class for list tick icons */
         .list-tick-icon {
-            color: #E34037; /* Use color instead of stroke */
+            color: #16a34a;
         }
-        /* Benefits section specific styles */
+        .list-cross-icon {
+            color: #ef4444;
+        }
         .benefits-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -329,9 +239,6 @@
         }
         .benefits-grid ul {
             margin-top: 0;
-        }
-        .list-cross-icon {
-            color: #ef4444; /* Red color for disadvantages */
         }
     </style>
 </head>
@@ -352,23 +259,22 @@
                 <p class="text-sm font-semibold text-gray-700">This strategy is perfect for you if:</p>
                 <ul>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>You earn a regular monthly salary and want to build a disciplined saving habit.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>You're new to investing and want to start without the stress of timing the market.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>You want to leverage the superpower of Rupee Cost Averaging automatically buying more when prices are low and less when they're high.</span>
                     </li>
                 </ul>
 
-                <!-- NEW: Rupee Cost Averaging Mini Calculator -->
                 <div id="mini-calc-rca" class="mini-calculator">
                     <div class="mini-calculator-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
                     </div>
                     <h4 class="mini-calculator-title">See Rupee Cost Averaging in Action</h4>
                     <p class="text-xs text-gray-600 mb-4 text-center">Invest ₹10,000 at different market prices (NAV) to see how many units you get.</p>
@@ -386,10 +292,10 @@
                     </div>
                 </div>
                 
-                <div class="recommendation-box">
-                    <h3 class="recommendation-title">Does the Steady Climb Sound Like You?</h3>
-                    <p class="recommendation-description">If disciplined, long-term growth is your goal, the SIP calculator is your best friend. See how small, regular investments can grow into a massive corpus over time.</p>
-                    <a href="../index.html?mode=sip" class="recommendation-btn">Plan Your SIP Journey &rarr;</a>
+                <div class="alert alert-info mt-4">
+                    <h3 class="alert-title">Does the Steady Climb Sound Like You?</h3>
+                    <p>If disciplined, long-term growth is your goal, the SIP calculator is your best friend. See how small, regular investments can grow into a massive corpus over time.</p>
+                    <a href="../index.html?mode=sip" class="btn-primary mt-3">Plan Your SIP Journey &rarr;</a>
                 </div>
             </div>
 
@@ -401,76 +307,156 @@
                 <p class="text-sm font-semibold text-gray-700">This strategy is perfect for you if:</p>
                 <ul>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>You've received a large sum of money, like a bonus, inheritance, or from a property sale.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>You're a seasoned investor who believes the market is currently undervalued and presents a good entry point.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>You want to give your money the full benefit of the Power of Compounding from day one.</span>
                     </li>
                 </ul>
 
-                <div class="recommendation-box">
-                    <h3 class="recommendation-title">Ready to Make a Bold Leap?</h3>
-                    <p class="recommendation-description">If you have a significant amount ready to invest, the Lumpsum calculator will show you the incredible potential of your capital over the long term.</p>
-                    <a href="../index.html?mode=lumpsum" class="recommendation-btn">Project Your Lumpsum Growth &rarr;</a>
+                <div class="alert alert-info mt-4">
+                    <h3 class="alert-title">Ready to Make a Bold Leap?</h3>
+                    <p>If you have a significant amount ready to invest, the Lumpsum calculator will show you the incredible potential of your capital over the long term.</p>
+                    <a href="../index.html?mode=lumpsum" class="btn-primary mt-3">Project Your Lumpsum Growth &rarr;</a>
                 </div>
-            </div>
-
-            <!-- NEW: How-To section -->
-            <div class="strategy-card">
-                <h2 class="strategy-title">How to Choose the Right Strategy for You</h2>
-                <p class="strategy-subtitle">Choosing between a SIP and a Lumpsum is a personal decision that depends on your unique financial situation. Here’s a simple checklist to guide you.</p>
-                <ol class="choose-list">
-                    <li><strong>Assess Your Financial Goals:</strong> First, define your investment purpose and timeline. Are you saving for a long-term goal like retirement (10+ years) or a short-term goal like a down payment (1-3 years)? SIPs are generally better for long-term goals, while for short-term needs, a lumpsum might work if the market conditions are favorable.</li>
-                    <li><strong>Evaluate Your Risk Tolerance:</strong> Be honest about your comfort level with market volatility. SIPs are ideal for beginners because they average out the cost of investment and reduce the risk of timing the market incorrectly. A lumpsum investment is more exposed to market risk, as a single large investment can suffer if the market drops shortly after.</li>
-                    <li><strong>Consider Your Cash Flow:</strong> Look at where your money is coming from. If you have a regular monthly income, a SIP is a natural fit as it aligns with your cash flow. If you've recently received a large sum of money from a bonus, inheritance, or property sale, a lumpsum investment is a viable option.</li>
-                    <li><strong>The Hybrid Approach:</strong> You don’t have to choose just one. A smart strategy is to maintain a regular SIP for disciplined, long-term growth and make additional lumpsum investments when the market is down or when you receive a large sum of surplus cash.</li>
-                </ol>
             </div>
 
             <div class="strategy-card">
                 <h2 class="strategy-title">At a Glance: SIP vs. Lumpsum</h2>
-                <div style="overflow-x: auto;">
-                    <table class="comparison-table" style="width:100%; border-collapse: collapse; margin-top: 1rem;">
-                        <thead>
-                            <tr style="background-color: #f7f7f7;">
-                                <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left; font-size: 0.7rem;">Feature</th>
-                                <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left; font-size: 0.7rem;">SIP (Systematic Investment Plan)</th>
-                                <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left; font-size: 0.7rem;">Lumpsum Investment</th>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3">Feature</th>
+                                <th class="px-6 py-3">SIP (Systematic Investment Plan)</th>
+                                <th class="px-6 py-3">Lumpsum Investment</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Investment Method</td>
-                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Fixed amount at regular intervals</td>
-                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">One-time, single large amount</td>
+                            <tr class="bg-white border-b">
+                                <td class="px-6 py-4 font-medium">Investment Method</td>
+                                <td class="px-6 py-4">Fixed amount at regular intervals</td>
+                                <td class="px-6 py-4">One-time, single large amount</td>
                             </tr>
-                            <tr>
-                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Risk Factor</td>
-                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Minimizes risk through Rupee Cost Averaging</td>
-                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Higher risk due to market timing</td>
+                            <tr class="bg-white border-b">
+                                <td class="px-6 py-4 font-medium">Risk Factor</td>
+                                <td class="px-6 py-4">Minimizes risk through Rupee Cost Averaging</td>
+                                <td class="px-6 py-4">Higher risk due to market timing</td>
                             </tr>
-                            <tr>
-                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Best For</td>
-                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Salaried individuals, long-term goals, beginners</td>
-                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Large cash surplus, market dips, experienced investors</td>
+                            <tr class="bg-white border-b">
+                                <td class="px-6 py-4 font-medium">Best For</td>
+                                <td class="px-6 py-4">Salaried individuals, long-term goals, beginners</td>
+                                <td class="px-6 py-4">Large cash surplus, market dips, experienced investors</td>
                             </tr>
-                            <tr>
-                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Key Advantage</td>
-                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Builds discipline, averages out market volatility</td>
-                                <td style="padding: 0.75rem; border: 1px solid #eee; font-size: 0.7rem;">Maximizes compounding by giving money more time to grow</td>
+                            <tr class="bg-white">
+                                <td class="px-6 py-4 font-medium">Key Advantage</td>
+                                <td class="px-6 py-4">Builds discipline, averages out market volatility</td>
+                                <td class="px-6 py-4">Maximizes compounding by giving money more time to grow</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Advantages and Disadvantages Section -->
+            <div class="strategy-card bg-gray-50">
+                <h2 class="strategy-title">How to Choose the Right Strategy for You</h2>
+                <p class="strategy-subtitle">Choosing between a SIP and a Lumpsum is a personal decision that depends on your unique financial situation. Here’s a simple checklist to guide you.</p>
+                <ol class="list-none p-0 space-y-4">
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0 w-5 h-5"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        <div class="ml-3"><strong>Assess Your Financial Goals:</strong> First, define your investment purpose and timeline. Are you saving for a long-term goal like retirement (10+ years) or a short-term goal like a down payment (1-3 years)? SIPs are generally better for long-term goals.</div>
+                    </li>
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0 w-5 h-5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <div class="ml-3"><strong>Evaluate Your Risk Tolerance:</strong> Be honest about your comfort level with market volatility. SIPs mitigate risk through Rupee Cost Averaging, while Lumpsum investments are more exposed to timing risk.</div>
+                    </li>
+                    <li class="flex items-start">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0 w-5 h-5"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <div class="ml-3"><strong>Consider Your Cash Flow:</strong> If you have a regular monthly income, a SIP is a natural fit. If you've received a large sum of money, a Lumpsum investment is a viable option.</div>
+                    </li>
+                </ol>
+            </div>
+            
+            <!-- NEW BEAUTIFUL STP SECTION -->
+            <div class="strategy-card bg-green-50 border-l-4 border-green-500">
+                <h2 class="strategy-title text-green-800">The Pro Move: The Hybrid Solution (STP)</h2>
+                <p class="strategy-subtitle text-green-700">Have a lumpsum but nervous about market timing? A Systematic Transfer Plan (STP) gives you the best of both worlds.</p>
+                
+                <div class="mt-4 space-y-4">
+                    <!-- Step 1: Park Funds -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-green-200 text-green-700 flex items-center justify-center font-bold text-lg">1</div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Park Your Lumpsum Safely</h4>
+                            <p class="text-xs text-gray-600">Invest your entire amount into a low-risk liquid or debt fund. This keeps your capital protected from market volatility.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Down Arrow Icon -->
+                    <div class="flex justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 h-8 w-8 animate-bounce"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+                    </div>
+
+                    <!-- Step 2: Transfer Systematically -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-green-200 text-green-700 flex items-center justify-center font-bold text-lg">2</div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Automate the Transfer</h4>
+                            <p class="text-xs text-gray-600">Set up an automatic STP to move a fixed amount from the debt fund to a chosen equity fund every month.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Down Arrow Icon -->
+                    <div class="flex justify-center">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 h-8 w-8 animate-bounce"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+                    </div>
+
+                    <!-- Step 3: Enjoy Growth -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-green-200 text-green-700 flex items-center justify-center font-bold text-lg">3</div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Benefit from Growth & Averaging</h4>
+                            <p class="text-xs text-gray-600">You get the benefit of rupee cost averaging in the equity fund while the rest of your corpus earns stable returns in the debt fund. A win-win!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="strategy-card bg-gray-50">
+                <h2 class="strategy-title">Things to Consider Before You Invest</h2>
+                <p class="strategy-subtitle">Beyond the basics, here are a few expert-level considerations to keep in mind before you commit your capital.</p>
+                <ul class="list-none p-0 space-y-4">
+                    <li class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center font-bold mr-4">1</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Market Conditions</h4>
+                            <p class="text-xs text-gray-600">While you should never try to perfectly time the market, it's wise to be cautious. Investing a large lumpsum when the market is at an all-time high can be risky. SIPs, by their nature, are indifferent to market conditions.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center font-bold mr-4">2</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Your Emotional Temperament</h4>
+                            <p class="text-xs text-gray-600">Can you stomach a 20% drop in your portfolio without panicking? If not, a SIP is the better choice. It smooths out the emotional rollercoaster of investing.</p>
+                        </div>
+                    </li>
+                     <li class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center font-bold mr-4">3</div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">The Hybrid Solution (STP)</h4>
+                            <p class="text-xs text-gray-600">If you have a lumpsum but are nervous about investing it all at once, a Systematic Transfer Plan (STP) is the perfect middle ground, offering safety and systematic equity exposure.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
             <div class="strategy-card">
                 <h2 class="strategy-title">Advantages & Disadvantages of Both</h2>
                 <div class="benefits-grid">
@@ -478,15 +464,15 @@
                         <h3>SIP: Pros & Cons</h3>
                         <ul>
                             <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                                 <span><strong>Advantage:</strong> Mitigates risk by averaging out purchase costs over time.</span>
                             </li>
                             <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                                 <span><strong>Advantage:</strong> Builds a strong, disciplined investing habit without emotion.</span>
                             </li>
                             <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-cross-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-cross-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                                 <span><strong>Disadvantage:</strong> In a consistently rising market, may yield lower returns than a lumpsum.</span>
                             </li>
                         </ul>
@@ -495,86 +481,20 @@
                         <h3>Lumpsum: Pros & Cons</h3>
                         <ul>
                             <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                                 <span><strong>Advantage:</strong> Gives your entire capital the maximum time to benefit from compounding.</span>
                             </li>
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                             <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                                 <span><strong>Advantage:</strong> Can be highly rewarding if you invest during a market downturn.</span>
                             </li>
                             <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-cross-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-cross-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                                 <span><strong>Disadvantage:</strong> Highly dependent on timing; investing at a market peak can lead to short-term losses.</span>
                             </li>
                         </ul>
                     </div>
                 </div>
-            </div>
-
-            <!-- Key Benefits Section -->
-            <div class="strategy-card">
-                <h2 class="strategy-title">Key Benefits of Each Approach</h2>
-                <div class="benefits-grid">
-                    <div>
-                        <h3>SIP Benefits</h3>
-                        <ul>
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                                <span><strong>Discipline:</strong> Automates the saving process, building a strong financial habit.</span>
-                            </li>
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                                <span><strong>Flexibility:</strong> You can start, stop, or modify your SIP amount anytime.</span>
-                            </li>
-                             <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                                <span><strong>Accessibility:</strong> Start investing with as little as ₹500 per month.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3>Lumpsum Benefits</h3>
-                        <ul>
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                                <span><strong>Maximum Compounding:</strong> Your entire capital starts working for you from day one.</span>
-                            </li>
-                             <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                                <span><strong>Lower Costs:</strong> A single transaction may involve lower brokerage costs than multiple SIPs.</span>
-                            </li>
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                                <span><strong>Simplicity:</strong> One-and-done approach for those who prefer not to manage monthly investments.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Things to Consider Section -->
-            <div class="strategy-card">
-                <h2 class="strategy-title">Things to Consider Before You Invest</h2>
-                <p class="strategy-subtitle">Beyond the basics, here are a few expert-level considerations to keep in mind before you commit your capital.</p>
-                <ul>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                        <span><strong>Market Conditions:</strong> While you should never try to perfectly time the market, it's wise to be cautious. Investing a large lumpsum when the market is at an all-time high can be risky. SIPs, by their nature, are indifferent to market conditions.</span>
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                        <span><strong>Your Emotional Temperament:</strong> Can you stomach a 20% drop in your portfolio without panicking? If not, a SIP is the better choice. It smooths out the emotional rollercoaster of investing.</span>
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                        <span><strong>The Hybrid Solution (STP):</strong> If you have a lumpsum but are nervous about investing it all at once, consider a Systematic Transfer Plan (STP). You place the lumpsum in a low-risk liquid fund and then set up an automatic transfer (like a SIP) into an equity fund over the next 6-12 months. It's the best of both worlds.</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="strategy-card">
-                <h2 class="strategy-title">The Final Verdict: What's Best for You?</h2>
-                <p>The SIP vs. Lumpsum debate doesn't have a single winner. It has a personal winner. For most investors building wealth from their salary, the disciplined, automated nature of SIPs is the undisputed champion. It's the simplest way to start and stay invested. If you receive a large sum, a Lumpsum investment can supercharge your returns, but to mitigate timing risk, consider the Hybrid Approach (STP). The ultimate strategy? Use a consistent SIP as your foundation and strategically add Lumpsum investments when you have surplus cash.</p>
             </div>
 
             <div class="strategy-card">
@@ -627,7 +547,7 @@
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.5 2.5-2.5c1.6 0 2.5 1.2 2.5 2.5 0 1.3-1 2.5-2.5 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"></path></svg>
                     </a>
                     <button class="share-btn copy-link" id="copy-link-btn" aria-label="Copy link">
-                        <svg viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                     </button>
                 </div>
             </div>
@@ -637,7 +557,6 @@
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
-    <!-- NEW: Script for mini calculators -->
     <script src="mini-calculators.js" defer></script>
 
 </body>
