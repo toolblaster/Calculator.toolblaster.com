@@ -114,6 +114,25 @@
             margin-bottom: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+        .list-icon {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            margin-right: 0.75rem;
+            margin-top: 3px;
+        }
+        .journey-card {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            border-left: 3px solid var(--accent-color);
+            padding: 1rem;
+            transition: all 0.2s ease-in-out;
+        }
+        .journey-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -128,51 +147,75 @@
             <div class="content-section-card">
                 <h2>First, What Exactly is Section 80C?</h2>
                 <p>Think of your total annual income as a big pizza. Before the government takes its slice (your taxes), Section 80C lets you take a slice for yourself and put it into a special savings box. This slice can be as big as ₹1.5 lakh per year. By putting it away in approved investments, you're telling the government, "Don't tax me on this part, I'm using it to build my future." The result? A smaller pizza for the government to tax, which means more money stays in your pocket.</p>
+                <div class="alert alert-info mt-4">
+                    <h3 class="alert-title">Not sure which tax regime to choose?</h3>
+                    <p>Use our <a href="../calculators/income-tax-calculator/">Income Tax Calculator</a> to compare the Old vs. New regime and see if Section 80C deductions are beneficial for you.</p>
+                </div>
             </div>
 
             <div class="content-section-card bg-gray-50">
                 <h2>Meet Anjali: A Professional's Tax-Saving Journey</h2>
                 <p>Let's follow Anjali, a 30-year-old marketing manager who wants to make smart decisions with her money. She wants to save on taxes, but also wants her money to grow. We'll explore the best tax-saving investments through her eyes.</p>
                 
-                <h3>1. ELSS (Equity Linked Savings Scheme) - Anjali's Choice for Growth</h3>
-                <p>Anjali is comfortable with some level of market risk and wants the potential for high returns. She decides to invest a portion of her 80C savings in an ELSS fund. She likes that it has the shortest lock-in period of just 3 years, giving her more flexibility than other options.</p>
-                <ul>
-                    <li><strong>Best for:</strong> Those who are comfortable with stock market ups and downs and want the potential for high returns.</li>
-                    <li><strong>Lock-in Period:</strong> Just 3 years.</li>
-                    <li><strong>Risk Level:</strong> High.</li>
-                    <li><strong>Anjali's Insight:</strong> She understands that ELSS is a powerful tool for wealth creation and can help her beat inflation over the long term.</li>
-                </ul>
-
-                <h3>2. PPF (Public Provident Fund) - Anjali's Safe Haven</h3>
-                <p>For the conservative part of her portfolio, Anjali chooses the Public Provident Fund (PPF). She sees it as a super-secure piggy bank backed by the government. The guaranteed, tax-free returns make it an ideal choice for her long-term goals, like retirement.</p>
-                <ul>
-                    <li><strong>Best for:</strong> Conservative investors who prioritize safety and want guaranteed, tax-free returns.</li>
-                    <li><strong>Lock-in Period:</strong> 15 years.</li>
-                    <li><strong>Risk Level:</strong> Virtually zero risk.</li>
-                    <li><strong>Anjali's Insight:</strong> PPF provides a stable foundation for her financial plan, balancing the higher risk of her ELSS investment.</li>
-                </ul>
-
-                <h3>3. Tax-Saver Fixed Deposits (FDs) - A Simple and Predictable Option</h3>
-                <p>Anjali also considers a Tax-Saver Fixed Deposit (FD) for its simplicity. She knows that if she invests in an FD, she'll get a guaranteed interest rate for a 5-year period. It's a straightforward way to save tax without any market-related risks.</p>
-                <ul>
-                    <li><strong>Best for:</strong> First-time investors or those who want complete predictability.</li>
-                    <li><strong>Lock-in Period:</strong> 5 years.</li>
-                    <li><strong>Risk Level:</strong> Very low.</li>
-                    <li><strong>Anjali's Insight:</strong> While the interest is taxable, she sees it as a good option for diversifying her tax-saving portfolio.</li>
-                </ul>
-                
-                <h3>4. Employees' Provident Fund (EPF) - The Automatic Saver</h3>
-                <p>As a salaried employee, Anjali is already saving for retirement through her EPF. She remembers to account for her monthly EPF contribution when calculating her total 80C investments, ensuring she doesn't over-invest in other options.</p>
-                <ul>
-                    <li><strong>Best for:</strong> All salaried employees.</li>
-                    <li><strong>Lock-in Period:</strong> Until retirement.</li>
-                    <li><strong>Risk Level:</strong> Low.</li>
-                    <li><strong>Anjali's Insight:</strong> EPF is a hands-off way to build a solid retirement fund while also saving on taxes.</li>
-                </ul>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <!-- ELSS Card -->
+                    <div class="journey-card">
+                        <div class="flex items-center mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mr-3"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                            <h3 class="font-bold text-lg">1. ELSS for Growth</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">Anjali is comfortable with market risk and wants high returns. She invests in an ELSS fund for its growth potential and short 3-year lock-in.</p>
+                        <ul class="text-xs space-y-2">
+                            <li class="flex items-center"><strong class="w-20 flex-shrink-0">Best for:</strong> Aggressive Investors</li>
+                            <li class="flex items-center"><strong class="w-20 flex-shrink-0">Lock-in:</strong> 3 Years</li>
+                            <li class="flex items-center"><strong class="w-20 flex-shrink-0">Risk:</strong> High</li>
+                        </ul>
+                    </div>
+                    <!-- PPF Card -->
+                    <div class="journey-card">
+                        <div class="flex items-center mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mr-3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <h3 class="font-bold text-lg">2. PPF for Safety</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">For safety, Anjali chooses the Public Provident Fund. She loves the government guarantee and the completely tax-free returns for her long-term goals.</p>
+                         <ul class="text-xs space-y-2">
+                            <li class="flex items-center"><strong class="w-20 flex-shrink-0">Best for:</strong> Conservative Investors</li>
+                            <li class="flex items-center"><strong class="w-20 flex-shrink-0">Lock-in:</strong> 15 Years</li>
+                            <li class="flex items-center"><strong class="w-20 flex-shrink-0">Risk:</strong> Risk-Free</li>
+                        </ul>
+                    </div>
+                     <!-- Tax-Saver FD Card -->
+                    <div class="journey-card">
+                         <div class="flex items-center mb-2">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mr-3"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M7 12v4"/><path d="M12 12v4"/><path d="M17 12v4"/><path d="M5 8v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg>
+                            <h3 class="font-bold text-lg">3. Tax-Saver FD</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">Anjali considers a Tax-Saver FD for its simplicity. She gets a guaranteed interest rate for a 5-year period, making it a straightforward, no-risk option.</p>
+                         <ul class="text-xs space-y-2">
+                            <li class="flex items-center"><strong class="w-20 flex-shrink-0">Best for:</strong> First-time Investors</li>
+                            <li class="flex items-center"><strong class="w-20 flex-shrink-0">Lock-in:</strong> 5 Years</li>
+                            <li class="flex items-center"><strong class="w-20 flex-shrink-0">Risk:</strong> Very Low</li>
+                        </ul>
+                    </div>
+                     <!-- EPF Card -->
+                    <div class="journey-card">
+                         <div class="flex items-center mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mr-3"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            <h3 class="font-bold text-lg">4. EPF Automation</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">As a salaried employee, Anjali is already saving via her EPF. She remembers to subtract this amount from her ₹1.5 lakh limit before making other investments.</p>
+                         <ul class="text-xs space-y-2">
+                            <li class="flex items-center"><strong class="w-20 flex-shrink-0">Best for:</strong> Salaried Employees</li>
+                            <li class="flex items-center"><strong class="w-20 flex-shrink-0">Lock-in:</strong> Until Retirement</li>
+                            <li class="flex items-center"><strong class="w-20 flex-shrink-0">Risk:</strong> Low</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             
             <div class="content-section-card">
                 <h2>At a Glance: Which Tax-Saver is Right for You?</h2>
+                <div class="overflow-x-auto">
                 <table style="width:100%; border-collapse: collapse; margin-bottom: 1rem;">
                     <thead>
                         <tr style="background-color: #f7f7f7;">
@@ -209,60 +252,80 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
 
             <div class="content-section-card bg-gray-50">
-                <h2 class="section-title-secondary">Beyond 80C: Other Powerful Tax-Saving Avenues</h2>
+                <h2>Beyond 80C: Other Powerful Tax-Saving Avenues</h2>
                 <p>While Section 80C is the most well-known, there are other important deductions you shouldn't overlook. These can provide significant additional tax savings.</p>
                 
-                <h3>Section 80D: For Health Insurance</h3>
-                <p>This is a crucial deduction that promotes health security. You can claim a deduction for health insurance premiums paid for yourself, your spouse, your children, and your parents.</p>
-                <ul>
-                    <li><strong>For Self, Spouse, and Children:</strong> Up to ₹25,000 per year.</li>
-                    <li><strong>For Parents (below 60 years):</strong> An additional deduction of up to ₹25,000.</li>
-                    <li><strong>For Parents (senior citizens, 60+ years):</strong> The additional deduction for parents increases to ₹50,000.</li>
+                <ul class="space-y-4 mt-4">
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-blue-500"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v6"/><path d="M15 11h-6"/></svg>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Section 80D: For Health Insurance</h4>
+                            <p class="text-xs text-gray-600">Claim deductions for health insurance premiums for yourself, your family, and your parents, providing tax relief while ensuring financial security.</p>
+                        </div>
+                    </li>
+                     <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-blue-500"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">House Rent Allowance (HRA)</h4>
+                            <p class="text-xs text-gray-600">If you are a salaried individual living in a rented house, you can claim HRA to lower your taxable income. This can lead to substantial tax savings.</p>
+                        </div>
+                    </li>
                 </ul>
-                <p>This means you can claim a total deduction of up to ₹75,000 (or ₹1 lakh if you are also a senior citizen) under this section, making it a vital part of any tax plan.</p>
-
-                <h3>House Rent Allowance (HRA)</h3>
-                <p>If you are a salaried individual living in a rented house, you can claim HRA to lower your taxable income. The amount of HRA exemption is the minimum of the following three:</p>
-                <ol class="list-decimal list-inside">
-                    <li>The actual HRA received from your employer.</li>
-                    <li>50% of your basic salary (for metro cities) or 40% (for non-metro cities).</li>
-                    <li>The actual rent paid minus 10% of your basic salary.</li>
-                </ol>
-                <p>Properly claiming HRA can lead to substantial tax savings, so be sure to keep your rent receipts handy.</p>
             </div>
 
             <div class="content-section-card">
                 <h2>Your Smart Tax-Saving Strategy</h2>
                 <p>The best approach is not to put all your eggs in one basket. A smart strategy is to create a balanced mix that suits your goals and comfort with risk.</p>
-                <ul>
-                    <li><strong>For the Young Professional:</strong> A larger portion in ELSS can help you build wealth aggressively, while a smaller amount in PPF can provide a stable foundation.</li>
-                    <li><strong>For the Cautious Saver:</strong> A combination of PPF, NSC, and Tax-Saver FDs can provide complete safety and predictable returns.</li>
-                    <li><strong>For the Balanced Investor:</strong> A mix of ELSS for growth and PPF for stability is a classic, time-tested strategy that works well for most people.</li>
-                </ul>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h4 class="font-bold text-center">Young Professional</h4>
+                        <p class="text-xs text-center text-gray-600">A larger portion in ELSS can help you build wealth aggressively, while a smaller amount in PPF can provide a stable foundation.</p>
+                    </div>
+                     <div class="p-4 bg-gray-50 rounded-lg">
+                        <h4 class="font-bold text-center">Cautious Saver</h4>
+                        <p class="text-xs text-center text-gray-600">A combination of PPF, NSC, and Tax-Saver FDs can provide complete safety and predictable returns.</p>
+                    </div>
+                     <div class="p-4 bg-gray-50 rounded-lg">
+                        <h4 class="font-bold text-center">Balanced Investor</h4>
+                        <p class="text-xs text-center text-gray-600">A mix of ELSS for growth and PPF for stability is a classic, time-tested strategy that works well for most people.</p>
+                    </div>
+                </div>
             </div>
 
             <div class="content-section-card bg-gray-50">
                 <h2>Final Thoughts: Your Action Plan</h2>
                 <p>Tax saving doesn't have to be a last-minute scramble. By planning ahead, you can make your money work harder for you. Here's a simple checklist to get you started:</p>
-                <ul>
-                    <li><strong>Start Early:</strong> Begin your tax-saving investments at the start of the financial year (April) rather than waiting until the end (March).</li>
-                    <li><strong>Know Your Limit:</strong> Calculate how much you need to invest to fully utilize the ₹1.5 lakh limit under Section 80C.</li>
-                    <li><strong>Choose Your Tools:</strong> Pick the right mix of investments based on your financial goals, risk appetite, and time horizon.</li>
-                    <li><strong>Automate It:</strong> The easiest way to stay disciplined is to set up a monthly SIP in an ELSS fund. This way, you invest regularly without even thinking about it.</li>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span><strong>Start Early:</strong> Begin your tax-saving investments at the start of the financial year (April) rather than waiting until the end (March).</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span><strong>Know Your Limit:</strong> Calculate how much you need to invest to fully utilize the ₹1.5 lakh limit under Section 80C.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span><strong>Choose Your Tools:</strong> Pick the right mix of investments based on your financial goals, risk appetite, and time horizon.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span><strong>Automate It:</strong> The easiest way to stay disciplined is to set up a monthly SIP in an ELSS fund. This way, you invest regularly without even thinking about it.</span>
+                    </li>
                 </ul>
             </div>
             
-            <div class="content-section-card">
-                <h3 class="section-title-secondary" style="text-align: left; margin-left: 0;">Take the Next Step</h3>
-                <p style="margin-left: 0; margin-bottom: 1rem;">Now that you understand tax-saving, put your knowledge into action and explore related topics:</p>
-                <ul style="list-style-type: none; padding-left: 0; margin-left: 0;">
-                    <li>&#8227; <strong>Plan Your Investments:</strong> Use our <a href="../index.html">all-in-one financial calculator</a> to see how your tax-saving investments can grow over time.</li>
-                    <li>&#8227; <strong>Build Your Retirement Corpus:</strong> Learn how tax-saving fits into your long-term goals in our <a href="retirement-planning-guide.html">Guide to Retirement Planning</a>.</li>
-                    <li>&#8227; <strong>Understand Mutual Funds:</strong> Dive deeper into how ELSS and other funds work with our <a href="mfguide.html">Beginner's Guide to Investing</a>.</li>
-                </ul>
+            <div class="content-section-card text-center">
+                <h3 class="section-title-secondary">Take the Next Step</h3>
+                <p class="mb-4">Now that you understand tax-saving, put your knowledge into action and explore related topics:</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../index.html" class="btn-primary">Plan Your Investments</a>
+                    <a href="retirement-planning-guide.html" class="btn-secondary">Read Retirement Guide</a>
+                </div>
             </div>
 
             <div class="content-section-card bg-gray-50">
