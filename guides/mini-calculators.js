@@ -8,49 +8,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     /**
-     * NEW: Centralized function to add the affiliate links.
-     * This function creates and appends the affiliate links to any given calculator element.
-     * @param {HTMLElement} calculatorElement - The main container div of the mini-calculator.
-     */
-    function addAffiliateLinks(calculatorElement) {
-        const affiliateContainer = document.createElement('div');
-        affiliateContainer.className = 'mini-calculator-affiliate flex justify-center items-center space-x-3'; // Use flexbox for layout
-        
-        // 5paisa Link
-        const paisaLink = document.createElement('a');
-        paisaLink.href = 'https://www.5paisa.com/demat-account?ReferralCode=54285431&ReturnUrl=invest-open-account';
-        paisaLink.target = '_blank';
-        paisaLink.rel = 'nofollow sponsored noopener noreferrer';
-        paisaLink.className = 'inline-flex items-center';
-        paisaLink.innerHTML = `
-            Start investing with 5paisa
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        `;
-
-        // Upstox Link
-        const upstoxLink = document.createElement('a');
-        upstoxLink.href = 'https://upstox.onelink.me/0H1s/2JAL6D';
-        upstoxLink.target = '_blank';
-        upstoxLink.rel = 'nofollow sponsored noopener noreferrer';
-        upstoxLink.className = 'inline-flex items-center';
-        upstoxLink.innerHTML = `
-            Start investing with Upstox
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        `;
-        
-        // Divider
-        const divider = document.createElement('div');
-        divider.className = 'border-l border-gray-300 h-4';
-
-        affiliateContainer.appendChild(paisaLink);
-        affiliateContainer.appendChild(divider);
-        affiliateContainer.appendChild(upstoxLink);
-
-        calculatorElement.appendChild(affiliateContainer);
-    }
-
-
-    /**
      * Initializes the Retirement Corpus Mini-Calculator.
      * Finds the calculator by its ID, attaches an event listener, and performs the calculation.
      */
@@ -83,8 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         expensesInput.addEventListener('input', calculateCorpus);
-        // Automatically add the affiliate links
-        addAffiliateLinks(calculator);
     }
 
     /**
@@ -119,9 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         calculateUnits(navInput1, unitsResult1);
         calculateUnits(navInput2, unitsResult2);
-
-        // Automatically add the affiliate links
-        addAffiliateLinks(calculator);
     }
 
 
