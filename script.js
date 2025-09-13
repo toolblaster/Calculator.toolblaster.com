@@ -196,9 +196,17 @@ document.addEventListener('DOMContentLoaded', () => {
         displayContent(1);
     };
 
+    // --- NEW: DYNAMIC FAVICON LOADER ---
+    const setFavicon = () => {
+        const faviconLink = document.createElement('link');
+        faviconLink.rel = 'icon';
+        faviconLink.href = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E34037' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='16' height='20' x='4' y='2' rx='2'/%3E%3Cpath d='M8 6h8'/%3E%3Cpath d='M8 10h8'/%3E%3Cpath d='M8 14h8'/%3E%3Cpath d='M15 18h1'/%3E%3C/svg%3E";
+        document.head.appendChild(faviconLink);
+    };
 
     // --- SECTION 2: PAGE INITIALIZATION ---
     const initializePage = () => {
+        setFavicon(); // Add the favicon dynamically to every page
         const path = window.location.pathname;
         const depth = Math.max(0, (path.split('/').length - 2));
         const basePath = depth > 0 ? '../'.repeat(depth) : './';
