@@ -186,6 +186,52 @@
             text-align: center;
             border: 1px solid #e5e7eb;
         }
+        .bucket-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .bucket-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .bucket-card {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            height: 100%;
+        }
+        .bucket-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 1rem;
+            color: #E34037;
+        }
+        .bucket-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .bucket-timeline {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .bucket-purpose {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .bucket-instruments {
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -305,39 +351,50 @@
                     </table>
                 </div>
             </div>
-
-            <div class="content-section-card">
-                <h2>Your Toolkit: Top Retirement Investments in India</h2>
-                <p>Building a solid retirement corpus requires using the right tools. Here are the most effective investment options available in India:</p>
-                
-                <ul class="space-y-4 mt-4">
-                    <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                        <div>
-                            <strong>EPF (Employees' Provident Fund):</strong> Your automatic retirement savings plan if you're a salaried employee. A <strong>safe and steady</strong> foundation.
-                        </div>
-                    </li>
-                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        <div>
-                            <strong>PPF (Public Provident Fund):</strong> A fantastic, government-backed option for everyone with <strong>tax-free, guaranteed returns</strong>. Ideal for risk-free savings.
-                        </div>
-                    </li>
-                     <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/><path d="M16 12H8"/></svg>
-                        <div>
-                            <strong>NPS (National Pension System):</strong> A smart, low-cost pension scheme that invests in a mix of stocks and bonds, with <strong>extra tax benefits</strong>.
-                        </div>
-                    </li>
-                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
-                        <div>
-                            <strong>Mutual Funds (via SIP):</strong> The most powerful engine for wealth creation. Equity SIPs <strong>consistently beat inflation</strong> over the long term, making them essential for building a large corpus.
-                        </div>
-                    </li>
-                </ul>
-            </div>
             
+            <!-- NEW SECTION: 3-Bucket Strategy -->
+            <div class="content-section-card bg-gray-50">
+                <h2 class="section-title-secondary">Creating Your Retirement Paycheck: The 3-Bucket Strategy</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">Once you retire, the goal shifts from accumulating wealth to generating a sustainable income. The 3-Bucket Strategy is a simple yet powerful way to structure your corpus for a stress-free retired life.</p>
+                <div class="bucket-grid">
+                    <!-- Bucket 1: Liquidity -->
+                    <div class="bucket-card">
+                        <div class="bucket-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h3 class="bucket-title text-blue-800">Bucket 1: Liquidity</h3>
+                        <p class="bucket-timeline">(1-2 Years of Expenses)</p>
+                        <p class="bucket-purpose">This bucket covers your immediate living expenses, ensuring you have cash on hand without worrying about market fluctuations.</p>
+                        <p class="bucket-instruments"><strong>Instruments:</strong> Savings Account, Liquid Funds, Ultra Short-Term Debt Funds.</p>
+                    </div>
+                    <!-- Bucket 2: Income -->
+                    <div class="bucket-card">
+                        <div class="bucket-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M7 12v4"/><path d="M12 12v4"/><path d="M17 12v4"/><path d="M5 8v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg>
+                        </div>
+                        <h3 class="bucket-title text-green-800">Bucket 2: Income</h3>
+                        <p class="bucket-timeline">(3-5 Years of Expenses)</p>
+                        <p class="bucket-purpose">This is your stable income generator. You will set up an SWP from this bucket to get your monthly 'pension'.</p>
+                        <p class="bucket-instruments"><strong>Instruments:</strong> Short-Term Debt Funds, Corporate Bonds, Annuity Plans, Post Office MIS.</p>
+                    </div>
+                    <!-- Bucket 3: Growth -->
+                    <div class="bucket-card">
+                        <div class="bucket-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                        </div>
+                        <h3 class="bucket-title text-purple-800">Bucket 3: Growth</h3>
+                        <p class="bucket-timeline">(6+ Years of Expenses)</p>
+                        <p class="bucket-purpose">This is your inflation-fighting engine. The goal is to grow this capital to refill your other buckets over time.</p>
+                        <p class="bucket-instruments"><strong>Instruments:</strong> Diversified Equity Mutual Funds, Index Funds, REITs.</p>
+                    </div>
+                </div>
+                 <div class="alert alert-info mt-6 text-center">
+                    <h3 class="alert-title">How it Works</h3>
+                    <p>You draw your monthly income from Bucket 2. Once a year, you review your portfolio and move profits from the Growth Bucket (3) to refill the Income Bucket (2) and the Liquidity Bucket (1), ensuring your system is sustainable.</p>
+                </div>
+            </div>
+
+
             <div class="content-section-card bg-red-50 border-l-4 border-red-500">
                 <h2 class="section-title-secondary text-red-800">Common Retirement Pitfalls to Avoid</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
@@ -358,12 +415,6 @@
                         <div><h4 class="font-semibold text-sm">Ignoring Healthcare Costs</h4><p class="text-xs text-gray-700">Healthcare inflation is often much higher than general inflation. A dedicated health insurance plan is <strong>essential</strong> to protect your main corpus.</p></div>
                     </div>
                 </div>
-            </div>
-
-            <div class="content-section-card bg-gray-50">
-                <h2>From Savings to Salary: Your Post-Retirement Income Plan</h2>
-                <p>Once you've accumulated your corpus, the next step is to generate a regular income from it. This is where a <strong>Systematic Withdrawal Plan (SWP)</strong> comes in. It's the reverse of a SIP. An SWP allows you to withdraw a fixed amount from your mutual fund investments every month, creating a "pension" while the rest of your money stays invested and continues to grow. Learn more in our <a href="sip-vs-swp.html">SIP vs. SWP guide</a>.</p>
-                <a href="../index.html?mode=swp" class="btn-primary mt-4">Model Your SWP Income</a>
             </div>
 
             <div class="content-section-card">
