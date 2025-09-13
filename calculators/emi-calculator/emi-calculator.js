@@ -42,6 +42,16 @@ function initializeEmiCalculator() {
 
     const toggleDetailsBtn = getElem('toggleAmortizationBtn');
     const detailsTableContainer = getElem('amortizationTableContainer');
+    
+    // --- Share Modal Elements ---
+    const shareReportBtn = getElem('shareReportBtn');
+    const shareModal = getElem('shareModal');
+    const closeModalBtn = getElem('closeModalBtn');
+    const modalReportContent = getElem('modalReportContent');
+    const shareUrlInput = getElem('shareUrlInput');
+    const copyUrlBtn = getElem('copyUrlBtn');
+    const printReportBtn = getElem('printReportBtn');
+
 
     // --- Utility Functions ---
     const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
@@ -206,6 +216,80 @@ function initializeEmiCalculator() {
                 .catch(error => console.error('Error loading EMI SEO content:', error));
         }
     }
+    
+    function populateAndShowModal() {
+        // Gather data
+        const loanAmount = parseFloat(loanAmountInput.value);
+        const interestRate = parseFloat(interestRateInput.value);
+        const loanTenure = parseFloat(loanTenureInput.value);
+        const emiText = monthlyEmiElem.textContent;
+        const totalPaymentText = totalPayableElem.textContent;
+        const totalInterestText = totalInterestElem.textContent;
+
+        const emi = emiText ? parseFloat(emiText.replace(/[^0-9.]/g, '')) : 0;
+        const totalPayment = totalPaymentText ? parseFloat(totalPaymentText.replace(/[^0-9.]/g, '')) : 0;
+        const totalInterest = totalInterestText ? parseFloat(totalInterestText.replace(/[^0-9.]/g, '')) : 0;
+
+        // Populate modal content
+        modalReportContent.innerHTML = `
+            <h3>Your Loan Summary</h3>
+            <ul>
+                <li><span>Loan Amount:</span> <span>${formatCurrency(loanAmount)}</span></li>
+                <li><span>Interest Rate:</span> <span>${interestRate}% p.a.</span></li>
+                <li><span>Loan Tenure:</span> <span>${loanTenure} Years</span></li>
+                <li style="font-size: 1rem; font-weight: bold; margin-top: 0.5rem; border-top: 1px solid #e5e7eb; padding-top: 0.5rem;">
+                    <span>Monthly EMI:</span> <span>${formatCurrency(emi)}</span>
+                </li>
+                <li><span>Total Interest Payable:</span> <span>${formatCurrency(totalInterest)}</span></li>
+                <li><span>Total Payment:</span> <span>${formatCurrency(totalPayment)}</span></li>
+            </ul>
+        `;
+        
+        // Generate shareable URL
+        const params = new URLSearchParams();
+        params.set('amount', loanAmount);
+        params.set('rate', interestRate);
+        params.set('tenure', loanTenure);
+        
+        const prepaymentAmount = parseFloat(prepaymentAmountInput.value);
+        if (prepaymentAmount > 0) {
+            params.set('prepay', prepaymentAmount);
+            params.set('prepayFreq', prepaymentFrequencySelect.value);
+            if (prepaymentFrequencySelect.value === '0') {
+                 params.set('prepayStart', prepaymentStartInput.value);
+            }
+        }
+        shareUrlInput.value = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+
+        shareModal.classList.remove('hidden');
+    }
+    
+    function loadFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('amount')) {
+            loanAmountInput.value = params.get('amount') || 2000000;
+            interestRateInput.value = params.get('rate') || 8.5;
+            loanTenureInput.value = params.get('tenure') || 10;
+            
+            if (params.has('prepay')) {
+                prepaymentAmountInput.value = params.get('prepay') || 0;
+                prepaymentFrequencySelect.value = params.get('prepayFreq') || '0';
+                 oneTimePrepaymentStartDiv.style.display = prepaymentFrequencySelect.value === '0' ? 'block' : 'none';
+                if (params.get('prepayFreq') === '0') {
+                    prepaymentStartInput.value = params.get('prepayStart') || 12;
+                }
+            }
+            
+            // Sync sliders
+            document.querySelectorAll('input[type="range"]').forEach(slider => {
+                const input = getElem(slider.id.replace('Slider', 'Input'));
+                if(input && slider) {
+                    slider.value = input.value;
+                }
+            });
+        }
+    }
+
 
     function setupEventListeners() {
       const inputs = [
@@ -232,12 +316,31 @@ function initializeEmiCalculator() {
           detailsTableContainer.classList.toggle('hidden');
           toggleDetailsBtn.textContent = detailsTableContainer.classList.contains('hidden') ? 'Show Amortization Schedule' : 'Hide Schedule';
       });
+
+      // Modal event listeners
+      if(shareReportBtn) shareReportBtn.addEventListener('click', populateAndShowModal);
+      if(closeModalBtn) closeModalBtn.addEventListener('click', () => shareModal.classList.add('hidden'));
+      window.addEventListener('click', (event) => { if (event.target == shareModal) shareModal.classList.add('hidden'); });
+      if(copyUrlBtn) copyUrlBtn.addEventListener('click', () => {
+          shareUrlInput.select();
+          document.execCommand('copy');
+          showNotification('Link copied to clipboard!');
+      });
+      if(printReportBtn) printReportBtn.addEventListener('click', () => {
+         const modalContent = getElem('modalReportContent');
+         modalContent.classList.add('print-area');
+         window.print();
+         modalContent.classList.remove('print-area');
+      });
     }
 
     const debouncedUpdate = debounce(updateCalculator, 250);
     setupEventListeners();
-    document.querySelectorAll('.range-slider').forEach(updateSliderFill);
     oneTimePrepaymentStartDiv.style.display = 'block'; // Show by default for "One Time"
-    updateCalculator();
+    loadFromUrl(); // Load from URL first
+    document.querySelectorAll('.range-slider').forEach(updateSliderFill);
+    if (!window.location.search) {
+        updateCalculator(); // Then do initial calculation if no params
+    }
     loadSeoContent();
 }
