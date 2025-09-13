@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced EMI Calculator with Prepayment & Amortization - India | Calculator.toolblaster</title>
+    <meta name="description" content="Calculate your EMI for home, car, or personal loans with our advanced calculator. Features prepayment simulation, detailed amortization schedules, and interactive charts.">
+    <meta name="keywords" content="emi calculator, loan calculator, prepayment calculator, amortization schedule, home loan emi, car loan emi, personal loan emi">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../financial-calculator/calculator-style.css">
+    <link rel="stylesheet" href="emi-calculator-style.css">
+</head>
+<body class="bg-gray-50">
+
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <div class="financial-calculator-wrapper">
+            <div class="bg-white shadow-lg rounded-xl p-2 sm:p-4 w-full border border-red-300 mx-auto my-0 calculator-container">
+                
+                <h1 class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">Advanced EMI Calculator</h1>
+                <p class="text-center text-gray-500 mb-3 text-xs">Plan your loans with precision, including prepayments and detailed amortization.</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
+                    <!-- Left Column: Inputs -->
+                    <div class="space-y-2">
+                        <!-- Loan Details Section -->
+                        <div class="bg-blue-50/50 p-2 rounded-lg space-y-2">
+                             <div>
+                                <label for="loanAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Loan Amount (₹)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="loanAmountSlider" min="50000" max="20000000" value="2000000" step="10000" class="w-full range-slider">
+                                    <input type="number" id="loanAmountInput" class="manual-input" value="2000000" min="50000" max="20000000" step="10000">
+                                </div>
+                            </div>
+                            <div>
+                               <label for="interestRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Interest Rate (% p.a.)</label>
+                               <div class="flex items-center space-x-2">
+                                   <input type="range" id="interestRateSlider" min="1" max="20" value="8.5" step="0.05" class="w-full range-slider">
+                                   <input type="number" id="interestRateInput" class="manual-input" value="8.5" min="1" max="20" step="0.05">
+                               </div>
+                           </div>
+                           <div>
+                            <label for="loanTenureSlider" class="block text-xs font-medium text-gray-600 mb-1">Loan Tenure (Years)</label>
+                            <div class="flex items-center space-x-2">
+                                <input type="range" id="loanTenureSlider" min="1" max="30" value="10" step="1" class="w-full range-slider">
+                                <input type="number" id="loanTenureInput" class="manual-input" value="10" min="1" max="30" step="1">
+                            </div>
+                        </div>
+                        </div>
+
+                        <!-- Prepayment Section -->
+                        <div class="bg-blue-50/50 p-2 rounded-lg space-y-2">
+                            <h3 class="text-sm font-bold text-blue-800 text-center mb-1">Prepayment Simulation (Optional)</h3>
+                             <div>
+                                <label for="prepaymentAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Prepayment Amount (₹)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="prepaymentAmountSlider" min="0" max="1000000" value="0" step="5000" class="w-full range-slider">
+                                    <input type="number" id="prepaymentAmountInput" class="manual-input" value="0" min="0" max="1000000" step="5000">
+                                </div>
+                            </div>
+                            <div>
+                               <label for="prepaymentFrequency" class="block text-xs font-medium text-gray-600 mb-1">How often?</label>
+                               <select id="prepaymentFrequency" class="w-full p-1 border border-gray-300 rounded-md text-xs font-semibold text-gray-700 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 shadow-sm">
+                                   <option value="0">One Time</option> <!-- Use 0 for one-time -->
+                                   <option value="12">Once a Year</option>
+                                   <option value="6">Twice a Year</option>
+                                   <option value="3">Quarterly</option>
+                               </select>
+                           </div>
+                           <div id="oneTimePrepaymentStartDiv">
+                            <label for="prepaymentStartSlider" class="block text-xs font-medium text-gray-600 mb-1">When? (After how many months)</label>
+                            <div class="flex items-center space-x-2">
+                                <input type="range" id="prepaymentStartSlider" min="1" max="120" value="12" step="1" class="w-full range-slider">
+                                <input type="number" id="prepaymentStartInput" class="manual-input" value="12" min="1" max="120" step="1">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Results -->
+                    <div class="flex flex-col">
+                         <div class="bg-blue-50/50 p-2 rounded-lg" aria-live="polite">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-sm font-bold text-blue-800">Loan Summary</h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-center my-2">
+                                <div id="monthlyEmiCard" class="p-2 border rounded-lg col-span-2">
+                                    <p class="text-xs font-semibold text-gray-700">Monthly EMI</p>
+                                    <p id="monthlyEmi" class="text-xl font-bold text-orange-600">₹0</p>
+                                </div>
+                                <div class="p-2 border rounded-lg">
+                                    <p class="text-xs font-semibold text-gray-700">Principal Amount</p>
+                                    <p id="principalAmount" class="text-lg font-bold text-gray-800">₹0</p>
+                                </div>
+                                <div class="p-2 border rounded-lg">
+                                    <p class="text-xs font-semibold text-gray-700">Total Interest</p>
+                                    <p id="totalInterest" class="text-lg font-bold text-gray-800">₹0</p>
+                                </div>
+                            </div>
+                             <div id="totalPaymentCard" class="p-2 rounded-lg text-center mt-2 bg-gray-100">
+                                 <p class="text-xs font-semibold text-gray-700">Total Payment (Principal + Interest)</p>
+                                 <p id="totalPayment" class="text-lg font-bold text-purple-700">₹0</p>
+                             </div>
+                        </div>
+
+                        <div class="flex justify-center items-center h-32 sm:h-40 md:h-48 w-full relative mt-3">
+                            <canvas id="emiDoughnutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Prepayment Result Section -->
+                 <div id="prepaymentResultSection" class="hidden mt-4 bg-green-50 p-4 rounded-lg border border-green-300">
+                    <h3 class="text-center text-sm font-bold text-green-800 mb-2">Prepayment Savings</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-center text-xs">
+                        <div class="bg-white p-2 rounded">
+                            <p class="font-semibold text-gray-600">Interest Saved</p>
+                            <p id="interestSaved" class="font-bold text-green-700 text-base">₹0</p>
+                        </div>
+                        <div class="bg-white p-2 rounded">
+                            <p class="font-semibold text-gray-600">Tenure Reduced By</p>
+                            <p id="tenureReduced" class="font-bold text-green-700 text-base">0 Months</p>
+                        </div>
+                        <div class="bg-white p-2 rounded">
+                            <p class="font-semibold text-gray-600">New Loan End Date</p>
+                            <p id="newEndDate" class="font-bold text-green-700 text-base">-</p>
+                        </div>
+                         <div class="bg-white p-2 rounded">
+                            <p class="font-semibold text-gray-600">Total Prepayments</p>
+                            <p id="totalPrepaidAmount" class="font-bold text-green-700 text-base">₹0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center my-4">
+                    <button id="toggleAmortizationBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Show Amortization Schedule</button>
+                </div>
+
+                <div id="amortizationTableContainer" class="hidden overflow-x-auto bg-white rounded-lg shadow-md mt-4 p-4 border border-gray-200">
+                    <!-- Table will be injected here by JS -->
+                </div>
+                <div class="border-t border-gray-200 my-3 w-full"></div>
+                 <div class="text-center text-gray-500 text-xxs leading-relaxed px-2 flex justify-center items-center space-x-3">
+                    <a href="https://www.5paisa.com/demat-account?ReferralCode=54285431&ReturnUrl=invest-open-account" target="_blank" rel="nofollow sponsored noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                        Start investing with 5paisa
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                    <div class="border-l border-gray-300 h-4"></div>
+                    <a href="https://upstox.onelink.me/0H1s/2JAL6D" target="_blank" rel="nofollow sponsored noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                        Start investing with Upstox
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                 <p class="text-center text-gray-500 text-xxs leading-relaxed px-2 mt-2">
+                    <strong>Disclaimer:</strong> This calculator is for informational purposes only and does not constitute financial advice.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Placeholder for the SEO content -->
+        <div id="dynamic-content-area-emi"></div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../../script.js"></script>
+    <script src="emi-calculator.js"></script>
+</body>
+</html>
