@@ -17,7 +17,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 1.5rem; /* Reduced padding */
+            padding: 0.5rem; /* Mirrored from quiz cards */
             border: 1px solid #e5e7eb;
             border-radius: 0.75rem;
             background-color: #ffffff;
@@ -33,35 +33,40 @@
         }
         .calculator-showcase-icon {
             color: #E34037;
-            width: 32px; /* Further Reduced size */
-            height: 32px; /* Further Reduced size */
-            margin-bottom: 0.5rem; /* Further Reduced margin */
+            width: 20px; /* Mirrored from quiz cards */
+            height: 20px; /* Mirrored from quiz cards */
+            margin-bottom: 0.25rem; /* Mirrored from quiz cards */
         }
         .calculator-showcase-card h2 {
-            font-size: 0.9rem; /* Further Reduced font size */
+            font-size: 0.7rem; /* Mirrored from quiz cards */
             font-weight: 700;
             color: #1f2937;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
         .calculator-showcase-card p {
-            font-size: 0.75rem; /* Further Reduced font size */
+            font-size: 0.55rem; /* Mirrored from quiz cards */
             color: #4b5563;
             flex-grow: 1;
-            margin-bottom: 1rem; /* Reduced margin */
+            margin-bottom: 0.5rem; /* Mirrored from quiz cards */
+            line-height: 1.4;
         }
         .calculator-showcase-card .cta-link {
             display: inline-block;
             background-color: #E34037;
             color: white;
-            padding: 0.4rem 1rem; /* Further Reduced padding */
+            padding: 0.2rem 0.5rem; /* Mirrored from quiz cards */
             border-radius: 0.5rem;
             font-weight: 600;
-            font-size: 0.75rem; /* Added smaller font size */
+            font-size: 0.6rem; /* Mirrored from quiz cards */
             text-decoration: none;
             transition: background-color 0.2s;
         }
         .calculator-showcase-card:hover .cta-link {
             background-color: #C22D2D;
+        }
+        .text-xxs { 
+            font-size: 0.6rem; 
+            line-height: 0.8rem; 
         }
     </style>
 </head>
@@ -95,16 +100,38 @@
                     <span class="cta-link">Go to Tax Calculator</span>
                 </a>
                 
-                <!-- EMI Calculator Card -->
+                 <!-- EMI Calculator Card -->
                 <a href="emi-calculator/emi-calculator.html" class="calculator-showcase-card">
                     <div class="calculator-showcase-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                     </div>
-                    <h2>EMI Calculator</h2>
-                    <p>Plan your loans with ease. Calculate your Equated Monthly Installment (EMI) for home, car, or personal loans and simulate prepayments.</p>
+                    <h2>Advanced EMI Calculator</h2>
+                    <p>Plan your home, car, or personal loans with prepayment simulations and detailed amortization schedules to save on interest.</p>
                     <span class="cta-link">Go to EMI Calculator</span>
                 </a>
+
+                <!-- Placeholder for Future Calculator -->
+                <div class="calculator-showcase-card opacity-50 cursor-not-allowed">
+                    <div class="calculator-showcase-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/><path d="M16 12H8"/></svg>
+                    </div>
+                    <h2>More Calculators Coming Soon</h2>
+                    <p>We are constantly working on new tools to help you with your financial planning journey. Stay tuned for more!</p>
+                    <span class="cta-link bg-gray-400">Coming Soon</span>
+                </div>
             </div>
+            <div class="border-t border-gray-200 my-6 w-full"></div>
+            <div class="text-center text-gray-500 text-xxs leading-relaxed px-4 flex justify-center items-center space-x-3">
+                <a href="https://www.5paisa.com/demat-account?ReferralCode=54285431&ReturnUrl=invest-open-account" target="_blank" rel="nofollow sponsored noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                    Start investing with 5paisa
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+                <div class="border-l border-gray-300 h-4"></div>
+                <a href="https://upstox.onelink.me/0H1s/2JAL6D" target="_blank" rel="nofollow sponsored noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                    Start investing with Upstox
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+           </div>
         </div>
     </main>
     
