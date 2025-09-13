@@ -1,0 +1,19 @@
+/* Styles specific to the EMI Calculator */
+
+#prepaymentResultSection.hidden {
+    display: none;
+}
+
+#amortizationTableContainer table {
+    font-size: 0.7rem;
+}
+
+#amortizationTableContainer th {
+    font-size: 0.65rem;
+}
+
+#amortizationTableContainer .prepayment-row td {
+    background-color: #dcfce7;
+    color: #15803d;
+    font-weight: 600;
+}
