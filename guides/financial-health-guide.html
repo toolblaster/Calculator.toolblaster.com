@@ -25,6 +25,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <script type="application/ld+json">
@@ -39,17 +40,11 @@
           },
           "headline": "Your Guide to Financial Health & Wellness",
           "description": "Understand the key pillars of financial health and why a regular assessment is crucial for your future. Take our free tool to get your personalized financial report card.",
-          "author": {
-            "@type": "Organization",
-            "name": "Calculator.toolblaster"
-          },
+          "author": { "@type": "Organization", "name": "Calculator.toolblaster" },
           "publisher": {
             "@type": "Organization",
             "name": "Calculator.toolblaster",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://calculator.toolblaster.com/assets/images/logo.png" 
-            }
+            "logo": { "@type": "ImageObject", "url": "https://calculator.toolblaster.com/assets/images/logo.png" }
           },
           "datePublished": "2025-08-20"
         },
@@ -57,104 +52,85 @@
           "@type": "HowTo",
           "name": "How to Assess Your Financial Health",
           "step": [
-            {
-              "@type": "HowToStep",
-              "name": "Assess Savings & Investments",
-              "text": "Evaluate if you are consistently putting money aside and making it grow for your future."
-            },
-            {
-              "@type": "HowToStep",
-              "name": "Check Safety & Protection",
-              "text": "Determine if you and your family are protected from life's unexpected emergencies through insurance and emergency funds."
-            },
-            {
-              "@type": "HowToStep",
-              "name": "Review Debt Management",
-              "text": "Analyze if your debt is at a healthy level or if it's holding you back from achieving your financial goals."
-            },
-            {
-              "@type": "HowToStep",
-              "name": "Take a Financial Health Assessment",
-              "text": "Use a comprehensive tool to get a score and a personalized report card on your overall financial standing."
-            }
+            { "@type": "HowToStep", "name": "Assess Savings & Investments", "text": "Evaluate if you are consistently putting money aside and making it grow for your future." },
+            { "@type": "HowToStep", "name": "Check Safety & Protection", "text": "Determine if you and your family are protected from life's unexpected emergencies through insurance and emergency funds." },
+            { "@type": "HowToStep", "name": "Review Debt Management", "text": "Analyze if your debt is at a healthy level or if it's holding you back from achieving your financial goals." },
+            { "@type": "HowToStep", "name": "Take a Financial Health Assessment", "text": "Use a comprehensive tool to get a score and a personalized report card on your overall financial standing." }
           ]
         },
         {
           "@type": "FAQPage",
           "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What is financial health?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Financial health is a complete picture of your monetary well-being. It's composed of several key indicators, including your savings rate, debt levels, and insurance coverage, that show how well your money is working for you."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Why is a financial health assessment important?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A financial health assessment is important because it helps you move from a reactive to a proactive approach to managing your money. It identifies financial blind spots, provides a prioritized action plan, and builds confidence by giving you a clear understanding of your financial situation."
-              }
-            },
-             {
-              "@type": "Question",
-              "name": "How often should I take this assessment?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "It's a good practice to take a financial health assessment at least once a year, or whenever you have a major life change (like a new job, marriage, or birth of a child). This helps you stay on track and adjust your financial plan as your life evolves."
-              }
-            }
+            { "@type": "Question", "name": "What is financial health?", "acceptedAnswer": { "@type": "Answer", "text": "Financial health is a complete picture of your monetary well-being. It's composed of several key indicators, including your savings rate, debt levels, and insurance coverage, that show how well your money is working for you." }},
+            { "@type": "Question", "name": "Why is a financial health assessment important?", "acceptedAnswer": { "@type": "Answer", "text": "A financial health assessment is important because it helps you move from a reactive to a proactive approach to managing your money. It identifies financial blind spots, provides a prioritized action plan, and builds confidence by giving you a clear understanding of your financial situation." }},
+            { "@type": "Question", "name": "How often should I take this assessment?", "acceptedAnswer": { "@type": "Answer", "text": "It's a good practice to take a financial health assessment at least once a year, or whenever you have a major life change (like a new job, marriage, or birth of a child). This helps you stay on track and adjust your financial plan as your life evolves." }}
           ]
         }
       ]
     }
     </script>
-
-    <style>
-        .pillar-icon {
-            background-color: #fef2f2;
-            color: #C22D2D;
-            border-radius: 50%;
-            padding: 0.75rem;
-            margin: 0 auto 1rem;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .cta-button {
-            display: inline-block;
-            background-color: #C22D2D;
-            color: #ffffff !important;
-            border: 2px solid #C22D2D;
-            padding: 0.5rem 1.25rem;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        .cta-button:hover {
-            background-color: #ffffff;
-            color: #C22D2D !important;
-            border-color: #C22D2D;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .center-content {
-            text-align: center;
-        }
+     <style>
         .content-section-card {
             background-color: #ffffff;
             border: 1px solid #e5e7eb;
             border-radius: 0.75rem;
             padding: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .icon-list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .icon-list-item svg {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            margin-right: 1rem;
+            margin-top: 3px;
+            color: #E34037;
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid #fca5a5;
+        }
+        .cta-section h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        .cta-section p {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #C22D2D;
+            color: #ffffff !important;
+            border: 2px solid #C22D2D;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .cta-button:hover {
+            background-color: #ffffff;
+            color: #C22D2D !important;
+            border-color: #C22D2D;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(0,0,0,0.1);
         }
     </style>
 </head>
@@ -166,108 +142,205 @@
         
         <div class="legal-content">
             <h1>Your Guide to Financial Health & Wellness</h1>
-            <p style="text-align: center;">Have you ever felt a knot of anxiety when you think about your finances? You're not alone. The world of money can feel overwhelming, but achieving financial wellness isn't about becoming a millionaire overnight. It's about building a strong, resilient foundation that gives you peace of mind and the freedom to live the life you want. This guide is your friendly roadmap to getting there.</p>
-
+            <p style="text-align: center;">Feeling anxious about your finances? You're not alone. Financial wellness isn't about getting rich quick; it's about building a strong foundation that gives you peace of mind and the freedom to live the life you want. This guide is your friendly roadmap to getting there.</p>
+            
             <div class="content-section-card">
-              <h2>What is Financial Health? Think of it Like a Car's Dashboard</h2>
-              <p>Your financial health is a complete picture of your monetary well-being. Just like a car's dashboard shows you more than just your speed, your financial health is made up of several key indicators that tell you if you're on the right track or heading for trouble. It’s a dynamic state, constantly changing with your life events, and it requires regular attention to keep you on the road to success.</p>
-              <div class="card-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-                  <div class="content-card text-center">
-                      <div class="pillar-icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg>
+              <h2 class="section-title-secondary">What is Financial Health? Think of it Like a Car's Dashboard</h2>
+              <p class="text-center text-sm text-gray-500 mb-6">Your financial health is a complete picture of your monetary well-being. It's composed of several key indicators that tell you if you're on the right track or heading for trouble.</p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div class="text-center p-4 bg-gray-50 rounded-lg">
+                      <div class="w-12 h-12 mx-auto flex items-center justify-center bg-red-100 rounded-full text-red-600 mb-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg>
                       </div>
                       <h3 class="font-semibold text-sm">Savings & Investments</h3>
                       <p class="text-xs text-gray-600">Are you consistently putting money aside and making it grow for your future?</p>
                   </div>
-                  <div class="content-card text-center">
-                      <div class="pillar-icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  <div class="text-center p-4 bg-gray-50 rounded-lg">
+                      <div class="w-12 h-12 mx-auto flex items-center justify-center bg-red-100 rounded-full text-red-600 mb-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                       </div>
                       <h3 class="font-semibold text-sm">Safety & Protection</h3>
-                      <p class="text-xs text-gray-600">Are you and your family protected from life's unexpected emergencies and setbacks?</p>
+                      <p class="text-xs text-gray-600">Are you and your family protected from life's unexpected emergencies?</p>
                   </div>
-                  <div class="content-card text-center">
-                       <div class="pillar-icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                  <div class="text-center p-4 bg-gray-50 rounded-lg">
+                       <div class="w-12 h-12 mx-auto flex items-center justify-center bg-red-100 rounded-full text-red-600 mb-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                       </div>
                       <h3 class="font-semibold text-sm">Debt Management</h3>
-                      <p class="text-xs text-gray-600">Is your debt at a healthy level, or is it holding you back from achieving your goals?</p>
+                      <p class="text-xs text-gray-600">Is your debt at a healthy level, or is it holding you back from your goals?</p>
                   </div>
               </div>
+            </div>
+
+            <div class="content-section-card">
+              <h2 class="section-title-secondary">Why a Financial Health Check is Crucial</h2>
+              <p class="text-center text-sm text-gray-500 mb-6">Just like a regular medical check-up, a financial health assessment is essential for long-term well-being. It helps you:</p>
+              <ul class="space-y-4">
+                  <li class="icon-list-item">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                      <div><h4 class="font-semibold text-gray-800">Identify Blind Spots</h4><p class="text-sm text-gray-600">Discover hidden risks in your financial plan, like inadequate insurance or a low savings rate, before they become major problems.</p></div>
+                  </li>
+                  <li class="icon-list-item">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                      <div><h4 class="font-semibold text-gray-800">Get a Prioritized Action Plan</h4><p class="text-sm text-gray-600">Stop wondering what to do next. An assessment like our <a href="../quizzes/next-financial-move-quiz.html" class="font-semibold">Next Financial Move Quiz</a> gives you a clear, step-by-step roadmap tailored to your situation.</p></div>
+                  </li>
+                  <li class="icon-list-item">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                      <div><h4 class="font-semibold text-gray-800">Build Confidence</h4><p class="text-sm text-gray-600">Understanding your financial standing is the first step to taking control. A clear picture replaces anxiety with confidence.</p></div>
+                  </li>
+              </ul>
             </div>
             
             <div class="content-section-card bg-gray-50">
               <h2 class="section-title-secondary">Your Financial Checklist: A Simple 4-Step Assessment</h2>
-              <p>Getting a clear picture of your financial health is easier than you think. Follow these four steps to understand where you stand and what to do next.</p>
-              <ol>
-                  <li><strong>Review Your Cash Flow:</strong> Understand where your money is coming from and where it's going. A healthy financial life starts with spending less than you earn.</li>
-                  <li><strong>Check Your Safety Net:</strong> Do you have an emergency fund and adequate insurance? This is your defense against unexpected life events.</li>
-                  <li><strong>Analyze Your Debt:</strong> List all your loans and credit card balances. High-interest debt can be a major roadblock to building wealth.</li>
-                  <li><strong>Take Our Assessment:</strong> Our tool automates this entire process, giving you a comprehensive report and a prioritized action plan in minutes.</li>
-              </ol>
+              <p class="text-center text-sm text-gray-500 mb-6">Getting a clear picture of your financial health is easier than you think. Follow these four steps to understand where you stand and what to do next.</p>
+              <ul class="space-y-4">
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
+                        <div><h4 class="font-semibold">Step 1: Review Your Cash Flow</h4><p class="text-sm">Understand where your money is coming from and where it's going. A healthy financial life starts with spending less than you earn.</p></div>
+                    </li>
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <div><h4 class="font-semibold">Step 2: Check Your Safety Net</h4><p class="text-sm">Do you have an emergency fund and adequate insurance? This is your defense against unexpected life events.</p></div>
+                    </li>
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        <div><h4 class="font-semibold">Step 3: Analyze Your Debt</h4><p class="text-sm">List all your loans and credit card balances. High-interest debt can be a major roadblock to building wealth.</p></div>
+                    </li>
+                     <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+                        <div><h4 class="font-semibold">Step 4: Take Our Assessment</h4><p class="text-sm">Our <a href="../quizzes/financial-health-assessment.html" class="font-semibold">Financial Health Assessment</a> tool automates this entire process, giving you a comprehensive report and a prioritized action plan in minutes.</p></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content-section-card">
+                <h2 class="section-title-secondary">The Four Pillars of Financial Health</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">A sturdy financial life is built on these four key pillars. Neglecting any one can lead to instability.</p>
+                <ul class="space-y-8">
+                    <li>
+                        <h3 class="font-bold text-lg mb-2 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pillar 1: Income & Spending</h3>
+                        <p class="text-sm text-gray-600">This is your foundation. The goal is a positive cash flow (spending less than you earn). A simple budget is your best tool. The 50/30/20 rule is a great starting point: 50% on needs, 30% on wants, and 20% on savings.</p>
+                    </li>
+                    <li>
+                        <h3 class="font-bold text-lg mb-2 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Pillar 2: Protection</h3>
+                        <p class="text-sm text-gray-600">This is your shield against life's uncertainties. It includes an <a href="emergency-fund-guide.html" class="font-semibold">emergency fund</a> (3-6 months of expenses) and adequate health and life insurance.</p>
+                    </li>
+                    <li>
+                        <h3 class="font-bold text-lg mb-2 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>Pillar 3: Debt Management</h3>
+                        <p class="text-sm text-gray-600">High-interest debt is a wealth killer. Keep total EMIs (excluding home loan) below 20-30% of your income and prioritize paying off costly debt. A good <a href="complete-credit-score-guide-in-india.html" class="font-semibold">credit score</a> is a sign of healthy debt management.</p>
+                    </li>
+                    <li>
+                        <h3 class="font-bold text-lg mb-2 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>Pillar 4: Growth</h3>
+                        <p class="text-sm text-gray-600">This is where your money works for you. Invest in assets that grow faster than inflation to build long-term wealth for goals like <a href="retirement-planning-guide.html" class="font-semibold">retirement</a>.</p>
+                    </li>
+                </ul>
             </div>
             
-            <div class="content-section-card">
-              <h2 class="section-title-secondary">Building Your Financial House: A Deeper Look at the Four Pillars</h2>
-              <p>Just as a sturdy building relies on a strong foundation, your financial life is built on these four key pillars. Neglecting any of them can lead to instability.</p>
-              
-              <h3>1. The Income & Spending Pillar: Mastering Your Cash Flow</h3>
-              <p>This is the foundation of everything. It's the simple yet powerful act of knowing your income and expenses. A positive cash flow, where your income is greater than your expenses, allows you to save and invest for the future. The first step is creating a budget, which isn't about restricting yourself, but about making conscious choices that align with your goals.</p>
-              
-              <h3>2. The Protection Pillar: Your Financial Safety Net</h3>
-              <p>An emergency fund is your safety net, designed to cover unexpected expenses like a job loss or a medical emergency. Ideally, it should cover 3-6 months of your essential expenses. Insurance, like term life and health insurance, is your shield against catastrophic events. It protects your accumulated wealth from being wiped out by a single, unforeseen event.</p>
-
-              <h3>3. The Debt Pillar: Taming the Beast</h3>
-              <p>Not all debt is bad. A home loan, for instance, can be a tool for wealth creation. However, high-interest debt, like credit card debt, can be a major hurdle. The key is to keep your EMIs manageable, ideally less than 30% of your take-home pay, and to prioritize paying off high-interest debt first.</p>
-              
-              <h3>4. The Growth Pillar: Strategic Savings & Investing</h3>
-              <p>This is where your money starts working for you. It's not enough to just save, you need to invest your money in instruments that can beat inflation. This pillar involves setting clear financial goals, choosing the right investment tools, and staying disciplined on your journey. Don't forget, the biggest advantage you have in investing is time.</p>
-            </div>
-
             <div class="content-section-card bg-gray-50">
-                <h2 class="section-title-secondary">A Deeper Dive: Debt Avalanche vs. Debt Snowball</h2>
-                <p>When it comes to paying off multiple debts, two popular strategies can provide a clear path forward: the Debt Avalanche and the Debt Snowball. Both require you to make minimum payments on all your debts, then focus any extra money on one specific debt at a time.</p>
-
-                <h4>The Debt Avalanche (The Mathematical Approach)</h4>
-                <p>This method focuses on saving the most money on interest over time.</p>
-                <ol class="list-decimal list-inside">
-                    <li>List all your debts from the highest interest rate to the lowest.</li>
-                    <li>Make minimum payments on all debts.</li>
-                    <li>Put every extra rupee you have towards the debt with the <strong>highest interest rate</strong>.</li>
-                    <li>Once that debt is paid off, roll the entire amount you were paying (minimum + extra) into the debt with the next-highest interest rate.</li>
-                </ol>
-                <p><strong>Best for:</strong> Individuals who are disciplined and motivated by saving the maximum amount of money in the long run.</p>
-
-                <h4>The Debt Snowball (The Psychological Approach)</h4>
-                <p>This method focuses on building momentum and motivation through quick wins.</p>
-                <ol class="list-decimal list-inside">
-                    <li>List all your debts from the smallest balance to the largest.</li>
-                    <li>Make minimum payments on all debts.</li>
-                    <li>Put every extra rupee you have towards the debt with the <strong>smallest balance</strong>.</li>
-                    <li>Once that debt is paid off, you get a quick psychological boost! Roll the entire amount you were paying into the debt with the next-smallest balance.</li>
-                </ol>
-                <p><strong>Best for:</strong> Individuals who need to see progress quickly to stay motivated on their debt-free journey.</p>
-
-                <h4>Which Method Should You Choose?</h4>
-                <p>The best method is the one you will stick with. If you are driven by numbers and efficiency, the Debt Avalanche is mathematically superior. If you thrive on motivation and seeing quick results, the Debt Snowball is an incredibly effective tool.</p>
-            </div>
-            
-            <div class="content-section-card">
-                <div class="center-content">
-                  <a href="financial-health-assessment.html" class="cta-button">Take Your Free Assessment Now</a>
+                <h2 class="section-title-secondary">Visualizing Your Budget: The 50/30/20 Rule</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">A simple yet powerful framework for managing your income is the 50/30/20 rule. It provides a clear blueprint for how to allocate your money each month.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="h-64 w-full max-w-xs mx-auto"><canvas id="budgetChart"></canvas></div>
+                    <ul class="space-y-4">
+                        <li class="icon-list-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            <div>
+                                <h4 class="font-semibold">50% for Needs</h4>
+                                <p class="text-sm">This portion covers your essential expenses: housing, utilities, groceries, transportation, and insurance.</p>
+                            </div>
+                        </li>
+                        <li class="icon-list-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                            <div>
+                                <h4 class="font-semibold">30% for Wants</h4>
+                                <p class="text-sm">This is for lifestyle choices that make life enjoyable: dining out, entertainment, hobbies, and shopping.</p>
+                            </div>
+                        </li>
+                        <li class="icon-list-item">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                            <div>
+                                <h4 class="font-semibold">20% for Savings & Investments</h4>
+                                <p class="text-sm">This is the most important part for your future. It includes paying off debt (beyond minimums) and investing for your long-term goals.</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="content-section-card bg-gray-50">
-                <h2 class="section-title-secondary">Continue Your Journey</h2>
-                <p>Now that you understand the pillars of financial health, take the next steps:</p>
-                <ul>
-                    <li><strong><a href="emergency-fund-guide.html">Build Your Emergency Fund:</a></strong> Follow our step-by-step guide to create your financial safety net.</li>
-                    <li><strong><a href="goal-based-investing.html">Plan Your Investments:</a></strong> Learn how to invest with a clear purpose and strategy.</li>
-                    <li><strong><a href="../index.html">Use Our Calculators:</a></strong> Project your future wealth and plan for your goals with our powerful tools.</li>
-                </ul>
+            <div class="content-section-card">
+                <h2 class="section-title-secondary">A Deeper Dive: Debt Avalanche vs. Debt Snowball</h2>
+                 <div class="bg-white p-6 rounded-lg shadow-inner border border-gray-100">
+                    <p class="text-center text-sm text-gray-500 mb-6">For paying off multiple debts, two popular strategies provide a clear path forward. Both involve making minimum payments on all debts, then focusing extra money on one debt at a time.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">The Debt Avalanche 🏔️</h4>
+                            <p class="text-sm text-gray-600 mb-4">Focuses on saving the most money on interest over time.</p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start"><span class="mr-2 font-bold text-red-600">1.</span><span>List debts from <strong>highest interest rate</strong> to lowest.</span></li>
+                                <li class="flex items-start"><span class="mr-2 font-bold text-red-600">2.</span><span>Pay extra on the highest-interest debt while making minimum payments on others.</span></li>
+                                <li class="flex items-start"><span class="mr-2 font-bold text-red-600">3.</span><span>Once cleared, roll that entire payment amount to the next-highest interest debt.</span></li>
+                            </ul>
+                            <p class="text-xs font-semibold mt-4"><strong>Best for:</strong> Disciplined individuals motivated by long-term savings.</p>
+                        </div>
+                         <div>
+                            <h4 class="font-bold text-lg mb-2">The Debt Snowball ❄️</h4>
+                            <p class="text-sm text-gray-600 mb-4">Focuses on building momentum through quick wins.</p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start"><span class="mr-2 font-bold text-red-600">1.</span><span>List debts from <strong>smallest balance</strong> to largest.</span></li>
+                                <li class="flex items-start"><span class="mr-2 font-bold text-red-600">2.</span><span>Pay extra on the smallest debt while making minimum payments on others.</span></li>
+                                <li class="flex items-start"><span class="mr-2 font-bold text-red-600">3.</span><span>Once cleared, enjoy the motivational boost and roll the payment to the next-smallest debt.</span></li>
+                            </ul>
+                             <p class="text-xs font-semibold mt-4"><strong>Best for:</strong> Individuals who need quick results to stay motivated.</p>
+                        </div>
+                    </div>
+                    <h4 class="font-semibold text-center mb-4">Visualizing the Impact</h4>
+                    <div class="h-64 w-full max-w-md mx-auto"><canvas id="debtChart"></canvas></div>
+                </div>
+            </div>
             
-                <h3 class="section-title-secondary mt-8">Frequently Asked Questions (FAQ)</h3>
+            <div class="content-section-card bg-gray-50">
+                <h2 class="section-title-secondary">The Growth Pillar: Strategic Asset Allocation</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">A diversified portfolio is key to managing risk. This is a sample asset allocation for a balanced investor, a core concept for growing your wealth.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="h-64 w-full max-w-xs mx-auto"><canvas id="assetAllocationChart"></canvas></div>
+                    <ul class="space-y-4">
+                        <li class="icon-list-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                            <div>
+                                <h4 class="font-semibold">Equity (60%)</h4>
+                                <p class="text-sm">The engine of your portfolio. Invest via <a href="mfguide.html" class="font-semibold">Mutual Funds (SIP)</a> for high long-term growth potential to beat inflation.</p>
+                            </div>
+                        </li>
+                        <li class="icon-list-item">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <div>
+                                <h4 class="font-semibold">Debt (30%)</h4>
+                                <p class="text-sm">The stabilizer. Instruments like PPF, EPF, and Debt Funds provide stability and predictable returns for your portfolio.</p>
+                            </div>
+                        </li>
+                        <li class="icon-list-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.83 1.83C11.5 1.17 12.5 1.17 13.17 1.83L17.5 6.17C18.17 6.83 18.17 7.83 17.5 8.5L8.5 17.5C7.83 18.17 6.83 18.17 6.17 17.5L1.83 13.17C1.17 12.5 1.17 11.5 1.83 10.83L10.83 1.83Z"/><line x1="16" y1="8" x2="24" y2="0"/><line x1="0" y1="24" x2="8" y2="16"/></svg>
+                            <div>
+                                <h4 class="font-semibold">Gold/Alternatives (10%)</h4>
+                                <p class="text-sm">The diversifier. Gold often performs well when equities don't, providing a hedge against market volatility.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section-card cta-section">
+                <h2>Ready for Your Financial Check-up?</h2>
+                <p>Our comprehensive assessment tool analyzes all four pillars of your financial life and gives you a personalized report card and a prioritized action plan—all in under 5 minutes.</p>
+                <a href="../quizzes/financial-health-assessment.html" class="cta-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+                    <span>Take Your Free Assessment Now</span>
+                </a>
+            </div>
+
+            <div class="content-section-card bg-gray-50">
+                <h3 class="section-title-secondary">Frequently Asked Questions (FAQ)</h3>
                 <div class="faq-container">
                     <details class="faq-item">
                         <summary>What is financial health?</summary>
@@ -281,39 +354,17 @@
                         <summary>How often should I take this assessment?</summary>
                         <p>It's a good practice to take a financial health assessment at least once a year, or whenever you have a major life change (like a new job, marriage, or birth of a child). This helps you stay on track and adjust your financial plan as your life evolves.</p>
                     </details>
-                     <details class="faq-item">
-                        <summary>What is a good savings rate?</summary>
-                        <p>A widely accepted benchmark is to save at least 15-20% of your income. However, the best savings rate for you depends on your age, income, and financial goals. The most important thing is to start somewhere, even with a small amount, and increase it over time.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>How can I make my financial plan inflation-proof?</summary>
-                        <p>The key to beating inflation is to invest in assets that have historically provided returns higher than the average inflation rate. This means allocating a portion of your portfolio to growth assets like equity mutual funds, especially for long-term goals. Our calculators, which include inflation adjustment, can help you with this planning.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Is my data safe and confidential?</summary>
-                        <p>Absolutely. This assessment is completely anonymous. We do not ask for any personal identifiable information like your name, email, or phone number, and none of your answers are stored. Your privacy is our top priority.</p>
-                    </details>
                 </div>
             </div>
 
             <div class="share-buttons-container">
                 <p class="share-title">Share this guide:</p>
                 <div class="share-buttons">
-                    <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank" aria-label="Share on WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.35 3.48 16.81L2 22L7.33 20.55C8.75 21.33 10.35 21.79 12.04 21.79C17.5 21.79 21.95 17.34 21.95 11.88C21.95 6.42 17.5 2 12.04 2M12.04 3.64C16.57 3.64 20.25 7.32 20.25 11.85C20.25 16.38 16.57 20.06 12.04 20.06C10.56 20.06 9.14 19.68 7.9 18.98L7.54 18.78L4.45 19.65L5.35 16.62L5.13 16.27C4.34 15.05 3.96 13.5 3.96 11.88C3.96 7.35 7.64 3.64 12.04 3.64M9.01 7.4C8.86 7.4 8.71 7.4 8.57 7.4C8.37 7.4 8.1 7.49 7.89 7.85C7.68 8.21 7.03 8.81 7.03 9.94C7.03 11.07 7.92 12.14 8.07 12.31C8.21 12.48 10.03 15.34 12.87 16.59C15.72 17.84 15.72 17.34 16.19 17.29C16.66 17.24 17.63 16.68 17.84 16.09C18.05 15.5 18.05 15.03 17.98 14.91C17.91 14.78 17.77 14.7 17.53 14.58C17.3 14.46 15.98 13.83 15.74 13.73C15.51 13.64 15.37 13.59 15.22 13.83C15.08 14.07 14.54 14.7 14.4 14.84C14.26 14.98 14.11 15.01 13.88 14.89C13.64 14.77 12.71 14.45 11.61 13.48C10.71 12.7 10.09 11.76 9.92 11.49C9.75 11.22 9.89 11.09 10.03 10.96C10.16 10.83 10.3 10.65 10.43 10.5C10.56 10.35 10.61 10.23 10.73 10.03C10.86 9.83 10.78 9.64 10.71 9.5C10.65 9.36 10.11 8.04 9.87 7.47C9.64 6.9 9.4 6.98 9.25 6.98L9.01 7.4Z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn facebook" id="share-facebook" target="_blank" aria-label="Share on Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn twitter" id="share-twitter" target="_blank" aria-label="Share on Twitter">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.35 0 11.37-6.08 11.37-11.37 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.98-2.08z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn linkedin" id="share-linkedin" target="_blank" aria-label="Share on LinkedIn">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.5 2.5-2.5c1.6 0 2.5 1.2 2.5 2.5 0 1.3-1 2.5-2.5 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"></path></svg>
-                    </a>
-                    <button class="share-btn copy-link" id="copy-link-btn" aria-label="Copy link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    </button>
+                    <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.35 3.48 16.81L2 22L7.33 20.55C8.75 21.33 10.35 21.79 12.04 21.79C17.5 21.79 21.95 17.34 21.95 11.88C21.95 6.42 17.5 2 12.04 2M12.04 3.64C16.57 3.64 20.25 7.32 20.25 11.85C20.25 16.38 16.57 20.06 12.04 20.06C10.56 20.06 9.14 19.68 7.9 18.98L7.54 18.78L4.45 19.65L5.35 16.62L5.13 16.27C4.34 15.05 3.96 13.5 3.96 11.88C3.96 7.35 7.64 3.64 12.04 3.64M9.01 7.4C8.86 7.4 8.71 7.4 8.57 7.4C8.37 7.4 8.1 7.49 7.89 7.85C7.68 8.21 7.03 8.81 7.03 9.94C7.03 11.07 7.92 12.14 8.07 12.31C8.21 12.48 10.03 15.34 12.87 16.59C15.72 17.84 15.72 17.34 16.19 17.29C16.66 17.24 17.63 16.68 17.84 16.09C18.05 15.5 18.05 15.03 17.98 14.91C17.91 14.78 17.77 14.7 17.53 14.58C17.3 14.46 15.98 13.83 15.74 13.73C15.51 13.64 15.37 13.59 15.22 13.83C15.08 14.07 14.54 14.7 14.4 14.84C14.26 14.98 14.11 15.01 13.88 14.89C13.64 14.77 12.71 14.45 11.61 13.48C10.71 12.7 10.09 11.76 9.92 11.49C9.75 11.22 9.89 11.09 10.03 10.96C10.16 10.83 10.3 10.65 10.43 10.5C10.56 10.35 10.61 10.23 10.73 10.03C10.86 9.83 10.78 9.64 10.71 9.5C10.65 9.36 10.11 8.04 9.87 7.47C9.64 6.9 9.4 6.98 9.25 6.98L9.01 7.4Z"></path></svg></a>
+                    <a href="#" class="share-btn facebook" id="share-facebook" target="_blank" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"></path></svg></a>
+                    <a href="#" class="share-btn twitter" id="share-twitter" target="_blank" aria-label="Share on Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.35 0 11.37-6.08 11.37-11.37 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.98-2.08z"></path></svg></a>
+                    <a href="#" class="share-btn linkedin" id="share-linkedin" target="_blank" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.5 2.5-2.5c1.6 0 2.5 1.2 2.5 2.5 0 1.3-1 2.5-2.5 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"></path></svg></a>
+                    <button class="share-btn copy-link" id="copy-link-btn" aria-label="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
             </div>
         </div>
@@ -322,6 +373,83 @@
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const budgetCtx = document.getElementById('budgetChart');
+            if(budgetCtx) {
+                new Chart(budgetCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Needs (50%)', 'Wants (30%)', 'Savings (20%)'],
+                        datasets: [{
+                            label: '50/30/20 Budget Rule',
+                            data: [50, 30, 20],
+                            backgroundColor: ['rgba(59, 130, 246, 0.7)', 'rgba(245, 158, 11, 0.7)', 'rgba(34, 197, 94, 0.7)'],
+                            borderColor: '#ffffff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } },
+                            tooltip: { callbacks: { label: (c) => `${c.label}: ${c.parsed}%` } }
+                        }
+                    }
+                });
+            }
 
+            const debtCtx = document.getElementById('debtChart');
+            if(debtCtx) {
+                new Chart(debtCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Debt Avalanche', 'Debt Snowball'],
+                        datasets: [{
+                            label: 'Total Interest Paid',
+                            data: [18500, 21500], // Illustrative pre-calculated data
+                            backgroundColor: ['rgba(34, 197, 94, 0.7)', 'rgba(59, 130, 246, 0.7)'],
+                            borderColor: ['rgba(22, 163, 74, 1)', 'rgba(37, 99, 235, 1)'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `Total Interest: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(c.parsed.y)}` }}},
+                        scales: { y: { beginAtZero: true, ticks: { callback: (v) => `₹${v/1000}k` }}}
+                    }
+                });
+            }
+            
+            const assetCtx = document.getElementById('assetAllocationChart');
+            if(assetCtx) {
+                new Chart(assetCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Equity', 'Debt', 'Gold/Alternatives'],
+                        datasets: [{
+                            label: 'Asset Allocation',
+                            data: [60, 30, 10],
+                            backgroundColor: [
+                                'rgba(34, 197, 94, 0.7)',   // Green
+                                'rgba(59, 130, 246, 0.7)',  // Blue
+                                'rgba(245, 158, 11, 0.7)'  // Amber
+                            ],
+                            borderColor: '#ffffff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } },
+                            tooltip: { callbacks: { label: (c) => `${c.label}: ${c.parsed}%` } }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
