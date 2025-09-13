@@ -227,6 +227,39 @@
                     </li>
                 </ul>
             </div>
+
+            <!-- NEW SECTION 1: The Power of Compounding -->
+            <div class="content-section-card">
+                <h2 class="section-title-secondary">Your Financial Superpower: Compounding & Starting Early</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">Time is your greatest ally in investing. The chart below shows two friends, Priya and Amit, who both invest ₹10,000 per month. Priya starts at age 25, while Amit waits until 35. See the staggering difference a 10-year head start makes by the time they are 60.</p>
+                 <div class="h-64 md:h-80 w-full mx-auto">
+                   <canvas id="compoundingStartEarlyChart"></canvas>
+                </div>
+                <div class="alert alert-success mt-4">
+                    <h3 class="alert-title">The Takeaway</h3>
+                    <p>By starting just 10 years earlier, Priya's corpus is projected to be more than double Amit's, even though she only invested ₹12 Lakhs more in total. This is the magic of compounding. <strong>The best time to start is now.</strong></p>
+                </div>
+            </div>
+            
+            <!-- NEW SECTION 2: Tax Efficiency -->
+            <div class="content-section-card bg-gray-50">
+                <h2 class="section-title-secondary">A Hidden Benefit: The Tax-Efficiency of Mutual Funds</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">How your returns are taxed can dramatically impact your final wealth. This is where mutual funds have a significant edge over traditional savings products like Fixed Deposits (FDs).</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div class="bg-white p-4 rounded-lg border">
+                        <h4 class="font-semibold text-lg mb-2">Fixed Deposit (FD) Taxation</h4>
+                        <p class="text-sm text-gray-600">The interest you earn is added to your annual income and taxed at your personal income tax slab rate. For someone in the 30% tax bracket, a large chunk of the earnings goes to taxes every year.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border">
+                         <h4 class="font-semibold text-lg mb-2">Equity Mutual Fund Taxation</h4>
+                         <p class="text-sm text-gray-600">Gains are only taxed when you sell. If you hold your investment for over a year, the gains are "Long-Term Capital Gains" (LTCG). The first ₹1 lakh of LTCG in a year is tax-free, and gains above that are taxed at a flat 10%.</p>
+                    </div>
+                </div>
+                <div class="alert alert-info mt-4">
+                    <h3 class="alert-title">Why this matters</h3>
+                    <p>The lower tax rate and the tax-free limit on LTCG mean you get to keep more of your hard-earned returns, making mutual funds a far more tax-efficient tool for long-term wealth creation.</p>
+                </div>
+            </div>
             
             <div class="content-section-card">
                 <h2 class="section-title-secondary">Types of Mutual Funds: Choosing Your Basket</h2>
@@ -381,7 +414,7 @@
                                 <td class="px-6 py-4">Market-linked (moderate returns)</td>
                                 <td class="px-6 py-4">Fixed & Guaranteed</td>
                             </tr>
-                            <tr class="bg-white border-b">
+                             <tr class="bg-white border-b">
                                 <td class="px-6 py-4 font-medium">Best For</td>
                                 <td class="px-6 py-4">Long-term wealth creation</td>
                                 <td class="px-6 py-4">Regular income (e.g., pension)</td>
@@ -572,6 +605,54 @@
     <script src="../script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // NEW CHART: Compounding & Starting Early
+            const compoundingStartEarlyCtx = document.getElementById('compoundingStartEarlyChart');
+            if(compoundingStartEarlyCtx) {
+                const calculateFutureValue = (monthlyInvestment, years, rate) => {
+                    const monthlyRate = rate / 12;
+                    const months = years * 12;
+                    if (monthlyRate === 0) return monthlyInvestment * months;
+                    return monthlyInvestment * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate * (1 + monthlyRate);
+                };
+
+                const priyaFV = calculateFutureValue(10000, 35, 0.12); // Priya invests for 35 years (60-25)
+                const amitFV = calculateFutureValue(10000, 25, 0.12); // Amit invests for 25 years (60-35)
+
+                new Chart(compoundingStartEarlyCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Priya (Starts at 25)', 'Amit (Starts at 35)'],
+                        datasets: [{
+                            label: 'Final Corpus at Age 60',
+                            data: [priyaFV, amitFV],
+                            backgroundColor: ['rgba(34, 197, 94, 0.7)', 'rgba(239, 68, 68, 0.7)'],
+                            borderColor: ['rgba(22, 163, 74, 1)', 'rgba(220, 38, 38, 1)'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => `Final Corpus: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.y)}`
+                                }
+                            }
+                        },
+                        scales: { 
+                            y: { 
+                                beginAtZero: true, 
+                                ticks: {
+                                    callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value)
+                                }
+                            } 
+                        }
+                    }
+                });
+            }
+
             const marketCycleCtx = document.getElementById('marketCycleChart');
             if(marketCycleCtx) {
                 const labels = ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6', 'Year 7', 'Year 8'];
@@ -604,19 +685,17 @@
                 new Chart(fundTypeCtx, {
                     type: 'pie',
                     data: {
-                        labels: ['Equity', 'Debt'],
+                        labels: ['Equity', 'Debt', 'Hybrid'],
                         datasets: [{
-                            label: 'Hybrid Fund Allocation',
-                            data: [65, 35],
+                            label: 'Fund Types',
+                            data: [45, 30, 25],
                             backgroundColor: [
                                 'rgba(34, 197, 94, 0.7)',  // Green for Equity
-                                'rgba(59, 130, 246, 0.7)' // Blue for Debt
+                                'rgba(59, 130, 246, 0.7)', // Blue for Debt
+                                'rgba(245, 158, 11, 0.7)' // Amber for Hybrid
                             ],
-                            borderColor: [
-                                'rgba(22, 163, 74, 1)',
-                                'rgba(37, 99, 235, 1)'
-                            ],
-                            borderWidth: 1
+                            borderColor: '#ffffff',
+                            borderWidth: 2
                         }]
                     },
                     options: {
@@ -629,7 +708,7 @@
                             tooltip: {
                                 callbacks: {
                                     label: function(context) {
-                                        return `${context.label}: ${context.parsed}%`;
+                                        return `${context.label}: ${context.parsed}% of market`;
                                     }
                                 }
                             }
