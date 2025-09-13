@@ -196,6 +196,16 @@
                 </div>
             </div>
 
+            <!-- NEW SECTION: VISUALIZING TAX SAVINGS -->
+            <div class="content-section-card">
+                <h2 class="section-title-secondary">Visualizing Your Potential Tax Savings</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">Let's see the real-world impact. This chart shows the potential tax savings for an individual in the 30% tax bracket by fully utilizing the ₹1.5 lakh 80C limit.</p>
+                <div class="h-64 md:h-72 w-full mx-auto">
+                   <canvas id="taxSavingsChart"></canvas>
+                </div>
+            </div>
+            <!-- END NEW SECTION -->
+
             <div class="content-section-card bg-gray-50">
                 <h2>Meet Anjali: A Professional's Tax-Saving Journey</h2>
                 <p>Let's follow Anjali, a 30-year-old marketing manager who wants to make smart decisions with her money. She wants to save on taxes, but also wants her money to grow. We'll explore the best tax-saving investments through her eyes.</p>
@@ -298,7 +308,7 @@
                 </div>
             </div>
 
-            <!-- NEW PIE CHART SECTION -->
+            <!-- PIE CHART SECTION -->
             <div class="content-section-card">
                 <h2 class="section-title-secondary">Visualizing Your 80C Portfolio: A Sample Allocation</h2>
                 <p class="text-center text-sm text-gray-500 mb-6">There's no one-size-fits-all strategy. A balanced approach often involves a mix of growth and safety. Here’s a sample allocation for a balanced investor fully utilizing their ₹1.5 Lakh limit.</p>
@@ -326,7 +336,7 @@
                     </div>
                 </div>
             </div>
-            <!-- END NEW SECTION -->
+            <!-- END PIE CHART SECTION -->
 
             <div class="content-section-card bg-gray-50">
                 <h2>Beyond 80C: Other Powerful Tax-Saving Avenues</h2>
@@ -388,7 +398,30 @@
                 </div>
             </div>
 
-            <!-- UPDATED SECTION: Final Thoughts & Action Plan -->
+            <!-- NEW SECTION: COMMON MISTAKES -->
+            <div class="content-section-card bg-red-50 border-l-4 border-red-500">
+                <h2 class="section-title-secondary text-red-800">Common Tax-Saving Mistakes to Avoid</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-600 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><h4 class="font-semibold text-sm">The "March Rush"</h4><p class="text-xs text-gray-700">Waiting until the end of the financial year often leads to rushed, poor investment choices. Plan ahead to make informed decisions.</p></div>
+                    </div>
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-600 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><h4 class="font-semibold text-sm">Ignoring Your Goals</h4><p class="text-xs text-gray-700">Don't invest in an instrument just for tax benefits. Choose products that also align with your long-term financial goals, like retirement or wealth creation.</p></div>
+                    </div>
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-600 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><h4 class="font-semibold text-sm">Mixing Insurance & Investment</h4><p class="text-xs text-gray-700">Traditional insurance plans often provide low returns and inadequate cover. It's usually better to keep insurance (Term Plan) and investments (ELSS/PPF) separate.</p></div>
+                    </div>
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-600 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><h4 class="font-semibold text-sm">Forgetting About Tax on Returns</h4><p class="text-xs text-gray-700">Remember that interest from Tax-Saver FDs and NSCs is taxable. Only PPF and EPF offer truly tax-free returns in the EEE (Exempt-Exempt-Exempt) category.</p></div>
+                    </div>
+                </div>
+            </div>
+            <!-- END NEW SECTION -->
+
             <div class="content-section-card bg-gray-50">
                 <h2>Final Thoughts: Your 4-Step Action Plan</h2>
                 <p>Tax saving doesn't have to be a last-minute scramble. By planning ahead, you can make your money work harder for you. Here's a simple checklist to get you started:</p>
@@ -517,6 +550,56 @@
                                         }
                                         return label;
                                     }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const taxSavingsChartCtx = document.getElementById('taxSavingsChart');
+            if (taxSavingsChartCtx) {
+                 const taxWithoutDeduction = 117000; // Example for 10L income, 30% bracket
+                 const taxWithDeduction = 70200; // Example for 8.5L taxable income
+                 new Chart(taxSavingsChartCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Tax Paid'],
+                        datasets: [
+                            {
+                                label: 'Without 80C Deduction',
+                                data: [taxWithoutDeduction],
+                                backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                                borderColor: 'rgba(220, 38, 38, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'With Full 80C Deduction',
+                                data: [taxWithDeduction],
+                                backgroundColor: 'rgba(34, 197, 94, 0.7)',
+                                borderColor: 'rgba(22, 163, 74, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            },
+                             tooltip: {
+                                callbacks: {
+                                    label: (context) => `${context.dataset.label}: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.y)}`
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                     callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value)
                                 }
                             }
                         }
