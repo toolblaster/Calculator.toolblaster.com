@@ -75,7 +75,7 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             border: 1px solid #e5e7eb;
             overflow: hidden;
-            margin: 1.5rem;
+            margin: 1rem; /* Squeezed margin */
         }
         .how-to-block { border-color: #4CAF50; } 
 
@@ -85,21 +85,21 @@
             top: 0;
             z-index: 10;
             background-color: #ffffff;
-            padding: 0.75rem 0;
+            padding: 0.5rem 0; /* Squeezed padding */
             border-bottom: 1px solid #e5e7eb;
         }
-        .filter-container-wrapper { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
-        .filter-buttons-container { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 0.75rem; }
+        .filter-container-wrapper { max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
+        .filter-buttons-container { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem; }
         .filter-btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.35rem;
-            padding: 0.5rem 1rem;
+            gap: 0.25rem; /* Squeezed gap */
+            padding: 0.25rem 0.75rem; /* Squeezed padding */
             border: 1px solid #d1d5db;
             border-radius: 0.5rem;
             background-color: #ffffff;
             cursor: pointer;
-            font-size: 0.65rem;
+            font-size: 0.6rem; /* Squeezed font size */
             font-weight: 600;
             color: #374151;
             transition: all 0.2s ease;
@@ -112,35 +112,35 @@
             border-color: #E34037;
             box-shadow: 0 4px 10px rgba(227, 64, 55, 0.2);
         }
-        .filter-btn svg { width: 14px; height: 14px; }
-        #search-input { width: 100%; padding: 0.5rem 1rem; font-size: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; }
-        #pagination-container button { padding: 0.3rem 0.7rem; font-size: 0.7rem; font-weight: 500; }
-        .section-title { font-size: 1.1rem; font-weight: 700; text-align: center; margin-bottom: 0.25rem; padding-bottom: 0.5rem; position: relative; }
+        .filter-btn svg { width: 12px; height: 12px; } /* Squeezed icon */
+        #search-input { width: 100%; padding: 0.4rem 0.8rem; font-size: 0.7rem; border: 1px solid #d1d5db; border-radius: 0.5rem; }
+        #pagination-container button { padding: 0.25rem 0.6rem; font-size: 0.65rem; font-weight: 500; }
+        .section-title { font-size: 1rem; font-weight: 700; text-align: center; margin-bottom: 0.25rem; padding-bottom: 0.5rem; position: relative; }
         .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background-color: #E34037; }
-        .guides-grid-wrapper { padding: 1.5rem; background-color: #f9fafb; }
-        .how-to-section { padding: 1.5rem; background-color: #f9fafb; }
-        .how-to-card { background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1rem; text-align: center; }
-        .how-to-card .step-number { display: inline-block; width: 32px; height: 32px; line-height: 32px; border-radius: 50%; background-color: #E34037; color: white; font-weight: 700; margin-bottom: 0.75rem; }
-        .how-to-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .how-to-card p { font-size: 0.7rem; color: #4b5563; margin-bottom: 1rem; }
-        .how-to-card a { font-size: 0.75rem; font-weight: 600; color: #C22D2D; text-decoration: none; }
-        #recommended-guides-container, #guides-grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; counter-reset: guide-counter; }
+        .guides-grid-wrapper { padding: 1rem; background-color: #f9fafb; }
+        .how-to-section { padding: 1rem; background-color: #f9fafb; }
+        .how-to-card { background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 0.75rem; text-align: center; }
+        .how-to-card .step-number { display: inline-block; width: 28px; height: 28px; line-height: 28px; border-radius: 50%; background-color: #E34037; color: white; font-weight: 700; margin-bottom: 0.5rem; }
+        .how-to-card h3 { font-size: 0.8rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .how-to-card p { font-size: 0.65rem; color: #4b5563; margin-bottom: 0.75rem; }
+        .how-to-card a { font-size: 0.7rem; font-weight: 600; color: #C22D2D; text-decoration: none; }
+        #recommended-guides-container, #guides-grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; counter-reset: guide-counter; }
         @media (min-width: 1024px) { #recommended-guides-container, #guides-grid-container { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 768px) { .content-block-wrapper { margin: 1.5rem 0; } .how-to-section .grid { grid-template-columns: repeat(1, 1fr); } }
+        @media (max-width: 768px) { .content-block-wrapper { margin: 1rem 0; } .how-to-section .grid { grid-template-columns: repeat(1, 1fr); } }
 
-        /* --- Best Version Styles --- */
+        /* --- Best Version Styles (Squeezed) --- */
         .featured-section-new {
             background-color: #f9fafb;
             border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
+            padding: 0.75rem; /* Squeezed padding */
+            margin-bottom: 0.75rem; /* Squeezed margin */
             border: 1px solid #fca5a5;
         }
         .feature-card {
             background-color: #ffffff;
             border: 1px solid #e5e7eb;
             border-radius: 0.5rem;
-            padding: 1.5rem;
+            padding: 0.75rem; /* Squeezed padding */
             text-align: center;
             text-decoration: none;
             color: inherit;
@@ -153,9 +153,9 @@
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
         }
         .feature-icon-wrapper {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 1rem;
+            width: 32px; /* Squeezed icon */
+            height: 32px; /* Squeezed icon */
+            margin: 0 auto 0.5rem; /* Squeezed margin */
             border-radius: 50%;
             background-color: #fef2f2;
             color: #E34037;
@@ -164,19 +164,20 @@
             justify-content: center;
         }
         .feature-title {
-            font-size: 1rem;
+            font-size: 0.8rem; /* Squeezed font size */
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             color: #1f2937;
         }
         .feature-description {
-            font-size: 0.75rem;
+            font-size: 0.65rem; /* Squeezed font size */
             color: #4b5563;
             flex-grow: 1;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem; /* Squeezed margin */
+            line-height: 1.4;
         }
         .feature-cta {
-            font-size: 0.8rem;
+            font-size: 0.7rem; /* Squeezed font size */
             font-weight: 600;
             color: #E34037;
         }
@@ -188,22 +189,22 @@
             border-top: 4px solid #E34037;
             border-radius: 0.75rem;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            margin: 2rem 1.5rem;
+            margin: 1.5rem; /* Squeezed margin */
             overflow: hidden;
         }
         .library-title {
-            font-size: 1.5rem;
+            font-size: 1.25rem; /* Squeezed font size */
             font-weight: 800;
             text-align: center;
             color: #1f2937;
-            margin: 1.5rem 0 1rem 0;
+            margin: 1rem 0 0.75rem 0; /* Squeezed margin */
         }
 
         /* --- NEW: Prominent Guide Card Styles with Numbering --- */
         .guide-card {
             background: linear-gradient(to bottom right, #ffffff, #f9fafb);
             border-radius: 0.75rem;
-            padding: 1.5rem 1.5rem 1.5rem 2rem;
+            padding: 1rem 1rem 1rem 1.5rem; /* Squeezed padding */
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #e5e7eb;
@@ -218,17 +219,17 @@
         .guide-card::before {
             content: counter(guide-counter);
             position: absolute;
-            top: 1.5rem;
-            left: -12px;
-            width: 28px;
-            height: 28px;
+            top: 1rem;
+            left: -10px; /* Adjusted position */
+            width: 24px; /* Squeezed size */
+            height: 24px; /* Squeezed size */
             background-color: #E34037;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.7rem; /* Squeezed font size */
             font-weight: 700;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             border: 2px solid #ffffff;
@@ -238,21 +239,21 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         .guide-card h2 {
-            font-size: 1rem;
+            font-size: 0.9rem; /* Squeezed font size */
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             margin-top: 0;
             line-height: 1.3;
         }
         .guide-card p {
-            font-size: 0.8rem;
+            font-size: 0.7rem; /* Squeezed font size */
             color: #4b5563;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             flex-grow: 1;
             line-height: 1.5;
         }
         .guide-card .read-more-link {
-            font-size: 0.8rem;
+            font-size: 0.75rem; /* Squeezed font size */
             font-weight: 600;
             color: #E34037;
             display: inline-flex;
@@ -279,7 +280,7 @@
             <div class="featured-section-new">
                 <h2 class="section-title">Your Starting Point: Top Resources</h2>
                 <p class="section-subtitle">Not sure where to begin? Start your journey with our most popular tools and guides.</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                     <!-- Card 1: Beginner's Guide -->
                     <a href="guides/mfguide.html" class="feature-card">
                         <div class="feature-icon-wrapper">
