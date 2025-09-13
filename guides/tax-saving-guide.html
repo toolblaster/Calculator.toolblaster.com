@@ -25,6 +25,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <script type="application/ld+json">
@@ -255,6 +256,36 @@
                 </div>
             </div>
 
+            <!-- NEW PIE CHART SECTION -->
+            <div class="content-section-card">
+                <h2 class="section-title-secondary">Visualizing Your 80C Portfolio: A Sample Allocation</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">There's no one-size-fits-all strategy. A balanced approach often involves a mix of growth and safety. Here’s a sample allocation for a balanced investor fully utilizing their ₹1.5 Lakh limit.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="h-48 md:h-64 w-full max-w-xs mx-auto">
+                        <canvas id="taxSavingPieChart"></canvas>
+                    </div>
+                     <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-teal-500 mr-3 flex-shrink-0"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            <div><h4 class="font-semibold">EPF (₹50,000)</h4><p class="text-xs text-gray-600">The automatic, foundational contribution for salaried employees, providing a solid, low-risk base.</p></div>
+                        </div>
+                         <div class="flex items-start">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-500 mr-3 flex-shrink-0"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                            <div><h4 class="font-semibold">ELSS SIP (₹50,000)</h4><p class="text-xs text-gray-600">The growth engine of the portfolio, aiming for high returns with its equity exposure.</p></div>
+                        </div>
+                        <div class="flex items-start">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-yellow-500 mr-3 flex-shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <div><h4 class="font-semibold">PPF (₹30,000)</h4><p class="text-xs text-gray-600">A safety net offering guaranteed, tax-free returns, perfect for long-term, risk-free wealth creation.</p></div>
+                        </div>
+                         <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-purple-500 mr-3 flex-shrink-0"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            <div><h4 class="font-semibold">Life Insurance (₹20,000)</h4><p class="text-xs text-gray-600">Covering premiums for a term life insurance policy, which provides financial protection for the family.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END NEW SECTION -->
+
             <div class="content-section-card bg-gray-50">
                 <h2>Beyond 80C: Other Powerful Tax-Saving Avenues</h2>
                 <p>While Section 80C is the most well-known, there are other important deductions you shouldn't overlook. These can provide significant additional tax savings.</p>
@@ -376,6 +407,57 @@
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const taxSavingCtx = document.getElementById('taxSavingPieChart');
+            if (taxSavingCtx) {
+                new Chart(taxSavingCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['EPF', 'ELSS SIP', 'PPF', 'Life Insurance'],
+                        datasets: [{
+                            label: '80C Allocation',
+                            data: [50000, 50000, 30000, 20000],
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.7)', // Teal for EPF
+                                'rgba(54, 162, 235, 0.7)', // Blue for ELSS
+                                'rgba(255, 206, 86, 0.7)', // Yellow for PPF
+                                'rgba(153, 102, 255, 0.7)' // Purple for Insurance
+                            ],
+                             borderColor: '#ffffff',
+                             borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    boxWidth: 12,
+                                    font: { size: 10 }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed !== null) {
+                                            label += new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits:0 }).format(context.parsed);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
