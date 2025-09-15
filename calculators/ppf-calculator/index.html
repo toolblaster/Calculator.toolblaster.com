@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced PPF Calculator with Extension & Loan Details - India | Calculator.toolblaster</title>
+    <meta name="description" content="Calculate your PPF maturity amount with our advanced Public Provident Fund calculator. Features extension planning, detailed yearly growth charts, and withdrawal information.">
+    <meta name="keywords" content="ppf calculator, public provident fund, ppf extension calculator, ppf interest rate, ppf maturity amount, tax saving schemes">
+    
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="https://calculator.toolblaster.com/calculators/ppf-calculator/">
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calculator.toolblaster.com/calculators/ppf-calculator/">
+    <meta property="og:title" content="Advanced PPF Calculator with Extension & Loan Details - India | Calculator.toolblaster">
+    <meta property="og:description" content="Calculate your PPF maturity amount with our advanced Public Provident Fund calculator. Features extension planning, detailed yearly growth charts, and withdrawal information.">
+    <meta property="og:image" content="https://placehold.co/1200x630/3B82F6/FFFFFF?text=PPF+Calculator&font=inter">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://calculator.toolblaster.com/calculators/ppf-calculator/">
+    <meta name="twitter:title" content="Advanced PPF Calculator with Extension & Loan Details - India | Calculator.toolblaster">
+    <meta name="twitter:description" content="Calculate your PPF maturity amount with our advanced Public Provident Fund calculator. Features extension planning, detailed yearly growth charts, and withdrawal information.">
+    <meta name="twitter:image" content="https://placehold.co/1200x630/3B82F6/FFFFFF?text=PPF+Calculator&font=inter">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../financial-calculator/calculator-style.css">
+    <link rel="stylesheet" href="ppf-calculator-style.css">
+</head>
+<body class="bg-gray-50">
+
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <div class="financial-calculator-wrapper">
+            <div class="bg-white shadow-lg rounded-xl p-2 sm:p-4 w-full border border-red-300 mx-auto my-0 calculator-container">
+                
+                <h1 class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">Advanced PPF Calculator</h1>
+                <p class="text-center text-gray-500 mb-3 text-xs">Plan your PPF investment, including extensions and withdrawals.</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
+                    <!-- Left Column: Inputs -->
+                    <div class="space-y-2">
+                        <!-- PPF Details Section -->
+                        <div class="bg-blue-50/50 p-2 rounded-lg space-y-2">
+                             <div>
+                                <label for="annualInvestmentSlider" class="block text-xs font-medium text-gray-600 mb-1">Yearly Investment (₹)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="annualInvestmentSlider" min="500" max="150000" value="150000" step="500" class="w-full range-slider">
+                                    <input type="number" id="annualInvestmentInput" class="manual-input" value="150000" min="500" max="150000" step="500">
+                                </div>
+                            </div>
+                            <div>
+                               <label for="interestRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Interest Rate (% p.a.)</label>
+                               <div class="flex items-center space-x-2">
+                                   <input type="range" id="interestRateSlider" min="5" max="10" value="7.1" step="0.1" class="w-full range-slider">
+                                   <input type="number" id="interestRateInput" class="manual-input" value="7.1" min="5" max="10" step="0.1">
+                               </div>
+                           </div>
+                           <!-- PPF tenure is fixed at 15 years, so it's not an input -->
+                        </div>
+
+                        <!-- PPF Extension Section -->
+                        <div class="bg-blue-50/50 p-2 rounded-lg space-y-2">
+                            <h3 class="text-sm font-bold text-blue-800 text-center mb-1">PPF Extension (After 15 Years)</h3>
+                             <div>
+                                <label for="extensionBlocksInput" class="block text-xs font-medium text-gray-600 mb-1">Extend in blocks of 5 years</label>
+                                <div class="flex items-center justify-center space-x-2">
+                                    <button id="decreaseExtension" class="px-2 py-1 border rounded-md">-</button>
+                                    <input type="text" id="extensionBlocksInput" class="manual-input w-16 text-center" value="0 blocks (0 yrs)" readonly>
+                                    <button id="increaseExtension" class="px-2 py-1 border rounded-md">+</button>
+                                </div>
+                            </div>
+                            <div id="extensionContributionDiv" class="hidden">
+                               <label for="contributionToggle" class="text-xs font-medium text-gray-600 flex items-center justify-between">
+                                   <span>Continue contributions during extension?</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" id="contributionToggle" class="sr-only peer" checked>
+                                        <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                               </label>
+                           </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Results -->
+                    <div class="flex flex-col">
+                         <div class="bg-blue-50/50 p-2 rounded-lg" aria-live="polite">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-sm font-bold text-blue-800">PPF Maturity Summary</h3>
+                                <button id="shareReportBtn" class="share-btn" aria-label="Share calculation results">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 gap-2 text-center my-2">
+                                <div class="p-2 border rounded-lg">
+                                    <p class="text-xs font-semibold text-gray-700">Total Investment</p>
+                                    <p id="totalInvestment" class="text-lg font-bold text-blue-700">₹0</p>
+                                </div>
+                                <div class="p-2 border rounded-lg">
+                                    <p class="text-xs font-semibold text-gray-700">Total Interest</p>
+                                    <p id="totalInterest" class="text-lg font-bold text-green-700">₹0</p>
+                                </div>
+                            </div>
+                             <div id="maturityValueCard" class="p-2 rounded-lg text-center mt-2 bg-gray-100">
+                                 <p class="text-sm font-semibold text-gray-700">Maturity Value</p>
+                                 <p id="maturityValue" class="text-xl font-bold text-purple-700">₹0</p>
+                             </div>
+                        </div>
+
+                        <div class="flex justify-center items-center h-32 sm:h-40 md:h-48 w-full relative mt-3">
+                            <canvas id="ppfDoughnutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center my-4">
+                    <button id="toggleYearlyGrowthBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Show Yearly Growth</button>
+                </div>
+
+                <div id="yearlyGrowthContainer" class="hidden overflow-x-auto bg-white rounded-lg shadow-md mt-4 p-4 border border-gray-200">
+                    <!-- Table will be injected here by JS -->
+                </div>
+                 <div class="border-t border-gray-200 my-3 w-full"></div>
+                 <p class="text-center text-gray-500 text-xxs leading-relaxed px-2 mt-2">
+                    <strong>Disclaimer:</strong> This calculator is for informational purposes only. PPF interest rates are set by the government quarterly and are subject to change.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Placeholder for the SEO content -->
+        <div id="dynamic-content-area-ppf"></div>
+    </main>
+    
+    <div id="footer-placeholder"></div>
+
+    <script src="../../script.js"></script>
+    <script src="ppf-calculator.js"></script>
+</body>
+</html>

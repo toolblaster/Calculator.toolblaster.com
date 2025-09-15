@@ -1,0 +1,13 @@
+/* Styles specific to the PPF Calculator */
+
+#extensionContributionDiv {
+    transition: all 0.3s ease-in-out;
+}
+
+#yearlyGrowthContainer table {
+    font-size: 0.7rem;
+}
+
+#yearlyGrowthContainer th {
+    font-size: 0.65rem;
+}
