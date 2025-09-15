@@ -32,6 +32,8 @@ function initializePpfCalculator() {
 
     const toggleGrowthBtn = getElem('toggleYearlyGrowthBtn');
     const growthContainer = getElem('yearlyGrowthContainer');
+    const shareReportBtn = getElem('shareReportBtn');
+
 
     let extensionBlocks = 0;
     const MAX_EXTENSIONS = 4; // Max 20 extra years
@@ -126,6 +128,56 @@ function initializePpfCalculator() {
         updateCalculator();
     }
     
+    function handleShare() {
+        const params = new URLSearchParams();
+        params.set('investment', annualInvestmentInput.value);
+        params.set('rate', interestRateInput.value);
+        params.set('extend', extensionBlocks);
+        if (extensionBlocks > 0) {
+            params.set('contrib', contributionToggle.checked);
+        }
+        
+        const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+
+        if (navigator.share) {
+            navigator.share({
+                title: 'My PPF Calculation',
+                text: 'Check out my PPF investment plan!',
+                url: shareUrl,
+            }).catch(err => console.error("Share failed:", err.message));
+        } else {
+            // Fallback for browsers that don't support navigator.share
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                showNotification('Link copied to clipboard!');
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+                // A global showNotification function should exist in script.js
+                showNotification('Failed to copy link.');
+            });
+        }
+    }
+
+    function loadFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('investment')) {
+            annualInvestmentInput.value = params.get('investment') || 150000;
+            interestRateInput.value = params.get('rate') || 7.1;
+            extensionBlocks = parseInt(params.get('extend'), 10) || 0;
+            
+            if (extensionBlocks > 0) {
+                contributionToggle.checked = params.get('contrib') === 'true';
+            }
+            
+            // Sync sliders
+            annualInvestmentSlider.value = annualInvestmentInput.value;
+            interestRateSlider.value = interestRateInput.value;
+            
+            updateExtensionUI(); // This will also trigger updateCalculator
+        } else {
+             updateCalculator(); // Initial calculation if no params
+        }
+    }
+
     function loadSeoContent() {
         const contentArea = getElem('dynamic-content-area-ppf');
         if (contentArea) {
@@ -169,11 +221,13 @@ function initializePpfCalculator() {
             growthContainer.classList.toggle('hidden');
             toggleGrowthBtn.textContent = growthContainer.classList.contains('hidden') ? 'Show Yearly Growth' : 'Hide Yearly Growth';
         });
+        
+        shareReportBtn.addEventListener('click', handleShare);
     }
 
     const debouncedUpdate = debounce(updateCalculator, 250);
     setupEventListeners();
     document.querySelectorAll('.range-slider').forEach(updateSliderFill);
-    updateCalculator(); // Initial calculation
+    loadFromUrl(); // Initial calculation and loading from URL parameters
     loadSeoContent();
 }
