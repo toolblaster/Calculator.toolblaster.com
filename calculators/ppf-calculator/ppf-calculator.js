@@ -21,6 +21,13 @@ function initializePpfCalculator() {
     const extensionContributionDiv = getElem('extensionContributionDiv');
     const contributionToggle = getElem('contributionToggle');
 
+    // --- NEW Loan & Withdrawal Elements ---
+    const lwYearSlider = getElem('lwYearSlider');
+    const lwYearDisplay = getElem('lwYearDisplay');
+    const eligibleLoanAmountElem = getElem('eligibleLoanAmount');
+    const maxWithdrawalAmountElem = getElem('maxWithdrawalAmount');
+
+
     // --- Result Elements ---
     const totalInvestmentElem = getElem('totalInvestment');
     const totalInterestElem = getElem('totalInterest');
@@ -37,6 +44,7 @@ function initializePpfCalculator() {
 
     let extensionBlocks = 0;
     const MAX_EXTENSIONS = 4; // Max 20 extra years
+    let yearlyDataCache = []; // Cache for loan/withdrawal calculations
 
     // --- Utility Functions ---
     const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
@@ -55,16 +63,16 @@ function initializePpfCalculator() {
         let yearlyData = [];
         const initialTerm = 15;
         const totalTerm = initialTerm + (extensionBlocks * 5);
+        
+        lwYearSlider.max = totalTerm;
 
         for (let year = 1; year <= totalTerm; year++) {
             let yearlyInvestment = 0;
-            // Check if we should add contribution for the current year
             if (year <= initialTerm || (year > initialTerm && continueContributions)) {
                 yearlyInvestment = annualInvestment;
             }
             
             totalInvested += yearlyInvestment;
-            // PPF interest is compounded annually. Investment is assumed to be made at the start of the year.
             const interestEarned = (balance + yearlyInvestment) * interestRate;
             balance += yearlyInvestment + interestEarned;
             
@@ -78,6 +86,7 @@ function initializePpfCalculator() {
         }
         
         const totalInterest = balance - totalInvested;
+        yearlyDataCache = yearlyData; // Update cache
 
         totalInvestmentElem.textContent = formatCurrency(totalInvested);
         totalInterestElem.textContent = formatCurrency(totalInterest);
@@ -85,7 +94,36 @@ function initializePpfCalculator() {
 
         updateDoughnutChart([totalInvested, totalInterest], ['Total Investment', 'Total Interest'], ['#3B82F6', '#22C55E']);
         generateYearlyGrowthTable(yearlyData);
+        updateLoanAndWithdrawal(); // Call the new function
     }
+
+    // --- NEW: Loan and Withdrawal Logic ---
+    function updateLoanAndWithdrawal() {
+        const selectedYear = parseInt(lwYearSlider.value);
+        lwYearDisplay.textContent = selectedYear;
+
+        let eligibleLoan = 0;
+        let maxWithdrawal = 0;
+
+        // Loan Eligibility: From 3rd to 6th financial year
+        if (selectedYear >= 3 && selectedYear <= 6) {
+            const balanceYear = selectedYear - 2; // Balance at the end of the second preceding year
+            if (yearlyDataCache[balanceYear - 1]) {
+                eligibleLoan = yearlyDataCache[balanceYear - 1].closingBalance * 0.25;
+            }
+        }
+
+        // Withdrawal Eligibility: From 7th financial year onwards
+        if (selectedYear >= 7) {
+            const balanceAtYear4 = yearlyDataCache[selectedYear - 4 -1]?.closingBalance || 0;
+            const balanceAtPrevYear = yearlyDataCache[selectedYear - 1 - 1]?.closingBalance || 0;
+            maxWithdrawal = Math.min(balanceAtYear4 * 0.5, balanceAtPrevYear * 0.5);
+        }
+
+        eligibleLoanAmountElem.textContent = formatCurrency(eligibleLoan);
+        maxWithdrawalAmountElem.textContent = formatCurrency(maxWithdrawal);
+    }
+
 
     function generateYearlyGrowthTable(data) {
         let tableHTML = `
@@ -128,56 +166,6 @@ function initializePpfCalculator() {
         updateCalculator();
     }
     
-    function handleShare() {
-        const params = new URLSearchParams();
-        params.set('investment', annualInvestmentInput.value);
-        params.set('rate', interestRateInput.value);
-        params.set('extend', extensionBlocks);
-        if (extensionBlocks > 0) {
-            params.set('contrib', contributionToggle.checked);
-        }
-        
-        const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
-
-        if (navigator.share) {
-            navigator.share({
-                title: 'My PPF Calculation',
-                text: 'Check out my PPF investment plan!',
-                url: shareUrl,
-            }).catch(err => console.error("Share failed:", err.message));
-        } else {
-            // Fallback for browsers that don't support navigator.share
-            navigator.clipboard.writeText(shareUrl).then(() => {
-                showNotification('Link copied to clipboard!');
-            }).catch(err => {
-                console.error('Could not copy text: ', err);
-                // A global showNotification function should exist in script.js
-                showNotification('Failed to copy link.');
-            });
-        }
-    }
-
-    function loadFromUrl() {
-        const params = new URLSearchParams(window.location.search);
-        if (params.has('investment')) {
-            annualInvestmentInput.value = params.get('investment') || 150000;
-            interestRateInput.value = params.get('rate') || 7.1;
-            extensionBlocks = parseInt(params.get('extend'), 10) || 0;
-            
-            if (extensionBlocks > 0) {
-                contributionToggle.checked = params.get('contrib') === 'true';
-            }
-            
-            // Sync sliders
-            annualInvestmentSlider.value = annualInvestmentInput.value;
-            interestRateSlider.value = interestRateInput.value;
-            
-            updateExtensionUI(); // This will also trigger updateCalculator
-        } else {
-             updateCalculator(); // Initial calculation if no params
-        }
-    }
-
     function loadSeoContent() {
         const contentArea = getElem('dynamic-content-area-ppf');
         if (contentArea) {
@@ -185,6 +173,54 @@ function initializePpfCalculator() {
                 .then(response => response.ok ? response.text() : Promise.reject('File not found'))
                 .then(html => contentArea.innerHTML = html)
                 .catch(error => console.error('Error loading PPF SEO content:', error));
+        }
+    }
+
+    function handleShare() {
+        const params = new URLSearchParams();
+        params.set('investment', annualInvestmentInput.value);
+        params.set('rate', interestRateInput.value);
+        params.set('extensions', extensionBlocks);
+        params.set('contributions', contributionToggle.checked);
+
+        const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: 'My PPF Investment Plan',
+                text: `Check out my projected PPF maturity of ${maturityValueElem.textContent}!`,
+                url: shareUrl,
+            }).catch(err => console.error("Share failed:", err.message));
+        } else {
+             const textArea = document.createElement("textarea");
+            textArea.value = shareUrl;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showNotification('Link copied to clipboard!');
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            document.body.removeChild(textArea);
+        }
+    }
+    
+     function loadFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('investment')) {
+            annualInvestmentInput.value = params.get('investment');
+            interestRateInput.value = params.get('rate');
+            extensionBlocks = parseInt(params.get('extensions')) || 0;
+            contributionToggle.checked = params.get('contributions') === 'true';
+
+            // Sync sliders
+            annualInvestmentSlider.value = annualInvestmentInput.value;
+            interestRateSlider.value = interestRateInput.value;
+            updateExtensionUI();
         }
     }
 
@@ -196,8 +232,48 @@ function initializePpfCalculator() {
         
         inputs.forEach(({ slider, input }) => {
             if (slider && input) {
-                slider.addEventListener('input', () => { input.value = slider.value; updateSliderFill(slider); debouncedUpdate(); });
-                input.addEventListener('input', () => { slider.value = input.value; updateSliderFill(slider); debouncedUpdate(); });
+                // Sync from slider to input
+                slider.addEventListener('input', () => { 
+                    input.value = slider.value; 
+                    updateSliderFill(slider); 
+                    debouncedUpdate(); 
+                }); 
+                
+                // Sync from input to slider while typing
+                input.addEventListener('input', () => { 
+                    const value = parseFloat(input.value);
+                    const min = parseFloat(slider.min);
+                    const max = parseFloat(slider.max);
+                    if (!isNaN(value) && value >= min && value <= max) {
+                        slider.value = input.value; 
+                        updateSliderFill(slider); 
+                        debouncedUpdate();
+                    }
+                });
+    
+                // Add a blur event for validation and final sync
+                input.addEventListener('blur', () => {
+                    let value = parseFloat(input.value);
+                    const min = parseFloat(slider.min);
+                    const max = parseFloat(slider.max);
+    
+                    if (isNaN(value) || value < min) {
+                        value = min;
+                    } else if (value > max) {
+                        value = max;
+                    }
+                    
+                    const step = parseFloat(slider.step) || 1;
+                    if (step < 1) { 
+                        input.value = value.toFixed(1); 
+                    } else {
+                        input.value = value;
+                    }
+                    
+                    slider.value = input.value;
+                    updateSliderFill(slider);
+                    updateCalculator(); // Use immediate update on blur
+                });
             }
         });
 
@@ -221,13 +297,21 @@ function initializePpfCalculator() {
             growthContainer.classList.toggle('hidden');
             toggleGrowthBtn.textContent = growthContainer.classList.contains('hidden') ? 'Show Yearly Growth' : 'Hide Yearly Growth';
         });
-        
+
         shareReportBtn.addEventListener('click', handleShare);
+        
+        lwYearSlider.addEventListener('input', () => {
+            updateSliderFill(lwYearSlider);
+            debouncedLoanUpdate();
+        });
     }
 
     const debouncedUpdate = debounce(updateCalculator, 250);
+    const debouncedLoanUpdate = debounce(updateLoanAndWithdrawal, 250);
+    
+    loadFromUrl();
     setupEventListeners();
     document.querySelectorAll('.range-slider').forEach(updateSliderFill);
-    loadFromUrl(); // Initial calculation and loading from URL parameters
+    updateCalculator(); // Initial calculation
     loadSeoContent();
 }
