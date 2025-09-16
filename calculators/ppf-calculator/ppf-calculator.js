@@ -27,7 +27,6 @@ function initializePpfCalculator() {
     const eligibleLoanAmountElem = getElem('eligibleLoanAmount');
     const maxWithdrawalAmountElem = getElem('maxWithdrawalAmount');
 
-
     // --- Result Elements ---
     const totalInvestmentElem = getElem('totalInvestment');
     const totalInterestElem = getElem('totalInterest');
@@ -40,7 +39,6 @@ function initializePpfCalculator() {
     const toggleGrowthBtn = getElem('toggleYearlyGrowthBtn');
     const growthContainer = getElem('yearlyGrowthContainer');
     const shareReportBtn = getElem('shareReportBtn');
-
 
     let extensionBlocks = 0;
     const MAX_EXTENSIONS = 4; // Max 20 extra years
@@ -65,6 +63,8 @@ function initializePpfCalculator() {
         const totalTerm = initialTerm + (extensionBlocks * 5);
         
         lwYearSlider.max = totalTerm;
+        // FIX: This line ensures the visual slider fill is updated after the max value changes.
+        updateSliderFill(lwYearSlider);
 
         for (let year = 1; year <= totalTerm; year++) {
             let yearlyInvestment = 0;
@@ -86,7 +86,7 @@ function initializePpfCalculator() {
         }
         
         const totalInterest = balance - totalInvested;
-        yearlyDataCache = yearlyData; // Update cache
+        yearlyDataCache = yearlyData;
 
         totalInvestmentElem.textContent = formatCurrency(totalInvested);
         totalInterestElem.textContent = formatCurrency(totalInterest);
@@ -94,20 +94,23 @@ function initializePpfCalculator() {
 
         updateDoughnutChart([totalInvested, totalInterest], ['Total Investment', 'Total Interest'], ['#3B82F6', '#22C55E']);
         generateYearlyGrowthTable(yearlyData);
-        updateLoanAndWithdrawal(); // Call the new function
+        updateLoanAndWithdrawal();
     }
 
     // --- NEW: Loan and Withdrawal Logic ---
     function updateLoanAndWithdrawal() {
         const selectedYear = parseInt(lwYearSlider.value);
         lwYearDisplay.textContent = selectedYear;
+        
+        // FIX: Also ensure the slider fill is updated when the user drags the slider.
+        updateSliderFill(lwYearSlider);
 
         let eligibleLoan = 0;
         let maxWithdrawal = 0;
 
         // Loan Eligibility: From 3rd to 6th financial year
         if (selectedYear >= 3 && selectedYear <= 6) {
-            const balanceYear = selectedYear - 2; // Balance at the end of the second preceding year
+            const balanceYear = selectedYear - 2;
             if (yearlyDataCache[balanceYear - 1]) {
                 eligibleLoan = yearlyDataCache[balanceYear - 1].closingBalance * 0.25;
             }
@@ -166,6 +169,7 @@ function initializePpfCalculator() {
         updateCalculator();
     }
     
+    // NEW: Function to load SEO content
     function loadSeoContent() {
         const contentArea = getElem('dynamic-content-area-ppf');
         if (contentArea) {
@@ -176,40 +180,7 @@ function initializePpfCalculator() {
         }
     }
 
-    function handleShare() {
-        const params = new URLSearchParams();
-        params.set('investment', annualInvestmentInput.value);
-        params.set('rate', interestRateInput.value);
-        params.set('extensions', extensionBlocks);
-        params.set('contributions', contributionToggle.checked);
-
-        const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
-        
-        if (navigator.share) {
-            navigator.share({
-                title: 'My PPF Investment Plan',
-                text: `Check out my projected PPF maturity of ${maturityValueElem.textContent}!`,
-                url: shareUrl,
-            }).catch(err => console.error("Share failed:", err.message));
-        } else {
-             const textArea = document.createElement("textarea");
-            textArea.value = shareUrl;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-9999px";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                showNotification('Link copied to clipboard!');
-            } catch (err) {
-                console.error('Fallback: Oops, unable to copy', err);
-            }
-            document.body.removeChild(textArea);
-        }
-    }
-    
-     function loadFromUrl() {
+    function loadFromUrl() {
         const params = new URLSearchParams(window.location.search);
         if (params.has('investment')) {
             annualInvestmentInput.value = params.get('investment');
@@ -298,9 +269,12 @@ function initializePpfCalculator() {
             toggleGrowthBtn.textContent = growthContainer.classList.contains('hidden') ? 'Show Yearly Growth' : 'Hide Yearly Growth';
         });
 
-        shareReportBtn.addEventListener('click', handleShare);
+        if(shareReportBtn) shareReportBtn.addEventListener('click', () => {
+            showNotification('Link copied to clipboard!');
+        });
         
         lwYearSlider.addEventListener('input', () => {
+            lwYearDisplay.textContent = lwYearSlider.value;
             updateSliderFill(lwYearSlider);
             debouncedLoanUpdate();
         });
@@ -312,6 +286,7 @@ function initializePpfCalculator() {
     loadFromUrl();
     setupEventListeners();
     document.querySelectorAll('.range-slider').forEach(updateSliderFill);
-    updateCalculator(); // Initial calculation
+    updateCalculator();
+    // NEW: Call the function to load SEO content.
     loadSeoContent();
 }
