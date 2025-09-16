@@ -169,7 +169,6 @@ function initializePpfCalculator() {
         updateCalculator();
     }
     
-    // NEW: Function to load SEO content
     function loadSeoContent() {
         const contentArea = getElem('dynamic-content-area-ppf');
         if (contentArea) {
@@ -177,6 +176,44 @@ function initializePpfCalculator() {
                 .then(response => response.ok ? response.text() : Promise.reject('File not found'))
                 .then(html => contentArea.innerHTML = html)
                 .catch(error => console.error('Error loading PPF SEO content:', error));
+        }
+    }
+
+    // NEW: The complete sharing logic is now here in a single function
+    function handleShare() {
+        const params = new URLSearchParams();
+        params.set('investment', annualInvestmentInput.value);
+        params.set('rate', interestRateInput.value);
+        params.set('extensions', extensionBlocks);
+        params.set('contributions', contributionToggle.checked);
+
+        const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: 'My PPF Investment Plan',
+                text: `Check out my projected PPF maturity of ${maturityValueElem.textContent}!`,
+                url: shareUrl,
+            }).catch(err => {
+                console.error("Share failed:", err.message);
+                showNotification('Could not share report.');
+            });
+        } else {
+             const textArea = document.createElement("textarea");
+            textArea.value = shareUrl;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showNotification('Link copied to clipboard!');
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+                showNotification('Could not copy link.');
+            }
+            document.body.removeChild(textArea);
         }
     }
 
@@ -269,9 +306,7 @@ function initializePpfCalculator() {
             toggleGrowthBtn.textContent = growthContainer.classList.contains('hidden') ? 'Show Yearly Growth' : 'Hide Yearly Growth';
         });
 
-        if(shareReportBtn) shareReportBtn.addEventListener('click', () => {
-            showNotification('Link copied to clipboard!');
-        });
+        if(shareReportBtn) shareReportBtn.addEventListener('click', handleShare);
         
         lwYearSlider.addEventListener('input', () => {
             lwYearDisplay.textContent = lwYearSlider.value;
