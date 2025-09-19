@@ -15,13 +15,14 @@
             counter-reset: guide-counter; /* Initialize the counter */
         }
         /* Styles for the guide showcase cards, similar to other showcase pages */
-        .guide-showcase-card {
+        .guide-grid .guide-showcase-card { /* Increased specificity */
             display: none; /* Hidden by default, JS will show them */
             flex-direction: column;
             align-items: center;
             text-align: center;
             padding: 0.75rem 0.5rem 0.5rem; /* More compact padding */
             border: 1px solid #e5e7eb;
+            border-top: 4px solid #E34037; /* Red accent border added */
             border-radius: 0.75rem;
             background-color: #ffffff;
             text-decoration: none;
@@ -34,7 +35,7 @@
         .guide-showcase-card.visible {
             display: flex;
         }
-        .guide-showcase-card::before {
+        .guide-grid .guide-showcase-card::before { /* Increased specificity */
             content: counter(guide-counter); /* Display the counter number */
             position: absolute;
             top: -6px; /* Adjusted */
@@ -52,12 +53,12 @@
             border: 2px solid #ffffff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.15);
         }
-        .guide-showcase-card:hover {
+        .guide-grid .guide-showcase-card:hover { /* Increased specificity */
             transform: translateY(-5px);
             border-color: #E34037;
             box-shadow: 0 10px 15px -3px rgba(227, 64, 55, 0.1), 0 4px 6px -2px rgba(227, 64, 55, 0.05);
         }
-        .guide-showcase-card h2 {
+        .guide-grid .guide-showcase-card h2 { /* Increased specificity */
             font-size: 0.7rem; /* Squeezed */
             font-weight: 700;
             color: #1f2937;
@@ -68,14 +69,14 @@
             align-items: center; /* Added for vertical centering */
             justify-content: center; /* Added for horizontal centering */
         }
-        .guide-showcase-card p {
+        .guide-grid .guide-showcase-card p { /* Increased specificity */
             font-size: 0.6rem; /* Squeezed */
             color: #4b5563;
             /* flex-grow removed to allow title to push it down */
             margin-bottom: 0.75rem; /* Squeezed */
             line-height: 1.5;
         }
-        .guide-showcase-card .cta-link {
+        .guide-grid .guide-showcase-card .cta-link { /* Increased specificity */
             display: inline-block;
             background-color: #E34037;
             color: white;
@@ -87,7 +88,7 @@
             transition: background-color 0.2s;
             margin-top: auto; /* Pushes the button to the bottom */
         }
-        .guide-showcase-card:hover .cta-link {
+        .guide-grid .guide-showcase-card:hover .cta-link { /* Increased specificity */
             background-color: #C22D2D;
         }
         #pagination-container button {
