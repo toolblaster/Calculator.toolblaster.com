@@ -26,7 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return Promise.resolve();
         }
 
-        return fetch(componentPath)
+        // Use an absolute path starting from the root of the domain.
+        const absolutePath = `/${componentPath}`;
+
+        return fetch(absolutePath)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Failed to load ${componentPath}: ${response.statusText}`);
@@ -208,19 +211,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const initializePage = () => {
         setFavicon(); // Add the favicon dynamically to every page
         const path = window.location.pathname;
-        const depth = Math.max(0, (path.split('/').length - 2));
-        const basePath = depth > 0 ? '../'.repeat(depth) : './';
 
         const loadPromises = [
-            loadComponent(`${basePath}assets/components/header.html`, 'header-placeholder'),
-            loadComponent(`${basePath}assets/components/footer.html`, 'footer-placeholder')
+            loadComponent('assets/components/header.html', 'header-placeholder'),
+            loadComponent('assets/components/footer.html', 'footer-placeholder')
         ];
 
         // NEW FIX: Only load general content on the homepage
         if (path === '/' || path.endsWith('index.html')) {
             const contentArea = document.getElementById('dynamic-content-area');
             if(contentArea) {
-                loadPromises.push(loadComponent(`${basePath}assets/components/content.html`, 'dynamic-content-area'));
+                loadPromises.push(loadComponent('assets/components/content.html', 'dynamic-content-area'));
             }
         }
 
