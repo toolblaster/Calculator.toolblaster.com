@@ -4,69 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Financial Calculators - Free Tools for Indian Investors | Calculator.toolblaster</title>
-    <meta name="description" content="Explore our complete suite of free financial calculators for Indian investors. Plan your SIP, Lumpsum, and Tax savings with our easy-to-use, accurate online tools.">
-    <meta name="keywords" content="financial calculators, investment tools, sip calculator, income tax calculator, lumpsum calculator, financial planning india">
-    
+    <meta name="description" content="Explore our complete suite of free financial calculators for Indian investors. Plan your SIP, Lumpsum, Tax, EMI, and PPF savings with our easy-to-use, accurate online tools.">
+    <meta name="keywords" content="financial calculators, investment tools, sip calculator, income tax calculator, emi calculator, ppf calculator, lumpsum calculator, financial planning india">
+    <link rel="canonical" href="https://calculator.toolblaster.com/calculators/index.html" />
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
     
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "name": "All Financial Calculators - Free Tools for Indian Investors | Calculator.toolblaster",
+          "description": "Explore our complete suite of free financial calculators for Indian investors. Plan your SIP, Lumpsum, and Tax savings with our easy-to-use, accurate online tools.",
+          "url": "https://calculator.toolblaster.com/calculators/index.html",
+          "inLanguage": "en-IN"
+        },
+        {
+          "@type": "CollectionPage",
+          "name": "Financial Calculators Suite",
+          "description": "A collection of powerful, free tools to help you plan, save, and invest with confidence. Includes calculators for investments, taxes, and loans.",
+          "url": "https://calculator.toolblaster.com/calculators/index.html",
+          "mainEntity": {
+            "@type": "ItemList",
+            "name": "Financial Calculators",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "SoftwareApplication",
+                  "name": "All-in-One Investment Calculator",
+                  "applicationCategory": "FinancialApplication",
+                  "operatingSystem": "Web",
+                  "url": "https://calculator.toolblaster.com/index.html"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "SoftwareApplication",
+                  "name": "Income Tax Calculator",
+                  "applicationCategory": "FinancialApplication",
+                  "operatingSystem": "Web",
+                  "url": "https://calculator.toolblaster.com/calculators/income-tax-calculator/"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "SoftwareApplication",
+                  "name": "Advanced EMI Calculator",
+                  "applicationCategory": "FinancialApplication",
+                  "operatingSystem": "Web",
+                  "url": "https://calculator.toolblaster.com/calculators/emi-calculator/"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "SoftwareApplication",
+                  "name": "Advanced PPF Calculator",
+                  "applicationCategory": "FinancialApplication",
+                  "operatingSystem": "Web",
+                  "url": "https://calculator.toolblaster.com/calculators/ppf-calculator/"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+    </script>
+
     <style>
-        .calculator-showcase-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 0.5rem; /* Mirrored from quiz cards */
+        .calculator-card {
+            background-color: #ffffff;
             border: 1px solid #e5e7eb;
             border-radius: 0.75rem;
-            background-color: #ffffff;
+            padding: 1rem; /* Squeezed padding */
+            display: flex;
+            flex-direction: column;
             text-decoration: none;
             color: inherit;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
         }
-        .calculator-showcase-card:hover {
+        .calculator-card:hover {
             transform: translateY(-5px);
             border-color: #E34037;
             box-shadow: 0 10px 15px -3px rgba(227, 64, 55, 0.1), 0 4px 6px -2px rgba(227, 64, 55, 0.05);
         }
-        .calculator-showcase-icon {
+        .calculator-icon {
             color: #E34037;
-            width: 20px; /* Mirrored from quiz cards */
-            height: 20px; /* Mirrored from quiz cards */
-            margin-bottom: 0.25rem; /* Mirrored from quiz cards */
+            width: 24px; /* Squeezed icon */
+            height: 24px;
+            margin-bottom: 0.5rem; /* Squeezed margin */
         }
-        .calculator-showcase-card h2 {
-            font-size: 0.7rem; /* Mirrored from quiz cards */
+        .calculator-card h2 {
+            font-size: 0.9rem; /* Squeezed font size */
             font-weight: 700;
             color: #1f2937;
             margin-bottom: 0.25rem;
         }
-        .calculator-showcase-card p {
-            font-size: 0.55rem; /* Mirrored from quiz cards */
+        .calculator-card p {
+            font-size: 0.7rem; /* Squeezed font size */
             color: #4b5563;
             flex-grow: 1;
-            margin-bottom: 0.5rem; /* Mirrored from quiz cards */
+            margin-bottom: 1rem;
             line-height: 1.4;
         }
-        .calculator-showcase-card .cta-link {
-            display: inline-block;
+        .calculator-card .cta-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
             background-color: #E34037;
             color: white;
-            padding: 0.2rem 0.5rem; /* Mirrored from quiz cards */
+            padding: 0.3rem 0.8rem; /* Squeezed padding */
             border-radius: 0.5rem;
             font-weight: 600;
-            font-size: 0.6rem; /* Mirrored from quiz cards */
+            font-size: 0.7rem; /* Squeezed font size */
             text-decoration: none;
             transition: background-color 0.2s;
+            margin-top: auto;
         }
-        .calculator-showcase-card:hover .cta-link {
+        .calculator-card:hover .cta-link {
             background-color: #C22D2D;
         }
-        .text-xxs { 
-            font-size: 0.6rem; 
-            line-height: 0.8rem; 
+
+        .featured-calculator-card {
+            background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
+            border-left: 4px solid #E34037;
+        }
+        
+        .next-step-section {
+            background-color: #eff6ff;
+            border: 1px solid #dbeafe;
+            border-radius: 0.75rem;
+            padding: 1.5rem; /* Squeezed padding */
+            text-align: center;
         }
     </style>
 </head>
@@ -76,62 +159,69 @@
 
     <main class="container">
         <div class="legal-content">
-            <h1>Our Suite of Financial Calculators</h1>
-            <p>Empower your financial decisions with our collection of free, accurate, and easy-to-use calculators, designed specifically for Indian investors.</p>
+            <h1>Financial Calculators for Every Goal</h1>
+            <p>From planning your first investment to managing your retirement income, our free and accurate tools are here to turn your financial questions into clear, confident actions.</p>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-                <!-- All-in-One Investment Calculator Card -->
-                <a href="../index.html" class="calculator-showcase-card">
-                    <div class="calculator-showcase-icon">
+            <div class="p-4 space-y-6">
+                <!-- Featured Calculator: All-in-One -->
+                <a href="../index.html" class="calculator-card featured-calculator-card md:flex-row md:items-center md:gap-4">
+                    <div class="calculator-icon flex-shrink-0 w-12 h-12 md:w-16 md:h-16">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M8 10h8"/><path d="M8 14h8"/><path d="M15 18h1"/></svg>
                     </div>
-                    <h2>All-in-One Investment Calculator</h2>
-                    <p>Your central hub for planning investments. Calculate future values for your SIP, Lumpsum, SWP, RD, and FD investments with inflation adjustments.</p>
-                    <span class="cta-link">Go to Investment Calculator</span>
-                </a>
-                
-                <!-- Income Tax Calculator Card -->
-                <a href="income-tax-calculator/" class="calculator-showcase-card">
-                    <div class="calculator-showcase-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9l-5-5Z"/><path d="M15 4v5h5"/><path d="M10 17h4"/><path d="M12 11v6"/></svg>
+                    <div class="text-center md:text-left">
+                        <h2 class="text-base md:text-lg">"How much will my investment be worth?"</h2>
+                        <p class="text-xs">Our flagship <strong>All-in-One Investment Calculator</strong> is your central hub for planning. Project future values for your SIP, Lumpsum, SWP, RD, and FD investments, all with inflation adjustments for a realistic view.</p>
+                        <span class="cta-link">Plan Your Investments &rarr;</span>
                     </div>
-                    <h2>Income Tax Calculator</h2>
-                    <p>Instantly compare your tax liability under the Old and New Tax Regimes. Includes all major deductions for a precise, personalized calculation.</p>
-                    <span class="cta-link">Go to Tax Calculator</span>
-                </a>
-                
-                 <!-- EMI Calculator Card -->
-                <a href="emi-calculator/" class="calculator-showcase-card">
-                    <div class="calculator-showcase-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                    </div>
-                    <h2>Advanced EMI Calculator</h2>
-                    <p>Plan your home, car, or personal loans with prepayment simulations and detailed amortization schedules to save on interest.</p>
-                    <span class="cta-link">Go to EMI Calculator</span>
                 </a>
 
-                <!-- PPF Calculator Card -->
-                <a href="ppf-calculator/" class="calculator-showcase-card">
-                    <div class="calculator-showcase-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <!-- Core Calculators Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Income Tax Calculator Card -->
+                    <a href="income-tax-calculator/" class="calculator-card text-center items-center">
+                        <div class="calculator-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9l-5-5Z"/><path d="M15 4v5h5"/><path d="M10 17h4"/><path d="M12 11v6"/></svg>
+                        </div>
+                        <h2>"How much tax will I pay?"</h2>
+                        <p>Instantly compare your tax liability under the Old and New Regimes to find the smarter choice for your salary.</p>
+                        <span class="cta-link">Go to Tax Calculator</span>
+                    </a>
+                    
+                     <!-- EMI Calculator Card -->
+                    <a href="emi-calculator/" class="calculator-card text-center items-center">
+                        <div class="calculator-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <h2>"Can I afford this loan?"</h2>
+                        <p>Plan your home, car, or personal loans with prepayment simulations to save thousands in interest.</p>
+                        <span class="cta-link">Go to EMI Calculator</span>
+                    </a>
+
+                    <!-- PPF Calculator Card -->
+                    <a href="ppf-calculator/" class="calculator-card text-center items-center">
+                        <div class="calculator-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h2>"How can I save tax safely?"</h2>
+                        <p>Plan your PPF investment, including extensions, and see the power of tax-free compounding for your long-term goals.</p>
+                        <span class="cta-link">Go to PPF Calculator</span>
+                    </a>
+                </div>
+
+                <!-- Next Step Section -->
+                <div class="next-step-section">
+                    <div class="w-12 h-12 mx-auto flex items-center justify-center bg-blue-100 rounded-full text-blue-600 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
                     </div>
-                    <h2>Advanced PPF Calculator</h2>
-                    <p>Plan your Public Provident Fund investment, including extensions and yearly growth, to see the power of tax-free compounding.</p>
-                    <span class="cta-link">Go to PPF Calculator</span>
-                </a>
+                    <h2 class="text-xl md:text-2xl font-extrabold text-gray-800">Ready for the Next Step?</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto my-2 text-sm">Calculators give you the numbers, but knowledge gives you the strategy. Dive into our guides and quizzes to build a complete financial plan.</p>
+                    <a href="../investingguides.html" class="inline-flex items-center justify-center gap-2 text-base font-bold px-6 py-2 rounded-full text-white bg-blue-700 hover:bg-blue-800 transition transform hover:scale-105 shadow-lg mt-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        <span>Explore Guides & Quizzes</span>
+                    </a>
+                </div>
+
             </div>
-            <div class="border-t border-gray-200 my-6 w-full"></div>
-            <div class="text-center text-gray-500 text-xxs leading-relaxed px-4 flex justify-center items-center space-x-3">
-                <a href="https://www.5paisa.com/demat-account?ReferralCode=54285431&ReturnUrl=invest-open-account" target="_blank" rel="nofollow sponsored noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
-                    Start investing with 5paisa
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </a>
-                <div class="border-l border-gray-300 h-4"></div>
-                <a href="https://upstox.onelink.me/0H1s/2JAL6D" target="_blank" rel="nofollow sponsored noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
-                    Start investing with Upstox
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </a>
-           </div>
         </div>
     </main>
     
