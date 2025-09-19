@@ -69,27 +69,16 @@
     <style>
         body { font-family: 'Inter', sans-serif; font-size: 13px; }
         
-        .content-block-wrapper {
-            background-color: #fff;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e5e7eb;
-            overflow: hidden;
-            margin: 1rem; /* Squeezed margin */
-        }
-        .how-to-block { border-color: #4CAF50; } 
-
         .section-title { font-size: 1rem; font-weight: 700; text-align: center; margin-bottom: 0.25rem; padding-bottom: 0.5rem; position: relative; }
         .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background-color: #E34037; }
         
-        .how-to-section { padding: 1rem; background-color: #f9fafb; }
-        .how-to-card { background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 0.75rem; text-align: center; }
-        .how-to-card .step-number { display: inline-block; width: 28px; height: 28px; line-height: 28px; border-radius: 50%; background-color: #E34037; color: white; font-weight: 700; margin-bottom: 0.5rem; }
-        .how-to-card h3 { font-size: 0.8rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .how-to-card p { font-size: 0.65rem; color: #4b5563; margin-bottom: 0.75rem; }
-        .how-to-card a { font-size: 0.7rem; font-weight: 600; color: #C22D2D; text-decoration: none; }
+        .how-to-card { background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 0.5rem; text-align: center; }
+        .how-to-card .step-number { display: inline-block; width: 24px; height: 24px; line-height: 24px; font-size: 0.7rem; border-radius: 50%; background-color: #E34037; color: white; font-weight: 700; margin-bottom: 0.25rem; }
+        .how-to-card h3 { font-size: 0.7rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .how-to-card p { font-size: 0.6rem; color: #4b5563; margin-bottom: 0.5rem; }
+        .how-to-card a { font-size: 0.65rem; font-weight: 600; color: #C22D2D; text-decoration: none; }
         
-        @media (max-width: 768px) { .content-block-wrapper { margin: 1rem 0; } .how-to-section .grid { grid-template-columns: repeat(1, 1fr); } }
+        @media (max-width: 768px) { .action-plan-section .grid { grid-template-columns: repeat(1, 1fr); } }
 
         /* --- SQUEEZED STYLES for Top Resources --- */
         .featured-section-new {
@@ -230,7 +219,7 @@
         .action-plan-section {
             background-color: #fefce8; /* Light yellow */
             border-radius: 0.75rem;
-            padding: 0.5rem;
+            padding: 1rem;
             margin-top: 1rem;
             border: 1px solid #fef08a;
         }
@@ -371,36 +360,34 @@
 
             <!-- Your 4-Step Financial Action Plan Section -->
             <div class="action-plan-section">
-                <div class="how-to-section">
-                    <div class="text-center mb-4">
-                        <h2 class="section-title">Your 4-Step Financial Action Plan</h2>
-                        <p class="text-gray-600 mt-3">Follow this simple roadmap to take control of your financial life, one step at a time.</p>
+                <div class="text-center mb-2">
+                    <h2 class="section-title">Your 4-Step Financial Action Plan</h2>
+                    <p class="section-subtitle">Follow this simple roadmap to take control of your financial life, one step at a time.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mt-4">
+                    <div class="how-to-card">
+                        <span class="step-number">1</span>
+                        <h3>Assess Your Situation</h3>
+                        <p>Get a clear starting point. Our quiz will identify your top priority right now.</p>
+                        <a href="quizzes/next-financial-move-quiz.html">Take the Quiz &rarr;</a>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-                        <div class="how-to-card">
-                            <span class="step-number">1</span>
-                            <h3>Assess Your Situation</h3>
-                            <p>Get a clear starting point. Our quiz will identify your top priority right now.</p>
-                            <a href="quizzes/next-financial-move-quiz.html">Take the Quiz &rarr;</a>
-                        </div>
-                        <div class="how-to-card">
-                            <span class="step-number">2</span>
-                            <h3>Set Clear Goals</h3>
-                            <p>Turn your dreams into numbers. Calculate what you need to invest for your future.</p>
-                            <a href="index.html?mode=goal">Use the Goal Planner &rarr;</a>
-                        </div>
-                        <div class="how-to-card">
-                            <span class="step-number">3</span>
-                            <h3>Choose the Right Tools</h3>
-                            <p>Learn about different investment options to find the best fit for your goals.</p>
-                            <a href="guides/mfguide.html">Read Investing Guides &rarr;</a>
-                        </div>
-                        <div class="how-to-card">
-                            <span class="step-number">4</span>
-                            <h3>Automate & Review</h3>
-                            <p>Build discipline through automation and stay on track with regular check-ins.</p>
-                            <a href="guides/financial-health-guide.html">Learn About Financial Health &rarr;</a>
-                        </div>
+                    <div class="how-to-card">
+                        <span class="step-number">2</span>
+                        <h3>Set Clear Goals</h3>
+                        <p>Turn your dreams into numbers. Calculate what you need to invest for your future.</p>
+                        <a href="index.html?mode=goal">Use the Goal Planner &rarr;</a>
+                    </div>
+                    <div class="how-to-card">
+                        <span class="step-number">3</span>
+                        <h3>Choose the Right Tools</h3>
+                        <p>Learn about different investment options to find the best fit for your goals.</p>
+                        <a href="guides/mfguide.html">Read Investing Guides &rarr;</a>
+                    </div>
+                    <div class="how-to-card">
+                        <span class="step-number">4</span>
+                        <h3>Automate & Review</h3>
+                        <p>Build discipline through automation and stay on track with regular check-ins.</p>
+                        <a href="guides/financial-health-guide.html">Learn About Financial Health &rarr;</a>
                     </div>
                 </div>
             </div>
