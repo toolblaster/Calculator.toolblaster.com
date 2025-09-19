@@ -1,7 +1,25 @@
-<!-- 
-  This is the reusable header file. 
-  The header bar is full-width, but the inner container constrains the content.
--->
+<style>
+.btn-nav {
+    padding: 0.3rem 0.8rem !important;
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+    border-radius: 999px !important; /* Pill shape */
+    text-decoration: none !important;
+    transition: all 0.2s ease-in-out !important;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid transparent;
+}
+.btn-nav.btn-primary {
+    background-color: #E34037 !important;
+    color: white !important;
+}
+.btn-nav.btn-primary:hover {
+    background-color: #C22D2D !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+</style>
 <header class="site-header">
     <div class="container">
         <nav class="main-nav">
@@ -21,7 +39,8 @@
                 <li><a href="/index.html">Home</a></li>
                 <li><a href="/calculators/">All Calculators</a></li>
                 <li><a href="/quizzes/">Check Financial Health</a></li>
-                <li><a href="/investingguides.html">Investing Guides</a></li>
+                <li><a href="/guides/">Financial Guides</a></li>
+                <li><a href="/investingguides.html" class="btn-nav btn-primary">Start Journey</a></li>
             </ul>
             <button class="hamburger">
                 <span></span>
