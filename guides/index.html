@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Investing Guides - Calculator.toolblaster</title>
+    <meta name="description" content="Explore our comprehensive library of financial guides. Learn about investing, retirement planning, tax saving, stock markets, and more to take control of your financial future.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        .guide-grid {
+            counter-reset: guide-counter; /* Initialize the counter */
+        }
+        /* Styles for the guide showcase cards, similar to other showcase pages */
+        .guide-showcase-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0.75rem 0.5rem 0.5rem; /* More compact padding */
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            background-color: #ffffff;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: relative; /* Needed for number positioning */
+            counter-increment: guide-counter; /* Increment counter for each card */
+        }
+        .guide-showcase-card::before {
+            content: counter(guide-counter); /* Display the counter number */
+            position: absolute;
+            top: -6px; /* Adjusted */
+            left: -6px; /* Adjusted */
+            width: 20px; /* Made smaller */
+            height: 20px; /* Made smaller */
+            background-color: #E34037;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem; /* Made smaller */
+            font-weight: 700;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+        .guide-showcase-card:hover {
+            transform: translateY(-5px);
+            border-color: #E34037;
+            box-shadow: 0 10px 15px -3px rgba(227, 64, 55, 0.1), 0 4px 6px -2px rgba(227, 64, 55, 0.05);
+        }
+        .guide-showcase-card h2 {
+            font-size: 0.7rem; /* Squeezed */
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+            line-height: 1.4;
+            flex-grow: 1; /* Added to make titles take up space */
+             display: flex; /* Added for vertical centering */
+            align-items: center; /* Added for vertical centering */
+            justify-content: center; /* Added for horizontal centering */
+        }
+        .guide-showcase-card p {
+            font-size: 0.6rem; /* Squeezed */
+            color: #4b5563;
+            /* flex-grow removed to allow title to push it down */
+            margin-bottom: 0.75rem; /* Squeezed */
+            line-height: 1.5;
+        }
+        .guide-showcase-card .cta-link {
+            display: inline-block;
+            background-color: #E34037;
+            color: white;
+            padding: 0.2rem 0.5rem; /* Squeezed */
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.6rem; /* Squeezed */
+            text-decoration: none;
+            transition: background-color 0.2s;
+            margin-top: auto; /* Pushes the button to the bottom */
+        }
+        .guide-showcase-card:hover .cta-link {
+            background-color: #C22D2D;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <div class="legal-content">
+            <h1>All Financial Guides</h1>
+            <p>Your complete resource for mastering personal finance. Explore our guides to build a secure financial future, one step at a time.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 p-2 guide-grid">
+
+                <!-- Beginner's Guide to Investing -->
+                <a href="mfguide.html" class="guide-showcase-card">
+                    <h2>A Beginner's Guide to Investing in India</h2>
+                    <p>Kickstart your investment journey. Learn about Mutual Funds, SIP, Lumpsum, and more with practical, easy-to-understand advice.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+
+                <!-- Stock Market Guide -->
+                <a href="stock-market-guide-in-india.html" class="guide-showcase-card">
+                    <h2>Your Guide to Stock Market Investing & Diversification</h2>
+                    <p>Demystify the stock market, from core concepts to building a diversified portfolio with stocks, gold, and real estate.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+                
+                <!-- Financial Health Guide -->
+                <a href="financial-health-guide.html" class="guide-showcase-card">
+                    <h2>Your Guide to Financial Health & Wellness</h2>
+                    <p>Understand the key pillars of financial health and why a regular assessment is crucial for your future.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+
+                <!-- Emergency Fund Guide -->
+                <a href="emergency-fund-guide.html" class="guide-showcase-card">
+                    <h2>Your Step-by-Step Guide to Building an Emergency Fund</h2>
+                    <p>Learn how to build a financial safety net with our step-by-step guide covering how much to save and where to keep your money.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+
+                <!-- Goal-Based Investing -->
+                <a href="goal-based-investing.html" class="guide-showcase-card">
+                    <h2>Goal-Based Investing: A Roadmap to Your Dreams</h2>
+                    <p>A simple and actionable guide to goal-based investing. Learn how to plan for short, medium, and long-term dreams.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+
+                <!-- Retirement Planning Guide -->
+                <a href="retirement-planning-guide.html" class="guide-showcase-card">
+                    <h2>Your Guide to a Happy and Stress-Free Retirement in India</h2>
+                    <p>An in-depth guide to calculate your retirement corpus with inflation, compare investment options, and create a post-retirement income plan.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+
+                <!-- Tax-Saving Guide -->
+                <a href="tax-saving-guide.html" class="guide-showcase-card">
+                    <h2>Your Friendly Guide to Smart Tax-Saving (Section 80C)</h2>
+                    <p>Your complete guide to the best tax-saving investments under Section 80C. Compare ELSS, PPF, FDs, and more.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+
+                <!-- Credit Score Guide -->
+                <a href="complete-credit-score-guide-in-india.html" class="guide-showcase-card">
+                    <h2>Your Guide to Understanding & Improving Your Credit Score</h2>
+                    <p>A complete guide to your CIBIL and credit score in India. Learn what it is, why it's crucial, and how to improve it.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+
+                <!-- SIP vs Lumpsum -->
+                <a href="sip-vs-lumpsum.html" class="guide-showcase-card">
+                    <h2>SIP vs. Lumpsum: The Ultimate Investment Showdown</h2>
+                    <p>Understand the pros and cons of SIP and Lumpsum investing to find the strategy that suits your financial goals.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+
+                <!-- SIP vs SWP -->
+                <a href="sip-vs-swp.html" class="guide-showcase-card">
+                    <h2>SIP vs. SWP: Building Your Wealth vs. Creating Your Paycheck</h2>
+                    <p>Learn the difference between accumulating wealth with SIPs and generating a regular income with SWPs.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+
+                <!-- SIP vs RD -->
+                <a href="sip-vs-rd.html" class="guide-showcase-card">
+                    <h2>SIP vs. RD: Which Investment is Right for You?</h2>
+                    <p>A clear comparison to help you choose between a Systematic Investment Plan and a Recurring Deposit for your goals.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+
+                <!-- FD vs Debt Funds -->
+                <a href="fd-vs-debt-funds.html" class="guide-showcase-card">
+                    <h2>FD vs. Debt Funds: A Comprehensive Comparison</h2>
+                    <p>Compare Fixed Deposits and Debt Mutual Funds on returns, risk, liquidity, and taxation to make an informed choice.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+
+                <!-- 5paisa vs Upstox -->
+                <a href="5paisa-vs-upstox.html" class="guide-showcase-card">
+                    <h2>5paisa vs. Upstox: The Ultimate Broker Showdown for Indian Investors</h2>
+                    <p>A deep-dive comparison to help you choose the best trading and demat account for your needs in India.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+
+            </div>
+        </div>
+    </main>
+    
+    <div id="footer-placeholder"></div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
