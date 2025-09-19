@@ -11,75 +11,80 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     
     <style>
+        .featured-section, .editors-picks-section, .explore-all-section {
+            border-radius: 0.5rem; /* Squeezed */
+            padding: 1rem; /* Squeezed */
+            margin-bottom: 1rem; /* Squeezed */
+        }
         .featured-section {
             background-color: #fef2f2;
             border: 1px solid #fca5a5;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
         }
-        .main-guides-section {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e5e7eb;
+        .editors-picks-section {
+            background-color: #eff6ff; /* Light Blue */
+            border: 1px solid #bfdbfe;
+        }
+        .explore-all-section {
+            background-color: #f0fdf4; /* Light Green */
+            border: 1px solid #bbf7d0;
         }
         .section-header .icon {
-            width: 28px;
-            height: 28px;
+            width: 24px; /* Squeezed */
+            height: 24px; /* Squeezed */
             color: #E34037;
         }
         .section-header h2 {
-            font-size: 1.25rem;
+            font-size: 1.1rem; /* Squeezed */
             font-weight: 800;
             color: #1f2937;
         }
         .section-header p {
-            font-size: 0.8rem;
+            font-size: 0.7rem; /* Squeezed */
             color: #4b5563;
             max-width: 600px;
-            margin: 0.5rem auto 0;
+            margin: 0.25rem auto 0; /* Squeezed */
         }
         .guide-card-new {
             background-color: #ffffff;
             border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 1rem;
+            border-radius: 0.5rem; /* Squeezed */
+            padding: 0.75rem; /* Squeezed */
             display: flex;
             flex-direction: column;
             text-align: left;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Squeezed */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             color: inherit;
         }
         .guide-card-new:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px); /* Squeezed */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08); /* Squeezed */
         }
         .guide-card-header {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.5rem;
+            gap: 0.5rem; /* Squeezed */
+            margin-bottom: 0.25rem; /* Squeezed */
         }
         .guide-card-icon {
-            width: 20px;
-            height: 20px;
+            width: 18px; /* Squeezed */
+            height: 18px; /* Squeezed */
             color: #C22D2D;
             flex-shrink: 0;
         }
         .guide-card-new h3 {
-            font-size: 0.8rem;
+            font-size: 0.75rem; /* Squeezed */
             font-weight: 600;
             color: #1f2937;
-            line-height: 1.4;
+            line-height: 1.3;
         }
         .guide-card-new p {
-            font-size: 0.7rem;
+            font-size: 0.65rem; /* Squeezed */
             color: #4b5563;
             flex-grow: 1;
-            margin-bottom: 0.75rem;
-            line-height: 1.5;
+            margin-bottom: 0.5rem; /* Squeezed */
+            line-height: 1.4;
         }
         .guide-card-new .cta-link {
             display: inline-flex;
@@ -87,7 +92,7 @@
             gap: 0.25rem;
             color: #E34037;
             font-weight: 600;
-            font-size: 0.75rem;
+            font-size: 0.7rem; /* Squeezed */
             text-decoration: none;
             transition: color 0.2s;
             margin-top: auto;
@@ -96,10 +101,21 @@
             color: #C22D2D;
         }
         .pagination-container {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
+            margin-top: 1.5rem; /* Squeezed */
+            padding-top: 1rem; /* Squeezed */
             border-top: 1px solid #e5e7eb;
             text-align: center;
+        }
+        .legal-content > p {
+            font-size: 0.75rem; /* Squeezed */
+            margin-bottom: 1rem; /* Squeezed */
+        }
+        .legal-content > h1 {
+            font-size: 1.5rem; /* Squeezed */
+            margin-bottom: 0.5rem; /* Squeezed */
+        }
+        .p-4 {
+            padding: 0.75rem; /* Squeezed */
         }
     </style>
 </head>
@@ -122,12 +138,12 @@
             <div class="p-4">
                 <!-- SECTION 1: START YOUR JOURNEY HERE -->
                 <div class="featured-section text-center">
-                    <div class="section-header mb-6">
+                    <div class="section-header mb-4">
                         <div class="icon mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
                         <h2>Start Your Journey Here</h2>
                         <p>Not sure where to begin? These core guides are the perfect starting point for any investor.</p>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                         <a href="mfguide.html" class="guide-card-new">
                             <div class="guide-card-header">
                                 <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
@@ -156,13 +172,13 @@
                 </div>
 
                 <!-- SECTION 2: EDITOR'S PICKS -->
-                <div class="main-guides-section">
-                    <div class="section-header text-center">
+                <div class="editors-picks-section text-center">
+                    <div class="section-header">
                         <div class="icon mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
                         <h2>Editor's Picks</h2>
                         <p>Hand-picked guides covering essential topics to deepen your financial knowledge.</p>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
                         <a href="goal-based-investing.html" class="guide-card-new">
                             <div class="guide-card-header">
                                <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
@@ -215,13 +231,13 @@
                 </div>
 
                 <!-- SECTION 3: EXPLORE ALL GUIDES -->
-                <div class="main-guides-section">
-                     <div class="section-header text-center">
+                <div class="explore-all-section text-center">
+                     <div class="section-header">
                         <div class="icon mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></div>
                         <h2>Explore All Guides</h2>
                         <p>Dive deeper into our comprehensive library of financial guides and comparisons.</p>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
                         <a href="sip-vs-swp.html" class="guide-card-new">
                              <div class="guide-card-header">
                                 <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12h8"/></svg></div>
