@@ -11,81 +11,95 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     
     <style>
-        .guide-grid {
-            counter-reset: guide-counter; /* Initialize the counter */
+        .featured-section {
+            background-color: #fef2f2;
+            border: 1px solid #fca5a5;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
         }
-        /* Styles for the guide showcase cards, similar to other showcase pages */
-        .guide-showcase-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 0.75rem 0.5rem 0.5rem; /* More compact padding */
+        .main-guides-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        .section-header .icon {
+            width: 28px;
+            height: 28px;
+            color: #E34037;
+        }
+        .section-header h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #1f2937;
+        }
+        .section-header p {
+            font-size: 0.8rem;
+            color: #4b5563;
+            max-width: 600px;
+            margin: 0.5rem auto 0;
+        }
+        .guide-card-new {
+            background-color: #ffffff;
             border: 1px solid #e5e7eb;
             border-radius: 0.75rem;
-            background-color: #ffffff;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             color: inherit;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            position: relative; /* Needed for number positioning */
-            counter-increment: guide-counter; /* Increment counter for each card */
         }
-        .guide-showcase-card::before {
-            content: counter(guide-counter); /* Display the counter number */
-            position: absolute;
-            top: -6px; /* Adjusted */
-            left: -6px; /* Adjusted */
-            width: 20px; /* Made smaller */
-            height: 20px; /* Made smaller */
-            background-color: #E34037;
-            color: white;
-            border-radius: 50%;
+        .guide-card-new:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .guide-card-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 0.6rem; /* Made smaller */
-            font-weight: 700;
-            border: 2px solid #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
         }
-        .guide-showcase-card:hover {
-            transform: translateY(-5px);
-            border-color: #E34037;
-            box-shadow: 0 10px 15px -3px rgba(227, 64, 55, 0.1), 0 4px 6px -2px rgba(227, 64, 55, 0.05);
+        .guide-card-icon {
+            width: 20px;
+            height: 20px;
+            color: #C22D2D;
+            flex-shrink: 0;
         }
-        .guide-showcase-card h2 {
-            font-size: 0.7rem; /* Squeezed */
-            font-weight: 700;
+        .guide-card-new h3 {
+            font-size: 0.8rem;
+            font-weight: 600;
             color: #1f2937;
-            margin-bottom: 0.25rem;
             line-height: 1.4;
-            flex-grow: 1; /* Added to make titles take up space */
-             display: flex; /* Added for vertical centering */
-            align-items: center; /* Added for vertical centering */
-            justify-content: center; /* Added for horizontal centering */
         }
-        .guide-showcase-card p {
-            font-size: 0.6rem; /* Squeezed */
+        .guide-card-new p {
+            font-size: 0.7rem;
             color: #4b5563;
-            /* flex-grow removed to allow title to push it down */
-            margin-bottom: 0.75rem; /* Squeezed */
+            flex-grow: 1;
+            margin-bottom: 0.75rem;
             line-height: 1.5;
         }
-        .guide-showcase-card .cta-link {
-            display: inline-block;
-            background-color: #E34037;
-            color: white;
-            padding: 0.2rem 0.5rem; /* Squeezed */
-            border-radius: 0.5rem;
+        .guide-card-new .cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: #E34037;
             font-weight: 600;
-            font-size: 0.6rem; /* Squeezed */
+            font-size: 0.75rem;
             text-decoration: none;
-            transition: background-color 0.2s;
-            margin-top: auto; /* Pushes the button to the bottom */
+            transition: color 0.2s;
+            margin-top: auto;
         }
-        .guide-showcase-card:hover .cta-link {
-            background-color: #C22D2D;
+        .guide-card-new:hover .cta-link {
+            color: #C22D2D;
+        }
+        .pagination-container {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
         }
     </style>
 </head>
@@ -94,103 +108,168 @@
     <div id="header-placeholder"></div>
 
     <main class="container">
+        <!-- 
+            DESIGN PHILOSOPHY FOR THIS PAGE (guides/index.html):
+            1.  STATIC & SELF-CONTAINED: This page is intentionally static (hardcoded) and does not rely on script.js to load its primary content. This ensures reliability and speed.
+            2.  CURATED SHOWCASE: This page acts as a curated "front door" to the guides. It is not an archive of all posts. It is structured into three distinct, easy-to-understand sections.
+            3.  SCALABILITY PLAN: The page is designed to showcase a maximum of 30 guides to prevent clutter. Once the library exceeds 30 guides, the commented-out pagination/link section at the bottom should be activated to link to a comprehensive showcase page.
+            4.  EASY UPDATES: To add a new guide, a content creator should add it to the "Editor's Picks" section and move the oldest guide from that section down to the "Explore All Guides" section to maintain the count.
+        -->
         <div class="legal-content">
             <h1>All Financial Guides</h1>
             <p>Your complete resource for mastering personal finance. Explore our guides to build a secure financial future, one step at a time.</p>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 p-2 guide-grid">
+            <div class="p-4">
+                <!-- SECTION 1: START YOUR JOURNEY HERE -->
+                <div class="featured-section text-center">
+                    <div class="section-header mb-6">
+                        <div class="icon mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+                        <h2>Start Your Journey Here</h2>
+                        <p>Not sure where to begin? These core guides are the perfect starting point for any investor.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <a href="mfguide.html" class="guide-card-new">
+                            <div class="guide-card-header">
+                                <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                                <h3>A Beginner's Guide to Investing</h3>
+                            </div>
+                            <p>Kickstart your journey. Learn about Mutual Funds, SIPs, and more with practical advice.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                        <a href="financial-health-guide.html" class="guide-card-new">
+                             <div class="guide-card-header">
+                                <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                                <h3>Guide to Financial Health</h3>
+                            </div>
+                            <p>Understand the key pillars of financial health and why a regular assessment is crucial for your future.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                        <a href="retirement-planning-guide.html" class="guide-card-new">
+                            <div class="guide-card-header">
+                                <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                                <h3>Guide to a Happy Retirement</h3>
+                            </div>
+                            <p>An in-depth guide to calculate your retirement corpus, compare options, and create a post-retirement income plan.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                    </div>
+                </div>
 
-                <!-- Beginner's Guide to Investing -->
-                <a href="mfguide.html" class="guide-showcase-card">
-                    <h2>A Beginner's Guide to Investing in India</h2>
-                    <p>Kickstart your investment journey. Learn about Mutual Funds, SIP, Lumpsum, and more with practical, easy-to-understand advice.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
+                <!-- SECTION 2: EDITOR'S PICKS -->
+                <div class="main-guides-section">
+                    <div class="section-header text-center">
+                        <div class="icon mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                        <h2>Editor's Picks</h2>
+                        <p>Hand-picked guides covering essential topics to deepen your financial knowledge.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+                        <a href="goal-based-investing.html" class="guide-card-new">
+                            <div class="guide-card-header">
+                               <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
+                                <h3>Goal-Based Investing: A Roadmap</h3>
+                            </div>
+                            <p>A simple guide to planning for short, medium, and long-term goals like buying a car or your dream home.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                        <a href="tax-saving-guide.html" class="guide-card-new">
+                             <div class="guide-card-header">
+                                <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                                <h3>Guide to Smart Tax-Saving</h3>
+                            </div>
+                            <p>Explore the best tax-saving investments under Section 80C. Compare ELSS, PPF, FDs, and more to save tax.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                         <a href="complete-credit-score-guide-in-india.html" class="guide-card-new">
+                            <div class="guide-card-header">
+                                <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+                                <h3>Understanding Your Credit Score</h3>
+                            </div>
+                            <p>A complete guide to your CIBIL score in India. Learn what it is, why it's crucial, and how to improve it.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                         <a href="stock-market-guide-in-india.html" class="guide-card-new">
+                            <div class="guide-card-header">
+                               <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg></div>
+                                <h3>Guide to Stock Market Investing</h3>
+                            </div>
+                            <p>Demystify the stock market, from core concepts to building a diversified portfolio with stocks and gold.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                         <a href="emergency-fund-guide.html" class="guide-card-new">
+                            <div class="guide-card-header">
+                                <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                                <h3>Guide to Building an Emergency Fund</h3>
+                            </div>
+                            <p>Learn the essential steps to create a robust financial safety net for unexpected life events.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                        <a href="sip-vs-lumpsum.html" class="guide-card-new">
+                            <div class="guide-card-header">
+                                <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></div>
+                                <h3>SIP vs. Lumpsum: The Ultimate Showdown</h3>
+                            </div>
+                            <p>Understand the pros and cons of SIP and Lumpsum investing to find the strategy that suits your financial goals.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                    </div>
+                </div>
 
-                <!-- Stock Market Guide -->
-                <a href="stock-market-guide-in-india.html" class="guide-showcase-card">
-                    <h2>Your Guide to Stock Market Investing & Diversification</h2>
-                    <p>Demystify the stock market, from core concepts to building a diversified portfolio with stocks, gold, and real estate.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
-                
-                <!-- Financial Health Guide -->
-                <a href="financial-health-guide.html" class="guide-showcase-card">
-                    <h2>Your Guide to Financial Health & Wellness</h2>
-                    <p>Understand the key pillars of financial health and why a regular assessment is crucial for your future.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
+                <!-- SECTION 3: EXPLORE ALL GUIDES -->
+                <div class="main-guides-section">
+                     <div class="section-header text-center">
+                        <div class="icon mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></div>
+                        <h2>Explore All Guides</h2>
+                        <p>Dive deeper into our comprehensive library of financial guides and comparisons.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+                        <a href="sip-vs-swp.html" class="guide-card-new">
+                             <div class="guide-card-header">
+                                <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12h8"/></svg></div>
+                                <h3>SIP vs. SWP: Building Wealth vs. Creating Income</h3>
+                            </div>
+                            <p>Learn the difference between accumulating wealth with SIPs and generating a regular income with SWPs.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                        <a href="sip-vs-rd.html" class="guide-card-new">
+                            <div class="guide-card-header">
+                               <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v8"/></svg></div>
+                                <h3>SIP vs. RD: Which Investment is Right for You?</h3>
+                            </div>
+                            <p>A clear comparison to help you choose between a SIP and a Recurring Deposit for your specific goals.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                        <a href="fd-vs-debt-funds.html" class="guide-card-new">
+                             <div class="guide-card-header">
+                                <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg></div>
+                                <h3>FD vs. Debt Funds: A Comprehensive Comparison</h3>
+                            </div>
+                            <p>Compare Fixed Deposits and Debt Mutual Funds on returns, risk, liquidity, and taxation to make an informed choice.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                         <a href="5paisa-vs-upstox.html" class="guide-card-new">
+                             <div class="guide-card-header">
+                                <div class="guide-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg></div>
+                                <h3>5paisa vs. Upstox: The Ultimate Broker Showdown</h3>
+                            </div>
+                            <p>A deep-dive comparison to help you choose the best trading and demat account for your needs in India.</p>
+                            <span class="cta-link">Read Guide &rarr;</span>
+                        </a>
+                        <!-- Add more guides here as the library grows -->
+                    </div>
+                </div>
 
-                <!-- Emergency Fund Guide -->
-                <a href="emergency-fund-guide.html" class="guide-showcase-card">
-                    <h2>Your Step-by-Step Guide to Building an Emergency Fund</h2>
-                    <p>Learn how to build a financial safety net with our step-by-step guide covering how much to save and where to keep your money.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
-
-                <!-- Goal-Based Investing -->
-                <a href="goal-based-investing.html" class="guide-showcase-card">
-                    <h2>Goal-Based Investing: A Roadmap to Your Dreams</h2>
-                    <p>A simple and actionable guide to goal-based investing. Learn how to plan for short, medium, and long-term dreams.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
-
-                <!-- Retirement Planning Guide -->
-                <a href="retirement-planning-guide.html" class="guide-showcase-card">
-                    <h2>Your Guide to a Happy and Stress-Free Retirement in India</h2>
-                    <p>An in-depth guide to calculate your retirement corpus with inflation, compare investment options, and create a post-retirement income plan.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
-
-                <!-- Tax-Saving Guide -->
-                <a href="tax-saving-guide.html" class="guide-showcase-card">
-                    <h2>Your Friendly Guide to Smart Tax-Saving (Section 80C)</h2>
-                    <p>Your complete guide to the best tax-saving investments under Section 80C. Compare ELSS, PPF, FDs, and more.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
-
-                <!-- Credit Score Guide -->
-                <a href="complete-credit-score-guide-in-india.html" class="guide-showcase-card">
-                    <h2>Your Guide to Understanding & Improving Your Credit Score</h2>
-                    <p>A complete guide to your CIBIL and credit score in India. Learn what it is, why it's crucial, and how to improve it.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
-
-                <!-- SIP vs Lumpsum -->
-                <a href="sip-vs-lumpsum.html" class="guide-showcase-card">
-                    <h2>SIP vs. Lumpsum: The Ultimate Investment Showdown</h2>
-                    <p>Understand the pros and cons of SIP and Lumpsum investing to find the strategy that suits your financial goals.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
-
-                <!-- SIP vs SWP -->
-                <a href="sip-vs-swp.html" class="guide-showcase-card">
-                    <h2>SIP vs. SWP: Building Your Wealth vs. Creating Your Paycheck</h2>
-                    <p>Learn the difference between accumulating wealth with SIPs and generating a regular income with SWPs.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
-
-                <!-- SIP vs RD -->
-                <a href="sip-vs-rd.html" class="guide-showcase-card">
-                    <h2>SIP vs. RD: Which Investment is Right for You?</h2>
-                    <p>A clear comparison to help you choose between a Systematic Investment Plan and a Recurring Deposit for your goals.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
-
-                <!-- FD vs Debt Funds -->
-                <a href="fd-vs-debt-funds.html" class="guide-showcase-card">
-                    <h2>FD vs. Debt Funds: A Comprehensive Comparison</h2>
-                    <p>Compare Fixed Deposits and Debt Mutual Funds on returns, risk, liquidity, and taxation to make an informed choice.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
-
-                <!-- 5paisa vs Upstox -->
-                <a href="5paisa-vs-upstox.html" class="guide-showcase-card">
-                    <h2>5paisa vs. Upstox: The Ultimate Broker Showdown for Indian Investors</h2>
-                    <p>A deep-dive comparison to help you choose the best trading and demat account for your needs in India.</p>
-                    <span class="cta-link">Read Guide</span>
-                </a>
-
+                <!-- 
+                    PAGINATION SECTION - IMPORTANT!
+                    DESIGN PHILOSOPHY: This section should remain commented out until the total number of guides on this page
+                    exceeds 30. Once you have more than 30 guides, uncomment the div below to add a link to the
+                    main investingguides.html page, which is designed to handle a large, paginated library.
+                    This keeps this page clean and curated, while providing a path for users who want to see everything.
+                -->
+                <!--
+                <div class="pagination-container">
+                    <a href="../investingguides.html" class="btn-primary">Explore All Guides & Quizzes &rarr;</a>
+                </div>
+                -->
             </div>
         </div>
     </main>
