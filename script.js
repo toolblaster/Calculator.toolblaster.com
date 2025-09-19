@@ -26,13 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return Promise.resolve();
         }
 
-        // Use an absolute path starting from the root of the domain.
+        // Use absolute paths starting from the root to avoid relative path issues.
         const absolutePath = `/${componentPath}`;
 
         return fetch(absolutePath)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(`Failed to load ${componentPath}: ${response.statusText}`);
+                    throw new Error(`Failed to load ${absolutePath}: ${response.statusText}`);
                 }
                 return response.text();
             })
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .catch(error => {
-                console.error(`Error loading component ${componentPath}:`, error);
+                console.error(`Error loading component ${absolutePath}:`, error);
                 if(placeholder) {
                     placeholder.innerHTML = `<p class="text-center text-red-500">Error: Could not load component.</p>`;
                 }
@@ -53,23 +53,25 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const setActiveNavLink = () => {
-        const currentPath = window.location.pathname;
-        // Delay slightly to ensure header is loaded
+        const currentPath = window.location.pathname.replace(/\/$/, ""); // Normalize path
         setTimeout(() => {
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
                 const linkUrl = new URL(link.href, window.location.origin);
-                const linkPath = linkUrl.pathname.replace(/\/$/, ""); // Remove trailing slash for comparison
-                const currentPathClean = currentPath.replace(/\/$/, "");
+                const linkPath = linkUrl.pathname.replace(/\/$/, ""); 
 
-                if (linkPath === currentPathClean || (currentPathClean.endsWith('index.html') && linkPath === '')) {
-                     link.classList.add('active');
+                if ((currentPath === '' || currentPath.endsWith('/index.html')) && (linkPath === '' || linkPath.endsWith('/index.html'))) {
+                    link.classList.add('active');
+                } else if (linkPath !== '' && currentPath.startsWith(linkPath)) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
                 }
             });
-        }, 150); 
+        }, 200); 
     };
     
-    // --- DYNAMIC GUIDES HUB LOGIC (REFINED AND CONSOLIDATED) ---
+    // --- DYNAMIC GUIDES HUB LOGIC (RETAINED) ---
     const initializeGuidesHub = () => {
         const guidesContainer = document.getElementById('guides-grid-container');
         if (!guidesContainer) return; // Only run if on the investingguides.html page
@@ -80,25 +82,25 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const allContent = [
             // --- GUIDES ---
-            { id: 'financial-health-guide', url: 'guides/financial-health-guide.html', title: 'Your Guide to Financial Health & Wellness', description: 'Understand the pillars of financial health and get your personalized report card.', type: 'guide' },
-            { id: 'emergency-fund-guide', url: 'guides/emergency-fund-guide.html', title: 'Your Step-by-Step Guide to Building an Emergency Fund', description: 'Learn the essential steps to create a robust financial safety net.', type: 'guide' },
-            { id: 'goal-based-investing', url: 'guides/goal-based-investing.html', title: 'Goal-Based Investing: A Roadmap to Your Dreams', description: 'Discover how to align your investments with your life goals, big or small.', type: 'guide' },
-            { id: 'retirement-planning-guide', url: 'guides/retirement-planning-guide.html', title: 'Your Guide to a Happy and Stress-Free Retirement in India', description: 'An in-depth look at retirement planning for a secure future.', type: 'guide' },
-            { id: 'tax-saving-guide', url: 'guides/tax-saving-guide.html', title: 'Your Friendly Guide to Smart Tax-Saving (Section 80C)', description: 'Explore the best tax-saving investments under Section 80C.', type: 'guide' },
-            { id: 'sip-vs-lumpsum', url: 'guides/sip-vs-lumpsum.html', title: 'SIP vs. Lumpsum: The Ultimate Investment Showdown', description: 'Understand the pros and cons of SIP and Lumpsum investing to choose the right strategy.', type: 'guide' },
-            { id: 'sip-vs-swp', url: 'guides/sip-vs-swp.html', title: 'SIP vs. SWP: Building Your Wealth vs. Creating Your Paycheck', description: 'Learn the difference between accumulating wealth with SIPs and generating income with SWPs.', type: 'guide' },
-            { id: 'sip-vs-rd', url: 'guides/sip-vs-rd.html', title: 'SIP vs. RD: Which Investment is Right for You?', description: 'A guide to help you choose between a SIP and a Recurring Deposit for your financial goals.', type: 'guide' },
-            { id: 'credit-score-guide', url: 'guides/complete-credit-score-guide-in-india.html', title: 'Your Guide to Understanding & Improving Your Credit Score', description: 'A complete guide to your CIBIL score, why it matters, and how to improve it.', type: 'guide' },
-            { id: 'stock-market-guide', url: 'guides/stock-market-guide-in-india.html', title: 'A Complete Beginner\'s Guide to the Stock Market', description: 'Learn the basics of stock market investing, from demat accounts to technical analysis.', type: 'guide' },
-            { id: '5paisa-vs-upstox', url: 'guides/5paisa-vs-upstox.html', title: '5paisa vs. Upstox: The Ultimate Broker Showdown', description: 'A deep-dive comparison to help you choose the best trading account in India.', type: 'guide' },
+            { id: 'financial-health-guide', url: '/guides/financial-health-guide.html', title: 'Your Guide to Financial Health & Wellness', description: 'Understand the pillars of financial health and get your personalized report card.', type: 'guide' },
+            { id: 'emergency-fund-guide', url: '/guides/emergency-fund-guide.html', title: 'Your Step-by-Step Guide to Building an Emergency Fund', description: 'Learn the essential steps to create a robust financial safety net.', type: 'guide' },
+            { id: 'goal-based-investing', url: '/guides/goal-based-investing.html', title: 'Goal-Based Investing: A Roadmap to Your Dreams', description: 'Discover how to align your investments with your life goals, big or small.', type: 'guide' },
+            { id: 'retirement-planning-guide', url: '/guides/retirement-planning-guide.html', title: 'Your Guide to a Happy and Stress-Free Retirement in India', description: 'An in-depth look at retirement planning for a secure future.', type: 'guide' },
+            { id: 'tax-saving-guide', url: '/guides/tax-saving-guide.html', title: 'Your Friendly Guide to Smart Tax-Saving (Section 80C)', description: 'Explore the best tax-saving investments under Section 80C.', type: 'guide' },
+            { id: 'sip-vs-lumpsum', url: '/guides/sip-vs-lumpsum.html', title: 'SIP vs. Lumpsum: The Ultimate Investment Showdown', description: 'Understand the pros and cons of SIP and Lumpsum investing to choose the right strategy.', type: 'guide' },
+            { id: 'sip-vs-swp', url: '/guides/sip-vs-swp.html', title: 'SIP vs. SWP: Building Your Wealth vs. Creating Your Paycheck', description: 'Learn the difference between accumulating wealth with SIPs and generating income with SWPs.', type: 'guide' },
+            { id: 'sip-vs-rd', url: '/guides/sip-vs-rd.html', title: 'SIP vs. RD: Which Investment is Right for You?', description: 'A guide to help you choose between a SIP and a Recurring Deposit for your financial goals.', type: 'guide' },
+            { id: 'credit-score-guide', url: '/guides/complete-credit-score-guide-in-india.html', title: 'Your Guide to Understanding & Improving Your Credit Score', description: 'A complete guide to your CIBIL score, why it matters, and how to improve it.', type: 'guide' },
+            { id: 'stock-market-guide', url: '/guides/stock-market-guide-in-india.html', title: 'A Complete Beginner\'s Guide to the Stock Market', description: 'Learn the basics of stock market investing, from demat accounts to technical analysis.', type: 'guide' },
+            { id: '5paisa-vs-upstox', url: '/guides/5paisa-vs-upstox.html', title: '5paisa vs. Upstox: The Ultimate Broker Showdown', description: 'A deep-dive comparison to help you choose the best trading account in India.', type: 'guide' },
             
             // --- QUIZZES (with corrected paths) ---
-            { id: 'risk-profile-quiz', url: 'quizzes/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz', type: 'quiz' },
-            { id: 'financial-health-assessment', url: 'quizzes/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 15 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment', type: 'quiz' },
-            { id: 'financial-habits-assessment-quiz', url: 'quizzes/financial-habits-assessment-quiz.html', title: 'Financial Habits Assessment Quiz', description: 'Discover your money mindset and get a personalized score.', linkText: 'Take the Quiz', type: 'quiz' },
-            { id: 'secure-retirement-forecaster-quiz', url: 'quizzes/secure-retirement-forecaster-quiz.html', title: 'Secure Retirement Forecaster Quiz', description: 'Assess your retirement readiness and get a personalized report on your target corpus.', linkText: 'Take the Quiz', type: 'quiz' },
-            { id: 'are-you-on-track-to-become-a-millionaire-quiz', url: 'quizzes/are-you-on-track-to-become-a-millionaire-quiz.html', title: 'Are You on Track to Become a Millionaire? Quiz', description: 'Take this quick quiz to see if your financial habits are on track to build significant wealth.', linkText: 'Take the Quiz', type: 'quiz' },
-            { id: 'next-financial-move-quiz', url: 'quizzes/next-financial-move-quiz.html', title: 'What\'s Your Next Financial Move?', description: 'Take this advanced quiz to get a primary and secondary action plan for your finances.', linkText: 'Take the Quiz', type: 'quiz' }
+            { id: 'risk-profile-quiz', url: '/quizzes/risk-profile-quiz.html', title: 'What\'s Your Investor Profile?', description: 'Take our quick quiz to understand your tolerance for investment risks.', linkText: 'Take the Quiz', type: 'quiz' },
+            { id: 'financial-health-assessment', url: '/quizzes/financial-health-assessment.html', title: 'Your Financial Health Assessment', description: 'Answer 15 quick questions to get your personalized financial report card.', linkText: 'Take the Assessment', type: 'quiz' },
+            { id: 'financial-habits-assessment-quiz', url: '/quizzes/financial-habits-assessment-quiz.html', title: 'Financial Habits Assessment Quiz', description: 'Discover your money mindset and get a personalized score.', linkText: 'Take the Quiz', type: 'quiz' },
+            { id: 'secure-retirement-forecaster-quiz', url: '/quizzes/secure-retirement-forecaster-quiz.html', title: 'Secure Retirement Forecaster Quiz', description: 'Assess your retirement readiness and get a personalized report on your target corpus.', linkText: 'Take the Quiz', type: 'quiz' },
+            { id: 'are-you-on-track-to-become-a-millionaire-quiz', url: '/quizzes/are-you-on-track-to-become-a-millionaire-quiz.html', title: 'Are You on Track to Become a Millionaire? Quiz', description: 'Take this quick quiz to see if your financial habits are on track to build significant wealth.', linkText: 'Take the Quiz', type: 'quiz' },
+            { id: 'next-financial-move-quiz', url: '/quizzes/next-financial-move-quiz.html', title: 'What\'s Your Next Financial Move?', description: 'Take this advanced quiz to get a primary and secondary action plan for your finances.', linkText: 'Take the Quiz', type: 'quiz' }
         ];
 
         let currentPage = 1;
@@ -209,16 +211,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- SECTION 2: PAGE INITIALIZATION ---
     const initializePage = () => {
-        setFavicon(); // Add the favicon dynamically to every page
+        setFavicon(); 
         const path = window.location.pathname;
-
+        
         const loadPromises = [
             loadComponent('assets/components/header.html', 'header-placeholder'),
             loadComponent('assets/components/footer.html', 'footer-placeholder')
         ];
 
         // NEW FIX: Only load general content on the homepage
-        if (path === '/' || path.endsWith('index.html')) {
+        if (path === '/' || path.endsWith('/index.html') || path === '') {
             const contentArea = document.getElementById('dynamic-content-area');
             if(contentArea) {
                 loadPromises.push(loadComponent('assets/components/content.html', 'dynamic-content-area'));
