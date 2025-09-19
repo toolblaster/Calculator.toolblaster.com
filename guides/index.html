@@ -16,7 +16,7 @@
         }
         /* Styles for the guide showcase cards, similar to other showcase pages */
         .guide-showcase-card {
-            display: flex;
+            display: none; /* Hidden by default, JS will show them */
             flex-direction: column;
             align-items: center;
             text-align: center;
@@ -30,6 +30,9 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             position: relative; /* Needed for number positioning */
             counter-increment: guide-counter; /* Increment counter for each card */
+        }
+        .guide-showcase-card.visible {
+            display: flex;
         }
         .guide-showcase-card::before {
             content: counter(guide-counter); /* Display the counter number */
@@ -87,6 +90,24 @@
         .guide-showcase-card:hover .cta-link {
             background-color: #C22D2D;
         }
+        #pagination-container button {
+            padding: 0.25rem 0.6rem; 
+            font-size: 0.65rem; 
+            font-weight: 500;
+            border: 1px solid #d1d5db;
+            border-radius: 0.25rem;
+            background-color: #fff;
+            cursor: pointer;
+        }
+         #pagination-container button.active {
+            background-color: #E34037;
+            color: white;
+            border-color: #E34037;
+        }
+         #pagination-container button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -98,7 +119,7 @@
             <h1>All Financial Guides</h1>
             <p>Your complete resource for mastering personal finance. Explore our guides to build a secure financial future, one step at a time.</p>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 p-2 guide-grid">
+            <div id="guide-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 p-2 guide-grid">
 
                 <!-- Beginner's Guide to Investing -->
                 <a href="mfguide.html" class="guide-showcase-card">
@@ -190,7 +211,38 @@
                     <p>A deep-dive comparison to help you choose the best trading and demat account for your needs in India.</p>
                     <span class="cta-link">Read Guide</span>
                 </a>
+                
+                <!-- Added for Pagination Demo -->
+                <a href="#" class="guide-showcase-card">
+                    <h2>Guide to Sukanya Samriddhi Yojana (SSY)</h2>
+                    <p>Understand the benefits of the SSY scheme for securing your daughter's future financial needs.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+                <a href="#" class="guide-showcase-card">
+                    <h2>Understanding GST for Small Businesses</h2>
+                    <p>A simple guide to Goods and Services Tax (GST), its components, and how to calculate it.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+                <a href="#" class="guide-showcase-card">
+                    <h2>How to Plan Your Car Loan EMI</h2>
+                    <p>Learn the factors that affect your car loan EMI and how to plan for it effectively using our tools.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+                <a href="#" class="guide-showcase-card">
+                    <h2>The Ultimate Home Loan Guide</h2>
+                    <p>Everything you need to know before taking a home loan, from eligibility to prepayment strategies.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
+                 <a href="#" class="guide-showcase-card">
+                    <h2>Personal Loan: When and How to Use It</h2>
+                    <p>A guide on using personal loans responsibly and understanding the associated costs.</p>
+                    <span class="cta-link">Read Guide</span>
+                </a>
 
+            </div>
+
+            <div id="pagination-container" class="flex justify-center items-center gap-2 pt-4 mt-4 border-t border-gray-200">
+                <!-- Pagination buttons will be inserted here -->
             </div>
         </div>
     </main>
@@ -198,5 +250,72 @@
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const guideGrid = document.getElementById('guide-grid');
+            const paginationContainer = document.getElementById('pagination-container');
+            const guideCards = Array.from(guideGrid.getElementsByClassName('guide-showcase-card'));
+            
+            const itemsPerPage = 16;
+            let currentPage = 1;
+            const pageCount = Math.ceil(guideCards.length / itemsPerPage);
+
+            function displayPage(page) {
+                currentPage = page;
+                const startIndex = (page - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+
+                guideCards.forEach((card, index) => {
+                    if (index >= startIndex && index < endIndex) {
+                        card.classList.add('visible');
+                    } else {
+                        card.classList.remove('visible');
+                    }
+                });
+
+                updatePaginationButtons();
+            }
+
+            function setupPagination() {
+                if (pageCount <= 1) {
+                    paginationContainer.style.display = 'none';
+                    return;
+                }
+                
+                let buttonsHTML = `<button id="prev-btn" disabled>&laquo; Prev</button>`;
+                for (let i = 1; i <= pageCount; i++) {
+                    buttonsHTML += `<button class="page-btn ${i === 1 ? 'active' : ''}" data-page="${i}">${i}</button>`;
+                }
+                buttonsHTML += `<button id="next-btn">Next &raquo;</button>`;
+                paginationContainer.innerHTML = buttonsHTML;
+
+                paginationContainer.addEventListener('click', (e) => {
+                    if (e.target.matches('.page-btn')) {
+                        displayPage(parseInt(e.target.dataset.page));
+                    } else if (e.target.id === 'prev-btn' && currentPage > 1) {
+                        displayPage(currentPage - 1);
+                    } else if (e.target.id === 'next-btn' && currentPage < pageCount) {
+                        displayPage(currentPage + 1);
+                    }
+                });
+            }
+
+            function updatePaginationButtons() {
+                const prevBtn = document.getElementById('prev-btn');
+                const nextBtn = document.getElementById('next-btn');
+                const pageBtns = document.querySelectorAll('.page-btn');
+
+                if (prevBtn) prevBtn.disabled = currentPage === 1;
+                if (nextBtn) nextBtn.disabled = currentPage === pageCount;
+
+                pageBtns.forEach(btn => {
+                    btn.classList.toggle('active', parseInt(btn.dataset.page) === currentPage);
+                });
+            }
+
+            setupPagination();
+            displayPage(1);
+        });
+    </script>
 </body>
 </html>
