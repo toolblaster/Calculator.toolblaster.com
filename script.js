@@ -43,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return fetch(path)
                 .then(response => {
                     if (response.ok) {
-                        return response.text(); // Success! Return the content.
+                        // Return both the response and the successful path
+                        return response.text().then(html => ({ html, path })); 
                     } else {
                         return tryFetch(paths); // If it fails, try the next path in the list.
                     }
@@ -51,12 +52,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         return tryFetch([...potentialPaths]) // Start the process with a copy of the paths array
-            .then(html => {
+            .then(({ html, path }) => {
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = html;
                 const componentElement = tempDiv.firstElementChild;
                 if (placeholder.parentNode) {
                     placeholder.parentNode.replaceChild(componentElement, placeholder);
+                    
+                    // NEW: If the loaded component is the header, fix its links
+                    if (componentElement.classList.contains('site-header')) {
+                        adjustNavLinks(componentElement, path);
+                    }
                 }
             })
             .catch(error => {
@@ -66,6 +72,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
     };
+
+    // --- NEW FUNCTION to adjust nav links based on page depth ---
+    const adjustNavLinks = (headerElement, componentPath) => {
+        // Determine the prefix from the successful component path
+        // e.g., if componentPath is '../assets/components/header.html', the prefix is '../'
+        let prefix = '';
+        if (componentPath.startsWith('../')) {
+            prefix = componentPath.substring(0, componentPath.indexOf('assets/'));
+        }
+
+        const links = headerElement.querySelectorAll('.nav-links a, .logo');
+        links.forEach(link => {
+            const originalHref = link.getAttribute('href');
+            // Only prepend the prefix if it's a relative link within the site
+            if (originalHref && !originalHref.startsWith('http') && !originalHref.startsWith('#')) {
+                 link.setAttribute('href', prefix + originalHref);
+            }
+        });
+    };
     
     // --- IMPROVED Active Nav Link Logic ---
     const setActiveNavLink = () => {
@@ -74,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
-                // Ignore the "Start Journey" button
+                // Ignore the "Start Journey" button if it has special styling
                 if (link.classList.contains('btn-nav')) {
                     return;
                 }
@@ -82,8 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const linkPath = linkUrl.pathname.replace(/\/$/, "").replace(/\/index\.html$/, "");
 
                 // Special case for the "Home" link to avoid it being always active.
-                if (linkPath === '') { 
-                    if (currentPath === '') {
+                if (linkPath === '' || linkPath.endsWith('/index.html')) { 
+                    if (currentPath === '' || currentPath.endsWith('/index.html')) {
                         link.classList.add('active');
                     } else {
                         link.classList.remove('active');
@@ -94,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     link.classList.remove('active');
                 }
             });
-        }, 200);
+        }, 300); // Increased timeout to ensure links are adjusted first
     };
     
     // --- DYNAMIC FAVICON LOADER ---
