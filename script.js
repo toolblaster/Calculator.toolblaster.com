@@ -18,7 +18,7 @@ function showNotification(message) {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- SECTION 1: DYNAMIC COMPONENT LOADING ---
+    // --- SECTION 1: DYNAMIC COMPONENT LOADING (IMPROVED & ROBUST) ---
 
     const loadComponent = (componentPath, placeholderId) => {
         const placeholder = document.getElementById(placeholderId);
@@ -26,16 +26,31 @@ document.addEventListener('DOMContentLoaded', () => {
             return Promise.resolve();
         }
 
-        // Use absolute paths starting from the root to avoid relative path issues.
-        const absolutePath = `/${componentPath}`;
+        // This new logic tries multiple paths to find the component, making it very robust.
+        const potentialPaths = [
+            `assets/components/${componentPath}`,       // For root page (e.g., index.html)
+            `../assets/components/${componentPath}`,      // For pages one level deep (e.g., /guides/)
+            `../../assets/components/${componentPath}`,   // For pages two levels deep (e.g., /calculators/emi/)
+            `../../../assets/components/${componentPath}` // For pages three levels deep
+        ];
 
-        return fetch(absolutePath)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Failed to load ${absolutePath}: ${response.statusText}`);
-                }
-                return response.text();
-            })
+        // This function tries to fetch paths one by one until it finds one that works.
+        function tryFetch(paths) {
+            if (paths.length === 0) {
+                return Promise.reject(new Error(`Component ${componentPath} not found in any path.`));
+            }
+            const path = paths.shift(); // Get the first path from the list
+            return fetch(path)
+                .then(response => {
+                    if (response.ok) {
+                        return response.text(); // Success! Return the content.
+                    } else {
+                        return tryFetch(paths); // If it fails, try the next path in the list.
+                    }
+                });
+        }
+
+        return tryFetch([...potentialPaths]) // Start the process with a copy of the paths array
             .then(html => {
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = html;
@@ -45,33 +60,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .catch(error => {
-                console.error(`Error loading component ${absolutePath}:`, error);
-                if(placeholder) {
+                console.error(`Error loading component ${componentPath}:`, error);
+                if (placeholder) {
                     placeholder.innerHTML = `<p class="text-center text-red-500">Error: Could not load component.</p>`;
                 }
             });
     };
-
+    
+    // --- IMPROVED Active Nav Link Logic ---
     const setActiveNavLink = () => {
-        const currentPath = window.location.pathname.replace(/\/$/, ""); // Normalize path
+        // This better normalizes paths like / and /index.html to be treated the same.
+        const currentPath = window.location.pathname.replace(/\/$/, "").replace(/\/index\.html$/, "");
         setTimeout(() => {
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
+                // Ignore the "Start Journey" button
+                if (link.classList.contains('btn-nav')) {
+                    return;
+                }
                 const linkUrl = new URL(link.href, window.location.origin);
-                const linkPath = linkUrl.pathname.replace(/\/$/, ""); 
+                const linkPath = linkUrl.pathname.replace(/\/$/, "").replace(/\/index\.html$/, "");
 
-                if ((currentPath === '' || currentPath.endsWith('/index.html')) && (linkPath === '' || linkPath.endsWith('/index.html'))) {
-                    link.classList.add('active');
-                } else if (linkPath !== '' && currentPath.startsWith(linkPath)) {
+                // Special case for the "Home" link to avoid it being always active.
+                if (linkPath === '') { 
+                    if (currentPath === '') {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                } else if (currentPath.startsWith(linkPath)) {
                     link.classList.add('active');
                 } else {
                     link.classList.remove('active');
                 }
             });
-        }, 200); 
+        }, 200);
     };
     
-    // --- NEW: DYNAMIC FAVICON LOADER ---
+    // --- DYNAMIC FAVICON LOADER ---
     const setFavicon = () => {
         const faviconLink = document.createElement('link');
         faviconLink.rel = 'icon';
@@ -82,21 +108,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- SECTION 2: PAGE INITIALIZATION ---
     const initializePage = () => {
         setFavicon(); 
-        const path = window.location.pathname;
         
         const loadPromises = [
-            loadComponent('assets/components/header.html', 'header-placeholder'),
-            loadComponent('assets/components/footer.html', 'footer-placeholder')
+            loadComponent('header.html', 'header-placeholder'),
+            loadComponent('footer.html', 'footer-placeholder')
         ];
 
-        // NEW FIX: Only load general content on the homepage
-        if (path === '/' || path.endsWith('/index.html') || path === '') {
-            const contentArea = document.getElementById('dynamic-content-area');
-            if(contentArea) {
-                loadPromises.push(loadComponent('assets/components/content.html', 'dynamic-content-area'));
-            }
+        // Only load general content on the homepage
+        const contentArea = document.getElementById('dynamic-content-area');
+        if(contentArea) {
+            loadPromises.push(loadComponent('content.html', 'dynamic-content-area'));
         }
-
 
         Promise.all(loadPromises).then(() => {
             setupMobileMenu();
@@ -118,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         document.addEventListener('click', (e) => {
-            if (navLinks && navLinks.classList.contains('active') && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+            if (navLinks && navLinks.classList.contains('active') && !navLinks.contains(e.target) && (!hamburger || !hamburger.contains(e.target))) {
                 navLinks.classList.remove('active');
             }
         });
