@@ -153,7 +153,7 @@
             border-radius: 0.75rem;
             padding: 0.5rem;
             margin-bottom: 0.5rem;
-            border: 1px solid #fca5a5;
+            border: 1px solid #C22D2D;
         }
         .feature-card {
             background-color: #ffffff;
@@ -208,7 +208,7 @@
             border-radius: 0.75rem;
             padding: 0.5rem;
             margin-top: 1rem;
-            border: 1px solid #bee3f8;
+            border: 1px solid #2563eb;
         }
         .calculator-showcase-card {
             background-color: #ffffff;
@@ -248,7 +248,7 @@
             border-radius: 0.75rem;
             padding: 0.5rem;
             margin-top: 1rem;
-            border: 1px solid #bbf7d0;
+            border: 1px solid #16a34a;
         }
         .quiz-showcase-card {
             background-color: #ffffff;
@@ -288,72 +288,7 @@
             border-radius: 0.75rem;
             padding: 1rem;
             margin-top: 1rem;
-            border: 1px solid #fef08a;
-        }
-
-        /* --- Investor Pathway Section --- */
-        .investor-pathway-section {
-            background-color: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .pathway-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 0.75rem;
-        }
-        .pathway-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        .pathway-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.4rem 0.8rem;
-            border: 1px solid #d1d5db;
-            border-radius: 999px;
-            background-color: #f9fafb;
-            cursor: pointer;
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: #374151;
-            transition: all 0.2s ease;
-        }
-        .pathway-btn:hover {
-            background-color: #f3f4f6;
-            border-color: #9ca3af;
-        }
-        .pathway-btn.active {
-            background-color: #E34037;
-            color: white;
-            border-color: #C22D2D;
-            font-weight: 600;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .pathway-btn svg {
-            width: 14px;
-            height: 14px;
-        }
-        .pathway-content-section {
-            transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .pathway-content-section.highlight {
-            opacity: 1;
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(227, 64, 55, 0.15);
-            border: 2px solid #E34037;
-        }
-        .pathway-content-section.dimmed {
-            opacity: 0.6;
-            transform: scale(0.98);
+            border: 1px solid #b45309;
         }
 
         /* --- Quick Tip Section --- */
@@ -365,6 +300,7 @@
             margin: 0.5rem 0 1rem 0;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.75rem;
         }
         .quick-tip-icon {
@@ -386,17 +322,17 @@
         
         /* --- Financial Wins Section --- */
         .financial-wins-section {
-            background-color: #f5f3ff; /* Light purple */
+            background-color: #f5f3ff;
             border-radius: 0.75rem;
-            padding: 1rem;
+            padding: 0.5rem;
             margin-top: 1rem;
-            border: 1px solid #ddd6fe;
+            border: 1px solid #4f46e5;
         }
         .win-card {
             background-color: #ffffff;
             border: 1px solid #e5e7eb;
             border-radius: 0.5rem;
-            padding: 1rem;
+            padding: 0.5rem;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -408,41 +344,43 @@
             box-shadow: 0 6px 12px rgba(0,0,0,0.08);
         }
         .win-icon-wrapper {
-            width: 32px;
-            height: 32px;
-            margin: 0 auto 0.5rem;
+            width: 28px;
+            height: 28px;
+            margin: 0 auto 0.25rem;
             border-radius: 50%;
             background-color: #e0e7ff;
-            color: #6366f1;
+            color: #4f46e5;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .win-title {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: #1f2937;
             margin-bottom: 0.25rem;
         }
         .win-description {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: #4b5563;
             flex-grow: 1;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
         .win-cta {
             display: inline-block;
-            background-color: #6366f1;
-            color: white;
-            padding: 0.4rem 0.8rem;
+            background-color: #eef2ff;
+            color: #4f46e5;
+            border: 1px solid #c7d2fe;
+            padding: 0.25rem 0.6rem;
             border-radius: 999px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 600;
             text-decoration: none;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
         }
         .win-cta:hover {
             background-color: #4f46e5;
+            color: white;
         }
 
         /* --- Mobile-First Adjustments --- */
@@ -492,42 +430,19 @@
 
     <main class="container">
         <div class="legal-content">
-            <h1>Financial Guides & Assessment Quizzes</h1>
-            <p>Your complete resource for mastering personal finance. Explore our guides, use our tools, and build a secure financial future.</p>
+            <h1>Your Financial Action Hub</h1>
+            <p>Find your path to financial freedom. Get personalized guides, interactive quizzes, and powerful calculators for every stage of your journey.</p>
             
             <!-- NEW: Quick Tip Section -->
             <div class="quick-tip-section">
                 <div class="quick-tip-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
                 </div>
-                <p id="quick-tip-text" class="quick-tip-text"><strong>Quick Tip:</strong> Loading financial wisdom...</p>
+                <p id="quick-tip-text" class="quick-tip-text whitespace-nowrap"><strong>Quick Tip:</strong> Review your financial plan at least once a year. Life changes, and your plan should adapt with you.</p>
             </div>
             
-            <!-- Investor Pathway Section -->
-            <div class="investor-pathway-section">
-                <h2 class="pathway-title">What best describes your current financial journey?</h2>
-                <div class="pathway-buttons">
-                    <button data-pathway="beginner" class="pathway-btn active">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/><path d="M16 12H8"/></svg>
-                        <span>I'm Just Starting Out</span>
-                    </button>
-                    <button data-pathway="growing" class="pathway-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
-                        <span>I'm Growing My Wealth</span>
-                    </button>
-                    <button data-pathway="retirement" class="pathway-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                        <span>I'm Planning for Retirement</span>
-                    </button>
-                    <button data-pathway="income" class="pathway-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2" ry="2"/><circle cx="12" cy="12" r="2"/></svg>
-                        <span>I Need Regular Income</span>
-                    </button>
-                </div>
-            </div>
-
             <!-- Best Version: Featured Section -->
-            <div id="top-resources-section" class="featured-section-new pathway-content-section">
+            <div id="top-resources-section" class="featured-section-new">
                 <h2 class="section-title">Your Starting Point: Top Resources</h2>
                 <p class="section-subtitle">Not sure where to begin? Start your journey with our most popular tools and guides.</p>
                 <div class="grid mt-6">
@@ -562,7 +477,7 @@
             </div>
             
             <!-- Our Core Quizzes Section -->
-            <div id="quizzes-section" class="core-quizzes-section pathway-content-section">
+            <div id="quizzes-section" class="core-quizzes-section">
                 <h2 class="section-title">Test Your Knowledge</h2>
                 <p class="section-subtitle">Interactive quizzes to help you understand your financial self better.</p>
                 <div class="grid mt-6">
@@ -606,7 +521,7 @@
             </div>
 
             <!-- Our Core Calculators Section -->
-            <div id="calculators-section" class="core-calculators-section pathway-content-section">
+            <div id="calculators-section" class="core-calculators-section">
                 <h2 class="section-title">Our Core Calculators</h2>
                 <p class="section-subtitle">Powerful, free tools to help you plan, save, and invest with confidence.</p>
                 <div class="grid mt-6">
@@ -650,7 +565,7 @@
             </div>
 
             <!-- Plan Your Financial Wins Section -->
-            <div id="financial-wins-section" class="financial-wins-section pathway-content-section">
+            <div id="financial-wins-section" class="financial-wins-section">
                 <h2 class="section-title">Plan Your Financial Wins</h2>
                 <p class="section-subtitle">Turn your dreams into reality by seeing how our tools can build a plan for your biggest goals.</p>
                 <div class="grid mt-6">
@@ -666,7 +581,7 @@
                     <!-- Card 2: Education -->
                     <div class="win-card">
                         <div class="win-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20v2H6.5a2.5 2.5 0 0 1 0-5H20v2H6.5a2.5 2.5 0 0 1 0-5H20v2H6.5A2.5 2.5 0 0 1 4 9.5v-2a2.5 2.5 0 0 1 2.5-2.5H20v2H6.5A2.5 2.5 0 0 1 4 5Z"/></svg>
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                         </div>
                         <h4 class="win-title">Child's Education Fund</h4>
                         <p class="win-description">The Sharma family is planning for their daughter's college fund of ₹25 Lakhs in 15 years.</p>
@@ -675,7 +590,7 @@
                     <!-- Card 3: Vacation -->
                     <div class="win-card">
                         <div class="win-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 0 2l-.15.08a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1 0-2l.15-.08a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plane"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 5.2 5.2c.3.3.8.4 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
                         </div>
                         <h4 class="win-title">Rohan's Dream Vacation</h4>
                         <p class="win-description">Rohan wants to take a trip to Europe in 2 years. See how he can save ₹1.5 Lakhs for his adventure.</p>
@@ -685,7 +600,7 @@
             </div>
 
             <!-- Your 4-Step Financial Action Plan Section -->
-            <div id="action-plan-section" class="action-plan-section pathway-content-section">
+            <div id="action-plan-section" class="action-plan-section">
                 <div class="text-center mb-2">
                     <h2 class="section-title">Your 4-Step Financial Action Plan</h2>
                     <p class="section-subtitle">Follow this simple roadmap to take control of your financial life, one step at a time.</p>
@@ -747,68 +662,15 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Investor Pathway Logic ---
-            const pathwayButtonsContainer = document.querySelector('.pathway-buttons');
-            const contentSections = document.querySelectorAll('.pathway-content-section');
-
-            const pathwayConfig = {
-                beginner: ['top-resources-section'],
-                growing: ['calculators-section', 'action-plan-section'],
-                retirement: ['quizzes-section', 'calculators-section'],
-                income: ['quizzes-section', 'calculators-section']
-            };
-
-            const handlePathwaySelection = (pathway) => {
-                pathwayButtonsContainer.querySelectorAll('.pathway-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.pathway === pathway);
-                });
-
-                const sectionsToHighlight = pathwayConfig[pathway];
-                let firstHighlightedSection = null;
-
-                contentSections.forEach(section => {
-                    if (sectionsToHighlight.includes(section.id)) {
-                        section.classList.remove('dimmed');
-                        section.classList.add('highlight');
-                        if (!firstHighlightedSection) {
-                            firstHighlightedSection = section;
-                        }
-                    } else {
-                        section.classList.remove('highlight');
-                        section.classList.add('dimmed');
-                    }
-                });
-                
-                if(firstHighlightedSection) {
-                    firstHighlightedSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            };
-            
-            pathwayButtonsContainer.addEventListener('click', (e) => {
-                const button = e.target.closest('.pathway-btn');
-                if (button) {
-                    const selectedPathway = button.dataset.pathway;
-                    handlePathwaySelection(selectedPathway);
-                }
-            });
-
             // --- Quick Tip Logic ---
             const quickTipElement = document.getElementById('quick-tip-text');
-            const financialTips = [
-                "<strong>Quick Tip:</strong> Automating a small SIP of just ₹1000 a month is more powerful than waiting to invest a large sum later. The magic is in the consistency!",
-                "<strong>Quick Tip:</strong> Your emergency fund is for true emergencies only, not for sales. Keep it in a separate, easily accessible account.",
-                "<strong>Quick Tip:</strong> Paying off high-interest debt (like credit cards) is a guaranteed, tax-free return on your money. Prioritize it!",
-                "<strong>Quick Tip:</strong> Review your financial plan at least once a year. Life changes, and your plan should adapt with you.",
-                "<strong>Quick Tip:</strong> Never invest in something you don't understand. Take 10 minutes to read a guide before putting your money to work."
-            ];
+            
+            // Set the specific tip as requested
+            const specificTip = "<strong>Quick Tip:</strong> Review your financial plan at least once a year. Life changes, and your plan should adapt with you.";
 
             if(quickTipElement) {
-                const randomIndex = Math.floor(Math.random() * financialTips.length);
-                quickTipElement.innerHTML = financialTips[randomIndex];
+                quickTipElement.innerHTML = specificTip;
             }
-
-            // --- Initial State ---
-            handlePathwaySelection('beginner');
         });
     </script>
 
