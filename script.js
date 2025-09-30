@@ -18,51 +18,43 @@ function showNotification(message) {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- SECTION 1: DYNAMIC COMPONENT LOADING (IMPROVED & ROBUST) ---
-
+    // --- SECTION 1: DYNAMIC COMPONENT LOADING ---
     const loadComponent = (componentPath, placeholderId) => {
         const placeholder = document.getElementById(placeholderId);
         if (!placeholder) {
             return Promise.resolve();
         }
 
-        // This new logic tries multiple paths to find the component, making it very robust.
         const potentialPaths = [
-            `assets/components/${componentPath}`,       // For root page (e.g., index.html)
-            `../assets/components/${componentPath}`,      // For pages one level deep (e.g., /guides/)
-            `../../assets/components/${componentPath}`,   // For pages two levels deep (e.g., /calculators/emi/)
-            `../../../assets/components/${componentPath}` // For pages three levels deep
+            `${componentPath}`,       // For root page (e.g., index.html)
+            `../${componentPath}`,      // For pages one level deep (e.g., /guides/)
+            `../../${componentPath}`,   // For pages two levels deep (e.g., /calculators/emi/)
+            `../../../${componentPath}` // For pages three levels deep
         ];
 
-        // This function tries to fetch paths one by one until it finds one that works.
         function tryFetch(paths) {
             if (paths.length === 0) {
                 return Promise.reject(new Error(`Component ${componentPath} not found in any path.`));
             }
-            const path = paths.shift(); // Get the first path from the list
+            const path = paths.shift();
             return fetch(path)
                 .then(response => {
                     if (response.ok) {
-                        // Return both the response and the successful path
-                        return response.text().then(html => ({ html, path })); 
+                        return response.text().then(html => ({ html, path }));
                     } else {
-                        return tryFetch(paths); // If it fails, try the next path in the list.
+                        return tryFetch(paths);
                     }
                 });
         }
 
-        return tryFetch([...potentialPaths]) // Start the process with a copy of the paths array
+        return tryFetch([...potentialPaths])
             .then(({ html, path }) => {
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = html;
                 const componentElement = tempDiv.firstElementChild;
                 if (placeholder.parentNode) {
                     placeholder.parentNode.replaceChild(componentElement, placeholder);
-                    
-                    // NEW: If the loaded component is the header, fix its links
-                    if (componentElement.classList.contains('site-header')) {
-                        adjustNavLinks(componentElement, path);
-                    }
+                    // The adjustNavLinks function is no longer needed as header uses absolute paths
                 }
             })
             .catch(error => {
@@ -73,10 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
-    // --- NEW FUNCTION to adjust nav links based on page depth ---
     const adjustNavLinks = (headerElement, componentPath) => {
-        // Determine the prefix from the successful component path
-        // e.g., if componentPath is '../assets/components/header.html', the prefix is '../'
         let prefix = '';
         if (componentPath.startsWith('../')) {
             prefix = componentPath.substring(0, componentPath.indexOf('assets/'));
@@ -85,44 +74,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const links = headerElement.querySelectorAll('.nav-links a, .logo');
         links.forEach(link => {
             const originalHref = link.getAttribute('href');
-            // Only prepend the prefix if it's a relative link within the site (ignores http, #, and /)
-            if (originalHref && !originalHref.startsWith('http') && !originalHref.startsWith('#') && !originalHref.startsWith('/')) {
+            if (originalHref && originalHref.startsWith('/') && !originalHref.startsWith('//')) {
+                // This is an absolute path, so we don't need to do anything.
+                return;
+            }
+            if (originalHref && !originalHref.startsWith('http') && !originalHref.startsWith('#')) {
                  link.setAttribute('href', prefix + originalHref);
             }
         });
     };
     
-    // --- IMPROVED Active Nav Link Logic ---
     const setActiveNavLink = () => {
-        // This better normalizes paths like / and /index.html to be treated the same.
         const currentPath = window.location.pathname.replace(/\/$/, "").replace(/\/index\.html$/, "");
         setTimeout(() => {
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
-                // Ignore the "Start Journey" button if it has special styling
                 if (link.classList.contains('btn-nav')) {
                     return;
                 }
                 const linkUrl = new URL(link.href, window.location.origin);
                 const linkPath = linkUrl.pathname.replace(/\/$/, "").replace(/\/index\.html$/, "");
 
-                // Special case for the "Home" link to avoid it being always active.
-                if (linkPath === '' || linkPath.endsWith('/index.html')) { 
-                    if (currentPath === '' || currentPath.endsWith('/index.html')) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                } else if (currentPath.startsWith(linkPath)) {
+                if ((linkPath === '' || linkPath === '/') && (currentPath === '' || currentPath === '/')) {
+                    link.classList.add('active');
+                } else if (linkPath !== '' && linkPath !== '/' && currentPath.startsWith(linkPath)) {
                     link.classList.add('active');
                 } else {
                     link.classList.remove('active');
                 }
             });
-        }, 300); // Increased timeout to ensure links are adjusted first
+        }, 300);
     };
     
-    // --- DYNAMIC FAVICON LOADER ---
     const setFavicon = () => {
         const faviconLink = document.createElement('link');
         faviconLink.rel = 'icon';
@@ -130,19 +113,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.head.appendChild(faviconLink);
     };
 
-    // --- SECTION 2: PAGE INITIALIZATION ---
     const initializePage = () => {
         setFavicon(); 
         
         const loadPromises = [
-            loadComponent('header.html', 'header-placeholder'),
-            loadComponent('footer.html', 'footer-placeholder')
+            loadComponent('assets/components/header.html', 'header-placeholder'),
+            loadComponent('assets/components/footer.html', 'footer-placeholder')
         ];
 
-        // Only load general content on the homepage
-        const contentArea = document.getElementById('dynamic-content-area');
-        if(contentArea) {
-            loadPromises.push(loadComponent('content.html', 'dynamic-content-area'));
+        // Specifically check for the homepage's content area and load its content.
+        if (document.getElementById('dynamic-content-area')) {
+            loadPromises.push(loadComponent('calculators/financial-calculator/financial-calculator-seo-content.html', 'dynamic-content-area'));
         }
 
         Promise.all(loadPromises).then(() => {
@@ -152,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- SECTION 3: MOBILE NAVIGATION ---
     const setupMobileMenu = () => {
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -171,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     
-    // --- SECTION 4: SHARE BUTTONS LOGIC ---
     const initializeShareButtons = () => {
         const shareContainer = document.querySelector('.share-buttons-container');
         if (!shareContainer) return;
@@ -212,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Initialize the page
     initializePage();
 
 });
