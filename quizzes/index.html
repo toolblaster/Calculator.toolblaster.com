@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Assessment Quizzes - Calculator.toolblaster</title>
+    <title>Financial Assessment Quizzes | Test Your Financial Knowledge</title>
     <meta name="description" content="Explore our suite of financial quizzes to assess your risk profile, check your financial health, and discover your next best financial move.">
     <meta name="keywords" content="financial quiz, financial assessment, risk profile quiz, retirement calculator, money mindset, financial health check, investment quiz india">
     
@@ -62,52 +62,65 @@
         /* Further compacted styles for the quiz cards */
         .quiz-card {
             background-color: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 0.6rem; /* Further reduced padding */
+            border: 1px solid #fca5a5; /* Light red border */
+            border-radius: 0.375rem; /* Squeezed more */
+            padding: 0.5rem; /* Squeezed more */
             display: flex;
             flex-direction: column;
             text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Even softer shadow */
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
             text-decoration: none;
             color: inherit;
         }
         .quiz-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+            border-color: #E34037; /* Darker red on hover */
         }
         .quiz-card-icon {
-            width: 24px; /* Smaller icon size */
-            height: 24px; /* Smaller icon size */
-            margin: 0 auto 0.5rem; /* Reduced bottom margin */
+            width: 24px; /* Squeezed more */
+            height: 24px;
+            margin: 0 auto 0.25rem; /* Squeezed more */
             color: #E34037;
         }
-        .quiz-card-title {
-            font-size: 0.75rem; /* Smaller font size */
-            font-weight: 700;
-            color: #1f2f37;
+        .quiz-card h2 {
+            font-size: 0.75rem; /* Squeezed more */
+            font-weight: 600;
+            color: #1f2937;
             margin-bottom: 0.25rem;
         }
-        .quiz-card-description {
-            font-size: 0.6rem; /* Smaller font size */
+        .quiz-card p {
+            font-size: 0.65rem; /* Squeezed more */
             color: #4b5563;
             flex-grow: 1;
-            margin-bottom: 0.75rem; /* Further reduced margin */
+            line-height: 1.4;
+            margin-bottom: 0.5rem; /* Squeezed more */
         }
         .quiz-card-button {
             display: inline-block;
             background-color: #E34037;
             color: white;
-            padding: 0.25rem 0.6rem; /* Smaller padding */
-            border-radius: 0.5rem;
-            font-size: 0.65rem; /* Smaller font size */
-            font-weight: 600;
+            padding: 0.25rem 0.6rem; /* Squeezed more */
+            border-radius: 0.25rem;
+            font-size: 0.65rem; /* Squeezed more */
+            font-weight: 500;
             text-decoration: none;
             transition: background-color 0.2s;
+            margin-top: auto;
         }
         .quiz-card-button:hover {
             background-color: #C22D2D;
+        }
+        .legal-content .grid {
+            gap: 0.75rem; /* Squeezed more */
+        }
+        /* Also make the main heading smaller */
+        .legal-content h1 {
+            font-size: 1.1rem;
+        }
+        .legal-content > p {
+            font-size: 0.75rem;
         }
     </style>
 </head>
@@ -115,20 +128,20 @@
 
     <div id="header-placeholder"></div>
 
-    <main class="container my-6"> <!-- Reduced vertical margin for main container -->
+    <main class="container my-6"> 
         <div class="legal-content">
             <h1>Financial Assessment Quizzes</h1>
             <p>Discover insights into your financial habits, assess your risk tolerance, and get personalized action plans to guide your financial journey.</p>
     
-            <!-- The main content area with quiz cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-6 p-2">
                 <!-- Quiz Card 1: Financial Health Assessment -->
                 <a href="financial-health-assessment.html" class="quiz-card">
                     <div class="quiz-card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
                     </div>
-                    <h2 class="quiz-card-title">Financial Health Assessment</h2>
-                    <p class="quiz-card-description">Answer 15 quick questions to get your personalized financial report card and a prioritized action plan.</p>
+                    <h2>Financial Health Assessment</h2>
+                    <p>Get your personalized financial report card and a prioritized action plan.</p>
                     <span class="quiz-card-button">Take the Assessment</span>
                 </a>
     
@@ -137,8 +150,8 @@
                     <div class="quiz-card-icon">
                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     </div>
-                    <h2 class="quiz-card-title">What's Your Investor Profile?</h2>
-                    <p class="quiz-card-description">Take our quick quiz to understand your tolerance for investment risks and get personalized suggestions.</p>
+                    <h2>What's Your Investor Profile?</h2>
+                    <p>Understand your tolerance for investment risks and get personalized suggestions.</p>
                     <span class="quiz-card-button">Take the Quiz</span>
                 </a>
     
@@ -147,8 +160,8 @@
                     <div class="quiz-card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"/></svg>
                     </div>
-                    <h2 class="quiz-card-title">Secure Retirement Forecaster</h2>
-                    <p class="quiz-card-description">Assess your retirement readiness and get a personalized report on your target corpus and savings gap.</p>
+                    <h2>Secure Retirement Forecaster</h2>
+                    <p>Assess your retirement readiness and get a report on your target corpus and savings gap.</p>
                     <span class="quiz-card-button">Take the Quiz</span>
                 </a>
     
@@ -157,8 +170,8 @@
                     <div class="quiz-card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </div>
-                    <h2 class="quiz-card-title">What's Your Next Financial Move?</h2>
-                    <p class="quiz-card-description">This advanced check-up will give you a primary and secondary action plan for your finances.</p>
+                    <h2>What's Your Next Financial Move?</h2>
+                    <p>This check-up will give you a primary and secondary action plan for your finances.</p>
                     <span class="quiz-card-button">Take the Quiz</span>
                 </a>
     
@@ -167,8 +180,8 @@
                     <div class="quiz-card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM14 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM8 16c1.5 1 4 1 5 0"/></svg>
                     </div>
-                    <h2 class="quiz-card-title">Financial Habits Assessment</h2>
-                    <p class="quiz-card-description">Discover your money mindset and get actionable steps to improve your financial life.</p>
+                    <h2>Financial Habits Assessment</h2>
+                    <p>Discover your money mindset and get actionable steps to improve your financial life.</p>
                     <span class="quiz-card-button">Take the Quiz</span>
                 </a>
     
@@ -177,8 +190,8 @@
                     <div class="quiz-card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                     </div>
-                    <h2 class="quiz-card-title">Millionaire Track Quiz</h2>
-                    <p class="quiz-card-description">Answer a few questions to see if your daily habits align with building long-term, significant wealth.</p>
+                    <h2>Millionaire Track Quiz</h2>
+                    <p>See if your daily habits align with building long-term, significant wealth.</p>
                     <span class="quiz-card-button">Take the Quiz</span>
                 </a>
             </div>
