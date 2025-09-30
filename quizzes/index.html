@@ -72,6 +72,8 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
             text-decoration: none;
             color: inherit;
+            position: relative; /* For badge positioning */
+            overflow: hidden; /* To clip the badge */
         }
         .quiz-card:hover {
             transform: translateY(-2px);
@@ -122,13 +124,28 @@
         .legal-content > p {
             font-size: 0.75rem;
         }
+        .badge {
+            position: absolute;
+            width: 120px;
+            top: 12px;
+            left: -30px;
+            transform: rotate(-45deg);
+            background-color: #C22D2D;
+            color: white;
+            padding: 2px 0; /* Vertical padding only */
+            font-size: 0.5rem;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
 
     <div id="header-placeholder"></div>
 
-    <main class="container my-6"> 
+    <main class="container"> 
         <div class="legal-content">
             <h1>Financial Assessment Quizzes</h1>
             <p>Discover insights into your financial habits, assess your risk tolerance, and get personalized action plans to guide your financial journey.</p>
@@ -137,6 +154,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-6 p-2">
                 <!-- Quiz Card 1: Financial Health Assessment -->
                 <a href="financial-health-assessment.html" class="quiz-card">
+                    <div class="badge">Most Popular</div>
                     <div class="quiz-card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
                     </div>
@@ -182,7 +200,7 @@
                     </div>
                     <h2>Financial Habits Assessment</h2>
                     <p>Discover your money mindset and get actionable steps to improve your financial life.</p>
-                    <span class="quiz-card-button">Take the Quiz</span>
+                    <span class="quiz-card-button">Take the Assessment</span>
                 </a>
     
                 <!-- Quiz Card 6: Millionaire Track -->
