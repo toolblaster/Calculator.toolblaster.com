@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const links = headerElement.querySelectorAll('.nav-links a, .logo');
         links.forEach(link => {
             const originalHref = link.getAttribute('href');
-            // Only prepend the prefix if it's a relative link within the site
-            if (originalHref && !originalHref.startsWith('http') && !originalHref.startsWith('#')) {
+            // Only prepend the prefix if it's a relative link within the site (ignores http, #, and /)
+            if (originalHref && !originalHref.startsWith('http') && !originalHref.startsWith('#') && !originalHref.startsWith('/')) {
                  link.setAttribute('href', prefix + originalHref);
             }
         });
