@@ -323,11 +323,11 @@
         
         /* --- Financial Wins Section --- */
         .financial-wins-section {
-            background-color: #f5f3ff;
+            background-color: #fef2f2;
             border-radius: 0.75rem;
             padding: 0.5rem;
             margin-top: 1rem;
-            border: 1px solid #4f46e5;
+            border: 1px solid #fca5a5;
         }
         .win-card {
             background-color: #ffffff;
@@ -349,8 +349,8 @@
             height: 28px;
             margin: 0 auto 0.25rem;
             border-radius: 50%;
-            background-color: #e0e7ff;
-            color: #4f46e5;
+            background-color: #fee2e2;
+            color: #E34037;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -358,35 +358,41 @@
         .win-title {
             font-size: 0.7rem;
             font-weight: 700;
-            color: #1f2937;
+            color: #C22D2D;
             margin-bottom: 0.25rem;
         }
         .win-description {
             font-size: 0.6rem;
-            color: #4b5563;
+            color: #B91C1C;
             flex-grow: 1;
             margin-bottom: 0.5rem;
         }
         .win-cta {
             display: inline-block;
-            background-color: #eef2ff;
-            color: #4f46e5;
-            border: 1px solid #c7d2fe;
             padding: 0.25rem 0.6rem;
-            border-radius: 999px;
             font-size: 0.65rem;
             font-weight: 600;
+            text-align: center;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
             text-decoration: none;
-            transition: all 0.2s;
+            border: 2px solid #E34037;
+            background-color: #E34037;
+            color: white !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .win-cta:hover {
-            background-color: #4f46e5;
-            color: white;
+            background-color: #ffffff !important;
+            color: #C22D2D !important;
+            border-color: #C22D2D !important;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 10px rgba(0,0,0,0.1);
         }
 
         /* --- Mobile-First Adjustments --- */
         .legal-content > h1 {
-            font-size: 1.25rem; /* Base size for mobile */
+            font-size: 1.1rem; /* Smaller base size */
         }
         .legal-content > p {
             font-size: 0.8rem; /* Base size for mobile */
@@ -399,7 +405,7 @@
         
         @media (min-width: 768px) { /* Medium screens and up */
             .legal-content > h1 {
-                font-size: 1.5rem;
+                font-size: 1.3rem; /* Slightly smaller desktop size */
             }
             .legal-content > p {
                 font-size: 1rem;
@@ -559,7 +565,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                         </div>
                         <h3 class="feature-title">Advanced PPF</h3>
-                        <p class="feature-description">Plan your PPF investment, including extensions and see the power of tax-free compounding.</p>
+                        <p class="feature-description">Plan your PPF investment, including extensions, and see the power of tax-free compounding.</p>
                         <span class="feature-cta">Calculate Now &rarr;</span>
                     </a>
                 </div>
@@ -577,7 +583,7 @@
                         </div>
                         <h3 class="win-title">Anjali's First Car</h3>
                         <p class="win-description">Anjali wants to save ₹2 Lakhs in 3 years for a down payment. See the plan she built to get there.</p>
-                        <a href="index.html?mode=goal&target=200000&period=3&rate=8" class="win-cta">Build Your Car Fund &rarr;</a>
+                        <a href="index.html?mode=goal&target=200000&period=3&rate=8" class="btn-primary-small">Build Your Car Fund &rarr;</a>
                     </div>
                     <!-- Card 2: Education -->
                     <div class="win-card">
@@ -586,7 +592,7 @@
                         </div>
                         <h3 class="win-title">Child's Education Fund</h3>
                         <p class="win-description">The Sharma family is planning for their daughter's college fund of ₹25 Lakhs in 15 years.</p>
-                        <a href="index.html?mode=goal&target=2500000&period=15&rate=12" class="win-cta">Plan for Education &rarr;</a>
+                        <a href="index.html?mode=goal&target=2500000&period=15&rate=12" class="btn-primary-small">Plan for Education &rarr;</a>
                     </div>
                     <!-- Card 3: Vacation -->
                     <div class="win-card">
@@ -595,7 +601,7 @@
                         </div>
                         <h3 class="win-title">Rohan's Dream Vacation</h3>
                         <p class="win-description">Rohan wants to take a trip to Europe in 2 years. See how he can save ₹1.5 Lakhs for his adventure.</p>
-                        <a href="index.html?mode=goal&target=150000&period=2&rate=7" class="win-cta">Plan Your Trip &rarr;</a>
+                        <a href="index.html?mode=goal&target=150000&period=2&rate=7" class="btn-primary-small">Plan Your Trip &rarr;</a>
                     </div>
                 </div>
             </div>
