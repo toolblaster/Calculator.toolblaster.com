@@ -54,6 +54,13 @@ main {
     margin-right: auto;
 }
 
+/* --- Utility Classes --- */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .site-header {
     max-width: 1000px;
     margin: 0 auto 0.5rem;
