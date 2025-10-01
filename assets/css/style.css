@@ -25,12 +25,13 @@ body.dark-mode {
     --footer-text: #9ca3af;
     --link-hover-bg: #374151;
     --section-bg-alt: #1f2937;
+    background: var(--bg-color);
 }
 
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
+    background: radial-gradient(ellipse at top, #fef2f2, #f9fafb);
     color: var(--text-color);
     margin: 0;
     line-height: 1.6;
