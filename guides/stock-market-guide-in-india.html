@@ -104,26 +104,41 @@
 
     <style>
         body {
-            background-color: #ffffff; /* Set a static white background for the body */
+            background-color: #ffffff;
+            font-size: 14px;
+        }
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
         }
         .content-section-card {
             background-color: #ffffff;
             border: 1px solid #e5e7eb;
             border-radius: 0.75rem;
-            padding: 1.5rem;
+            padding: 1rem;
             margin-bottom: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+        @media (min-width: 768px) {
+            .content-section-card {
+                padding: 1.5rem;
+            }
+        }
         .asset-card {
-            background-color: #ffffff; /* Set a static white background for asset cards */
-            padding: 1.25rem;
+            background-color: #ffffff;
+            padding: 1rem;
             border-radius: 0.5rem;
             border: 1px solid #d1d5db;
         }
-        /* Remove hover effect from asset cards */
+         @media (min-width: 768px) {
+            .asset-card {
+                padding: 1.25rem;
+            }
+        }
         .asset-card:hover {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transform: none; /* Remove transform on hover */
+            transform: none;
         }
         .asset-icon {
             color: #E34037;
@@ -136,59 +151,19 @@
         }
         .asset-card p {
             font-size: 0.75rem;
-            color: #4b5563; /* Corrected color from a typo */
-        }
-         .asset-allocation-calculator {
-            background-color: #fef2f2;
-            border: 1px solid #fca5a5;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin-top: 1.5rem;
-            text-align: center;
-        }
-        .asset-allocation-calculator .input-group {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
-        }
-         .asset-allocation-calculator label {
-            font-size: 0.8rem;
-            font-weight: 500;
             color: #4b5563;
-            white-space: nowrap;
-         }
-         .asset-allocation-calculator input {
-            width: 80px;
-            padding: 0.25rem;
-            border: 1px solid #d1d5db;
-            border-radius: 0.375rem;
-            font-size: 0.8rem;
-            text-align: center;
-         }
-         .asset-allocation-calculator .result {
-            font-size: 0.8rem;
-            color: #4b5563;
-            font-weight: 600;
-         }
-         .asset-allocation-calculator .result-value {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: #C22D2D;
-            display: block;
-         }
+        }
         .recommendation-box {
             background-color: #fef2f2;
             border: 1px solid #fca5a5;
             border-radius: 0.5rem;
             padding: 1.5rem;
         }
-        .recommendation-title {
+        .recommendation-title, p.recommendation-title {
             font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            color: var(--accent-color);
+            color: #C22D2D;
         }
         .recommendation-description {
             font-size: 0.8rem;
@@ -196,16 +171,15 @@
             margin-bottom: 1rem;
         }
         .list-icon {
-            color: #E34037; /* Consistent icon color */
+            color: #E34037;
             width: 16px;
             height: 16px;
             flex-shrink: 0;
             margin-right: 0.5rem;
         }
-        /* --- NEW STYLES --- */
         .prominent-section {
             background-color: #fef2f2;
-            border-left: 4px solid var(--accent-color);
+            border-left: 4px solid #C22D2D;
             padding: 1.5rem;
         }
         .prominent-section h2 {
@@ -231,7 +205,7 @@
         }
         .market-list li::before {
             content: counter(market-counter);
-            background-color: var(--accent-color);
+            background-color: #E34037;
             color: white;
             width: 20px;
             height: 20px;
@@ -245,19 +219,18 @@
             flex-shrink: 0;
             margin-top: 2px;
         }
-        /* --- NEW: Timeline for "How to Start" section --- */
         .timeline-container {
             position: relative;
-            padding-left: 2rem; /* Space for the line and circles */
+            padding-left: 2rem;
         }
         .timeline-container::before {
             content: '';
             position: absolute;
-            left: 14px; /* Center the line */
+            left: 14px;
             top: 10px;
             bottom: 10px;
             width: 2px;
-            background-color: #fca5a5; /* Light red line */
+            background-color: #fca5a5;
         }
         .timeline-step {
             position: relative;
@@ -274,7 +247,7 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            background-color: var(--accent-color);
+            background-color: #E34037;
             color: white;
             display: flex;
             align-items: center;
@@ -286,12 +259,12 @@
         .timeline-step h3 {
             font-size: 0.9rem;
             font-weight: 700;
-            color: var(--text-color);
+            color: #1f2d37;
             margin-bottom: 0.25rem;
         }
         .timeline-step p, .timeline-step ul {
             font-size: 0.75rem;
-            color: var(--text-color-muted);
+            color: #4b5563;
         }
     </style>
 </head>
@@ -303,345 +276,266 @@
     <!-- Main Content -->
     <main class="container">
         <div class="legal-content">
-            <h1>The Beginner's Guide to Stock Market Investing & Diversification</h1>
-            <p style="text-align: center;">The stock market might seem like a game for experts, but it's one of the most powerful engines for building wealth. This guide will demystify the stock market for you, from the basics of what a stock is to how you can build a resilient portfolio. Think of this not as a guide to 'getting rich quick,' but as your first step towards becoming a confident, long-term investor.</p>
+            <h1>Your Friendly Guide to the Stock Market</h1>
+            <p style="text-align: center;">Let's be honest, the "stock market" can sound like a complicated, scary place reserved for experts in fancy suits. But what if I told you it's one of the most powerful tools you have to build real wealth for your future? This guide is your friendly co-pilot, here to translate the jargon and turn your investing-anxiety into a confident action plan. This isn't about 'getting rich quick'; it's about getting smart with your money for the long haul.</p>
 
             <!-- Section 1: The Basics of the Stock Market -->
             <div class="content-section-card">
-                <h2>What is the Stock Market? 📈</h2>
-                <p>At its core, the stock market is simply a place where people buy and sell ownership in publicly-traded companies. Here's what you need to know:</p>
+                <h2>So, What's this 'Stock Market' Everyone Talks About? 📈</h2>
+                <p>Imagine your favorite company, maybe the one that makes your phone or your go-to snacks. The stock market is simply a giant, organized marketplace where you can buy a tiny slice of that company. Here’s the simple version:</p>
                 <ul class="list-disc list-inside space-y-2">
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                        <span><strong>Shares/Stocks:</strong> When a company needs to raise money, it sells small pieces of its ownership, called shares. Owning these shares makes you a part-owner of the company.</span>
+                        <span><strong>A Slice of the Pie (Shares):</strong> To grow, big companies sell tiny ownership pieces called 'shares' or 'stocks'. When you buy a share, you're not just a customer anymore. You're a part-owner!</span>
                     </li>
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        <span><strong>The Marketplace:</strong> The two main digital marketplaces for this trading in India are the National Stock Exchange (NSE) and the Bombay Stock Exchange (BSE).</span>
+                        <span><strong>The Grand Marketplace:</strong> In India, the main digital marketplaces where this buying and selling happens are the National Stock Exchange (NSE) and the Bombay Stock Exchange (BSE).</span>
                     </li>
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><line x1="22" x2="2" y1="12" y2="12"></line><path d="M15 18l-6-6 6-6"></path></svg>
-                        <span><strong>Price Fluctuation:</strong> The price of a stock changes constantly based on supply and demand. If more people want to buy, the price goes up. If more people want to sell, the price goes down.</span>
+                        <span><strong>The Price Dance:</strong> The price of a share wiggles up and down all day. Why? Simple supply and demand. If a company does well and lots of people want to buy its shares, the price goes up. If the opposite happens, it goes down.</span>
                     </li>
                 </ul>
-                <p>For beginners, investing in the market is less about predicting these daily price swings and more about owning a piece of a profitable company for its long-term growth.</p>
+                <p>For us regular folks, the game isn't about guessing the daily wiggles. It's about owning a piece of a great company and growing with it over many years.</p>
             </div>
 
             <!-- New Section: How Does the Stock Market Work? -->
             <div class="content-section-card bg-gray-50">
-                <h2>How Does the Stock Market Work? ⚙️</h2>
-                <p>Imagine a bustling marketplace where thousands of buyers and sellers meet to trade. This is essentially the stock market, but on a massive digital scale. Here's a simplified breakdown of the process:</p>
+                <h2>How It All Connects: A Simple Story ⚙️</h2>
+                <p>Let's trace the journey of your money from your bank account to the market. It's like ordering something online:</p>
                 <ul class="list-disc list-inside space-y-2">
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M17 2h-1a4 4 0 0 0-4 4v0a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-1z"/></svg>
-                        <span><strong>The Company:</strong> A company decides to go public (via an IPO - Initial Public Offering) to raise money. They sell a portion of their ownership to the public as shares.</span>
+                        <span><strong>You, the Investor:</strong> You decide you want to buy a few shares of a cool company. You can't just call them up; you need a special account.</span>
                     </li>
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        <span><strong>The Investor:</strong> You, as an investor, want to buy these shares. You can do this through a brokerage firm (like Upstox or Zerodha), which acts as a middleman.</span>
+                        <span><strong>Your Shopping Cart (Broker):</strong> You open an account with a brokerage firm (like Upstox or 5paisa). They are your secure, official gateway to the market.</span>
                     </li>
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                        <span><strong>The Stock Exchange:</strong> The buy and sell orders are sent to a stock exchange (like the NSE or BSE). The exchange's job is to match buyers and sellers. It's an automated process that happens in milliseconds.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        <span><strong>Supply and Demand:</strong> The price of a stock is determined by supply and demand. If more people want to buy a company's stock (high demand), the price goes up. If more people want to sell (high supply), the price goes down.</span>
+                        <span><strong>The Grand Exchange:</strong> Your broker sends your "buy" order to the stock exchange (NSE or BSE). The exchange is like a super-fast matchmaker, finding a seller for your order in a blink of an eye.</span>
                     </li>
                 </ul>
                 <div class="alert alert-info">
-                    <h3>Regulatory Oversight</h3>
-                    <p>This entire process is highly regulated by bodies like SEBI (Securities and Exchange Board of India) in India to ensure fairness and transparency for all investors.</p>
+                    <h3>Is it Safe?</h3>
+                    <p>Yes! This whole process is watched over by a government referee called SEBI (Securities and Exchange Board of India) to make sure everything is fair and transparent.</p>
                 </div>
             </div>
 
             <!-- New Section: Understanding the Stock Market Basics - Important Terms -->
             <div class="content-section-card">
-                <h2>Understanding the Stock Market Basics - Important Terms 📚</h2>
-                <p>Before you dive into investing, it's helpful to understand a few key terms you'll encounter frequently:</p>
+                <h2>Decoding the Jargon: Your Quick Dictionary 📚</h2>
+                <p>Let's quickly translate some common terms you'll hear:</p>
                 <ul class="list-disc list-inside space-y-2">
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="12" x2="16" y2="16"></line></svg>
-                        <span><strong>Share/Stock:</strong> A single unit of ownership in a company. Owning a share makes you a part-owner, or shareholder.</span>
-                    </li>
-                    <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                        <span><strong>IPO (Initial Public Offering):</strong> The first time a private company sells its shares to the public on a stock exchange. This is how a company "goes public."</span>
-                    </li>
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="10" y1="15" x2="14" y2="15"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
-                        <span><strong>Brokerage Firm:</strong> A company that facilitates the buying and selling of stocks on behalf of investors. You need an account with a broker to trade.</span>
+                        <span><strong>IPO (Initial Public Offering):</strong> This is a company's big debut party! It's the first time they sell their shares to everyone.</span>
                     </li>
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M3 3v18h18"/><path d="m18 17l-6-6-4 4-3-3"/></svg>
-                        <span><strong>Stock Index (e.g., Nifty 50, Sensex):</strong> A group of stocks that represents a particular market or a part of the economy. The index value reflects the overall performance of these stocks. You can learn more in our <a href="https://calculator.toolblaster.com/guides/beginner-investing-guide.html">Beginner's Guide to Investing</a>.</span>
+                        <span><strong>Stock Index (Nifty 50/Sensex):</strong> This is like a health report card for the market. It tracks the performance of the biggest companies to give you a quick snapshot of how things are going. Find out more in our <a href="https://calculator.toolblaster.com/guides/beginner-investing-guide.html">Beginner's Guide to Investing</a>.</span>
                     </li>
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        <span><strong>Volatility:</strong> Refers to how much and how quickly a stock's price changes. High volatility means the price can swing significantly in a short period.</span>
-                    </li>
-                    <li class="flex items-start">
+                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                        <span><strong>Bull Market:</strong> A market condition in which prices are rising or are expected to rise.</span>
+                        <span><strong>Bull Market:</strong> A happy, optimistic market where prices are generally going up. 🐂</span>
                     </li>
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M18 13V9a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2z"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3"/><path d="M12 19v3"/><path d="M4.22 8.44l1.42-1.42"/><path d="M18.36 18.36l1.42 1.42"/><path d="M1.5 12h3"/><path d="M19.5 12h3"/><path d="M4.22 15.56l1.42 1.42"/><path d="M18.36 5.64l1.42-1.42"/></svg>
-                        <span><strong>Bear Market:</strong> A market condition in which prices are falling or are expected to fall.</span>
+                        <span><strong>Bear Market:</strong> A grumpy, pessimistic market where prices are generally falling. 🐻</span>
                     </li>
                 </ul>
             </div>
             
             <!-- New Section: What is the difference between stocks and shares? -->
             <div class="content-section-card bg-gray-50">
-                <h2>What is the difference between stocks and shares? 🔍</h2>
-                <p>While the terms 'stocks' and 'shares' are often used interchangeably, there is a subtle but important difference, especially in the context of a diversified portfolio.</p>
+                <h2>Are 'Stocks' and 'Shares' the Same Thing? 🔍</h2>
+                <p>You'll hear these words used interchangeably, and that's usually fine! But there's a tiny difference. Think of it like this:</p>
                 <ul class="list-disc list-inside space-y-2">
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M17 2h-1a4 4 0 0 0-4 4v0a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-1z"/></svg>
-                        <span><strong>Stocks:</strong> is a general term used to describe the ownership of one or more companies. For example, you might say, "I have stocks in my investment portfolio." It refers to a collection of different ownership units.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="12" x2="16" y2="16"></line></svg>
-                        <span><strong>Shares:</strong> is a specific term referring to a single unit of ownership in a particular company. For example, you would say, "I own 100 shares of Reliance Industries." Shares are the individual components that make up a stock portfolio.</span>
-                    </li>
+                    <li><span>You own a portfolio of <strong>stocks</strong> (a general term for your collection).</span></li>
+                    <li><span>That portfolio is made up of 10 <strong>shares</strong> of Company A and 50 <strong>shares</strong> of Company B (the specific units).</span></li>
                 </ul>
-                <p>Think of it this way: You own a 'stock' portfolio, which is made up of different 'shares' of companies like Reliance, TCS, and Infosys.</p>
             </div>
             
             <!-- New Section: What is a Dividend in the Stock Market? -->
             <div class="content-section-card">
-                <h2>What is a Dividend in the Stock Market? 💰</h2>
-                <p>A dividend is a distribution of a portion of a company's earnings, decided by its board of directors, to a class of its shareholders. It's essentially a reward for owning a part of the company.</p>
-                <ul class="list-disc list-inside space-y-2">
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        <span><strong>How they are paid:</strong> Dividends are most commonly paid out in cash, but they can also be paid as additional shares of stock (known as a bonus share).</span>
-                    </li>
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                        <span><strong>Frequency:</strong> Companies usually pay dividends on a regular schedule, such as quarterly or annually.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        <span><strong>Not all companies pay them:</strong> Newer, high-growth companies often reinvest their profits back into the business to fuel expansion, while older, more established companies are more likely to pay regular dividends.</span>
-                    </li>
-                </ul>
+                <h2>What's a Dividend? (Hint: It's Like a Bonus!) 💰</h2>
+                <p>When a profitable company has extra cash, it might decide to share some of those profits with its owners (that's you, the shareholder!). This bonus payment is called a <strong>dividend</strong>. It's a company's way of saying "thanks for being a part-owner!" Not all companies pay them, as some prefer to reinvest all their profits to grow bigger, faster.</p>
             </div>
-
-            <!-- New Section: What is a Stock Index in the Stock Market? -->
+            
+            <!-- What is a Stock Index in the Stock Market? -->
             <div class="content-section-card bg-gray-50">
-                <h2>What is a Stock Index in the Stock Market? 📊</h2>
-                <p>A stock index, also known as an index, is a tool used to measure the performance of a specific group of stocks. It's essentially a basket of stocks that represents a particular market, sector, or a part of the economy.</p>
+                <h2>What's a Stock Index, Anyway? 📊</h2>
+                <p>You'll often hear news anchors say "the market is up today!" What they're usually talking about is a <strong>Stock Index</strong>. Think of it as a report card for a group of top companies. It gives you a quick snapshot of the market's overall mood.</p>
                 <ul class="list-disc list-inside space-y-2">
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M2 13.5V10h12v3.5L7 20z"/></svg>
-                        <span><strong>Purpose:</strong> The primary purpose of an index is to provide a snapshot of the market's overall health and performance. Instead of tracking every single stock, you can look at the index to get a sense of how the market is doing.</span>
-                    </li>
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-                        <span><strong>Key Examples:</strong> In India, the two most well-known indices are the Nifty 50 and the Sensex. The Nifty 50 tracks the performance of the 50 largest companies on the National Stock Exchange (NSE), while the Sensex tracks the 30 largest companies on the Bombay Stock Exchange (BSE).</span>
+                        <span><strong>India's Famous Two:</strong> The two big report cards in India are the <strong>Nifty 50</strong> (tracking the 50 largest companies on the NSE) and the <strong>Sensex</strong> (tracking the 30 largest on the BSE).</span>
                     </li>
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        <span><strong>Investment:</strong> You cannot invest directly in an index. Instead, you can invest in an Index Fund or an ETF (Exchange-Traded Fund), which are mutual funds that hold the same stocks as the index in the same proportions.</span>
+                        <span><strong>How to Invest in Them:</strong> You can't buy the index directly, but you can buy an <strong>Index Fund</strong>. It's a type of mutual fund that simply copies the index, making it a super simple and popular way to invest in the whole market at once.</span>
                     </li>
                 </ul>
-                <p>When you hear on the news that "the market is up," it usually means that a major index like the Sensex or Nifty 50 has increased in value.</p>
             </div>
 
-             <!-- New Section: What is the difference between a Bull and Bear Market? -->
+            <!-- Bull vs Bear Market -->
             <div class="content-section-card">
-                <h2>What is the difference between a Bull and Bear Market? 🐂🐻</h2>
-                <p>Bull and bear markets describe the overall sentiment and direction of the stock market. These terms are derived from how each animal attacks their opponents: a bull thrusts its horns up, while a bear swipes its paws down.</p>
+                <h2>Understanding Market Moods: The Bull vs. The Bear 🐂🐻</h2>
+                <p>You'll hear people talk about "bull" and "bear" markets. It's a simple way to describe the market's overall mood, inspired by how these animals attack: a bull thrusts its horns <strong>up</strong>, while a bear swipes its paws <strong>down</strong>.</p>
+                
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div class="asset-card bg-white">
                         <div class="flex items-center gap-2 mb-2">
                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon"><path d="M3 12h18"/><path d="m14 7 7 5-7 5"/></svg>
                             <h3>Bull Market 🐂</h3>
                         </div>
-                        <ol class="market-list">
-                            <li>A bull market is when stock prices are generally rising, and investor confidence is high.</li>
-                            <li>Investors believe that the upward trend will continue for a long time.</li>
-                            <li>The economy is typically strong, with low unemployment and a growing GDP.</li>
-                            <li>It's a time of optimism, where investors are more likely to buy.</li>
-                        </ol>
+                        <p>This is a happy, optimistic market. Prices are generally rising, the economy is strong, and investors are confident. It's a time of growth and opportunity.</p>
                     </div>
                     <div class="asset-card bg-white">
                         <div class="flex items-center gap-2 mb-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon"><path d="M21 12H3"/><path d="m10 5-7 7 7 7"/></svg>
                             <h3>Bear Market 🐻</h3>
                         </div>
-                        <ol class="market-list">
-                            <li>A bear market is the opposite, characterized by falling stock prices and widespread investor pessimism.</li>
-                            <li>Investors expect the downward trend to continue and may sell off their holdings.</li>
-                            <li>The economy is often weak, with a potential recession and rising unemployment.</li>
-                            <li>It's a time of caution, where investors are more likely to sell or stay out of the market.</li>
-                        </ol>
+                        <p>This is a pessimistic, grumpy market. Prices are falling, the economy might be struggling, and investors are cautious. It can be scary, but for long-term investors, it's also a time when great companies go on sale.</p>
                     </div>
                 </div>
             </div>
 
+
             <!-- Section 2: Direct vs. Indirect Investing -->
             <div class="content-section-card bg-gray-50">
-                <h2>Your First Choice: Direct or Indirect? 🤔</h2>
-                <p>The first decision you have to make is how you want to invest in the stock market. Both methods get you exposure to stocks, but they require different levels of time and expertise.</p>
+                <h2>Your First Big Decision: DIY or Get a Guide? 🤔</h2>
+                <p>Okay, you're ready to invest. Now you have a choice. Do you want to be the pilot, or would you rather relax in business class and let a professional fly the plane? </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div class="asset-card bg-white">
                         <div class="flex items-center gap-2 mb-2">
                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                            <h3>Direct Investing</h3>
+                            <h3>The DIY Path (Direct Investing)</h3>
                         </div>
-                        <p>This is when you directly buy and sell individual stocks of companies like Reliance or TCS through a brokerage account. It requires a lot of research, time, and a good understanding of a company's financials.</p>
-                        <p>Best for: Experienced investors who are passionate about researching companies and have a higher risk tolerance.</p>
+                        <p>This is where you pick and choose individual company stocks yourself. It can be rewarding, but it's like being a chef. You need to research your ingredients (companies) and know how to combine them.</p>
+                        <p><strong>Best for:</strong> People who genuinely enjoy research and are willing to dedicate time to it.</p>
                     </div>
                     <div class="asset-card bg-white">
                         <div class="flex items-center gap-2 mb-2">
                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-                            <h3>Indirect Investing (Mutual Funds)</h3>
+                            <h3>The Guided Tour (Indirect Investing)</h3>
                         </div>
-                        <p>This is the most popular way for beginners to invest. You pool your money with other investors, and a professional fund manager invests it for you in a diversified portfolio of stocks and bonds. We cover this in our <a href="https://calculator.toolblaster.com/guides/beginner-investing-guide.html">Beginner's Guide</a>.</p>
-                        <p>Best for: Beginners, busy professionals, and anyone who wants to invest in a diversified portfolio without becoming a full-time researcher.</p>
+                        <p>This is the most popular route for beginners. You invest in something called a <strong>Mutual Fund</strong>, which is like a basket containing many different stocks, all managed by a professional. We cover this in our <a href="https://calculator.toolblaster.com/guides/beginner-investing-guide.html">Beginner's Guide</a>.</p>
+                        <p><strong>Best for:</strong> Almost everyone! Especially beginners and busy people who want expert management.</p>
                     </div>
                 </div>
                 <div class="alert alert-success">
-                    <h3>Beginner's Recommendation</h3>
-                    <p>For most beginners, starting with a <a href="sip-vs-lumpsum.html">Systematic Investment Plan (SIP)</a> in a good mutual fund is the simplest and most effective way to start. It automates the process and reduces risk. <a href="../index.html?mode=sip">Plan your SIP here</a>.</p>
+                    <h3>Our Friendly Advice?</h3>
+                    <p>Start with the guided tour. A <a href="sip-vs-lumpsum.html">Systematic Investment Plan (SIP)</a> in a good mutual fund is the simplest, most effective way to begin. It's like putting your investing on autopilot. <a href="../?mode=sip">You can plan your SIP here</a>.</p>
                 </div>
             </div>
 
             <!-- UPDATED Section: How to Start Investing in Stocks -->
             <div class="content-section-card">
-                <h2>How to Start Investing in Stocks 🚀</h2>
-                <p>If you've decided to take the plunge and start direct investing, here's a straightforward, step-by-step guide to get you started. This process is simpler than you might think!</p>
+                <h2>Your 4-Step Launch Sequence to Start Investing 🚀</h2>
+                <p>Decided to be the pilot and invest directly? Awesome! Here's your simple, four-step checklist to get off the ground.</p>
                 <div class="timeline-container mt-6">
                     <div class="timeline-step" data-step="1">
-                        <h3>Open a Demat and Trading Account</h3>
-                        <p>To trade in the stock market, you need two types of accounts, which are usually opened together with a single broker:</p>
+                        <h3>Get Your Keys: Open a Demat & Trading Account</h3>
+                        <p>You need a special key to enter the market. This comes in the form of two accounts, usually opened together:</p>
                         <ul class="list-disc list-inside space-y-1 mt-2">
-                            <li><strong>Demat Account:</strong> This is where your shares are held electronically. Think of it as a bank account for your stocks.</li>
-                            <li><strong>Trading Account:</strong> This is the account you use to place 'buy' and 'sell' orders in the market.</li>
+                            <li><strong>Demat Account:</strong> A secure digital locker where your shares are stored.</li>
+                            <li><strong>Trading Account:</strong> The account you use to actually place 'buy' and 'sell' orders.</li>
                         </ul>
                     </div>
                     <div class="timeline-step" data-step="2">
-                        <h3>Choose a Brokerage Firm</h3>
-                        <p>Your brokerage firm is your gateway to the stock market. Choose a broker that fits your needs. Key factors to consider include brokerage charges, user interface, and customer support. For a detailed comparison of popular brokers, see our <a href="5paisa-vs-upstox.html">5paisa vs. Upstox guide</a>.</p>
+                        <h3>Choose Your Co-Pilot: Pick a Broker</h3>
+                        <p>A broker is the company that gives you these accounts and access to the market. Look for one with low fees and an easy-to-use app. For a detailed comparison, check out our <a href="5paisa-vs-upstox.html">5paisa vs. Upstox guide</a>.</p>
                         <div class="recommendation-box text-center mt-6">
-                            <h3 class="recommendation-title">Ready to open a Demat Account?</h3>
-                            <p class="recommendation-description">Get started with a trusted brokerage partner and begin your investing journey today.</p>
+                            <p class="recommendation-title"><strong>Ready to Open an Account?</strong></p>
+                            <p class="recommendation-description">We've partnered with Upstox, a trusted and beginner-friendly platform, to get you started.</p>
                             <a href="https://upstox.onelink.me/0H1s/2JAL6D" class="btn-primary" target="_blank" rel="noopener noreferrer">Open an Upstox Account &rarr;</a>
                         </div>
                     </div>
                     <div class="timeline-step" data-step="3">
-                        <h3>Fund Your Trading Account</h3>
-                        <p>Once your accounts are set up, you'll need to transfer money from your bank account to your trading account. This money is what you will use to purchase shares.</p>
+                        <h3>Fuel Up: Fund Your Account</h3>
+                        <p>Simply transfer money from your bank account to your new trading account. This is the fuel for your investment rocket!</p>
                     </div>
                     <div class="timeline-step" data-step="4">
-                        <h3>Place Your First Order</h3>
-                        <p>After funding your account, you can search for a company you want to invest in. Before you buy, set a budget for your first investment. Start with a small, manageable amount and consider investing in well-established, stable companies that you understand.</p>
+                        <h3>Liftoff: Place Your First Order</h3>
+                        <p>Search for a well-known company you understand, decide on a small amount you're comfortable with, and hit 'buy'. Congratulations, you're officially an investor!</p>
                     </div>
                 </div>
             </div>
 
             <!-- Section 3: The Power of Diversification -->
             <div class="content-section-card prominent-section">
-                <h2>The Golden Rule: Don't Put All Your Eggs in One Basket 🧺</h2>
-                <p>This simple saying is the most important principle in investing. Diversification means spreading your investments across different assets to reduce risk. The idea is that if one part of your portfolio is performing poorly, another part might be doing well, balancing out the overall return. A truly diversified portfolio often includes a mix of stocks, fixed-income assets, gold, and real estate. Learn more in our guide to <a href="goal-based-investing.html">Goal-Based Investing</a>.</p>
-                <p>This is why most experts recommend that as a beginner, you should start with diversified products like Mutual Funds and only later, if you choose to, move to individual stocks.</p>
+                <h2>The Most Important Rule: Don't Put All Your Eggs in One Basket 🧺</h2>
+                <p>This isn't just a catchy phrase; it's the golden rule of investing. <strong>Diversification</strong> simply means spreading your money across different investments. Why? Because if one investment has a bad day, the others can help balance it out. A well-diversified portfolio is like a well-built ship. It's designed to handle any storm. This is why starting with a Mutual Fund (which is already diversified) is such a smart move for beginners. Learn more in our guide to <a href="goal-based-investing.html">Goal-Based Investing</a>.</p>
             </div>
 
             <!-- Section 4: Beyond Stocks - Gold and Real Estate -->
             <div class="content-section-card">
-                 <h2>Diversifying Your Portfolio with Gold & Real Estate ✨</h2>
-                 <p>While stocks are the engine of wealth creation, assets like gold and real estate are the stabilizers. They don't always move in sync with the stock market, which makes them perfect for a diversified portfolio. Here’s how you can invest in these assets in a modern context:</p>
+                 <h2>Building a Stronger Ship: Adding Gold & Real Estate ✨</h2>
+                 <p>While stocks are your engine for growth, assets like gold and real estate are your stabilizers. They often zig when the stock market zags, making your portfolio more resilient.</p>
                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-center">
                     <div class="asset-card bg-white">
                         <div class="flex items-center gap-2 mb-2 justify-center">
                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon"><path d="M10.83 1.83C11.5 1.17 12.5 1.17 13.17 1.83L17.5 6.17C18.17 6.83 18.17 7.83 17.5 8.5L8.5 17.5C7.83 18.17 6.83 18.17 6.17 17.5L1.83 13.17C1.17 12.5 1.17 11.5 1.83 10.83L10.83 1.83Z"/><line x1="16" y1="8" x2="24" y2="0"/><line x1="0" y1="24" x2="8" y2="16"/></svg>
-                            <h3>Investing in Gold</h3>
+                            <h3>Gold: The Protector</h3>
                         </div>
-                        <p>Gold is a classic inflation hedge. You can buy physical gold, but modern options like Gold ETFs and Sovereign Gold Bonds (SGBs) are more convenient and tax-efficient. They allow you to invest in gold without the hassle of storage and purity checks.</p>
+                        <p>Gold often holds its value when stocks fall, making it a great safety net. You don't need to buy jewelry; modern options like Gold ETFs or Sovereign Gold Bonds (SGBs) are easy and efficient ways to invest.</p>
                     </div>
                     <div class="asset-card bg-white">
                         <div class="flex items-center gap-2 mb-2 justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon"><path d="m21 12-9-7-9 7v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"/><path d="M9 22V12h6v10"/></svg>
-                            <h3>Investing in Real Estate</h3>
+                            <h3>Real Estate: The Rent-Earner</h3>
                         </div>
-                        <p>Traditionally, real estate meant buying a physical property. Today, you can get exposure by investing in Real Estate Investment Trusts (REITs), which are a collection of income-generating properties. This is a great way to earn a steady income and diversify without the huge capital requirement of buying a property outright.</p>
+                        <p>Instead of buying a whole property, you can invest in Real Estate Investment Trusts (REITs). Think of them as mutual funds for property. They collect rent from big commercial buildings and pay it out to you as income.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Section 5: The Advanced Concepts -->
             <div class="content-section-card prominent-section">
-                 <h2>Diving Deeper: Fundamental vs. Technical Analysis 📊</h2>
-                 <p>Once you're comfortable with the basics, you can explore two main schools of thought for analyzing stocks. The best investors often use a combination of both to make informed decisions.</p>
-                 <p><strong>Fundamental Analysis</strong> focuses on a company's financial health. You would look at its revenues, profits, debt, and market position to determine its intrinsic value. The goal is to find companies that are undervalued by the market and hold them for the long term.</p>
-                 <p><strong>Technical Analysis</strong> is about studying a stock's price movements and trading volumes. By looking at charts and patterns, technical analysts try to predict future price movements. This approach is more suited for short-term traders and requires a different skill set.</p>
+                 <h2>Leveling Up Your Skills: Two Ways to Analyze Stocks 📊</h2>
+                 <p>As you get more comfortable, you'll hear about two main ways to pick stocks. The best investors often use a bit of both.</p>
+                 <p><strong>Fundamental Analysis (The Detective):</strong> This is about playing detective and investigating a company's health. You'd look at its sales, profits, and debt to decide if it's a strong company that's currently on sale.</p>
+                 <p><strong>Technical Analysis (The Weather Forecaster):</strong> This is like forecasting the weather by looking at cloud patterns. Analysts study stock price charts to predict which way the price might move next. It's more for short-term traders.</p>
             </div>
             
             <!-- Section 6: Mini-Calculator: Asset Allocation -->
             <div class="content-section-card">
-                <h2>Quick Asset Allocation Calculator</h2>
-                <p class="text-center text-sm mb-4">Use the "100 minus your age" rule to find a starting point for your equity allocation. For a more detailed analysis, <a href="../quizzes/risk-profile-quiz.html">take our investor profile quiz</a>.</p>
-                <div class="asset-allocation-calculator">
-                    <div class="input-group">
-                        <label for="age-input">Your Age:</label>
-                        <input type="number" id="age-input" value="30" min="18" max="80">
-                    </div>
-                    <div class="result">
-                        Your recommended Equity allocation is:
-                        <span id="equity-allocation" class="result-value">70%</span>
-                        <div class="mt-2 text-xs font-normal text-gray-500">The rest can be in safer assets like gold, real estate, and debt.</div>
-                    </div>
-                </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', () => {
-                        const ageInput = document.getElementById('age-input');
-                        const allocationSpan = document.getElementById('equity-allocation');
-                        const calculateAllocation = () => {
-                            let age = parseInt(ageInput.value, 10);
-                            if (isNaN(age) || age < 18 || age > 80) {
-                                age = 30;
-                                ageInput.value = 30;
-                            }
-                            const allocation = Math.max(0, 100 - age);
-                            allocationSpan.textContent = `${allocation}%`;
-                        };
-                        ageInput.addEventListener('input', calculateAllocation);
-                        calculateAllocation();
-                    });
-                </script>
+                <h2>A Simple Rule for Your Portfolio Mix</h2>
+                <p class="text-center text-sm mb-4">A simple starting point for deciding your investment mix is the "100 minus your age" rule. It suggests the percentage of your portfolio that could be in higher-growth assets like stocks. For example, if you are 30 years old, the rule suggests a 70% allocation to equities. For a more personalized plan, <a href="../quizzes/risk-profile-quiz.html">take our investor profile quiz</a>.</p>
             </div>
 
             <!-- Section 7: Final Overview & CTA -->
             <div class="content-section-card bg-gray-50">
-                <h2>Final Overview: Your Action Plan</h2>
-                <p class="text-center text-sm mb-4">Remember, investing is a marathon, not a sprint. Your goal should be to build a diversified portfolio that gives you peace of mind and grows your wealth consistently over the long term. Start with what you know, stay disciplined, and keep learning. For more guides, visit our main <a href="../investingguides.html">guides page</a>.</p>
+                <h2>You're Ready for Your First Step!</h2>
+                <p class="text-center text-sm mb-4">Whew, that was a lot! But remember, investing is a journey, not a destination. You don't need to be an expert overnight. Your goal is to learn a little, start small, and stay consistent. You've got this!</p>
                 <div class="recommendation-box text-center">
-                    <h3 class="recommendation-title">Ready to Plan Your Next Move?</h3>
-                    <p class="recommendation-description">Use our all-in-one calculator to start planning your investments today.</p>
-                    <a href="../index.html" class="btn-primary">Go to Financial Calculator &rarr;</a>
+                    <p class="recommendation-title"><strong>Ready to Turn Knowledge into Action?</strong></p>
+                    <p class="recommendation-description">Use our all-in-one calculator to play with some numbers and see how your own investment journey could look.</p>
+                    <a href="../" class="btn-primary">Go to the Calculator &rarr;</a>
                 </div>
             </div>
 
             <!-- Section 8: Continue Your Journey -->
             <div class="content-section-card">
-                <h2>Continue Your Journey</h2>
-                <p class="text-center text-sm mb-4">Dive deeper into related topics to build a complete investment strategy:</p>
+                <h2>Continue Your Adventure</h2>
+                <p class="text-center text-sm mb-4">Want to learn more? These guides are your perfect next stop.</p>
                 <ul style="list-style: none; padding: 0;">
                     <li style="margin-bottom: 0.5rem; text-align: center;">
                         <a href="https://calculator.toolblaster.com/guides/beginner-investing-guide.html" style="font-weight: 600; color: #E34037; text-decoration: none;">
-                            Beginner's Guide to Investing: Start with the basics of mutual funds.
+                            Beginner's Guide to Investing: The perfect next step to understand mutual funds.
                         </a>
                     </li>
                     <li style="margin-bottom: 0.5rem; text-align: center;">
                         <a href="../quizzes/risk-profile-quiz.html" style="font-weight: 600; color: #E34037; text-decoration: none;">
-                            Find Your Investor Profile: Take our quiz to understand your risk tolerance.
+                            Find Your Investor Personality: Take our quiz to see what kind of investor you are!
                         </a>
                     </li>
                     <li style="margin-bottom: 0.5rem; text-align: center;">
                         <a href="goal-based-investing.html" style="font-weight: 600; color: #E34037; text-decoration: none;">
-                            Goal-Based Investing Guide: Learn to link your investments to your goals.
+                            Goal-Based Investing Guide: Learn to connect your money to your dreams.
                         </a>
                     </li>
                 </ul>
@@ -649,7 +543,7 @@
 
             <!-- FAQ Section -->
              <div class="content-section-card bg-gray-50">
-                <h3>Frequently Asked Questions (FAQ)</h3>
+                <h2>Still Have Questions? We've Got Answers!</h2>
                 <div class="faq-container">
                     <details class="faq-item">
                         <summary>What is the stock market?</summary>
