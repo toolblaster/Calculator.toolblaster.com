@@ -136,19 +136,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const setupMobileMenu = () => {
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
+        const navOverlay = document.querySelector('.nav-overlay');
 
-        if (hamburger && navLinks) {
+        if (hamburger && navLinks && navOverlay) {
             hamburger.addEventListener('click', (e) => {
                 e.stopPropagation();
-                navLinks.classList.toggle('active');
+                toggleMenu();
+            });
+
+            navOverlay.addEventListener('click', () => {
+                toggleMenu();
             });
         }
         
-        document.addEventListener('click', (e) => {
-            if (navLinks && navLinks.classList.contains('active') && !navLinks.contains(e.target) && (!hamburger || !hamburger.contains(e.target))) {
-                navLinks.classList.remove('active');
-            }
-        });
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+        }
     };
     
     const initializeShareButtons = () => {
