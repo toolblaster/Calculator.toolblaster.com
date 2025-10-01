@@ -175,6 +175,17 @@
         }
         .legal-content p { font-size: 0.8rem; }
         .alert { padding: 0.75rem; }
+        .guide-link {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #E34037;
+            text-decoration: none;
+            margin-top: auto;
+            transition: color 0.3s ease;
+        }
+        .guide-link:hover {
+            color: #C22D2D;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -187,8 +198,15 @@
             <p>Welcome to your financial launchpad! The world of investing might seem like a distant, complicated planet, but this guide is your friendly spaceship, ready to break it down into simple, starlit steps. We'll leave the jargon at the launch tower and focus on a clear, conversational journey to help you get started with confidence.</p>
 
             <div class="content-section-card bg-gray-50">
-                <h2>Starting Your Journey: An Investor's Story</h2>
-                <p class="text-sm">Let's begin our story with Priya, a 25-year-old graphic designer who just received her first big project bonus. She's excited, but also a little anxious. She's heard her friends talk about "SIPs" and "mutual funds," but it all sounds like a foreign language. Her goal is simple: she wants her money to do more than just sit in a savings account. She dreams of a solo trip to Japan in a few years and a comfortable life down the road. Priya's journey is the one we'll follow, step by step, to understand the universe of investing.</p>
+                <div class="flex flex-col md:flex-row items-center text-center md:text-left gap-6 p-4 rounded-lg bg-gradient-to-r from-red-50 to-amber-50 border border-red-200">
+                    <img src="https://placehold.co/100x100/E34037/FFFFFF?text=Priya&font=inter" alt="Investor Priya" class="w-24 h-24 rounded-full border-4 border-white shadow-lg flex-shrink-0">
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800">Meet Priya, Your Guide on This Journey</h2>
+                        <p class="text-sm text-gray-600 mt-2">Priya is a 25-year-old designer with a dream: to make her money work for her. She wants to travel, build a comfortable future, but feels lost in the world of "SIPs" and "mutual funds."</p>
+                        <p class="text-sm font-semibold text-red-700 mt-2 italic">"I know I should invest, but where do I even begin?"</p>
+                        <p class="text-sm text-gray-600 mt-2">This guide follows her story as she takes her first steps, turning anxiety into a confident action plan. Let's learn with her.</p>
+                    </div>
+                </div>
             </div>
 
             <div class="content-section-card">
@@ -243,52 +261,74 @@
             </div>
             
             <div class="content-section-card">
-                <h2>Choosing the Right Type of Mutual Fund</h2>
-                <p class="text-sm">Priya realizes that not all mutual fund baskets are the same. They are designed for different journeys, each with its own level of risk and potential reward.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-4">
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green-500 mr-3 flex-shrink-0 mt-1"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
-                            <div><p class="font-semibold text-gray-800">The Equity Basket</p><p class="text-xs text-gray-600">This basket is filled with stocks. It's the speedboat—fast and exciting, but can be bumpy. It's perfect for long-term goals like retirement where you have time to ride out the waves.</p></div>
-                        </div>
-                        <div class="flex items-start">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-500 mr-3 flex-shrink-0 mt-1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            <div><p class="font-semibold text-gray-800">The Debt Basket</p><p class="text-xs text-gray-600">This basket holds safer investments like bonds. It's the steady cargo ship—slower, but reliable. It's ideal for short-term goals where you can't afford to lose money.</p></div>
-                        </div>
-                        <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-yellow-500 mr-3 flex-shrink-0 mt-1"><path d="M12 3v18M3 12h18"/><path d="M16 16-4-4-4 4"/><path d="M8 8l4 4 4-4"/></svg>
-                            <div><p class="font-semibold text-gray-800">The Hybrid Basket</p><p class="text-xs text-gray-600">A mix of both! It's a versatile catamaran, offering a balance of speed and stability. A great starting point for many investors who want the best of both worlds.</p></div>
-                        </div>
+                <h2>Choosing Your Investment Vehicle: The Three Baskets</h2>
+                <p class="text-sm">Priya learns that not all mutual funds are the same. They are like different vehicles, each designed for a specific type of journey.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                    <!-- Equity Fund Card -->
+                    <div class="insight-card p-4 flex flex-col">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-green-500 mx-auto mb-2"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                        <h3 class="font-bold text-gray-800">Equity Funds</h3>
+                        <p class="text-xs font-semibold text-gray-500 mb-2">High Risk / High Return</p>
+                        <p class="text-xs text-gray-600 mb-3 flex-grow">The speedboat - fast and exciting, perfect for long journeys where you can ride out market waves.</p>
+                        <p class="text-xs font-bold mb-2">Best for: Long-term goals (5+ years) like retirement.</p>
+                        <a href="../index.html?mode=sip" class="guide-link">Plan with SIP Calculator →</a>
                     </div>
-                    <div class="h-40 md:h-56 w-full max-w-xs mx-auto">
-                        <canvas id="fundTypeChart"></canvas>
+                    <!-- Debt Fund Card -->
+                    <div class="insight-card p-4 flex flex-col">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-blue-500 mx-auto mb-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <h3 class="font-bold text-gray-800">Debt Funds</h3>
+                        <p class="text-xs font-semibold text-gray-500 mb-2">Low Risk / Stable Return</p>
+                        <p class="text-xs text-gray-600 mb-3 flex-grow">The steady cargo ship - slower, but reliable and safe. Ideal for short trips where you can't afford delays.</p>
+                        <p class="text-xs font-bold mb-2">Best for: Short-term goals (1-3 years) and capital safety.</p>
+                        <a href="../index.html?mode=fd" class="guide-link">Plan with FD/RD Calculator →</a>
+                    </div>
+                    <!-- Hybrid Fund Card -->
+                    <div class="insight-card p-4 flex flex-col">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-yellow-500 mx-auto mb-2"><path d="M12 3v18M3 12h18"/><path d="M16 16-4-4-4 4"/><path d="M8 8l4 4 4-4"/></svg>
+                        <h3 class="font-bold text-gray-800">Hybrid Funds</h3>
+                        <p class="text-xs font-semibold text-gray-500 mb-2">Medium Risk / Balanced Return</p>
+                        <p class="text-xs text-gray-600 mb-3 flex-grow">A versatile catamaran, offering a balance of speed and stability. A great starting point for many investors.</p>
+                        <p class="text-xs font-bold mb-2">Best for: Medium-term goals (3-5 years) and beginners.</p>
+                        <a href="../index.html?mode=lumpsum" class="guide-link">Plan with Lumpsum Calculator →</a>
                     </div>
                 </div>
             </div>
             
             <div class="content-section-card bg-gray-50">
-                <h2>Understanding a Fund's Portfolio</h2>
-                <p class="text-sm">Curious, Priya looks inside a Hybrid Basket to see what it's made of. She finds a carefully balanced mix, designed for both growth and safety.</p>
+                <h2>Anatomy of a Mutual Fund: What's Inside?</h2>
+                <p class="text-sm">Curious, Priya looks inside a Hybrid Fund to see what it's made of. She finds a carefully balanced portfolio, designed for both growth and safety.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-4">
-                    <div class="h-40 md:h-56 w-full max-w-xs mx-auto">
+                    <div class="h-48 md:h-56 w-full max-w-xs mx-auto">
                         <canvas id="anatomyChart"></canvas>
                     </div>
-                     <div class="space-y-4">
-                        <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green-500 mr-3 flex-shrink-0 mt-1"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                            <div><p class="font-semibold text-gray-800">Large-Cap Stocks (40%)</p><p class="text-xs text-gray-600">Shares of big, reliable companies. The sturdy oak trees of her portfolio.</p></div>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <span class="w-4 h-4 rounded-full bg-green-600 mr-3 flex-shrink-0"></span>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm">Large-Cap Stocks (40%)</p>
+                                <p class="text-xs text-gray-500 italic">The sturdy oaks: Big, reliable companies.</p>
+                            </div>
                         </div>
-                         <div class="flex items-start">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green-500 mr-3 flex-shrink-0 mt-1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            <div><p class="font-semibold text-gray-800">Mid-Cap Stocks (25%)</p><p class="text-xs text-gray-600">Shares of growing companies. The agile saplings with high growth potential.</p></div>
+                        <div class="flex items-center">
+                            <span class="w-4 h-4 rounded-full bg-green-400 mr-3 flex-shrink-0"></span>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm">Mid-Cap Stocks (25%)</p>
+                                <p class="text-xs text-gray-500 italic">The agile saplings: Growing companies with high potential.</p>
+                            </div>
                         </div>
-                        <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-500 mr-3 flex-shrink-0 mt-1"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                            <div><p class="font-semibold text-gray-800">Bonds (30%)</p><p class="text-xs text-gray-600">The anchors of the portfolio, providing stability and predictable income.</p></div>
+                        <div class="flex items-center">
+                            <span class="w-4 h-4 rounded-full bg-blue-500 mr-3 flex-shrink-0"></span>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm">Bonds (30%)</p>
+                                <p class="text-xs text-gray-500 italic">The anchors: Providing stability and predictable income.</p>
+                            </div>
                         </div>
-                         <div class="flex items-start">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-gray-500 mr-3 flex-shrink-0 mt-1"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                            <div><p class="font-semibold text-gray-800">Cash & Equivalents (5%)</p><p class="text-xs text-gray-600">Ready cash to seize new opportunities or handle withdrawals.</p></div>
+                        <div class="flex items-center">
+                            <span class="w-4 h-4 rounded-full bg-gray-400 mr-3 flex-shrink-0"></span>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm">Cash & Equivalents (5%)</p>
+                                <p class="text-xs text-gray-500 italic">Ready cash to seize opportunities.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -340,7 +380,7 @@
             
             <div class="content-section-card bg-gray-50">
                 <h2>Safe Havens: Fixed and Recurring Deposits</h2>
-                <p class="text-sm">Priya learns that not all her money needs to face the open sea. For her short-term goal—the Japan trip in 3 years—she needs a safe harbor where her money is protected. She discovers two such havens:</p>
+                <p class="text-sm">Priya learns that not all her money needs to face the open sea. For her short-term goal - the Japan trip in 3 years - she needs a safe harbor where her money is protected. She discovers two such havens:</p>
                 <ul class="mt-4 space-y-4">
                     <li class="icon-list-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -414,6 +454,34 @@
             </div>
 
             <div class="content-section-card">
+                <h2>Debunking Common Investing Myths</h2>
+                <p class="text-sm">Let's clear the air and bust some of the most common myths that stop people from building wealth.</p>
+                <ul class="mt-4 space-y-4">
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div>
+                            <p class="item-title"><strong>Myth: "Investing is only for the rich."</strong></p>
+                            <p><strong>Fact:</strong> This is the biggest misconception! You can start a Systematic Investment Plan (SIP) in a mutual fund with as little as ₹500 per month. The key is not how much you start with, but that you start consistently.</p>
+                        </div>
+                    </li>
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div>
+                            <p class="item-title"><strong>Myth: "Investing in the stock market is like gambling."</strong></p>
+                            <p><strong>Fact:</strong> Gambling is a short-term bet on an uncertain outcome. Long-term investing, especially through mutual funds, is about owning a small piece of many successful businesses and growing with them over time. It's a strategic plan, not a game of chance.</p>
+                        </div>
+                    </li>
+                    <li class="icon-list-item">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div>
+                            <p class="item-title"><strong>Myth: "You need to be a financial expert."</strong></p>
+                            <p><strong>Fact:</strong> That's what mutual funds are for! A professional fund manager does all the research and decision-making for you. Your job is simply to choose a fund that matches your goals and invest consistently.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content-section-card">
                 <h2>Your First Investment Checklist</h2>
                 <p class="text-sm">Feeling confident, Priya creates her action plan. This is her launch sequence:</p>
                 <div class="timeline mt-6">
@@ -435,7 +503,7 @@
                     <div class="timeline-item">
                         <div class="timeline-dot">4</div>
                         <h3><strong>Choose Her First Fund</strong></h3>
-                        <p>For her long-term retirement goal, she decides to start a small SIP in a Nifty 50 Index Fund—a simple, low-cost fund that invests in India's top 50 companies.</p>
+                        <p>For her long-term retirement goal, she decides to start a small SIP in a Nifty 50 Index Fund - a simple, low-cost fund that invests in India's top 50 companies.</p>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-dot">5</div>
@@ -447,7 +515,7 @@
 
             <div class="content-section-card bg-gray-50">
                 <h2>The Journey Ahead</h2>
-                <p class="text-sm">Priya is now an investor. Her journey has just begun. She knows that as she grows older, her strategies will evolve—from accumulating wealth with SIPs to eventually creating a regular income with an SWP in retirement. But she's not worried. She has taken the most important step: she has started.</p>
+                <p class="text-sm">Priya is now an investor. Her journey has just begun. She knows that as she grows older, her strategies will evolve - from accumulating wealth with SIPs to eventually creating a regular income with an SWP in retirement. But she's not worried. She has taken the most important step: she has started.</p>
             </div>
             
             <div class="content-section-card text-center">
@@ -513,19 +581,32 @@
                 });
             }
 
-            const fundTypeCtx = document.getElementById('fundTypeChart');
-            if (fundTypeCtx) {
-                new Chart(fundTypeCtx, {
-                    type: 'pie', data: { labels: ['Equity', 'Debt', 'Hybrid'], datasets: [{ label: 'Fund Types', data: [45, 30, 25], backgroundColor: ['rgba(34, 197, 94, 0.7)','rgba(59, 130, 246, 0.7)','rgba(245, 158, 11, 0.7)'], borderColor: '#ffffff', borderWidth: 2 }] },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: (c) => `${c.label}: ${c.parsed}% of market` }}}}
-                });
-            }
-            
             const anatomyCtx = document.getElementById('anatomyChart');
             if (anatomyCtx) {
                 new Chart(anatomyCtx, {
-                    type: 'doughnut', data: { labels: ['Large Cap Stocks', 'Mid Cap Stocks', 'Bonds', 'Cash & Equivalents'], datasets: [{ label: 'Asset Allocation', data: [40, 25, 30, 5], backgroundColor: ['rgba(22, 163, 74, 0.8)','rgba(34, 197, 94, 0.6)','rgba(59, 130, 246, 0.7)','rgba(156, 163, 175, 0.7)'], borderColor: '#ffffff', borderWidth: 2 }] },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } }, tooltip: { callbacks: { label: (c) => `${c.label || ''}: ${c.parsed !== null ? c.parsed + '%' : ''}` }}}}
+                    type: 'doughnut', 
+                    data: { 
+                        labels: ['Large Cap Stocks', 'Mid Cap Stocks', 'Bonds', 'Cash & Equivalents'], 
+                        datasets: [{ 
+                            label: 'Asset Allocation', 
+                            data: [40, 25, 30, 5], 
+                            backgroundColor: ['#16a34a', '#4ade80', '#3b82f6', '#9ca3af'],
+                            borderColor: '#f9fafb', 
+                            borderWidth: 4 
+                        }] 
+                    },
+                    options: { 
+                        responsive: true, 
+                        maintainAspectRatio: false, 
+                        plugins: { 
+                            legend: { display: false }, 
+                            tooltip: { 
+                                callbacks: { 
+                                    label: (c) => `${c.label || ''}: ${c.parsed !== null ? c.parsed + '%' : ''}` 
+                                }
+                            }
+                        }
+                    }
                 });
             }
         });
