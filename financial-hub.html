@@ -11,7 +11,6 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Your Financial Action Hub: Tools to Start Your Journey | Calculator.toolblaster">
     <meta property="og:description" content="Find your investor pathway! Get personalized financial guides, interactive quizzes, and powerful calculators for every stage of your journey.">
-    <meta property="og:image" content="https://calculator.toolblaster.com/assets/images/investing-guides-og-image.png">
     <meta property="og:url" content="https://calculator.toolblaster.com/financial-hub.html">
     <meta property="og:type" content="website">
 
@@ -19,7 +18,6 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Your Financial Action Hub: Tools to Start Your Journey | Calculator.toolblaster">
     <meta name="twitter:description" content="Find your investor pathway! Get personalized financial guides, interactive quizzes, and powerful calculators for every stage of your journey.">
-    <meta name="twitter:image" content="https://calculator.toolblaster.com/assets/images/investing-guides-twitter-image.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -399,10 +397,28 @@
             padding-left: 0.5rem;
             padding-right: 0.5rem;
         }
-        .grid {
-            grid-template-columns: 1fr; /* Default to single column */
+        
+        /* FIX: Add media query to adjust margins on mobile and prevent overflow */
+        @media (max-width: 767px) {
+            .legal-content > .quick-tip-section,
+            .legal-content > .featured-section-new,
+            .legal-content > .core-quizzes-section,
+            .legal-content > .core-calculators-section,
+            .legal-content > .financial-wins-section,
+            .legal-content > .action-plan-section {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+            }
         }
         
+        @media (min-width: 640px) { /* Small screens and up */
+            #top-resources-section .grid { grid-template-columns: repeat(3, 1fr); }
+            #financial-wins-section .grid { grid-template-columns: repeat(3, 1fr); }
+            #quizzes-section .grid { grid-template-columns: repeat(2, 1fr); }
+            #calculators-section .grid { grid-template-columns: repeat(2, 1fr); }
+            #action-plan-section .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (min-width: 768px) { /* Medium screens and up */
             .legal-content > h1 {
                 font-size: 1.3rem; /* Slightly smaller desktop size */
@@ -412,18 +428,12 @@
                 padding-left: 1.5rem;
                 padding-right: 1.5rem;
             }
-            #top-resources-section .grid, #financial-wins-section .grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            #quizzes-section .grid, #calculators-section .grid, #action-plan-section .grid {
+            #quizzes-section .grid, #calculators-section .grid {
                 grid-template-columns: repeat(4, 1fr);
-            }
-             .action-plan-section .grid {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
         @media (min-width: 1024px) { /* Large screens */
-             .action-plan-section .grid {
+             #action-plan-section .grid {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
@@ -445,14 +455,15 @@
                 <div class="quick-tip-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
                 </div>
-                <p id="quick-tip-text" class="quick-tip-text whitespace-nowrap"><strong>Quick Tip:</strong> Review your financial plan at least once a year. Life changes, and your plan should adapt with you.</p>
+                <!-- FIX: Removed whitespace-nowrap to allow text to wrap on mobile -->
+                <p id="quick-tip-text" class="quick-tip-text"><strong>Quick Tip:</strong> Review your financial plan at least once a year. Life changes, and your plan should adapt with you.</p>
             </div>
             
             <!-- Best Version: Featured Section -->
             <div id="top-resources-section" class="featured-section-new">
                 <h2 class="section-title">Your Starting Point: Top Resources</h2>
                 <p class="section-subtitle">Not sure where to begin? Start your journey with our most popular tools and guides.</p>
-                <div class="grid mt-6">
+                <div class="grid mt-6 gap-4">
                     <!-- Card 1: Beginner's Guide -->
                     <a href="guides/mfguide.html" class="feature-card">
                         <div class="feature-icon-wrapper">
@@ -487,7 +498,7 @@
             <div id="quizzes-section" class="core-quizzes-section">
                 <h2 class="section-title">Test Your Knowledge</h2>
                 <p class="section-subtitle">Interactive quizzes to help you understand your financial self better.</p>
-                <div class="grid mt-6">
+                <div class="grid mt-6 gap-4">
                     <!-- Financial Health Quiz -->
                     <a href="quizzes/financial-health-assessment.html" class="quiz-showcase-card">
                         <div class="quiz-icon-wrapper">
@@ -531,7 +542,7 @@
             <div id="calculators-section" class="core-calculators-section">
                 <h2 class="section-title">Our Core Calculators</h2>
                 <p class="section-subtitle">Powerful, free tools to help you plan, save, and invest with confidence.</p>
-                <div class="grid mt-6">
+                <div class="grid mt-6 gap-4">
                     <!-- Investment Calculator -->
                     <a href="index.html" class="calculator-showcase-card">
                         <div class="calculator-icon-wrapper">
@@ -575,7 +586,7 @@
             <div id="financial-wins-section" class="financial-wins-section">
                 <h2 class="section-title">Plan Your Financial Wins</h2>
                 <p class="section-subtitle">Turn your dreams into reality by seeing how our tools can build a plan for your biggest goals.</p>
-                <div class="grid mt-6">
+                <div class="grid mt-6 gap-4">
                     <!-- Card 1: Car -->
                     <div class="win-card">
                         <div class="win-icon-wrapper">
@@ -612,7 +623,7 @@
                     <h2 class="section-title">Your 4-Step Financial Action Plan</h2>
                     <p class="section-subtitle">Follow this simple roadmap to take control of your financial life, one step at a time.</p>
                 </div>
-                <div class="grid mt-4">
+                <div class="grid mt-4 gap-4">
                     <div class="how-to-card">
                         <span class="step-number">1</span>
                         <h3>Assess Your Situation</h3>
