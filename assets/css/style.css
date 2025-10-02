@@ -829,3 +829,16 @@ main {
     height: 2px; /* Thickness of the line */
     background-color: var(--accent-color);
 }
+/* --- Footer Logo Fix for Desktop --- */
+.site-footer .logo svg {
+    stroke: #ffffff;       /* ensure white icon */
+    flex-shrink: 0;
+}
+
+.site-footer .logo {
+    color: #ffffff !important;  /* force white text in footer */
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 1rem;
+}
