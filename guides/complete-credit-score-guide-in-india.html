@@ -10,19 +10,17 @@
     <!-- Canonical Tag -->
     <link rel="canonical" href="https://calculator.toolblaster.com/guides/complete-credit-score-guide-in-india.html">
 
-    <!-- Open Graph Meta Tags -->
+    <!-- Open Graph Tags -->
     <meta property="og:title" content="Your Guide to Understanding & Improving Your Credit Score - Calculator.toolblaster">
     <meta property="og:description" content="A complete guide to understanding your CIBIL and credit score in India. Learn what a credit score is, why it's crucial, how to check it for free, and actionable steps to improve it.">
-    <meta property="og:image" content="https://calculator.toolblaster.com/assets/images/credit-score-guide-og-image.png">
     <meta property="og:url" content="https://calculator.toolblaster.com/guides/complete-credit-score-guide-in-india.html">
     <meta property="og:type" content="article">
 
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Your Guide to Understanding & Improving Your Credit Score - Calculator.toolblaster">
     <meta name="twitter:description" content="A complete guide to understanding your CIBIL and credit score in India. Learn what a credit score is, why it's crucial, how to check it for free, and actionable steps to improve it.">
-    <meta name="twitter:image" content="https://calculator.toolblaster.com/assets/images/credit-score-guide-twitter-image.png">
-
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -106,29 +104,30 @@
         .content-section-card {
             background-color: #ffffff;
             border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
         }
         .score-range-bar {
             width: 100%;
-            height: 20px;
+            height: 1rem;
             background: linear-gradient(to right, #ef4444, #f59e0b, #22c55e);
             border-radius: 999px;
             position: relative;
-            margin: 1rem 0;
+            margin: 1rem 0 0.5rem;
         }
         .score-labels {
             display: flex;
             justify-content: space-between;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 500;
             color: #4b5563;
         }
         .icon-list {
             list-style: none;
             padding-left: 0;
+            font-size: 0.75rem;
         }
         .icon-list li {
             display: flex;
@@ -144,46 +143,42 @@
         }
         .icon-list.positive li svg { color: #22c55e; }
         .icon-list.negative li svg { color: #ef4444; }
+        
         .credit-card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
             margin-top: 1rem;
-        }
-        @media (min-width: 1024px) {
-            .credit-card-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
         }
         .credit-card-card {
             background-color: #fff;
             border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 1rem;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
             display: flex;
             flex-direction: column;
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
             transition: all 0.2s ease;
         }
         .credit-card-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
         }
         .credit-card-card .apply-btn {
             display: inline-block;
             background-color: #E34037;
-            color: #fff;
+            color: #fff !important;
             padding: 0.4rem 0.8rem;
             border-radius: 0.375rem;
             font-size: 0.7rem;
             font-weight: 600;
             text-decoration: none;
             transition: background-color 0.2s;
+            margin-top: auto;
         }
         .credit-card-card .apply-btn:hover {
             background-color: #C22D2D;
-            color: #fff;
         }
         .affiliate-section {
             display: flex;
@@ -209,6 +204,10 @@
             margin-bottom: 1rem;
             max-width: 600px;
         }
+        .legal-content h1 { font-size: 1.2rem; text-align: center; }
+        .legal-content > p { font-size: 0.8rem; text-align: center; }
+        .legal-content h2 { font-size: 1rem; text-align: left; }
+        .legal-content p { font-size: 0.75rem; }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -216,13 +215,13 @@
     <div id="header-placeholder"></div>
 
     <main class="container">
-        <div class="legal-content">
+        <div class="legal-content p-2 sm:p-4">
             <h1>Your Guide to Understanding & Improving Your Credit Score</h1>
             <p>In your financial life, your credit score is like a passport. It's a simple, three-digit number that can either open doors to great opportunities or put up frustrating barriers. A strong score can be your ticket to better loans and premium financial products, while a weak one can hold you back. This guide is designed to demystify that number and give you a clear, actionable plan to make your credit score a powerful asset.</p>
 
-            <div class="content-section-card">
-                <h2>What Exactly Is a Credit Score and Why Should You Care?</h2>
-                <p>Your credit score is a numerical snapshot, ranging from 300 to 900, that reflects how you've handled borrowing money in the past. Credit bureaus in India, such as CIBIL, crunch the data from your loans and credit cards to generate this score. For lenders, it's a quick way to gauge how likely you are to repay a new loan, forming a key part of your overall <a href="financial-health-guide.html">financial health</a>.</p>
+            <div class="content-section-card border-l-4 border-blue-500">
+                <h2>What Is a Credit Score and Why Should You Care?</h2>
+                <p>Your credit score is a numerical snapshot, ranging from <strong>300 to 900</strong>, that reflects how you've handled borrowing money in the past. Credit bureaus in India, such as CIBIL, crunch the data from your loans and credit cards to generate this score. For lenders, it's a quick way to gauge how likely you are to repay a new loan, forming a key part of your overall <a href="financial-health-guide.html">financial health</a>.</p>
                 <p><strong>A strong credit score is a key that unlocks:</strong></p>
                 <ul class="icon-list positive">
                     <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span>Effortless approvals for significant loans, like for a home or a car.</span></li>
@@ -238,185 +237,190 @@
                  </div>
             </div>
             
-            <div class="content-section-card bg-gray-50">
-                <h2>The Tangible Benefits of a Good CIBIL Score</h2>
-                <p>A high credit score isn't just a number to be proud of; it translates into real, measurable financial advantages that can save you a significant amount of money and effort.</p>
+            <div class="content-section-card bg-gray-50 border-l-4 border-blue-500">
+                <h2>The Real-World Benefits of a Good Score</h2>
+                <p>A high credit score isn't just a number to be proud of; it translates into real, measurable financial advantages.</p>
                 <ul class="icon-list positive">
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Lower Interest Rates:</strong> Lenders see you as a low-risk borrower, so they offer you their most competitive interest rates on home loans, car loans, and personal loans.</span></li>
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Faster Loan Approvals:</strong> A strong score simplifies the verification process, leading to quicker and more streamlined loan and credit card approvals.</span></li>
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Higher Loan Amounts:</strong> With a proven track record of reliability, lenders are more willing to offer you larger loan amounts.</span></li>
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Access to Premium Credit Cards:</strong> The best credit cards, with benefits like airport lounge access, travel points, and exclusive discounts, are typically reserved for those with excellent credit scores.</span></li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Lower Interest Rates:</strong> Lenders see you as a low-risk borrower, so they offer you their most competitive interest rates.</span></li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Faster Loan Approvals:</strong> A strong score simplifies the verification process, leading to quicker approvals.</span></li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Access to Premium Credit Cards:</strong> The best cards with top-tier benefits are reserved for those with excellent scores.</span></li>
                 </ul>
             </div>
 
-            <div class="content-section-card">
-                <h2>How a Bad CIBIL Score Impacts Your Financial Life</h2>
-                <p>While a good score opens doors, a low score can close them firmly. The consequences go beyond simple inconvenience and can have a significant financial cost.</p>
+            <div class="content-section-card border-l-4 border-red-500">
+                <h2>How a Bad Score Can Hold You Back</h2>
+                <p>While a good score opens doors, a low score can close them firmly, with significant financial costs.</p>
                 <ul class="icon-list negative">
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span><strong>Outright Rejection:</strong> The most direct impact is that your applications for new loans or credit cards may be flat-out denied.</span></li>
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span><strong>Higher Interest Rates:</strong> If you are approved, you'll likely be charged a much higher interest rate. On a ₹5 lakh personal loan, a few percentage points can mean paying tens of thousands more in interest over the loan's tenure.</span></li>
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span><strong>Limited Credit Card Options:</strong> You may only be eligible for basic, secured credit cards with low limits and few benefits.</span></li>
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span><strong>Difficulty in Renting a Home:</strong> Increasingly, landlords are checking the credit scores of potential tenants as a measure of reliability.</span></li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span><strong>Outright Rejection:</strong> Your applications for new loans or credit cards may be flat-out denied.</span></li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span><strong>Higher Interest Rates:</strong> If approved, you'll likely be charged a much higher interest rate, costing you tens of thousands more over the loan's tenure.</span></li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span><strong>Limited Options:</strong> You may only be eligible for basic, secured credit cards with low limits and few benefits.</span></li>
                 </ul>
             </div>
             
-            <div class="content-section-card bg-gray-50">
+            <div class="content-section-card bg-gray-50 border-l-4 border-blue-500">
                 <h2>Top Credit Card Picks for a Great Score ✨</h2>
-                <p>An excellent credit score can unlock access to some of the best credit cards on the market, offering superior rewards, benefits, and low interest rates. Here are some top picks to consider.</p>
+                <p>An excellent credit score can unlock access to some of the best credit cards on the market. Here are some top picks to consider.</p>
                 <div class="credit-card-grid">
                     <div class="credit-card-card">
-                        <h4>HSBC Platinum Credit Card</h4>
-                        <p>Enjoy exclusive rewards, cashback offers, and special privileges. Ideal for frequent shoppers and travelers.</p>
+                        <h3 class="font-bold text-sm mb-1">HSBC Platinum Credit Card</h3>
+                        <p class="text-xs text-gray-600 flex-grow mb-2">Enjoy exclusive rewards, cashback offers, and special privileges. Ideal for frequent shoppers and travelers.</p>
                         <a href="https://clnk.in/w09p" class="apply-btn" target="_blank" rel="noopener noreferrer">Apply Now</a>
                     </div>
                     <div class="credit-card-card">
-                        <h4>Federal Scapia Credit Card</h4>
-                        <p>A travel-focused card with zero forex markup. Earn miles and enjoy exclusive travel benefits.</p>
+                        <h3 class="font-bold text-sm mb-1">Federal Scapia Credit Card</h3>
+                        <p class="text-xs text-gray-600 flex-grow mb-2">A travel-focused card with zero forex markup. Earn miles and enjoy exclusive travel benefits.</p>
                         <a href="https://clnk.in/w094" class="apply-btn" target="_blank" rel="noopener noreferrer">Apply Now</a>
                     </div>
                     <div class="credit-card-card">
-                        <h4>ICICI Bank Credit Card</h4>
-                        <p>Choose from a wide range of cards with benefits on shopping, fuel, and travel. A versatile option for every spender.</p>
+                        <h3 class="font-bold text-sm mb-1">ICICI Bank Credit Card</h3>
+                        <p class="text-xs text-gray-600 flex-grow mb-2">Choose from a wide range of cards with benefits on shopping, fuel, and travel.</p>
                         <a href="https://clnk.in/w098" class="apply-btn" target="_blank" rel="noopener noreferrer">Apply Now</a>
-                    </div>
-                    <div class="credit-card-card">
-                        <h4>Indusind Bajaj Tiger Credit Card</h4>
-                        <p>A premium card with high reward rates and exclusive lifestyle and entertainment benefits.</p>
-                        <a href="https://clnk.in/w1al" class="apply-btn" target="_blank" rel="noopener noreferrer">Apply Now</a>
-                    </div>
-                    <div class="credit-card-card">
-                        <h4>AU Bank Credit Card</h4>
-                        <p>Get a card that fits your needs with great cashback and reward points. Popular for a hassle-free experience.</p>
-                        <a href="https://clnk.in/w1az" class="apply-btn" target="_blank" rel="noopener noreferrer">Apply Now</a>
-                    </div>
-                    <div class="credit-card-card">
-                        <h4>SBI BPCL Octane Credit Card</h4>
-                        <p>Perfect for commuters. Earn high reward points on fuel, dining, and groceries.</p>
-                        <a href="https://clnk.in/w1aN" class="apply-btn" target="_blank" rel="noopener noreferrer">Apply Now</a>
                     </div>
                 </div>
             </div>
 
-            <div class="content-section-card">
+            <div class="content-section-card border-l-4 border-blue-500">
                 <h2>The Anatomy of Your Credit Score</h2>
                 <p>This important number isn't arbitrary. It's built from several key pieces of your financial history. Knowing them is the first step toward mastering your score.</p>
                 
-                <table style="width:100%; border-collapse: collapse; margin-bottom: 1rem;">
-                    <thead>
-                        <tr style="background-color: #f7f7f7;">
-                            <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left;">Component</th>
-                            <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left;">Weight</th>
-                            <th style="padding: 0.75rem; border: 1px solid #eee; text-align: left;">What It Really Means</th>
+                <table class="w-full text-xs sm:text-sm text-left mt-4">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                        <tr>
+                            <th class="p-2 sm:p-4">Component</th>
+                            <th class="p-2 sm:p-4">What It Really Means</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;"><strong>Payment Consistency</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Very High</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Are you consistently on time with your EMI and credit card payments? This is the bedrock of a good score.</td>
+                        <tr class="bg-white border-b">
+                            <td class="p-2 sm:p-4 font-medium"><strong>Payment Consistency</strong></td>
+                            <td class="p-2 sm:p-4">Are you consistently on time with your EMI and credit card payments? This is the bedrock of a good score.</td>
                         </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;"><strong>Credit Card Usage</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">High</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">How much of your credit card limit do you typically use? Keeping this below 30% shows you're not over-reliant on credit. This is a key aspect of <a href="financial-health-guide.html">debt management</a>.</td>
+                        <tr class="bg-white border-b">
+                            <td class="p-2 sm:p-4 font-medium"><strong>Credit Card Usage</strong></td>
+                            <td class="p-2 sm:p-4">How much of your credit card limit do you typically use? Keeping this below 30% shows you're not over-reliant on credit.</td>
                         </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;"><strong>Age of Credit Lines</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Medium</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">A long track record of responsible borrowing is a positive sign. Think twice before closing your oldest credit card.</td>
+                        <tr class="bg-white border-b">
+                            <td class="p-2 sm:p-4 font-medium"><strong>Age of Credit Lines</strong></td>
+                            <td class="p-2 sm:p-4">A long track record of responsible borrowing is a positive sign. Think twice before closing your oldest credit card.</td>
                         </tr>
-                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;"><strong>Diversity of Credit</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Medium</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">A healthy mix of credit types, like a car loan and a credit card, demonstrates that you can manage different kinds of debt.</td>
+                         <tr class="bg-white border-b">
+                            <td class="p-2 sm:p-4 font-medium"><strong>Diversity of Credit</strong></td>
+                            <td class="p-2 sm:p-4">A healthy mix of credit types, like a car loan and a credit card, demonstrates that you can manage different kinds of debt.</td>
                         </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;"><strong>New Credit Applications</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Low</td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Applying for too much credit in a short time can be a red flag for lenders and may temporarily dip your score.</td>
+                        <tr class="bg-white">
+                            <td class="p-2 sm:p-4 font-medium"><strong>New Credit Applications</strong></td>
+                            <td class="p-2 sm:p-4">Applying for too much credit in a short time can be a red flag for lenders and may temporarily dip your score.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- IMPROVED MYTHS SECTION -->
-            <div class="content-section-card bg-gray-50">
+            <div class="content-section-card bg-gray-50 border-l-4 border-red-500">
                 <h2>Credit Score Myths vs. Realities</h2>
-                <p>There's a lot of misinformation out there about credit scores. Let's clear up a few common myths that could be holding you back.</p>
-                <div class="space-y-6 mt-6">
-                    <!-- Myth 1 -->
-                    <div class="p-4 rounded-lg border bg-white">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-red-500 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                            <h4 class="font-bold text-gray-800">Myth: "You need to have debt to build a credit score."</h4>
-                        </div>
-                        <div class="flex items-start mt-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                            <p class="text-sm text-gray-600"><strong>Reality:</strong> Not at all. You don't need to pay interest to build a score. Simply using a credit card for regular spending and paying the bill in full every month is one of the best ways to build a strong score without ever paying a rupee in interest.</p>
-                        </div>
+                <p>There's a lot of misinformation out there. Let's clear up a few common myths.</p>
+                <div class="space-y-4 mt-4">
+                    <div class="p-3 rounded-lg border bg-white">
+                        <h3 class="font-bold text-sm text-gray-800">Myth: "You need debt to build a score."</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 mt-1"><strong>Reality:</strong> Not at all. Simply using a credit card for regular spending and paying the bill in full every month is one of the best ways to build a strong score without ever paying interest.</p>
                     </div>
-                    <!-- Myth 2 -->
-                    <div class="p-4 rounded-lg border bg-white">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-red-500 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                            <h4 class="font-bold text-gray-800">Myth: "Closing old, unused credit cards is good for your score."</h4>
-                        </div>
-                        <div class="flex items-start mt-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                            <p class="text-sm text-gray-600"><strong>Reality:</strong> This is one of the most damaging myths. Closing an old card actually hurts your score in two ways: it shortens the average age of your credit history and it increases your overall credit utilization ratio, both of which are negative signals to lenders.</p>
-                        </div>
-                    </div>
-                    <!-- Myth 3 -->
-                    <div class="p-4 rounded-lg border bg-white">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-red-500 mr-3 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                             <h4 class="font-bold text-gray-800">Myth: "A high income automatically means a high credit score."</h4>
-                        </div>
-                         <div class="flex items-start mt-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                            <p class="text-sm text-gray-600"><strong>Reality:</strong> Your salary is not a direct factor in your credit score calculation. A person with a modest income who pays all their bills on time will have a much better score than a high-earner who is frequently late with payments.</p>
-                        </div>
+                    <div class="p-3 rounded-lg border bg-white">
+                        <h3 class="font-bold text-sm text-gray-800">Myth: "Closing old cards is good for your score."</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 mt-1"><strong>Reality:</strong> This is one of the most damaging myths. Closing an old card shortens your credit history and increases your credit utilization ratio, both of which are negative signals.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="content-section-card">
-                <h2 class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>Your Action Plan: A Straightforward Path to a Better Score</h2>
+            <div class="content-section-card border-l-4 border-green-500">
+                <h2 class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>Your Action Plan to a Better Score</h2>
                 <p>Building a great credit score is about consistent, positive habits. Here are the most impactful actions you can take, starting today:</p>
                 <ul class="icon-list positive">
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Automate Your Payments:</strong> The golden rule is to never miss a due date. Set up auto-debits for all your bills to make timely payments effortless.</span></li>
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Create Breathing Room on Your Cards:</strong> Aim to keep your credit card balances below 30% of your total limit. If you have a limit of ₹1 lakh, a balance under ₹30,000 is ideal.</span></li>
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Value Your Financial History:</strong> Your oldest credit card is a valuable asset for your score. Keep it active with a small, occasional purchase to maintain that long history.</span></li>
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Be Your Own Auditor:</strong> Regularly check your credit report for any mistakes. You have the right to a free report from each major bureau annually.</span></li>
-                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Apply for Credit Thoughtfully:</strong> Treat new credit applications like a strategic move, not an impulse. Space them out to avoid looking credit-hungry.</span></li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Automate Your Payments:</strong> The golden rule is to never miss a due date. Set up auto-debits for all your bills.</span></li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Create Breathing Room on Your Cards:</strong> Aim to keep your credit card balances below 30% of your total limit.</span></li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Value Your Financial History:</strong> Your oldest credit card is a valuable asset. Keep it active with a small, occasional purchase.</span></li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Be Your Own Auditor:</strong> Regularly check your credit report for any mistakes. You have the right to a free report annually.</span></li>
                 </ul>
             </div>
             
-            <div class="content-section-card bg-gray-50">
-                <h2>Expand Your Financial Toolkit</h2>
-                <p>A strong credit score is a cornerstone of good financial health. See how it connects with other key areas:</p>
-                <ul>
-                    <li><strong><a href="financial-health-guide.html">The Pillars of Financial Wellness:</a></strong> Discover how credit management fits into a holistic financial plan.</li>
-                    <li><strong><a href="financial-health-assessment.html">Get Your Full Financial Report Card:</a></strong> Take our comprehensive assessment to analyze your savings, debt, and investing habits.</li>
-                    <li><strong><a href="next-financial-move-quiz.html">Find Your Next Action Step:</a></strong> Not sure where to focus? Take our quiz to get a clear, prioritized action plan.</li>
-                </ul>
+            <div class="content-section-card bg-gray-50 border-l-4 border-blue-500">
+                <h2>Frequently Asked Questions (FAQ)</h2>
+                <div class="faq-container mt-4">
+                    <details class="faq-item">
+                        <summary>What is a good credit score in India?</summary>
+                        <p>In India, a credit score typically ranges from 300 to 900. A score of 750 or above is generally considered excellent and will make you eligible for the best loan and credit card offers. A score between 650 and 750 is good, while a score below 650 may make it difficult to get approved for credit.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>How long does it take to improve a credit score?</summary>
+                        <p>Improving a credit score is a gradual process. You can see positive changes within 6 to 12 months of consistent good financial behavior, such as paying all bills on time and reducing your credit card balances. Major negative events, like a loan default, can take several years to fully recover from.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Does checking my own credit score lower it?</summary>
+                        <p>No, checking your own credit score is considered a 'soft inquiry' and has no impact on your score. It's a common myth. In fact, you are encouraged to check your score regularly to monitor your financial health. A 'hard inquiry,' which occurs when a lender checks your score for a loan application, can cause a small, temporary negative impact.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>What's the difference between CIBIL score and credit score?</summary>
+                        <p>"Credit score" is the general term for the 3-digit number that rates your creditworthiness. "CIBIL score" is the specific brand name for the credit score provided by TransUnion CIBIL, which is the oldest and most well-known credit bureau in India. While other bureaus like Experian and Equifax also provide credit scores, the term "CIBIL score" is often used interchangeably with "credit score" in India.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can I have a credit score if I've never taken a loan or credit card?</summary>
+                        <p>No. If you have no credit history (no loans or credit cards), the credit bureaus will have no data to score. In this case, your score will typically be "NA" or "NH," which means "Not Applicable" or "No History." While this isn't a bad score, it can sometimes make it difficult to get your first loan or credit card as lenders have no record of your repayment behavior.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>How do I fix errors on my credit report?</summary>
+                        <p>If you find an error on your credit report (like a loan you never took or an incorrect late payment), you should immediately raise a dispute with the credit bureau that issued the report (e.g., CIBIL, Experian). They have a formal dispute resolution process on their website. You'll need to provide evidence to support your claim. The bureau will then verify the information with the lender and correct your report if the error is confirmed.</p>
+                    </details>
+                </div>
             </div>
 
-            <div class="content-section-card">
-                <h3 class="section-title-secondary">Frequently Asked Questions (FAQ)</h3>
-                <div class="faq-container">
-                    <details class="faq-item">
-                        <summary>What is considered a good credit score in India?</summary>
-                        <p>In the Indian context, credit scores range from 300 to 900. A score of 750 or higher is widely regarded as excellent, significantly improving your chances for loan and credit card approvals at favorable terms. Scores from 650 to 750 are considered good, while those below 650 may face challenges in securing credit.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>How quickly can I see an improvement in my credit score?</summary>
-                        <p>Improving a credit score is a marathon, not a sprint. With consistent, positive financial habits—like timely bill payments and reduced credit card balances—you can expect to see noticeable improvements within 6 to 12 months. However, recovering from significant negative marks, such as a loan default, can take several years.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Will checking my own credit score harm it?</summary>
-                        <p>This is a common myth. When you check your own score, it's a 'soft inquiry' and has zero impact on your credit score. It's actually a healthy financial habit to review your report regularly. A 'hard inquiry,' which is when a lender pulls your report for a loan application, can cause a minor, temporary dip in your score.</p>
-                    </details>
+            <div class="relative flex py-5 items-center">
+                <div class="flex-grow border-t border-gray-200"></div>
+                <span class="flex-shrink mx-4 text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v2.586l2.293-2.293a1 1 0 111.414 1.414L12.414 8H15a1 1 0 110 2h-2.586l2.293 2.293a1 1 0 11-1.414 1.414L11 11.414V14a1 1 0 11-2 0v-2.586l-2.293 2.293a1 1 0 11-1.414-1.414L7.586 10H5a1 1 0 110-2h2.586L5.293 5.707a1 1 0 011.414-1.414L9 6.586V4a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                </span>
+                <div class="flex-grow border-t border-gray-200"></div>
+            </div>
+
+            <div class="content-section-card bg-gradient-to-br from-blue-50 to-purple-50 border-l-4 border-blue-300 text-center p-2 sm:p-4">
+                <h2 class="text-center">Continue Your Journey: Related Guides & Tools</h2>
+                <p class="text-xs mb-2">Deepen your knowledge with these related resources.</p>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 mt-2">
+                    <!-- Financial Health Guide -->
+                    <a href="financial-health-guide.html" class="bg-white border border-gray-200 rounded-lg p-2 flex flex-col text-center shadow-sm hover:shadow-md hover:-translate-y-px transition-all duration-200 h-full">
+                        <div class="w-6 h-6 mx-auto flex items-center justify-center bg-pink-100 rounded-full text-pink-600 mb-1">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB2777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+                        </div>
+                        <h3 class="font-semibold text-xs text-gray-800">Financial Health Guide</h3>
+                        <p class="text-xxs text-gray-600 flex-grow">Understand the key pillars of financial wellness.</p>
+                        <span class="text-xxs font-bold text-red-600 mt-1">Read &rarr;</span>
+                    </a>
+                     <!-- Next Financial Move Quiz -->
+                    <a href="../quizzes/next-financial-move-quiz.html" class="bg-white border border-gray-200 rounded-lg p-2 flex flex-col text-center shadow-sm hover:shadow-md hover:-translate-y-px transition-all duration-200 h-full">
+                        <div class="w-6 h-6 mx-auto flex items-center justify-center bg-blue-100 rounded-full text-blue-600 mb-1">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                        <h3 class="font-semibold text-xs text-gray-800">Next Move Quiz</h3>
+                        <p class="text-xxs text-gray-600 flex-grow">Get a clear, prioritized action plan for your finances.</p>
+                        <span class="text-xxs font-bold text-red-600 mt-1">Take Quiz &rarr;</span>
+                    </a>
+                    <!-- Emergency Fund Guide -->
+                    <a href="emergency-fund-guide.html" class="bg-white border border-gray-200 rounded-lg p-2 flex flex-col text-center shadow-sm hover:shadow-md hover:-translate-y-px transition-all duration-200 h-full">
+                        <div class="w-6 h-6 mx-auto flex items-center justify-center bg-yellow-100 rounded-full text-yellow-600 mb-1">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3 class="font-semibold text-xs text-gray-800">Emergency Fund Guide</h3>
+                        <p class="text-xxs text-gray-600 flex-grow">Learn to build a robust financial safety net.</p>
+                        <span class="text-xxs font-bold text-red-600 mt-1">Read &rarr;</span>
+                    </a>
+                    <!-- Beginner's Investing Guide -->
+                    <a href="beginner-investing-guide.html" class="bg-white border border-gray-200 rounded-lg p-2 flex flex-col text-center shadow-sm hover:shadow-md hover:-translate-y-px transition-all duration-200 h-full">
+                        <div class="w-6 h-6 mx-auto flex items-center justify-center bg-green-100 rounded-full text-green-600 mb-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </div>
+                        <h3 class="font-semibold text-xs text-gray-800">Beginner's Investing Guide</h3>
+                        <p class="text-xxs text-gray-600 flex-grow">The perfect starting point to understand mutual funds.</p>
+                        <span class="text-xxs font-bold text-red-600 mt-1">Read &rarr;</span>
+                    </a>
                 </div>
             </div>
             
