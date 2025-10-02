@@ -17,6 +17,12 @@
     width: 100%;
 }
 
+/* Add border to input and output sections */
+.calculator-container .bg-blue-50\/50 {
+    border: 1px solid #dbeafe; /* Tailwind's blue-200 */
+}
+
+
 /* Custom styles for range sliders */
 .range-slider { 
     -webkit-appearance: none; 
@@ -40,16 +46,16 @@
 .range-slider::-webkit-slider-thumb { 
     -webkit-appearance: none; 
     appearance: none; 
-    margin-top: -5px; 
-    width: 16px; 
-    height: 16px; 
+    margin-top: -7px; /* Adjusted for larger thumb */
+    width: 20px; /* Increased size */
+    height: 20px; /* Increased size */
     border-radius: 50%; 
     background: #2563EB; 
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); 
 }
 .range-slider::-moz-range-thumb { 
-    width: 16px; 
-    height: 16px; 
+    width: 20px; /* Increased size */
+    height: 20px; /* Increased size */
     border-radius: 50%; 
     background: #2563EB; 
     border: none; 
@@ -69,13 +75,21 @@
 .manual-input { 
     width: 80px; 
     padding: 0.25rem; 
-    border: 1px solid #d1d5db; 
+    border: 1px solid #93c5fd; /* Light blue accent border */
     border-radius: 0.25rem; 
     font-size: 0.7rem; 
     font-weight: 600; 
     text-align: center; 
-    background-color: #f3f4f6; 
+    background-color: #f3f4f6;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
+
+.manual-input:focus {
+    outline: none;
+    border-color: #3b82f6; /* Darker blue on focus */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
 @media (min-width: 640px) { 
     .manual-input { 
         width: 100px; 
@@ -114,3 +128,107 @@
     color: #1f2937;
 }
 
+/* Responsive styles for the Yearly Growth Table on mobile */
+@media (max-width: 640px) {
+    #growthTableContainer table {
+        font-size: 0.7rem; /* Make font a bit smaller on mobile */
+    }
+
+    #growthTableContainer th, 
+    #growthTableContainer td {
+        padding: 0.5rem 0.4rem; /* Reduce padding to make columns narrower */
+        white-space: nowrap; /* Prevent numbers from wrapping */
+    }
+}
+
+/* Styles for Step-up Toggle Switch */
+.step-up-toggle-container {
+    display: flex;
+    align-items: center;
+}
+
+.step-up-toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px; /* Width for the toggle */
+    height: 24px; /* Height for the toggle */
+}
+
+.step-up-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-track {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.toggle-thumb {
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #3B82F6;
+}
+
+.step-up-toggle input:checked + .toggle-track {
+    background-color: #2563EB;
+}
+
+.step-up-toggle input:checked + .toggle-track .toggle-thumb {
+    transform: translateX(26px);
+}
+
+.toggle-icon {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.2s ease;
+}
+
+.toggle-icon-rupee {
+    opacity: 0;
+}
+
+.step-up-toggle input:checked + .toggle-track .toggle-thumb .toggle-icon-percent {
+    opacity: 0;
+}
+
+.step-up-toggle input:checked + .toggle-track .toggle-thumb .toggle-icon-rupee {
+    opacity: 1;
+}
+
+/* Post-Tax Calculation Section Styles */
+#taxSection {
+    border: 1px solid #dbeafe;
+}
+
+.text-orange-700 {
+    color: #c2410c; /* Tailwind's orange-700 */
+}
+
+.border-orange-200 {
+    border-color: #fed7aa; /* Tailwind's orange-200 */
+}
