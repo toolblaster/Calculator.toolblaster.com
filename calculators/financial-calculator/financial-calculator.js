@@ -22,7 +22,8 @@ function initializeCalculator() {
     const fdSection = getElem('fdSection');
     const swpSection = getElem('swpSection');
     const goalSection = getElem('goalSection');
-    const generalInputsSection = getElem('generalInputsSection'); // New variable
+    const generalInputsSection = getElem('generalInputsSection');
+    const taxSection = getElem('taxSection');
 
     const sipAmountSlider = getElem('sipAmountSlider');
     const sipAmountInput = getElem('sipAmountInput');
@@ -57,6 +58,16 @@ function initializeCalculator() {
     const inflationInputGroup = getElem('inflationInputGroup');
     const inflationRateSlider = getElem('inflationRateSlider');
     const inflationRateInput = getElem('inflationRateInput');
+    const taxToggle = getElem('taxToggle');
+    const taxInputGroup = getElem('taxInputGroup');
+    const taxSlabSelect = getElem('taxSlabSelect');
+
+    // New Toggle Elements
+    const sipIncreaseTypeToggle = getElem('sipIncreaseTypeToggle');
+    const sipIncreaseLabel = getElem('sipIncreaseLabel');
+    const rdIncreaseTypeToggle = getElem('rdIncreaseTypeToggle');
+    const rdIncreaseLabel = getElem('rdIncreaseLabel');
+
 
     const errorMessages = {
       sipAmount: getElem('sipAmountError'), lumpsumAmount: getElem('lumpsumAmountError'),
@@ -82,17 +93,22 @@ function initializeCalculator() {
     const estimatedReturnsLumpsum = getElem('estimatedReturnsLumpsum');
     const totalValueLumpsum = getElem('totalValueLumpsum');
     const realValueSectionLumpsum = getElem('realValueSectionLumpsum');
-    const realTotalValueLumpsum = getElem('realTotalValueLumpsum');
     const rdSummary = getElem('rdSummary');
     const investedAmountRD = getElem('investedAmountRD');
     const estimatedReturnsRD = getElem('estimatedReturnsRD');
     const totalValueRD = getElem('totalValueRD');
+    const postTaxSectionRD = getElem('postTaxSectionRD');
+    const postTaxReturnsRD = getElem('postTaxReturnsRD');
+    const postTaxTotalValueRD = getElem('postTaxTotalValueRD');
     const realValueSectionRD = getElem('realValueSectionRD');
     const realTotalValueRD = getElem('realTotalValueRD');
     const fdSummary = getElem('fdSummary');
     const investedAmountFD = getElem('investedAmountFD');
     const estimatedReturnsFD = getElem('estimatedReturnsFD');
     const totalValueFD = getElem('totalValueFD');
+    const postTaxSectionFD = getElem('postTaxSectionFD');
+    const postTaxReturnsFD = getElem('postTaxReturnsFD');
+    const postTaxTotalValueFD = getElem('postTaxTotalValueFD');
     const realValueSectionFD = getElem('realValueSectionFD');
     const realTotalValueFD = getElem('realTotalValueFD');
     const swpSummary = getElem('swpSummary');
@@ -156,30 +172,34 @@ function initializeCalculator() {
       if (currentMode === 'sip') {
         isFormValid = isFormValid && validateSlider(sipAmountSlider, errorMessages.sipAmount);
         if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
+        
         const sipAmount = parseFloat(sipAmountSlider.value);
-        const annualIncreaseRate = parseFloat(sipIncreaseRateSlider.value) / 100;
+        const isIncreaseAmountMode = sipIncreaseTypeToggle.checked;
+        const increaseValue = parseFloat(sipIncreaseRateInput.value);
+
         const frequency = { monthly: 12, quarterly: 4, 'half-yearly': 2 }[sipFrequencySelect.value];
         const periodicReturnRate = annualReturnRate / frequency;
         let currentSipAmount = sipAmount, investedAmount = 0, currentCorpus = 0;
+
         for (let year = 1; year <= investmentPeriodYears; year++) {
           let yearInvested = 0;
           for (let i = 0; i < frequency; i++) { yearInvested += currentSipAmount; currentCorpus = currentCorpus * (1 + periodicReturnRate) + currentSipAmount; }
           investedAmount += yearInvested;
-          currentSipAmount *= (1 + annualIncreaseRate);
+
+          if (isIncreaseAmountMode) {
+            currentSipAmount += increaseValue;
+          } else {
+            currentSipAmount *= (1 + (increaseValue / 100));
+          }
+
           yearlyGrowthData.push({ year, invested: investedAmount, returns: currentCorpus - investedAmount, total: currentCorpus });
         }
         investedAmountSIP.textContent = formatCurrency(investedAmount);
         estimatedReturnsSIP.textContent = formatCurrency(currentCorpus - investedAmount);
         totalValueSIP.textContent = formatCurrency(currentCorpus);
         if (inflationToggle.checked) {
-          const realReturnRate = ((1 + annualReturnRate) / (1 + annualInflationRate)) - 1;
-          const periodicRealReturnRate = realReturnRate / frequency;
-          let realCorpus = 0, realSipAmount = sipAmount;
-          for (let year = 1; year <= investmentPeriodYears; year++) {
-            for (let i = 0; i < frequency; i++) { realCorpus = realCorpus * (1 + periodicRealReturnRate) + realSipAmount; }
-            realSipAmount *= (1 + annualIncreaseRate);
-          }
-          realTotalValueSIP.textContent = formatCurrency(realCorpus);
+          const finalCorpusInTodayValue = currentCorpus / Math.pow(1 + annualInflationRate, investmentPeriodYears);
+          realTotalValueSIP.textContent = formatCurrency(finalCorpusInTodayValue);
           realValueSectionSIP.classList.remove('hidden');
         } else { realValueSectionSIP.classList.add('hidden'); }
         updateDoughnutChart([investedAmount, currentCorpus - investedAmount], ['Invested', 'Returns'], ['#3B82F6', '#22C55E']);
@@ -208,33 +228,51 @@ function initializeCalculator() {
       } else if (currentMode === 'rd') {
         isFormValid = isFormValid && validateSlider(rdAmountSlider, errorMessages.rdAmount);
         if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
+
         const rdAmount = parseFloat(rdAmountSlider.value);
-        const annualIncreaseRate = parseFloat(rdIncreaseRateSlider.value) / 100;
+        const isIncreaseAmountMode = rdIncreaseTypeToggle.checked;
+        const increaseValue = parseFloat(rdIncreaseRateInput.value);
+
         const frequency = { monthly: 12, quarterly: 4, 'half-yearly': 2 }[rdFrequencySelect.value];
         const periodicReturnRate = annualReturnRate / frequency;
         let currentRdAmount = rdAmount, investedAmount = 0, currentCorpus = 0;
+        
         for (let year = 1; year <= investmentPeriodYears; year++) {
           let yearInvested = 0;
           for (let i = 0; i < frequency; i++) { yearInvested += currentRdAmount; currentCorpus = currentCorpus * (1 + periodicReturnRate) + currentRdAmount; }
           investedAmount += yearInvested;
-          currentRdAmount *= (1 + annualIncreaseRate);
+
+          if (isIncreaseAmountMode) {
+              currentRdAmount += increaseValue;
+          } else {
+              currentRdAmount *= (1 + (increaseValue / 100));
+          }
+
           yearlyGrowthData.push({ year, invested: investedAmount, returns: currentCorpus - investedAmount, total: currentCorpus });
         }
+        const estimatedReturns = currentCorpus - investedAmount;
         investedAmountRD.textContent = formatCurrency(investedAmount);
-        estimatedReturnsRD.textContent = formatCurrency(currentCorpus - investedAmount);
+        estimatedReturnsRD.textContent = formatCurrency(estimatedReturns);
         totalValueRD.textContent = formatCurrency(currentCorpus);
+
+        if (taxToggle.checked) {
+            const taxRate = parseFloat(taxSlabSelect.value);
+            const taxPayable = estimatedReturns * taxRate;
+            const postTaxReturns = estimatedReturns - taxPayable;
+            const postTaxTotal = investedAmount + postTaxReturns;
+            postTaxReturnsRD.textContent = formatCurrency(postTaxReturns);
+            postTaxTotalValueRD.textContent = formatCurrency(postTaxTotal);
+            postTaxSectionRD.classList.remove('hidden');
+        } else {
+            postTaxSectionRD.classList.add('hidden');
+        }
+
         if (inflationToggle.checked) {
-          const realReturnRate = ((1 + annualReturnRate) / (1 + annualInflationRate)) - 1;
-          const periodicRealReturnRate = realReturnRate / frequency;
-          let realCorpus = 0, realRdAmount = rdAmount;
-          for (let year = 1; year <= investmentPeriodYears; year++) {
-            for (let i = 0; i < frequency; i++) { realCorpus = realCorpus * (1 + periodicRealReturnRate) + realRdAmount; }
-            realRdAmount *= (1 + annualIncreaseRate);
-          }
-          realTotalValueRD.textContent = formatCurrency(realCorpus);
+          const finalCorpusInTodayValue = currentCorpus / Math.pow(1 + annualInflationRate, investmentPeriodYears);
+          realTotalValueRD.textContent = formatCurrency(finalCorpusInTodayValue);
           realValueSectionRD.classList.remove('hidden');
         } else { realValueSectionRD.classList.add('hidden'); }
-        updateDoughnutChart([investedAmount, currentCorpus - investedAmount], ['Invested', 'Returns'], ['#3B82F6', '#22C55E']);
+        updateDoughnutChart([investedAmount, estimatedReturns], ['Invested', 'Returns'], ['#3B82F6', '#22C55E']);
         generateGrowthTable(yearlyGrowthData);
 
       } else if (currentMode === 'fd') {
@@ -246,6 +284,19 @@ function initializeCalculator() {
         investedAmountFD.textContent = formatCurrency(investedAmount);
         estimatedReturnsFD.textContent = formatCurrency(estimatedReturns);
         totalValueFD.textContent = formatCurrency(totalValue);
+        
+        if (taxToggle.checked) {
+            const taxRate = parseFloat(taxSlabSelect.value);
+            const taxPayable = estimatedReturns * taxRate;
+            const postTaxReturns = estimatedReturns - taxPayable;
+            const postTaxTotal = investedAmount + postTaxReturns;
+            postTaxReturnsFD.textContent = formatCurrency(postTaxReturns);
+            postTaxTotalValueFD.textContent = formatCurrency(postTaxTotal);
+            postTaxSectionFD.classList.remove('hidden');
+        } else {
+            postTaxSectionFD.classList.add('hidden');
+        }
+
         if (inflationToggle.checked) {
           const realReturnRate = ((1 + annualReturnRate) / (1 + annualInflationRate)) - 1;
           const realTotalValue = investedAmount * Math.pow(1 + realReturnRate, investmentPeriodYears);
@@ -330,8 +381,10 @@ function initializeCalculator() {
       // Hide all specific sections
       [sipSection, lumpsumSection, rdSection, fdSection, swpSection, goalSection, sipSummary, lumpsumSummary, rdSummary, fdSummary, swpSummary, goalSummary].forEach(el => el.classList.add('hidden'));
       
-      // Toggle visibility of the general input section based on mode
+      // Toggle visibility of the general and tax input sections based on mode
       generalInputsSection.classList.toggle('hidden', newMode === 'goal');
+      taxSection.classList.toggle('hidden', !(newMode === 'rd' || newMode === 'fd'));
+
 
       // Style active/inactive buttons
       const activeClasses = 'bg-blue-600 text-white shadow-md'.split(' ');
@@ -345,7 +398,18 @@ function initializeCalculator() {
       else if (newMode === 'swp') { swpSection.classList.remove('hidden'); swpSummary.classList.remove('hidden'); calculatorTitle.textContent = 'SWP Calculator'; calculatorDescription.textContent = 'Calculate your Systematic Withdrawal Plan returns and remaining corpus.'; periodLabel.textContent = 'Withdrawal Period (Years)'; }
       else if (newMode === 'goal') { goalSection.classList.remove('hidden'); goalSummary.classList.remove('hidden'); calculatorTitle.textContent = 'Goal Planner'; calculatorDescription.textContent = 'Calculate the monthly investment needed to reach your financial goal.'; }
 
-      document.querySelectorAll('.range-slider').forEach(updateSliderFill);
+      // Reset step-up toggles to their default state (%)
+      if (sipIncreaseTypeToggle) {
+        sipIncreaseTypeToggle.checked = false;
+        const event = new Event('change');
+        sipIncreaseTypeToggle.dispatchEvent(event);
+      }
+      if (rdIncreaseTypeToggle) {
+        rdIncreaseTypeToggle.checked = false;
+        const event = new Event('change');
+        rdIncreaseTypeToggle.dispatchEvent(event);
+      }
+
       updateCalculator();
     }
 
@@ -356,6 +420,7 @@ function initializeCalculator() {
         if (currentMode === 'sip') {
             params.set('amount', sipAmountSlider.value);
             params.set('increase', sipIncreaseRateSlider.value);
+            params.set('increaseType', sipIncreaseTypeToggle.checked ? 'amount' : 'percent');
             params.set('rate', returnRateSlider.value);
             params.set('period', investmentPeriodSlider.value);
         } else if (currentMode === 'lumpsum') {
@@ -366,6 +431,15 @@ function initializeCalculator() {
             params.set('target', targetAmountSlider.value);
             params.set('rate', goalReturnRateSlider.value);
             params.set('period', goalPeriodSlider.value);
+        } else if (currentMode === 'rd' || currentMode === 'fd') {
+            const amount = currentMode === 'rd' ? rdAmountSlider.value : fdAmountSlider.value;
+            params.set('amount', amount);
+            params.set('rate', returnRateSlider.value);
+            params.set('period', investmentPeriodSlider.value);
+            if (taxToggle.checked) {
+                params.set('tax', 'true');
+                params.set('taxSlab', taxSlabSelect.value);
+            }
         }
         
         if (inflationToggle.checked) {
@@ -411,6 +485,10 @@ function initializeCalculator() {
 
             if (mode === 'sip') {
                 sipAmountSlider.value = params.get('amount') || 10000;
+                if (params.get('increaseType') === 'amount') {
+                    sipIncreaseTypeToggle.checked = true;
+                    sipIncreaseTypeToggle.dispatchEvent(new Event('change'));
+                }
                 sipIncreaseRateSlider.value = params.get('increase') || 0;
                 returnRateSlider.value = params.get('rate') || 12;
                 investmentPeriodSlider.value = params.get('period') || 10;
@@ -422,7 +500,18 @@ function initializeCalculator() {
                 targetAmountSlider.value = params.get('target') || 5000000;
                 goalReturnRateSlider.value = params.get('rate') || 12;
                 goalPeriodSlider.value = params.get('period') || 10;
+            } else if (mode === 'rd' || mode === 'fd') {
+                const amountInput = mode === 'rd' ? rdAmountSlider : fdAmountSlider;
+                amountInput.value = params.get('amount') || (mode === 'rd' ? 5000 : 100000);
+                returnRateSlider.value = params.get('rate') || 7;
+                investmentPeriodSlider.value = params.get('period') || 5;
+                if(params.get('tax') === 'true') {
+                    taxToggle.checked = true;
+                    taxInputGroup.classList.remove('hidden');
+                    taxSlabSelect.value = params.get('taxSlab') || '0.3';
+                }
             }
+
 
             if (params.has('inflation')) {
                 inflationToggle.checked = true;
@@ -438,6 +527,37 @@ function initializeCalculator() {
             updateCalculator();
         }
     };
+
+    function setupIncreaseToggle(toggle, label, slider, input) {
+        if (!toggle || !label || !slider || !input) return;
+
+        toggle.addEventListener('change', () => {
+            const isAmountMode = toggle.checked; // true for ₹, false for %
+            const currentValue = 0; // Reset on toggle
+
+            if (isAmountMode) {
+                label.textContent = `Annual Increase (₹)`;
+                slider.min = 0;
+                slider.max = 5000;
+                slider.step = 100;
+                input.min = 0;
+                input.max = 5000;
+                input.step = 100;
+            } else {
+                label.textContent = `Annual Increase (%)`;
+                slider.min = 0;
+                slider.max = 20;
+                slider.step = 1;
+                input.min = 0;
+                input.max = 20;
+                input.step = 1;
+            }
+            slider.value = currentValue;
+            input.value = currentValue;
+            updateSliderFill(slider);
+            updateCalculator();
+        });
+    }
 
     function setupEventListeners() {
       const inputs = [ 
@@ -457,10 +577,11 @@ function initializeCalculator() {
         } 
       });
       
-      [sipFrequencySelect, rdFrequencySelect, withdrawalFrequencySelect, inflationToggle].forEach(el => { 
+      [sipFrequencySelect, rdFrequencySelect, withdrawalFrequencySelect, inflationToggle, taxToggle, taxSlabSelect].forEach(el => { 
         if (el) { 
           el.addEventListener('change', () => { 
             if (el.id === 'inflationToggle') { inflationInputGroup.classList.toggle('hidden', !inflationToggle.checked); }
+            if (el.id === 'taxToggle') { taxInputGroup.classList.toggle('hidden', !taxToggle.checked); }
             updateCalculator(); 
           }); 
         } 
@@ -507,6 +628,9 @@ function initializeCalculator() {
 
       toggleGrowthTableBtn.addEventListener('click', () => { growthTableContainer.classList.toggle('hidden'); toggleGrowthTableBtn.textContent = growthTableContainer.classList.contains('hidden') ? 'Show Yearly Growth' : 'Hide Yearly Growth'; });
       window.addEventListener('resize', debounce(() => { if(investmentDoughnutChart) investmentDoughnutChart.resize(); }, 250));
+    
+      setupIncreaseToggle(sipIncreaseTypeToggle, sipIncreaseLabel, sipIncreaseRateSlider, sipIncreaseRateInput);
+      setupIncreaseToggle(rdIncreaseTypeToggle, rdIncreaseLabel, rdIncreaseRateSlider, rdIncreaseRateInput);
     }
 
     setupEventListeners();
