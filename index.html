@@ -141,19 +141,19 @@
                 <p id="calculatorDescription" class="text-center text-gray-500 mb-3 text-xs">Plan your investments with our advanced SIP Calculator. Also includes tools for RD, FD, SWP, Goal Planning, and more.</p>
                 
                 <div class="flex justify-center mb-3 flex-wrap gap-1">
-                    <button id="sipModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-blue-600 text-white shadow-md">SIP</button>
-                    <button id="lumpsumModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Lumpsum</button>
-                    <button id="swpModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">SWP</button>
-                    <button id="rdModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">RD</button>
-                    <button id="fdModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">FD</button>
-                    <button id="goalModeBtn" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Goal Planner</button>
+                    <button id="sipModeBtn" aria-label="Switch to SIP calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-blue-600 text-white shadow-md">SIP</button>
+                    <button id="lumpsumModeBtn" aria-label="Switch to Lumpsum calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Lumpsum</button>
+                    <button id="swpModeBtn" aria-label="Switch to SWP calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">SWP</button>
+                    <button id="rdModeBtn" aria-label="Switch to RD calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">RD</button>
+                    <button id="fdModeBtn" aria-label="Switch to FD calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">FD</button>
+                    <button id="goalModeBtn" aria-label="Switch to Goal Planner" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Goal Planner</button>
                 </div>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
                     <div class="space-y-2">
                         <div id="sipSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg">
                             <div>
-                                <label for="sipAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="sipAmountLabel">Monthly SIP Amount (₹)</label>
+                                <label for="sipAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="sipAmountLabel">Monthly SIP Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="sipAmountSlider" min="500" max="50000" value="10000" step="500" class="w-full range-slider">
                                     <input type="number" id="sipAmountInput" class="manual-input" value="10000" min="500" max="50000" step="500">
@@ -169,7 +169,20 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="sipIncreaseRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Annual Increase (%)</label>
+                                <div class="flex justify-between items-center mb-1">
+                                    <label for="sipIncreaseRateInput" class="block text-xs font-medium text-gray-600" id="sipIncreaseLabel">Annual Increase (%)</label>
+                                    <div class="step-up-toggle-container">
+                                        <label class="step-up-toggle">
+                                            <input type="checkbox" id="sipIncreaseTypeToggle" class="sr-only" aria-label="Toggle between percentage and amount for annual increase">
+                                            <div class="toggle-track">
+                                                <div class="toggle-thumb">
+                                                    <span class="toggle-icon toggle-icon-percent">%</span>
+                                                    <span class="toggle-icon toggle-icon-rupee">₹</span>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="sipIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider">
                                     <input type="number" id="sipIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
@@ -178,7 +191,7 @@
                         </div>
                         <div id="lumpsumSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
-                                <label for="lumpsumAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="lumpsumAmountLabel">Lumpsum Amount (₹)</label>
+                                <label for="lumpsumAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="lumpsumAmountLabel">Lumpsum Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="lumpsumAmountSlider" min="5000" max="10000000" value="500000" step="1000" class="w-full range-slider">
                                     <input type="number" id="lumpsumAmountInput" class="manual-input" value="500000" min="5000" max="10000000" step="1000">
@@ -188,7 +201,7 @@
                         </div>
                         <div id="rdSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
-                                <label for="rdAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="rdAmountLabel">Monthly RD Amount (₹)</label>
+                                <label for="rdAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="rdAmountLabel">Monthly RD Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="rdAmountSlider" min="100" max="50000" value="5000" step="100" class="w-full range-slider">
                                     <input type="number" id="rdAmountInput" class="manual-input" value="5000" min="100" max="50000" step="100">
@@ -204,7 +217,20 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="rdIncreaseRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Annual Increase (%)</label>
+                                <div class="flex justify-between items-center mb-1">
+                                    <label for="rdIncreaseRateInput" class="block text-xs font-medium text-gray-600" id="rdIncreaseLabel">Annual Increase (%)</label>
+                                    <div class="step-up-toggle-container">
+                                        <label class="step-up-toggle">
+                                            <input type="checkbox" id="rdIncreaseTypeToggle" class="sr-only" aria-label="Toggle between percentage and amount for annual RD increase">
+                                            <div class="toggle-track">
+                                                <div class="toggle-thumb">
+                                                    <span class="toggle-icon toggle-icon-percent">%</span>
+                                                    <span class="toggle-icon toggle-icon-rupee">₹</span>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="rdIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider">
                                     <input type="number" id="rdIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
@@ -213,7 +239,7 @@
                         </div>
                         <div id="fdSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
-                                <label for="fdAmountSlider" class="block text-xs font-medium text-gray-600 mb-1" id="fdAmountLabel">FD Amount (₹)</label>
+                                <label for="fdAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="fdAmountLabel">FD Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="fdAmountSlider" min="1000" max="10000000" value="100000" step="1000" class="w-full range-slider">
                                     <input type="number" id="fdAmountInput" class="manual-input" value="100000" min="1000" max="10000000" step="1000">
@@ -223,7 +249,7 @@
                         </div>
                         <div id="swpSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
-                                <label for="initialCorpusSlider" class="block text-xs font-medium text-gray-600 mb-1" id="initialCorpusLabel">Initial Investment (₹)</label>
+                                <label for="initialCorpusInput" class="block text-xs font-medium text-gray-600 mb-1" id="initialCorpusLabel">Initial Investment (₹)</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="initialCorpusSlider" min="100000" max="50000000" value="2000000" step="10000" class="w-full range-slider">
                                     <input type="number" id="initialCorpusInput" class="manual-input" value="2000000" min="100000" max="50000000" step="10000">
@@ -231,7 +257,7 @@
                                 <p id="initialCorpusError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1 Lac - ₹5 Crore.</p>
                             </div>
                             <div>
-                                <label for="withdrawalAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Monthly Withdrawal (₹)</label>
+                                <label for="withdrawalAmountInput" class="block text-xs font-medium text-gray-600 mb-1">Monthly Withdrawal (₹)</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="withdrawalAmountSlider" min="1000" max="100000" value="20000" step="500" class="w-full range-slider">
                                     <input type="number" id="withdrawalAmountInput" class="manual-input" value="20000" min="1000" max="100000" step="500">
@@ -252,13 +278,13 @@
                             <div class="mb-2">
                                 <label class="block text-xs font-medium text-gray-600 mb-1">Goal Templates</label>
                                 <div class="flex flex-wrap gap-1">
-                                    <button class="goal-template-btn" data-goal="retirement">Retirement</button>
-                                    <button class="goal-template-btn" data-goal="education">Child's Education</button>
-                                    <button class="goal-template-btn" data-goal="car">Car Purchase</button>
+                                    <button class="goal-template-btn" data-goal="retirement" aria-label="Apply Retirement goal template">Retirement</button>
+                                    <button class="goal-template-btn" data-goal="education" aria-label="Apply Child's Education goal template">Child's Education</button>
+                                    <button class="goal-template-btn" data-goal="car" aria-label="Apply Car Purchase goal template">Car Purchase</button>
                                 </div>
                             </div>
                             <div>
-                                <label for="targetAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Target Amount (₹)</label>
+                                <label for="targetAmountInput" class="block text-xs font-medium text-gray-600 mb-1">Target Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="targetAmountSlider" min="100000" max="100000000" value="5000000" step="10000" class="w-full range-slider">
                                     <input type="number" id="targetAmountInput" class="manual-input" value="5000000" min="100000" max="100000000" step="10000">
@@ -266,7 +292,7 @@
                                 <p id="targetAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1 Lac - ₹10 Crore.</p>
                             </div>
                             <div>
-                                <label for="goalReturnRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
+                                <label for="goalReturnRateInput" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="goalReturnRateSlider" min="1" max="30" value="12" step="0.1" class="w-full range-slider">
                                     <input type="number" id="goalReturnRateInput" class="manual-input" value="12" min="1" max="30" step="0.1">
@@ -274,7 +300,7 @@
                                 <p id="goalReturnRateError" class="text-red-500 text-xxs mt-1 hidden">Rate must be between 1% - 30%.</p>
                             </div>
                             <div>
-                                <label for="goalPeriodSlider" class="block text-xs font-medium text-gray-600 mb-1">Investment Period (Years)</label>
+                                <label for="goalPeriodInput" class="block text-xs font-medium text-gray-600 mb-1">Investment Period (Years)</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="goalPeriodSlider" min="1" max="40" value="10" class="w-full range-slider">
                                     <input type="number" id="goalPeriodInput" class="manual-input" value="10" min="1" max="40">
@@ -285,7 +311,7 @@
                         
                         <div id="generalInputsSection" class="bg-blue-50/50 p-2 rounded-lg space-y-2">
                             <div>
-                                <label for="returnRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
+                                <label for="returnRateInput" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="returnRateSlider" min="1" max="30" value="12" step="0.1" class="w-full range-slider">
                                     <input type="number" id="returnRateInput" class="manual-input" value="12" min="1" max="30" step="0.1">
@@ -293,12 +319,32 @@
                                 <p id="returnRateError" class="text-red-500 text-xxs mt-1 hidden">Rate must be between 1% - 30%.</p>
                             </div>
                             <div>
-                                <label for="investmentPeriodSlider" class="block text-xs font-medium text-gray-600 mb-1" id="periodLabel">Investment Period (Years)</label>
+                                <label for="investmentPeriodInput" class="block text-xs font-medium text-gray-600 mb-1" id="periodLabel">Investment Period (Years)</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="investmentPeriodSlider" min="1" max="40" value="10" class="w-full range-slider">
                                     <input type="number" id="investmentPeriodInput" class="manual-input" value="10" min="1" max="40">
                                 </div>
                                 <p id="investmentPeriodError" class="text-red-500 text-xxs mt-1 hidden">Period must be between 1 - 40 years.</p>
+                            </div>
+                        </div>
+
+                        <div id="taxSection" class="bg-blue-50/50 p-2 rounded-lg hidden">
+                            <div class="flex items-center justify-between">
+                                <label for="taxToggle" class="text-xs font-medium text-gray-600">Calculate Post-Tax Returns</label>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="taxToggle" class="sr-only peer">
+                                    <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+                                </label>
+                            </div>
+                            <div id="taxInputGroup" class="mt-2 hidden">
+                                <label for="taxSlabSelect" class="block text-xs font-medium text-gray-600 mb-1">Your Income Tax Slab</label>
+                                <select id="taxSlabSelect" class="w-full p-1 border border-gray-300 rounded-md text-xs font-semibold text-gray-700 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 shadow-sm">
+                                    <option value="0">0%</option>
+                                    <option value="0.05">5%</option>
+                                    <option value="0.1">10%</option>
+                                    <option value="0.2">20%</option>
+                                    <option value="0.3" selected>30%</option>
+                                </select>
                             </div>
                         </div>
 
@@ -311,7 +357,7 @@
                                 </label>
                             </div>
                             <div id="inflationInputGroup" class="mt-2 hidden">
-                                <label for="inflationRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Inflation Rate (p.a. %)</label>
+                                <label for="inflationRateInput" class="block text-xs font-medium text-gray-600 mb-1">Inflation Rate (p.a. %)</label>
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="inflationRateSlider" min="0" max="15" value="5" step="0.1" class="w-full range-slider">
                                     <input type="number" id="inflationRateInput" class="manual-input" value="5" min="0" max="15" step="0.1">
@@ -324,7 +370,7 @@
                         <div id="sipSummary" class="bg-blue-50/50 p-2 rounded-lg" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">SIP Summary</h3>
-                                <button class="share-btn" aria-label="Share calculation results">
+                                <button class="share-btn" aria-label="Share SIP calculation results">
                                     <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
                                 </button>
                             </div>
@@ -338,7 +384,7 @@
                         <div id="lumpsumSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">Lumpsum Summary</h3>
-                                <button class="share-btn" aria-label="Share calculation results">
+                                <button class="share-btn" aria-label="Share Lumpsum calculation results">
                                     <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
                                 </button>
                             </div>
@@ -352,7 +398,7 @@
                         <div id="rdSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">RD Summary</h3>
-                                <button class="share-btn" aria-label="Share calculation results">
+                                <button class="share-btn" aria-label="Share RD calculation results">
                                     <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
                                 </button>
                             </div>
@@ -360,13 +406,17 @@
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountRD" class="font-semibold text-blue-700">₹0</span></div>
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsRD" class="font-semibold text-green-700">₹0</span></div>
                                 <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueRD" class="text-sm font-bold text-purple-700">₹0</span></div>
+                                <div id="postTaxSectionRD" class="hidden">
+                                    <div class="flex justify-between items-center text-orange-700"><span class="font-semibold">Post-Tax Returns:</span><span id="postTaxReturnsRD" class="font-bold">₹0</span></div>
+                                    <div class="flex justify-between items-center border-t pt-1 mt-1 border-orange-200"><span class="font-semibold">Post-Tax Total:</span><span id="postTaxTotalValueRD" class="font-bold">₹0</span></div>
+                                </div>
                                 <div id="realValueSectionRD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueRD" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
                         <div id="fdSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
                            <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">FD Summary</h3>
-                                <button class="share-btn" aria-label="Share calculation results">
+                                <button class="share-btn" aria-label="Share FD calculation results">
                                     <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
                                 </button>
                             </div>
@@ -374,13 +424,17 @@
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountFD" class="font-semibold text-blue-700">₹0</span></div>
                                 <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsFD" class="font-semibold text-green-700">₹0</span></div>
                                 <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueFD" class="text-sm font-bold text-purple-700">₹0</span></div>
+                                 <div id="postTaxSectionFD" class="hidden">
+                                    <div class="flex justify-between items-center text-orange-700"><span class="font-semibold">Post-Tax Returns:</span><span id="postTaxReturnsFD" class="font-bold">₹0</span></div>
+                                    <div class="flex justify-between items-center border-t pt-1 mt-1 border-orange-200"><span class="font-semibold">Post-Tax Total:</span><span id="postTaxTotalValueFD" class="font-bold">₹0</span></div>
+                                </div>
                                 <div id="realValueSectionFD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueFD" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
                         <div id="swpSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">SWP Summary</h3>
-                                <button class="share-btn" aria-label="Share calculation results">
+                                <button class="share-btn" aria-label="Share SWP calculation results">
                                     <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
                                 </button>
                             </div>
@@ -396,7 +450,7 @@
                         <div id="goalSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">Goal Planner Summary</h3>
-                                <button class="share-btn" aria-label="Share calculation results">
+                                <button class="share-btn" aria-label="Share Goal Planner calculation results">
                                     <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
                                 </button>
                             </div>
