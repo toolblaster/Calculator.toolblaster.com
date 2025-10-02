@@ -401,7 +401,9 @@ main {
 .site-footer { 
     max-width: 1000px;
     width: 90%;
-    margin: 0.5rem auto;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0;
     background-color: var(--footer-bg);
     color: var(--footer-text); 
