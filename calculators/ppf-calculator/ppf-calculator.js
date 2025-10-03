@@ -161,14 +161,6 @@ function initializePpfCalculator() {
       if (ppfDoughnutChart) { ppfDoughnutChart.data = chartData; ppfDoughnutChart.update(); } else { ppfDoughnutChart = new Chart(doughnutCtx, { type: 'doughnut', data: chartData, options: chartOptions }); }
     }
     
-    function updateExtensionUI() {
-        extensionBlocksInput.value = `${extensionBlocks} blocks (${extensionBlocks * 5} yrs)`;
-        extensionContributionDiv.classList.toggle('hidden', extensionBlocks === 0);
-        decreaseExtensionBtn.disabled = extensionBlocks === 0;
-        increaseExtensionBtn.disabled = extensionBlocks >= MAX_EXTENSIONS;
-        updateCalculator();
-    }
-    
     function loadSeoContent() {
         const contentArea = getElem('dynamic-content-area-ppf');
         if (contentArea) {
