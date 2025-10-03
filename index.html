@@ -138,7 +138,7 @@
             <div class="bg-white shadow-lg rounded-xl p-2 sm:p-4 w-full border border-red-300 mx-auto my-0 calculator-container">
                 
                 <h1 id="calculatorTitle" class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">SIP Calculator with Inflation</h1>
-                <p id="calculatorDescription" class="text-center text-gray-500 mb-3 text-xs">Plan your investments with our advanced SIP Calculator. Also includes tools for RD, FD, SWP, Goal Planning, and more.</p>
+                <p id="calculatorDescription" class="text-center text-gray-500 mb-3 text-xs">Plan your investments with our advanced SIP Calculator. Also includes tools for RD, FD, SWP, Goal Planning</p>
                 
                 <div class="flex justify-center mb-3 flex-wrap gap-1">
                     <button id="sipModeBtn" aria-label="Switch to SIP calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-blue-600 text-white shadow-md">SIP</button>
@@ -247,6 +247,7 @@
                                 <p id="fdAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1,000 - ₹1 Crore.</p>
                             </div>
                         </div>
+                        <!-- Enhanced SWP Section -->
                         <div id="swpSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="initialCorpusInput" class="block text-xs font-medium text-gray-600 mb-1" id="initialCorpusLabel">Initial Investment (₹)</label>
@@ -263,6 +264,27 @@
                                     <input type="number" id="withdrawalAmountInput" class="manual-input" value="20000" min="1000" max="100000" step="500">
                                 </div>
                                 <p id="withdrawalAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1,000 - ₹1 Lac.</p>
+                            </div>
+                            <!-- UPDATED: Annual Withdrawal Increase with Toggle -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <label for="withdrawalIncreaseInput" class="block text-xs font-medium text-gray-600" id="withdrawalIncreaseLabel">Annual Withdrawal Increase (%)</label>
+                                    <div class="step-up-toggle-container">
+                                        <label class="step-up-toggle">
+                                            <input type="checkbox" id="withdrawalIncreaseTypeToggle" class="sr-only" aria-label="Toggle between percentage and amount for annual withdrawal increase">
+                                            <div class="toggle-track">
+                                                <div class="toggle-thumb">
+                                                    <span class="toggle-icon toggle-icon-percent">%</span>
+                                                    <span class="toggle-icon toggle-icon-rupee">₹</span>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input type="range" id="withdrawalIncreaseSlider" min="0" max="10" value="0" step="1" class="w-full range-slider">
+                                    <input type="number" id="withdrawalIncreaseInput" class="manual-input" value="0" min="0" max="10" step="1">
+                                </div>
                             </div>
                             <div>
                                 <label for="withdrawalFrequency" class="block text-xs font-medium text-gray-600 mb-1">Withdrawal Frequency</label>
@@ -472,13 +494,14 @@
                 </div>
                 <div id="growthTableContainer" class="hidden overflow-x-auto bg-white rounded-lg shadow-md mt-4 p-4 border border-gray-200">
                     <h3 class="text-center text-sm font-bold text-gray-800 mb-2">Yearly Investment Growth</h3>
+                    <!-- UPDATE: Added ID to thead for dynamic header changes and corrected alignment -->
                     <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
+                        <thead id="growthTableHeader" class="bg-gray-50">
                             <tr>
                                 <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider">Year</th>
-                                <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider" id="tableHeaderInvested">Invested</th>
-                                <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider">Returns</th>
-                                <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider">Total Value</th>
+                                <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider" id="tableHeaderInvested">Invested</th>
+                                <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider">Returns</th>
+                                <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider">Total Value</th>
                             </tr>
                         </thead>
                         <tbody id="growthTableBody" class="bg-white divide-y divide-gray-200 text-xs">
