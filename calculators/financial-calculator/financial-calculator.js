@@ -141,7 +141,8 @@ function initializeCalculator() {
 
     function updateDoughnutChart(data, labels, colors) {
       const chartData = { labels: labels, datasets: [{ data, backgroundColor: colors, hoverOffset: 4, borderRadius: 3, spacing: 1 }] };
-      const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: window.innerWidth < 640 ? '60%' : '70%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` }, bodyFont: { family: 'Inter', size: window.innerWidth < 640 ? 8 : 10 }, titleFont: { family: 'Inter', size: window.innerWidth < 640 ? 8 : 10 }, padding: window.innerWidth < 640 ? 4 : 6, cornerRadius: 4 } } };
+      // UPDATED: Changed cutout to '50%' to make the chart ring thicker and more legible at a smaller size.
+      const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: '50%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` }, bodyFont: { family: 'Inter', size: window.innerWidth < 640 ? 8 : 10 }, titleFont: { family: 'Inter', size: window.innerWidth < 640 ? 8 : 10 }, padding: window.innerWidth < 640 ? 4 : 6, cornerRadius: 4 } } };
       if (investmentDoughnutChart) { investmentDoughnutChart.data = chartData; investmentDoughnutChart.update(); } else { investmentDoughnutChart = new Chart(doughnutCtx, { type: 'doughnut', data: chartData, options: chartOptions }); }
     }
 
@@ -412,7 +413,8 @@ function initializeCalculator() {
 
       updateCalculator();
     }
-
+    
+    // ADDED: Function to handle sharing
     const handleShare = () => {
         const params = new URLSearchParams();
         params.set('mode', currentMode);
@@ -455,6 +457,7 @@ function initializeCalculator() {
                 url: shareUrl,
             }).catch(err => {
                 console.error("Share failed:", err.message);
+                showNotification('Could not share report.');
             });
         } else {
             const textArea = document.createElement("textarea");
@@ -466,7 +469,6 @@ function initializeCalculator() {
             textArea.select();
             try {
                 document.execCommand('copy');
-                // The global showNotification function will be called here
                 showNotification('Link copied to clipboard!');
             } catch (err) {
                 console.error('Fallback: Oops, unable to copy', err);
@@ -622,6 +624,7 @@ function initializeCalculator() {
             });
         });
 
+        // ADDED: Attaching the share handler to all share buttons
         document.querySelectorAll('.share-btn').forEach(btn => {
             btn.addEventListener('click', handleShare);
         });
