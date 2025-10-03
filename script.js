@@ -121,11 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
             loadComponent('assets/components/footer.html', 'footer-placeholder')
         ];
 
-        // Specifically check for the homepage's content area and load its content.
-        if (document.getElementById('dynamic-content-area')) {
-            loadPromises.push(loadComponent('calculators/financial-calculator/financial-calculator-seo-content.html', 'dynamic-content-area'));
-        }
-
         Promise.all(loadPromises).then(() => {
             setupMobileMenu();
             setActiveNavLink();
