@@ -636,10 +636,22 @@ function initializeCalculator() {
       setupIncreaseToggle(rdIncreaseTypeToggle, rdIncreaseLabel, rdIncreaseRateSlider, rdIncreaseRateInput);
     }
 
+    // --- Dynamic SEO Content Loading ---
+    function loadSeoContent() {
+        const contentArea = getElem('dynamic-content-area-main');
+        if (contentArea) {
+            fetch('calculators/financial-calculator/financial-calculator-seo-content.html')
+                .then(response => response.ok ? response.text() : Promise.reject('File not found'))
+                .then(html => contentArea.innerHTML = html)
+                .catch(error => console.error('Error loading main SEO content:', error));
+        }
+    }
+
     setupEventListeners();
     loadFromUrl();
     document.querySelectorAll('.range-slider').forEach(updateSliderFill);
     if (!window.location.search) {
          switchMode('sip');
     }
+    loadSeoContent(); // Load the SEO content for the main calculator
 }
