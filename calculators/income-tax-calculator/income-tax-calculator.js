@@ -162,7 +162,7 @@ function initializeTaxCalculator() {
     
     function updateDoughnutChart(data, labels, colors) {
       const chartData = { labels: labels, datasets: [{ data, backgroundColor: colors, hoverOffset: 4, borderRadius: 3, spacing: 1 }] };
-      const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: window.innerWidth < 640 ? '60%' : '70%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` } } } };
+      const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: '50%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` } } } };
       if (taxDoughnutChart) { taxDoughnutChart.data = chartData; taxDoughnutChart.update(); } else { taxDoughnutChart = new Chart(doughnutCtx, { type: 'doughnut', data: chartData, options: chartOptions }); }
     }
 
@@ -197,10 +197,12 @@ function initializeTaxCalculator() {
     function populateAndShowModal() {
         const grossSalary = parseFloat(grossSalaryInput.value);
         const totalDeductionsOld = parseFloat(deduction80cInput.value) + parseFloat(homeLoanInterestInput.value) + parseFloat(deductionNpsInput.value) + parseFloat(otherDeductionsInput.value) + 50000;
-        const totalDeductionsNew = 50000;
-        const taxOld = parseFloat(oldRegimeTaxElem.textContent.replace(/[^0-9.]/g, ''));
-        const taxNew = parseFloat(newRegimeTaxElem.textContent.replace(/[^0-9.]/g, ''));
-
+        const taxOldText = oldRegimeTaxElem.textContent;
+        const taxNewText = newRegimeTaxElem.textContent;
+        
+        const taxOld = taxOldText ? parseFloat(taxOldText.replace(/[^0-9.]/g, '')) : 0;
+        const taxNew = taxNewText ? parseFloat(taxNewText.replace(/[^0-9.]/g, '')) : 0;
+    
         modalReportContent.innerHTML = `
             <h3>Your Inputs</h3>
             <ul>
@@ -220,14 +222,14 @@ function initializeTaxCalculator() {
         
         // Generate shareable URL
         const params = new URLSearchParams();
-        params.set('salary', grossSalary);
+        params.set('salary', grossSalaryInput.value);
         params.set('profile', taxpayerProfileSelect.value);
         params.set('d80c', deduction80cInput.value);
         params.set('d24', homeLoanInterestInput.value);
         params.set('dnps', deductionNpsInput.value);
         params.set('dother', otherDeductionsInput.value);
         shareUrlInput.value = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
-
+    
         shareModal.classList.remove('hidden');
     }
 
