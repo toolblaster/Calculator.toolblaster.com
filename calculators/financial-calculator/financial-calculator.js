@@ -44,6 +44,11 @@ function initializeCalculator() {
     const withdrawalAmountSlider = getElem('withdrawalAmountSlider');
     const withdrawalAmountInput = getElem('withdrawalAmountInput');
     const withdrawalFrequencySelect = getElem('withdrawalFrequency');
+    const withdrawalIncreaseSlider = getElem('withdrawalIncreaseSlider');
+    const withdrawalIncreaseInput = getElem('withdrawalIncreaseInput');
+    const withdrawalIncreaseTypeToggle = getElem('withdrawalIncreaseTypeToggle');
+    const withdrawalIncreaseLabel = getElem('withdrawalIncreaseLabel');
+
     const targetAmountSlider = getElem('targetAmountSlider');
     const targetAmountInput = getElem('targetAmountInput');
     const goalReturnRateSlider = getElem('goalReturnRateSlider');
@@ -62,7 +67,6 @@ function initializeCalculator() {
     const taxInputGroup = getElem('taxInputGroup');
     const taxSlabSelect = getElem('taxSlabSelect');
 
-    // New Toggle Elements
     const sipIncreaseTypeToggle = getElem('sipIncreaseTypeToggle');
     const sipIncreaseLabel = getElem('sipIncreaseLabel');
     const rdIncreaseTypeToggle = getElem('rdIncreaseTypeToggle');
@@ -81,7 +85,9 @@ function initializeCalculator() {
     const calculatorTitle = getElem('calculatorTitle');
     const calculatorDescription = getElem('calculatorDescription');
     const periodLabel = getElem('periodLabel');
+    const growthTableHeader = getElem('growthTableHeader');
     const tableHeaderInvested = getElem('tableHeaderInvested');
+
     const sipSummary = getElem('sipSummary');
     const investedAmountSIP = getElem('investedAmountSIP');
     const estimatedReturnsSIP = getElem('estimatedReturnsSIP');
@@ -141,14 +147,27 @@ function initializeCalculator() {
 
     function updateDoughnutChart(data, labels, colors) {
       const chartData = { labels: labels, datasets: [{ data, backgroundColor: colors, hoverOffset: 4, borderRadius: 3, spacing: 1 }] };
-      // UPDATED: Changed cutout to '50%' to make the chart ring thicker and more legible at a smaller size.
       const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: '50%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` }, bodyFont: { family: 'Inter', size: window.innerWidth < 640 ? 8 : 10 }, titleFont: { family: 'Inter', size: window.innerWidth < 640 ? 8 : 10 }, padding: window.innerWidth < 640 ? 4 : 6, cornerRadius: 4 } } };
       if (investmentDoughnutChart) { investmentDoughnutChart.data = chartData; investmentDoughnutChart.update(); } else { investmentDoughnutChart = new Chart(doughnutCtx, { type: 'doughnut', data: chartData, options: chartOptions }); }
     }
 
     function generateGrowthTable(data) {
       growthTableBody.innerHTML = '';
-      data.forEach(yearData => { const row = document.createElement('tr'); row.className = 'hover:bg-gray-100 transition-colors'; row.innerHTML = `<td class="px-2 py-1 whitespace-nowrap">${yearData.year}</td><td class="px-2 py-1 whitespace-nowrap font-semibold text-blue-700">${formatCurrency(yearData.invested)}</td><td class="px-2 py-1 whitespace-nowrap font-semibold text-green-700">${formatCurrency(yearData.returns)}</td><td class="px-2 py-1 whitespace-nowrap font-bold text-purple-700">${formatCurrency(yearData.total)}</td>`; growthTableBody.appendChild(row); });
+      data.forEach(yearData => { const row = document.createElement('tr'); row.className = 'hover:bg-gray-100 transition-colors'; 
+      
+      if (currentMode === 'swp') {
+          row.innerHTML = `<td class="px-2 py-1 whitespace-nowrap text-left">${yearData.year}</td>
+                           <td class="px-2 py-1 whitespace-nowrap font-semibold text-blue-700 text-right">${formatCurrency(yearData.openingBalance)}</td>
+                           <td class="px-2 py-1 whitespace-nowrap font-semibold text-green-700 text-right">${formatCurrency(yearData.interestEarned)}</td>
+                           <td class="px-2 py-1 whitespace-nowrap font-semibold text-red-700 text-right">${formatCurrency(yearData.withdrawn)}</td>
+                           <td class="px-2 py-1 whitespace-nowrap font-bold text-purple-700 text-right">${formatCurrency(yearData.closingBalance)}</td>`;
+      } else {
+          row.innerHTML = `<td class="px-2 py-1 whitespace-nowrap text-left">${yearData.year}</td>
+                           <td class="px-2 py-1 whitespace-nowrap font-semibold text-blue-700 text-right">${formatCurrency(yearData.invested)}</td>
+                           <td class="px-2 py-1 whitespace-nowrap font-semibold text-green-700 text-right">${formatCurrency(yearData.returns)}</td>
+                           <td class="px-2 py-1 whitespace-nowrap font-bold text-purple-700 text-right">${formatCurrency(yearData.total)}</td>`;
+      }
+      growthTableBody.appendChild(row); });
     }
 
     function updateCalculator() {
@@ -167,7 +186,7 @@ function initializeCalculator() {
       const investmentPeriodYears = (currentMode === 'goal' ? parseFloat(goalPeriodSlider.value) : parseFloat(investmentPeriodSlider.value));
       const annualInflationRate = inflationToggle.checked ? parseFloat(inflationRateSlider.value) / 100 : 0;
       
-      toggleGrowthTableBtn.classList.toggle('hidden', currentMode === 'swp' || currentMode === 'goal');
+      toggleGrowthTableBtn.classList.toggle('hidden', currentMode === 'goal');
       tableHeaderInvested.textContent = (currentMode === 'fd' || currentMode === 'lumpsum') ? 'Principal' : 'Invested';
       
       if (currentMode === 'sip') {
@@ -312,33 +331,78 @@ function initializeCalculator() {
       } else if (currentMode === 'swp') {
         isFormValid = isFormValid && validateSlider(initialCorpusSlider, errorMessages.initialCorpus) && validateSlider(withdrawalAmountSlider, errorMessages.withdrawalAmount);
         if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
+        
         let corpus = parseFloat(initialCorpusSlider.value);
         const initialCorpus = corpus;
-        const withdrawalAmount = parseFloat(withdrawalAmountSlider.value);
+        const initialWithdrawalAmount = parseFloat(withdrawalAmountSlider.value);
+        const isIncreaseAmountMode = withdrawalIncreaseTypeToggle.checked;
+        const increaseValue = parseFloat(withdrawalIncreaseInput.value);
+
         const frequency = { monthly: 12, quarterly: 4, 'half-yearly': 2, yearly: 1 }[withdrawalFrequencySelect.value];
-        const numWithdrawals = investmentPeriodYears * frequency;
-        const periodicReturnRate = annualReturnRate / frequency;
-        let totalWithdrawn = 0, totalInterest = 0, exhaustionPeriodYears = 0;
-        for (let i = 1; i <= numWithdrawals; i++) {
-          if (corpus <= 0) { exhaustionPeriodYears = (i - 1) / frequency; corpus = 0; break; }
-          const interestEarned = corpus * periodicReturnRate;
-          totalInterest += interestEarned;
-          corpus += interestEarned;
-          const withdrawal = Math.min(corpus, withdrawalAmount);
-          corpus -= withdrawal;
-          totalWithdrawn += withdrawal;
+        const periodicReturnRate = annualReturnRate / 12; 
+        
+        let totalWithdrawn = 0;
+        let totalInterest = 0;
+        let exhaustionYear = 0;
+        let currentWithdrawalAmount = initialWithdrawalAmount;
+
+        for (let year = 1; year <= investmentPeriodYears; year++) {
+            let yearOpeningBalance = corpus;
+            let yearInterest = 0;
+            let yearWithdrawn = 0;
+
+            for (let month = 1; month <= 12; month++) {
+                if (corpus <= 0) break;
+                const interestThisMonth = corpus * periodicReturnRate;
+                yearInterest += interestThisMonth;
+                corpus += interestThisMonth;
+                
+                if (month % (12 / frequency) === 0) {
+                    const withdrawalThisPeriod = Math.min(corpus, currentWithdrawalAmount * (12/frequency));
+                    corpus -= withdrawalThisPeriod;
+                    yearWithdrawn += withdrawalThisPeriod;
+                }
+            }
+
+            totalWithdrawn += yearWithdrawn;
+            totalInterest += yearInterest;
+            
+            yearlyGrowthData.push({
+                year: year,
+                openingBalance: yearOpeningBalance,
+                interestEarned: yearInterest,
+                withdrawn: yearWithdrawn,
+                closingBalance: corpus
+            });
+            
+            if (corpus <= 0 && exhaustionYear === 0) {
+                exhaustionYear = year;
+            }
+            
+            if (isIncreaseAmountMode) {
+                currentWithdrawalAmount += increaseValue / frequency * (12/frequency);
+            } else {
+                currentWithdrawalAmount *= (1 + (increaseValue / 100));
+            }
         }
+
         initialCorpusSWP.textContent = formatCurrency(initialCorpus);
         totalWithdrawnSWP.textContent = formatCurrency(totalWithdrawn);
         totalInterestSWP.textContent = formatCurrency(totalInterest);
         remainingCorpusSWP.textContent = formatCurrency(corpus);
-        corpusExhaustedInfo.classList.toggle('hidden', !(exhaustionPeriodYears > 0));
-        if (exhaustionPeriodYears > 0) exhaustionPeriodSWP.textContent = `${exhaustionPeriodYears.toFixed(1)} Yrs`;
+        
+        corpusExhaustedInfo.classList.toggle('hidden', exhaustionYear === 0);
+        if (exhaustionYear > 0) {
+            exhaustionPeriodSWP.textContent = `${exhaustionYear} Yrs`;
+        }
+
         if (inflationToggle.checked) {
           realRemainingCorpusSWP.textContent = formatCurrency(corpus / Math.pow(1 + annualInflationRate, investmentPeriodYears));
           realValueSectionSWP.classList.remove('hidden');
         } else { realValueSectionSWP.classList.add('hidden'); }
-        updateDoughnutChart([totalWithdrawn, totalInterest, corpus], ['Withdrawn', 'Interest', 'Remaining'], ['#10B981', '#6366F1', '#EF4444']);
+        
+        updateDoughnutChart([totalWithdrawn, totalInterest, Math.max(0, corpus)], ['Withdrawn', 'Interest', 'Remaining'], ['#10B981', '#6366F1', '#EF4444']);
+        generateGrowthTable(yearlyGrowthData);
 
       } else if (currentMode === 'goal') {
         isFormValid = isFormValid && validateSlider(targetAmountSlider, errorMessages.targetAmount) && validateSlider(goalReturnRateSlider, errorMessages.goalReturnRate) && validateSlider(goalPeriodSlider, errorMessages.goalPeriod);
@@ -379,27 +443,45 @@ function initializeCalculator() {
 
     function switchMode(newMode) {
       currentMode = newMode;
-      // Hide all specific sections
       [sipSection, lumpsumSection, rdSection, fdSection, swpSection, goalSection, sipSummary, lumpsumSummary, rdSummary, fdSummary, swpSummary, goalSummary].forEach(el => el.classList.add('hidden'));
       
-      // Toggle visibility of the general and tax input sections based on mode
       generalInputsSection.classList.toggle('hidden', newMode === 'goal');
       taxSection.classList.toggle('hidden', !(newMode === 'rd' || newMode === 'fd'));
 
-
-      // Style active/inactive buttons
       const activeClasses = 'bg-blue-600 text-white shadow-md'.split(' ');
       const inactiveClasses = 'bg-gray-200 text-gray-700 hover:bg-gray-300'.split(' ');
       [sipModeBtn, lumpsumModeBtn, rdModeBtn, fdModeBtn, swpModeBtn, goalModeBtn].forEach(btn => { btn.classList.remove(...activeClasses, ...inactiveClasses); btn.classList.add(...(btn.id.startsWith(newMode) ? activeClasses : inactiveClasses)); });
       
-      if (newMode === 'sip') { sipSection.classList.remove('hidden'); sipSummary.classList.remove('hidden'); calculatorTitle.textContent = 'SIP Calculator'; calculatorDescription.textContent = 'Calculate the future value of your SIP investments.'; periodLabel.textContent = 'Investment Period (Years)'; } 
-      else if (newMode === 'lumpsum') { lumpsumSection.classList.remove('hidden'); lumpsumSummary.classList.remove('hidden'); calculatorTitle.textContent = 'Lumpsum Calculator'; calculatorDescription.textContent = 'Calculate the future value of your one-time lumpsum investment.'; periodLabel.textContent = 'Investment Period (Years)'; } 
-      else if (newMode === 'rd') { rdSection.classList.remove('hidden'); rdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'RD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your recurring deposits.'; periodLabel.textContent = 'Investment Period (Years)'; } 
-      else if (newMode === 'fd') { fdSection.classList.remove('hidden'); fdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'FD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your fixed deposit.'; periodLabel.textContent = 'Investment Period (Years)'; } 
-      else if (newMode === 'swp') { swpSection.classList.remove('hidden'); swpSummary.classList.remove('hidden'); calculatorTitle.textContent = 'SWP Calculator'; calculatorDescription.textContent = 'Calculate your Systematic Withdrawal Plan returns and remaining corpus.'; periodLabel.textContent = 'Withdrawal Period (Years)'; }
+      if (newMode === 'sip') { sipSection.classList.remove('hidden'); sipSummary.classList.remove('hidden'); calculatorTitle.textContent = 'SIP Calculator with Inflation'; calculatorDescription.textContent = 'Plan your investments with our advanced SIP Calculator. Also includes tools for RD, FD, SWP, Goal Planning.'; periodLabel.textContent = 'Investment Period (Years)'; } 
+      else if (newMode === 'lumpsum') { lumpsumSection.classList.remove('hidden'); lumpsumSummary.classList.remove('hidden'); calculatorTitle.textContent = 'Lumpsum Calculator'; calculatorDescription.textContent = 'Calculate the future value of your one-time investment.'; periodLabel.textContent = 'Investment Period (Years)'; } 
+      else if (newMode === 'rd') { rdSection.classList.remove('hidden'); rdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'RD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your Recurring Deposit.'; periodLabel.textContent = 'Investment Period (Years)'; } 
+      else if (newMode === 'fd') { fdSection.classList.remove('hidden'); fdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'FD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your Fixed Deposit.'; periodLabel.textContent = 'Investment Period (Years)'; } 
+      else if (newMode === 'swp') { 
+          swpSection.classList.remove('hidden'); 
+          swpSummary.classList.remove('hidden'); 
+          calculatorTitle.textContent = 'SWP Calculator'; 
+          calculatorDescription.textContent = 'Plan your post-retirement income with a Systematic Withdrawal Plan.'; 
+          periodLabel.textContent = 'Withdrawal Period (Years)';
+          growthTableHeader.innerHTML = `<tr>
+              <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider">Year</th>
+              <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider">Opening Balance</th>
+              <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider">Interest Earned</th>
+              <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider">Withdrawn</th>
+              <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider">Closing Balance</th>
+          </tr>`;
+      }
       else if (newMode === 'goal') { goalSection.classList.remove('hidden'); goalSummary.classList.remove('hidden'); calculatorTitle.textContent = 'Goal Planner'; calculatorDescription.textContent = 'Calculate the monthly investment needed to reach your financial goal.'; }
 
-      // Reset step-up toggles to their default state (%)
+      if (newMode !== 'swp') {
+          growthTableHeader.innerHTML = `<tr>
+              <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider">Year</th>
+              <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider" id="tableHeaderInvested">Invested</th>
+              <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider">Returns</th>
+              <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider">Total Value</th>
+          </tr>`;
+      }
+
+
       if (sipIncreaseTypeToggle) {
         sipIncreaseTypeToggle.checked = false;
         const event = new Event('change');
@@ -414,7 +496,6 @@ function initializeCalculator() {
       updateCalculator();
     }
     
-    // ADDED: Function to handle sharing
     const handleShare = () => {
         const params = new URLSearchParams();
         params.set('mode', currentMode);
@@ -442,6 +523,13 @@ function initializeCalculator() {
                 params.set('tax', 'true');
                 params.set('taxSlab', taxSlabSelect.value);
             }
+        } else if (currentMode === 'swp') {
+            params.set('corpus', initialCorpusSlider.value);
+            params.set('withdrawal', withdrawalAmountSlider.value);
+            params.set('increase', withdrawalIncreaseInput.value); 
+            params.set('increaseType', withdrawalIncreaseTypeToggle.checked ? 'amount' : 'percent');
+            params.set('rate', returnRateSlider.value);
+            params.set('period', investmentPeriodSlider.value);
         }
         
         if (inflationToggle.checked) {
@@ -512,8 +600,17 @@ function initializeCalculator() {
                     taxInputGroup.classList.remove('hidden');
                     taxSlabSelect.value = params.get('taxSlab') || '0.3';
                 }
+            } else if (mode === 'swp') {
+                initialCorpusSlider.value = params.get('corpus') || 2000000;
+                withdrawalAmountSlider.value = params.get('withdrawal') || 20000;
+                if (params.get('increaseType') === 'amount') {
+                    withdrawalIncreaseTypeToggle.checked = true;
+                    withdrawalIncreaseTypeToggle.dispatchEvent(new Event('change'));
+                }
+                withdrawalIncreaseSlider.value = params.get('increase') || 0;
+                returnRateSlider.value = params.get('rate') || 8;
+                investmentPeriodSlider.value = params.get('period') || 20;
             }
-
 
             if (params.has('inflation')) {
                 inflationToggle.checked = true;
@@ -537,8 +634,13 @@ function initializeCalculator() {
             const isAmountMode = toggle.checked; // true for ₹, false for %
             const currentValue = 0; // Reset on toggle
 
+            let labelTextPrefix = '';
+            if (label.id.includes('sip')) labelTextPrefix = 'Annual Increase';
+            else if (label.id.includes('rd')) labelTextPrefix = 'Annual Increase';
+            else if (label.id.includes('withdrawal')) labelTextPrefix = 'Annual Withdrawal Increase';
+            
             if (isAmountMode) {
-                label.textContent = `Annual Increase (₹)`;
+                label.textContent = `${labelTextPrefix} (₹)`;
                 slider.min = 0;
                 slider.max = 5000;
                 slider.step = 100;
@@ -546,13 +648,17 @@ function initializeCalculator() {
                 input.max = 5000;
                 input.step = 100;
             } else {
-                label.textContent = `Annual Increase (%)`;
+                label.textContent = `${labelTextPrefix} (%)`;
                 slider.min = 0;
                 slider.max = 20;
                 slider.step = 1;
                 input.min = 0;
                 input.max = 20;
                 input.step = 1;
+                if(label.id.includes('withdrawal')) {
+                    slider.max = 10;
+                    input.max = 10;
+                }
             }
             slider.value = currentValue;
             input.value = currentValue;
@@ -566,6 +672,7 @@ function initializeCalculator() {
        { slider: sipAmountSlider, input: sipAmountInput }, { slider: lumpsumAmountSlider, input: lumpsumAmountInput }, 
        { slider: rdAmountSlider, input: rdAmountInput }, { slider: fdAmountSlider, input: fdAmountInput }, 
        { slider: initialCorpusSlider, input: initialCorpusInput }, { slider: withdrawalAmountSlider, input: withdrawalAmountInput }, 
+       { slider: withdrawalIncreaseSlider, input: withdrawalIncreaseInput },
        { slider: returnRateSlider, input: returnRateInput }, { slider: investmentPeriodSlider, input: investmentPeriodInput }, 
        { slider: inflationRateSlider, input: inflationRateInput }, { slider: sipIncreaseRateSlider, input: sipIncreaseRateInput }, 
        { slider: rdIncreaseRateSlider, input: rdIncreaseRateInput }, { slider: targetAmountSlider, input: targetAmountInput }, 
@@ -624,7 +731,6 @@ function initializeCalculator() {
             });
         });
 
-        // ADDED: Attaching the share handler to all share buttons
         document.querySelectorAll('.share-btn').forEach(btn => {
             btn.addEventListener('click', handleShare);
         });
@@ -634,9 +740,9 @@ function initializeCalculator() {
     
       setupIncreaseToggle(sipIncreaseTypeToggle, sipIncreaseLabel, sipIncreaseRateSlider, sipIncreaseRateInput);
       setupIncreaseToggle(rdIncreaseTypeToggle, rdIncreaseLabel, rdIncreaseRateSlider, rdIncreaseRateInput);
+      setupIncreaseToggle(withdrawalIncreaseTypeToggle, withdrawalIncreaseLabel, withdrawalIncreaseSlider, withdrawalIncreaseInput);
     }
 
-    // --- Dynamic SEO Content Loading ---
     function loadSeoContent() {
         const contentArea = getElem('dynamic-content-area-main');
         if (contentArea) {
@@ -653,5 +759,5 @@ function initializeCalculator() {
     if (!window.location.search) {
          switchMode('sip');
     }
-    loadSeoContent(); // Load the SEO content for the main calculator
+    loadSeoContent();
 }
