@@ -460,7 +460,7 @@ function initializeCalculator() {
           swpSection.classList.remove('hidden'); 
           swpSummary.classList.remove('hidden'); 
           calculatorTitle.textContent = 'SWP Calculator'; 
-          calculatorDescription.textContent = 'Plan your post-retirement income with a Systematic Withdrawal Plan.'; 
+          calculatorDescription.textContent = 'Plan post-retirement income with a Systematic Withdrawal Plan.'; 
           periodLabel.textContent = 'Withdrawal Period (Years)';
           growthTableHeader.innerHTML = `<tr>
               <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider">Year</th>
