@@ -5,9 +5,16 @@
 }
 
 #yearlyGrowthContainer table {
-    font-size: 0.7rem;
+    font-size: 0.65rem; /* Squeezed font size */
 }
 
 #yearlyGrowthContainer th {
-    font-size: 0.65rem;
+    font-size: 0.6rem; /* Squeezed font size */
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+#yearlyGrowthContainer td {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
 }
