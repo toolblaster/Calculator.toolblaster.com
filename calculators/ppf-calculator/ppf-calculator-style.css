@@ -4,6 +4,11 @@
     transition: all 0.3s ease-in-out;
 }
 
+#yearlyGrowthContainer {
+    max-height: 300px; /* Constrain height and enable vertical scrolling */
+    overflow-y: auto;
+}
+
 #yearlyGrowthContainer table {
     font-size: 0.65rem; /* Squeezed font size */
 }
