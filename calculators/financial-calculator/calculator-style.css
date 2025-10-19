@@ -280,3 +280,9 @@
     font-size: 0.65rem;
     padding: 0 0.8rem 0.6rem;
 }
+
+/* NEW: Style for yearly growth table container */
+#growthTableContainer {
+    max-height: 300px; /* Adjust this value as needed */
+    overflow-y: auto;
+}
