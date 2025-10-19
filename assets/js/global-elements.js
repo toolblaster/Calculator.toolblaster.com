@@ -1,10 +1,16 @@
 /**
  * global-elements.js
  * This file contains centralized logic for reusable components across the site,
- * such as notification toasts and social media sharing buttons.
+ * such as notification toasts, social media sharing buttons, and affiliate links.
  */
 
-// --- GLOBAL UTILITY FUNCTION ---
+// --- CONSTANTS ---
+const AFFILIATE_URLS = {
+    '5paisa': 'https://www.5paisa.com/demat-account?ReferralCode=54285431&ReturnUrl=invest-open-account',
+    'upstox': 'https://upstox.onelink.me/0H1s/2JAL6D'
+};
+
+// --- GLOBAL UTILITY FUNCTIONS ---
 function showNotification(message) {
     // Check if a toast container exists, if not, create one.
     let toast = document.getElementById('notification-toast');
@@ -58,26 +64,31 @@ function initializeShareButtons() {
                 showNotification('Link copied to clipboard!');
             }).catch(err => {
                 console.error('Could not copy text: ', err);
-                // Fallback for older browsers
-                try {
-                    const textArea = document.createElement("textarea");
-                    textArea.value = pageUrl;
-                    document.body.appendChild(textArea);
-                    textArea.focus();
-                    textArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                    showNotification('Link copied to clipboard!');
-                } catch (fallbackErr) {
-                    showNotification('Failed to copy link.');
-                }
+                showNotification('Failed to copy link.');
             });
         });
     }
 };
 
+/**
+ * Initializes all affiliate links on a page.
+ * It finds links with a `data-affiliate` attribute and sets the correct URL.
+ */
+function initializeAffiliateLinks() {
+    document.querySelectorAll('[data-affiliate]').forEach(link => {
+        const affiliateName = link.dataset.affiliate;
+        if (AFFILIATE_URLS[affiliateName]) {
+            link.href = AFFILIATE_URLS[affiliateName];
+            link.target = '_blank';
+            link.rel = 'noopener sponsored noreferrer';
+        }
+    });
+}
+
+
 // --- INITIALIZATION ---
-// When the DOM is fully loaded, initialize the share buttons.
+// When the DOM is fully loaded, initialize all global elements.
 document.addEventListener('DOMContentLoaded', () => {
     initializeShareButtons();
+    initializeAffiliateLinks();
 });
