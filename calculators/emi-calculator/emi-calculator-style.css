@@ -185,60 +185,77 @@
     }
 }
 
-/* NEW: Styles for Tax Benefit Section */
+/* --- Styles for Tax Benefit Section --- */
 #taxBenefitSection {
-    background-image: linear-gradient(to right, #e0e7ff, #eef2ff); /* Subtle indigo gradient */
-    transition: all 0.5s ease-in-out;
+    background-image: linear-gradient(to right, #e0e7ff, #f3e8ff); /* Light indigo to light purple gradient */
+    border: 1px solid #c7d2fe; /* Indigo-200 */
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 #taxBenefitSection h2 {
     color: #312e81; /* Darker indigo for better contrast */
 }
 
-/* Squeezed styles for SEO content */
+/* --- Squeezed Styles for SEO Content --- */
 .compact-seo-content .content-section {
-    margin-top: 1.25rem;
+    margin-top: 1rem; /* Reduced from 1.25rem */
 }
 .compact-seo-content .section-title-secondary {
     font-size: 0.9rem;
     margin-bottom: 0.25rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.25rem; /* Reduced */
 }
 .compact-seo-content .section-title-secondary::after {
-    margin-top: 0.5rem;
+    margin-top: 0.25rem; /* Reduced */
 }
 .compact-seo-content .section-subtitle {
-    font-size: 0.7rem;
-    margin-bottom: 0.75rem;
+    font-size: 0.65rem; /* Reduced */
+    margin-bottom: 0.5rem; /* Reduced */
 }
 .compact-seo-content .card-container {
     gap: 0.5rem;
 }
 .compact-seo-content .content-card {
-    padding: 0.75rem;
+    padding: 0.5rem; /* Reduced */
 }
 .compact-seo-content .content-card h3 {
-    font-size: 0.75rem;
+    font-size: 0.7rem; /* Reduced */
     margin-bottom: 0.25rem;
 }
 .compact-seo-content .content-card p {
-    font-size: 0.65rem;
-    line-height: 1.4;
+    font-size: 0.6rem; /* Reduced */
+    line-height: 1.3;
 }
 .compact-seo-content .trust-card {
     padding: 0.75rem;
 }
 .compact-seo-content .trust-card strong {
-    font-size: 0.75rem;
+    font-size: 0.7rem; /* Reduced */
 }
 .compact-seo-content .trust-card p {
     font-size: 0.65rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
 }
+
+.compact-seo-content .trust-card ul li {
+    margin-bottom: 0.5rem;
+}
+
+.compact-seo-content .trust-card svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.5rem;
+    margin-top: 2px;
+}
+
 .compact-seo-content .faq-item summary {
-    font-size: 0.75rem;
-    padding: 0.6rem 0.8rem;
+    font-size: 0.7rem; /* Reduced */
+    padding: 0.5rem 0.75rem; /* Reduced */
 }
 .compact-seo-content .faq-item p {
     font-size: 0.65rem;
-    padding: 0 0.8rem 0.6rem;
+    padding: 0 0.75rem 0.5rem; /* Reduced */
 }
