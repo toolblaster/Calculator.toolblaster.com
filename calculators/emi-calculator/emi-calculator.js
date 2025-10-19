@@ -32,6 +32,13 @@ function initializeEmiCalculator() {
     const prepaymentStartSlider = getElem('prepaymentStartSlider');
     const prepaymentStartInput = getElem('prepaymentStartInput');
 
+    // Tax Benefit Elements
+    const taxBenefitSection = getElem('taxBenefitSection');
+    const taxSlabSelect = getElem('taxSlabSelect');
+    const principalTaxSavingElem = getElem('principalTaxSaving');
+    const interestTaxSavingElem = getElem('interestTaxSaving');
+    const totalTaxSavingElem = getElem('totalTaxSaving');
+
     const monthlyEmiElem = getElem('monthlyEmi');
     const principalAmountElem = getElem('principalAmount');
     const totalInterestElem = getElem('totalInterest');
@@ -62,6 +69,7 @@ function initializeEmiCalculator() {
     const downloadCsvBtn = getElem('downloadCsvBtn');
 
     let currentAmortizationData = [];
+    let isHomeLoanActive = false;
 
     const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
     const formatCurrency = (num) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(Math.round(num));
@@ -135,6 +143,13 @@ function initializeEmiCalculator() {
         currentAmortizationData = prepaymentAmount > 0 ? prepayLoanData.amortization : originalLoanData.amortization;
         generateAmortizationTable(currentAmortizationData);
         generateAmortizationChart(originalLoanData.amortization, prepayLoanData.amortization);
+
+        if(isHomeLoanActive) {
+            taxBenefitSection.classList.remove('hidden');
+            calculateTaxBenefits(originalLoanData.amortization);
+        } else {
+            taxBenefitSection.classList.add('hidden');
+        }
     }
 
     function generateAmortizationData(principal, emi, initialMonthlyRate, totalMonths, prepayment, prepFrequency, oneTimeStart, rateIncrease, increaseAfterYears) {
@@ -191,6 +206,26 @@ function initializeEmiCalculator() {
         }
         return { amortization, totalInterest, totalPrepaid, newEmi };
     }
+    
+    function calculateTaxBenefits(amortizationData) {
+        const taxSlab = parseFloat(taxSlabSelect.value);
+        
+        const firstYearData = amortizationData.slice(0, 12);
+        const principalPaidInFirstYear = firstYearData.reduce((acc, row) => acc + row.principalPaid, 0);
+        const interestPaidInFirstYear = firstYearData.reduce((acc, row) => acc + row.interest, 0);
+
+        const principalDeduction = Math.min(principalPaidInFirstYear, 150000); // Max 1.5L u/s 80C
+        const interestDeduction = Math.min(interestPaidInFirstYear, 200000); // Max 2L u/s 24b
+
+        const principalSaving = principalDeduction * taxSlab;
+        const interestSaving = interestDeduction * taxSlab;
+        const totalSaving = principalSaving + interestSaving;
+
+        principalTaxSavingElem.textContent = formatCurrency(principalSaving);
+        interestTaxSavingElem.textContent = formatCurrency(interestSaving);
+        totalTaxSavingElem.textContent = formatCurrency(totalSaving);
+    }
+
 
     function generateAmortizationTable(amortizationData) {
         let tableHTML = `
@@ -326,7 +361,7 @@ function initializeEmiCalculator() {
         if (prepaymentAmount > 0) {
             params.set('prepay', prepaymentAmount);
             params.set('prepayFreq', prepaymentFrequencySelect.value);
-            if (prepaymentFrequencySelect.value === '0') {
+             if (prepaymentFrequencySelect.value === '0') {
                  params.set('prepayStart', prepaymentStartInput.value);
             }
         }
@@ -442,11 +477,18 @@ function initializeEmiCalculator() {
          modalContent.classList.remove('print-area');
       });
       if(downloadCsvBtn) downloadCsvBtn.addEventListener('click', downloadAmortizationCSV);
+
+      taxSlabSelect.addEventListener('change', () => {
+        if(isHomeLoanActive) {
+            calculateTaxBenefits(currentAmortizationData);
+        }
+      });
     }
 
     function setPreset(loanType) {
         document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
         let activeBtn;
+        isHomeLoanActive = (loanType === 'home');
 
         if (loanType === 'home') {
             loanAmountInput.value = 5000000;
