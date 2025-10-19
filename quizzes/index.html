@@ -62,6 +62,10 @@
         main.container {
             max-width: 1000px;
         }
+        .text-xxs {
+            font-size: 0.65rem;
+            line-height: 0.85rem;
+        }
     </style>
 </head>
 <body class="bg-slate-50">
@@ -76,17 +80,17 @@
         </div>
 
         <!-- Featured Quiz Section -->
-        <section class="mb-8">
-            <a href="financial-health-assessment.html" class="group block relative overflow-hidden rounded-xl border border-gray-200 bg-white p-4 md:p-6 shadow-sm hover:shadow-lg transition-all duration-300">
-                <span class="absolute top-3 right-3 inline-flex items-center px-2 py-0.5 text-xxs font-bold leading-4 bg-red-100 text-red-700 rounded-full">Most Popular</span>
-                <div class="md:flex md:gap-6">
-                    <div class="flex-shrink-0 mb-3 md:mb-0">
-                        <div class="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center text-red-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+        <section class="mb-6">
+            <a href="financial-health-assessment.html" class="group block relative overflow-hidden rounded-xl border border-gray-200 bg-white p-3 md:p-4 shadow-sm hover:shadow-lg transition-all duration-300">
+                <span class="absolute top-2 right-2 inline-flex items-center px-2 py-0.5 text-xxs font-bold leading-4 bg-red-100 text-red-700 rounded-full">Most Popular</span>
+                <div class="md:flex md:gap-4">
+                    <div class="flex-shrink-0 mb-2 md:mb-0">
+                        <div class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-red-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
                         </div>
                     </div>
                     <div>
-                        <h2 class="text-lg font-bold text-gray-900">Financial Health Assessment</h2>
+                        <h2 class="text-base font-bold text-gray-900">Financial Health Assessment</h2>
                         <p class="mt-1 text-xs text-gray-600">Get your personalized financial report card and a prioritized action plan. It's the perfect starting point to understand your complete financial picture.</p>
                         <p class="mt-2 text-xs font-semibold text-red-600 group-hover:underline">
                             Take Your Free Assessment &rarr;
@@ -97,89 +101,89 @@
         </section>
 
         <!-- Core Quizzes Section -->
-        <section class="mb-8">
-            <div class="text-center mb-6">
-                <h2 class="text-xl font-bold text-gray-800">Explore All Quizzes</h2>
-                <p class="mt-1 text-sm text-gray-600">Find the right tool to answer your most pressing financial questions.</p>
+        <section class="mb-6">
+            <div class="text-center mb-4">
+                <h2 class="text-lg font-bold text-gray-800">Explore All Quizzes</h2>
+                <p class="mt-1 text-xs text-gray-600">Find the right tool to answer your most pressing financial questions.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
                 <!-- Risk Profile Quiz -->
-                <a href="risk-profile-quiz.html" class="group block p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
-                    <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-3">
-                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <a href="risk-profile-quiz.html" class="group block p-3 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                    <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     </div>
-                    <h3 class="text-base font-semibold text-gray-900">What's Your Investor Profile?</h3>
-                    <p class="mt-1 text-xs text-gray-600">Understand your tolerance for investment risks and get personalized suggestions.</p>
+                    <h3 class="text-sm font-semibold text-gray-900">Investor Profile</h3>
+                    <p class="mt-1 text-xxs text-gray-600">Understand your risk tolerance and get personalized suggestions.</p>
                 </a>
                 
                 <!-- Secure Retirement Forecaster -->
-                <a href="secure-retirement-forecaster-quiz.html" class="group block p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
-                    <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"/></svg>
+                <a href="secure-retirement-forecaster-quiz.html" class="group block p-3 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                    <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"/></svg>
                     </div>
-                    <h3 class="text-base font-semibold text-gray-900">Secure Retirement Forecaster</h3>
-                    <p class="mt-1 text-xs text-gray-600">Assess your retirement readiness and get a report on your target corpus and savings gap.</p>
+                    <h3 class="text-sm font-semibold text-gray-900">Retirement Forecaster</h3>
+                    <p class="mt-1 text-xxs text-gray-600">Assess your retirement readiness and calculate your savings gap.</p>
                 </a>
 
                 <!-- Next Financial Move -->
-                <a href="next-financial-move-quiz.html" class="group block p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
-                    <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <a href="next-financial-move-quiz.html" class="group block p-3 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                    <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </div>
-                    <h3 class="text-base font-semibold text-gray-900">What's Your Next Financial Move?</h3>
-                    <p class="mt-1 text-xs text-gray-600">This check-up will give you a primary and secondary action plan for your finances.</p>
+                    <h3 class="text-sm font-semibold text-gray-900">Next Financial Move</h3>
+                    <p class="mt-1 text-xxs text-gray-600">Get a primary and secondary action plan to prioritize your financial journey.</p>
                 </a>
                 
                 <!-- Financial Habits Assessment -->
-                 <a href="financial-habits-assessment-quiz.html" class="group block p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
-                    <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM14 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM8 16c1.5 1 4 1 5 0"/></svg>
+                 <a href="financial-habits-assessment-quiz.html" class="group block p-3 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                    <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM14 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM8 16c1.5 1 4 1 5 0"/></svg>
                     </div>
-                    <h3 class="text-base font-semibold text-gray-900">Financial Habits Assessment</h3>
-                    <p class="mt-1 text-xs text-gray-600">Discover your money mindset and get actionable steps to improve your financial life.</p>
+                    <h3 class="text-sm font-semibold text-gray-900">Financial Habits</h3>
+                    <p class="mt-1 text-xxs text-gray-600">Discover your money mindset and get actionable steps for improvement.</p>
                 </a>
                 
                 <!-- Millionaire Track -->
-                <a href="are-you-on-track-to-become-a-millionaire-quiz.html" class="group block p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
-                    <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <a href="are-you-on-track-to-become-a-millionaire-quiz.html" class="group block p-3 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                    <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                     </div>
-                    <h3 class="text-base font-semibold text-gray-900">Millionaire Track Quiz</h3>
-                    <p class="mt-1 text-xs text-gray-600">See if your daily habits align with building long-term, significant wealth.</p>
+                    <h3 class="text-sm font-semibold text-gray-900">Millionaire Track</h3>
+                    <p class="mt-1 text-xxs text-gray-600">See if your daily habits align with building long-term, significant wealth.</p>
                 </a>
             </div>
         </section>
 
         <!-- "Next Step" Section -->
-        <section class="bg-slate-100 rounded-xl p-6">
-            <div class="text-center mb-6">
-                <h2 class="text-xl font-bold text-gray-800">From Assessment to Action</h2>
-                <p class="mt-1 text-sm text-gray-600">Quizzes give you the 'why'. Calculators and guides give you the 'what' and 'how'.</p>
+        <section class="bg-slate-100 rounded-xl p-4">
+            <div class="text-center mb-4">
+                <h2 class="text-lg font-bold text-gray-800">From Assessment to Action</h2>
+                <p class="mt-1 text-xs text-gray-600">Quizzes give you the 'why'. Calculators and guides give you the 'what' and 'how'.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl mx-auto">
                 <!-- Explore Guides Card -->
-                <a href="../guides/" class="group block p-4 bg-white rounded-xl text-center border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
-                    <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-3 mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <a href="../guides/" class="group block p-3 bg-white rounded-xl text-center border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                    <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                     </div>
-                    <h3 class="text-base font-semibold text-gray-900">Learn the Strategy</h3>
-                    <p class="mt-1 text-xs text-gray-600">Deepen your understanding of financial concepts with our expert-written, easy-to-follow guides.</p>
-                    <span class="mt-3 inline-block btn-secondary text-xs py-1 px-3">Explore All Guides</span>
+                    <h3 class="text-sm font-semibold text-gray-900">Learn the Strategy</h3>
+                    <p class="mt-1 text-xxs text-gray-600">Deepen your understanding of financial concepts with our expert-written, easy-to-follow guides.</p>
+                    <span class="mt-2 inline-block btn-secondary text-xs py-1 px-2">Explore All Guides</span>
                 </a>
                 <!-- Explore Calculators Card -->
-                <a href="../calculators/" class="group block p-4 bg-white rounded-xl text-center border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
-                    <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-3 mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M8 10h8"/><path d="M8 14h8"/><path d="M15 18h1"/></svg>
+                <a href="../calculators/" class="group block p-3 bg-white rounded-xl text-center border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                    <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M8 10h8"/><path d="M8 14h8"/><path d="M15 18h1"/></svg>
                     </div>
-                    <h3 class="text-base font-semibold text-gray-900">Plan Your Numbers</h3>
-                    <p class="mt-1 text-xs text-gray-600">Use our powerful calculators to turn your financial goals into concrete, actionable numbers.</p>
-                    <span class="mt-3 inline-block btn-secondary text-xs py-1 px-3">Explore Calculators</span>
+                    <h3 class="text-sm font-semibold text-gray-900">Plan Your Numbers</h3>
+                    <p class="mt-1 text-xxs text-gray-600">Use our powerful calculators to turn your financial goals into concrete, actionable numbers.</p>
+                    <span class="mt-2 inline-block btn-secondary text-xs py-1 px-2">Explore Calculators</span>
                 </a>
             </div>
         </section>
 
         <!-- Share Buttons Section -->
-        <div class="share-buttons-container mt-8">
+        <div class="share-buttons-container mt-6">
             <p class="share-title">Share This Page:</p>
             <div class="share-buttons">
                 <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.35 3.48 16.81L2 22L7.33 20.55C8.75 21.33 10.35 21.79 12.04 21.79C17.5 21.79 21.95 17.34 21.95 11.88C21.95 6.42 17.5 2 12.04 2M12.04 3.64C16.57 3.64 20.25 7.32 20.25 11.85C20.25 16.38 16.57 20.06 12.04 20.06C10.56 20.06 9.14 19.68 7.9 18.98L7.54 18.78L4.45 19.65L5.35 16.62L5.13 16.27C4.34 15.05 3.96 13.5 3.96 11.88C3.96 7.35 7.64 3.64 12.04 3.64M9.01 7.4C8.86 7.4 8.71 7.4 8.57 7.4C8.37 7.4 8.1 7.49 7.89 7.85C7.68 8.21 7.03 8.81 7.03 9.94C7.03 11.07 7.92 12.14 8.07 12.31C8.21 12.48 10.03 15.34 12.87 16.59C15.72 17.84 15.72 17.34 16.19 17.29C16.66 17.24 17.63 16.68 17.84 16.09C18.05 15.5 18.05 15.03 17.98 14.91C17.91 14.78 17.77 14.7 17.53 14.58C17.3 14.46 15.98 13.83 15.74 13.73C15.51 13.64 15.37 13.59 15.22 13.83C15.08 14.07 14.54 14.7 14.4 14.84C14.26 14.98 14.11 15.01 13.88 14.89C13.64 14.77 12.71 14.45 11.61 13.48C10.71 12.7 10.09 11.76 9.92 11.49C9.75 11.22 9.89 11.09 10.03 10.96C10.16 10.83 10.3 10.65 10.43 10.5C10.56 10.35 10.61 10.23 10.73 10.03C10.86 9.83 10.78 9.64 10.71 9.5C10.65 9.36 10.11 8.04 9.87 7.47C9.64 6.9 9.4 6.98 9.25 6.98L9.01 7.4Z"></path></svg></a>
@@ -190,10 +194,9 @@
             </div>
         </div>
     </main>
-
+    
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
-
 </body>
 </html>
