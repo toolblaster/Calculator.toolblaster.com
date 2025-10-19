@@ -16,6 +16,18 @@ function initializeEmiCalculator() {
     const interestRateInput = getElem('interestRateInput');
     const loanTenureSlider = getElem('loanTenureSlider');
     const loanTenureInput = getElem('loanTenureInput');
+
+    // NEW: Preset and Floating Rate Elements
+    const homeLoanPreset = getElem('homeLoanPreset');
+    const carLoanPreset = getElem('carLoanPreset');
+    const personalLoanPreset = getElem('personalLoanPreset');
+    const rateTypeToggle = getElem('rateTypeToggle');
+    const floatingRateSection = getElem('floatingRateSection');
+    const rateIncreaseSlider = getElem('rateIncreaseSlider');
+    const rateIncreaseInput = getElem('rateIncreaseInput');
+    const increaseAfterSlider = getElem('increaseAfterSlider');
+    const increaseAfterInput = getElem('increaseAfterInput');
+
     const prepaymentAmountSlider = getElem('prepaymentAmountSlider');
     const prepaymentAmountInput = getElem('prepaymentAmountInput');
     const prepaymentFrequencySelect = getElem('prepaymentFrequency');
@@ -40,6 +52,11 @@ function initializeEmiCalculator() {
     const doughnutCtx = doughnutCanvas.getContext('2d');
     let loanDoughnutChart;
 
+    // NEW: Amortization Chart Elements
+    const amortizationChartCanvas = getElem('amortizationLineChart');
+    const amortizationChartCtx = amortizationChartCanvas.getContext('2d');
+    let amortizationLineChart;
+
     const toggleDetailsBtn = getElem('toggleAmortizationBtn');
     const detailsTableContainer = getElem('amortizationTableContainer');
     
@@ -60,6 +77,7 @@ function initializeEmiCalculator() {
 
     function calculateEMI(p, r, n) {
         if (r <= 0) return p / n;
+        if (n <= 0) return p;
         const emi = p * r * (Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
         return emi;
     }
@@ -72,9 +90,14 @@ function initializeEmiCalculator() {
         const prepaymentFrequency = parseInt(prepaymentFrequencySelect.value, 10);
         const oneTimeStartMonth = parseInt(prepaymentStartInput.value, 10);
 
+        // NEW: Floating Rate Inputs
+        const isFloatingRate = rateTypeToggle.checked;
+        const rateIncrease = isFloatingRate ? parseFloat(rateIncreaseInput.value) / 100 : 0;
+        const increaseAfterYears = isFloatingRate ? parseInt(increaseAfterInput.value) : Infinity;
+
         if (principal === 0 || annualRate === 0 || years === 0) return;
 
-        const monthlyRate = annualRate / 12 / 100;
+        let monthlyRate = annualRate / 12 / 100;
         const totalMonths = years * 12;
         
         // Update max value for one-time prepayment slider
@@ -96,62 +119,84 @@ function initializeEmiCalculator() {
         updateDoughnutChart([principal, totalInterest], ['Principal Amount', 'Total Interest'], ['#3B82F6', '#F87171']);
 
         // --- Prepayment Calculation ---
+        let originalLoanData = generateAmortizationData(principal, emi, monthlyRate, totalMonths, 0, 0, 0, rateIncrease, increaseAfterYears);
+        let prepayLoanData = { amortization: [], totalInterest: 0, totalPrepaid: 0 };
+
         if (prepaymentAmount > 0) {
             prepaymentResultSection.classList.remove('hidden');
-            let balance = principal;
-            let monthsWithPrepayment = 0;
-            let totalInterestWithPrepayment = 0;
-            let totalPrepaid = 0;
+            prepayLoanData = generateAmortizationData(principal, emi, monthlyRate, totalMonths, prepaymentAmount, prepaymentFrequency, oneTimeStartMonth, rateIncrease, increaseAfterYears);
             
-            while (balance > 0) {
-                monthsWithPrepayment++;
-                let interestThisMonth = balance * monthlyRate;
-                let principalPaid = emi - interestThisMonth;
-                
-                // Ensure principal paid doesn't exceed balance
-                if (principalPaid > balance) {
-                    principalPaid = balance;
-                }
-                
-                balance -= principalPaid;
-                totalInterestWithPrepayment += interestThisMonth;
-                
-                let currentPrepayment = 0;
-                // Recurring prepayment
-                if (prepaymentFrequency > 0 && monthsWithPrepayment % prepaymentFrequency === 0) {
-                    currentPrepayment = Math.min(balance, prepaymentAmount);
-                } 
-                // One-time prepayment
-                else if (prepaymentFrequency === 0 && monthsWithPrepayment === oneTimeStartMonth) {
-                     currentPrepayment = Math.min(balance, prepaymentAmount);
-                }
-
-                balance -= currentPrepayment;
-                totalPrepaid += currentPrepayment;
-
-                if (balance < 0) balance = 0;
-                if (monthsWithPrepayment > totalMonths * 2) break; // Safety break
-            }
-            
-            const interestSaved = totalInterest - totalInterestWithPrepayment;
-            const tenureReducedMonths = totalMonths - monthsWithPrepayment;
+            const interestSaved = originalLoanData.totalInterest - prepayLoanData.totalInterest;
+            const tenureReducedMonths = totalMonths - prepayLoanData.amortization.length;
 
             interestSavedElem.textContent = formatCurrency(interestSaved);
             tenureReducedElem.textContent = `${Math.floor(tenureReducedMonths / 12)} yrs ${tenureReducedMonths % 12} mos`;
-            totalPrepaidAmountElem.textContent = formatCurrency(totalPrepaid);
+            totalPrepaidAmountElem.textContent = formatCurrency(prepayLoanData.totalPrepaid);
 
             const today = new Date();
-            const newEndDate = new Date(today.setMonth(today.getMonth() + monthsWithPrepayment));
+            const newEndDate = new Date(new Date().setMonth(today.getMonth() + prepayLoanData.amortization.length));
             newEndDateElem.textContent = newEndDate.toLocaleDateString('en-IN', { month: 'short', year: 'numeric' });
 
         } else {
             prepaymentResultSection.classList.add('hidden');
         }
         
-        generateAmortizationTable(principal, emi, monthlyRate, totalMonths, prepaymentAmount, prepaymentFrequency, oneTimeStartMonth);
+        generateAmortizationTable(prepaymentAmount > 0 ? prepayLoanData.amortization : originalLoanData.amortization);
+        generateAmortizationChart(originalLoanData.amortization, prepayLoanData.amortization);
     }
 
-    function generateAmortizationTable(principal, emi, monthlyRate, totalMonths, prepayment, prepFrequency, oneTimeStart) {
+    function generateAmortizationData(principal, emi, initialMonthlyRate, totalMonths, prepayment, prepFrequency, oneTimeStart, rateIncrease, increaseAfterYears) {
+        let amortization = [];
+        let balance = principal;
+        let totalInterest = 0;
+        let totalPrepaid = 0;
+        let monthlyRate = initialMonthlyRate;
+
+        for (let i = 1; i <= totalMonths; i++) {
+            if (balance <= 0) break;
+
+            // NEW: Floating Rate Logic
+            if (i > increaseAfterYears * 12) {
+                monthlyRate = (parseFloat(interestRateInput.value) / 100 + rateIncrease) / 12;
+                // Recalculate EMI for remaining tenure if floating rate changes
+                emi = calculateEMI(balance, monthlyRate, totalMonths - (i - 1));
+            }
+
+            const interest = balance * monthlyRate;
+            let principalPaid = emi - interest;
+            
+            if ((principalPaid) > balance) {
+                principalPaid = balance;
+                emi = balance + interest;
+            }
+
+            let currentPrepayment = 0;
+            if (prepayment > 0) {
+                if (prepFrequency > 0 && i % prepFrequency === 0) {
+                    currentPrepayment = Math.min(balance - principalPaid, prepayment);
+                } else if (prepFrequency === 0 && i === oneTimeStart) {
+                    currentPrepayment = Math.min(balance - principalPaid, prepayment);
+                }
+            }
+            
+            balance -= (principalPaid + currentPrepayment);
+            if (balance < 0) balance = 0;
+
+            totalInterest += interest;
+            totalPrepaid += currentPrepayment;
+            
+            amortization.push({
+                month: i,
+                principalPaid: principalPaid,
+                interest: interest,
+                prepayment: currentPrepayment,
+                balance: balance,
+            });
+        }
+        return { amortization, totalInterest, totalPrepaid };
+    }
+
+    function generateAmortizationTable(amortizationData) {
         let tableHTML = `
             <h3 class="text-center text-sm font-bold text-gray-800 mb-2">Amortization Schedule</h3>
             <table class="min-w-full divide-y divide-gray-200">
@@ -166,39 +211,73 @@ function initializeEmiCalculator() {
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200 text-xs">`;
 
-        let balance = principal;
-        for (let i = 1; i <= totalMonths; i++) {
-            if (balance <= 0) break;
-            const interest = balance * monthlyRate;
-            let principalPaid = emi - interest;
-            
-            if ((principalPaid) > balance) {
-                principalPaid = balance;
-            }
-
-            let currentPrepayment = 0;
-            if (prepayment > 0) {
-                if (prepFrequency > 0 && i % prepFrequency === 0) {
-                    currentPrepayment = Math.min(balance - principalPaid, prepayment);
-                } else if (prepFrequency === 0 && i === oneTimeStart) {
-                    currentPrepayment = Math.min(balance - principalPaid, prepayment);
-                }
-            }
-            
-            balance -= (principalPaid + currentPrepayment);
-            if (balance < 0) balance = 0;
-            
+        amortizationData.forEach(row => {
             tableHTML += `<tr>
-                <td class="px-2 py-1">${i}</td>
-                <td class="px-2 py-1 text-right">${formatCurrency(principalPaid)}</td>
-                <td class="px-2 py-1 text-right">${formatCurrency(interest)}</td>
-                <td class="px-2 py-1 text-right text-green-600 font-semibold">${formatCurrency(currentPrepayment)}</td>
-                <td class="px-2 py-1 text-right font-bold">${formatCurrency(balance)}</td>
+                <td class="px-2 py-1">${row.month}</td>
+                <td class="px-2 py-1 text-right">${formatCurrency(row.principalPaid)}</td>
+                <td class="px-2 py-1 text-right">${formatCurrency(row.interest)}</td>
+                <td class="px-2 py-1 text-right text-green-600 font-semibold">${formatCurrency(row.prepayment)}</td>
+                <td class="px-2 py-1 text-right font-bold">${formatCurrency(row.balance)}</td>
             </tr>`;
-        }
+        });
 
         tableHTML += `</tbody></table>`;
         detailsTableContainer.innerHTML = tableHTML;
+    }
+
+    // NEW: Function to generate the amortization line chart
+    function generateAmortizationChart(originalData, prepayData) {
+        const labels = originalData.map(d => d.month);
+        const originalBalance = originalData.map(d => d.balance);
+        
+        const datasets = [{
+            label: 'Original Loan Balance',
+            data: originalBalance,
+            borderColor: '#F87171',
+            backgroundColor: 'rgba(248, 113, 113, 0.1)',
+            fill: true,
+            pointRadius: 0,
+            tension: 0.1
+        }];
+
+        if (prepayData && prepayData.length > 0) {
+            const prepayBalance = prepayData.map(d => d.balance);
+            datasets.push({
+                label: 'Balance with Prepayment',
+                data: prepayBalance,
+                borderColor: '#4ADE80',
+                backgroundColor: 'rgba(74, 222, 128, 0.1)',
+                fill: true,
+                pointRadius: 0,
+                tension: 0.1
+            });
+        }
+        
+        const chartData = { labels, datasets };
+        const chartOptions = { 
+            responsive: true, 
+            maintainAspectRatio: false, 
+            plugins: { 
+                legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } },
+                tooltip: { 
+                    callbacks: { 
+                        label: (context) => `${context.dataset.label}: ${formatCurrency(context.parsed.y)}`,
+                        title: (context) => `Month: ${context[0].label}`
+                    } 
+                } 
+            },
+            scales: {
+                y: { ticks: { callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value) } },
+                x: { ticks: { maxTicksLimit: 10 } }
+            }
+        };
+
+        if (amortizationLineChart) {
+            amortizationLineChart.data = chartData;
+            amortizationLineChart.update();
+        } else {
+            amortizationLineChart = new Chart(amortizationChartCtx, { type: 'line', data: chartData, options: chartOptions });
+        }
     }
 
     function updateDoughnutChart(data, labels, colors) {
@@ -298,6 +377,9 @@ function initializeEmiCalculator() {
         { slider: loanTenureSlider, input: loanTenureInput },
         { slider: prepaymentAmountSlider, input: prepaymentAmountInput },
         { slider: prepaymentStartSlider, input: prepaymentStartInput },
+        // NEW: Floating rate sliders
+        { slider: rateIncreaseSlider, input: rateIncreaseInput },
+        { slider: increaseAfterSlider, input: increaseAfterInput }
       ];
       
       inputs.forEach(({ slider, input }) => {
@@ -307,6 +389,16 @@ function initializeEmiCalculator() {
         }
       });
       
+      // NEW: Event listeners for presets and floating rate toggle
+      homeLoanPreset.addEventListener('click', () => setPreset('home'));
+      carLoanPreset.addEventListener('click', () => setPreset('car'));
+      personalLoanPreset.addEventListener('click', () => setPreset('personal'));
+
+      rateTypeToggle.addEventListener('change', () => {
+          floatingRateSection.classList.toggle('hidden', !rateTypeToggle.checked);
+          updateCalculator();
+      });
+
       prepaymentFrequencySelect.addEventListener('change', () => {
           oneTimePrepaymentStartDiv.style.display = prepaymentFrequencySelect.value === '0' ? 'block' : 'none';
           updateCalculator();
@@ -332,6 +424,33 @@ function initializeEmiCalculator() {
          window.print();
          modalContent.classList.remove('print-area');
       });
+    }
+
+    // NEW: Function to set preset values
+    function setPreset(loanType) {
+        if (loanType === 'home') {
+            loanAmountInput.value = 5000000;
+            interestRateInput.value = 8.5;
+            loanTenureInput.value = 20;
+        } else if (loanType === 'car') {
+            loanAmountInput.value = 800000;
+            interestRateInput.value = 9.5;
+            loanTenureInput.value = 7;
+        } else if (loanType === 'personal') {
+            loanAmountInput.value = 500000;
+            interestRateInput.value = 14;
+            loanTenureInput.value = 5;
+        }
+        
+        // Sync sliders with new input values
+        [loanAmountSlider, interestRateSlider, loanTenureSlider].forEach(slider => {
+            const input = getElem(slider.id.replace('Slider', 'Input'));
+            if (input) {
+                slider.value = input.value;
+                updateSliderFill(slider);
+            }
+        });
+        updateCalculator();
     }
 
     const debouncedUpdate = debounce(updateCalculator, 250);
