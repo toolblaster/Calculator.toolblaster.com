@@ -135,12 +135,14 @@
 
     <main class="container">
         <div class="financial-calculator-wrapper">
-            <div class="bg-white shadow-lg rounded-xl p-2 sm:p-4 w-full border border-red-300 mx-auto my-0 calculator-container">
+            <!-- UPDATED: Reduced padding for a more compact view -->
+            <div class="bg-white shadow-lg rounded-xl p-2 sm:p-3 w-full border border-red-300 mx-auto my-0 calculator-container">
                 
                 <h1 id="calculatorTitle" class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">SIP Calculator with Inflation</h1>
                 <p id="calculatorDescription" class="text-center text-gray-500 mb-3 text-xs">Plan your investments with our advanced SIP Calculator. Also includes tools for RD, FD, SWP, Goal Planning</p>
                 
-                <div class="flex justify-center mb-3 flex-wrap gap-1">
+                <!-- UPDATED: Reduced bottom margin -->
+                <div class="flex justify-center mb-2 flex-wrap gap-1">
                     <button id="sipModeBtn" aria-label="Switch to SIP calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-blue-600 text-white shadow-md">SIP</button>
                     <button id="lumpsumModeBtn" aria-label="Switch to Lumpsum calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Lumpsum</button>
                     <button id="swpModeBtn" aria-label="Switch to SWP calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">SWP</button>
@@ -149,9 +151,11 @@
                     <button id="goalModeBtn" aria-label="Switch to Goal Planner" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Goal Planner</button>
                 </div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
-                    <div class="space-y-2">
-                        <div id="sipSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg">
+                <!-- UPDATED: Reduced gap between columns -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-3">
+                    <!-- UPDATED: Reduced internal spacing and padding -->
+                    <div class="space-y-1.5">
+                        <div id="sipSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg">
                             <div>
                                 <label for="sipAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="sipAmountLabel">Monthly SIP Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
@@ -189,7 +193,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="lumpsumSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
+                        <div id="lumpsumSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="lumpsumAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="lumpsumAmountLabel">Lumpsum Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
@@ -199,7 +203,7 @@
                                 <p id="lumpsumAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹5,000 - ₹1 Crore.</p>
                             </div>
                         </div>
-                        <div id="rdSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
+                        <div id="rdSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="rdAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="rdAmountLabel">Monthly RD Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
@@ -237,7 +241,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="fdSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
+                        <div id="fdSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="fdAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="fdAmountLabel">FD Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
@@ -248,7 +252,7 @@
                             </div>
                         </div>
                         <!-- Enhanced SWP Section -->
-                        <div id="swpSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
+                        <div id="swpSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="initialCorpusInput" class="block text-xs font-medium text-gray-600 mb-1" id="initialCorpusLabel">Initial Investment (₹)</label>
                                 <div class="flex items-center space-x-2">
@@ -296,7 +300,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div id="goalSection" class="space-y-2 bg-blue-50/50 p-2 rounded-lg hidden">
+                        <div id="goalSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div class="mb-2">
                                 <label class="block text-xs font-medium text-gray-600 mb-1">Goal Templates</label>
                                 <div class="flex flex-wrap gap-1">
@@ -331,7 +335,7 @@
                             </div>
                         </div>
                         
-                        <div id="generalInputsSection" class="bg-blue-50/50 p-2 rounded-lg space-y-2">
+                        <div id="generalInputsSection" class="bg-blue-50/50 p-2 rounded-lg space-y-1.5">
                             <div>
                                 <label for="returnRateInput" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
                                 <div class="flex items-center space-x-2">
@@ -389,7 +393,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <div id="sipSummary" class="bg-blue-50/50 p-2 rounded-lg" aria-live="polite">
+                        <div id="sipSummary" class="bg-blue-50/50 p-1.5 rounded-lg" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">SIP Summary</h3>
                                 <button class="share-btn" aria-label="Share SIP calculation results">
@@ -403,7 +407,7 @@
                                 <div id="realValueSectionSIP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueSIP" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <div id="lumpsumSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
+                        <div id="lumpsumSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">Lumpsum Summary</h3>
                                 <button class="share-btn" aria-label="Share Lumpsum calculation results">
@@ -417,7 +421,7 @@
                                 <div id="realValueSectionLumpsum" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueLumpsum" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <div id="rdSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
+                        <div id="rdSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">RD Summary</h3>
                                 <button class="share-btn" aria-label="Share RD calculation results">
@@ -435,7 +439,7 @@
                                 <div id="realValueSectionRD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueRD" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <div id="fdSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
+                        <div id="fdSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
                            <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">FD Summary</h3>
                                 <button class="share-btn" aria-label="Share FD calculation results">
@@ -453,7 +457,7 @@
                                 <div id="realValueSectionFD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueFD" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <div id="swpSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
+                        <div id="swpSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">SWP Summary</h3>
                                 <button class="share-btn" aria-label="Share SWP calculation results">
@@ -469,7 +473,7 @@
                                 <div id="realValueSectionSWP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Remaining:</span><span id="realRemainingCorpusSWP" class="font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <div id="goalSummary" class="bg-blue-50/50 p-2 rounded-lg hidden" aria-live="polite">
+                        <div id="goalSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h3 class="text-sm font-bold text-blue-800">Goal Planner Summary</h3>
                                 <button class="share-btn" aria-label="Share Goal Planner calculation results">
@@ -483,16 +487,18 @@
                                 <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Monthly Investment:</span><span id="monthlyInvestmentGoal" class="text-lg font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <!-- UPDATED: Reduced height classes for a smaller chart -->
-                        <div class="flex justify-center items-center h-28 sm:h-32 md:h-40 w-full relative mt-3">
+                        <!-- UPDATED: Reduced height classes for a more compact chart -->
+                        <div class="flex justify-center items-center h-24 sm:h-28 md:h-32 w-full relative mt-3">
                             <canvas id="investmentDoughnutChart"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-center my-4">
+                <!-- UPDATED: Reduced vertical margin -->
+                <div class="flex justify-center my-2">
                     <button id="toggleGrowthTableBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Show Yearly Growth</button>
                 </div>
-                <div id="growthTableContainer" class="hidden overflow-x-auto bg-white rounded-lg shadow-md mt-4 p-4 border border-gray-200">
+                <!-- UPDATED: Reduced margin and padding -->
+                <div id="growthTableContainer" class="hidden overflow-x-auto bg-white rounded-lg shadow-md mt-2 p-2 border border-gray-200">
                     <h3 class="text-center text-sm font-bold text-gray-800 mb-2">Yearly Investment Growth</h3>
                     <!-- UPDATE: Added ID to thead for dynamic header changes and corrected alignment -->
                     <table class="min-w-full divide-y divide-gray-200">
