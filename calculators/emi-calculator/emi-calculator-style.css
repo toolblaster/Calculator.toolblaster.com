@@ -1,5 +1,18 @@
 /* Styles specific to the EMI Calculator */
 
+/* NEW styles for preset buttons */
+.preset-btn.active {
+    background-color: #2563EB; /* Tailwind's blue-600 */
+    color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px); /* Slight lift effect */
+}
+
+.preset-btn.active:hover {
+    background-color: #1D4ED8; /* A slightly darker blue for hover */
+}
+
+
 #prepaymentResultSection.hidden {
     display: none;
 }
