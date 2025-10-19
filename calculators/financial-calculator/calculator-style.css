@@ -5,8 +5,8 @@
 .financial-calculator-wrapper {
     box-sizing: border-box;
     width: 100%;
-    max-width: 800px; /* Aligned with the main container */
-    margin: 0.5rem auto 1rem; /* MODIFIED: Set top margin to 0.5rem and bottom to 1rem */
+    max-width: 900px; /* Expanded from 800px to make it wider */
+    margin: 0.5rem auto 1rem; /* Compacted vertical margin from 1rem/2rem */
     font-family: 'Inter', sans-serif;
     background-color: #f9fafb;
     padding: 0.5rem;
