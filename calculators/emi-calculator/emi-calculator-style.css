@@ -4,19 +4,17 @@
     display: none;
 }
 
+#amortizationTableContainer {
+    max-height: 320px; /* Constrain height and enable vertical scrolling */
+    overflow-y: auto;
+}
+
 #amortizationTableContainer table {
     font-size: 0.65rem; /* Squeezed font size */
 }
 
 #amortizationTableContainer th {
-    font-size: 0.6rem; /* Squeezed font size */
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-}
-
-#amortizationTableContainer td {
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
+    font-size: 0.65rem;
 }
 
 #amortizationTableContainer .prepayment-row td {
