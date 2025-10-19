@@ -17,7 +17,6 @@ function initializeEmiCalculator() {
     const loanTenureSlider = getElem('loanTenureSlider');
     const loanTenureInput = getElem('loanTenureInput');
 
-    // NEW: Preset and Floating Rate Elements
     const homeLoanPreset = getElem('homeLoanPreset');
     const carLoanPreset = getElem('carLoanPreset');
     const personalLoanPreset = getElem('personalLoanPreset');
@@ -35,7 +34,6 @@ function initializeEmiCalculator() {
     const prepaymentStartSlider = getElem('prepaymentStartSlider');
     const prepaymentStartInput = getElem('prepaymentStartInput');
 
-
     // --- Result Elements ---
     const monthlyEmiElem = getElem('monthlyEmi');
     const principalAmountElem = getElem('principalAmount');
@@ -46,13 +44,15 @@ function initializeEmiCalculator() {
     const newEndDateElem = getElem('newEndDate');
     const totalPrepaidAmountElem = getElem('totalPrepaidAmount');
     const prepaymentResultSection = getElem('prepaymentResultSection');
-
+    
+    // NEWLY ADDED
+    const newEmiSection = getElem('newEmiSection');
+    const newEmiElem = getElem('newEmi');
 
     const doughnutCanvas = getElem('emiDoughnutChart');
     const doughnutCtx = doughnutCanvas.getContext('2d');
     let loanDoughnutChart;
 
-    // NEW: Amortization Chart Elements
     const amortizationChartCanvas = getElem('amortizationLineChart');
     const amortizationChartCtx = amortizationChartCanvas.getContext('2d');
     let amortizationLineChart;
@@ -60,7 +60,6 @@ function initializeEmiCalculator() {
     const toggleDetailsBtn = getElem('toggleAmortizationBtn');
     const detailsTableContainer = getElem('amortizationTableContainer');
     
-    // --- Share Modal Elements ---
     const shareReportBtn = getElem('shareReportBtn');
     const shareModal = getElem('shareModal');
     const closeModalBtn = getElem('closeModalBtn');
@@ -68,7 +67,6 @@ function initializeEmiCalculator() {
     const shareUrlInput = getElem('shareUrlInput');
     const copyUrlBtn = getElem('copyUrlBtn');
     const printReportBtn = getElem('printReportBtn');
-
 
     // --- Utility Functions ---
     const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
@@ -78,8 +76,7 @@ function initializeEmiCalculator() {
     function calculateEMI(p, r, n) {
         if (r <= 0) return p / n;
         if (n <= 0) return p;
-        const emi = p * r * (Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-        return emi;
+        return p * r * (Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     }
 
     function updateCalculator() {
@@ -90,7 +87,6 @@ function initializeEmiCalculator() {
         const prepaymentFrequency = parseInt(prepaymentFrequencySelect.value, 10);
         const oneTimeStartMonth = parseInt(prepaymentStartInput.value, 10);
 
-        // NEW: Floating Rate Inputs
         const isFloatingRate = rateTypeToggle.checked;
         const rateIncrease = isFloatingRate ? parseFloat(rateIncreaseInput.value) / 100 : 0;
         const increaseAfterYears = isFloatingRate ? parseInt(increaseAfterInput.value) : Infinity;
@@ -100,34 +96,42 @@ function initializeEmiCalculator() {
         let monthlyRate = annualRate / 12 / 100;
         const totalMonths = years * 12;
         
-        // Update max value for one-time prepayment slider
         prepaymentStartSlider.max = totalMonths;
         if (parseInt(prepaymentStartInput.value) > totalMonths) {
             prepaymentStartInput.value = totalMonths;
         }
+        updateSliderFill(prepaymentStartSlider); // FIX: Ensure prepayment slider fill is updated
 
+        const initialEmi = calculateEMI(principal, monthlyRate, totalMonths);
 
-        const emi = calculateEMI(principal, monthlyRate, totalMonths);
-        const totalPayment = emi * totalMonths;
-        const totalInterest = totalPayment - principal;
-
-        monthlyEmiElem.textContent = formatCurrency(emi);
+        // --- Main Loan Calculation (with potential floating rate) ---
+        let originalLoanData = generateAmortizationData(principal, initialEmi, monthlyRate, totalMonths, 0, 0, 0, rateIncrease, increaseAfterYears);
+        
+        // --- UPDATE: Main display now uses the accurate simulated data ---
+        monthlyEmiElem.textContent = formatCurrency(initialEmi);
         principalAmountElem.textContent = formatCurrency(principal);
-        totalInterestElem.textContent = formatCurrency(totalInterest);
-        totalPayableElem.textContent = formatCurrency(totalPayment);
+        totalInterestElem.textContent = formatCurrency(originalLoanData.totalInterest);
+        totalPayableElem.textContent = formatCurrency(principal + originalLoanData.totalInterest);
 
-        updateDoughnutChart([principal, totalInterest], ['Principal Amount', 'Total Interest'], ['#3B82F6', '#F87171']);
+        // --- UPDATE: Show/hide and update the new EMI section ---
+        if (isFloatingRate && originalLoanData.newEmi > 0) {
+            newEmiSection.classList.remove('hidden');
+            newEmiElem.textContent = formatCurrency(originalLoanData.newEmi);
+        } else {
+            newEmiSection.classList.add('hidden');
+        }
+        
+        updateDoughnutChart([principal, originalLoanData.totalInterest], ['Principal Amount', 'Total Interest'], ['#3B82F6', '#F87171']);
 
         // --- Prepayment Calculation ---
-        let originalLoanData = generateAmortizationData(principal, emi, monthlyRate, totalMonths, 0, 0, 0, rateIncrease, increaseAfterYears);
         let prepayLoanData = { amortization: [], totalInterest: 0, totalPrepaid: 0 };
-
         if (prepaymentAmount > 0) {
             prepaymentResultSection.classList.remove('hidden');
-            prepayLoanData = generateAmortizationData(principal, emi, monthlyRate, totalMonths, prepaymentAmount, prepaymentFrequency, oneTimeStartMonth, rateIncrease, increaseAfterYears);
+            prepayLoanData = generateAmortizationData(principal, initialEmi, monthlyRate, totalMonths, prepaymentAmount, prepaymentFrequency, oneTimeStartMonth, rateIncrease, increaseAfterYears);
             
+            // Calculate savings against the potentially floating rate original loan
             const interestSaved = originalLoanData.totalInterest - prepayLoanData.totalInterest;
-            const tenureReducedMonths = totalMonths - prepayLoanData.amortization.length;
+            const tenureReducedMonths = originalLoanData.amortization.length - prepayLoanData.amortization.length;
 
             interestSavedElem.textContent = formatCurrency(interestSaved);
             tenureReducedElem.textContent = `${Math.floor(tenureReducedMonths / 12)} yrs ${tenureReducedMonths % 12} mos`;
@@ -136,7 +140,6 @@ function initializeEmiCalculator() {
             const today = new Date();
             const newEndDate = new Date(new Date().setMonth(today.getMonth() + prepayLoanData.amortization.length));
             newEndDateElem.textContent = newEndDate.toLocaleDateString('en-IN', { month: 'short', year: 'numeric' });
-
         } else {
             prepaymentResultSection.classList.add('hidden');
         }
@@ -145,29 +148,36 @@ function initializeEmiCalculator() {
         generateAmortizationChart(originalLoanData.amortization, prepayLoanData.amortization);
     }
 
+    // UPDATED: Now returns the new EMI as well
     function generateAmortizationData(principal, emi, initialMonthlyRate, totalMonths, prepayment, prepFrequency, oneTimeStart, rateIncrease, increaseAfterYears) {
         let amortization = [];
         let balance = principal;
         let totalInterest = 0;
         let totalPrepaid = 0;
         let monthlyRate = initialMonthlyRate;
+        let currentEmi = emi;
+        let newEmi = 0; // Variable to capture the new EMI
 
         for (let i = 1; i <= totalMonths; i++) {
             if (balance <= 0) break;
 
-            // NEW: Floating Rate Logic
             if (i > increaseAfterYears * 12) {
-                monthlyRate = (parseFloat(interestRateInput.value) / 100 + rateIncrease) / 12;
-                // Recalculate EMI for remaining tenure if floating rate changes
-                emi = calculateEMI(balance, monthlyRate, totalMonths - (i - 1));
+                const newAnnualRate = parseFloat(interestRateInput.value) + (rateIncrease * 100);
+                monthlyRate = newAnnualRate / 12 / 100;
+                
+                const recalculatedEmi = calculateEMI(balance, monthlyRate, totalMonths - (i - 1));
+                if (newEmi === 0) { // Capture the first recalculated EMI
+                    newEmi = recalculatedEmi;
+                }
+                currentEmi = recalculatedEmi;
             }
 
             const interest = balance * monthlyRate;
-            let principalPaid = emi - interest;
+            let principalPaid = currentEmi - interest;
             
             if ((principalPaid) > balance) {
                 principalPaid = balance;
-                emi = balance + interest;
+                currentEmi = balance + interest;
             }
 
             let currentPrepayment = 0;
@@ -193,7 +203,7 @@ function initializeEmiCalculator() {
                 balance: balance,
             });
         }
-        return { amortization, totalInterest, totalPrepaid };
+        return { amortization, totalInterest, totalPrepaid, newEmi };
     }
 
     function generateAmortizationTable(amortizationData) {
@@ -225,7 +235,6 @@ function initializeEmiCalculator() {
         detailsTableContainer.innerHTML = tableHTML;
     }
 
-    // NEW: Function to generate the amortization line chart
     function generateAmortizationChart(originalData, prepayData) {
         const labels = originalData.map(d => d.month);
         const originalBalance = originalData.map(d => d.balance);
@@ -297,7 +306,6 @@ function initializeEmiCalculator() {
     }
     
     function populateAndShowModal() {
-        // Gather data
         const loanAmount = parseFloat(loanAmountInput.value);
         const interestRate = parseFloat(interestRateInput.value);
         const loanTenure = parseFloat(loanTenureInput.value);
@@ -308,8 +316,7 @@ function initializeEmiCalculator() {
         const emi = emiText ? parseFloat(emiText.replace(/[^0-9.]/g, '')) : 0;
         const totalPayment = totalPaymentText ? parseFloat(totalPaymentText.replace(/[^0-9.]/g, '')) : 0;
         const totalInterest = totalInterestText ? parseFloat(totalInterestText.replace(/[^0-9.]/g, '')) : 0;
-
-        // Populate modal content
+    
         modalReportContent.innerHTML = `
             <h3>Your Loan Summary</h3>
             <ul>
@@ -324,7 +331,6 @@ function initializeEmiCalculator() {
             </ul>
         `;
         
-        // Generate shareable URL
         const params = new URLSearchParams();
         params.set('amount', loanAmount);
         params.set('rate', interestRate);
@@ -359,8 +365,7 @@ function initializeEmiCalculator() {
                 }
             }
             
-            // Sync sliders
-            document.querySelectorAll('input[type="range"]').forEach(slider => {
+            [loanAmountSlider, interestRateSlider, loanTenureSlider, prepaymentAmountSlider, prepaymentStartSlider].forEach(slider => {
                 const input = getElem(slider.id.replace('Slider', 'Input'));
                 if(input && slider) {
                     slider.value = input.value;
@@ -377,7 +382,6 @@ function initializeEmiCalculator() {
         { slider: loanTenureSlider, input: loanTenureInput },
         { slider: prepaymentAmountSlider, input: prepaymentAmountInput },
         { slider: prepaymentStartSlider, input: prepaymentStartInput },
-        // NEW: Floating rate sliders
         { slider: rateIncreaseSlider, input: rateIncreaseInput },
         { slider: increaseAfterSlider, input: increaseAfterInput }
       ];
@@ -389,7 +393,6 @@ function initializeEmiCalculator() {
         }
       });
       
-      // NEW: Event listeners for presets and floating rate toggle
       homeLoanPreset.addEventListener('click', () => setPreset('home'));
       carLoanPreset.addEventListener('click', () => setPreset('car'));
       personalLoanPreset.addEventListener('click', () => setPreset('personal'));
@@ -409,7 +412,6 @@ function initializeEmiCalculator() {
           toggleDetailsBtn.textContent = detailsTableContainer.classList.contains('hidden') ? 'Show Amortization Schedule' : 'Hide Schedule';
       });
 
-      // Modal event listeners
       if(shareReportBtn) shareReportBtn.addEventListener('click', populateAndShowModal);
       if(closeModalBtn) closeModalBtn.addEventListener('click', () => shareModal.classList.add('hidden'));
       window.addEventListener('click', (event) => { if (event.target == shareModal) shareModal.classList.add('hidden'); });
@@ -426,23 +428,29 @@ function initializeEmiCalculator() {
       });
     }
 
-    // NEW: Function to set preset values
     function setPreset(loanType) {
+        document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+        let activeBtn;
+
         if (loanType === 'home') {
             loanAmountInput.value = 5000000;
             interestRateInput.value = 8.5;
             loanTenureInput.value = 20;
+            activeBtn = homeLoanPreset;
         } else if (loanType === 'car') {
             loanAmountInput.value = 800000;
             interestRateInput.value = 9.5;
             loanTenureInput.value = 7;
+            activeBtn = carLoanPreset;
         } else if (loanType === 'personal') {
             loanAmountInput.value = 500000;
             interestRateInput.value = 14;
             loanTenureInput.value = 5;
+            activeBtn = personalLoanPreset;
         }
-        
-        // Sync sliders with new input values
+
+        if (activeBtn) activeBtn.classList.add('active');
+
         [loanAmountSlider, interestRateSlider, loanTenureSlider].forEach(slider => {
             const input = getElem(slider.id.replace('Slider', 'Input'));
             if (input) {
@@ -455,11 +463,16 @@ function initializeEmiCalculator() {
 
     const debouncedUpdate = debounce(updateCalculator, 250);
     setupEventListeners();
-    oneTimePrepaymentStartDiv.style.display = 'block'; // Show by default for "One Time"
-    loadFromUrl(); // Load from URL first
+    oneTimePrepaymentStartDiv.style.display = 'block';
+    loadFromUrl();
     document.querySelectorAll('.range-slider').forEach(updateSliderFill);
+    
+    // Set a default active preset on first load if no params are present
     if (!window.location.search) {
-        updateCalculator(); // Then do initial calculation if no params
+        setPreset('home');
+    } else {
+        updateCalculator();
     }
+    
     loadSeoContent();
 }
