@@ -184,3 +184,13 @@
         max-width: 100%;
     }
 }
+
+/* NEW: Styles for Tax Benefit Section */
+#taxBenefitSection {
+    background-image: linear-gradient(to right, #e0e7ff, #eef2ff); /* Subtle indigo gradient */
+    transition: all 0.5s ease-in-out;
+}
+
+#taxBenefitSection h2 {
+    color: #312e81; /* Darker indigo for better contrast */
+}
