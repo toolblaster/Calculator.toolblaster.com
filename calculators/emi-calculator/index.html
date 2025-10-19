@@ -21,16 +21,16 @@
 
     <main class="container">
         <div class="financial-calculator-wrapper">
-            <div class="bg-white shadow-lg rounded-xl p-2 sm:p-4 w-full border border-red-300 mx-auto my-0 calculator-container">
+            <div class="bg-white shadow-lg rounded-xl p-2 sm:p-3 w-full border border-red-300 mx-auto my-0 calculator-container">
                 
                 <h1 class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">Advanced EMI Calculator</h1>
-                <p class="text-center text-gray-500 mb-3 text-xs">Plan your loans with precision, including prepayments and detailed amortization.</p>
+                <p class="text-center text-gray-500 mb-2 text-xs">Plan your loans with precision, including prepayments and detailed amortization.</p>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-3">
                     <!-- Left Column: Inputs -->
-                    <div class="space-y-2">
+                    <div class="space-y-1.5">
                         <!-- Loan Details Section -->
-                        <div class="bg-blue-50/50 p-2 rounded-lg space-y-2">
+                        <div class="bg-blue-50/50 p-1.5 rounded-lg space-y-1.5">
                              <div>
                                 <label for="loanAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Loan Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
@@ -55,7 +55,7 @@
                         </div>
 
                         <!-- Prepayment Section -->
-                        <div class="bg-blue-50/50 p-2 rounded-lg space-y-2">
+                        <div class="bg-blue-50/50 p-1.5 rounded-lg space-y-1.5">
                             <h2 class="text-sm font-bold text-blue-800 text-center mb-1">Prepayment Simulation (Optional)</h2>
                              <div>
                                 <label for="prepaymentAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Prepayment Amount (₹)</label>
@@ -85,40 +85,40 @@
 
                     <!-- Right Column: Results -->
                     <div class="flex flex-col">
-                         <div class="bg-blue-50/50 p-2 rounded-lg" aria-live="polite">
+                         <div class="bg-blue-50/50 p-1.5 rounded-lg" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
                                 <h2 class="text-sm font-bold text-blue-800">Loan Summary</h2>
                                 <button id="shareReportBtn" class="share-btn" aria-label="Share calculation results">
                                     <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
                                 </button>
                             </div>
-                            <div class="grid grid-cols-2 gap-2 text-center my-2">
-                                <div id="monthlyEmiCard" class="p-2 border rounded-lg col-span-2">
+                            <div class="grid grid-cols-2 gap-1.5 text-center my-1.5">
+                                <div id="monthlyEmiCard" class="p-1.5 border rounded-lg col-span-2">
                                     <p class="text-xs font-semibold text-gray-700">Monthly EMI</p>
-                                    <p id="monthlyEmi" class="text-xl font-bold text-orange-600">₹0</p>
+                                    <p id="monthlyEmi" class="text-lg font-bold text-orange-600">₹0</p>
                                 </div>
-                                <div class="p-2 border rounded-lg">
+                                <div class="p-1.5 border rounded-lg">
                                     <p class="text-xs font-semibold text-gray-700">Principal Amount</p>
-                                    <p id="principalAmount" class="text-lg font-bold text-gray-800">₹0</p>
+                                    <p id="principalAmount" class="text-base font-bold text-gray-800">₹0</p>
                                 </div>
-                                <div class="p-2 border rounded-lg">
+                                <div class="p-1.5 border rounded-lg">
                                     <p class="text-xs font-semibold text-gray-700">Total Interest</p>
-                                    <p id="totalInterest" class="text-lg font-bold text-gray-800">₹0</p>
+                                    <p id="totalInterest" class="text-base font-bold text-gray-800">₹0</p>
                                 </div>
                             </div>
-                             <div id="totalPaymentCard" class="p-2 rounded-lg text-center mt-2 bg-gray-100">
+                             <div id="totalPaymentCard" class="p-1.5 rounded-lg text-center mt-1.5 bg-gray-100">
                                  <p class="text-xs font-semibold text-gray-700">Total Payment (Principal + Interest)</p>
                                  <p id="totalPayment" class="text-sm font-bold text-purple-700">₹0</p>
                              </div>
                         </div>
 
-                        <div class="flex justify-center items-center h-28 sm:h-32 md:h-40 w-full relative mt-3">
+                        <div class="flex justify-center items-center h-24 sm:h-28 md:h-32 w-full relative mt-2">
                             <canvas id="emiDoughnutChart"></canvas>
                         </div>
                     </div>
                 </div>
                  <!-- Prepayment Result Section -->
-                 <div id="prepaymentResultSection" class="hidden mt-4 bg-green-50 p-4 rounded-lg border border-green-300">
+                 <div id="prepaymentResultSection" class="hidden mt-3 bg-green-50 p-3 rounded-lg border border-green-300">
                     <h3 class="text-center text-sm font-bold text-green-800 mb-2">Prepayment Savings</h3>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-center text-xs">
                         <div class="bg-white p-2 rounded">
@@ -140,7 +140,7 @@
                     </div>
                 </div>
 
-                <div class="flex justify-center my-4">
+                <div class="flex justify-center my-2">
                     <button id="toggleAmortizationBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Show Amortization Schedule</button>
                 </div>
 
