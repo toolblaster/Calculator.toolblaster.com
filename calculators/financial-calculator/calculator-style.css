@@ -232,3 +232,51 @@
 .border-orange-200 {
     border-color: #fed7aa; /* Tailwind's orange-200 */
 }
+
+/* Squeezed styles for SEO content */
+.compact-seo-content .content-section {
+    margin-top: 1.25rem;
+}
+.compact-seo-content .section-title-secondary {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.5rem;
+}
+.compact-seo-content .section-title-secondary::after {
+    margin-top: 0.5rem;
+}
+.compact-seo-content .section-subtitle {
+    font-size: 0.7rem;
+    margin-bottom: 0.75rem;
+}
+.compact-seo-content .card-container {
+    gap: 0.5rem;
+}
+.compact-seo-content .content-card {
+    padding: 0.75rem;
+}
+.compact-seo-content .content-card h3 {
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+.compact-seo-content .content-card p {
+    font-size: 0.65rem;
+    line-height: 1.4;
+}
+.compact-seo-content .trust-card {
+    padding: 0.75rem;
+}
+.compact-seo-content .trust-card strong {
+    font-size: 0.75rem;
+}
+.compact-seo-content .trust-card p {
+    font-size: 0.65rem;
+}
+.compact-seo-content .faq-item summary {
+    font-size: 0.75rem;
+    padding: 0.6rem 0.8rem;
+}
+.compact-seo-content .faq-item p {
+    font-size: 0.65rem;
+    padding: 0 0.8rem 0.6rem;
+}
