@@ -1,3 +1,7 @@
+// --- IMPORT SHARED UTILITIES ---
+// Refactored to import common functions from the central utils.js file, removing duplicated code.
+import { formatCurrency, debounce, syncSliderAndInput } from '../../assets/js/utils.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     // Check if the main calculator container exists on the page
     const calculatorContainer = document.querySelector('.calculator-container');
@@ -11,15 +15,10 @@ function initializeTaxCalculator() {
     const getElem = (id) => document.getElementById(id);
 
     // --- Element Variables ---
-    const grossSalarySlider = getElem('grossSalarySlider');
     const grossSalaryInput = getElem('grossSalaryInput');
-    const deduction80cSlider = getElem('deduction80cSlider');
     const deduction80cInput = getElem('deduction80cInput');
-    const homeLoanInterestSlider = getElem('homeLoanInterestSlider');
     const homeLoanInterestInput = getElem('homeLoanInterestInput');
-    const deductionNpsSlider = getElem('deductionNpsSlider');
     const deductionNpsInput = getElem('deductionNpsInput');
-    const otherDeductionsSlider = getElem('otherDeductionsSlider');
     const otherDeductionsInput = getElem('otherDeductionsInput');
     const taxpayerProfileSelect = getElem('taxpayerProfile');
 
@@ -45,11 +44,6 @@ function initializeTaxCalculator() {
     const shareUrlInput = getElem('shareUrlInput');
     const copyUrlBtn = getElem('copyUrlBtn');
     const printReportBtn = getElem('printReportBtn');
-
-    // --- Utility Functions ---
-    const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
-    const formatCurrency = (num) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(Math.round(num));
-    const updateSliderFill = (slider) => { if (!slider) return; const percentage = ((slider.value - slider.min) / (slider.max - slider.min)) * 100; slider.style.setProperty('--fill-percentage', `${percentage}%`); };
 
     // --- Core Calculation Logic ---
     function calculateTax(taxableIncome, slabs) {
@@ -244,11 +238,11 @@ function initializeTaxCalculator() {
             otherDeductionsInput.value = params.get('dother') || 0;
             
             // Sync sliders
-            [grossSalarySlider, deduction80cSlider, homeLoanInterestSlider, deductionNpsSlider, otherDeductionsSlider].forEach(slider => {
-                const input = getElem(slider.id.replace('Slider', 'Input'));
-                if(input && slider) { // Defensive check
+            ['grossSalarySlider', 'deduction80cSlider', 'homeLoanInterestSlider', 'deductionNpsSlider', 'otherDeductionsSlider'].forEach(sliderId => {
+                const slider = getElem(sliderId);
+                const input = getElem(sliderId.replace('Slider', 'Input'));
+                if(input && slider) {
                     slider.value = input.value;
-                    updateSliderFill(slider);
                 }
             });
             
@@ -258,45 +252,41 @@ function initializeTaxCalculator() {
 
     // --- Event Listeners ---
     function setupEventListeners() {
-      const inputs = [
-        { slider: grossSalarySlider, input: grossSalaryInput },
-        { slider: deduction80cSlider, input: deduction80cInput },
-        { slider: homeLoanInterestSlider, input: homeLoanInterestInput },
-        { slider: deductionNpsSlider, input: deductionNpsInput },
-        { slider: otherDeductionsSlider, input: otherDeductionsInput }
-      ];
-      
-      inputs.forEach(({ slider, input }) => {
-        if (slider && input) {
-          slider.addEventListener('input', () => { input.value = slider.value; updateSliderFill(slider); debouncedUpdate(); });
-          input.addEventListener('input', () => { slider.value = input.value; updateSliderFill(slider); debouncedUpdate(); });
-        }
-      });
-      
-      if(taxpayerProfileSelect) taxpayerProfileSelect.addEventListener('change', updateCalculator);
-      
-      if(toggleDetailsBtn) toggleDetailsBtn.addEventListener('click', () => {
-          detailsTableContainer.classList.toggle('hidden');
-          toggleDetailsBtn.textContent = detailsTableContainer.classList.contains('hidden') ? 'Show Calculation Details' : 'Hide Calculation Details';
-      });
+        const debouncedUpdate = debounce(updateCalculator, 250);
 
-      // Modal event listeners
-      if(shareReportBtn) shareReportBtn.addEventListener('click', populateAndShowModal);
-      if(closeModalBtn) closeModalBtn.addEventListener('click', () => shareModal.classList.add('hidden'));
-      window.addEventListener('click', (event) => { if (event.target == shareModal) shareModal.classList.add('hidden'); });
-      if(copyUrlBtn) copyUrlBtn.addEventListener('click', () => {
-          shareUrlInput.select();
-          document.execCommand('copy');
-          if (typeof showNotification === 'function') {
-            showNotification('Link copied to clipboard!');
-          }
-      });
-      if(printReportBtn) printReportBtn.addEventListener('click', () => {
-         const modalContent = getElem('modalReportContent');
-         modalContent.classList.add('print-area');
-         window.print();
-         modalContent.classList.remove('print-area');
-      });
+        // REFACTORED: Use syncSliderAndInput for cleaner code
+        syncSliderAndInput({ sliderId: 'grossSalarySlider', inputId: 'grossSalaryInput', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'deduction80cSlider', inputId: 'deduction80cInput', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'homeLoanInterestSlider', inputId: 'homeLoanInterestInput', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'deductionNpsSlider', inputId: 'deductionNpsInput', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'otherDeductionsSlider', inputId: 'otherDeductionsInput', updateCallback: debouncedUpdate });
+
+        if (taxpayerProfileSelect) taxpayerProfileSelect.addEventListener('change', updateCalculator);
+      
+        if(toggleDetailsBtn) toggleDetailsBtn.addEventListener('click', () => {
+            detailsTableContainer.classList.toggle('hidden');
+            toggleDetailsBtn.textContent = detailsTableContainer.classList.contains('hidden') ? 'Show Calculation Details' : 'Hide Calculation Details';
+        });
+
+        // Modal event listeners
+        if(shareReportBtn) shareReportBtn.addEventListener('click', populateAndShowModal);
+        if(closeModalBtn) closeModalBtn.addEventListener('click', () => shareModal.classList.add('hidden'));
+        window.addEventListener('click', (event) => { if (event.target == shareModal) shareModal.classList.add('hidden'); });
+        
+        if(copyUrlBtn) copyUrlBtn.addEventListener('click', () => {
+            shareUrlInput.select();
+            document.execCommand('copy');
+            if (typeof showNotification === 'function') {
+              showNotification('Link copied to clipboard!');
+            }
+        });
+
+        if(printReportBtn) printReportBtn.addEventListener('click', () => {
+           const modalContent = getElem('modalReportContent');
+           modalContent.classList.add('print-area');
+           window.print();
+           modalContent.classList.remove('print-area');
+        });
     }
 
     // --- Dynamic SEO Content Loading ---
@@ -311,12 +301,15 @@ function initializeTaxCalculator() {
     }
     
     // --- Initial Run ---
-    const debouncedUpdate = debounce(updateCalculator, 250);
     setupEventListeners();
     loadFromUrl(); // Load from URL first
-    document.querySelectorAll('.range-slider').forEach(updateSliderFill);
+    
+    // Initial UI setup, sliders will be synced by syncSliderAndInput
     if (!window.location.search) {
         updateCalculator(); // Then do initial calculation if no params
+    } else {
+        // We still need to call updateCalculator to ensure all values are processed after URL loading
+        updateCalculator();
     }
     loadSeoContent();
 }
