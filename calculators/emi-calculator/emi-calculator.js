@@ -1,6 +1,10 @@
+// --- IMPORT SHARED UTILITIES ---
+// We're importing the reusable functions to keep our code clean and maintainable.
+import { formatCurrency, debounce, updateSliderFill, syncSliderAndInput } from '../../assets/js/utils.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     const calculatorContainer = document.querySelector('.calculator-container');
-    if (calculatorContainer) {
+    if (calculatorContainer && document.getElementById('loanAmountSlider')) {
         initializeEmiCalculator();
     }
 });
@@ -10,27 +14,21 @@ function initializeEmiCalculator() {
     const getElem = (id) => document.getElementById(id);
 
     // --- Element Variables ---
-    const loanAmountSlider = getElem('loanAmountSlider');
     const loanAmountInput = getElem('loanAmountInput');
-    const interestRateSlider = getElem('interestRateSlider');
     const interestRateInput = getElem('interestRateInput');
-    const loanTenureSlider = getElem('loanTenureSlider');
     const loanTenureInput = getElem('loanTenureInput');
     const homeLoanPreset = getElem('homeLoanPreset');
     const carLoanPreset = getElem('carLoanPreset');
     const personalLoanPreset = getElem('personalLoanPreset');
     const rateTypeToggle = getElem('rateTypeToggle');
     const floatingRateSection = getElem('floatingRateSection');
-    const rateIncreaseSlider = getElem('rateIncreaseSlider');
     const rateIncreaseInput = getElem('rateIncreaseInput');
-    const increaseAfterSlider = getElem('increaseAfterSlider');
     const increaseAfterInput = getElem('increaseAfterInput');
-    const prepaymentAmountSlider = getElem('prepaymentAmountSlider');
     const prepaymentAmountInput = getElem('prepaymentAmountInput');
     const prepaymentFrequencySelect = getElem('prepaymentFrequency');
     const oneTimePrepaymentStartDiv = getElem('oneTimePrepaymentStartDiv');
-    const prepaymentStartSlider = getElem('prepaymentStartSlider');
     const prepaymentStartInput = getElem('prepaymentStartInput');
+    const prepaymentStartSlider = getElem('prepaymentStartSlider');
 
     // Tax Benefit Elements
     const taxBenefitSection = getElem('taxBenefitSection');
@@ -39,6 +37,7 @@ function initializeEmiCalculator() {
     const interestTaxSavingElem = getElem('interestTaxSaving');
     const totalTaxSavingElem = getElem('totalTaxSaving');
 
+    // Result Elements
     const monthlyEmiElem = getElem('monthlyEmi');
     const principalAmountElem = getElem('principalAmount');
     const totalInterestElem = getElem('totalInterest');
@@ -59,6 +58,7 @@ function initializeEmiCalculator() {
     const toggleDetailsBtn = getElem('toggleAmortizationBtn');
     const detailsTableContainer = getElem('amortizationTableContainer');
     
+    // Share Modal Elements
     const shareReportBtn = getElem('shareReportBtn');
     const shareModal = getElem('shareModal');
     const closeModalBtn = getElem('closeModalBtn');
@@ -70,11 +70,8 @@ function initializeEmiCalculator() {
 
     let currentAmortizationData = [];
     let isHomeLoanActive = false;
-
-    const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
-    const formatCurrency = (num) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(Math.round(num));
-    const updateSliderFill = (slider) => { if (!slider) return; const percentage = ((slider.value - slider.min) / (slider.max - slider.min)) * 100; slider.style.setProperty('--fill-percentage', `${percentage}%`); };
-
+    
+    // --- Core Calculation Logic ---
     function calculateEMI(p, r, n) {
         if (r <= 0) return p / n;
         if (n <= 0) return p;
@@ -226,7 +223,6 @@ function initializeEmiCalculator() {
         totalTaxSavingElem.textContent = formatCurrency(totalSaving);
     }
 
-
     function generateAmortizationTable(amortizationData) {
         let tableHTML = `
             <h3 class="text-center text-sm font-bold text-gray-800 mb-2">Amortization Schedule</h3>
@@ -243,11 +239,11 @@ function initializeEmiCalculator() {
                 <tbody class="bg-white divide-y divide-gray-200 text-xs">`;
 
         amortizationData.forEach(row => {
-            tableHTML += `<tr>
+            tableHTML += `<tr class="${row.prepayment > 0 ? 'prepayment-row' : ''}">
                 <td class="px-2 py-1">${row.month}</td>
                 <td class="px-2 py-1 text-right">${formatCurrency(row.principalPaid)}</td>
                 <td class="px-2 py-1 text-right">${formatCurrency(row.interest)}</td>
-                <td class="px-2 py-1 text-right text-green-600 font-semibold">${formatCurrency(row.prepayment)}</td>
+                <td class="px-2 py-1 text-right font-semibold">${formatCurrency(row.prepayment)}</td>
                 <td class="px-2 py-1 text-right font-bold">${formatCurrency(row.balance)}</td>
             </tr>`;
         });
@@ -386,9 +382,10 @@ function initializeEmiCalculator() {
                 }
             }
             
-            [loanAmountSlider, interestRateSlider, loanTenureSlider, prepaymentAmountSlider, prepaymentStartSlider].forEach(slider => {
+            // Sync all sliders to their input values after loading from URL
+            document.querySelectorAll('input[type="range"]').forEach(slider => {
                 const input = getElem(slider.id.replace('Slider', 'Input'));
-                if(input && slider) {
+                if (input) {
                     slider.value = input.value;
                 }
             });
@@ -430,22 +427,14 @@ function initializeEmiCalculator() {
     }
 
     function setupEventListeners() {
-      const inputs = [
-        { slider: loanAmountSlider, input: loanAmountInput },
-        { slider: interestRateSlider, input: interestRateInput },
-        { slider: loanTenureSlider, input: loanTenureInput },
-        { slider: prepaymentAmountSlider, input: prepaymentAmountInput },
-        { slider: prepaymentStartSlider, input: prepaymentStartInput },
-        { slider: rateIncreaseSlider, input: rateIncreaseInput },
-        { slider: increaseAfterSlider, input: increaseAfterInput }
-      ];
-      
-      inputs.forEach(({ slider, input }) => {
-        if (slider && input) {
-          slider.addEventListener('input', () => { input.value = slider.value; updateSliderFill(slider); debouncedUpdate(); });
-          input.addEventListener('input', () => { slider.value = input.value; updateSliderFill(slider); debouncedUpdate(); });
-        }
-      });
+      // Use the new sync function for all slider/input pairs
+      syncSliderAndInput({ sliderId: 'loanAmountSlider', inputId: 'loanAmountInput', updateCallback: updateCalculator });
+      syncSliderAndInput({ sliderId: 'interestRateSlider', inputId: 'interestRateInput', updateCallback: updateCalculator });
+      syncSliderAndInput({ sliderId: 'loanTenureSlider', inputId: 'loanTenureInput', updateCallback: updateCalculator });
+      syncSliderAndInput({ sliderId: 'prepaymentAmountSlider', inputId: 'prepaymentAmountInput', updateCallback: updateCalculator });
+      syncSliderAndInput({ sliderId: 'prepaymentStartSlider', inputId: 'prepaymentStartInput', updateCallback: updateCalculator });
+      syncSliderAndInput({ sliderId: 'rateIncreaseSlider', inputId: 'rateIncreaseInput', updateCallback: updateCalculator });
+      syncSliderAndInput({ sliderId: 'increaseAfterSlider', inputId: 'increaseAfterInput', updateCallback: updateCalculator });
       
       homeLoanPreset.addEventListener('click', () => setPreset('home'));
       carLoanPreset.addEventListener('click', () => setPreset('car'));
@@ -478,9 +467,12 @@ function initializeEmiCalculator() {
       });
       if(printReportBtn) printReportBtn.addEventListener('click', () => {
          const modalContent = getElem('modalReportContent');
-         modalContent.classList.add('print-area');
+         const printArea = document.createElement('div');
+         printArea.classList.add('print-area');
+         printArea.innerHTML = modalContent.innerHTML;
+         document.body.appendChild(printArea);
          window.print();
-         modalContent.classList.remove('print-area');
+         document.body.removeChild(printArea);
       });
       if(downloadCsvBtn) downloadCsvBtn.addEventListener('click', downloadAmortizationCSV);
 
@@ -515,25 +507,26 @@ function initializeEmiCalculator() {
 
         if (activeBtn) activeBtn.classList.add('active');
 
-        [loanAmountSlider, interestRateSlider, loanTenureSlider].forEach(slider => {
+        // After setting input values, sync all sliders
+        document.querySelectorAll('input[type="range"]').forEach(slider => {
             const input = getElem(slider.id.replace('Slider', 'Input'));
-            if (input) {
+            if(input) {
                 slider.value = input.value;
                 updateSliderFill(slider);
             }
         });
         updateCalculator();
     }
-
-    const debouncedUpdate = debounce(updateCalculator, 250);
+    
     setupEventListeners();
     oneTimePrepaymentStartDiv.style.display = 'block';
     loadFromUrl();
-    document.querySelectorAll('.range-slider').forEach(updateSliderFill);
     
     if (!window.location.search) {
         setPreset('home');
     } else {
+        // Ensure sliders are filled and calculator runs if loaded from URL
+        document.querySelectorAll('.range-slider').forEach(updateSliderFill);
         updateCalculator();
     }
     
