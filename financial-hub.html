@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Action Hub: A Journey to Financial Freedom</title>
-    <meta name="description" content="Find your investor pathway! Get personalized guides, quizzes, and calculators for every stage of your journey, from starting out to planning for retirement.">
+    <meta name="description" content="Find your investor pathway! Get personalized guides, quizzes, and calculators for every stage of your journey—from starting out to planning for retirement.">
     <meta name="keywords" content="financial planning hub, investor pathway, personalized financial advice, beginner investing, retirement income planning, financial action plan, investment quizzes, financial calculators India, financial journey, wealth creation">
     <link rel="canonical" href="https://calculator.toolblaster.com/financial-hub.html" />
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Financial Action Hub: A Journey to Financial Freedom">
-    <meta property="og:description" content="Find your investor pathway! Get personalized guides, quizzes, and calculators for every stage of your journey, from starting out to planning for retirement.">
+    <meta property="og:description" content="Find your investor pathway! Get personalized guides, quizzes, and calculators for every stage of your journey.">
     <meta property="og:url" content="https://calculator.toolblaster.com/financial-hub.html">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Financial Action Hub: A Journey to Financial Freedom">
-    <meta name="twitter:description" content="Find your investor pathway! Get personalized guides, quizzes, and calculators for every stage of your journey, from starting out to planning for retirement.">
+    <meta name="twitter:description" content="Find your investor pathway! Get personalized guides, quizzes, and calculators for every stage of your journey.">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
         {
           "@type": "WebPage",
           "name": "Your Financial Action Hub: Tools to Start Your Journey",
-          "description": "Find your investor pathway! Get personalized financial guides, interactive quizzes, and powerful calculators for every stage of your journey, from starting out to planning for retirement income.",
+          "description": "Find your investor pathway! Get personalized financial guides, interactive quizzes, and powerful calculators for every stage of your journey—from starting out to planning for retirement income.",
           "url": "https://calculator.toolblaster.com/financial-hub.html",
           "inLanguage": "en-IN",
           "keywords": "financial planning hub, investor pathway, personalized financial advice, beginner investing, retirement income planning, financial action plan, investment quizzes, financial calculators India, financial journey, wealth creation",
@@ -45,6 +45,10 @@
     }
     </script>
     <style>
+        .text-xxs {
+            font-size: 0.65rem;
+            line-height: 0.85rem;
+        }
         .pathway-btn {
             transition: all 0.3s ease;
             border: 2px solid transparent;
@@ -59,224 +63,164 @@
         .pathway-content { display: none; }
         .pathway-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .resource-card {
-            background-color: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            text-align: center;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-        }
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-            border-color: #E34037;
-        }
-        .resource-icon-wrapper {
-            width: 40px;
-            height: 40px;
-            margin: 0 auto 0.75rem;
-            border-radius: 50%;
-            background-color: #fef2f2;
-            color: #E34037;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .resource-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-            color: #1f2937;
-        }
-        .resource-description {
-            font-size: 0.75rem;
-            color: #4b5563;
-            flex-grow: 1;
-            margin-bottom: 0.75rem;
-            line-height: 1.5;
-        }
-        .resource-cta {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #E34037;
-        }
     </style>
 </head>
 <body class="bg-slate-50">
 
     <div id="header-placeholder"></div>
 
-    <main class="container py-4 md:py-6" id="main-content">
+    <main class="container py-2 md:py-4" id="main-content">
       <div class="max-w-4xl mx-auto">
         <!-- Main Heading Section -->
-        <section class="text-center mb-6">
-            <h1 class="text-2xl md:text-3xl font-extrabold text-gray-800 tracking-tight">Your Financial Action Hub</h1>
-            <p class="mt-2 max-w-2xl mx-auto text-sm text-gray-600">Find your path to financial freedom. Get personalized guides, interactive quizzes, and powerful calculators for every stage of your journey.</p>
+        <section class="text-center mb-3">
+            <h1 class="text-lg md:text-xl font-extrabold text-gray-800 tracking-tight">Your Financial Action Hub</h1>
+            <p class="mt-1 max-w-2xl mx-auto text-xxs text-gray-600">Find your path to financial freedom. Get personalized guides, quizzes, and calculators for every stage of your journey.</p>
         </section>
 
         <!-- Pathway Selector -->
-        <section class="mb-8 p-4 bg-white rounded-xl shadow-sm border border-gray-200">
-            <h2 class="text-center text-lg font-bold text-gray-800 mb-1">Find Your Investor Pathway</h2>
-            <p class="text-center text-xs text-gray-500 mb-4">Select the stage that best describes you to get tailored resources.</p>
+        <section class="mb-4 p-3 bg-white rounded-xl shadow-sm border border-gray-200">
+            <h2 class="text-center text-base font-bold text-gray-800 mb-1">Find Your Investor Pathway</h2>
+            <p class="text-center text-xxs text-gray-500 mb-3">Select the stage that best describes you to get tailored resources.</p>
             <div id="pathway-selector" class="grid grid-cols-2 md:grid-cols-4 gap-2">
-                <button data-pathway="start" class="pathway-btn active flex flex-col items-center p-3 rounded-lg bg-gray-100 text-gray-700">
-                    <span class="text-2xl mb-1">🚀</span>
-                    <span class="text-xs font-semibold text-center">Just Starting Out</span>
+                <button data-pathway="start" class="pathway-btn active flex flex-col items-center p-2 rounded-lg bg-gray-100 text-gray-700">
+                    <span class="text-xl mb-1">🚀</span>
+                    <span class="text-xxs font-semibold text-center">Just Starting Out</span>
                 </button>
-                <button data-pathway="grow" class="pathway-btn flex flex-col items-center p-3 rounded-lg bg-gray-100 text-gray-700">
-                    <span class="text-2xl mb-1">📈</span>
-                    <span class="text-xs font-semibold text-center">Growing My Wealth</span>
+                <button data-pathway="grow" class="pathway-btn flex flex-col items-center p-2 rounded-lg bg-gray-100 text-gray-700">
+                    <span class="text-xl mb-1">📈</span>
+                    <span class="text-xxs font-semibold text-center">Growing My Wealth</span>
                 </button>
-                <button data-pathway="plan" class="pathway-btn flex flex-col items-center p-3 rounded-lg bg-gray-100 text-gray-700">
-                    <span class="text-2xl mb-1">🏡</span>
-                    <span class="text-xs font-semibold text-center">Planning for Retirement</span>
+                <button data-pathway="plan" class="pathway-btn flex flex-col items-center p-2 rounded-lg bg-gray-100 text-gray-700">
+                    <span class="text-xl mb-1">🏡</span>
+                    <span class="text-xxs font-semibold text-center">Planning for Retirement</span>
                 </button>
-                <button data-pathway="income" class="pathway-btn flex flex-col items-center p-3 rounded-lg bg-gray-100 text-gray-700">
-                    <span class="text-2xl mb-1">💰</span>
-                    <span class="text-xs font-semibold text-center">I Need Regular Income</span>
+                <button data-pathway="income" class="pathway-btn flex flex-col items-center p-2 rounded-lg bg-gray-100 text-gray-700">
+                    <span class="text-xl mb-1">💰</span>
+                    <span class="text-xxs font-semibold text-center">I Need Regular Income</span>
                 </button>
             </div>
         </section>
 
         <!-- Pathway Content Sections -->
-        <section class="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+        <section class="p-3 bg-white rounded-xl shadow-sm border border-gray-200">
             <div id="pathway-content-container">
                 
                 <!-- Pathway: Just Starting Out -->
                 <div id="start" class="pathway-content active">
-                    <h2 class="text-xl font-bold text-center mb-2 text-gray-800">Your First Steps to Financial Freedom</h2>
-                    <p class="text-center text-sm text-gray-600 mb-6 max-w-2xl mx-auto">Welcome! Building wealth starts with strong foundations. Focus on creating a safety net, understanding your money habits, and starting your investment journey with confidence.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <h2 class="text-base font-bold text-center mb-1 text-gray-800">Your First Steps to Financial Freedom</h2>
+                    <p class="text-center text-xs text-gray-600 mb-4 max-w-2xl mx-auto">Welcome! Building wealth starts with strong foundations. Focus on creating a safety net, understanding your money habits, and starting your investment journey with confidence.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                         <!-- Cards for this pathway -->
-                        <a href="guides/emergency-fund-guide.html" class="resource-card">
-                            <div class="resource-icon-wrapper">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <a href="guides/emergency-fund-guide.html" class="group block p-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                           <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                             </div>
-                            <h3 class="resource-title">Guide: Build Your Emergency Fund</h3>
-                            <p class="resource-description">Learn the most crucial first step to financial security. Your safety net is non-negotiable.</p>
-                            <span class="resource-cta">Read the Guide &rarr;</span>
+                            <h3 class="text-xs font-semibold text-gray-900">Guide: Build Your Emergency Fund</h3>
+                            <p class="mt-1 text-xxs text-gray-600">Learn the most crucial first step to financial security. Your safety net is non-negotiable.</p>
                         </a>
-                        <a href="quizzes/financial-health-assessment.html" class="resource-card">
-                            <div class="resource-icon-wrapper">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+                        <a href="quizzes/financial-health-assessment.html" class="group block p-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                           <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
                             </div>
-                            <h3 class="resource-title">Quiz: Financial Health Check</h3>
-                            <p class="resource-description">Get a complete report card on your savings, debt, and investing habits in just a few minutes.</p>
-                            <span class="resource-cta">Take the Assessment &rarr;</span>
+                            <h3 class="text-xs font-semibold text-gray-900">Quiz: Financial Health Check</h3>
+                            <p class="mt-1 text-xxs text-gray-600">Get a complete report card on your savings, debt, and investing habits in just a few minutes.</p>
                         </a>
-                        <a href="/?mode=sip" class="resource-card">
-                            <div class="resource-icon-wrapper">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                        <a href="/?mode=sip" class="group block p-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                            <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
                             </div>
-                            <h3 class="resource-title">Tool: SIP Calculator</h3>
-                            <p class="resource-description">See how small, consistent investments can grow into a large corpus over time. The perfect start!</p>
-                            <span class="resource-cta">Start Planning &rarr;</span>
+                            <h3 class="text-xs font-semibold text-gray-900">Tool: SIP Calculator</h3>
+                            <p class="mt-1 text-xxs text-gray-600">See how small, consistent investments can grow into a large corpus over time. The perfect start!</p>
                         </a>
                     </div>
                 </div>
 
                 <!-- Pathway: Growing My Wealth -->
                 <div id="grow" class="pathway-content">
-                    <h2 class="text-xl font-bold text-center mb-2 text-gray-800">Accelerate Your Wealth Creation</h2>
-                    <p class="text-center text-sm text-gray-600 mb-6 max-w-2xl mx-auto">You've got the basics covered. Now it's time to put your money to work. Focus on goal-based investing, smart tax planning, and understanding your risk appetite.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <h2 class="text-base font-bold text-center mb-1 text-gray-800">Accelerate Your Wealth Creation</h2>
+                    <p class="text-center text-xs text-gray-600 mb-4 max-w-2xl mx-auto">You've got the basics covered. Now it's time to put your money to work. Focus on goal-based investing, smart tax planning, and understanding your risk appetite.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                          <!-- Cards for this pathway -->
-                        <a href="guides/goal-based-investing.html" class="resource-card">
-                            <div class="resource-icon-wrapper">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                        <a href="guides/goal-based-investing.html" class="group block p-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                            <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                             </div>
-                            <h3 class="resource-title">Guide: Goal-Based Investing</h3>
-                            <p class="resource-description">Attach a purpose to every rupee you invest. This guide shows you how to plan for every life goal.</p>
-                            <span class="resource-cta">Read the Guide &rarr;</span>
+                            <h3 class="text-xs font-semibold text-gray-900">Guide: Goal-Based Investing</h3>
+                            <p class="mt-1 text-xxs text-gray-600">Attach a purpose to every rupee you invest. This guide shows you how to plan for every life goal.</p>
                         </a>
-                        <a href="quizzes/risk-profile-quiz.html" class="resource-card">
-                            <div class="resource-icon-wrapper">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        <a href="quizzes/risk-profile-quiz.html" class="group block p-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                            <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                             </div>
-                            <h3 class="resource-title">Quiz: What's Your Investor Profile?</h3>
-                            <p class="resource-description">Discover if you're a conservative, balanced, or aggressive investor to choose the right products.</p>
-                            <span class="resource-cta">Find Your Profile &rarr;</span>
+                            <h3 class="text-xs font-semibold text-gray-900">Quiz: What's Your Investor Profile?</h3>
+                            <p class="mt-1 text-xxs text-gray-600">Discover if you're a conservative, balanced, or aggressive investor to choose the right products.</p>
                         </a>
-                        <a href="calculators/income-tax-calculator/" class="resource-card">
-                            <div class="resource-icon-wrapper">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9l-5-5Z"/><path d="M15 4v5h5"/><path d="M10 17h4"/><path d="M12 11v6"/></svg>
+                        <a href="calculators/income-tax-calculator/" class="group block p-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                            <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9l-5-5Z"/><path d="M15 4v5h5"/><path d="M10 17h4"/><path d="M12 11v6"/></svg>
                             </div>
-                            <h3 class="resource-title">Tool: Income Tax Calculator</h3>
-                            <p class="resource-description">Compare the Old vs. New tax regimes and ensure your investment strategy is tax-efficient.</p>
-                            <span class="resource-cta">Save on Tax &rarr;</span>
+                            <h3 class="text-xs font-semibold text-gray-900">Tool: Income Tax Calculator</h3>
+                            <p class="mt-1 text-xxs text-gray-600">Compare the Old vs. New tax regimes and ensure your investment strategy is tax-efficient.</p>
                         </a>
                     </div>
                 </div>
 
                 <!-- Pathway: Planning for Retirement -->
                 <div id="plan" class="pathway-content">
-                    <h2 class="text-xl font-bold text-center mb-2 text-gray-800">Design Your Dream Retirement</h2>
-                    <p class="text-center text-sm text-gray-600 mb-6 max-w-2xl mx-auto">This is your biggest long-term goal. Focus on calculating your required corpus, understanding retirement-specific products, and creating a sustainable plan.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <h2 class="text-base font-bold text-center mb-1 text-gray-800">Design Your Dream Retirement</h2>
+                    <p class="text-center text-xs text-gray-600 mb-4 max-w-2xl mx-auto">This is your biggest long-term goal. Focus on calculating your required corpus, understanding retirement-specific products, and creating a sustainable plan.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                         <!-- Cards for this pathway -->
-                        <a href="guides/retirement-planning-guide.html" class="resource-card">
-                            <div class="resource-icon-wrapper">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        <a href="guides/retirement-planning-guide.html" class="group block p-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                            <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                             </div>
-                            <h3 class="resource-title">Guide: The Ultimate Retirement Plan</h3>
-                            <p class="resource-description">Our in-depth guide to planning for a comfortable and secure retirement in India.</p>
-                            <span class="resource-cta">Read the Guide &rarr;</span>
+                            <h3 class="text-xs font-semibold text-gray-900">Guide: The Ultimate Retirement Plan</h3>
+                            <p class="mt-1 text-xxs text-gray-600">Our in-depth guide to planning for a comfortable and secure retirement in India.</p>
                         </a>
-                         <a href="quizzes/secure-retirement-forecaster-quiz.html" class="resource-card">
-                            <div class="resource-icon-wrapper">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"/></svg>
+                         <a href="quizzes/secure-retirement-forecaster-quiz.html" class="group block p-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                            <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"/></svg>
                             </div>
-                            <h3 class="resource-title">Quiz: Retirement Forecaster</h3>
-                            <p class="resource-description">Are you on track? This quiz assesses your retirement readiness and calculates your savings gap.</p>
-                            <span class="resource-cta">Check Your Progress &rarr;</span>
+                            <h3 class="text-xs font-semibold text-gray-900">Quiz: Retirement Forecaster</h3>
+                            <p class="mt-1 text-xxs text-gray-600">Are you on track? This quiz assesses your retirement readiness and calculates your savings gap.</p>
                         </a>
-                        <a href="calculators/ppf-calculator/" class="resource-card">
-                            <div class="resource-icon-wrapper">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <a href="calculators/ppf-calculator/" class="group block p-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                            <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                             </div>
-                            <h3 class="resource-title">Tool: Advanced PPF Calculator</h3>
-                            <p class="resource-description">Plan your PPF investment, a cornerstone of risk-free retirement saving, including extensions.</p>
-                            <span class="resource-cta">Plan Your PPF &rarr;</span>
+                            <h3 class="text-xs font-semibold text-gray-900">Tool: Advanced PPF Calculator</h3>
+                            <p class="mt-1 text-xxs text-gray-600">Plan your PPF investment, a cornerstone of risk-free retirement saving, including extensions.</p>
                         </a>
                     </div>
                 </div>
 
                 <!-- Pathway: I Need Regular Income -->
                 <div id="income" class="pathway-content">
-                    <h2 class="text-xl font-bold text-center mb-2 text-gray-800">Create Your Post-Retirement Paycheck</h2>
-                    <p class="text-center text-sm text-gray-600 mb-6 max-w-2xl mx-auto">You've built your nest egg, congratulations! Now, the goal is to make it last. Focus on creating a tax-efficient, regular income stream from your corpus.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <h2 class="text-base font-bold text-center mb-1 text-gray-800">Create Your Post-Retirement Paycheck</h2>
+                    <p class="text-center text-xs text-gray-600 mb-4 max-w-2xl mx-auto">You've built your nest egg—congratulations! Now, the goal is to make it last. Focus on creating a tax-efficient, regular income stream from your corpus.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                         <!-- Cards for this pathway -->
-                        <a href="guides/sip-vs-swp.html" class="resource-card">
-                            <div class="resource-icon-wrapper">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V2l-4 4"/><path d="m12 2 4 4"/><path d="M12 16v6l-4-4"/><path d="m12 22 4-4"/><path d="M20 12h-6l-2-3-2 3H4"/><path d="m4 12 2 3 2-3h6"/></svg>
+                        <a href="guides/sip-vs-swp.html" class="group block p-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                            <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V2l-4 4"/><path d="m12 2 4 4"/><path d="M12 16v6l-4-4"/><path d="m12 22 4-4"/><path d="M20 12h-6l-2-3-2 3H4"/><path d="m4 12 2 3 2-3h6"/></svg>
                             </div>
-                            <h3 class="resource-title">Guide: SIP vs. SWP Explained</h3>
-                            <p class="resource-description">Understand the crucial difference between accumulating wealth (SIP) and generating income (SWP).</p>
-                            <span class="resource-cta">Read the Guide &rarr;</span>
+                            <h3 class="text-xs font-semibold text-gray-900">Guide: SIP vs. SWP Explained</h3>
+                            <p class="mt-1 text-xxs text-gray-600">Understand the crucial difference between accumulating wealth (SIP) and generating income (SWP).</p>
                         </a>
-                        <a href="/?mode=swp" class="resource-card">
-                            <div class="resource-icon-wrapper">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <a href="/?mode=swp" class="group block p-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                            <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                             </div>
-                            <h3 class="resource-title">Tool: SWP Calculator</h3>
-                            <p class="resource-description">Model how to draw a regular, tax-efficient 'pension' from your investments.</p>
-                            <span class="resource-cta">Plan Your Income &rarr;</span>
+                            <h3 class="text-xs font-semibold text-gray-900">Tool: SWP Calculator</h3>
+                            <p class="mt-1 text-xxs text-gray-600">Model how to draw a regular, tax-efficient 'pension' from your investments.</p>
                         </a>
-                        <a href="guides/retirement-planning-guide.html" class="resource-card">
-                            <div class="resource-icon-wrapper">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        <a href="guides/retirement-planning-guide.html" class="group block p-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                            <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                             </div>
-                            <h3 class="resource-title">Guide: Post-Retirement Strategy</h3>
-                            <p class="resource-description">Dive deep into post-retirement strategies like the 3-Bucket rule to make your money last.</p>
-                            <span class="resource-cta">Read the Guide &rarr;</span>
+                            <h3 class="text-xs font-semibold text-gray-900">Guide: Post-Retirement Strategy</h3>
+                            <p class="mt-1 text-xxs text-gray-600">Dive deep into post-retirement strategies like the 3-Bucket rule to make your money last.</p>
                         </a>
                     </div>
                 </div>
