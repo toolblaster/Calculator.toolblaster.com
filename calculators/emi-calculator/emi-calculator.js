@@ -397,7 +397,9 @@ function initializeEmiCalculator() {
 
     function downloadAmortizationCSV() {
         if (currentAmortizationData.length === 0) {
-            showNotification('No data available to download.');
+            if (typeof showNotification === 'function') {
+                showNotification('No data available to download.');
+            }
             return;
         }
 
@@ -422,7 +424,9 @@ function initializeEmiCalculator() {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        showNotification('CSV download started!');
+        if (typeof showNotification === 'function') {
+            showNotification('CSV download started!');
+        }
     }
 
     function setupEventListeners() {
@@ -468,7 +472,9 @@ function initializeEmiCalculator() {
       if(copyUrlBtn) copyUrlBtn.addEventListener('click', () => {
           shareUrlInput.select();
           document.execCommand('copy');
-          showNotification('Link copied to clipboard!');
+          if (typeof showNotification === 'function') {
+            showNotification('Link copied to clipboard!');
+          }
       });
       if(printReportBtn) printReportBtn.addEventListener('click', () => {
          const modalContent = getElem('modalReportContent');
