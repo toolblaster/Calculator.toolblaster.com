@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Financial Action Hub: Tools to Start Your Journey</title>
-    <meta name="description" content="Find your investor pathway! Get personalized financial guides, interactive quizzes, and powerful calculators for every stage of your journey—from starting out to planning for retirement income.">
+    <title>Financial Action Hub: A Journey to Financial Freedom</title>
+    <meta name="description" content="Find your investor pathway! Get personalized guides, quizzes, and calculators for every stage of your journey—from starting out to planning for retirement.">
     <meta name="keywords" content="financial planning hub, investor pathway, personalized financial advice, beginner investing, retirement income planning, financial action plan, investment quizzes, financial calculators India, financial journey, wealth creation">
     <link rel="canonical" href="https://calculator.toolblaster.com/financial-hub.html" />
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Your Financial Action Hub: Tools to Start Your Journey | Calculator.toolblaster">
-    <meta property="og:description" content="Find your investor pathway! Get personalized financial guides, interactive quizzes, and powerful calculators for every stage of your journey.">
+    <meta property="og:title" content="Financial Action Hub: A Journey to Financial Freedom">
+    <meta property="og:description" content="Find your investor pathway! Get personalized guides, quizzes, and calculators for every stage of your journey.">
     <meta property="og:url" content="https://calculator.toolblaster.com/financial-hub.html">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Your Financial Action Hub: Tools to Start Your Journey | Calculator.toolblaster">
-    <meta name="twitter:description" content="Find your investor pathway! Get personalized financial guides, interactive quizzes, and powerful calculators for every stage of your journey.">
+    <meta name="twitter:title" content="Financial Action Hub: A Journey to Financial Freedom">
+    <meta name="twitter:description" content="Find your investor pathway! Get personalized guides, quizzes, and calculators for every stage of your journey.">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -39,645 +39,283 @@
         },
         {
           "@type": "WebPageElement",
-          "@id": "#main-content",
-          "hasPart": [
-            {
-                "@type": "WebPageElement",
-                "name": "Investor Pathway Selector",
-                "description": "An interactive tool that personalizes the page content based on the user's financial stage: Just Starting Out, Growing My Wealth, Planning for Retirement, or I Need Regular Income."
-            },
-            {
-              "@type": "HowTo",
-              "name": "Your 4-Step Financial Action Plan",
-              "description": "A step-by-step guide to taking control of your financial life, from assessment to action.",
-              "step": [
-                {
-                  "@type": "HowToStep",
-                  "name": "Step 1: Assess Your Situation",
-                  "text": "Take our 'What's Your Next Financial Move?' quiz to get a clear, prioritized starting point based on your current financial standing.",
-                  "url": "https://calculator.toolblaster.com/quizzes/next-financial-move-quiz.html"
-                },
-                {
-                  "@type": "HowToStep",
-                  "name": "Step 2: Set Clear Goals",
-                  "text": "Use our Goal Planner to turn your financial dreams into concrete numbers. Calculate exactly how much you need to invest to reach your targets.",
-                  "url": "https://calculator.toolblaster.com/?mode=goal"
-                },
-                {
-                  "@type": "HowToStep",
-                  "name": "Step 3: Choose the Right Tools",
-                  "text": "Explore our guides on different investment products like SIPs, Mutual Funds, and RDs to select the best tools for your specific goals.",
-                  "url": "https://calculator.toolblaster.com/guides/beginner-investing-guide.html"
-                },
-                {
-                  "@type": "HowToStep",
-                  "name": "Step 4: Automate & Review",
-                  "text": "Learn how to set up automatic investments to build discipline and review our guides on financial health to stay on track.",
-                  "url": "https://calculator.toolblaster.com/guides/financial-health-guide.html"
-                }
-              ]
-            },
-            {
-                "@type": "ItemList",
-                "name": "Core Financial Quizzes",
-                "itemListElement": [
-                    {
-                        "@type": "ListItem",
-                        "position": 1,
-                        "item": {
-                            "@type": "Quiz",
-                            "name": "Financial Health Assessment",
-                            "url": "https://calculator.toolblaster.com/quizzes/financial-health-assessment.html"
-                        }
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 2,
-                        "item": {
-                            "@type": "Quiz",
-                            "name": "Investor Profile Quiz",
-                            "url": "https://calculator.toolblaster.com/quizzes/risk-profile-quiz.html"
-                        }
-                    }
-                ]
-            },
-            {
-                "@type": "ItemList",
-                "name": "Core Financial Calculators",
-                "itemListElement": [
-                    {
-                        "@type": "ListItem",
-                        "position": 1,
-                        "item": {
-                            "@type": "SoftwareApplication",
-                            "name": "All-in-One Investment Calculator",
-                            "applicationCategory": "FinancialApplication",
-                            "operatingSystem": "Web",
-                            "url": "https://calculator.toolblaster.com/"
-                        }
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 2,
-                        "item": {
-                            "@type": "SoftwareApplication",
-                            "name": "Income Tax Calculator",
-                            "applicationCategory": "FinancialApplication",
-                            "operatingSystem": "Web",
-                            "url": "https://calculator.toolblaster.com/calculators/income-tax-calculator/"
-                        }
-                    }
-                ]
-            }
-          ]
+          "@id": "#main-content"
         }
       ]
     }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; font-size: 13px; }
-        
-        .section-title { font-size: 1rem; font-weight: 700; text-align: center; margin-bottom: 0.25rem; padding-bottom: 0.5rem; position: relative; }
-        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background-color: #E34037; }
-        
-        .how-to-card { background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 0.5rem; text-align: center; }
-        .how-to-card .step-number { display: inline-block; width: 24px; height: 24px; line-height: 24px; font-size: 0.7rem; border-radius: 50%; background-color: #E34037; color: white; font-weight: 700; margin-bottom: 0.25rem; }
-        .how-to-card h3 { font-size: 0.7rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .how-to-card p { font-size: 0.6rem; color: #4b5563; margin-bottom: 0.5rem; }
-        .how-to-card a { font-size: 0.65rem; font-weight: 600; color: #C22D2D; text-decoration: none; }
-        
-        /* --- SQUEEZED STYLES for Top Resources --- */
-        .featured-section-new {
-            background-color: #fef2f2; /* Light red background */
-            border-radius: 0.75rem;
-            padding: 0.5rem;
-            margin-bottom: 0.5rem;
-            border: 1px solid #C22D2D;
+        .pathway-btn {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
-        .feature-card {
-            background-color: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            padding: 0.5rem;
-            text-align: center;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .feature-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-color: #E34037;
-        }
-        .feature-icon-wrapper {
-            width: 28px;
-            height: 28px;
-            margin: 0 auto 0.25rem;
-            border-radius: 50%;
+        .pathway-btn.active {
             background-color: #fef2f2;
-            color: #E34037;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-color: #E34037;
+            color: #C22D2D;
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-        .feature-title {
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-            color: #1f2937;
-        }
-        .feature-description {
-            font-size: 0.6rem;
-            color: #4b5563;
-            flex-grow: 1;
-            margin-bottom: 0.25rem;
-            line-height: 1.3;
-        }
-        .feature-cta {
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: #E34037;
-        }
-        
-        /* New Section for Core Calculators */
-        .core-calculators-section {
-            background-color: #eff6ff; /* Light blue background */
-            border-radius: 0.75rem;
-            padding: 0.5rem;
-            margin-top: 1rem;
-            border: 1px solid #2563eb;
-        }
-        .calculator-showcase-card {
+        .pathway-content { display: none; }
+        .pathway-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .resource-card {
             background-color: #ffffff;
             border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            padding: 0.5rem;
-            text-align: center;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .calculator-showcase-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-color: #3B82F6; /* Blue accent on hover */
-        }
-        .calculator-icon-wrapper {
-             width: 28px;
-            height: 28px;
-            margin: 0 auto 0.25rem;
-            border-radius: 50%;
-            background-color: #dbeafe;
-            color: #2563eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .calculator-showcase-card .feature-cta {
-            color: #2563eb;
-        }
-        
-        /* New Section for Core Quizzes */
-        .core-quizzes-section {
-            background-color: #f0fdf4; /* Light green background */
-            border-radius: 0.75rem;
-            padding: 0.5rem;
-            margin-top: 1rem;
-            border: 1px solid #16a34a;
-        }
-        .quiz-showcase-card {
-            background-color: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            padding: 0.5rem;
-            text-align: center;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .quiz-showcase-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-color: #22c55e; /* Green accent on hover */
-        }
-        .quiz-icon-wrapper {
-             width: 28px;
-            height: 28px;
-            margin: 0 auto 0.25rem;
-            border-radius: 50%;
-            background-color: #dcfce7;
-            color: #16a34a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .quiz-showcase-card .feature-cta {
-            color: #16a34a;
-        }
-        
-        /* New style for Action Plan section */
-        .action-plan-section {
-            background-color: #fefce8; /* Light yellow */
             border-radius: 0.75rem;
             padding: 1rem;
-            margin-top: 1rem;
-            border: 1px solid #b45309;
-        }
-
-        /* --- Quick Tip Section --- */
-        .quick-tip-section {
-            background-color: #eef2ff; /* Light indigo background */
-            border: 1px solid #c7d2fe;
-            border-radius: 0.75rem;
-            padding: 0.75rem;
-            margin: 0.5rem 0 1rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-        }
-        .quick-tip-icon {
-            flex-shrink: 0;
-            width: 24px;
-            height: 24px;
-            color: #4338ca;
-        }
-        .quick-tip-text {
-            font-size: 0.7rem;
-            color: #3730a3;
-            font-weight: 500;
-            font-style: italic;
-        }
-        .quick-tip-text strong {
-            font-weight: 700;
-            font-style: normal;
-        }
-        
-        /* --- Financial Wins Section --- */
-        .financial-wins-section {
-            background-color: #fef2f2;
-            border-radius: 0.75rem;
-            padding: 0.5rem;
-            margin-top: 1rem;
-            border: 1px solid #fca5a5;
-        }
-        .win-card {
-            background-color: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            padding: 0.5rem;
             text-align: center;
+            text-decoration: none;
+            color: inherit;
             display: flex;
             flex-direction: column;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
         }
-        .win-card:hover {
+        .resource-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            border-color: #E34037;
         }
-        .win-icon-wrapper {
-            width: 28px;
-            height: 28px;
-            margin: 0 auto 0.25rem;
+        .resource-icon-wrapper {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 0.75rem;
             border-radius: 50%;
-            background-color: #fee2e2;
+            background-color: #fef2f2;
             color: #E34037;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .win-title {
-            font-size: 0.7rem;
+        .resource-title {
+            font-size: 0.9rem;
             font-weight: 700;
-            color: #C22D2D;
             margin-bottom: 0.25rem;
+            color: #1f2937;
         }
-        .win-description {
-            font-size: 0.6rem;
-            color: #B91C1C;
+        .resource-description {
+            font-size: 0.75rem;
+            color: #4b5563;
             flex-grow: 1;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
         }
-        .win-cta {
-            display: inline-block;
-            padding: 0.25rem 0.6rem;
-            font-size: 0.65rem;
+        .resource-cta {
+            font-size: 0.8rem;
             font-weight: 600;
-            text-align: center;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            text-decoration: none;
-            border: 2px solid #E34037;
-            background-color: #E34037;
-            color: white !important;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: #E34037;
         }
-        .win-cta:hover {
-            background-color: #ffffff !important;
-            color: #C22D2D !important;
-            border-color: #C22D2D !important;
-            transform: translateY(-2px);
-            box-shadow: 0 7px 10px rgba(0,0,0,0.1);
-        }
-
-        /* --- Mobile-First Adjustments --- */
-        .legal-content > h1 {
-            font-size: 1.1rem; /* Smaller base size */
-        }
-        .legal-content > p {
-            font-size: 0.8rem; /* Base size for mobile */
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
-        }
-        
-        /* FIX: Add media query to adjust margins on mobile and prevent overflow */
-        @media (max-width: 767px) {
-            .legal-content > .quick-tip-section,
-            .legal-content > .featured-section-new,
-            .legal-content > .core-quizzes-section,
-            .legal-content > .core-calculators-section,
-            .legal-content > .financial-wins-section,
-            .legal-content > .action-plan-section {
-                margin-left: 0.5rem;
-                margin-right: 0.5rem;
-            }
-        }
-        
-        @media (min-width: 640px) { /* Small screens and up */
-            #top-resources-section .grid { grid-template-columns: repeat(3, 1fr); }
-            #financial-wins-section .grid { grid-template-columns: repeat(3, 1fr); }
-            #quizzes-section .grid { grid-template-columns: repeat(2, 1fr); }
-            #calculators-section .grid { grid-template-columns: repeat(2, 1fr); }
-            #action-plan-section .grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (min-width: 768px) { /* Medium screens and up */
-            .legal-content > h1 {
-                font-size: 1.3rem; /* Slightly smaller desktop size */
-            }
-            .legal-content > p {
-                font-size: 1rem;
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
-            #quizzes-section .grid, #calculators-section .grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-        @media (min-width: 1024px) { /* Large screens */
-             #action-plan-section .grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-slate-50">
 
     <div id="header-placeholder"></div>
 
-    <main class="container">
-        <div class="legal-content">
-            <h1>Your Financial Action Hub</h1>
-            <p>Find your path to financial freedom. Get personalized guides, interactive quizzes, and powerful calculators for every stage of your journey.</p>
-            
-            <!-- NEW: Quick Tip Section -->
-            <div class="quick-tip-section">
-                <div class="quick-tip-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
-                </div>
-                <!-- FIX: Removed whitespace-nowrap to allow text to wrap on mobile -->
-                <p id="quick-tip-text" class="quick-tip-text"><strong>Quick Tip:</strong> Review your financial plan at least once a year. Life changes, and your plan should adapt with you.</p>
-            </div>
-            
-            <!-- Best Version: Featured Section -->
-            <div id="top-resources-section" class="featured-section-new">
-                <h2 class="section-title">Your Starting Point: Top Resources</h2>
-                <p class="section-subtitle">Not sure where to begin? Start your journey with our most popular tools and guides.</p>
-                <div class="grid mt-6 gap-4">
-                    <!-- Card 1: Beginner's Guide -->
-                    <a href="guides/beginner-investing-guide.html" class="feature-card">
-                        <div class="feature-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                        </div>
-                        <h3>Beginner's Investing Guide</h3>
-                        <p class="feature-description">Master the fundamentals of mutual funds, SIPs, and the stock market in one easy-to-read guide.</p>
-                        <span class="feature-cta">Start the Guide &rarr;</span>
-                    </a>
-                    <!-- Card 2: Health Quiz -->
-                    <a href="quizzes/financial-health-assessment.html" class="feature-card">
-                        <div class="feature-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
-                        </div>
-                        <h3>Financial Health Quiz</h3>
-                        <p class="feature-description">Get a complete report card on your savings, debt, and investing habits in just a few minutes.</p>
-                        <span class="feature-cta">Take the Assessment &rarr;</span>
-                    </a>
-                    <!-- Card 3: Goal Planner -->
-                    <a href="/?mode=goal" class="feature-card">
-                        <div class="feature-icon-wrapper">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                        </div>
-                        <h3>Goal Planning Calculator</h3>
-                        <p class="feature-description">Turn your dreams into reality. Calculate exactly what you need to invest to reach your biggest goals.</p>
-                        <span class="feature-cta">Plan Your Goal &rarr;</span>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Our Core Quizzes Section -->
-            <div id="quizzes-section" class="core-quizzes-section">
-                <h2 class="section-title">Test Your Knowledge</h2>
-                <p class="section-subtitle">Interactive quizzes to help you understand your financial self better.</p>
-                <div class="grid mt-6 gap-4">
-                    <!-- Financial Health Quiz -->
-                    <a href="quizzes/financial-health-assessment.html" class="quiz-showcase-card">
-                        <div class="quiz-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
-                        </div>
-                        <h3>Financial Health Assessment</h3>
-                        <p class="feature-description">Get a full report card on your savings, debt, and investment habits.</p>
-                        <span class="feature-cta">Take Quiz &rarr;</span>
-                    </a>
-                    <!-- Investor Profile Quiz -->
-                    <a href="quizzes/risk-profile-quiz.html" class="quiz-showcase-card">
-                        <div class="quiz-icon-wrapper">
-                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        </div>
-                        <h3>Investor Profile Quiz</h3>
-                        <p class="feature-description">Discover your risk tolerance and get personalized investment suggestions.</p>
-                        <span class="feature-cta">Take Quiz &rarr;</span>
-                    </a>
-                    <!-- Next Move Quiz -->
-                    <a href="quizzes/next-financial-move-quiz.html" class="quiz-showcase-card">
-                        <div class="quiz-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </div>
-                        <h3>Next Financial Move</h3>
-                        <p class="feature-description">Get a primary and secondary action plan to prioritize your financial journey.</p>
-                        <span class="feature-cta">Take Quiz &rarr;</span>
-                    </a>
-                    <!-- Retirement Forecaster -->
-                    <a href="quizzes/secure-retirement-forecaster-quiz.html" class="quiz-showcase-card">
-                        <div class="quiz-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"/></svg>
-                        </div>
-                        <h3>Retirement Forecaster</h3>
-                        <p class="feature-description">Assess your retirement readiness and calculate your potential savings gap.</p>
-                        <span class="feature-cta">Take Quiz &rarr;</span>
-                    </a>
-                </div>
-            </div>
+    <main class="container py-4 md:py-6" id="main-content">
+      <div class="max-w-4xl mx-auto">
+        <!-- Main Heading Section -->
+        <section class="text-center mb-6">
+            <h1 class="text-2xl md:text-3xl font-extrabold text-gray-800 tracking-tight">Your Financial Action Hub</h1>
+            <p class="mt-2 max-w-2xl mx-auto text-sm text-gray-600">Find your path to financial freedom. Get personalized guides, interactive quizzes, and powerful calculators for every stage of your journey.</p>
+        </section>
 
-            <!-- Our Core Calculators Section -->
-            <div id="calculators-section" class="core-calculators-section">
-                <h2 class="section-title">Our Core Calculators</h2>
-                <p class="section-subtitle">Powerful, free tools to help you plan, save, and invest with confidence.</p>
-                <div class="grid mt-6 gap-4">
-                    <!-- Investment Calculator -->
-                    <a href="/" class="calculator-showcase-card">
-                        <div class="calculator-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M8 10h8"/><path d="M8 14h8"/><path d="M15 18h1"/></svg>
-                        </div>
-                        <h3>All-in-One Investment</h3>
-                        <p class="feature-description">Plan your SIP, Lumpsum, SWP, RD & FD investments with inflation adjustments.</p>
-                        <span class="feature-cta">Calculate Now &rarr;</span>
-                    </a>
-                    <!-- Income Tax Calculator -->
-                    <a href="calculators/income-tax-calculator/" class="calculator-showcase-card">
-                        <div class="calculator-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9l-5-5Z"/><path d="M15 4v5h5"/><path d="M10 17h4"/><path d="M12 11v6"/></svg>
-                        </div>
-                        <h3>Income Tax</h3>
-                        <p class="feature-description">Compare the Old vs. New tax regimes to find which one saves you more money.</p>
-                        <span class="feature-cta">Calculate Now &rarr;</span>
-                    </a>
-                    <!-- EMI Calculator -->
-                    <a href="calculators/emi-calculator/" class="calculator-showcase-card">
-                        <div class="calculator-icon-wrapper">
-                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                        </div>
-                        <h3>Advanced EMI</h3>
-                        <p class="feature-description">Plan your loans with prepayment simulations and detailed amortization schedules.</p>
-                        <span class="feature-cta">Calculate Now &rarr;</span>
-                    </a>
-                    <!-- PPF Calculator -->
-                    <a href="calculators/ppf-calculator/" class="calculator-showcase-card">
-                        <div class="calculator-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        </div>
-                        <h3>Advanced PPF</h3>
-                        <p class="feature-description">Plan your PPF investment, including extensions, and see the power of tax-free compounding.</p>
-                        <span class="feature-cta">Calculate Now &rarr;</span>
-                    </a>
-                </div>
+        <!-- Pathway Selector -->
+        <section class="mb-8 p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+            <h2 class="text-center text-lg font-bold text-gray-800 mb-1">Find Your Investor Pathway</h2>
+            <p class="text-center text-xs text-gray-500 mb-4">Select the stage that best describes you to get tailored resources.</p>
+            <div id="pathway-selector" class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                <button data-pathway="start" class="pathway-btn active flex flex-col items-center p-3 rounded-lg bg-gray-100 text-gray-700">
+                    <span class="text-2xl mb-1">🚀</span>
+                    <span class="text-xs font-semibold text-center">Just Starting Out</span>
+                </button>
+                <button data-pathway="grow" class="pathway-btn flex flex-col items-center p-3 rounded-lg bg-gray-100 text-gray-700">
+                    <span class="text-2xl mb-1">📈</span>
+                    <span class="text-xs font-semibold text-center">Growing My Wealth</span>
+                </button>
+                <button data-pathway="plan" class="pathway-btn flex flex-col items-center p-3 rounded-lg bg-gray-100 text-gray-700">
+                    <span class="text-2xl mb-1">🏡</span>
+                    <span class="text-xs font-semibold text-center">Planning for Retirement</span>
+                </button>
+                <button data-pathway="income" class="pathway-btn flex flex-col items-center p-3 rounded-lg bg-gray-100 text-gray-700">
+                    <span class="text-2xl mb-1">💰</span>
+                    <span class="text-xs font-semibold text-center">I Need Regular Income</span>
+                </button>
             </div>
+        </section>
 
-            <!-- Plan Your Financial Wins Section -->
-            <div id="financial-wins-section" class="financial-wins-section">
-                <h2 class="section-title">Plan Your Financial Wins</h2>
-                <p class="section-subtitle">Turn your dreams into reality by seeing how our tools can build a plan for your biggest goals.</p>
-                <div class="grid mt-6 gap-4">
-                    <!-- Card 1: Car -->
-                    <div class="win-card">
-                        <div class="win-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 16.5V18a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-1.5"/><path d="M18 12h.01"/><path d="M6 12h.01"/><path d="M14 7.5V6a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v1.5"/><path d="M10 12h4"/><path d="M12 18v-6"/></svg>
-                        </div>
-                        <h3>Anjali's First Car</h3>
-                        <p class="win-description">Anjali wants to save ₹2 Lakhs in 3 years for a down payment. See the plan she built to get there.</p>
-                        <a href="/?mode=goal&target=200000&period=3&rate=8" class="btn-primary-small">Build Your Car Fund &rarr;</a>
-                    </div>
-                    <!-- Card 2: Education -->
-                    <div class="win-card">
-                        <div class="win-icon-wrapper">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                        </div>
-                        <h3>Child's Education Fund</h3>
-                        <p class="win-description">The Sharma family is planning for their daughter's college fund of ₹25 Lakhs in 15 years.</p>
-                        <a href="/?mode=goal&target=2500000&period=15&rate=12" class="btn-primary-small">Plan for Education &rarr;</a>
-                    </div>
-                    <!-- Card 3: Vacation -->
-                    <div class="win-card">
-                        <div class="win-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plane"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 5.2 5.2c.3.3.8.4 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
-                        </div>
-                        <h3>Rohan's Dream Vacation</h3>
-                        <p class="win-description">Rohan wants to take a trip to Europe in 2 years. See how he can save ₹1.5 Lakhs for his adventure.</p>
-                        <a href="/?mode=goal&target=150000&period=2&rate=7" class="btn-primary-small">Plan Your Trip &rarr;</a>
+        <!-- Pathway Content Sections -->
+        <section class="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+            <div id="pathway-content-container">
+                
+                <!-- Pathway: Just Starting Out -->
+                <div id="start" class="pathway-content active">
+                    <h2 class="text-xl font-bold text-center mb-2 text-gray-800">Your First Steps to Financial Freedom</h2>
+                    <p class="text-center text-sm text-gray-600 mb-6 max-w-2xl mx-auto">Welcome! Building wealth starts with strong foundations. Focus on creating a safety net, understanding your money habits, and starting your investment journey with confidence.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Cards for this pathway -->
+                        <a href="guides/emergency-fund-guide.html" class="resource-card">
+                            <div class="resource-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            </div>
+                            <h3 class="resource-title">Guide: Build Your Emergency Fund</h3>
+                            <p class="resource-description">Learn the most crucial first step to financial security. Your safety net is non-negotiable.</p>
+                            <span class="resource-cta">Read the Guide &rarr;</span>
+                        </a>
+                        <a href="quizzes/financial-health-assessment.html" class="resource-card">
+                            <div class="resource-icon-wrapper">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+                            </div>
+                            <h3 class="resource-title">Quiz: Financial Health Check</h3>
+                            <p class="resource-description">Get a complete report card on your savings, debt, and investing habits in just a few minutes.</p>
+                            <span class="resource-cta">Take the Assessment &rarr;</span>
+                        </a>
+                        <a href="/?mode=sip" class="resource-card">
+                            <div class="resource-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                            </div>
+                            <h3 class="resource-title">Tool: SIP Calculator</h3>
+                            <p class="resource-description">See how small, consistent investments can grow into a large corpus over time. The perfect start!</p>
+                            <span class="resource-cta">Start Planning &rarr;</span>
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            <!-- Your 4-Step Financial Action Plan Section -->
-            <div id="action-plan-section" class="action-plan-section">
-                <div class="text-center mb-2">
-                    <h2 class="section-title">Your 4-Step Financial Action Plan</h2>
-                    <p class="section-subtitle">Follow this simple roadmap to take control of your financial life, one step at a time.</p>
+                <!-- Pathway: Growing My Wealth -->
+                <div id="grow" class="pathway-content">
+                    <h2 class="text-xl font-bold text-center mb-2 text-gray-800">Accelerate Your Wealth Creation</h2>
+                    <p class="text-center text-sm text-gray-600 mb-6 max-w-2xl mx-auto">You've got the basics covered. Now it's time to put your money to work. Focus on goal-based investing, smart tax planning, and understanding your risk appetite.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                         <!-- Cards for this pathway -->
+                        <a href="guides/goal-based-investing.html" class="resource-card">
+                            <div class="resource-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                            </div>
+                            <h3 class="resource-title">Guide: Goal-Based Investing</h3>
+                            <p class="resource-description">Attach a purpose to every rupee you invest. This guide shows you how to plan for every life goal.</p>
+                            <span class="resource-cta">Read the Guide &rarr;</span>
+                        </a>
+                        <a href="quizzes/risk-profile-quiz.html" class="resource-card">
+                            <div class="resource-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            </div>
+                            <h3 class="resource-title">Quiz: What's Your Investor Profile?</h3>
+                            <p class="resource-description">Discover if you're a conservative, balanced, or aggressive investor to choose the right products.</p>
+                            <span class="resource-cta">Find Your Profile &rarr;</span>
+                        </a>
+                        <a href="calculators/income-tax-calculator/" class="resource-card">
+                            <div class="resource-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9l-5-5Z"/><path d="M15 4v5h5"/><path d="M10 17h4"/><path d="M12 11v6"/></svg>
+                            </div>
+                            <h3 class="resource-title">Tool: Income Tax Calculator</h3>
+                            <p class="resource-description">Compare the Old vs. New tax regimes and ensure your investment strategy is tax-efficient.</p>
+                            <span class="resource-cta">Save on Tax &rarr;</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="grid mt-4 gap-4">
-                    <div class="how-to-card">
-                        <span class="step-number">1</span>
-                        <h3>Assess Your Situation</h3>
-                        <p>Get a clear starting point. Our quiz will identify your top priority right now.</p>
-                        <a href="quizzes/next-financial-move-quiz.html">Take the Quiz &rarr;</a>
-                    </div>
-                    <div class="how-to-card">
-                        <span class="step-number">2</span>
-                        <h3>Set Clear Goals</h3>
-                        <p>Turn your dreams into numbers. Calculate what you need to invest for your future.</p>
-                        <a href="/?mode=goal">Use the Goal Planner &rarr;</a>
-                    </div>
-                    <div class="how-to-card">
-                        <span class="step-number">3</span>
-                        <h3>Choose the Right Tools</h3>
-                        <p>Learn about different investment options to find the best fit for your goals.</p>
-                        <a href="guides/">Read Financial Guides &rarr;</a>
-                    </div>
-                    <div class="how-to-card">
-                        <span class="step-number">4</span>
-                        <h3>Automate & Review</h3>
-                        <p>Build discipline through automation and stay on track with regular check-ins.</p>
-                        <a href="guides/financial-health-guide.html">Learn About Financial Health &rarr;</a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="share-buttons-container">
-                <p class="share-title">Share This Hub:</p>
-                <div class="share-buttons">
-                    <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank" aria-label="Share on WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.35 3.48 16.81L2 22L7.33 20.55C8.75 21.33 10.35 21.79 12.04 21.79C17.5 21.79 21.95 17.34 21.95 11.88C21.95 6.42 17.5 2 12.04 2M12.04 3.64C16.57 3.64 20.25 7.32 20.25 11.85C20.25 16.38 16.57 20.06 12.04 20.06C10.56 20.06 9.14 19.68 7.9 18.98L7.54 18.78L4.45 19.65L5.35 16.62L5.13 16.27C4.34 15.05 3.96 13.5 3.96 11.88C3.96 7.35 7.64 3.64 12.04 3.64M9.01 7.4C8.86 7.4 8.71 7.4 8.57 7.4C8.37 7.4 8.1 7.49 7.89 7.85C7.68 8.21 7.03 8.81 7.03 9.94C7.03 11.07 7.92 12.14 8.07 12.31C8.21 12.48 10.03 15.34 12.87 16.59C15.72 17.84 15.72 17.34 16.19 17.29C16.66 17.24 17.63 16.68 17.84 16.09C18.05 15.5 18.05 15.03 17.98 14.91C17.91 14.78 17.77 14.7 17.53 14.58C17.3 14.46 15.98 13.83 15.74 13.73C15.51 13.64 15.37 13.59 15.22 13.83C15.08 14.07 14.54 14.7 14.4 14.84C14.26 14.98 14.11 15.01 13.88 14.89C13.64 14.77 12.71 14.45 11.61 13.48C10.71 12.7 10.09 11.76 9.92 11.49C9.75 11.22 9.89 11.09 10.03 10.96C10.16 10.83 10.3 10.65 10.43 10.5C10.56 10.35 10.61 10.23 10.73 10.03C10.86 9.83 10.78 9.64 10.71 9.5C10.65 9.36 10.11 8.04 9.87 7.47C9.64 6.9 9.4 6.98 9.25 6.98L9.01 7.4Z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn facebook" id="share-facebook" target="_blank" aria-label="Share on Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn twitter" id="share-twitter" target="_blank" aria-label="Share on Twitter">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.35 0 11.37-6.08 11.37-11.37 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.98-2.08z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn linkedin" id="share-linkedin" target="_blank" aria-label="Share on LinkedIn">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.5 2.5-2.5c1.6 0 2.5 1.2 2.5 2.5 0 1.3-1 2.5-2.5 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"></path></svg>
-                    </a>
-                    <button class="share-btn copy-link" id="copy-link-btn" aria-label="Copy link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    </button>
+                <!-- Pathway: Planning for Retirement -->
+                <div id="plan" class="pathway-content">
+                    <h2 class="text-xl font-bold text-center mb-2 text-gray-800">Design Your Dream Retirement</h2>
+                    <p class="text-center text-sm text-gray-600 mb-6 max-w-2xl mx-auto">This is your biggest long-term goal. Focus on calculating your required corpus, understanding retirement-specific products, and creating a sustainable plan.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Cards for this pathway -->
+                        <a href="guides/retirement-planning-guide.html" class="resource-card">
+                            <div class="resource-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            </div>
+                            <h3 class="resource-title">Guide: The Ultimate Retirement Plan</h3>
+                            <p class="resource-description">Our in-depth guide to planning for a comfortable and secure retirement in India.</p>
+                            <span class="resource-cta">Read the Guide &rarr;</span>
+                        </a>
+                         <a href="quizzes/secure-retirement-forecaster-quiz.html" class="resource-card">
+                            <div class="resource-icon-wrapper">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"/></svg>
+                            </div>
+                            <h3 class="resource-title">Quiz: Retirement Forecaster</h3>
+                            <p class="resource-description">Are you on track? This quiz assesses your retirement readiness and calculates your savings gap.</p>
+                            <span class="resource-cta">Check Your Progress &rarr;</span>
+                        </a>
+                        <a href="calculators/ppf-calculator/" class="resource-card">
+                            <div class="resource-icon-wrapper">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            </div>
+                            <h3 class="resource-title">Tool: Advanced PPF Calculator</h3>
+                            <p class="resource-description">Plan your PPF investment, a cornerstone of risk-free retirement saving, including extensions.</p>
+                            <span class="resource-cta">Plan Your PPF &rarr;</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pathway: I Need Regular Income -->
+                <div id="income" class="pathway-content">
+                    <h2 class="text-xl font-bold text-center mb-2 text-gray-800">Create Your Post-Retirement Paycheck</h2>
+                    <p class="text-center text-sm text-gray-600 mb-6 max-w-2xl mx-auto">You've built your nest egg—congratulations! Now, the goal is to make it last. Focus on creating a tax-efficient, regular income stream from your corpus.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Cards for this pathway -->
+                        <a href="guides/sip-vs-swp.html" class="resource-card">
+                            <div class="resource-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V2l-4 4"/><path d="m12 2 4 4"/><path d="M12 16v6l-4-4"/><path d="m12 22 4-4"/><path d="M20 12h-6l-2-3-2 3H4"/><path d="m4 12 2 3 2-3h6"/></svg>
+                            </div>
+                            <h3 class="resource-title">Guide: SIP vs. SWP Explained</h3>
+                            <p class="resource-description">Understand the crucial difference between accumulating wealth (SIP) and generating income (SWP).</p>
+                            <span class="resource-cta">Read the Guide &rarr;</span>
+                        </a>
+                        <a href="/?mode=swp" class="resource-card">
+                            <div class="resource-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            </div>
+                            <h3 class="resource-title">Tool: SWP Calculator</h3>
+                            <p class="resource-description">Model how to draw a regular, tax-efficient 'pension' from your investments.</p>
+                            <span class="resource-cta">Plan Your Income &rarr;</span>
+                        </a>
+                        <a href="guides/retirement-planning-guide.html" class="resource-card">
+                            <div class="resource-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            </div>
+                            <h3 class="resource-title">Guide: Post-Retirement Strategy</h3>
+                            <p class="resource-description">Dive deep into post-retirement strategies like the 3-Bucket rule to make your money last.</p>
+                            <span class="resource-cta">Read the Guide &rarr;</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-  
-        </div>
+        </section>
+      </div>
     </main>
 
  <div id="footer-placeholder"></div>
 
     <script src="script.js"></script>
     <script src="assets/js/global-elements.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const pathwaySelector = document.getElementById('pathway-selector');
+            const contentContainer = document.getElementById('pathway-content-container');
+            const pathwayButtons = pathwaySelector.querySelectorAll('.pathway-btn');
+            const pathwayContents = contentContainer.querySelectorAll('.pathway-content');
+
+            pathwaySelector.addEventListener('click', function(e) {
+                const button = e.target.closest('.pathway-btn');
+                if (!button) return;
+
+                const pathway = button.dataset.pathway;
+                
+                // Update button styles
+                pathwayButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Update content visibility
+                pathwayContents.forEach(content => {
+                    if (content.id === pathway) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
