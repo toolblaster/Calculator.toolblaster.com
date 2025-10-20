@@ -287,7 +287,9 @@ function initializeTaxCalculator() {
       if(copyUrlBtn) copyUrlBtn.addEventListener('click', () => {
           shareUrlInput.select();
           document.execCommand('copy');
-          showNotification('Link copied to clipboard!');
+          if (typeof showNotification === 'function') {
+            showNotification('Link copied to clipboard!');
+          }
       });
       if(printReportBtn) printReportBtn.addEventListener('click', () => {
          const modalContent = getElem('modalReportContent');
