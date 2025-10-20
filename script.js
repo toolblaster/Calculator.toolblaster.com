@@ -1,546 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All-in-One RD, FD, SWP, Goal and SIP Calculator with Inflation for India</title>
-    <meta name="description" content="An all-in-one financial calculator to plan your RD, FD, SWP, Goal, and SIP investments with precision and accuracy, including inflation adjustments for India.">
-    <meta name="keywords" content="inflation adjusted sip calculator, financial calculator, investment calculator, SIP, Lumpsum, SWP, RD, FD, goal planner, mutual funds, personal finance, savings">
-    <link rel="canonical" href="https://calculator.toolblaster.com/" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="calculators/financial-calculator/calculator-style.css">
+/**
+ * This script handles all GLOBALLY required functionalities for the Calculator.toolblaster website.
+ * It loads common components like the header and footer, and handles site-wide features
+ * like mobile navigation. 
+ * * NOTE: Specific logic for share buttons and notifications has been moved to /assets/js/global-elements.js
+ */
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+document.addEventListener('DOMContentLoaded', () => {
 
-    <style>
-        .hidden { display: none !important; }
+    // --- SECTION 1: DYNAMIC COMPONENT LOADING ---
+    const loadComponent = (componentPath, placeholderId) => {
+        const placeholder = document.getElementById(placeholderId);
+        if (!placeholder) {
+            return Promise.resolve();
+        }
+
+        // Determine the correct path prefix based on the current page's depth
+        const pathPrefix = window.location.pathname.includes('/calculators/') || window.location.pathname.includes('/guides/') || window.location.pathname.includes('/legal/') || window.location.pathname.includes('/quizzes/') ? '../' : '';
         
-        /* --- UPDATED: Compact and Centered Styles --- */
-        .featured-guides-section {
-            padding: 0.5rem; /* Reduced padding */
-            margin: 1rem auto; /* Adjusted margin */
-            max-width: 1000px;
-            background-color: #f0f4f8; 
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .featured-guides-section .section-title { margin-bottom: 0.25rem; }
-        .featured-guides-section .section-subtitle { margin-bottom: 0.75rem; }
-        .guide-link {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #E34037; 
-            text-decoration: none;
-            margin-top: auto;
-            transition: color 0.3s ease;
-        }
-        .guide-link:hover { color: #C22D2D; }
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-        }
-        .content-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center content horizontally */
-            text-align: center; /* Center text */
-            background-color: #ffffff;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #eee;
-            text-decoration: none;
-            color: inherit;
-        }
-        .content-card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 12px 16px rgba(0,0,0,0.08); 
-        }
-        .content-card h3 { 
-            font-size: 0.85rem; 
-            font-weight: 600; 
-            color: #121212; 
-            margin-bottom: 0.5rem; 
-        }
-        .content-card p {
-            font-size: 0.75rem;
-            color: #525252;
-            margin-bottom: 1rem;
-        }
-        #notification-toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #2d3748;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-        }
-        #notification-toast.show {
-            opacity: 1;
-            visibility: visible;
-        }
-    </style>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebPage",
-          "name": "Investment & Savings Calculator",
-          "description": "An all-in-one financial calculator to plan your SIP, Lumpsum, SWP, RD, and FD investments with precision and accuracy.",
-          "url": "https://domain.com/index.html",
-          "inLanguage": "en-IN"
-        },
-        {
-          "@type": "FinancialProduct",
-          "name": "All-in-One Financial Calculator",
-          "description": "A comprehensive financial calculator to plan your SIP, Lumpsum, SWP, RD, FD, and Goal investments with inflation adjustment.",
-          "brand": {
-            "@type": "Brand",
-            "name": "Calculator.toolblaster"
-          },
-          "url": "https://calculator.toolblaster.com/index.html",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "INR"
-          }
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "What is an SIP calculator with inflation adjustment?", "acceptedAnswer": { "@type": "Answer", "text": "An SIP calculator with inflation adjustment is a financial tool that not only projects the future value of your Systematic Investment Plan (SIP) but also shows you what that future value will be worth in today's terms." }},
-            { "@type": "Question", "name": "Why is my inflation-adjusted return lower than the total value?", "acceptedAnswer": { "@type": "Answer", "text": "Your total value shows the absolute amount of money you'll have, while the inflation-adjusted return (or 'real value') shows what that money can actually buy. Inflation reduces the purchasing power of money over time." }},
-            { "@type": "Question", "name": "How does this tool help in better financial planning?", "acceptedAnswer": { "@type": "Answer", "text": "By using a reliable financial calculator, you can set more realistic financial goals. It helps you calculate the actual target amount you need to achieve for future goals, ensuring you are not under-prepared." }}
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body class="bg-gray-50">
+        // Adjust for deeper paths like /calculators/emi-calculator/
+        const deeperPathPrefix = window.location.pathname.split('/').length > 3 ? '../../' : pathPrefix;
 
-    <div id="header-placeholder"></div>
+        const finalPath = `${deeperPathPrefix}${componentPath}`;
 
-    <main class="container">
-        <div class="financial-calculator-wrapper">
-            <!-- UPDATED: Reduced padding for a more compact view -->
-            <div class="bg-white shadow-lg rounded-xl p-2 sm:p-3 w-full border border-red-300 mx-auto my-0 calculator-container">
-                
-                <h1 id="calculatorTitle" class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">SIP Calculator with Inflation</h1>
-                <p id="calculatorDescription" class="text-center text-gray-500 mb-3 text-xs">Plan your investments with our advanced SIP Calculator. Also includes tools for RD, FD, SWP, Goal Planning</p>
-                
-                <!-- UPDATED: Reduced bottom margin -->
-                <div class="flex justify-center mb-2 flex-wrap gap-1">
-                    <button id="sipModeBtn" aria-label="Switch to SIP calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-blue-600 text-white shadow-md">SIP</button>
-                    <button id="lumpsumModeBtn" aria-label="Switch to Lumpsum calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Lumpsum</button>
-                    <button id="swpModeBtn" aria-label="Switch to SWP calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">SWP</button>
-                    <button id="rdModeBtn" aria-label="Switch to RD calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">RD</button>
-                    <button id="fdModeBtn" aria-label="Switch to FD calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">FD</button>
-                    <button id="goalModeBtn" aria-label="Switch to Goal Planner" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Goal Planner</button>
-                </div>
-                
-                <!-- UPDATED: Reduced gap between columns -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-3">
-                    <!-- UPDATED: Reduced internal spacing and padding -->
-                    <div class="space-y-1.5">
-                        <div id="sipSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg">
-                            <div>
-                                <label for="sipAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="sipAmountLabel">Monthly SIP Amount (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="sipAmountSlider" min="500" max="50000" value="10000" step="500" class="w-full range-slider">
-                                    <input type="number" id="sipAmountInput" class="manual-input" value="10000" min="500" max="50000" step="500">
-                                </div>
-                                <p id="sipAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹500 - ₹50,000.</p>
-                            </div>
-                            <div>
-                                <label for="sipFrequency" class="block text-xs font-medium text-gray-600 mb-1">SIP Frequency</label>
-                                <select id="sipFrequency" class="w-full p-1 border border-gray-300 rounded-md text-xs font-semibold text-gray-700 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 shadow-sm">
-                                    <option value="monthly">Monthly</option>
-                                    <option value="quarterly">Quarterly</option>
-                                    <option value="half-yearly">Half-Yearly</option>
-                                </select>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-1">
-                                    <label for="sipIncreaseRateInput" class="block text-xs font-medium text-gray-600" id="sipIncreaseLabel">Annual Increase (%)</label>
-                                    <div class="step-up-toggle-container">
-                                        <label class="step-up-toggle">
-                                            <input type="checkbox" id="sipIncreaseTypeToggle" class="sr-only" aria-label="Toggle between percentage and amount for annual increase">
-                                            <div class="toggle-track">
-                                                <div class="toggle-thumb">
-                                                    <span class="toggle-icon toggle-icon-percent">%</span>
-                                                    <span class="toggle-icon toggle-icon-rupee">₹</span>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="sipIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider">
-                                    <input type="number" id="sipIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
-                                </div>
-                            </div>
-                        </div>
-                        <div id="lumpsumSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
-                            <div>
-                                <label for="lumpsumAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="lumpsumAmountLabel">Lumpsum Amount (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="lumpsumAmountSlider" min="5000" max="10000000" value="500000" step="1000" class="w-full range-slider">
-                                    <input type="number" id="lumpsumAmountInput" class="manual-input" value="500000" min="5000" max="10000000" step="1000">
-                                </div>
-                                <p id="lumpsumAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹5,000 - ₹1 Crore.</p>
-                            </div>
-                        </div>
-                        <div id="rdSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
-                            <div>
-                                <label for="rdAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="rdAmountLabel">Monthly RD Amount (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="rdAmountSlider" min="100" max="50000" value="5000" step="100" class="w-full range-slider">
-                                    <input type="number" id="rdAmountInput" class="manual-input" value="5000" min="100" max="50000" step="100">
-                                </div>
-                                <p id="rdAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹100 - ₹50,000.</p>
-                            </div>
-                            <div>
-                                <label for="rdFrequency" class="block text-xs font-medium text-gray-600 mb-1">RD Frequency</label>
-                                <select id="rdFrequency" class="w-full p-1 border border-gray-300 rounded-md text-xs font-semibold text-gray-700 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 shadow-sm">
-                                    <option value="monthly">Monthly</option>
-                                    <option value="quarterly">Quarterly</option>
-                                    <option value="half-yearly">Half-Yearly</option>
-                                </select>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-1">
-                                    <label for="rdIncreaseRateInput" class="block text-xs font-medium text-gray-600" id="rdIncreaseLabel">Annual Increase (%)</label>
-                                    <div class="step-up-toggle-container">
-                                        <label class="step-up-toggle">
-                                            <input type="checkbox" id="rdIncreaseTypeToggle" class="sr-only" aria-label="Toggle between percentage and amount for annual RD increase">
-                                            <div class="toggle-track">
-                                                <div class="toggle-thumb">
-                                                    <span class="toggle-icon toggle-icon-percent">%</span>
-                                                    <span class="toggle-icon toggle-icon-rupee">₹</span>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="rdIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider">
-                                    <input type="number" id="rdIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
-                                </div>
-                            </div>
-                        </div>
-                        <div id="fdSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
-                            <div>
-                                <label for="fdAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="fdAmountLabel">FD Amount (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="fdAmountSlider" min="1000" max="10000000" value="100000" step="1000" class="w-full range-slider">
-                                    <input type="number" id="fdAmountInput" class="manual-input" value="100000" min="1000" max="10000000" step="1000">
-                                </div>
-                                <p id="fdAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1,000 - ₹1 Crore.</p>
-                            </div>
-                        </div>
-                        <!-- Enhanced SWP Section -->
-                        <div id="swpSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
-                            <div>
-                                <label for="initialCorpusInput" class="block text-xs font-medium text-gray-600 mb-1" id="initialCorpusLabel">Initial Investment (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="initialCorpusSlider" min="100000" max="50000000" value="2000000" step="10000" class="w-full range-slider">
-                                    <input type="number" id="initialCorpusInput" class="manual-input" value="2000000" min="100000" max="50000000" step="10000">
-                                </div>
-                                <p id="initialCorpusError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1 Lac - ₹5 Crore.</p>
-                            </div>
-                            <div>
-                                <label for="withdrawalAmountInput" class="block text-xs font-medium text-gray-600 mb-1">Monthly Withdrawal (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="withdrawalAmountSlider" min="1000" max="100000" value="20000" step="500" class="w-full range-slider">
-                                    <input type="number" id="withdrawalAmountInput" class="manual-input" value="20000" min="1000" max="100000" step="500">
-                                </div>
-                                <p id="withdrawalAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1,000 - ₹1 Lac.</p>
-                            </div>
-                            <!-- UPDATED: Annual Withdrawal Increase with Toggle -->
-                            <div>
-                                <div class="flex justify-between items-center mb-1">
-                                    <label for="withdrawalIncreaseInput" class="block text-xs font-medium text-gray-600" id="withdrawalIncreaseLabel">Annual Withdrawal Increase (%)</label>
-                                    <div class="step-up-toggle-container">
-                                        <label class="step-up-toggle">
-                                            <input type="checkbox" id="withdrawalIncreaseTypeToggle" class="sr-only" aria-label="Toggle between percentage and amount for annual withdrawal increase">
-                                            <div class="toggle-track">
-                                                <div class="toggle-thumb">
-                                                    <span class="toggle-icon toggle-icon-percent">%</span>
-                                                    <span class="toggle-icon toggle-icon-rupee">₹</span>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="withdrawalIncreaseSlider" min="0" max="10" value="0" step="1" class="w-full range-slider">
-                                    <input type="number" id="withdrawalIncreaseInput" class="manual-input" value="0" min="0" max="10" step="1">
-                                </div>
-                            </div>
-                            <div>
-                                <label for="withdrawalFrequency" class="block text-xs font-medium text-gray-600 mb-1">Withdrawal Frequency</label>
-                                <select id="withdrawalFrequency" class="w-full p-1 border border-gray-300 rounded-md text-xs font-semibold text-gray-700 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 shadow-sm">
-                                    <option value="monthly">Monthly</option>
-                                    <option value="quarterly">Quarterly</option>
-                                    <option value="half-yearly">Half-Yearly</option>
-                                    <option value="yearly">Yearly</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div id="goalSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
-                            <div class="mb-2">
-                                <label class="block text-xs font-medium text-gray-600 mb-1">Goal Templates</label>
-                                <div class="flex flex-wrap gap-1">
-                                    <button class="goal-template-btn" data-goal="retirement" aria-label="Apply Retirement goal template">Retirement</button>
-                                    <button class="goal-template-btn" data-goal="education" aria-label="Apply Child's Education goal template">Child's Education</button>
-                                    <button class="goal-template-btn" data-goal="car" aria-label="Apply Car Purchase goal template">Car Purchase</button>
-                                </div>
-                            </div>
-                            <div>
-                                <label for="targetAmountInput" class="block text-xs font-medium text-gray-600 mb-1">Target Amount (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="targetAmountSlider" min="100000" max="100000000" value="5000000" step="10000" class="w-full range-slider">
-                                    <input type="number" id="targetAmountInput" class="manual-input" value="5000000" min="100000" max="100000000" step="10000">
-                                </div>
-                                <p id="targetAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1 Lac - ₹10 Crore.</p>
-                            </div>
-                            <div>
-                                <label for="goalReturnRateInput" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="goalReturnRateSlider" min="1" max="30" value="12" step="0.1" class="w-full range-slider">
-                                    <input type="number" id="goalReturnRateInput" class="manual-input" value="12" min="1" max="30" step="0.1">
-                                </div>
-                                <p id="goalReturnRateError" class="text-red-500 text-xxs mt-1 hidden">Rate must be between 1% - 30%.</p>
-                            </div>
-                            <div>
-                                <label for="goalPeriodInput" class="block text-xs font-medium text-gray-600 mb-1">Investment Period (Years)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="goalPeriodSlider" min="1" max="40" value="10" class="w-full range-slider">
-                                    <input type="number" id="goalPeriodInput" class="manual-input" value="10" min="1" max="40">
-                                </div>
-                                <p id="goalPeriodError" class="text-red-500 text-xxs mt-1 hidden">Period must be between 1 - 40 years.</p>
-                            </div>
-                        </div>
-                        
-                        <div id="generalInputsSection" class="bg-blue-50/50 p-2 rounded-lg space-y-1.5">
-                            <div>
-                                <label for="returnRateInput" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="returnRateSlider" min="1" max="30" value="12" step="0.1" class="w-full range-slider">
-                                    <input type="number" id="returnRateInput" class="manual-input" value="12" min="1" max="30" step="0.1">
-                                </div>
-                                <p id="returnRateError" class="text-red-500 text-xxs mt-1 hidden">Rate must be between 1% - 30%.</p>
-                            </div>
-                            <div>
-                                <label for="investmentPeriodInput" class="block text-xs font-medium text-gray-600 mb-1" id="periodLabel">Investment Period (Years)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="investmentPeriodSlider" min="1" max="40" value="10" class="w-full range-slider">
-                                    <input type="number" id="investmentPeriodInput" class="manual-input" value="10" min="1" max="40">
-                                </div>
-                                <p id="investmentPeriodError" class="text-red-500 text-xxs mt-1 hidden">Period must be between 1 - 40 years.</p>
-                            </div>
-                        </div>
-
-                        <div id="taxSection" class="bg-blue-50/50 p-2 rounded-lg hidden">
-                            <div class="flex items-center justify-between">
-                                <label for="taxToggle" class="text-xs font-medium text-gray-600">Calculate Post-Tax Returns</label>
-                                <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" id="taxToggle" class="sr-only peer">
-                                    <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
-                                </label>
-                            </div>
-                            <div id="taxInputGroup" class="mt-2 hidden">
-                                <label for="taxSlabSelect" class="block text-xs font-medium text-gray-600 mb-1">Your Income Tax Slab</label>
-                                <select id="taxSlabSelect" class="w-full p-1 border border-gray-300 rounded-md text-xs font-semibold text-gray-700 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 shadow-sm">
-                                    <option value="0">0%</option>
-                                    <option value="0.05">5%</option>
-                                    <option value="0.1">10%</option>
-                                    <option value="0.2">20%</option>
-                                    <option value="0.3" selected>30%</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="bg-blue-50/50 p-2 rounded-lg">
-                            <div class="flex items-center justify-between">
-                                <label for="inflationToggle" class="text-xs font-medium text-gray-600">Adjust for Inflation</label>
-                                <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" id="inflationToggle" class="sr-only peer">
-                                    <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
-                                </label>
-                            </div>
-                            <div id="inflationInputGroup" class="mt-2 hidden">
-                                <label for="inflationRateInput" class="block text-xs font-medium text-gray-600 mb-1">Inflation Rate (p.a. %)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="inflationRateSlider" min="0" max="15" value="5" step="0.1" class="w-full range-slider">
-                                    <input type="number" id="inflationRateInput" class="manual-input" value="5" min="0" max="15" step="0.1">
-                                </div>
-                                <p id="inflationRateError" class="text-red-500 text-xxs mt-1 hidden">Rate must be between 0% - 15%.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col">
-                        <div id="sipSummary" class="bg-blue-50/50 p-1.5 rounded-lg" aria-live="polite">
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-sm font-bold text-blue-800">SIP Summary</h3>
-                                <button class="share-btn" aria-label="Share SIP calculation results">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
-                                </button>
-                            </div>
-                            <div class="space-y-1 text-xs">
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountSIP" class="font-semibold text-blue-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsSIP" class="font-semibold text-green-700">₹0</span></div>
-                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueSIP" class="text-sm font-bold text-purple-700">₹0</span></div>
-                                <div id="realValueSectionSIP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueSIP" class="font-bold text-orange-700">₹0</span></div>
-                            </div>
-                        </div>
-                        <div id="lumpsumSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-sm font-bold text-blue-800">Lumpsum Summary</h3>
-                                <button class="share-btn" aria-label="Share Lumpsum calculation results">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
-                                </button>
-                            </div>
-                            <div class="space-y-1 text-xs">
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountLumpsum" class="font-semibold text-blue-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsLumpsum" class="font-semibold text-green-700">₹0</span></div>
-                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueLumpsum" class="text-sm font-bold text-purple-700">₹0</span></div>
-                                <div id="realValueSectionLumpsum" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueLumpsum" class="font-bold text-orange-700">₹0</span></div>
-                            </div>
-                        </div>
-                        <div id="rdSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-sm font-bold text-blue-800">RD Summary</h3>
-                                <button class="share-btn" aria-label="Share RD calculation results">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
-                                </button>
-                            </div>
-                            <div class="space-y-1 text-xs">
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountRD" class="font-semibold text-blue-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsRD" class="font-semibold text-green-700">₹0</span></div>
-                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueRD" class="text-sm font-bold text-purple-700">₹0</span></div>
-                                <div id="postTaxSectionRD" class="hidden">
-                                    <div class="flex justify-between items-center text-orange-700"><span class="font-semibold">Post-Tax Returns:</span><span id="postTaxReturnsRD" class="font-bold">₹0</span></div>
-                                    <div class="flex justify-between items-center border-t pt-1 mt-1 border-orange-200"><span class="font-semibold">Post-Tax Total:</span><span id="postTaxTotalValueRD" class="font-bold">₹0</span></div>
-                                </div>
-                                <div id="realValueSectionRD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueRD" class="font-bold text-orange-700">₹0</span></div>
-                            </div>
-                        </div>
-                        <div id="fdSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
-                           <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-sm font-bold text-blue-800">FD Summary</h3>
-                                <button class="share-btn" aria-label="Share FD calculation results">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
-                                </button>
-                            </div>
-                            <div class="space-y-1 text-xs">
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountFD" class="font-semibold text-blue-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsFD" class="font-semibold text-green-700">₹0</span></div>
-                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueFD" class="text-sm font-bold text-purple-700">₹0</span></div>
-                                 <div id="postTaxSectionFD" class="hidden">
-                                    <div class="flex justify-between items-center text-orange-700"><span class="font-semibold">Post-Tax Returns:</span><span id="postTaxReturnsFD" class="font-bold">₹0</span></div>
-                                    <div class="flex justify-between items-center border-t pt-1 mt-1 border-orange-200"><span class="font-semibold">Post-Tax Total:</span><span id="postTaxTotalValueFD" class="font-bold">₹0</span></div>
-                                </div>
-                                <div id="realValueSectionFD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueFD" class="font-bold text-orange-700">₹0</span></div>
-                            </div>
-                        </div>
-                        <div id="swpSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-sm font-bold text-blue-800">SWP Summary</h3>
-                                <button class="share-btn" aria-label="Share SWP calculation results">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
-                                </button>
-                            </div>
-                            <div class="space-y-1 text-xs">
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Initial Corpus:</span><span id="initialCorpusSWP" class="font-semibold text-blue-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Withdrawn:</span><span id="totalWithdrawnSWP" class="font-semibold text-green-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Interest:</span><span id="totalInterestSWP" class="font-semibold text-purple-700">₹0</span></div>
-                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Remaining:</span><span id="remainingCorpusSWP" class="text-sm font-bold text-red-700">₹0</span></div>
-                                <div id="corpusExhaustedInfo" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Exhausted After:</span><span id="exhaustionPeriodSWP" class="font-bold text-orange-700"></span></div>
-                                <div id="realValueSectionSWP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Remaining:</span><span id="realRemainingCorpusSWP" class="font-bold text-orange-700">₹0</span></div>
-                            </div>
-                        </div>
-                        <div id="goalSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-sm font-bold text-blue-800">Goal Planner Summary</h3>
-                                <button class="share-btn" aria-label="Share Goal Planner calculation results">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
-                                </button>
-                            </div>
-                            <div class="space-y-1 text-xs">
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Target Amount:</span><span id="targetAmountGoal" class="font-semibold text-blue-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Total Investment:</span><span id="totalInvestmentGoal" class="font-semibold text-green-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Expected Returns:</span><span id="expectedReturnsGoal" class="font-semibold text-purple-700">₹0</span></div>
-                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Monthly Investment:</span><span id="monthlyInvestmentGoal" class="text-lg font-bold text-orange-700">₹0</span></div>
-                            </div>
-                        </div>
-                        <!-- UPDATED: Reduced height classes for a more compact chart -->
-                        <div class="flex justify-center items-center h-24 sm:h-28 md:h-32 w-full relative mt-3">
-                            <canvas id="investmentDoughnutChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <!-- UPDATED: Reduced vertical margin -->
-                <div class="flex justify-center my-2">
-                    <button id="toggleGrowthTableBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Show Yearly Growth</button>
-                </div>
-                <!-- UPDATED: Reduced margin and padding -->
-                <div id="growthTableContainer" class="hidden overflow-x-auto bg-white rounded-lg shadow-md mt-2 p-2 border border-gray-200">
-                    <h3 class="text-center text-sm font-bold text-gray-800 mb-2">Yearly Investment Growth</h3>
-                    <!-- UPDATE: Added ID to thead for dynamic header changes and corrected alignment -->
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead id="growthTableHeader" class="bg-gray-50">
-                            <tr>
-                                <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider">Year</th>
-                                <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider" id="tableHeaderInvested">Invested</th>
-                                <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider">Returns</th>
-                                <th class="px-2 py-1 text-right text-xxs font-medium text-gray-500 uppercase tracking-wider">Total Value</th>
-                            </tr>
-                        </thead>
-                        <tbody id="growthTableBody" class="bg-white divide-y divide-gray-200 text-xs">
-                        </tbody>
-                    </table>
-                </div>
-                <div class="border-t border-gray-200 my-3 w-full"></div>
-                 <div class="text-center text-gray-500 text-xxs leading-relaxed px-2 flex justify-center items-center space-x-3">
-                    <a href="https://www.5paisa.com/demat-account?ReferralCode=54285431&ReturnUrl=invest-open-account" target="_blank" rel="nofollow sponsored noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors" data-affiliate="5paisa">
-                        Start investing with 5paisa
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                    </a>
-                    <div class="border-l border-gray-300 h-4"></div>
-                    <a href="https://upstox.onelink.me/0H1s/2JAL6D" target="_blank" rel="nofollow sponsored noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors" data-affiliate="upstox">
-                        Start investing with Upstox
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                    </a>
-                </div>
-                <p class="text-center text-gray-500 text-xxs leading-relaxed px-2 mt-2">
-                    <strong>Disclaimer:</strong> This calculator is for informational purposes only and does not constitute financial advice.
-                </p>
-            </div>
-        </div>
-
-        <div id="dynamic-content-area-main"></div>
-    </main>
-
-    <div id="footer-placeholder"></div>
+        return fetch(finalPath)
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                }
+                throw new Error(`Component ${finalPath} not found.`);
+            })
+            .then(html => {
+                if (placeholder.parentNode) {
+                    placeholder.insertAdjacentHTML('beforebegin', html);
+                    placeholder.parentNode.removeChild(placeholder);
+                }
+            })
+            .catch(error => {
+                console.error(`Error loading component ${componentPath}:`, error);
+                if (placeholder) {
+                    placeholder.innerHTML = `<p class="text-center text-red-500">Error: Could not load component.</p>`;
+                }
+            });
+    };
     
-    <div id="notification-toast"></div>
+    const setActiveNavLink = () => {
+        const currentPath = window.location.pathname.replace(/\/$/, "").replace(/\/index\.html$/, "");
+        setTimeout(() => {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                if (link.classList.contains('btn-nav')) {
+                    return;
+                }
+                const linkUrl = new URL(link.href, window.location.origin);
+                const linkPath = linkUrl.pathname.replace(/\/$/, "").replace(/\/index\.html$/, "");
 
-    <script src="script.js"></script>
-    <script src="assets/js/global-elements.js" defer></script>
-    <script src="calculators/financial-calculator/financial-calculator.js"></script>
-</body>
-</html>
+                if ((linkPath === '' || linkPath === '/') && (currentPath === '' || currentPath === '/')) {
+                    link.classList.add('active');
+                } else if (linkPath !== '' && linkPath !== '/' && currentPath.startsWith(linkPath)) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }, 300);
+    };
+    
+    const setFavicon = () => {
+        const faviconLink = document.createElement('link');
+        faviconLink.rel = 'icon';
+        faviconLink.href = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E34037' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='16' height='20' x='4' y='2' rx='2'/%3E%3Cpath d='M8 6h8'/%3E%3Cpath d='M8 10h8'/%3E%3Cpath d='M8 14h8'/%3E%3Cpath d='M15 18h1'/%3E%3C/svg%3E";
+        document.head.appendChild(faviconLink);
+    };
+
+    const initializePage = () => {
+        setFavicon(); 
+        
+        const loadPromises = [
+            loadComponent('assets/components/header.html', 'header-placeholder'),
+            loadComponent('assets/components/footer.html', 'footer-placeholder')
+        ];
+
+        Promise.all(loadPromises).then(() => {
+            setupMobileMenu();
+            setActiveNavLink();
+        });
+    };
+
+    const setupMobileMenu = () => {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navOverlay = document.querySelector('.nav-overlay');
+
+        if (hamburger && navLinks && navOverlay) {
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            navOverlay.addEventListener('click', () => {
+                toggleMenu();
+            });
+        }
+        
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+        }
+    };
+    
+    initializePage();
+});
