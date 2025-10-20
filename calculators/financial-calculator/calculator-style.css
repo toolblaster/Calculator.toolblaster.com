@@ -238,12 +238,9 @@
     margin-top: 1.25rem;
 }
 .compact-seo-content .section-title-secondary {
-    font-size: 0.9rem;
+    font-size: 1.0rem; /* Increased size for better hierarchy */
     margin-bottom: 0.25rem;
     padding-bottom: 0.5rem;
-}
-.compact-seo-content .section-title-secondary::after {
-    margin-top: 0.5rem;
 }
 .compact-seo-content .section-subtitle {
     font-size: 0.7rem;
