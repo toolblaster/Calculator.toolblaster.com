@@ -83,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         Promise.all(loadPromises).then(() => {
             setupMobileMenu();
             setActiveNavLink();
-            // initializeShareButtons() is now in global-elements.js
         });
     };
 
