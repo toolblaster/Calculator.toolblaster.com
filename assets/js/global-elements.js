@@ -68,7 +68,7 @@ function initializeShareButtons() {
             });
         });
     }
-};
+}
 
 /**
  * Initializes all affiliate links on a page.
