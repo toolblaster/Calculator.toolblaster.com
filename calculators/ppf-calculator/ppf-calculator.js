@@ -1,3 +1,7 @@
+// --- IMPORT SHARED UTILITIES ---
+// By importing, we remove duplicated code and make this file cleaner and easier to read.
+import { formatCurrency, debounce, updateSliderFill, syncSliderAndInput } from '../../assets/js/utils.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     const calculatorContainer = document.querySelector('.calculator-container');
     if (calculatorContainer && document.getElementById('annualInvestmentSlider')) {
@@ -10,45 +14,32 @@ function initializePpfCalculator() {
     const getElem = (id) => document.getElementById(id);
 
     // --- Element Variables ---
-    const annualInvestmentSlider = getElem('annualInvestmentSlider');
+    // (Slider and input elements are now handled by syncSliderAndInput)
     const annualInvestmentInput = getElem('annualInvestmentInput');
-    const interestRateSlider = getElem('interestRateSlider');
     const interestRateInput = getElem('interestRateInput');
-    
     const extensionBlocksInput = getElem('extensionBlocksInput');
     const decreaseExtensionBtn = getElem('decreaseExtension');
     const increaseExtensionBtn = getElem('increaseExtension');
     const extensionContributionDiv = getElem('extensionContributionDiv');
     const contributionToggle = getElem('contributionToggle');
-
-    // --- NEW Loan & Withdrawal Elements ---
     const lwYearSlider = getElem('lwYearSlider');
     const lwYearDisplay = getElem('lwYearDisplay');
     const eligibleLoanAmountElem = getElem('eligibleLoanAmount');
     const maxWithdrawalAmountElem = getElem('maxWithdrawalAmount');
-
-    // --- Result Elements ---
     const totalInvestmentElem = getElem('totalInvestment');
     const totalInterestElem = getElem('totalInterest');
     const maturityValueElem = getElem('maturityValue');
-    
     const doughnutCanvas = getElem('ppfDoughnutChart');
-    const doughnutCtx = doughnutCanvas.getContext('2d');
-    let ppfDoughnutChart;
-
     const toggleGrowthBtn = getElem('toggleYearlyGrowthBtn');
     const growthContainer = getElem('yearlyGrowthContainer');
     const shareReportBtn = getElem('shareReportBtn');
 
+    let ppfDoughnutChart;
     let extensionBlocks = 0;
-    const MAX_EXTENSIONS = 4; // Max 20 extra years
-    let yearlyDataCache = []; // Cache for loan/withdrawal calculations
+    const MAX_EXTENSIONS = 4;
+    let yearlyDataCache = [];
 
-    // --- Utility Functions ---
-    const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
-    const formatCurrency = (num) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(Math.round(num));
-    const updateSliderFill = (slider) => { if (!slider) return; const percentage = ((slider.value - slider.min) / (slider.max - slider.min)) * 100; slider.style.setProperty('--fill-percentage', `${percentage}%`); };
-
+    // --- Main Calculation Logic ---
     function updateCalculator() {
         const annualInvestment = parseFloat(annualInvestmentInput.value) || 0;
         const interestRate = parseFloat(interestRateInput.value) / 100 || 0;
@@ -63,22 +54,17 @@ function initializePpfCalculator() {
         const totalTerm = initialTerm + (extensionBlocks * 5);
         
         lwYearSlider.max = totalTerm;
-        // FIX: This line ensures the visual slider fill is updated after the max value changes.
         updateSliderFill(lwYearSlider);
 
         for (let year = 1; year <= totalTerm; year++) {
-            let yearlyInvestment = 0;
-            if (year <= initialTerm || (year > initialTerm && continueContributions)) {
-                yearlyInvestment = annualInvestment;
-            }
-            
+            let yearlyInvestment = (year <= initialTerm || (year > initialTerm && continueContributions)) ? annualInvestment : 0;
             totalInvested += yearlyInvestment;
             const interestEarned = (balance + yearlyInvestment) * interestRate;
             balance += yearlyInvestment + interestEarned;
             
             yearlyData.push({
                 year: year,
-                openingBalance: year === 1 ? 0 : yearlyData[year-2].closingBalance,
+                openingBalance: year === 1 ? 0 : yearlyData[year - 2].closingBalance,
                 invested: yearlyInvestment,
                 interest: interestEarned,
                 closingBalance: balance
@@ -97,12 +83,10 @@ function initializePpfCalculator() {
         updateLoanAndWithdrawal();
     }
 
-    // --- NEW: Loan and Withdrawal Logic ---
+    // --- Loan and Withdrawal Logic ---
     function updateLoanAndWithdrawal() {
         const selectedYear = parseInt(lwYearSlider.value);
         lwYearDisplay.textContent = selectedYear;
-        
-        // FIX: Also ensure the slider fill is updated when the user drags the slider.
         updateSliderFill(lwYearSlider);
 
         let eligibleLoan = 0;
@@ -118,7 +102,7 @@ function initializePpfCalculator() {
 
         // Withdrawal Eligibility: From 7th financial year onwards
         if (selectedYear >= 7) {
-            const balanceAtYear4 = yearlyDataCache[selectedYear - 4 -1]?.closingBalance || 0;
+            const balanceAtYear4 = yearlyDataCache[selectedYear - 4 - 1]?.closingBalance || 0;
             const balanceAtPrevYear = yearlyDataCache[selectedYear - 1 - 1]?.closingBalance || 0;
             maxWithdrawal = Math.min(balanceAtYear4 * 0.5, balanceAtPrevYear * 0.5);
         }
@@ -127,7 +111,7 @@ function initializePpfCalculator() {
         maxWithdrawalAmountElem.textContent = formatCurrency(maxWithdrawal);
     }
 
-
+    // --- UI Update Functions ---
     function generateYearlyGrowthTable(data) {
         let tableHTML = `
             <h3 class="text-center text-sm font-bold text-gray-800 mb-2">Yearly Growth Details</h3>
@@ -156,9 +140,11 @@ function initializePpfCalculator() {
     }
 
     function updateDoughnutChart(data, labels, colors) {
-      const chartData = { labels: labels, datasets: [{ data, backgroundColor: colors, hoverOffset: 4, borderRadius: 3, spacing: 1 }] };
-      const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: '50%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` } } } };
-      if (ppfDoughnutChart) { ppfDoughnutChart.data = chartData; ppfDoughnutChart.update(); } else { ppfDoughnutChart = new Chart(doughnutCtx, { type: 'doughnut', data: chartData, options: chartOptions }); }
+        const doughnutCtx = doughnutCanvas.getContext('2d');
+        const chartData = { labels, datasets: [{ data, backgroundColor: colors, hoverOffset: 4, borderRadius: 3, spacing: 1 }] };
+        const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: '50%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` } } } };
+        if (ppfDoughnutChart) { ppfDoughnutChart.data = chartData; ppfDoughnutChart.update(); } 
+        else { ppfDoughnutChart = new Chart(doughnutCtx, { type: 'doughnut', data: chartData, options: chartOptions }); }
     }
     
     function updateExtensionUI() {
@@ -178,8 +164,9 @@ function initializePpfCalculator() {
                 .catch(error => console.error('Error loading PPF SEO content:', error));
         }
     }
-
-    // NEW: The complete sharing logic is now here in a single function
+    
+    // --- Event Handlers & Initializers ---
+    
     function handleShare() {
         const params = new URLSearchParams();
         params.set('investment', annualInvestmentInput.value);
@@ -196,7 +183,8 @@ function initializePpfCalculator() {
                 url: shareUrl,
             }).catch(err => {
                 console.error("Share failed:", err.message);
-                showNotification('Could not share report.');
+                // Assuming showNotification is globally available from another script
+                if(typeof showNotification === 'function') showNotification('Could not share report.');
             });
         } else {
              const textArea = document.createElement("textarea");
@@ -208,10 +196,10 @@ function initializePpfCalculator() {
             textArea.select();
             try {
                 document.execCommand('copy');
-                showNotification('Link copied to clipboard!');
+                if(typeof showNotification === 'function') showNotification('Link copied to clipboard!');
             } catch (err) {
                 console.error('Fallback: Oops, unable to copy', err);
-                showNotification('Could not copy link.');
+                if(typeof showNotification === 'function') showNotification('Could not copy link.');
             }
             document.body.removeChild(textArea);
         }
@@ -220,71 +208,23 @@ function initializePpfCalculator() {
     function loadFromUrl() {
         const params = new URLSearchParams(window.location.search);
         if (params.has('investment')) {
-            annualInvestmentInput.value = params.get('investment');
-            interestRateInput.value = params.get('rate');
+            getElem('annualInvestmentInput').value = params.get('investment');
+            getElem('interestRateInput').value = params.get('rate');
             extensionBlocks = parseInt(params.get('extensions')) || 0;
-            contributionToggle.checked = params.get('contributions') === 'true';
+            getElem('contributionToggle').checked = params.get('contributions') === 'true';
 
             // Sync sliders
-            annualInvestmentSlider.value = annualInvestmentInput.value;
-            interestRateSlider.value = interestRateInput.value;
-            updateExtensionUI();
+            getElem('annualInvestmentSlider').value = getElem('annualInvestmentInput').value;
+            getElem('interestRateSlider').value = getElem('interestRateInput').value;
+            updateExtensionUI(); // This will also trigger updateCalculator
         }
     }
 
     function setupEventListeners() {
-        const inputs = [
-            { slider: annualInvestmentSlider, input: annualInvestmentInput },
-            { slider: interestRateSlider, input: interestRateInput },
-        ];
+        // USE THE NEW SYNC FUNCTION
+        syncSliderAndInput({ sliderId: 'annualInvestmentSlider', inputId: 'annualInvestmentInput', updateCallback: updateCalculator });
+        syncSliderAndInput({ sliderId: 'interestRateSlider', inputId: 'interestRateInput', updateCallback: updateCalculator });
         
-        inputs.forEach(({ slider, input }) => {
-            if (slider && input) {
-                // Sync from slider to input
-                slider.addEventListener('input', () => { 
-                    input.value = slider.value; 
-                    updateSliderFill(slider); 
-                    debouncedUpdate(); 
-                }); 
-                
-                // Sync from input to slider while typing
-                input.addEventListener('input', () => { 
-                    const value = parseFloat(input.value);
-                    const min = parseFloat(slider.min);
-                    const max = parseFloat(slider.max);
-                    if (!isNaN(value) && value >= min && value <= max) {
-                        slider.value = input.value; 
-                        updateSliderFill(slider); 
-                        debouncedUpdate();
-                    }
-                });
-    
-                // Add a blur event for validation and final sync
-                input.addEventListener('blur', () => {
-                    let value = parseFloat(input.value);
-                    const min = parseFloat(slider.min);
-                    const max = parseFloat(slider.max);
-    
-                    if (isNaN(value) || value < min) {
-                        value = min;
-                    } else if (value > max) {
-                        value = max;
-                    }
-                    
-                    const step = parseFloat(slider.step) || 1;
-                    if (step < 1) { 
-                        input.value = value.toFixed(1); 
-                    } else {
-                        input.value = value;
-                    }
-                    
-                    slider.value = input.value;
-                    updateSliderFill(slider);
-                    updateCalculator(); // Use immediate update on blur
-                });
-            }
-        });
-
         increaseExtensionBtn.addEventListener('click', () => {
             if (extensionBlocks < MAX_EXTENSIONS) {
                 extensionBlocks++;
@@ -300,7 +240,6 @@ function initializePpfCalculator() {
         });
         
         contributionToggle.addEventListener('change', updateCalculator);
-
         toggleGrowthBtn.addEventListener('click', () => {
             growthContainer.classList.toggle('hidden');
             toggleGrowthBtn.textContent = growthContainer.classList.contains('hidden') ? 'Show Yearly Growth' : 'Hide Yearly Growth';
@@ -308,20 +247,16 @@ function initializePpfCalculator() {
 
         if(shareReportBtn) shareReportBtn.addEventListener('click', handleShare);
         
+        const debouncedLoanUpdate = debounce(updateLoanAndWithdrawal, 250);
         lwYearSlider.addEventListener('input', () => {
             lwYearDisplay.textContent = lwYearSlider.value;
             updateSliderFill(lwYearSlider);
             debouncedLoanUpdate();
         });
     }
-
-    const debouncedUpdate = debounce(updateCalculator, 250);
-    const debouncedLoanUpdate = debounce(updateLoanAndWithdrawal, 250);
     
     loadFromUrl();
     setupEventListeners();
-    document.querySelectorAll('.range-slider').forEach(updateSliderFill);
     updateCalculator();
-    // NEW: Call the function to load SEO content.
     loadSeoContent();
 }
