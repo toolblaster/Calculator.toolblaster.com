@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All-in-One Financial Calculator: SIP, Lumpsum, RD, FD, SWP</title>
-    <meta name="description" content="Plan your future with India's best all-in-one financial calculator. Master SIP, RD, FD, SWP, & Goal investments with inflation adjustments. Free & accurate.">
-    <meta name="keywords" content="inflation adjusted sip calculator, financial calculator, investment calculator, SIP, Lumpsum, SWP, RD, FD, goal planner, mutual funds, personal finance, savings">
+    <title>All-in-One Financial Calculator for India | SIP, Lumpsum, Tax</title>
+    <meta name="description" content="India's best all-in-one financial calculator. Master SIP, RD, FD, SWP, & Goal investments with our free, user-friendly, and inflation-adjusted tools.">
+    <meta name="keywords" content="financial calculator, investment calculator, sip calculator, lumpsum calculator, tax calculator, emi calculator, rd calculator, fd calculator, goal planner, personal finance india">
     <link rel="canonical" href="https://calculator.toolblaster.com/" />
     
     <link rel="stylesheet" href="assets/css/style.css">
@@ -96,8 +96,8 @@
       "@graph": [
         {
           "@type": "WebPage",
-          "name": "All-in-One Financial Calculator: SIP, Lumpsum, RD, FD, SWP",
-          "description": "Plan your future with India's best all-in-one financial calculator. Master SIP, RD, FD, SWP, & Goal investments with inflation adjustments. Free & accurate.",
+          "name": "All-in-One Financial Calculator for India | SIP, Lumpsum, Tax",
+          "description": "India's best all-in-one financial calculator. Master SIP, RD, FD, SWP, & Goal investments with our free, user-friendly, and inflation-adjusted tools.",
           "url": "https://calculator.toolblaster.com/",
           "inLanguage": "en-IN"
         },
@@ -163,14 +163,32 @@
     <div id="header-placeholder"></div>
 
     <main class="container">
-        <div class="financial-calculator-wrapper">
-            <!-- UPDATED: Reduced padding for a more compact view -->
+        <!-- HERO SECTION START -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Turn Financial Questions into Confident Actions</h1>
+                <p class="hero-subtitle">India's most powerful and user-friendly financial toolkit is here to help you plan, save, and invest with clarity. All our tools are free, forever.</p>
+                <ul class="hero-features">
+                    <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Plan for SIP, Lumpsum, & more</li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Adjust for inflation</li>
+                    <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Visualize your growth</li>
+                </ul>
+                <div class="hero-cta">
+                    <a href="#calculator" class="btn-primary">Go to Calculator</a>
+                    <a href="quizzes/" class="btn-secondary">Take a Financial Quiz</a>
+                </div>
+            </div>
+        </section>
+        <!-- HERO SECTION END -->
+
+        <div id="calculator" class="financial-calculator-wrapper">
+            <!-- UPDATED: H1 is now in hero, so this is H2 -->
             <div class="bg-white shadow-lg rounded-xl p-2 sm:p-3 w-full border border-red-300 mx-auto my-0 calculator-container">
                 
-                <h1 id="calculatorTitle" class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">SIP Calculator with Inflation</h1>
-                <p id="calculatorDescription" class="text-center text-gray-500 mb-3 text-xs">Plan your investments with our advanced SIP Calculator. Also includes tools for RD, FD, SWP, Goal Planning</p>
+                <h2 id="calculatorTitle" class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">All-in-One Investment Calculator</h2>
+                <p id="calculatorDescription" class="text-center text-gray-500 mb-3 text-xs">Plan your investments with our advanced tools for SIP, RD, FD, SWP, Goal Planning & more.</p>
                 
-                <!-- UPDATED: Reduced bottom margin -->
+                <!-- ... Rest of the calculator HTML ... -->
                 <div class="flex justify-center mb-2 flex-wrap gap-1">
                     <button id="sipModeBtn" aria-label="Switch to SIP calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-blue-600 text-white shadow-md">SIP</button>
                     <button id="lumpsumModeBtn" aria-label="Switch to Lumpsum calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Lumpsum</button>
@@ -180,9 +198,7 @@
                     <button id="goalModeBtn" aria-label="Switch to Goal Planner" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Goal Planner</button>
                 </div>
                 
-                <!-- UPDATED: Reduced gap between columns -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-3">
-                    <!-- UPDATED: Reduced internal spacing and padding -->
                     <div class="space-y-1.5">
                         <div id="sipSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg">
                             <div>
@@ -280,7 +296,6 @@
                                 <p id="fdAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1,000 - ₹1 Crore.</p>
                             </div>
                         </div>
-                        <!-- Enhanced SWP Section -->
                         <div id="swpSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="initialCorpusInput" class="block text-xs font-medium text-gray-600 mb-1" id="initialCorpusLabel">Initial Investment (₹)</label>
@@ -298,7 +313,6 @@
                                 </div>
                                 <p id="withdrawalAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1,000 - ₹1 Lac.</p>
                             </div>
-                            <!-- UPDATED: Annual Withdrawal Increase with Toggle -->
                             <div>
                                 <div class="flex justify-between items-center mb-1">
                                     <label for="withdrawalIncreaseInput" class="block text-xs font-medium text-gray-600" id="withdrawalIncreaseLabel">Annual Withdrawal Increase (%)</label>
@@ -516,20 +530,16 @@
                                 <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Monthly Investment:</span><span id="monthlyInvestmentGoal" class="text-lg font-bold text-orange-700">₹0</span></div>
                             </div>
                         </div>
-                        <!-- UPDATED: Reduced height classes for a more compact chart -->
                         <div class="flex justify-center items-center h-24 sm:h-28 md:h-32 w-full relative mt-3">
                             <canvas id="investmentDoughnutChart"></canvas>
                         </div>
                     </div>
                 </div>
-                <!-- UPDATED: Reduced vertical margin -->
                 <div class="flex justify-center my-2">
                     <button id="toggleGrowthTableBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Show Yearly Growth</button>
                 </div>
-                <!-- UPDATED: Reduced margin and padding -->
                 <div id="growthTableContainer" class="hidden overflow-x-auto bg-white rounded-lg shadow-md mt-2 p-2 border border-gray-200">
                     <h3 class="text-center text-sm font-bold text-gray-800 mb-2">Yearly Investment Growth</h3>
-                    <!-- UPDATE: Added ID to thead for dynamic header changes and corrected alignment -->
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead id="growthTableHeader" class="bg-gray-50">
                             <tr>
