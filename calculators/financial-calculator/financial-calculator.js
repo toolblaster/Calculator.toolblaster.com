@@ -143,7 +143,6 @@ function initializeCalculator() {
     const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
     const formatCurrency = (num) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(Math.round(num));
     const updateSliderFill = (slider) => { if (!slider) return; const percentage = ((slider.value - slider.min) / (slider.max - slider.min)) * 100; slider.style.setProperty('--fill-percentage', `${percentage}%`); };
-    const validateSlider = (slider, errorElement) => { if (!slider || !errorElement) return true; const value = parseFloat(slider.value); const min = parseFloat(slider.min); const max = parseFloat(slider.max); const isValid = !isNaN(value) && value >= min && value <= max; errorElement.classList.toggle('hidden', isValid); return isValid; };
 
     function updateDoughnutChart(data, labels, colors) {
       const chartData = { labels: labels, datasets: [{ data, backgroundColor: colors, hoverOffset: 4, borderRadius: 3, spacing: 1 }] };
@@ -171,29 +170,35 @@ function initializeCalculator() {
     }
 
     function updateCalculator() {
+      // Validation check before calculation
+      const allInputs = document.querySelectorAll('.manual-input:not([type="hidden"])');
       let isFormValid = true;
-      if (currentMode !== 'goal') {
-          isFormValid = validateSlider(returnRateSlider, errorMessages.returnRate) && validateSlider(investmentPeriodSlider, errorMessages.investmentPeriod);
-          if (inflationToggle.checked) isFormValid = isFormValid && validateSlider(inflationRateSlider, errorMessages.inflationRate);
-      } else {
-          isFormValid = validateSlider(goalReturnRateSlider, errorMessages.goalReturnRate) && validateSlider(goalPeriodSlider, errorMessages.goalPeriod) && validateSlider(targetAmountSlider, errorMessages.targetAmount);
-          if (inflationToggle.checked) isFormValid = isFormValid && validateSlider(inflationRateSlider, errorMessages.inflationRate);
+      allInputs.forEach(input => {
+          if (input.offsetParent !== null) { // Check if input is visible
+              const value = parseFloat(input.value);
+              const min = parseFloat(input.min);
+              const max = parseFloat(input.max);
+              if (isNaN(value) || value < min || value > max) {
+                  isFormValid = false;
+              }
+          }
+      });
+      if (!isFormValid) {
+          updateDoughnutChart([1], ['Invalid Input'], ['#E5E7EB']);
+          return;
       }
       
       let yearlyGrowthData = [];
       
-      const annualReturnRate = (currentMode === 'goal' ? parseFloat(goalReturnRateSlider.value) : parseFloat(returnRateSlider.value)) / 100;
-      const investmentPeriodYears = (currentMode === 'goal' ? parseFloat(goalPeriodSlider.value) : parseFloat(investmentPeriodSlider.value));
-      const annualInflationRate = inflationToggle.checked ? parseFloat(inflationRateSlider.value) / 100 : 0;
+      const annualReturnRate = (currentMode === 'goal' ? parseFloat(goalReturnRateInput.value) : parseFloat(returnRateInput.value)) / 100;
+      const investmentPeriodYears = (currentMode === 'goal' ? parseFloat(goalPeriodInput.value) : parseFloat(investmentPeriodInput.value));
+      const annualInflationRate = inflationToggle.checked ? parseFloat(inflationRateInput.value) / 100 : 0;
       
       toggleGrowthTableBtn.classList.toggle('hidden', currentMode === 'goal');
       tableHeaderInvested.textContent = (currentMode === 'fd' || currentMode === 'lumpsum') ? 'Principal' : 'Invested';
       
       if (currentMode === 'sip') {
-        isFormValid = isFormValid && validateSlider(sipAmountSlider, errorMessages.sipAmount);
-        if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
-        
-        const sipAmount = parseFloat(sipAmountSlider.value);
+        const sipAmount = parseFloat(sipAmountInput.value);
         const isIncreaseAmountMode = sipIncreaseTypeToggle.checked;
         const increaseValue = parseFloat(sipIncreaseRateInput.value);
 
@@ -226,9 +231,7 @@ function initializeCalculator() {
         generateGrowthTable(yearlyGrowthData);
       
       } else if (currentMode === 'lumpsum') {
-        isFormValid = isFormValid && validateSlider(lumpsumAmountSlider, errorMessages.lumpsumAmount);
-        if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
-        const investedAmount = parseFloat(lumpsumAmountSlider.value);
+        const investedAmount = parseFloat(lumpsumAmountInput.value);
         const totalValue = investedAmount * Math.pow(1 + annualReturnRate, investmentPeriodYears);
         const estimatedReturns = totalValue - investedAmount;
         investedAmountLumpsum.textContent = formatCurrency(investedAmount);
@@ -246,10 +249,7 @@ function initializeCalculator() {
         generateGrowthTable(yearlyGrowthData);
 
       } else if (currentMode === 'rd') {
-        isFormValid = isFormValid && validateSlider(rdAmountSlider, errorMessages.rdAmount);
-        if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
-
-        const rdAmount = parseFloat(rdAmountSlider.value);
+        const rdAmount = parseFloat(rdAmountInput.value);
         const isIncreaseAmountMode = rdIncreaseTypeToggle.checked;
         const increaseValue = parseFloat(rdIncreaseRateInput.value);
 
@@ -296,9 +296,7 @@ function initializeCalculator() {
         generateGrowthTable(yearlyGrowthData);
 
       } else if (currentMode === 'fd') {
-        isFormValid = isFormValid && validateSlider(fdAmountSlider, errorMessages.fdAmount);
-        if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
-        const investedAmount = parseFloat(fdAmountSlider.value);
+        const investedAmount = parseFloat(fdAmountInput.value);
         const totalValue = investedAmount * Math.pow(1 + annualReturnRate, investmentPeriodYears);
         const estimatedReturns = totalValue - investedAmount;
         investedAmountFD.textContent = formatCurrency(investedAmount);
@@ -329,12 +327,9 @@ function initializeCalculator() {
         generateGrowthTable(yearlyGrowthData);
 
       } else if (currentMode === 'swp') {
-        isFormValid = isFormValid && validateSlider(initialCorpusSlider, errorMessages.initialCorpus) && validateSlider(withdrawalAmountSlider, errorMessages.withdrawalAmount);
-        if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
-        
-        let corpus = parseFloat(initialCorpusSlider.value);
+        let corpus = parseFloat(initialCorpusInput.value);
         const initialCorpus = corpus;
-        const initialWithdrawalAmount = parseFloat(withdrawalAmountSlider.value);
+        const initialWithdrawalAmount = parseFloat(withdrawalAmountInput.value);
         const isIncreaseAmountMode = withdrawalIncreaseTypeToggle.checked;
         const increaseValue = parseFloat(withdrawalIncreaseInput.value);
 
@@ -405,19 +400,16 @@ function initializeCalculator() {
         generateGrowthTable(yearlyGrowthData);
 
       } else if (currentMode === 'goal') {
-        isFormValid = isFormValid && validateSlider(targetAmountSlider, errorMessages.targetAmount) && validateSlider(goalReturnRateSlider, errorMessages.goalReturnRate) && validateSlider(goalPeriodSlider, errorMessages.goalPeriod);
-        if (!isFormValid) return updateDoughnutChart([1], ['Invalid'], ['#E5E7EB']);
-
-        let targetAmount = parseFloat(targetAmountSlider.value);
-        const annualRate = parseFloat(goalReturnRateSlider.value) / 100;
-        const years = parseFloat(goalPeriodSlider.value);
+        let targetAmount = parseFloat(targetAmountInput.value);
+        const annualRate = parseFloat(goalReturnRateInput.value) / 100;
+        const years = parseFloat(goalPeriodInput.value);
         const months = years * 12;
         const monthlyRate = annualRate / 12;
         let monthlyInvestment;
         
         let inflatedTargetAmount = targetAmount;
         if (inflationToggle.checked) {
-            const inflationRate = parseFloat(inflationRateSlider.value) / 100;
+            const inflationRate = parseFloat(inflationRateInput.value) / 100;
             inflatedTargetAmount = targetAmount * Math.pow(1 + inflationRate, years);
         }
 
@@ -496,44 +488,44 @@ function initializeCalculator() {
       updateCalculator();
     }
     
-    const handleShare = () => {
+    function handleShare() {
         const params = new URLSearchParams();
         params.set('mode', currentMode);
 
         if (currentMode === 'sip') {
-            params.set('amount', sipAmountSlider.value);
-            params.set('increase', sipIncreaseRateSlider.value);
+            params.set('amount', sipAmountInput.value);
+            params.set('increase', sipIncreaseRateInput.value);
             params.set('increaseType', sipIncreaseTypeToggle.checked ? 'amount' : 'percent');
-            params.set('rate', returnRateSlider.value);
-            params.set('period', investmentPeriodSlider.value);
+            params.set('rate', returnRateInput.value);
+            params.set('period', investmentPeriodInput.value);
         } else if (currentMode === 'lumpsum') {
-            params.set('amount', lumpsumAmountSlider.value);
-            params.set('rate', returnRateSlider.value);
-            params.set('period', investmentPeriodSlider.value);
+            params.set('amount', lumpsumAmountInput.value);
+            params.set('rate', returnRateInput.value);
+            params.set('period', investmentPeriodInput.value);
         } else if (currentMode === 'goal') {
-            params.set('target', targetAmountSlider.value);
-            params.set('rate', goalReturnRateSlider.value);
-            params.set('period', goalPeriodSlider.value);
+            params.set('target', targetAmountInput.value);
+            params.set('rate', goalReturnRateInput.value);
+            params.set('period', goalPeriodInput.value);
         } else if (currentMode === 'rd' || currentMode === 'fd') {
-            const amount = currentMode === 'rd' ? rdAmountSlider.value : fdAmountSlider.value;
+            const amount = currentMode === 'rd' ? rdAmountInput.value : fdAmountInput.value;
             params.set('amount', amount);
-            params.set('rate', returnRateSlider.value);
-            params.set('period', investmentPeriodSlider.value);
+            params.set('rate', returnRateInput.value);
+            params.set('period', investmentPeriodInput.value);
             if (taxToggle.checked) {
                 params.set('tax', 'true');
                 params.set('taxSlab', taxSlabSelect.value);
             }
         } else if (currentMode === 'swp') {
-            params.set('corpus', initialCorpusSlider.value);
-            params.set('withdrawal', withdrawalAmountSlider.value);
+            params.set('corpus', initialCorpusInput.value);
+            params.set('withdrawal', withdrawalAmountInput.value);
             params.set('increase', withdrawalIncreaseInput.value); 
             params.set('increaseType', withdrawalIncreaseTypeToggle.checked ? 'amount' : 'percent');
-            params.set('rate', returnRateSlider.value);
-            params.set('period', investmentPeriodSlider.value);
+            params.set('rate', returnRateInput.value);
+            params.set('period', investmentPeriodInput.value);
         }
         
         if (inflationToggle.checked) {
-            params.set('inflation', inflationRateSlider.value);
+            params.set('inflation', inflationRateInput.value);
         }
 
         const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
@@ -566,7 +558,7 @@ function initializeCalculator() {
         }
     };
 
-    const loadFromUrl = () => {
+    function loadFromUrl() {
         const params = new URLSearchParams(window.location.search);
         const mode = params.get('mode');
 
@@ -574,47 +566,47 @@ function initializeCalculator() {
             switchMode(mode);
 
             if (mode === 'sip') {
-                sipAmountSlider.value = params.get('amount') || 10000;
+                sipAmountInput.value = params.get('amount') || 10000;
                 if (params.get('increaseType') === 'amount') {
                     sipIncreaseTypeToggle.checked = true;
                     sipIncreaseTypeToggle.dispatchEvent(new Event('change'));
                 }
-                sipIncreaseRateSlider.value = params.get('increase') || 0;
-                returnRateSlider.value = params.get('rate') || 12;
-                investmentPeriodSlider.value = params.get('period') || 10;
+                sipIncreaseRateInput.value = params.get('increase') || 0;
+                returnRateInput.value = params.get('rate') || 12;
+                investmentPeriodInput.value = params.get('period') || 10;
             } else if (mode === 'lumpsum') {
-                lumpsumAmountSlider.value = params.get('amount') || 500000;
-                returnRateSlider.value = params.get('rate') || 10;
-                investmentPeriodSlider.value = params.get('period') || 10;
+                lumpsumAmountInput.value = params.get('amount') || 500000;
+                returnRateInput.value = params.get('rate') || 10;
+                investmentPeriodInput.value = params.get('period') || 10;
             } else if (mode === 'goal') {
-                targetAmountSlider.value = params.get('target') || 5000000;
-                goalReturnRateSlider.value = params.get('rate') || 12;
-                goalPeriodSlider.value = params.get('period') || 10;
+                targetAmountInput.value = params.get('target') || 5000000;
+                goalReturnRateInput.value = params.get('rate') || 12;
+                goalPeriodInput.value = params.get('period') || 10;
             } else if (mode === 'rd' || mode === 'fd') {
-                const amountInput = mode === 'rd' ? rdAmountSlider : fdAmountSlider;
+                const amountInput = mode === 'rd' ? rdAmountInput : fdAmountInput;
                 amountInput.value = params.get('amount') || (mode === 'rd' ? 5000 : 100000);
-                returnRateSlider.value = params.get('rate') || 7;
-                investmentPeriodSlider.value = params.get('period') || 5;
+                returnRateInput.value = params.get('rate') || 7;
+                investmentPeriodInput.value = params.get('period') || 5;
                 if(params.get('tax') === 'true') {
                     taxToggle.checked = true;
                     taxInputGroup.classList.remove('hidden');
                     taxSlabSelect.value = params.get('taxSlab') || '0.3';
                 }
             } else if (mode === 'swp') {
-                initialCorpusSlider.value = params.get('corpus') || 2000000;
-                withdrawalAmountSlider.value = params.get('withdrawal') || 20000;
+                initialCorpusInput.value = params.get('corpus') || 2000000;
+                withdrawalAmountInput.value = params.get('withdrawal') || 20000;
                 if (params.get('increaseType') === 'amount') {
                     withdrawalIncreaseTypeToggle.checked = true;
                     withdrawalIncreaseTypeToggle.dispatchEvent(new Event('change'));
                 }
-                withdrawalIncreaseSlider.value = params.get('increase') || 0;
-                returnRateSlider.value = params.get('rate') || 8;
-                investmentPeriodSlider.value = params.get('period') || 20;
+                withdrawalIncreaseInput.value = params.get('increase') || 0;
+                returnRateInput.value = params.get('rate') || 8;
+                investmentPeriodInput.value = params.get('period') || 20;
             }
 
             if (params.has('inflation')) {
                 inflationToggle.checked = true;
-                inflationRateSlider.value = params.get('inflation');
+                inflationRateInput.value = params.get('inflation');
                 inflationInputGroup.classList.remove('hidden');
             }
             
@@ -669,20 +661,75 @@ function initializeCalculator() {
 
     function setupEventListeners() {
       const inputs = [ 
-       { slider: sipAmountSlider, input: sipAmountInput }, { slider: lumpsumAmountSlider, input: lumpsumAmountInput }, 
-       { slider: rdAmountSlider, input: rdAmountInput }, { slider: fdAmountSlider, input: fdAmountInput }, 
-       { slider: initialCorpusSlider, input: initialCorpusInput }, { slider: withdrawalAmountSlider, input: withdrawalAmountInput }, 
-       { slider: withdrawalIncreaseSlider, input: withdrawalIncreaseInput },
-       { slider: returnRateSlider, input: returnRateInput }, { slider: investmentPeriodSlider, input: investmentPeriodInput }, 
-       { slider: inflationRateSlider, input: inflationRateInput }, { slider: sipIncreaseRateSlider, input: sipIncreaseRateInput }, 
-       { slider: rdIncreaseRateSlider, input: rdIncreaseRateInput }, { slider: targetAmountSlider, input: targetAmountInput }, 
-       { slider: goalReturnRateSlider, input: goalReturnRateInput }, { slider: goalPeriodSlider, input: goalPeriodInput }
+       { slider: sipAmountSlider, input: sipAmountInput, error: errorMessages.sipAmount }, 
+       { slider: lumpsumAmountSlider, input: lumpsumAmountInput, error: errorMessages.lumpsumAmount }, 
+       { slider: rdAmountSlider, input: rdAmountInput, error: errorMessages.rdAmount }, 
+       { slider: fdAmountSlider, input: fdAmountInput, error: errorMessages.fdAmount }, 
+       { slider: initialCorpusSlider, input: initialCorpusInput, error: errorMessages.initialCorpus }, 
+       { slider: withdrawalAmountSlider, input: withdrawalAmountInput, error: errorMessages.withdrawalAmount }, 
+       { slider: withdrawalIncreaseSlider, input: withdrawalIncreaseInput, error: null },
+       { slider: returnRateSlider, input: returnRateInput, error: errorMessages.returnRate }, 
+       { slider: investmentPeriodSlider, input: investmentPeriodInput, error: errorMessages.investmentPeriod }, 
+       { slider: inflationRateSlider, input: inflationRateInput, error: errorMessages.inflationRate }, 
+       { slider: sipIncreaseRateSlider, input: sipIncreaseRateInput, error: null }, 
+       { slider: rdIncreaseRateSlider, input: rdIncreaseRateInput, error: null }, 
+       { slider: targetAmountSlider, input: targetAmountInput, error: errorMessages.targetAmount }, 
+       { slider: goalReturnRateSlider, input: goalReturnRateInput, error: errorMessages.goalReturnRate }, 
+       { slider: goalPeriodSlider, input: goalPeriodInput, error: errorMessages.goalPeriod }
      ];
       
-      inputs.forEach(({ slider, input }) => { 
-        if (slider && input) { 
-          slider.addEventListener('input', () => { input.value = slider.value; updateSliderFill(slider); debouncedUpdate(); }); 
-          input.addEventListener('input', () => { slider.value = input.value; updateSliderFill(slider); debouncedUpdate(); }); 
+      inputs.forEach(({ slider, input, error }) => { 
+        if (slider && input) {
+          const validate = () => {
+            const value = parseFloat(input.value);
+            const min = parseFloat(input.min);
+            const max = parseFloat(input.max);
+            const isValid = !isNaN(value) && value >= min && value <= max && input.value.trim() !== '';
+
+            input.classList.toggle('input-error', !isValid);
+            if (error) {
+                error.classList.toggle('hidden', isValid);
+            }
+            return isValid;
+          };
+
+          slider.addEventListener('input', () => { 
+            input.value = slider.value; 
+            updateSliderFill(slider); 
+            if(validate()) debouncedUpdate(); 
+          }); 
+
+          input.addEventListener('input', () => { 
+            if(validate()) {
+              slider.value = input.value; 
+              updateSliderFill(slider); 
+              debouncedUpdate(); 
+            }
+          });
+
+          input.addEventListener('blur', () => {
+              let value = parseFloat(input.value);
+              const min = parseFloat(slider.min);
+              const max = parseFloat(slider.max);
+
+              if (isNaN(value) || value < min || input.value.trim() === '') {
+                  value = min;
+              } else if (value > max) {
+                  value = max;
+              }
+              
+              const step = parseFloat(slider.step) || 1;
+              const correctedValue = step < 1 
+                  ? parseFloat(value).toFixed(String(step).split('.')[1]?.length || 1) 
+                  : Math.round(value / step) * step;
+              
+              input.value = correctedValue;
+              slider.value = correctedValue;
+              
+              updateSliderFill(slider);
+              validate(); // Remove error styles
+              updateCalculator(); // Immediate update on blur
+          });
         } 
       });
       
