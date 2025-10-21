@@ -705,22 +705,26 @@ function initializeCalculator() {
 
         document.querySelectorAll('.goal-template-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const goal = e.target.dataset.goal;
+                const goal = e.currentTarget.dataset.goal; // Use currentTarget
                 document.querySelectorAll('.goal-template-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
+                e.currentTarget.classList.add('active');
 
                 if (goal === 'retirement') {
-                    targetAmountSlider.value = 10000000;
+                    targetAmountSlider.value = 10000000; // 1 Crore
                     goalPeriodSlider.value = 25;
                     goalReturnRateSlider.value = 12;
                 } else if (goal === 'education') {
-                    targetAmountSlider.value = 2500000;
+                    targetAmountSlider.value = 2500000; // 25 Lakhs
                     goalPeriodSlider.value = 15;
                     goalReturnRateSlider.value = 11;
                 } else if (goal === 'car') {
-                    targetAmountSlider.value = 1000000;
+                    targetAmountSlider.value = 1000000; // 10 Lakhs
                     goalPeriodSlider.value = 5;
                     goalReturnRateSlider.value = 9;
+                } else if (goal === 'vacation') { // New Vacation Goal
+                    targetAmountSlider.value = 300000; // 3 Lakhs
+                    goalPeriodSlider.value = 3;
+                    goalReturnRateSlider.value = 8;
                 }
                 
                 targetAmountInput.value = targetAmountSlider.value;
