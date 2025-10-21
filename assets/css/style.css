@@ -494,14 +494,14 @@ main {
     width: 100%;
     max-width: none;
     margin: 0;
-    padding: 0.6rem 0.8rem 0; /* Squeezed */
+    padding: 1.2rem 0.8rem 0; /* Increased top padding */
 }
 
 .footer-content { 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-    gap: 0.8rem; /* Squeezed */
-    padding-bottom: 0.4rem; /* Squeezed */
+    gap: 1rem; /* Increased gap */
+    padding-bottom: 0.8rem; /* Increased bottom padding */
 }
 
 .footer-column {
@@ -514,8 +514,8 @@ main {
 }
 
 .footer-about {
-    font-size: 0.6rem; /* Squeezed */
-    line-height: 1.4; /* Squeezed */
+    font-size: 0.75rem; /* Increased font size */
+    line-height: 1.5; /* Adjusted line height */
     color: var(--footer-text);
 }
 
@@ -532,7 +532,7 @@ main {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;  /* Squeezed */
+    gap: 0.6rem;  /* Increased gap for more spacing */
     align-items: center;
 }
 .footer-links a { 
@@ -540,18 +540,20 @@ main {
     color: var(--footer-text); 
     position: relative; 
     transition: all 0.3s ease; 
-    font-size: 0.65rem; /* Squeezed */
+    font-size: 0.75rem; /* Increased font size for readability */
+    padding: 0.25rem 0.5rem; /* Added padding to increase touch target size */
+    border-radius: 0.25rem; /* Rounded corners for better hover effect */
 }
 .footer-links a:hover { 
     color: #ffffff; 
-    padding-left: 5px;
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover background */
 }
 
 .footer-bottom-bar {
     border-top: 1px solid #374151;
     text-align: center;
-    padding: 0.5rem 0; /* Squeezed */
-    font-size: 0.6rem; /* Squeezed */
+    padding: 0.8rem 0; /* Increased padding */
+    font-size: 0.65rem; /* Increased font size */
 }
 
 .legal-content {
