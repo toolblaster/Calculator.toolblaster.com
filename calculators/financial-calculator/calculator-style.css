@@ -82,6 +82,13 @@
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
 
+/* UPDATED: Added new class for input validation errors */
+.manual-input.input-error {
+    border-color: #ef4444; /* red-500 */
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3);
+}
+
+
 @media (min-width: 640px) { 
     .manual-input { 
         width: 100px; 
