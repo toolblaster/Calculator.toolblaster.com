@@ -13,10 +13,10 @@
         .content-section-card {
             background-color: #ffffff;
             border-radius: 0.5rem;
-            padding: 1rem;
+            padding: 0.75rem; /* Squeezed */
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             border: 1px solid #e5e7eb;
-            height: 100%; /* Ensure cards in a row have same height */
+            height: 100%;
         }
         .title-with-accent::after {
             content: '';
@@ -32,12 +32,12 @@
         .info-item {
             display: flex;
             align-items: flex-start;
-            gap: 0.75rem;
+            gap: 0.5rem; /* Squeezed */
         }
         .info-item .icon-wrapper {
             flex-shrink: 0;
-            width: 32px;
-            height: 32px;
+            width: 28px; /* Squeezed */
+            height: 28px; /* Squeezed */
             color: #C22D2D;
             background-color: #fef2f2;
             border-radius: 50%;
@@ -46,23 +46,23 @@
             justify-content: center;
         }
         .info-item svg {
-            width: 16px;
-            height: 16px;
+            width: 14px; /* Squeezed */
+            height: 14px; /* Squeezed */
         }
         .info-item h2 {
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* Squeezed */
             font-weight: 700;
             color: #1f2937;
             margin-bottom: 0.1rem;
         }
         .info-item p, .info-item ul {
-            font-size: 0.7rem;
+            font-size: 0.65rem; /* Squeezed */
             color: #4b5563;
             line-height: 1.5;
         }
         .info-item ul {
             list-style-position: inside;
-            padding-left: 0.5rem;
+            padding-left: 0.25rem;
         }
     </style>
 </head>
@@ -72,12 +72,12 @@
 
     <main class="container py-2 md:py-3">
         <div class="max-w-4xl mx-auto">
-            <div class="text-center p-3 bg-red-50 rounded-xl mb-4 border border-red-200 shadow-sm">
+            <div class="text-center p-3 bg-red-50 rounded-xl mb-3 border border-red-200 shadow-sm">
                 <h1 class="text-lg md:text-xl font-extrabold text-gray-800 tracking-tight title-with-accent">Terms and Conditions</h1>
                 <p class="mt-2 text-xxs md:text-xs text-gray-600 max-w-2xl mx-auto">Your use of our website constitutes your agreement to the following terms. Please read them carefully.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 
                 <!-- Agreement to Terms -->
                 <div class="content-section-card">
