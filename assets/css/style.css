@@ -185,8 +185,8 @@ main {
     align-items: center;
     text-decoration: none;
     color: var(--text-color);
-    font-weight: 500;
-    font-size: 0.65rem; /* Squeezed further */
+    font-weight: 600; /* Bolder */
+    font-size: 0.75rem; /* Increased size */
     transition: color 0.3s ease;
     position: relative;
     padding-bottom: 2px; /* Squeezed further */
@@ -923,4 +923,9 @@ main {
     gap: 0.15rem;
     font-size: 0.9rem;
     white-space: nowrap;
+}
+
+/* --- Custom style for Yearly Growth Table --- */
+#growthTableContainer tbody {
+    font-size: 0.65rem; /* Further squeeze the font size for the table body */
 }
