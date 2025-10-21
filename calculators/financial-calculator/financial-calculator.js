@@ -104,7 +104,6 @@ function initializeCalculator() {
     const estimatedReturnsRD = getElem('estimatedReturnsRD');
     const totalValueRD = getElem('totalValueRD');
     const postTaxSectionRD = getElem('postTaxSectionRD');
-    const postTaxReturnsRD = getElem('postTaxReturnsRD');
     const postTaxTotalValueRD = getElem('postTaxTotalValueRD');
     const realValueSectionRD = getElem('realValueSectionRD');
     const realTotalValueRD = getElem('realTotalValueRD');
@@ -113,7 +112,6 @@ function initializeCalculator() {
     const estimatedReturnsFD = getElem('estimatedReturnsFD');
     const totalValueFD = getElem('totalValueFD');
     const postTaxSectionFD = getElem('postTaxSectionFD');
-    const postTaxReturnsFD = getElem('postTaxReturnsFD');
     const postTaxTotalValueFD = getElem('postTaxTotalValueFD');
     const realValueSectionFD = getElem('realValueSectionFD');
     const realTotalValueFD = getElem('realTotalValueFD');
@@ -275,20 +273,24 @@ function initializeCalculator() {
         estimatedReturnsRD.textContent = formatCurrency(estimatedReturns);
         totalValueRD.textContent = formatCurrency(currentCorpus);
 
+        let finalCorpusRD = currentCorpus;
+
         if (taxToggle.checked) {
             const taxRate = parseFloat(taxSlabSelect.value);
             const taxPayable = estimatedReturns * taxRate;
             const postTaxReturns = estimatedReturns - taxPayable;
             const postTaxTotal = investedAmount + postTaxReturns;
-            postTaxReturnsRD.textContent = formatCurrency(postTaxReturns);
+            // The element postTaxReturnsRD does not exist in the HTML, this was causing the bug.
+            // postTaxReturnsRD.textContent = formatCurrency(postTaxReturns); 
             postTaxTotalValueRD.textContent = formatCurrency(postTaxTotal);
             postTaxSectionRD.classList.remove('hidden');
+            finalCorpusRD = postTaxTotal;
         } else {
             postTaxSectionRD.classList.add('hidden');
         }
 
         if (inflationToggle.checked) {
-          const finalCorpusInTodayValue = currentCorpus / Math.pow(1 + annualInflationRate, investmentPeriodYears);
+          const finalCorpusInTodayValue = finalCorpusRD / Math.pow(1 + annualInflationRate, investmentPeriodYears);
           realTotalValueRD.textContent = formatCurrency(finalCorpusInTodayValue);
           realValueSectionRD.classList.remove('hidden');
         } else { realValueSectionRD.classList.add('hidden'); }
@@ -303,21 +305,24 @@ function initializeCalculator() {
         estimatedReturnsFD.textContent = formatCurrency(estimatedReturns);
         totalValueFD.textContent = formatCurrency(totalValue);
         
+        let finalCorpusFD = totalValue;
+
         if (taxToggle.checked) {
             const taxRate = parseFloat(taxSlabSelect.value);
             const taxPayable = estimatedReturns * taxRate;
             const postTaxReturns = estimatedReturns - taxPayable;
             const postTaxTotal = investedAmount + postTaxReturns;
-            postTaxReturnsFD.textContent = formatCurrency(postTaxReturns);
+            // The element postTaxReturnsFD does not exist in the HTML, this was causing the bug.
+            // postTaxReturnsFD.textContent = formatCurrency(postTaxReturns);
             postTaxTotalValueFD.textContent = formatCurrency(postTaxTotal);
             postTaxSectionFD.classList.remove('hidden');
+            finalCorpusFD = postTaxTotal;
         } else {
             postTaxSectionFD.classList.add('hidden');
         }
 
         if (inflationToggle.checked) {
-          const realReturnRate = ((1 + annualReturnRate) / (1 + annualInflationRate)) - 1;
-          const realTotalValue = investedAmount * Math.pow(1 + realReturnRate, investmentPeriodYears);
+          const realTotalValue = finalCorpusFD / Math.pow(1 + annualInflationRate, investmentPeriodYears);
           realTotalValueFD.textContent = formatCurrency(realTotalValue);
           realValueSectionFD.classList.remove('hidden');
         } else { realValueSectionFD.classList.add('hidden'); }
@@ -488,7 +493,7 @@ function initializeCalculator() {
       updateCalculator();
     }
     
-    function handleShare() {
+    const handleShare = () => {
         const params = new URLSearchParams();
         params.set('mode', currentMode);
 
@@ -583,8 +588,8 @@ function initializeCalculator() {
                 goalReturnRateInput.value = params.get('rate') || 12;
                 goalPeriodInput.value = params.get('period') || 10;
             } else if (mode === 'rd' || mode === 'fd') {
-                const amountInput = mode === 'rd' ? rdAmountInput : fdAmountInput;
-                amountInput.value = params.get('amount') || (mode === 'rd' ? 5000 : 100000);
+                const amountInputEl = mode === 'rd' ? rdAmountInput : fdAmountInput;
+                amountInputEl.value = params.get('amount') || (mode === 'rd' ? 5000 : 100000);
                 returnRateInput.value = params.get('rate') || 7;
                 investmentPeriodInput.value = params.get('period') || 5;
                 if(params.get('tax') === 'true') {
@@ -612,7 +617,9 @@ function initializeCalculator() {
             
             document.querySelectorAll('input[type="range"]').forEach(slider => {
                 const input = getElem(slider.id.replace('Slider', 'Input'));
-                if (input) input.value = slider.value;
+                if (input && slider) {
+                   slider.value = input.value;
+                }
             });
 
             updateCalculator();
