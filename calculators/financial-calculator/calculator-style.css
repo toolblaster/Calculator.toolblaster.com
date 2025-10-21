@@ -89,21 +89,92 @@
     } 
 }
 
+/* --- UPDATED GOAL TEMPLATE STYLES --- */
+.goal-templates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem; /* Squeezed gap */
+}
+
+@media (min-width: 640px) {
+    .goal-templates-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 .goal-template-btn {
-    padding: 0.25rem 0.5rem;
-    border: 1px solid #bfdbfe;
-    border-radius: 0.25rem;
-    font-size: 0.65rem;
-    font-weight: 600;
-    background-color: #f3f4f6;
+    display: flex;
+    align-items: center; /* Vertical alignment */
+    padding: 0.4rem; /* Squeezed padding */
+    border: 1px solid #dbeafe;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
     cursor: pointer;
+    text-align: left; /* Align text to the left */
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.goal-template-btn .icon-wrapper {
+    background-color: #eff6ff;
+    color: #3b82f6;
+    border-radius: 50%;
+    width: 28px; /* Squeezed icon wrapper */
+    height: 28px; /* Squeezed icon wrapper */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem; /* Squeezed margin */
+    flex-shrink: 0; /* Prevent icon from shrinking */
     transition: all 0.2s ease-in-out;
 }
-.goal-template-btn:hover, .goal-template-btn.active {
-    background-color: #3B82F6;
-    color: white;
-    border-color: #2563EB;
+
+.goal-template-btn .icon-wrapper svg {
+    width: 16px; /* Squeezed icon itself */
+    height: 16px; /* Squeezed icon itself */
 }
+
+.goal-template-btn .text-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.goal-template-btn .title {
+    font-size: 0.65rem; /* Squeezed font size */
+    font-weight: 600;
+    color: #1f2937;
+    line-height: 1.2;
+}
+
+.goal-template-btn .subtitle {
+    font-size: 0.55rem; /* Squeezed font size */
+    color: #6b7280;
+    line-height: 1.1;
+}
+
+.goal-template-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+    border-color: #93c5fd;
+}
+
+.goal-template-btn.active {
+    background-color: #fef2f2;
+    border-color: #E34037;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+}
+
+.goal-template-btn.active .icon-wrapper {
+    background-color: #E34037;
+    color: #ffffff;
+}
+
+.goal-template-btn.active .title {
+    color: #C22D2D;
+}
+/* --- END UPDATED GOAL TEMPLATE STYLES --- */
+
 
 .share-btn {
     padding: 0.25rem;
