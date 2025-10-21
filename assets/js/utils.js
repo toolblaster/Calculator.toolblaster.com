@@ -44,59 +44,79 @@ export function updateSliderFill(slider) {
 }
 
 /**
- * Synchronizes a range slider and a number input, so changing one updates the other.
+ * Synchronizes a range slider and a number input, with live validation.
  * @param {object} options - The options for synchronization.
  * @param {string} options.sliderId - The ID of the range slider.
  * @param {string} options.inputId - The ID of the number input.
- * @param {Function} [options.updateCallback] - An optional callback function to run after an update.
+ * @param {Function} [options.updateCallback] - An optional callback function to run on valid updates.
  */
 export function syncSliderAndInput({ sliderId, inputId, updateCallback }) {
     const slider = document.getElementById(sliderId);
     const input = document.getElementById(inputId);
+    // Find the error message element by convention (e.g., sipAmountInput -> sipAmountError)
+    const errorElement = document.getElementById(inputId.replace('Input', 'Error'));
+    
     const debouncedUpdate = updateCallback ? debounce(updateCallback, 250) : () => {};
 
     if (!slider || !input) {
-        console.warn(`Slider or Input not found for IDs: ${sliderId}, ${inputId}`);
+        // console.warn(`Slider or Input not found for IDs: ${sliderId}, ${inputId}`);
         return;
     }
+
+    const validate = () => {
+        const value = parseFloat(input.value);
+        const min = parseFloat(input.min);
+        const max = parseFloat(input.max);
+        const isValid = !isNaN(value) && value >= min && value <= max && input.value.trim() !== '';
+
+        input.classList.toggle('input-error', !isValid);
+        if (errorElement) {
+            errorElement.classList.toggle('hidden', isValid);
+        }
+        return isValid;
+    };
 
     // Sync from slider to input
     slider.addEventListener('input', () => {
         input.value = slider.value;
         updateSliderFill(slider);
-        debouncedUpdate();
+        if (validate()) {
+            debouncedUpdate();
+        }
     });
 
-    // Sync from input to slider
+    // Sync from input to slider with live validation
     input.addEventListener('input', () => {
-        const value = parseFloat(input.value);
-        const min = parseFloat(slider.min);
-        const max = parseFloat(slider.max);
-
-        if (!isNaN(value) && value >= min && value <= max) {
-            slider.value = value;
+        if (validate()) {
+            slider.value = input.value;
             updateSliderFill(slider);
             debouncedUpdate();
         }
     });
 
-    // Final validation on blur
+    // Final validation and correction on blur
     input.addEventListener('blur', () => {
         let value = parseFloat(input.value);
         const min = parseFloat(slider.min);
         const max = parseFloat(slider.max);
 
-        if (isNaN(value) || value < min) {
+        if (isNaN(value) || value < min || input.value.trim() === '') {
             value = min;
         } else if (value > max) {
             value = max;
         }
         
         const step = parseFloat(slider.step) || 1;
-        input.value = step < 1 ? value.toFixed(String(step).split('.')[1]?.length || 1) : Math.round(value / step) * step;
+        // Correct the value to the nearest step if needed, and format decimals
+        const correctedValue = step < 1 
+            ? parseFloat(value).toFixed(String(step).split('.')[1]?.length || 1) 
+            : Math.round(value / step) * step;
         
-        slider.value = input.value;
+        input.value = correctedValue;
+        slider.value = correctedValue;
+        
         updateSliderFill(slider);
+        validate(); // This will remove error styles
         if (updateCallback) updateCallback(); // Immediate update on blur
     });
 
