@@ -5,23 +5,17 @@
 .financial-calculator-wrapper {
     box-sizing: border-box;
     width: 100%;
-    max-width: 900px; /* Expanded from 800px to make it wider */
-    margin: 0.5rem auto 1rem; /* Compacted vertical margin from 1rem/2rem */
-    font-family: 'Inter', sans-serif;
-    background-color: #f9fafb;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+    max-width: 900px; 
+    margin: 0.5rem auto 1rem; 
 }
 
 .calculator-container {
     width: 100%;
 }
 
-/* Add border to input and output sections */
 .calculator-container .bg-blue-50\/50 {
-    border: 1px solid #93c5fd; /* Tailwind's blue-300 */
+    border: 1px solid #dbeafe; /* Tailwind's blue-200 */
 }
-
 
 /* Custom styles for range sliders */
 .range-slider { 
@@ -46,16 +40,16 @@
 .range-slider::-webkit-slider-thumb { 
     -webkit-appearance: none; 
     appearance: none; 
-    margin-top: -7px; /* Adjusted for larger thumb */
-    width: 20px; /* Increased size */
-    height: 20px; /* Increased size */
+    margin-top: -7px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%; 
     background: #2563EB; 
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); 
 }
 .range-slider::-moz-range-thumb { 
-    width: 20px; /* Increased size */
-    height: 20px; /* Increased size */
+    width: 20px;
+    height: 20px;
     border-radius: 50%; 
     background: #2563EB; 
     border: none; 
@@ -65,17 +59,15 @@
     outline: none; 
 }
 
-/* Custom utility for extra small font size used in the calculator */
 .text-xxs { 
     font-size: 0.6rem; 
     line-height: 0.8rem; 
 }
 
-/* Custom styles for manual input boxes in the calculator */
 .manual-input { 
     width: 80px; 
     padding: 0.25rem; 
-    border: 1px solid #93c5fd; /* Light blue accent border */
+    border: 1px solid #bfdbfe; /* Light blue accent border */
     border-radius: 0.25rem; 
     font-size: 0.7rem; 
     font-weight: 600; 
@@ -86,7 +78,7 @@
 
 .manual-input:focus {
     outline: none;
-    border-color: #3b82f6; /* Darker blue on focus */
+    border-color: #3b82f6;
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
 
@@ -97,10 +89,9 @@
     } 
 }
 
-/* NEW: Styles for Goal Templates and Share Button */
 .goal-template-btn {
     padding: 0.25rem 0.5rem;
-    border: 1px solid #93c5fd;
+    border: 1px solid #bfdbfe;
     border-radius: 0.25rem;
     font-size: 0.65rem;
     font-weight: 600;
@@ -128,174 +119,138 @@
     color: #1f2937;
 }
 
-/* Responsive styles for the Yearly Growth Table on mobile */
 @media (max-width: 640px) {
-    #growthTableContainer table {
-        font-size: 0.7rem; /* Make font a bit smaller on mobile */
-    }
-
-    #growthTableContainer th, 
-    #growthTableContainer td {
-        padding: 0.5rem 0.4rem; /* Reduce padding to make columns narrower */
-        white-space: nowrap; /* Prevent numbers from wrapping */
-    }
+    #growthTableContainer table { font-size: 0.7rem; }
+    #growthTableContainer th, #growthTableContainer td { padding: 0.5rem 0.4rem; white-space: nowrap; }
 }
 
 /* Styles for Step-up Toggle Switch */
-.step-up-toggle-container {
+.step-up-toggle-container { display: flex; align-items: center; }
+.step-up-toggle { position: relative; display: inline-block; width: 50px; height: 24px; }
+.step-up-toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-track { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
+.toggle-thumb { position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.7rem; font-weight: bold; color: #3B82F6; }
+.step-up-toggle input:checked + .toggle-track { background-color: #2563EB; }
+.step-up-toggle input:checked + .toggle-track .toggle-thumb { transform: translateX(26px); }
+.toggle-icon { position: absolute; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; transition: opacity 0.2s ease; }
+.toggle-icon-rupee { opacity: 0; }
+.step-up-toggle input:checked + .toggle-track .toggle-thumb .toggle-icon-percent { opacity: 0; }
+.step-up-toggle input:checked + .toggle-track .toggle-thumb .toggle-icon-rupee { opacity: 1; }
+
+#taxSection { border: 1px solid #dbeafe; }
+.text-orange-700 { color: #c2410c; }
+.border-orange-200 { border-color: #fed7aa; }
+
+.compact-seo-content .content-section { margin-top: 1rem; }
+.compact-seo-content .section-title-secondary { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; padding-bottom: 0.5rem; }
+.compact-seo-content .section-title-secondary::after { display: none; }
+.compact-seo-content .section-subtitle { font-size: 0.7rem; margin-bottom: 0.75rem; }
+.compact-seo-content .card-container { gap: 0.5rem; }
+.compact-seo-content .content-card { padding: 0.75rem; }
+.compact-seo-content .content-card strong { font-size: 0.75rem; margin-bottom: 0.25rem; }
+.compact-seo-content .content-card p { font-size: 0.65rem; line-height: 1.4; }
+.compact-seo-content .trust-card { padding: 0.75rem; }
+.compact-seo-content .trust-card strong { font-size: 0.75rem; }
+.compact-seo-content .trust-card p { font-size: 0.65rem; }
+.compact-seo-content .faq-item summary { font-size: 0.75rem; padding: 0.6rem 0.8rem; }
+.compact-seo-content .faq-item p { font-size: 0.65rem; padding: 0 0.8rem 0.6rem; }
+.compact-seo-content table { font-size: 0.75rem; }
+.compact-seo-content table th, .compact-seo-content table td { padding: 0.6rem; }
+.compact-seo-content table thead { font-size: 0.7rem; }
+
+
+#growthTableContainer { max-height: 300px; overflow-y: auto; }
+
+/* --- NEW OUTPUT CARD STYLES --- */
+.summary-card {
+    background-color: #f3f4f6; /* gray-100 */
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #e5e7eb; /* gray-200 */
+}
+.summary-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 0.5rem;
 }
-
-.step-up-toggle {
-    position: relative;
-    display: inline-block;
-    width: 50px; /* Width for the toggle */
-    height: 24px; /* Height for the toggle */
+.summary-header h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #1e3a8a; /* blue-900 */
 }
-
-.step-up-toggle input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.toggle-track {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 24px;
-}
-
-.toggle-thumb {
-    position: absolute;
-    content: '';
-    height: 20px;
-    width: 20px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.7rem;
-    font-weight: bold;
-    color: #3B82F6;
-}
-
-.step-up-toggle input:checked + .toggle-track {
-    background-color: #2563EB;
-}
-
-.step-up-toggle input:checked + .toggle-track .toggle-thumb {
-    transform: translateX(26px);
-}
-
-.toggle-icon {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    transition: opacity 0.2s ease;
-}
-
-.toggle-icon-rupee {
-    opacity: 0;
-}
-
-.step-up-toggle input:checked + .toggle-track .toggle-thumb .toggle-icon-percent {
-    opacity: 0;
-}
-
-.step-up-toggle input:checked + .toggle-track .toggle-thumb .toggle-icon-rupee {
-    opacity: 1;
-}
-
-/* Post-Tax Calculation Section Styles */
-#taxSection {
-    border: 1px solid #dbeafe;
-}
-
-.text-orange-700 {
-    color: #c2410c; /* Tailwind's orange-700 */
-}
-
-.border-orange-200 {
-    border-color: #fed7aa; /* Tailwind's orange-200 */
-}
-
-/* Squeezed styles for SEO content */
-.compact-seo-content .content-section {
-    margin-top: 1.25rem;
-}
-/* UPDATED: Increased font size and weight for H2 headings */
-.compact-seo-content .section-title-secondary {
-    font-size: 1.0rem; /* Slightly increased size */
-    font-weight: 700; /* Increased weight */
-    margin-bottom: 0.25rem;
-    padding-bottom: 0.5rem;
-}
-.compact-seo-content .section-subtitle {
-    font-size: 0.7rem;
-    margin-bottom: 0.75rem;
-}
-.compact-seo-content .card-container {
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
+    margin-bottom: 0.5rem;
 }
-.compact-seo-content .content-card {
-    padding: 0.75rem;
+.summary-grid.swp-grid {
+    grid-template-columns: 1fr 1fr; /* For 4 items */
 }
-.compact-seo-content .content-card h3 {
-    font-size: 0.75rem;
-    margin-bottom: 0.25rem;
+.summary-item {
+    background-color: #ffffff;
+    padding: 0.4rem;
+    border-radius: 0.25rem;
+    text-align: center;
 }
-.compact-seo-content .content-card p {
-    font-size: 0.65rem;
-    line-height: 1.4;
+.summary-label {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: #6b7280; /* gray-500 */
+    margin-bottom: 0.1rem;
 }
-.compact-seo-content .trust-card {
-    padding: 0.75rem;
+.summary-value {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
 }
-.compact-seo-content .trust-card strong {
-    font-size: 0.75rem;
+.summary-value.invested { color: #1d4ed8; } /* blue-800 */
+.summary-value.returns { color: #166534; } /* green-800 */
+.summary-value.interest { color: #86198f; } /* fuchsia-800 */
+.summary-value.remaining { color: #991b1b; } /* red-800 */
+
+.summary-total {
+    background-color: #1e3a8a; /* blue-900 */
+    color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
 }
-.compact-seo-content .trust-card p {
-    font-size: 0.65rem;
+.summary-total .summary-label {
+    color: #dbeafe; /* blue-200 */
+    font-size: 0.7rem;
 }
-.compact-seo-content .faq-item summary {
-    font-size: 0.75rem;
-    padding: 0.6rem 0.8rem;
+.summary-total .summary-value.total {
+    font-size: 1.1rem;
+    font-weight: 800;
 }
-.compact-seo-content .faq-item p {
-    font-size: 0.65rem;
-    padding: 0 0.8rem 0.6rem;
+.summary-total .summary-value.goal {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #fef08a; /* yellow-200 */
 }
 
-/* UPDATED: Styles for the comparison table to improve spacing */
-.compact-seo-content .overflow-x-auto table {
-    font-size: 0.75rem; /* Slightly larger font for readability */
+.summary-extra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 0.5rem;
+    border-top: 1px dashed #d1d5db; /* gray-300 */
 }
-
-.compact-seo-content .overflow-x-auto th,
-.compact-seo-content .overflow-x-auto td {
-    padding: 0.6rem; /* Increased padding */
+.summary-extra .summary-label {
+    font-size: 0.7rem;
+    font-weight: 600;
 }
-
-.compact-seo-content .overflow-x-auto th {
-    white-space: nowrap; /* Prevent headers from wrapping */
+.summary-extra .summary-value.real {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #c2410c; /* orange-700 */
 }
-
-/* NEW: Style for yearly growth table container */
-#growthTableContainer {
-    max-height: 300px; /* Adjust this value as needed */
-    overflow-y: auto;
+.summary-extra .summary-value.tax {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #9a3412; /* orange-800 */
 }
