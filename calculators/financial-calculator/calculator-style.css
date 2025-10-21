@@ -237,10 +237,10 @@
 .compact-seo-content .content-section {
     margin-top: 1.25rem;
 }
-/* UPDATED: Reduced font size and weight for H2/H3s using this class */
+/* UPDATED: Increased font size and weight for H2 headings */
 .compact-seo-content .section-title-secondary {
-    font-size: 0.9rem; /* Reduced size as requested */
-    font-weight: 600; /* Reduced weight from default 700 */
+    font-size: 1.0rem; /* Slightly increased size */
+    font-weight: 700; /* Increased weight */
     margin-bottom: 0.25rem;
     padding-bottom: 0.5rem;
 }
@@ -278,6 +278,20 @@
 .compact-seo-content .faq-item p {
     font-size: 0.65rem;
     padding: 0 0.8rem 0.6rem;
+}
+
+/* UPDATED: Styles for the comparison table to improve spacing */
+.compact-seo-content .overflow-x-auto table {
+    font-size: 0.75rem; /* Slightly larger font for readability */
+}
+
+.compact-seo-content .overflow-x-auto th,
+.compact-seo-content .overflow-x-auto td {
+    padding: 0.6rem; /* Increased padding */
+}
+
+.compact-seo-content .overflow-x-auto th {
+    white-space: nowrap; /* Prevent headers from wrapping */
 }
 
 /* NEW: Style for yearly growth table container */
