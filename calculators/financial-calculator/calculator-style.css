@@ -237,8 +237,10 @@
 .compact-seo-content .content-section {
     margin-top: 1.25rem;
 }
+/* UPDATED: Reduced font size and weight for H2/H3s using this class */
 .compact-seo-content .section-title-secondary {
-    font-size: 1.0rem; /* Increased size for better hierarchy */
+    font-size: 0.9rem; /* Reduced size as requested */
+    font-weight: 600; /* Reduced weight from default 700 */
     margin-bottom: 0.25rem;
     padding-bottom: 0.5rem;
 }
