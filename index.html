@@ -182,13 +182,11 @@
         <!-- HERO SECTION END -->
 
         <div id="calculator" class="financial-calculator-wrapper">
-            <!-- UPDATED: H1 is now in hero, so this is H2 -->
             <div class="bg-white shadow-lg rounded-xl p-2 sm:p-3 w-full border border-red-300 mx-auto my-0 calculator-container">
                 
                 <h2 id="calculatorTitle" class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">All-in-One Investment Calculator</h2>
                 <p id="calculatorDescription" class="text-center text-gray-500 mb-3 text-xs">Plan your investments with our advanced tools for SIP, RD, FD, SWP, Goal Planning & more.</p>
                 
-                <!-- ... Rest of the calculator HTML ... -->
                 <div class="flex justify-center mb-2 flex-wrap gap-1">
                     <button id="sipModeBtn" aria-label="Switch to SIP calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-blue-600 text-white shadow-md">SIP</button>
                     <button id="lumpsumModeBtn" aria-label="Switch to Lumpsum calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Lumpsum</button>
@@ -435,101 +433,73 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Right Column: Results -->
                     <div class="flex flex-col">
-                        <div id="sipSummary" class="bg-blue-50/50 p-1.5 rounded-lg" aria-live="polite">
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-sm font-bold text-blue-800">SIP Summary</h3>
-                                <button class="share-btn" aria-label="Share SIP calculation results">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
-                                </button>
+                        <!-- Redesigned Output Cards -->
+                        <div id="sipSummary" class="summary-card" aria-live="polite">
+                            <div class="summary-header"><h3>SIP Summary</h3><button class="share-btn" aria-label="Share SIP calculation results"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg></button></div>
+                            <div class="summary-grid">
+                                <div class="summary-item"><span class="summary-label">Invested</span><span id="investedAmountSIP" class="summary-value invested">₹0</span></div>
+                                <div class="summary-item"><span class="summary-label">Returns</span><span id="estimatedReturnsSIP" class="summary-value returns">₹0</span></div>
                             </div>
-                            <div class="space-y-1 text-xs">
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountSIP" class="font-semibold text-blue-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsSIP" class="font-semibold text-green-700">₹0</span></div>
-                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueSIP" class="text-sm font-bold text-purple-700">₹0</span></div>
-                                <div id="realValueSectionSIP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueSIP" class="font-bold text-orange-700">₹0</span></div>
-                            </div>
+                            <div class="summary-total"><span class="summary-label">Total Value</span><span id="totalValueSIP" class="summary-value total">₹0</span></div>
+                            <div id="realValueSectionSIP" class="summary-extra hidden"><span class="summary-label">Real Value (Today's Worth)</span><span id="realTotalValueSIP" class="summary-value real">₹0</span></div>
                         </div>
-                        <div id="lumpsumSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-sm font-bold text-blue-800">Lumpsum Summary</h3>
-                                <button class="share-btn" aria-label="Share Lumpsum calculation results">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
-                                </button>
-                            </div>
-                            <div class="space-y-1 text-xs">
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountLumpsum" class="font-semibold text-blue-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsLumpsum" class="font-semibold text-green-700">₹0</span></div>
-                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueLumpsum" class="text-sm font-bold text-purple-700">₹0</span></div>
-                                <div id="realValueSectionLumpsum" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueLumpsum" class="font-bold text-orange-700">₹0</span></div>
-                            </div>
+
+                        <div id="lumpsumSummary" class="summary-card hidden" aria-live="polite">
+                           <div class="summary-header"><h3>Lumpsum Summary</h3><button class="share-btn" aria-label="Share Lumpsum calculation results"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg></button></div>
+                           <div class="summary-grid">
+                               <div class="summary-item"><span class="summary-label">Invested</span><span id="investedAmountLumpsum" class="summary-value invested">₹0</span></div>
+                               <div class="summary-item"><span class="summary-label">Returns</span><span id="estimatedReturnsLumpsum" class="summary-value returns">₹0</span></div>
+                           </div>
+                           <div class="summary-total"><span class="summary-label">Total Value</span><span id="totalValueLumpsum" class="summary-value total">₹0</span></div>
+                           <div id="realValueSectionLumpsum" class="summary-extra hidden"><span class="summary-label">Real Value (Today's Worth)</span><span id="realTotalValueLumpsum" class="summary-value real">₹0</span></div>
                         </div>
-                        <div id="rdSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-sm font-bold text-blue-800">RD Summary</h3>
-                                <button class="share-btn" aria-label="Share RD calculation results">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
-                                </button>
-                            </div>
-                            <div class="space-y-1 text-xs">
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountRD" class="font-semibold text-blue-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsRD" class="font-semibold text-green-700">₹0</span></div>
-                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueRD" class="text-sm font-bold text-purple-700">₹0</span></div>
-                                <div id="postTaxSectionRD" class="hidden">
-                                    <div class="flex justify-between items-center text-orange-700"><span class="font-semibold">Post-Tax Returns:</span><span id="postTaxReturnsRD" class="font-bold">₹0</span></div>
-                                    <div class="flex justify-between items-center border-t pt-1 mt-1 border-orange-200"><span class="font-semibold">Post-Tax Total:</span><span id="postTaxTotalValueRD" class="font-bold">₹0</span></div>
-                                </div>
-                                <div id="realValueSectionRD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueRD" class="font-bold text-orange-700">₹0</span></div>
-                            </div>
+
+                        <div id="rdSummary" class="summary-card hidden" aria-live="polite">
+                           <div class="summary-header"><h3>RD Summary</h3><button class="share-btn" aria-label="Share RD calculation results"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg></button></div>
+                           <div class="summary-grid">
+                               <div class="summary-item"><span class="summary-label">Invested</span><span id="investedAmountRD" class="summary-value invested">₹0</span></div>
+                               <div class="summary-item"><span class="summary-label">Returns</span><span id="estimatedReturnsRD" class="summary-value returns">₹0</span></div>
+                           </div>
+                           <div class="summary-total"><span class="summary-label">Total Value</span><span id="totalValueRD" class="summary-value total">₹0</span></div>
+                           <div id="postTaxSectionRD" class="summary-extra hidden"><span class="summary-label">Post-Tax Total</span><span id="postTaxTotalValueRD" class="summary-value tax">₹0</span></div>
+                           <div id="realValueSectionRD" class="summary-extra hidden"><span class="summary-label">Real Value</span><span id="realTotalValueRD" class="summary-value real">₹0</span></div>
                         </div>
-                        <div id="fdSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
-                           <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-sm font-bold text-blue-800">FD Summary</h3>
-                                <button class="share-btn" aria-label="Share FD calculation results">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
-                                </button>
-                            </div>
-                            <div class="space-y-1 text-xs">
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Invested:</span><span id="investedAmountFD" class="font-semibold text-blue-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Returns:</span><span id="estimatedReturnsFD" class="font-semibold text-green-700">₹0</span></div>
-                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Total:</span><span id="totalValueFD" class="text-sm font-bold text-purple-700">₹0</span></div>
-                                 <div id="postTaxSectionFD" class="hidden">
-                                    <div class="flex justify-between items-center text-orange-700"><span class="font-semibold">Post-Tax Returns:</span><span id="postTaxReturnsFD" class="font-bold">₹0</span></div>
-                                    <div class="flex justify-between items-center border-t pt-1 mt-1 border-orange-200"><span class="font-semibold">Post-Tax Total:</span><span id="postTaxTotalValueFD" class="font-bold">₹0</span></div>
-                                </div>
-                                <div id="realValueSectionFD" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Value:</span><span id="realTotalValueFD" class="font-bold text-orange-700">₹0</span></div>
-                            </div>
+
+                        <div id="fdSummary" class="summary-card hidden" aria-live="polite">
+                          <div class="summary-header"><h3>FD Summary</h3><button class="share-btn" aria-label="Share FD calculation results"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg></button></div>
+                           <div class="summary-grid">
+                               <div class="summary-item"><span class="summary-label">Invested</span><span id="investedAmountFD" class="summary-value invested">₹0</span></div>
+                               <div class="summary-item"><span class="summary-label">Returns</span><span id="estimatedReturnsFD" class="summary-value returns">₹0</span></div>
+                           </div>
+                           <div class="summary-total"><span class="summary-label">Total Value</span><span id="totalValueFD" class="summary-value total">₹0</span></div>
+                           <div id="postTaxSectionFD" class="summary-extra hidden"><span class="summary-label">Post-Tax Total</span><span id="postTaxTotalValueFD" class="summary-value tax">₹0</span></div>
+                           <div id="realValueSectionFD" class="summary-extra hidden"><span class="summary-label">Real Value</span><span id="realTotalValueFD" class="summary-value real">₹0</span></div>
                         </div>
-                        <div id="swpSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-sm font-bold text-blue-800">SWP Summary</h3>
-                                <button class="share-btn" aria-label="Share SWP calculation results">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
-                                </button>
+                        
+                        <div id="swpSummary" class="summary-card hidden" aria-live="polite">
+                            <div class="summary-header"><h3>SWP Summary</h3><button class="share-btn" aria-label="Share SWP calculation results"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg></button></div>
+                            <div class="summary-grid swp-grid">
+                                <div class="summary-item"><span class="summary-label">Initial Corpus</span><span id="initialCorpusSWP" class="summary-value invested">₹0</span></div>
+                                <div class="summary-item"><span class="summary-label">Total Withdrawn</span><span id="totalWithdrawnSWP" class="summary-value returns">₹0</span></div>
+                                <div class="summary-item"><span class="summary-label">Total Interest</span><span id="totalInterestSWP" class="summary-value interest">₹0</span></div>
+                                <div class="summary-item"><span class="summary-label">Remaining</span><span id="remainingCorpusSWP" class="summary-value remaining">₹0</span></div>
                             </div>
-                            <div class="space-y-1 text-xs">
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Initial Corpus:</span><span id="initialCorpusSWP" class="font-semibold text-blue-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Withdrawn:</span><span id="totalWithdrawnSWP" class="font-semibold text-green-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Interest:</span><span id="totalInterestSWP" class="font-semibold text-purple-700">₹0</span></div>
-                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Remaining:</span><span id="remainingCorpusSWP" class="text-sm font-bold text-red-700">₹0</span></div>
-                                <div id="corpusExhaustedInfo" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Exhausted After:</span><span id="exhaustionPeriodSWP" class="font-bold text-orange-700"></span></div>
-                                <div id="realValueSectionSWP" class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200 hidden"><span class="font-semibold text-gray-800">Real Remaining:</span><span id="realRemainingCorpusSWP" class="font-bold text-orange-700">₹0</span></div>
-                            </div>
+                            <div id="corpusExhaustedInfo" class="summary-extra hidden"><span class="summary-label">Corpus Exhausted After</span><span id="exhaustionPeriodSWP" class="summary-value real"></span></div>
+                            <div id="realValueSectionSWP" class="summary-extra hidden"><span class="summary-label">Real Remaining</span><span id="realRemainingCorpusSWP" class="summary-value real">₹0</span></div>
                         </div>
-                        <div id="goalSummary" class="bg-blue-50/50 p-1.5 rounded-lg hidden" aria-live="polite">
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-sm font-bold text-blue-800">Goal Planner Summary</h3>
-                                <button class="share-btn" aria-label="Share Goal Planner calculation results">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
-                                </button>
+
+                        <div id="goalSummary" class="summary-card hidden" aria-live="polite">
+                            <div class="summary-header"><h3>Goal Planner Summary</h3><button class="share-btn" aria-label="Share Goal Planner calculation results"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg></button></div>
+                            <div class="summary-grid">
+                                <div class="summary-item"><span class="summary-label">Target Amount</span><span id="targetAmountGoal" class="summary-value total">₹0</span></div>
+                                <div class="summary-item"><span class="summary-label">Total Investment</span><span id="totalInvestmentGoal" class="summary-value invested">₹0</span></div>
                             </div>
-                            <div class="space-y-1 text-xs">
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Target Amount:</span><span id="targetAmountGoal" class="font-semibold text-blue-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Total Investment:</span><span id="totalInvestmentGoal" class="font-semibold text-green-700">₹0</span></div>
-                                <div class="flex justify-between items-center"><span class="text-gray-600">Expected Returns:</span><span id="expectedReturnsGoal" class="font-semibold text-purple-700">₹0</span></div>
-                                <div class="flex justify-between items-center border-t pt-1 mt-1 border-gray-200"><span class="font-semibold text-gray-800">Monthly Investment:</span><span id="monthlyInvestmentGoal" class="text-lg font-bold text-orange-700">₹0</span></div>
-                            </div>
+                            <div class="summary-total"><span class="summary-label">Monthly Investment Needed</span><span id="monthlyInvestmentGoal" class="summary-value goal">₹0</span></div>
+                            <div class="summary-extra hidden"><span class="summary-label">Expected Returns</span><span id="expectedReturnsGoal" class="summary-value returns">₹0</span></div>
                         </div>
+                        
                         <div class="flex justify-center items-center h-24 sm:h-28 md:h-32 w-full relative mt-3">
                             <canvas id="investmentDoughnutChart"></canvas>
                         </div>
