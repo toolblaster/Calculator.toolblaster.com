@@ -3,85 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disclaimer - Calculator.toolblaster</title>
-    <meta name="description" content="Disclaimer page for Calculator.toolblaster, outlining the terms of use, limitations of liability, and the nature of the financial information provided.">
+    <title>Disclaimer | Calculator.toolblaster.com</title>
+    <meta name="description" content="Disclaimer for Calculator.toolblaster, outlining terms of use, limitations of liability, and the nature of the financial information provided.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .content-section-card {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            /* margin-bottom is handled by the grid gap now */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+        .title-with-accent::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: #E34037;
+            margin: 0.5rem auto 0;
+        }
+        .text-xxs {
+            font-size: 0.65rem;
+        }
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        .info-item .icon-wrapper {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            color: #C22D2D;
+            background-color: #fef2f2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .info-item svg {
+            width: 16px;
+            height: 16px;
+        }
+        .info-item h2 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.1rem;
+        }
+        .info-item p, .info-item ul {
+            font-size: 0.7rem;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+        .info-item ul {
+            list-style-position: inside;
+            padding-left: 0.5rem;
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-slate-50">
 
     <div id="header-placeholder"></div>
 
-    <main class="container">
-        <div class="legal-content">
-            <h1>Disclaimer for Calculator.toolblaster</h1>
-
-            <p>The information provided by Calculator.toolblaster ("we," "us," or "our") on this website is for general informational and educational purposes only. All information on the site is provided in good faith; however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the site.</p>
-
-            <h2>1. Not Financial Advice</h2>
-            <ul>
-                <li>The content on this website, including all calculators, guides, articles, and tools, is not financial, investment, tax, or legal advice and should not be treated as such.</li>
-                <li>The information provided is impersonal and not tailored to the individual financial circumstances of any specific person. You should not make any decision, financial, investment, trading or otherwise, based on any of the information presented on this website without undertaking independent due diligence and consultation with a professional financial advisor.</li>
-            </ul>
-
-            <h2>2. Calculator and Tool Limitations</h2>
-            <ul>
-                <li>Our financial calculators are provided as tools for illustrative and educational purposes only. The results are not guaranteed to be accurate and are based on the assumptions and data you provide.</li>
-                <li>The projections regarding inflation, investment returns, and future values are hypothetical and may not reflect actual future performance. Market conditions, tax laws, and personal financial situations can change, which may significantly impact the results.</li>
-                <li>You should not rely solely on these calculators for making financial decisions. They are intended to help you understand financial concepts and explore potential scenarios.</li>
-            </ul>
-
-            <h2>3. Investment Risks</h2>
-            <ul>
-                <li>Investing in financial markets, including stocks, mutual funds, and other securities, involves risk, including the possible loss of the principal amount invested.</li>
-                <li>Past performance is not an indicator or guarantee of future results. There is no assurance that any investment strategy will be successful or that you will not experience losses.</li>
-                <li>You are solely responsible for evaluating the merits and risks associated with the use of any information or other content on this site before making any decisions based on such information.</li>
-            </ul>
-
-            <h2>4. Affiliate and Third-Party Links Disclosure</h2>
-            <ul>
-                <li>This site contains links to affiliate websites, and we may receive an affiliate commission for any purchases or sign-ups made by you on the affiliate website using such links. This comes at no additional cost to you.</li>
-                <li>Our affiliate partners include, but are not limited to, 5paisa and Upstox.</li>
-                <li>We only recommend products and services that we believe will add value to our readers. However, we are not responsible for the content, products, or services offered by third-party websites. Your interactions with any third-party website are subject to that website's own terms and policies.</li>
-            </ul>
-
-            <h2>5. No Warranties or Guarantees</h2>
-            <ul>
-                <li>This website and its content are provided on an "as is" and "as available" basis without any warranties of any kind. We disclaim all warranties, whether express or implied, including the warranty of merchantability, fitness for a particular purpose, and non-infringement.</li>
-                <li>We do not warrant that the website will operate error-free or that the website and its server are free of computer viruses or other harmful mechanisms.</li>
-            </ul>
-            
-            <h2>6. Limitation of Liability</h2>
-            <ul>
-                <li>Under no circumstances shall Calculator.toolblaster or its owners, affiliates, or employees be liable for any direct, indirect, incidental, special, or consequential damages that result from the use of, or the inability to use, the content, products, or services offered on this site.</li>
-                <li>This includes, but is not limited to, reliance by a user on any information obtained from the site, or that results from mistakes, omissions, interruptions, deletion of files or email, errors, defects, viruses, delays in operation or transmission, or any failure of performance.</li>
-            </ul>
-            
-            <h2>7. Contact Us</h2>
-            <p>If you have any questions about this disclaimer, please feel free to contact us through the appropriate channels provided on our website.</p>
-
-            <div class="share-buttons-container">
-                <p class="share-title">Share this page:</p>
-                <div class="share-buttons">
-                    <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank" aria-label="Share on WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.35 3.48 16.81L2 22L7.33 20.55C8.75 21.33 10.35 21.79 12.04 21.79C17.5 21.79 21.95 17.34 21.95 11.88C21.95 6.42 17.5 2 12.04 2M12.04 3.64C16.57 3.64 20.25 7.32 20.25 11.85C20.25 16.38 16.57 20.06 12.04 20.06C10.56 20.06 9.14 19.68 7.9 18.98L7.54 18.78L4.45 19.65L5.35 16.62L5.13 16.27C4.34 15.05 3.96 13.5 3.96 11.88C3.96 7.35 7.64 3.64 12.04 3.64M9.01 7.4C8.86 7.4 8.71 7.4 8.57 7.4C8.37 7.4 8.1 7.49 7.89 7.85C7.68 8.21 7.03 8.81 7.03 9.94C7.03 11.07 7.92 12.14 8.07 12.31C8.21 12.48 10.03 15.34 12.87 16.59C15.72 17.84 15.72 17.34 16.19 17.29C16.66 17.24 17.63 16.68 17.84 16.09C18.05 15.5 18.05 15.03 17.98 14.91C17.91 14.78 17.77 14.7 17.53 14.58C17.3 14.46 15.98 13.83 15.74 13.73C15.51 13.64 15.37 13.59 15.22 13.83C15.08 14.07 14.54 14.7 14.4 14.84C14.26 14.98 14.11 15.01 13.88 14.89C13.64 14.77 12.71 14.45 11.61 13.48C10.71 12.7 10.09 11.76 9.92 11.49C9.75 11.22 9.89 11.09 10.03 10.96C10.16 10.83 10.3 10.65 10.43 10.5C10.56 10.35 10.61 10.23 10.73 10.03C10.86 9.83 10.78 9.64 10.71 9.5C10.65 9.36 10.11 8.04 9.87 7.47C9.64 6.9 9.4 6.98 9.25 6.98L9.01 7.4Z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn facebook" id="share-facebook" target="_blank" aria-label="Share on Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn twitter" id="share-twitter" target="_blank" aria-label="Share on Twitter">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.35 0 11.37-6.08 11.37-11.37 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.98-2.08z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn linkedin" id="share-linkedin" target="_blank" aria-label="Share on LinkedIn">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.5 2.5-2.5c1.6 0 2.5 1.2 2.5 2.5 0 1.3-1 2.5-2.5 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"></path></svg>
-                    </a>
-                    <button class="share-btn copy-link" id="copy-link-btn" aria-label="Copy link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    </button>
-                </div>
+    <main class="container py-2 md:py-3">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center p-3 bg-red-50 rounded-xl mb-4 border border-red-200 shadow-sm">
+                <h1 class="text-lg md:text-xl font-extrabold text-gray-800 tracking-tight title-with-accent">Disclaimer</h1>
+                <p class="mt-2 text-xxs md:text-xs text-gray-600 max-w-2xl mx-auto">Please read this carefully. Your use of our site means you agree to these terms.</p>
             </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Section: General Information -->
+                <div class="content-section-card">
+                    <div class="info-item">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        </div>
+                        <div>
+                            <h2>General Information Only</h2>
+                            <p>The information on this website is for general informational and educational purposes only. While we strive for accuracy, we make no guarantees about the completeness or reliability of the content.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Not Financial Advice -->
+                <div class="content-section-card">
+                    <div class="info-item">
+                         <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M12 8v6"/><path d="M15 11h-6"/></svg>
+                        </div>
+                        <div>
+                            <h2>Not Financial Advice</h2>
+                            <ul class="list-disc">
+                                <li>The content on this site is <strong>not</strong> financial, investment, tax, or legal advice.</li>
+                                <li>Always consult with a qualified professional before making any financial decisions based on the information presented here.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Tool Limitations -->
+                <div class="content-section-card">
+                    <div class="info-item">
+                         <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M8 10h8"/><path d="M8 14h8"/><path d="M15 18h1"/></svg>
+                        </div>
+                        <div>
+                            <h2>Calculator & Tool Limitations</h2>
+                            <ul class="list-disc">
+                                <li>Our calculators are for illustrative purposes only. The results are hypothetical and not guaranteed.</li>
+                                <li>Market conditions and tax laws can change, impacting actual outcomes. Do not rely solely on these tools for decision-making.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section: Investment Risks -->
+                <div class="content-section-card">
+                    <div class="info-item">
+                         <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                        </div>
+                        <div>
+                            <h2>Investment Risks</h2>
+                            <ul class="list-disc">
+                                <li>All investing involves risk, including the potential loss of your principal amount.</li>
+                                <li>Past performance is not an indicator or guarantee of future results. You are solely responsible for evaluating the risks of any investment.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Affiliate Disclosure -->
+                 <div class="content-section-card">
+                    <div class="info-item">
+                         <div class="icon-wrapper">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <div>
+                            <h2>Affiliate Disclosure</h2>
+                            <ul class="list-disc">
+                                <li>This site contains affiliate links. We may earn a commission if you sign up or make a purchase through these links, at <strong>no extra cost to you</strong>.</li>
+                                <li>Our partners include 5paisa and Upstox. We are not responsible for the services offered by third-party websites.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Limitation of Liability -->
+                <div class="content-section-card">
+                    <div class="info-item">
+                         <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        </div>
+                        <div>
+                            <h2>Limitation of Liability</h2>
+                            <p>Under no circumstances shall we be liable for any damages that result from the use of, or inability to use, the information on this site. The website is provided on an "as-is" basis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
