@@ -213,7 +213,10 @@
 .border-orange-200 { border-color: #fed7aa; }
 
 .compact-seo-content .content-section { margin-top: 1rem; }
-.compact-seo-content .section-title-secondary { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; padding-bottom: 0.5rem; }
+/* This now specifically targets only the main H2 title */
+.compact-seo-content > h2.section-title-secondary { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.25rem; padding-bottom: 0.5rem; }
+/* This new rule targets the smaller H3 subheadings */
+.compact-seo-content h3.section-title-secondary { font-size: 1.0rem; font-weight: 700; }
 .compact-seo-content .section-title-secondary::after { display: none; }
 .compact-seo-content .section-subtitle { font-size: 0.7rem; margin-bottom: 0.75rem; }
 .compact-seo-content .card-container { gap: 0.5rem; }
