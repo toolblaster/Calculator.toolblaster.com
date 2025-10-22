@@ -1,5 +1,6 @@
 /* This file contains styles specifically for the financial calculator component.
   The main site styles are in style.css.
+  IMPROVED: Added comments and adjusted colors for better contrast.
 */
 
 .financial-calculator-wrapper {
@@ -11,9 +12,13 @@
 
 .calculator-container {
     width: 100%;
+    /* IMPROVED CONTRAST: Ensure background is consistently white for predictability */
+    background-color: #ffffff; 
 }
 
+/* Ensure section backgrounds have sufficient contrast with text */
 .calculator-container .bg-blue-50\/50 {
+    background-color: #eff6ff; /* blue-50 */
     border: 1px solid #dbeafe; /* Tailwind's blue-200 */
 }
 
@@ -28,13 +33,15 @@
 .range-slider::-webkit-slider-runnable-track { 
     width: 100%; 
     height: 6px; 
-    background: linear-gradient(to right, #3B82F6 var(--fill-percentage, 0%), #E5E7EB var(--fill-percentage, 0%)); 
+    /* IMPROVED CONTRAST: Using a slightly darker gray for the track */
+    background: linear-gradient(to right, #2563eb var(--fill-percentage, 0%), #d1d5db var(--fill-percentage, 0%)); /* blue-600, gray-300 */
     border-radius: 3px; 
 }
 .range-slider::-moz-range-track { 
     width: 100%; 
     height: 6px; 
-    background: linear-gradient(to right, #3B82F6 var(--fill-percentage, 0%), #E5E7EB var(--fill-percentage, 0%)); 
+    /* IMPROVED CONTRAST: Using a slightly darker gray for the track */
+    background: linear-gradient(to right, #2563eb var(--fill-percentage, 0%), #d1d5db var(--fill-percentage, 0%)); /* blue-600, gray-300 */
     border-radius: 3px; 
 }
 .range-slider::-webkit-slider-thumb { 
@@ -44,51 +51,57 @@
     width: 20px;
     height: 20px;
     border-radius: 50%; 
-    background: #2563EB; 
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); 
+    background: #1d4ed8; /* blue-700 - Darker thumb */
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4); /* Slightly stronger shadow */
 }
 .range-slider::-moz-range-thumb { 
     width: 20px;
     height: 20px;
     border-radius: 50%; 
-    background: #2563EB; 
+    background: #1d4ed8; /* blue-700 - Darker thumb */
     border: none; 
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); 
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4); /* Slightly stronger shadow */
 }
 .range-slider:focus { 
     outline: none; 
 }
 
+/* Smaller text utility */
 .text-xxs { 
     font-size: 0.6rem; 
     line-height: 0.8rem; 
+    /* IMPROVED CONTRAST: Ensure muted text is still readable */
+    color: #4b5563; /* gray-600 */
 }
 
+/* Input field styles */
 .manual-input { 
     width: 80px; 
     padding: 0.25rem; 
-    border: 1px solid #bfdbfe; /* Light blue accent border */
+    border: 1px solid #9ca3af; /* gray-400 - Darker border */
     border-radius: 0.25rem; 
     font-size: 0.7rem; 
     font-weight: 600; 
     text-align: center; 
-    background-color: #f3f4f6;
+    background-color: #f9fafb; /* gray-50 - Slightly off-white */
+    /* IMPROVED CONTRAST: Darker text color */
+    color: #1f2937; /* gray-800 */
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .manual-input:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+    border-color: #2563eb; /* blue-600 */
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3); /* blue-600 with opacity */
 }
 
-/* UPDATED: Added new class for input validation errors */
+/* Input validation error styles */
 .manual-input.input-error {
-    border-color: #ef4444; /* red-500 */
-    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3);
+    border-color: #dc2626; /* red-600 - Darker red */
+    box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.3); /* red-600 with opacity */
 }
 
-
+/* Adjust input width for larger screens */
 @media (min-width: 640px) { 
     .manual-input { 
         width: 100px; 
@@ -100,7 +113,7 @@
 .goal-templates-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.4rem; /* Squeezed gap */
+    gap: 0.4rem; 
 }
 
 @media (min-width: 640px) {
@@ -111,34 +124,35 @@
 
 .goal-template-btn {
     display: flex;
-    align-items: center; /* Vertical alignment */
-    padding: 0.4rem; /* Squeezed padding */
-    border: 1px solid #dbeafe;
+    align-items: center; 
+    padding: 0.4rem; 
+    border: 1px solid #d1d5db; /* gray-300 */
     border-radius: 0.5rem;
     background-color: #ffffff;
     cursor: pointer;
-    text-align: left; /* Align text to the left */
+    text-align: left; 
     transition: all 0.2s ease-in-out;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .goal-template-btn .icon-wrapper {
-    background-color: #eff6ff;
-    color: #3b82f6;
+    background-color: #eff6ff; /* blue-50 */
+    /* IMPROVED CONTRAST: Darker icon color */
+    color: #2563eb; /* blue-600 */
     border-radius: 50%;
-    width: 28px; /* Squeezed icon wrapper */
-    height: 28px; /* Squeezed icon wrapper */
+    width: 28px; 
+    height: 28px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 0.5rem; /* Squeezed margin */
-    flex-shrink: 0; /* Prevent icon from shrinking */
+    margin-right: 0.5rem; 
+    flex-shrink: 0; 
     transition: all 0.2s ease-in-out;
 }
 
 .goal-template-btn .icon-wrapper svg {
-    width: 16px; /* Squeezed icon itself */
-    height: 16px; /* Squeezed icon itself */
+    width: 16px; 
+    height: 16px; 
 }
 
 .goal-template-btn .text-wrapper {
@@ -147,56 +161,63 @@
 }
 
 .goal-template-btn .title {
-    font-size: 0.65rem; /* Squeezed font size */
+    font-size: 0.65rem; 
     font-weight: 600;
-    color: #1f2937;
+    /* IMPROVED CONTRAST: Darker title */
+    color: #111827; /* gray-900 */
     line-height: 1.2;
 }
 
 .goal-template-btn .subtitle {
-    font-size: 0.55rem; /* Squeezed font size */
-    color: #6b7280;
+    font-size: 0.55rem; 
+    /* IMPROVED CONTRAST: Darker subtitle */
+    color: #4b5563; /* gray-600 */
     line-height: 1.1;
 }
 
 .goal-template-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.07);
-    border-color: #93c5fd;
+    border-color: #93c5fd; /* blue-300 */
 }
 
+/* Active goal button styles */
 .goal-template-btn.active {
-    background-color: #fef2f2;
-    border-color: #E34037;
+    background-color: #fef2f2; /* red-50 */
+    border-color: #dc2626; /* red-600 */
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.07);
 }
 
 .goal-template-btn.active .icon-wrapper {
-    background-color: #E34037;
+    background-color: #dc2626; /* red-600 */
     color: #ffffff;
 }
 
 .goal-template-btn.active .title {
-    color: #C22D2D;
+    color: #991b1b; /* red-800 - Darker red */
 }
 /* --- END UPDATED GOAL TEMPLATE STYLES --- */
 
 
+/* Share button styles */
 .share-btn {
     padding: 0.25rem;
     border-radius: 50%;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color: #6b7280;
+    /* IMPROVED CONTRAST: Darker default color */
+    color: #4b5563; /* gray-600 */
     transition: all 0.2s ease-in-out;
 }
 .share-btn:hover {
-    background-color: #e5e7eb;
-    color: #1f2937;
+    background-color: #e5e7eb; /* gray-200 */
+    /* IMPROVED CONTRAST: Darker hover color */
+    color: #1f2937; /* gray-800 */
 }
 
+/* Adjust growth table font size on smaller screens */
 @media (max-width: 640px) {
     #growthTableContainer table { font-size: 0.7rem; }
     #growthTableContainer th, #growthTableContainer td { padding: 0.5rem 0.4rem; white-space: nowrap; }
@@ -206,48 +227,54 @@
 .step-up-toggle-container { display: flex; align-items: center; }
 .step-up-toggle { position: relative; display: inline-block; width: 50px; height: 24px; }
 .step-up-toggle input { opacity: 0; width: 0; height: 0; }
-.toggle-track { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
-.toggle-thumb { position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.7rem; font-weight: bold; color: #3B82F6; }
-.step-up-toggle input:checked + .toggle-track { background-color: #2563EB; }
+.toggle-track { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #9ca3af; transition: .4s; border-radius: 24px; } /* gray-400 */
+.toggle-thumb { position: absolute; content: ''; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.7rem; font-weight: bold; color: #1d4ed8; } /* blue-700 */
+.step-up-toggle input:checked + .toggle-track { background-color: #1d4ed8; } /* blue-700 */
 .step-up-toggle input:checked + .toggle-track .toggle-thumb { transform: translateX(26px); }
 .toggle-icon { position: absolute; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; transition: opacity 0.2s ease; }
 .toggle-icon-rupee { opacity: 0; }
 .step-up-toggle input:checked + .toggle-track .toggle-thumb .toggle-icon-percent { opacity: 0; }
 .step-up-toggle input:checked + .toggle-track .toggle-thumb .toggle-icon-rupee { opacity: 1; }
 
-#taxSection { border: 1px solid #dbeafe; }
-.text-orange-700 { color: #c2410c; }
+/* Tax section styles */
+#taxSection { 
+    border: 1px solid #dbeafe; /* blue-200 */
+    background-color: #eff6ff; /* blue-50 */
+}
+.text-orange-700 { color: #c2410c; } /* Should have sufficient contrast on light bg */
 .border-orange-200 { border-color: #fed7aa; }
 
+/* Styles for embedded compact SEO content */
 .compact-seo-content .content-section { margin-top: 1rem; }
-/* This now specifically targets only the main H2 title */
-.compact-seo-content > h2.section-title-secondary { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.25rem; padding-bottom: 0.5rem; }
-/* This new rule targets the smaller H3 subheadings */
-.compact-seo-content h3.section-title-secondary { font-size: 1.0rem; font-weight: 700; }
+.compact-seo-content > h2.section-title-secondary { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.25rem; padding-bottom: 0.5rem; color: #1f2937; /* gray-800 */}
+.compact-seo-content h3.section-title-secondary { font-size: 1.0rem; font-weight: 700; color: #1f2937; /* gray-800 */}
 .compact-seo-content .section-title-secondary::after { display: none; }
-.compact-seo-content .section-subtitle { font-size: 0.7rem; margin-bottom: 0.75rem; }
+.compact-seo-content .section-subtitle { font-size: 0.7rem; margin-bottom: 0.75rem; color: #374151; /* gray-700 */}
 .compact-seo-content .card-container { gap: 0.5rem; }
 .compact-seo-content .content-card { padding: 0.75rem; }
-.compact-seo-content .content-card strong { font-size: 0.75rem; margin-bottom: 0.25rem; }
-.compact-seo-content .content-card p { font-size: 0.65rem; line-height: 1.4; }
+.compact-seo-content .content-card strong { font-size: 0.75rem; margin-bottom: 0.25rem; color: #111827; /* gray-900 */}
+.compact-seo-content .content-card p { font-size: 0.65rem; line-height: 1.4; color: #374151; /* gray-700 */}
 .compact-seo-content .trust-card { padding: 0.75rem; }
-.compact-seo-content .trust-card strong { font-size: 0.75rem; }
-.compact-seo-content .trust-card p { font-size: 0.65rem; }
-.compact-seo-content .faq-item summary { font-size: 0.75rem; padding: 0.6rem 0.8rem; }
-.compact-seo-content .faq-item p { font-size: 0.65rem; padding: 0 0.8rem 0.6rem; }
-.compact-seo-content table { font-size: 0.75rem; }
+.compact-seo-content .trust-card strong { font-size: 0.75rem; color: #111827; /* gray-900 */}
+.compact-seo-content .trust-card p { font-size: 0.65rem; color: #374151; /* gray-700 */}
+.compact-seo-content .faq-item summary { font-size: 0.75rem; padding: 0.6rem 0.8rem; color: #111827; /* gray-900 */}
+.compact-seo-content .faq-item p { font-size: 0.65rem; padding: 0 0.8rem 0.6rem; color: #374151; /* gray-700 */}
+.compact-seo-content table { font-size: 0.75rem; color: #374151; /* gray-700 */}
 .compact-seo-content table th, .compact-seo-content table td { padding: 0.6rem; }
-.compact-seo-content table thead { font-size: 0.7rem; }
+.compact-seo-content table thead { font-size: 0.7rem; color: #1f2937; /* gray-800 */}
 
 
+/* Growth table container styles */
 #growthTableContainer { max-height: 300px; overflow-y: auto; }
+/* IMPROVED CONTRAST: Ensure table text is dark enough */
+#growthTableContainer table tbody { color: #1f2937; } /* gray-800 */
 
-/* --- NEW OUTPUT CARD STYLES --- */
+/* --- NEW OUTPUT CARD STYLES (with contrast improvements) --- */
 .summary-card {
     background-color: #f3f4f6; /* gray-100 */
     border-radius: 0.5rem;
     padding: 0.5rem;
-    border: 1px solid #e5e7eb; /* gray-200 */
+    border: 1px solid #d1d5db; /* gray-300 */
 }
 .summary-header {
     display: flex;
@@ -258,7 +285,7 @@
 .summary-header h3 {
     font-size: 0.8rem;
     font-weight: 700;
-    color: #1e3a8a; /* blue-900 */
+    color: #1e3a8a; /* blue-900 - Good contrast on gray-100 */
 }
 .summary-grid {
     display: grid;
@@ -267,19 +294,21 @@
     margin-bottom: 0.5rem;
 }
 .summary-grid.swp-grid {
-    grid-template-columns: 1fr 1fr; /* For 4 items */
+    grid-template-columns: 1fr 1fr; 
 }
 .summary-item {
     background-color: #ffffff;
     padding: 0.4rem;
     border-radius: 0.25rem;
     text-align: center;
+    border: 1px solid #e5e7eb; /* gray-200 */
 }
 .summary-label {
     display: block;
     font-size: 0.6rem;
     font-weight: 500;
-    color: #6b7280; /* gray-500 */
+    /* IMPROVED CONTRAST: Darker label on white */
+    color: #4b5563; /* gray-600 */
     margin-bottom: 0.1rem;
 }
 .summary-value {
@@ -287,10 +316,11 @@
     font-size: 0.9rem;
     font-weight: 700;
 }
-.summary-value.invested { color: #1d4ed8; } /* blue-800 */
-.summary-value.returns { color: #166534; } /* green-800 */
-.summary-value.interest { color: #86198f; } /* fuchsia-800 */
-.summary-value.remaining { color: #991b1b; } /* red-800 */
+/* Ensure value colors have sufficient contrast on white */
+.summary-value.invested { color: #1d4ed8; } /* blue-700 */
+.summary-value.returns { color: #15803d; } /* green-700 */
+.summary-value.interest { color: #a21caf; } /* fuchsia-700 */
+.summary-value.remaining { color: #b91c1c; } /* red-700 */
 
 .summary-total {
     background-color: #1e3a8a; /* blue-900 */
@@ -301,7 +331,7 @@
     margin-bottom: 0.5rem;
 }
 .summary-total .summary-label {
-    color: #dbeafe; /* blue-200 */
+    color: #bfdbfe; /* blue-200 */
     font-size: 0.7rem;
 }
 .summary-total .summary-value.total {
@@ -311,7 +341,7 @@
 .summary-total .summary-value.goal {
     font-size: 1.25rem;
     font-weight: 800;
-    color: #fef08a; /* yellow-200 */
+    color: #fde047; /* yellow-300 - better contrast than yellow-200 */
 }
 
 .summary-extra {
@@ -324,11 +354,14 @@
 .summary-extra .summary-label {
     font-size: 0.7rem;
     font-weight: 600;
+     /* IMPROVED CONTRAST: Darker label on gray-100 */
+    color: #374151; /* gray-700 */
 }
+/* Ensure extra value colors have good contrast on gray-100 */
 .summary-extra .summary-value.real {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #c2410c; /* orange-700 */
+    color: #b45309; /* yellow-700 */
 }
 .summary-extra .summary-value.tax {
     font-size: 0.9rem;
