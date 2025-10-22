@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disclaimer | Calculator.toolblaster.com</title>
-    <meta name="description" content="Disclaimer for Calculator.toolblaster, outlining terms of use, limitations of liability, and the nature of the financial information provided.">
+    <meta name="description" content="Disclaimer page for Calculator.toolblaster, outlining terms of use, limitations of liability, and the nature of financial information provided.">
+    <!-- Canonical Tag -->
     <link rel="canonical" href="https://calculator.toolblaster.com/legal/disclaimer.html" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,10 +14,10 @@
         .content-section-card {
             background-color: #ffffff;
             border-radius: 0.5rem;
-            padding: 1rem;
-            /* margin-bottom is handled by the grid gap now */
+            padding: 0.75rem; /* Squeezed */
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             border: 1px solid #e5e7eb;
+            height: 100%; /* Ensure cards in a row have same height */
         }
         .title-with-accent::after {
             content: '';
@@ -32,12 +33,12 @@
         .info-item {
             display: flex;
             align-items: flex-start;
-            gap: 0.75rem;
+            gap: 0.5rem; /* Squeezed */
         }
         .info-item .icon-wrapper {
             flex-shrink: 0;
-            width: 32px;
-            height: 32px;
+            width: 28px; /* Squeezed */
+            height: 28px; /* Squeezed */
             color: #C22D2D;
             background-color: #fef2f2;
             border-radius: 50%;
@@ -46,23 +47,23 @@
             justify-content: center;
         }
         .info-item svg {
-            width: 16px;
-            height: 16px;
+            width: 14px; /* Squeezed */
+            height: 14px; /* Squeezed */
         }
         .info-item h2 {
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* Squeezed */
             font-weight: 700;
             color: #1f2937;
             margin-bottom: 0.1rem;
         }
         .info-item p, .info-item ul {
-            font-size: 0.7rem;
+            font-size: 0.65rem; /* Squeezed */
             color: #4b5563;
             line-height: 1.5;
         }
-        .info-item ul {
+         .info-item ul {
             list-style-position: inside;
-            padding-left: 0.5rem;
+            padding-left: 0.25rem;
         }
     </style>
 </head>
@@ -70,101 +71,104 @@
 
     <div id="header-placeholder"></div>
 
-    <main class="container py-2 md:py-3">
+    <main class="container py-2 md:py-3"> <!-- Squeezed padding -->
         <div class="max-w-4xl mx-auto">
-            <div class="text-center p-3 bg-red-50 rounded-xl mb-4 border border-red-200 shadow-sm">
+            <!-- Main Heading Section -->
+            <div class="text-center p-3 bg-red-50 rounded-xl mb-3 border border-red-200 shadow-sm"> <!-- Squeezed padding/margin -->
                 <h1 class="text-lg md:text-xl font-extrabold text-gray-800 tracking-tight title-with-accent">Disclaimer</h1>
-                <p class="mt-2 text-xxs md:text-xs text-gray-600 max-w-2xl mx-auto">Please read this carefully. Your use of our site means you agree to these terms.</p>
+                <p class="mt-2 text-xxs md:text-xs text-gray-600 max-w-2xl mx-auto">Important information regarding the use of our website, tools, and content. Please read carefully.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Section: General Information -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2"> <!-- Squeezed gap -->
+                
+                <!-- Not Financial Advice -->
                 <div class="content-section-card">
                     <div class="info-item">
                         <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                         </div>
                         <div>
-                            <h2>General Information Only</h2>
-                            <p>The information on this website is for general informational and educational purposes only. While we strive for accuracy, we make no guarantees about the completeness or reliability of the content.</p>
+                            <h2>1. Not Financial Advice</h2>
+                            <p>Information on this site is for general educational purposes only. It is not tailored financial, investment, tax, or legal advice. Consult a professional before making decisions based on this content.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Section: Not Financial Advice -->
+                <!-- Calculator Limitations -->
                 <div class="content-section-card">
                     <div class="info-item">
-                         <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M12 8v6"/><path d="M15 11h-6"/></svg>
-                        </div>
-                        <div>
-                            <h2>Not Financial Advice</h2>
-                            <ul class="list-disc">
-                                <li>The content on this site is <strong>not</strong> financial, investment, tax, or legal advice.</li>
-                                <li>Always consult with a qualified professional before making any financial decisions based on the information presented here.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section: Tool Limitations -->
-                <div class="content-section-card">
-                    <div class="info-item">
-                         <div class="icon-wrapper">
+                        <div class="icon-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M8 10h8"/><path d="M8 14h8"/><path d="M15 18h1"/></svg>
                         </div>
                         <div>
-                            <h2>Calculator & Tool Limitations</h2>
-                            <ul class="list-disc">
-                                <li>Our calculators are for illustrative purposes only. The results are hypothetical and not guaranteed.</li>
-                                <li>Market conditions and tax laws can change, impacting actual outcomes. Do not rely solely on these tools for decision-making.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Section: Investment Risks -->
-                <div class="content-section-card">
-                    <div class="info-item">
-                         <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
-                        </div>
-                        <div>
-                            <h2>Investment Risks</h2>
-                            <ul class="list-disc">
-                                <li>All investing involves risk, including the potential loss of your principal amount.</li>
-                                <li>Past performance is not an indicator or guarantee of future results. You are solely responsible for evaluating the risks of any investment.</li>
-                            </ul>
+                            <h2>2. Calculator Limitations</h2>
+                            <p>Our calculators are illustrative tools. Results depend on your inputs and assumptions (like future returns/inflation) and are not guaranteed. Do not rely solely on them for decisions.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Section: Affiliate Disclosure -->
-                 <div class="content-section-card">
+                <!-- Investment Risks -->
+                <div class="content-section-card">
                     <div class="info-item">
-                         <div class="icon-wrapper">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <div class="icon-wrapper">
+                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                         </div>
                         <div>
-                            <h2>Affiliate Disclosure</h2>
-                            <ul class="list-disc">
-                                <li>This site contains affiliate links. We may earn a commission if you sign up or make a purchase through these links, at <strong>no extra cost to you</strong>.</li>
-                                <li>Our partners include 5paisa and Upstox. We are not responsible for the services offered by third-party websites.</li>
-                            </ul>
+                            <h2>3. Investment Risks</h2>
+                            <p>Investing involves risk, including potential loss of principal. Past performance doesn't guarantee future results. You are solely responsible for evaluating risks before investing.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Section: Limitation of Liability -->
+                <!-- Affiliate Disclosure -->
                 <div class="content-section-card">
                     <div class="info-item">
-                         <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        <div class="icon-wrapper">
+                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                         </div>
                         <div>
-                            <h2>Limitation of Liability</h2>
-                            <p>Under no circumstances shall we be liable for any damages that result from the use of, or inability to use, the information on this site. The website is provided on an "as-is" basis.</p>
+                            <h2>4. Affiliate Disclosure</h2>
+                            <p>This site contains affiliate links (e.g., to 5paisa, Upstox). We may earn a commission if you sign up or purchase through these links, at no extra cost to you. We are not responsible for third-party services.</p>
                         </div>
+                    </div>
+                </div>
+
+                <!-- No Warranties -->
+                <div class="content-section-card">
+                    <div class="info-item">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="12" y1="12" x2="9" y2="15"/><line x1="12" y1="12" x2="15" y2="15"/></svg>
+                        </div>
+                        <div>
+                            <h2>5. No Warranties</h2>
+                            <p>The Site and its content are provided "as is". We make no warranties regarding accuracy, reliability, or completeness. We don't guarantee the site will be error-free or free of viruses.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Limitation of Liability -->
+                <div class="content-section-card">
+                    <div class="info-item">
+                        <div class="icon-wrapper">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+                        </div>
+                        <div>
+                            <h2>6. Limitation of Liability</h2>
+                            <p>We are not liable for any direct, indirect, or consequential damages resulting from your use of, or inability to use, the Site or its content, even if advised of potential damages.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Us Section -->
+            <div class="content-section-card mt-2"> <!-- Squeezed margin -->
+                <div class="info-item">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    </div>
+                    <div>
+                        <h2>7. Contact Us</h2>
+                        <p>If you have any questions about this disclaimer, please contact us via the details on our <a href="aboutus.html">About Us</a> page.</p>
                     </div>
                 </div>
             </div>
