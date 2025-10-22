@@ -21,7 +21,7 @@
                     <li><a href="/quizzes/">Quizzes</a></li>
                     <li><a href="/guides/">Financial Guides</a></li>
                     <li><a href="/financial-hub.html" class="flex items-center gap-1">
-                        Start Journey 
+                        Start Journey
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </a></li>
                 </ul>
@@ -33,4 +33,49 @@
             </button>
         </nav>
     </div>
+    <!-- Add Favicon Links Here -->
+    <!-- It's generally better to place favicon links directly in the <head> of each HTML file -->
+    <!-- However, if loading via JS is the only option, ensure this runs early -->
+    <script>
+      (function() {
+        const createLink = (rel, href, type, sizes) => {
+          const link = document.createElement('link');
+          link.rel = rel;
+          link.href = href;
+          if (type) link.type = type;
+          if (sizes) link.sizes = sizes;
+          document.head.appendChild(link);
+        };
+
+        // Get base path relative to the root
+        const pathSegments = window.location.pathname.split('/').filter(Boolean);
+        let basePath = '/'; // Default for root
+        if (pathSegments.length > 0) {
+            // Adjust depth based on how many directory levels deep the current page is
+            // Example: /calculators/emi-calculator/ -> ../../
+            basePath = '../'.repeat(pathSegments.length);
+        }
+         // Adjust specifically for root index.html if needed
+        if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+             basePath = ''; // No prefix needed if already at root
+        }
+
+
+        // Fallback ICO for older browsers/systems
+        createLink('icon', basePath + 'favicon.ico', 'image/x-icon');
+        // SVG Icon (Modern browsers prefer this if available)
+        createLink('icon', basePath + 'favicon.svg', 'image/svg+xml');
+        // PNG sizes for various platforms
+        createLink('icon', basePath + 'favicon-16x16.png', 'image/png', '16x16');
+        createLink('icon', basePath + 'favicon-32x32.png', 'image/png', '32x32');
+        createLink('icon', basePath + 'favicon-48x48.png', 'image/png', '48x48');
+        createLink('icon', basePath + 'favicon-96x96.png', 'image/png', '96x96');
+        // Apple Touch Icon (iOS, etc.)
+        createLink('apple-touch-icon', basePath + 'apple-touch-icon.png', null, '180x180');
+        // Android/Chrome Icon
+        createLink('icon', basePath + 'android-chrome-192x192.png', 'image/png', '192x192');
+        // Optional: Larger size for high-res displays
+        createLink('icon', basePath + 'android-chrome-512x512.png', 'image/png', '512x512');
+      })();
+    </script>
 </header>
