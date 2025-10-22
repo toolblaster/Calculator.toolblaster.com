@@ -1,25 +1,81 @@
 /* Styles specific to the PPF Calculator */
+/* IMPROVED CONTRAST: Added comments and adjusted colors */
 
 #extensionContributionDiv {
     transition: all 0.3s ease-in-out;
 }
 
 #yearlyGrowthContainer {
-    max-height: 300px; /* Constrain height and enable vertical scrolling */
+    max-height: 300px; 
     overflow-y: auto;
 }
 
 #yearlyGrowthContainer table {
-    font-size: 0.65rem; /* Squeezed font size */
+    font-size: 0.65rem; 
 }
 
 #yearlyGrowthContainer th {
-    font-size: 0.6rem; /* Squeezed font size */
+    font-size: 0.6rem; 
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+    /* IMPROVED CONTRAST: Darker header text */
+    color: #374151; /* gray-700 */
+    background-color: #f3f4f6; /* gray-100 */
 }
 
 #yearlyGrowthContainer td {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+    /* IMPROVED CONTRAST: Ensure body text is dark enough */
+    color: #1f2937; /* gray-800 */
+}
+
+/* Ensure button text has good contrast */
+#decreaseExtension, #increaseExtension {
+    background-color: #f3f4f6; /* gray-100 */
+    border: 1px solid #d1d5db; /* gray-300 */
+    color: #374151; /* gray-700 */
+}
+#decreaseExtension:hover, #increaseExtension:hover {
+    background-color: #e5e7eb; /* gray-200 */
+    color: #1f2937; /* gray-800 */
+}
+#decreaseExtension:disabled, #increaseExtension:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f3f4f6;
+    color: #9ca3af; /* gray-400 */
+}
+
+/* Loan & Withdrawal Section Specific Contrast */
+.bg-green-50\/50 {
+    background-color: #f0fdf4; /* green-50 */
+    border: 1px solid #a7f3d0; /* green-200 */
+}
+.text-green-800 {
+    color: #14532d; /* green-900 - Darker green for heading */
+}
+.text-green-700 {
+    color: #15803d; /* green-700 */
+}
+
+/* Ensure labels in Loan/Withdrawal section are readable */
+.bg-green-50\/50 label {
+    color: #166534; /* green-800 */
+}
+
+/* Ensure year display has good contrast */
+#lwYearDisplay {
+    color: #14532d; /* green-900 */
+}
+
+/* Ensure result text has good contrast */
+.bg-green-50\/50 .bg-white p {
+    color: #374151; /* gray-700 */
+}
+.bg-green-50\/50 .bg-white .font-semibold {
+    color: #4b5563; /* gray-600 */
+}
+.bg-green-50\/50 .bg-white .font-bold {
+    color: #15803d; /* green-700 */
 }
