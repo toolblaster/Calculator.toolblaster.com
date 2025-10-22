@@ -1,7 +1,41 @@
 <!-- 
   This file contains the comprehensive, SEO-focused content for the main page.
   This version has been updated for better SEO structure, user engagement, and visual clarity.
+  ADDED specific mobile-first styles for the comparison table.
 -->
+<style>
+    /* Add styles specifically for the comparison table for mobile */
+    .mobile-comparison-table {
+        font-size: 0.6rem; /* Even smaller font on mobile */
+        word-break: normal; /* Prevent breaking mid-word unless necessary */
+    }
+    .mobile-comparison-table th,
+    .mobile-comparison-table td {
+        padding: 0.3rem 0.2rem; /* Tighter padding on mobile */
+        white-space: normal; /* Allow wrapping */
+        hyphens: auto; /* Help with word breaks */
+    }
+     @media (min-width: 640px) { /* Apply slightly larger styles for sm screens and up */
+        .mobile-comparison-table {
+            font-size: 0.65rem;
+        }
+        .mobile-comparison-table th,
+        .mobile-comparison-table td {
+            padding: 0.4rem;
+        }
+    }
+     @media (min-width: 768px) { /* Original styles for md screens and up */
+        .mobile-comparison-table {
+            font-size: 0.75rem; /* Back to original size */
+        }
+        .mobile-comparison-table th,
+        .mobile-comparison-table td {
+            padding: 0.6rem; /* Back to original padding */
+             white-space: normal; /* Ensure text wraps properly */
+        }
+    }
+</style>
+
 <div class="legal-content compact-seo-content" style="padding: 0.5rem 1rem 1rem;">
     
     <h2 class="section-title-secondary" style="font-size: 1.1rem; margin-bottom: 0.25rem;">India's Ultimate All-in-One Financial Calculator</h2>
@@ -111,7 +145,8 @@
     <div class="content-section bg-green-50 p-3 rounded-lg border border-green-200">
         <h3 class="section-title-secondary">At-a-Glance Comparison: Which Investment Tool is Right for You?</h3>
         <div class="overflow-x-auto">
-            <table class="w-full text-xs text-left">
+             <!-- Applied mobile-first table styles -->
+            <table class="w-full text-left mobile-comparison-table">
                 <thead class="bg-gray-200">
                     <tr>
                         <th class="p-2 font-semibold">Tool</th>
