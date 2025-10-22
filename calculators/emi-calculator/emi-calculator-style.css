@@ -1,42 +1,78 @@
 /* Styles specific to the EMI Calculator */
+/* IMPROVED CONTRAST: Added comments and adjusted colors */
 
-/* NEW styles for preset buttons */
-.preset-btn.active {
-    background-color: #2563EB; /* Tailwind's blue-600 */
-    color: #FFFFFF;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px); /* Slight lift effect */
+/* Preset buttons */
+.preset-btn {
+    background-color: #e5e7eb; /* gray-200 */
+    color: #374151; /* gray-700 */
+    border: 1px solid #d1d5db; /* gray-300 */
 }
-
+.preset-btn:hover {
+    background-color: #d1d5db; /* gray-300 */
+    color: #1f2937; /* gray-800 */
+}
+.preset-btn.active {
+    background-color: #1d4ed8; /* blue-700 */
+    color: #FFFFFF;
+    border-color: #1d4ed8; /* blue-700 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
 .preset-btn.active:hover {
-    background-color: #1D4ED8; /* A slightly darker blue for hover */
+    background-color: #1e40af; /* blue-800 */
+    border-color: #1e40af; /* blue-800 */
 }
 
 
 #prepaymentResultSection.hidden {
     display: none;
 }
+/* IMPROVED CONTRAST: Ensure text in this section is readable */
+#prepaymentResultSection {
+    background-color: #f0fdf4; /* green-50 */
+    border: 1px solid #a7f3d0; /* green-200 */
+}
+#prepaymentResultSection h2 {
+    color: #14532d; /* green-900 */
+}
+#prepaymentResultSection .bg-white p {
+    color: #374151; /* gray-700 */
+}
+#prepaymentResultSection .font-semibold {
+    color: #4b5563; /* gray-600 */
+}
+#prepaymentResultSection .font-bold {
+    color: #15803d; /* green-700 */
+}
+
 
 #amortizationTableContainer {
-    max-height: 320px; /* Constrain height and enable vertical scrolling */
+    max-height: 320px;
     overflow-y: auto;
 }
 
 #amortizationTableContainer table {
-    font-size: 0.65rem; /* Squeezed font size */
+    font-size: 0.65rem;
 }
 
 #amortizationTableContainer th {
     font-size: 0.65rem;
+    /* IMPROVED CONTRAST: Darker header text */
+    color: #374151; /* gray-700 */
+    background-color: #f3f4f6; /* gray-100 */
+}
+/* IMPROVED CONTRAST: Ensure body text is dark enough */
+#amortizationTableContainer tbody {
+    color: #1f2937; /* gray-800 */
 }
 
 #amortizationTableContainer .prepayment-row td {
-    background-color: #dcfce7;
-    color: #15803d;
+    background-color: #dcfce7; /* green-100 */
+    color: #166534; /* green-800 */
     font-weight: 600;
 }
 
-/* Share Modal Styles */
+/* Share Modal Styles (Contrast already good, no changes needed) */
 .share-modal {
     position: fixed;
     z-index: 50;
@@ -160,7 +196,7 @@
     background-color: #1d4ed8;
 }
 
-/* Print-specific styles */
+/* Print-specific styles (No contrast issues) */
 @media print {
     body * {
         visibility: hidden;
@@ -186,76 +222,60 @@
 }
 
 /* --- Styles for Tax Benefit Section --- */
+/* IMPROVED CONTRAST: Ensure text in this section is readable */
 #taxBenefitSection {
-    background-image: linear-gradient(to right, #e0e7ff, #f3e8ff); /* Light indigo to light purple gradient */
-    border: 1px solid #c7d2fe; /* Indigo-200 */
+    background-color: #eef2ff; /* indigo-50 */
+    border: 1px solid #c7d2fe; /* indigo-200 */
     padding: 0.75rem;
     border-radius: 0.5rem;
     margin-top: 0.5rem;
 }
-
 #taxBenefitSection h2 {
-    color: #312e81; /* Darker indigo for better contrast */
+    color: #312e81; /* indigo-900 */
+}
+#taxBenefitSection label {
+    color: #4338ca; /* indigo-700 */
+}
+#taxBenefitSection .bg-white p {
+    color: #374151; /* gray-700 */
+}
+#taxBenefitSection .font-semibold {
+    color: #4b5563; /* gray-600 */
+}
+#taxBenefitSection .font-bold {
+    color: #4f46e5; /* indigo-600 */
+}
+#totalTaxSaving {
+    color: #15803d; /* green-700 */
 }
 
-/* --- Squeezed Styles for SEO Content --- */
-.compact-seo-content .content-section {
-    margin-top: 1rem; /* Reduced from 1.25rem */
-}
-.compact-seo-content .section-title-secondary {
-    font-size: 0.9rem;
-    margin-bottom: 0.25rem;
-    padding-bottom: 0.25rem; /* Reduced */
-}
-.compact-seo-content .section-title-secondary::after {
-    margin-top: 0.25rem; /* Reduced */
-}
-.compact-seo-content .section-subtitle {
-    font-size: 0.65rem; /* Reduced */
-    margin-bottom: 0.5rem; /* Reduced */
-}
-.compact-seo-content .card-container {
-    gap: 0.5rem;
-}
-.compact-seo-content .content-card {
-    padding: 0.5rem; /* Reduced */
-}
-.compact-seo-content .content-card h3 {
-    font-size: 0.7rem; /* Reduced */
-    margin-bottom: 0.25rem;
-}
-.compact-seo-content .content-card p {
-    font-size: 0.6rem; /* Reduced */
-    line-height: 1.3;
-}
-.compact-seo-content .trust-card {
-    padding: 0.75rem;
-}
-.compact-seo-content .trust-card strong {
-    font-size: 0.7rem; /* Reduced */
-}
-.compact-seo-content .trust-card p {
-    font-size: 0.65rem;
-    line-height: 1.4;
-    margin-bottom: 0.5rem;
+
+/* --- Squeezed Styles for SEO Content (Contrast improvements) --- */
+/* IMPROVED CONTRAST: Applied darker text colors */
+.compact-seo-content .content-section { margin-top: 1rem; }
+.compact-seo-content .section-title-secondary { font-size: 0.9rem; margin-bottom: 0.25rem; padding-bottom: 0.25rem; color: #1f2937; /* gray-800 */}
+.compact-seo-content .section-title-secondary::after { margin-top: 0.25rem; }
+.compact-seo-content .section-subtitle { font-size: 0.65rem; margin-bottom: 0.5rem; color: #374151; /* gray-700 */}
+.compact-seo-content .card-container { gap: 0.5rem; }
+.compact-seo-content .content-card { padding: 0.5rem; }
+.compact-seo-content .content-card h3 { font-size: 0.7rem; margin-bottom: 0.25rem; color: #111827; /* gray-900 */}
+.compact-seo-content .content-card p { font-size: 0.6rem; line-height: 1.3; color: #374151; /* gray-700 */}
+.compact-seo-content .trust-card { padding: 0.75rem; }
+.compact-seo-content .trust-card h3 { font-size: 0.9rem; font-weight: 700; color: #1f2937; /* gray-800 */}
+.compact-seo-content .trust-card strong { font-size: 0.7rem; color: #111827; /* gray-900 */}
+.compact-seo-content .trust-card p { font-size: 0.65rem; line-height: 1.4; margin-bottom: 0.5rem; color: #374151; /* gray-700 */}
+.compact-seo-content .trust-card ul li { margin-bottom: 0.5rem; }
+.compact-seo-content .trust-card svg { width: 16px; height: 16px; margin-right: 0.5rem; margin-top: 2px; }
+.compact-seo-content .faq-item summary { font-size: 0.7rem; padding: 0.5rem 0.75rem; color: #111827; /* gray-900 */}
+.compact-seo-content .faq-item p { font-size: 0.65rem; padding: 0 0.75rem 0.5rem; color: #374151; /* gray-700 */}
+
+/* Floating rate section contrast */
+#floatingRateSection label {
+    color: #374151; /* gray-700 */
 }
 
-.compact-seo-content .trust-card ul li {
-    margin-bottom: 0.5rem;
-}
-
-.compact-seo-content .trust-card svg {
-    width: 16px;
-    height: 16px;
-    margin-right: 0.5rem;
-    margin-top: 2px;
-}
-
-.compact-seo-content .faq-item summary {
-    font-size: 0.7rem; /* Reduced */
-    padding: 0.5rem 0.75rem; /* Reduced */
-}
-.compact-seo-content .faq-item p {
-    font-size: 0.65rem;
-    padding: 0 0.75rem 0.5rem; /* Reduced */
-}
+/* Ensure result texts have good contrast */
+#monthlyEmi { color: #ea580c; } /* orange-600 */
+#newEmi { color: #ea580c; } /* orange-600 */
+#principalAmount, #totalInterest { color: #1f2937; } /* gray-800 */
+#totalPayment { color: #5b21b6; } /* purple-800 */
