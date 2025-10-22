@@ -34,6 +34,70 @@
              white-space: normal; /* Ensure text wraps properly */
         }
     }
+    /* Style for the new calculator modes section */
+    .mode-card {
+        background-color: #fff;
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        border: 1px solid #e5e7eb;
+        transition: all 0.2s ease;
+        display: flex; /* Use flexbox for layout */
+        align-items: flex-start; /* Align items to the top */
+        gap: 0.75rem; /* Space between icon and text */
+    }
+    .mode-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    .mode-card .icon-wrapper {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #eff6ff; /* blue-50 */
+        color: #3b82f6; /* blue-500 */
+    }
+     .mode-card .icon-wrapper svg {
+        width: 16px;
+        height: 16px;
+    }
+    .mode-card .text-content {
+        flex-grow: 1;
+    }
+    .mode-card strong {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #1f2937; /* gray-800 */
+        display: block; /* Make it block level */
+        margin-bottom: 0.1rem;
+    }
+    .mode-card p {
+        font-size: 0.65rem;
+        color: #4b5563; /* gray-600 */
+        line-height: 1.4;
+    }
+    /* Added styles for insights within mode cards */
+    .mode-insights {
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        border-top: 1px dashed #d1d5db; /* gray-300 */
+        font-size: 0.6rem; /* Smaller font for insights */
+        color: #374151; /* gray-700 */
+    }
+    .mode-insights span {
+        display: block; /* Each insight on a new line */
+        margin-bottom: 0.2rem;
+    }
+    .mode-insights span strong { /* Style the labels */
+        font-weight: 600;
+        color: #1e3a8a; /* blue-900 */
+         display: inline; /* Keep label inline */
+         margin-bottom: 0;
+    }
+
 </style>
 
 <div class="legal-content compact-seo-content" style="padding: 0.5rem 1rem 1rem;">
@@ -78,7 +142,7 @@
     </div>
     
     <div class="content-section bg-red-50 p-3 rounded-lg border border-red-200">
-        <h3 class="section-title-secondary">How to Use This All-in-One Tool Effectively</h3>
+        <h3 class="section-title-secondary">How to Use This All-in-One Tool Effectively?</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mt-3">
             <!-- Step 1 -->
             <div class="flex items-baseline p-2 bg-white rounded-lg border shadow-sm">
@@ -115,6 +179,87 @@
         </div>
     </div>
 
+    <!-- UPDATED SECTION: Explaining the Calculator Modes -->
+    <div class="content-section bg-indigo-50 p-3 rounded-lg border border-indigo-200">
+        <h3 class="section-title-secondary">Understanding Your Investment Options</h3>
+        <p class="section-subtitle">Our calculator adapts to your needs. Here's a quick guide to each mode:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-3">
+            <div class="mode-card">
+                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
+                <div class="text-content">
+                    <strong>SIP (Systematic Investment Plan)</strong>
+                    <p>Invest fixed amounts regularly into mutual funds. <strong>Purpose:</strong> Build wealth consistently over time.</p>
+                    <div class="mode-insights">
+                        <span><strong>Ideal Use:</strong> Long-term goals (retirement, education).</span>
+                        <span><strong>Key Benefit:</strong> Discipline, Rupee Cost Averaging.</span>
+                        <span><strong>Risk/Return:</strong> Medium-High/Variable.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mode-card">
+                 <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+                <div class="text-content">
+                    <strong>Lumpsum</strong>
+                    <p>Invest a large, one-time amount. <strong>Purpose:</strong> Maximize compounding time for large sums.</p>
+                    <div class="mode-insights">
+                        <span><strong>Ideal Use:</strong> Bonus, inheritance, long horizon.</span>
+                        <span><strong>Key Benefit:</strong> Maximizes time for growth.</span>
+                        <span><strong>Risk/Return:</strong> High/Variable (Timing sensitive).</span>
+                    </div>
+                </div>
+            </div>
+             <div class="mode-card">
+                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg></div>
+                <div class="text-content">
+                    <strong>RD (Recurring Deposit)</strong>
+                    <p>Save fixed amounts monthly/quarterly with guaranteed returns. <strong>Purpose:</strong> Achieve short-term goals safely.</p>
+                    <div class="mode-insights">
+                        <span><strong>Ideal Use:</strong> Short-term goals (1-3 yrs), emergency fund buildup.</span>
+                        <span><strong>Key Benefit:</strong> Guaranteed return, capital safety.</span>
+                        <span><strong>Risk/Return:</strong> Risk-Free/Fixed.</span>
+                    </div>
+                </div>
+            </div>
+             <div class="mode-card">
+                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M7 12v4"/><path d="M12 12v4"/><path d="M17 12v4"/><path d="M5 8v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg></div>
+                <div class="text-content">
+                    <strong>FD (Fixed Deposit)</strong>
+                    <p>Invest a lumpsum for a fixed period with guaranteed returns. <strong>Purpose:</strong> Park funds safely, earn predictable interest.</p>
+                    <div class="mode-insights">
+                        <span><strong>Ideal Use:</strong> Capital protection, very short term goals.</span>
+                        <span><strong>Key Benefit:</strong> Absolute safety, predictable income.</span>
+                        <span><strong>Risk/Return:</strong> Risk-Free/Fixed.</span>
+                    </div>
+                </div>
+            </div>
+             <div class="mode-card">
+                 <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                <div class="text-content">
+                    <strong>SWP (Systematic Withdrawal Plan)</strong>
+                    <p>Withdraw fixed amounts regularly from your investment corpus. <strong>Purpose:</strong> Generate tax-efficient retirement income.</p>
+                    <div class="mode-insights">
+                        <span><strong>Ideal Use:</strong> Post-retirement income generation.</span>
+                        <span><strong>Key Benefit:</strong> Tax-efficient, regular cash flow.</span>
+                        <span><strong>Risk/Return:</strong> Low-Medium/Variable (Stable).</span>
+                    </div>
+                </div>
+            </div>
+             <div class="mode-card">
+                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                <div class="text-content">
+                    <strong>Goal Planner</strong>
+                    <p>Calculate the monthly investment needed to reach a specific target. <strong>Purpose:</strong> Turn dreams into actionable plans.</p>
+                    <div class="mode-insights">
+                        <span><strong>Ideal Use:</strong> Planning any financial goal (car, house, retirement).</span>
+                        <span><strong>Key Benefit:</strong> Quantifies required SIP/investment.</span>
+                        <span><strong>Risk/Return:</strong> N/A (Planning Tool).</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END UPDATED SECTION -->
+
     <div class="content-section bg-gray-50 p-3 rounded-lg border border-gray-200">
         <h3 class="section-title-secondary">Who is This Investment Calculator For?</h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-3">
@@ -142,31 +287,6 @@
         </div>
     </div>
     
-    <div class="content-section bg-green-50 p-3 rounded-lg border border-green-200">
-        <h3 class="section-title-secondary">At-a-Glance Comparison: Which Investment Tool is Right for You?</h3>
-        <div class="overflow-x-auto">
-             <!-- Applied mobile-first table styles -->
-            <table class="w-full text-left mobile-comparison-table">
-                <thead class="bg-gray-200">
-                    <tr>
-                        <th class="p-2 font-semibold">Tool</th>
-                        <th class="p-2 font-semibold">Best For</th>
-                        <th class="p-2 font-semibold">Risk Level</th>
-                        <th class="p-2 font-semibold">Returns</th>
-                        <th class="p-2 font-semibold">Taxation</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white">
-                    <tr class="border-b"><td class="p-2 font-bold">SIP</td><td class="p-2">Long-term wealth creation (5+ years)</td><td class="p-2">Market-linked (Medium-High)</td><td class="p-2">Variable (potential for 12%+)</td><td class="p-2">Tax-efficient (LTCG)</td></tr>
-                    <tr class="border-b"><td class="p-2 font-bold">Lumpsum</td><td class="p-2">One-time large investment</td><td class="p-2">Market-linked (High)</td><td class="p-2">Variable (high potential)</td><td class="p-2">Tax-efficient (LTCG)</td></tr>
-                    <tr class="border-b"><td class="p-2 font-bold">RD</td><td class="p-2">Short-term goals (1-3 years)</td><td class="p-2">Risk-Free</td><td class="p-2">Guaranteed & Fixed</td><td class="p-2">Taxed at slab rate</td></tr>
-                    <tr class="border-b"><td class="p-2 font-bold">FD</td><td class="p-2">Capital safety, parking funds</td><td class="p-2">Risk-Free</td><td class="p-2">Guaranteed & Fixed</td><td class="p-2">Taxed at slab rate</td></tr>
-                    <tr><td class="p-2 font-bold">SWP</td><td class="p-2">Creating post-retirement income</td><td class="p-2">Low-Medium</td><td class="p-2">Market-linked (stable)</td><td class="p-2">Highly tax-efficient</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
     <div class="content-section bg-yellow-50 p-3 rounded-lg border border-yellow-200">
         <h3 class="section-title-secondary">Behind the Numbers: The Formulas We Use</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
