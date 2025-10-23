@@ -129,6 +129,9 @@
         .content-section-card.border-l-purple-400 { border-left-color: #A78BFA; }
          /* Complementary Border Colors - Yellow */
         .content-section-card.border-l-yellow-400 { border-left-color: #FACC15; }
+         /* Complementary Border Colors - Teal */
+        .content-section-card.border-l-teal-400 { border-left-color: #2DD4BF; }
+
 
         .list-icon {
             flex-shrink: 0;
@@ -142,7 +145,7 @@
             border-radius: 0.375rem; /* Reduced */
             border: 1px solid #e5e7eb; /* gray-200 */
             border-left: 3px solid var(--accent-color);
-            padding: 0.5rem; /* Further Squeezed */
+            padding: 0.75rem; /* Adjusted Padding */
             transition: all 0.2s ease-in-out;
             display: flex; /* Added */
             flex-direction: column; /* Added */
@@ -152,13 +155,15 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
-         .journey-card .flex { margin-bottom: 0.2rem; } /* Squeeze header */
-         .journey-card svg { width: 1.25rem; height: 1.25rem; } /* Squeeze icon */
-         .journey-card h3 { font-size: 0.8rem; } /* Squeeze title */
-         .journey-card p { font-size: 0.65rem; margin-bottom: 0.4rem; flex-grow: 1;} /* Squeeze text, make fill */
-         .journey-card ul { font-size: 0.6rem; margin-top: auto; padding-left: 0; list-style: none;} /* Squeeze list, push to bottom, remove bullets */
-         .journey-card li { margin-bottom: 0.05rem; } /* Tighter list items */
-         .journey-card strong { width: 3.5rem; font-size: 0.6rem;} /* Squeeze strong tag */
+         .journey-card .flex { margin-bottom: 0.2rem; align-items: flex-start; /* Corrected Alignment */ }
+         .journey-card svg { width: 1.25rem; height: 1.25rem; margin-right: 0.25rem; /* Added margin */} /* Squeeze icon */
+         .journey-card h3 { font-size: 0.8rem; font-weight: 700; color: #1f2937; /* Darker Title */} /* Squeeze title */
+         .journey-card p { font-size: 0.7rem; color: #4b5563; line-height: 1.3; margin-bottom: 0.5rem; flex-grow: 1;} /* Squeeze text, make fill */
+         .journey-card ul { font-size: 0.65rem; margin-top: auto; padding-left: 0; list-style: none;} /* Squeeze list, push to bottom, remove bullets */
+         .journey-card li { margin-bottom: 0.1rem; display: flex; align-items: center; gap: 0.25rem;} /* Tighter list items, align items */
+         .journey-card strong { width: auto; font-size: 0.65rem; font-weight: 600; color: #4b5563; margin-right: 0.25rem;} /* Adjusted strong tag */
+         .journey-card .tag { font-size: 0.6rem; font-weight: 500; background-color: #e5e7eb; color: #4b5563; padding: 0.1rem 0.4rem; border-radius: 0.25rem; } /* Tag style */
+
 
         .persona-card {
             background-color: #f9fafb; /* gray-50 */
@@ -213,20 +218,30 @@
         .legal-content h1 { font-size: 1.2rem; margin-bottom: 0.25rem;}
         .legal-content > p:first-of-type { font-size: 0.75rem; margin-bottom: 0.75rem;}
 
-        /* Adjust section titles */
+        /* Adjust section titles and add accent line back */
         .legal-content .section-title-secondary {
             font-size: 1rem;
             margin-bottom: 0.4rem;
-            padding-bottom: 0; /* Remove padding */
+            padding-bottom: 0.25rem; /* Added padding for space */
             text-align: left;
-            border-bottom: none; /* Remove border */
+            border-bottom: none;
+            position: relative; /* Needed for pseudo-element */
         }
-         /* Remove accent line style */
+         /* Bring back accent line style */
         .legal-content .section-title-secondary::after {
-            display: none;
+            content: '';
+            display: block;
+            width: 40px; /* Width of the accent line */
+            height: 2px; /* Thickness of the line */
+            background-color: #E34037; /* Accent red color */
+            position: absolute; /* Position relative to the header */
+            bottom: 0;
+            left: 0; /* Align to the left */
         }
+         /* Center accent line for centered headers */
         .legal-content .text-center .section-title-secondary::after {
-            display: none;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         /* Adjust standard paragraph text */
@@ -240,10 +255,10 @@
 
          /* Squeeze chart containers */
         /* Further Squeezed Bar Chart Container */
-        .bar-chart-container-div { height: 7rem; } /* Reduced from 8rem */
-        @media (min-width: 768px) { .bar-chart-container-div { height: 8rem; } } /* Reduced from 10rem */
+        .bar-chart-container-div { height: 7rem; }
+        @media (min-width: 768px) { .bar-chart-container-div { height: 8rem; } }
 
-        .pie-chart-container-div { height: 10rem; max-width: 10rem; } /* Even smaller pie */
+        .pie-chart-container-div { height: 10rem; max-width: 10rem; }
          @media (min-width: 768px) { .pie-chart-container-div { height: 12rem; max-width: 12rem;} }
 
         /* Squeeze FAQ items */
@@ -263,56 +278,37 @@
         .content-section-card .mb-4 { margin-bottom: 0.75rem; }
         .content-section-card .mb-6 { margin-bottom: 1rem; }
 
-        /* --- NEW: MOBILE-FIRST TABLE STYLES --- */
-        .comparison-table-wrapper { overflow-x: auto; } /* Keep horizontal scroll as fallback */
+        /* --- MOBILE-FIRST TABLE STYLES --- */
+        .comparison-table-wrapper { overflow-x: auto; }
         .comparison-table { width: 100%; border-collapse: collapse; }
         .comparison-table th, .comparison-table td {
-            padding: 0.5rem 0.4rem; /* Squeezed padding */
-            border: 1px solid #e5e7eb; /* gray-200 */
-            text-align: left;
-            font-size: 0.7rem; /* Squeezed font size */
-            vertical-align: top;
+            padding: 0.5rem 0.4rem; border: 1px solid #e5e7eb;
+            text-align: left; font-size: 0.7rem; vertical-align: top;
         }
-        .comparison-table thead { display: none; } /* Hide header row on mobile */
+        .comparison-table thead { display: none; }
         .comparison-table tr {
-            display: block;
-            margin-bottom: 0.75rem; /* Space between cards */
-            border: 1px solid #e5e7eb; /* gray-200 */
-            border-radius: 0.375rem; /* Rounded corners for card look */
-            overflow: hidden; /* Ensure rounded corners apply */
-            background-color: #fff; /* White background for cards */
+            display: block; margin-bottom: 0.75rem; border: 1px solid #e5e7eb;
+            border-radius: 0.375rem; overflow: hidden; background-color: #fff;
         }
         .comparison-table td {
-            display: block;
-            text-align: right; /* Align value to the right */
-            padding-left: 50%; /* Make space for the label */
-            position: relative;
-            border-bottom: 1px solid #f3f4f6; /* gray-100 - subtle separator */
+            display: block; text-align: right; padding-left: 50%;
+            position: relative; border-bottom: 1px solid #f3f4f6;
         }
         .comparison-table td:last-child { border-bottom: none; }
         .comparison-table td::before {
-            content: attr(data-label); /* Use data-label for the header text */
-            position: absolute;
-            left: 0.5rem; /* Padding for the label */
-            width: calc(50% - 1rem); /* Adjust width */
-            padding-right: 0.5rem;
-            white-space: nowrap; /* Prevent label wrapping */
-            text-align: left;
-            font-weight: 600;
-            color: #4b5563; /* gray-600 */
+            content: attr(data-label); position: absolute; left: 0.5rem;
+            width: calc(50% - 1rem); padding-right: 0.5rem; white-space: nowrap;
+            text-align: left; font-weight: 600; color: #4b5563;
         }
-        /* Style for the strong tag inside td for emphasis */
-         .comparison-table td strong { font-weight: 700; color: #1f2937; } /* gray-800 */
+        .comparison-table td strong { font-weight: 700; color: #1f2937; }
 
-        /* Styles for medium screens and up (traditional table) */
         @media (min-width: 768px) {
             .comparison-table thead { display: table-header-group; }
             .comparison-table tr { display: table-row; margin-bottom: 0; border: none; border-radius: 0; background-color: transparent; }
             .comparison-table td { display: table-cell; text-align: left; padding-left: 0.4rem; position: static; border-bottom: 1px solid #e5e7eb; }
             .comparison-table tbody tr:last-child td { border-bottom: none; }
             .comparison-table td::before { display: none; }
-            .comparison-table thead th { background-color: #f9fafb; /* gray-50 */ font-weight: 600; color: #374151; /* gray-700 */ }
-            /* Restore original table padding/font for desktop */
+            .comparison-table thead th { background-color: #f9fafb; font-weight: 600; color: #374151; }
             .comparison-table th, .comparison-table td { padding: 0.6rem; font-size: 0.7rem; }
         }
         /* --- END: MOBILE-FIRST TABLE STYLES --- */
@@ -344,60 +340,63 @@
                 </div>
             </div>
 
+            <!-- IMPROVED "Meet Anjali" Section -->
             <div class="content-section-card bg-gray-50 border-l-green-400">
                  <h2 class="section-title-secondary">Meet Anjali & Her Tax-Saving Adventure!</h2>
-                <p>Let's follow Anjali, our savvy 30-year-old marketing manager. She wants to cut her tax bill but also make her money grow. What are her best options under Section 80C?</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-1 mt-3">
+                <p>Let's follow Anjali, our savvy 30-year-old marketing manager. She wants to cut her tax bill <strong>and</strong> make her money grow. What tools does she pick from the 80C treasure chest?</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3"> <!-- Reduced gap -->
                     <div class="journey-card">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                        <div class="flex items-start">
+                            <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
                             <h3>1. ELSS: The Growth Rocket</h3>
                         </div>
-                        <p>Anjali's young and okay with market ups & downs. ELSS has the <strong>highest growth potential</strong> & <strong>shortest lock-in (3 years!)</strong>.</p>
+                        <p>Anjali's young and aiming high! ELSS funds invest in stocks, offering the best chance for big growth. Plus, the 3-year lock-in is the shortest!</p>
                          <ul>
-                            <li><strong>Best For:</strong> Growth Seekers</li>
-                            <li><strong>Lock-in:</strong> 3 Years (Shortest!)</li>
-                            <li><strong>Risk:</strong> High</li>
+                            <li><strong>Best For:</strong> <span class="tag">Growth Seekers</span></li>
+                            <li><strong>Lock-in:</strong> <span class="tag">3 Years</span></li>
+                            <li><strong>Risk:</strong> <span class="tag">High</span></li>
                         </ul>
                     </div>
                     <div class="journey-card">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <div class="flex items-start">
+                            <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                             <h3>2. PPF: The Safety Vault</h3>
                         </div>
-                        <p>For safety, Anjali loves PPF. Govt guarantee + <strong>tax-free returns</strong>. Awesome for safe, long-term goals.</p>
+                        <p>For guaranteed safety, Anjali puts some money in PPF. It's government-backed, and the interest is <strong>completely tax-free</strong>. Perfect for long-term peace of mind.</p>
                          <ul>
-                            <li><strong>Best For:</strong> Safety Lovers</li>
-                            <li><strong>Lock-in:</strong> 15 Years</li>
-                            <li><strong>Risk:</strong> Risk-Free</li>
+                            <li><strong>Best For:</strong> <span class="tag">Safety Lovers</span></li>
+                            <li><strong>Lock-in:</strong> <span class="tag">15 Years</span></li>
+                            <li><strong>Risk:</strong> <span class="tag">Risk-Free</span></li>
                         </ul>
                     </div>
                     <div class="journey-card">
-                         <div class="flex items-center">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M7 12v4"/><path d="M12 12v4"/><path d="M17 12v4"/><path d="M5 8v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg>
+                         <div class="flex items-start">
+                           <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M7 12v4"/><path d="M12 12v4"/><path d="M17 12v4"/><path d="M5 8v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg>
                             <h3>3. Tax-Saver FD: Simple & Steady</h3>
                         </div>
-                        <p>Simple choice: lock money for 5 years, get fixed (but taxable) interest. No surprises.</p>
+                        <p>Anjali wants something super simple too. A Tax-Saver FD locks her money for 5 years with a fixed interest rate. Easy peasy (but remember, the interest is taxable!).</p>
                          <ul>
-                            <li><strong>Best For:</strong> First-timers</li>
-                            <li><strong>Lock-in:</strong> 5 Years</li>
-                            <li><strong>Risk:</strong> Very Low</li>
+                            <li><strong>Best For:</strong> <span class="tag">First-timers</span></li>
+                            <li><strong>Lock-in:</strong> <span class="tag">5 Years</span></li>
+                            <li><strong>Risk:</strong> <span class="tag">Very Low</span></li>
                         </ul>
                     </div>
                     <div class="journey-card">
-                         <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                            <h3>4. EPF: The Automatic Saver</h3>
+                         <div class="flex items-start">
+                            <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            <h3>4. EPF: The Automatic Base</h3>
                         </div>
-                        <p>Anjali's salaried, so EPF is automatic. It counts towards her ₹1.5L limit - she keeps that in mind!</p>
+                        <p>As a salaried pro, Anjali's EPF contribution happens automatically. She smartly subtracts this amount from her ₹1.5L limit before deciding on other investments.</p>
                          <ul>
-                            <li><strong>Best For:</strong> Salaried Folks</li>
-                            <li><strong>Lock-in:</strong> Till Retirement</li>
-                            <li><strong>Risk:</strong> Low</li>
+                            <li><strong>Best For:</strong> <span class="tag">Salaried Folks</span></li>
+                            <li><strong>Lock-in:</strong> <span class="tag">Till Retirement</span></li>
+                            <li><strong>Risk:</strong> <span class="tag">Low</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
+            <!-- END IMPROVED "Meet Anjali" Section -->
+
 
             <div class="content-section-card border-l-blue-400">
                 <h2 class="section-title-secondary">Quick Compare: Which Tax-Saver Fits YOU?</h2>
@@ -527,18 +526,17 @@
                 </div>
             </div>
 
-            <!-- IMPROVED Blunders Section -->
             <div class="content-section-card bg-red-50 border-l-4 border-red-500">
                 <h2 class="section-title-secondary text-red-800">Oops! Avoid These Common Tax-Saving Facepalms 🤦‍♀️</h2>
                 <p class="text-sm text-red-700 mb-4">Even smart people make mistakes! Here are a few common tripwires to watch out for:</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3"> <!-- Squeezed gap -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-red-600"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                         <div><h4 class="font-semibold text-sm">The "Panic Button" March Rush</h4><p class="text-xs text-gray-700">Waiting till the last minute forces bad decisions. <strong>Pro Tip:</strong> Start investing small amounts from April itself!</p></div>
                     </div>
                     <div class="flex items-start">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-red-600"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                        <div><h4 class="font-semibold text-sm">Saving Tax vs. Building Wealth</h4><p class="text-xs text-gray-700">Don't pick an investment *just* to save tax. <strong>Pro Tip:</strong> Choose options like ELSS or PPF that align with your long-term goals (e.g., retirement).</p></div>
+                        <div><h4 class="font-semibold text-sm">Saving Tax vs. Building Wealth</h4><p class="text-xs text-gray-700">Don't pick an investment <strong>just</strong> to save tax. <strong>Pro Tip:</strong> Choose options like ELSS or PPF that align with your long-term goals (e.g., retirement).</p></div>
                     </div>
                     <div class="flex items-start">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-red-600"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
@@ -546,14 +544,12 @@
                     </div>
                     <div class="flex items-start">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-red-600"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                        <div><h4 class="font-semibold text-sm">Forgetting Returns Get Taxed Too!</h4><p class="text-xs text-gray-700">Remember: FD/NSC interest is taxable. <strong>Pro Tip:</strong> Only PPF/EPF offer truly EEE (tax-free on investment, interest, *and* withdrawal).</p></div>
+                        <div><h4 class="font-semibold text-sm">Forgetting Returns Get Taxed Too!</h4><p class="text-xs text-gray-700">Remember: FD/NSC interest is taxable. <strong>Pro Tip:</strong> Only PPF/EPF offer truly EEE (tax-free on investment, interest, <strong>and</strong> withdrawal).</p></div>
                     </div>
                 </div>
             </div>
-            <!-- END IMPROVED Blunders Section -->
 
-             <!-- NEW Squeezed Section: Planning Early -->
-            <div class="content-section-card bg-yellow-50 border-l-4 border-yellow-400"> <!-- Yellow Border -->
+            <div class="content-section-card bg-yellow-50 border-l-4 border-yellow-400">
                 <h2 class="section-title-secondary text-yellow-800">Don't Wait Till March! Why Planning Early Matters 🗓️</h2>
                 <p class="text-sm text-yellow-700 mb-4">Think tax planning is a January-to-March activity? Think again! Starting early in the financial year (April onwards) is a serious pro-move.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -575,7 +571,23 @@
                     </div>
                 </div>
             </div>
-            <!-- END NEW Section -->
+
+            <div class="content-section-card border-l-teal-400">
+                <h2 class="section-title-secondary text-teal-800">Pro Move: Link Tax Saving to Your Goals! </h2>
+                <p class="text-sm text-teal-700 mb-4">Don't just save tax in isolation! Use your tax-saving investments to power your biggest life goals. It's like getting a double win.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                     <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-teal-600"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                        <div><h4 class="font-semibold text-sm">Goal: Long-Term Wealth (Retirement, Child's Future)</h4><p class="text-xs text-gray-700"><strong>Best 80C Tool:</strong> ELSS Mutual Funds. The 3-year lock-in is short, and the high growth potential is perfect for goals 10+ years away. Use a SIP for consistency.</p></div>
+                    </div>
+                    <div class="flex items-start">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-teal-600"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <div><h4 class="font-semibold text-sm">Goal: Ultra-Safe Long-Term Savings</h4><p class="text-xs text-gray-700"><strong>Best 80C Tool:</strong> PPF. The 15-year lock-in naturally aligns with long-term goals, and the tax-free, guaranteed returns offer unmatched safety.</p></div>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-600 mt-3"><strong>Key Idea:</strong> Pick 80C options that match the <strong>time horizon</strong> and <strong>risk profile</strong> of your actual financial goals!</p>
+            </div>
+
 
             <div class="content-section-card bg-gray-50 border-l-green-400">
                 <h2 class="section-title-secondary">Your Simple 4-Step Tax-Saving Game Plan</h2>
@@ -588,6 +600,7 @@
                 </div>
             </div>
 
+            <!-- UPDATED: Added text-center class -->
             <div class="content-section-card text-center border-l-blue-400">
                 <h3 class="section-title-secondary text-center">Ready to Take Control?</h3>
                 <p class="mb-3">You've got the map! Now use the tools to chart your course:</p>
