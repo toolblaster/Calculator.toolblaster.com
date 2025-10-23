@@ -208,6 +208,104 @@
         .guide-link:hover {
             color: #C22D2D;
         }
+        /* Further squeeze for Anatomy cards */
+        .anatomy-card {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem; /* Reduced padding */
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb; /* gray-200 */
+        }
+         .anatomy-card .flex-shrink-0 {
+            margin-right: 0.5rem; /* Reduced margin */
+        }
+         .anatomy-card svg {
+             width: 2rem; /* Reduced icon size (w-8) */
+             height: 2rem; /* Reduced icon size (h-8) */
+        }
+         .anatomy-card h3 {
+             font-size: 0.8rem; /* Reduced heading size */
+             font-weight: 600;
+             margin-bottom: 0;
+        }
+         .anatomy-card p {
+            font-size: 0.65rem; /* Reduced paragraph size */
+            line-height: 1.2;
+        }
+        /* Squeezed style for Tax Showdown Cards */
+        .tax-showdown-card {
+            padding: 0.75rem; /* Reduced padding */
+            border-radius: 0.5rem;
+            border-width: 1px; /* Reduced border */
+            text-align: left; /* Align text left */
+        }
+        .tax-showdown-card svg.header-icon {
+            width: 2rem; /* Reduced icon size */
+            height: 2rem; /* Reduced icon size */
+            margin-bottom: 0.5rem; /* Reduced margin */
+        }
+         .tax-showdown-card h3 {
+             font-size: 1rem; /* Reduced heading size */
+             font-weight: 700;
+             margin-bottom: 0.1rem;
+         }
+         .tax-showdown-card .subtitle {
+             font-size: 0.65rem; /* Reduced subtitle size */
+             font-weight: 600;
+             margin-bottom: 0.5rem;
+         }
+         .tax-showdown-card ul {
+             font-size: 0.7rem; /* Reduced list font size */
+             space-y: 1; /* Reduced space between list items */
+         }
+         .tax-showdown-card li svg {
+            width: 1rem; /* w-4 */
+            height: 1rem; /* h-4 */
+            margin-right: 0.25rem; /* mr-1 */
+            margin-top: 1px;
+         }
+         /* Squeezed style for Market Cycles section */
+        .market-cycle-card {
+            padding: 0.75rem 1rem 0.75rem 1.5rem; /* Adjusted padding */
+            /* Keep other .content-section-card styles */
+        }
+        .market-cycle-card h2 {
+            font-size: 1rem; /* Ensure consistent heading size */
+        }
+         .market-cycle-card p {
+            font-size: 0.75rem; /* Reduced paragraph size */
+        }
+        .market-cycle-card .chart-container {
+             height: 12rem; /* h-48, reduced height */
+             margin-top: 0.5rem; /* Reduced top margin */
+        }
+        /* Squeezed style for Toolkit Cards */
+        .toolkit-card {
+            padding: 0.75rem; /* Reduced padding */
+            border-radius: 0.5rem;
+            border-width: 1px; /* Reduced border */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .toolkit-card h3 {
+            font-size: 1rem; /* Reduced heading size */
+            font-weight: 700;
+        }
+        .toolkit-card .subtitle {
+            font-size: 0.65rem; /* Reduced subtitle size */
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .toolkit-card p.main-text {
+            font-size: 0.7rem; /* Reduced main text size */
+            margin-bottom: 0.75rem; /* Reduced bottom margin */
+            flex-grow: 1;
+        }
+        .toolkit-card .btn-secondary {
+            padding: 0.3rem 0.6rem !important; /* Smaller button padding */
+            font-size: 0.65rem !important; /* Smaller button font */
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -341,45 +439,50 @@
             <div class="content-section-card bg-gray-50">
                 <h2>Anatomy of a Mutual Fund: What's Inside?</h2>
                 <p class="text-sm">Curious, Priya looks inside a Hybrid Fund to see what it's made of. She finds a carefully balanced portfolio, designed for both growth and safety.</p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                <!-- Squeezed Anatomy Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
                     <!-- Large Cap -->
-                    <div class="flex items-center p-4 bg-green-50 border border-green-200 rounded-lg">
-                        <div class="flex-shrink-0 mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-green-600"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    <div class="anatomy-card bg-green-50 border-green-200">
+                        <div class="flex-shrink-0">
+                            <!-- New Icon: Building -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                         </div>
                         <div>
-                            <h3 class="font-bold text-gray-800">Large-Cap Stocks (40%)</h3>
-                            <p class="text-xs text-gray-600 italic">The sturdy oaks: Big, reliable companies.</p>
+                            <h3 class="text-gray-800">Large-Cap Stocks (40%)</h3>
+                            <p class="text-gray-600 italic">The sturdy oaks: Big, reliable companies.</p>
                         </div>
                     </div>
                     <!-- Mid Cap -->
-                    <div class="flex items-center p-4 bg-green-50 border border-green-200 rounded-lg">
-                        <div class="flex-shrink-0 mr-4">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-green-600"><path d="M2 18a10 10 0 0 1 14.2-8.5A10 10 0 0 1 12 22a10 10 0 0 1-10-4Z"/><path d="M12 2v10"/></svg>
+                    <div class="anatomy-card bg-green-50 border-green-200">
+                        <div class="flex-shrink-0">
+                            <!-- New Icon: Trending Up -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
                         </div>
                         <div>
-                            <h3 class="font-bold text-gray-800">Mid-Cap Stocks (25%)</h3>
-                            <p class="text-xs text-gray-600 italic">The agile saplings: Growing companies with high potential.</p>
+                            <h3 class="text-gray-800">Mid-Cap Stocks (25%)</h3>
+                            <p class="text-gray-600 italic">The agile saplings: Growing companies.</p>
                         </div>
                     </div>
                     <!-- Bonds -->
-                    <div class="flex items-center p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                        <div class="flex-shrink-0 mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-blue-600"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <div class="anatomy-card bg-blue-50 border-blue-200">
+                        <div class="flex-shrink-0">
+                             <!-- New Icon: Shield -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         </div>
                         <div>
-                            <h3 class="font-bold text-gray-800">Bonds (30%)</h3>
-                            <p class="text-xs text-gray-600 italic">The anchors: Providing stability and predictable income.</p>
+                            <h3 class="text-gray-800">Bonds (30%)</h3>
+                            <p class="text-gray-600 italic">The anchors: Stability and income.</p>
                         </div>
                     </div>
                     <!-- Cash -->
-                    <div class="flex items-center p-4 bg-gray-100 border border-gray-200 rounded-lg">
-                        <div class="flex-shrink-0 mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-gray-600"><rect x="2" y="7" width="20" height="10" rx="2" ry="2"/><path d="M12 12h.01"/></svg>
+                    <div class="anatomy-card bg-gray-100 border-gray-200">
+                        <div class="flex-shrink-0">
+                             <!-- New Icon: Banknote -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
                         </div>
                         <div>
-                            <h3 class="font-bold text-gray-800">Cash & Equivalents (5%)</h3>
-                            <p class="text-xs text-gray-600 italic">Ready cash to seize opportunities.</p>
+                            <h3 class="text-gray-800">Cash & Equivalents (5%)</h3>
+                            <p class="text-gray-600 italic">Ready cash for opportunities.</p>
                         </div>
                     </div>
                 </div>
@@ -388,51 +491,53 @@
             <div class="content-section-card">
                 <h2>The Tax Showdown: It's Not What You Earn, It's What You Keep</h2>
                 <p class="text-sm">Priya uncovers a crucial secret: taxes can significantly eat into her returns. Here’s how her two options stack up in a head-to-head battle against the taxman.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <!-- Squeezed Tax Showdown Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
                     <!-- Fixed Deposit Side -->
-                    <div class="p-4 rounded-lg border-2 border-red-200 bg-red-50 text-center">
-                        <svg class="w-12 h-12 text-red-500 mx-auto mb-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M7 12v4"/><path d="M12 12v4"/><path d="M17 12v4"/><path d="M5 8v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg>
-                        <h3 class="font-bold text-lg text-red-800">Fixed Deposit</h3>
-                        <p class="text-xs font-semibold text-red-600 mb-3">The Tax-Heavy Path</p>
-                        <ul class="text-sm text-left space-y-2">
+                    <div class="tax-showdown-card bg-red-50 border-red-200">
+                         <svg class="header-icon text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M7 12v4"/><path d="M12 12v4"/><path d="M17 12v4"/><path d="M5 8v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg>
+                        <h3 class="text-red-800">Fixed Deposit</h3>
+                        <p class="subtitle text-red-600">The Tax-Heavy Path</p>
+                        <ul class="space-y-1">
                             <li class="flex items-start">
-                                <svg class="w-5 h-5 text-red-500 mr-2 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                <svg class="w-4 h-4 text-red-500 mr-1 flex-shrink-0 mt-px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
                                 <span>Interest is <strong>fully added</strong> to your income.</span>
                             </li>
                             <li class="flex items-start">
-                               <svg class="w-5 h-5 text-red-500 mr-2 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                               <svg class="w-4 h-4 text-red-500 mr-1 flex-shrink-0 mt-px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
                                 <span>Taxed at your <strong>highest slab rate</strong> (up to 30% + cess).</span>
                             </li>
                         </ul>
                     </div>
                     <!-- Mutual Fund Side -->
-                    <div class="p-4 rounded-lg border-2 border-green-200 bg-green-50 text-center">
-                        <svg class="w-12 h-12 text-green-500 mx-auto mb-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
-                        <h3 class="font-bold text-lg text-green-800">Equity Mutual Fund</h3>
-                        <p class="text-xs font-semibold text-green-600 mb-3">The Tax-Smart Path</p>
-                        <ul class="text-sm text-left space-y-2">
+                    <div class="tax-showdown-card bg-green-50 border-green-200">
+                         <svg class="header-icon text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                        <h3 class="text-green-800">Equity Mutual Fund</h3>
+                        <p class="subtitle text-green-600">The Tax-Smart Path</p>
+                        <ul class="space-y-1">
                              <li class="flex items-start">
-                                <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                <svg class="w-4 h-4 text-green-500 mr-1 flex-shrink-0 mt-px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                                 <span>First <strong>₹1 Lakh of gains</strong> per year is <strong>tax-free</strong> (if held > 1 year).</span>
                             </li>
                              <li class="flex items-start">
-                                <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                <svg class="w-4 h-4 text-green-500 mr-1 flex-shrink-0 mt-px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                                 <span>Gains above ₹1 Lakh are taxed at a <strong>low, flat 10%</strong>.</span>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="alert alert-info mt-6 text-center">
+                 <div class="alert alert-info mt-4 text-center"> <!-- Reduced margin -->
                     <h3 class="alert-title">The Clear Winner for Long-Term Growth</h3>
                     <p>For long-term goals, the tax efficiency of equity mutual funds means you get to keep significantly more of your returns, supercharging your wealth creation.</p>
-                    <a href="../calculators/income-tax-calculator/" class="btn-primary mt-3">See How Much You Can Save →</a>
+                    <a href="../calculators/income-tax-calculator/" class="btn-primary mt-2">See How Much You Can Save →</a> <!-- Reduced margin -->
                 </div>
             </div>
 
-            <div class="content-section-card bg-gray-50">
+            <!-- Squeezed Market Cycles Section -->
+            <div class="content-section-card market-cycle-card bg-gray-50">
                 <h2>Navigating Market Cycles</h2>
-                <p class="text-sm">Priya learns that the market has seasons, just like the weather. A "Bull Market" is a sunny period of growth, while a "Bear Market" is a stormy period of decline. Her goal as a long-term investor isn't to predict the weather, but to build a sturdy ship (her portfolio) that can sail through any storm and catch the favorable winds.</p>
-                 <div class="h-56 md:h-72 w-full mx-auto mt-4">
+                <p>Priya learns that the market has seasons, just like the weather. A "Bull Market" is a sunny period of growth, while a "Bear Market" is a stormy period of decline. Her goal as a long-term investor isn't to predict the weather, but to build a sturdy ship (her portfolio) that can sail through any storm and catch the favorable winds.</p>
+                 <div class="chart-container w-full mx-auto">
                    <canvas id="marketCycleChart"></canvas>
                 </div>
             </div>
@@ -593,29 +698,30 @@
                 </div>
             </div>
 
+            <!-- Squeezed Toolkit Section -->
             <div class="content-section-card bg-gray-50">
-                <h2 class="text-xl font-bold text-gray-800 text-center">Your Investor's Toolkit</h2>
-                <p class="text-sm text-center text-gray-600 mt-2 mb-6">Priya is now an investor. Her journey has just begun, and as she grows, her strategies will evolve. Here are the tools she'll use at every stage:</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <h2 class="section-title-secondary text-center">Your Investor's Toolkit</h2>
+                <p class="text-xs text-center text-gray-600 mt-1 mb-4">Priya is now an investor. Her journey has just begun, and as she grows, her strategies will evolve. Here are the tools she'll use at every stage:</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
                     <!-- Stage 1: The Beginner -->
-                    <div class="p-4 rounded-lg border-2 border-green-200 bg-green-50 text-center flex flex-col">
-                        <h3 class="font-bold text-lg text-green-800">Stage 1: The Beginner</h3>
-                        <p class="text-xs font-semibold text-green-600 mb-3">Focus: Building Habits</p>
-                        <p class="text-sm text-gray-700 mb-4 flex-grow">Start with the basics. The goal is to create a safety net and begin the habit of consistent investing.</p>
+                    <div class="toolkit-card border-green-200 bg-green-50">
+                        <h3 class="text-green-800">Stage 1: The Beginner</h3>
+                        <p class="subtitle text-green-600">Focus: Building Habits</p>
+                        <p class="main-text text-gray-700">Start with basics: safety net & consistent investing.</p>
                         <a href="../quizzes/risk-profile-quiz.html" class="btn-secondary">Find Your Risk Profile</a>
                     </div>
                     <!-- Stage 2: The Grower -->
-                    <div class="p-4 rounded-lg border-2 border-blue-200 bg-blue-50 text-center flex flex-col">
-                        <h3 class="font-bold text-lg text-blue-800">Stage 2: The Grower</h3>
-                        <p class="text-xs font-semibold text-blue-600 mb-3">Focus: Building Wealth</p>
-                        <p class="text-sm text-gray-700 mb-4 flex-grow">With habits in place, it's time to accelerate wealth creation for your biggest life goals.</p>
+                    <div class="toolkit-card border-blue-200 bg-blue-50">
+                        <h3 class="text-blue-800">Stage 2: The Grower</h3>
+                        <p class="subtitle text-blue-600">Focus: Building Wealth</p>
+                        <p class="main-text text-gray-700">Accelerate wealth creation for your biggest life goals.</p>
                         <a href="../?mode=goal" class="btn-secondary">Plan for a Goal</a>
                     </div>
                     <!-- Stage 3: The Retiree -->
-                    <div class="p-4 rounded-lg border-2 border-purple-200 bg-purple-50 text-center flex flex-col">
-                        <h3 class="font-bold text-lg text-purple-800">Stage 3: The Retiree</h3>
-                        <p class="text-xs font-semibold text-purple-600 mb-3">Focus: Generating Income</p>
-                        <p class="text-sm text-gray-700 mb-4 flex-grow">Shift from accumulating wealth to creating a steady, tax-efficient income stream from your corpus.</p>
+                    <div class="toolkit-card border-purple-200 bg-purple-50">
+                        <h3 class="text-purple-800">Stage 3: The Retiree</h3>
+                        <p class="subtitle text-purple-600">Focus: Generating Income</p>
+                        <p class="main-text text-gray-700">Shift to creating a steady income stream from your corpus.</p>
                         <a href="../?mode=swp" class="btn-secondary">Plan Your SWP</a>
                     </div>
                 </div>
@@ -660,78 +766,8 @@
                 </div>
             </div>
 
-            <div class="relative flex py-5 items-center">
-                <div class="flex-grow border-t border-gray-200"></div>
-                <span class="flex-shrink mx-4 text-gray-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v2.586l2.293-2.293a1 1 0 111.414 1.414L12.414 8H15a1 1 0 110 2h-2.586l2.293 2.293a1 1 0 11-1.414 1.414L11 11.414V14a1 1 0 11-2 0v-2.586l-2.293 2.293a1 1 0 11-1.414-1.414L7.586 10H5a1 1 0 110-2h2.586L5.293 5.707a1 1 0 011.414-1.414L9 6.586V4a1 1 0 011-1z" clip-rule="evenodd" />
-                    </svg>
-                </span>
-                <div class="flex-grow border-t border-gray-200"></div>
-            </div>
+            <!-- Removed Decorative Line Section -->
 
-            <div class="content-section-card bg-gradient-to-br from-blue-50 to-purple-50 border-l-4 border-blue-300 text-center p-2 sm:p-4">
-                <h2 class="text-center">Continue Your Journey: Related Guides & Tools</h2>
-                <p class="text-xs mb-2">Deepen your knowledge with these related resources.</p>
-                <div class="grid grid-cols-2 lg:grid-cols-5 gap-2 mt-2">
-                    <!-- SIP vs Lumpsum -->
-                    <a href="sip-vs-lumpsum.html" class="bg-white border border-gray-200 rounded-lg p-2 flex flex-col text-center shadow-sm hover:shadow-md hover:-translate-y-px transition-all duration-200 h-full">
-                        <div class="w-6 h-6 mx-auto flex items-center justify-center bg-yellow-100 rounded-full text-yellow-600 mb-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><path d="M16 16-4-4-4 4"/><path d="M8 8l4 4 4-4"/></svg>
-                        </div>
-                        <h3 class="font-semibold text-xs text-gray-800">SIP vs. Lumpsum</h3>
-                        <p class="text-xxs text-gray-600 flex-grow">Understand which investing method is right for you.</p>
-                        <span class="text-xxs font-bold text-red-600 mt-1">Read &rarr;</span>
-                    </a>
-                    <!-- Retirement Guide -->
-                    <a href="retirement-planning-guide.html" class="bg-white border border-gray-200 rounded-lg p-2 flex flex-col text-center shadow-sm hover:shadow-md hover:-translate-y-px transition-all duration-200 h-full">
-                        <div class="w-6 h-6 mx-auto flex items-center justify-center bg-indigo-100 rounded-full text-indigo-600 mb-1">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                        </div>
-                        <h3 class="font-semibold text-xs text-gray-800">Retirement Planning</h3>
-                        <p class="text-xxs text-gray-600 flex-grow">Plan for your golden years with our comprehensive guide.</p>
-                        <span class="text-xxs font-bold text-red-600 mt-1">Read &rarr;</span>
-                    </a>
-                    <!-- Goal-Based Investing Guide -->
-                    <a href="goal-based-investing.html" class="bg-white border border-gray-200 rounded-lg p-2 flex flex-col text-center shadow-sm hover:shadow-md hover:-translate-y-px transition-all duration-200 h-full">
-                        <div class="w-6 h-6 mx-auto flex items-center justify-center bg-purple-100 rounded-full text-purple-600 mb-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9333EA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                        </div>
-                        <h3 class="font-semibold text-xs text-gray-800">Goal-Based Investing</h3>
-                        <p class="text-xxs text-gray-600 flex-grow">Connect your investments to your life goals for a better strategy.</p>
-                        <span class="text-xxs font-bold text-red-600 mt-1">Read &rarr;</span>
-                    </a>
-                    <!-- Tax Saving Guide -->
-                    <a href="tax-saving-guide.html" class="bg-white border border-gray-200 rounded-lg p-2 flex flex-col text-center shadow-sm hover:shadow-md hover:-translate-y-px transition-all duration-200 h-full">
-                        <div class="w-6 h-6 mx-auto flex items-center justify-center bg-red-100 rounded-full text-red-600 mb-1">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
-                        </div>
-                        <h3 class="font-semibold text-xs text-gray-800">Tax-Saving Guide</h3>
-                        <p class="text-xxs text-gray-600 flex-grow">Explore the best ways to save tax and grow your wealth.</p>
-                        <span class="text-xxs font-bold text-red-600 mt-1">Read &rarr;</span>
-                    </a>
-                    <!-- Stock Market Guide -->
-                    <a href="stock-market-guide-in-india.html" class="bg-white border border-gray-200 rounded-lg p-2 flex flex-col text-center shadow-sm hover:shadow-md hover:-translate-y-px transition-all duration-200 h-full">
-                        <div class="w-6 h-6 mx-auto flex items-center justify-center bg-blue-100 rounded-full text-blue-600 mb-1">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
-                        </div>
-                        <h3 class="font-semibold text-xs text-gray-800">Stock Market Guide</h3>
-                        <p class="text-xxs text-gray-600 flex-grow">Demystify the stock market and learn about diversification.</p>
-                        <span class="text-xxs font-bold text-red-600 mt-1">Read &rarr;</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="share-buttons-container">
-                <p class="share-title">Share this guide:</p>
-                <div class="share-buttons">
-                    <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.35 3.48 16.81L2 22L7.33 20.55C8.75 21.33 10.35 21.79 12.04 21.79C17.5 21.79 21.95 17.34 21.95 11.88C21.95 6.42 17.5 2 12.04 2M12.04 3.64C16.57 3.64 20.25 7.32 20.25 11.85C20.25 16.38 16.57 20.06 12.04 20.06C10.56 20.06 9.14 19.68 7.9 18.98L7.54 18.78L4.45 19.65L5.35 16.62L5.13 16.27C4.34 15.05 3.96 13.5 3.96 11.88C3.96 7.35 7.64 3.64 12.04 3.64M9.01 7.4C8.86 7.4 8.71 7.4 8.57 7.4C8.37 7.4 8.1 7.49 7.89 7.85C7.68 8.21 7.03 8.81 7.03 9.94C7.03 11.07 7.92 12.14 8.07 12.31C8.21 12.48 10.03 15.34 12.87 16.59C15.72 17.84 15.72 17.34 16.19 17.29C16.66 17.24 17.63 16.68 17.84 16.09C18.05 15.5 18.05 15.03 17.98 14.91C17.91 14.78 17.77 14.7 17.53 14.58C17.3 14.46 15.98 13.83 15.74 13.73C15.51 13.64 15.37 13.59 15.22 13.83C15.08 14.07 14.54 14.7 14.4 14.84C14.26 14.98 14.11 15.01 13.88 14.89C13.64 14.77 12.71 14.45 11.61 13.48C10.71 12.7 10.09 11.76 9.92 11.49C9.75 11.22 9.89 11.09 10.03 10.96C10.16 10.83 10.3 10.65 10.43 10.5C10.56 10.35 10.61 10.23 10.73 10.03C10.86 9.83 10.78 9.64 10.71 9.5C10.65 9.36 10.11 8.04 9.87 7.47C9.64 6.9 9.4 6.98 9.25 6.98L9.01 7.4Z"></path></svg></a>
-                    <a href="#" class="share-btn facebook" id="share-facebook" target="_blank" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"></path></svg></a>
-                    <a href="#" class="share-btn twitter" id="share-twitter" target="_blank" aria-label="Share on Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.35 0 11.37-6.08 11.37-11.37 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.98-2.08z"></path></svg></a>
-                    <a href="#" class="share-btn linkedin" id="share-linkedin" target="_blank" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.5 2.5-2.5c1.6 0 2.5 1.2 2.5 2.5 0 1.3-1 2.5-2.5 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"></path></svg></a>
-                    <button class="share-btn copy-link" id="copy-link-btn" aria-label="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-            </div>
         </div>
     </main>
 
