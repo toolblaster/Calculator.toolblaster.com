@@ -103,7 +103,11 @@
     }
     </script>
      <style>
-        .legal-content h1 { font-size: 1.2rem; text-align: center; }
+        .legal-content h1 {
+            font-size: 1.3rem; /* Main title */
+            font-weight: 800;
+            text-align: center;
+        }
         .legal-content > p { font-size: 0.8rem; text-align: center;}
         .content-section-card {
             background-color: #ffffff;
@@ -113,6 +117,41 @@
             padding: 1rem 1rem 1rem 1.5rem;
             margin-bottom: 0.75rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+        }
+        /* Style for H2 inside the sections */
+        .content-section-card h2, .section-title-secondary {
+            font-size: 1rem;   /* Section H2 size */
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: #1f2937;
+            text-align: left;
+            border-bottom: none;
+            padding-bottom: 0;
+            position: relative; /* Needed for the ::after element */
+        }
+        /* ADDED: Accent line style for H2 */
+        .content-section-card h2::after, h2.section-title-secondary::after {
+            content: '';
+            display: block;
+            width: 40px; /* Width of the accent line */
+            height: 2px; /* Thickness of the line */
+            background-color: #E34037; /* Accent red color */
+            margin-top: 0.3rem; /* Space between text and line */
+        }
+        /* Center align H2s AND their accent lines if needed */
+        .content-section-card.text-center h2, h2.section-title-secondary.text-center {
+            text-align: center;
+        }
+        .content-section-card.text-center h2::after, h2.section-title-secondary.text-center::after {
+            margin-left: auto; /* Center the line */
+            margin-right: auto; /* Center the line */
+        }
+        /* Style for H3 headings within cards/sections */
+        .content-section-card h3 {
+            font-size: 0.85rem; /* H3 smaller than H2 */
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.2rem;
         }
         .icon-list-item {
             display: flex;
@@ -130,11 +169,12 @@
         .icon-list-item div {
             flex-grow: 1;
         }
+        /* Item titles (like list item headers) */
         .icon-list-item .item-title {
+            font-size: 0.85rem; /* Same size as H3 */
             font-weight: 600;
             color: #1f2937;
             margin-bottom: 0.1rem;
-            font-size: 0.9rem;
         }
         .icon-list-item p {
             font-size: 0.75rem;
@@ -176,7 +216,7 @@
             font-size: 0.8rem;
             border: 3px solid #fef2f2;
         }
-         .timeline-item h3 { font-size: 0.9rem; }
+         .timeline-item h3 { font-size: 0.85rem; } /* Adjusted timeline H3 */
          .timeline-item p { font-size: 0.75rem; }
 
         .insight-card {
@@ -188,13 +228,12 @@
             display: flex;
             flex-direction: column;
         }
+        .insight-card h3 { font-size: 0.85rem; } /* Adjusted insight card H3 */
         .insight-card p {
             flex-grow: 1;
             font-size: 0.7rem;
         }
-         .section-title-secondary {
-            font-size: 1rem;
-        }
+
         .legal-content p { font-size: 0.8rem; }
         .alert { padding: 0.75rem; }
         .guide-link {
@@ -212,99 +251,106 @@
         .anatomy-card {
             display: flex;
             align-items: center;
-            padding: 0.5rem; /* Reduced padding */
+            padding: 0.5rem;
             border-radius: 0.5rem;
-            border: 1px solid #e5e7eb; /* gray-200 */
+            border: 1px solid #e5e7eb;
         }
          .anatomy-card .flex-shrink-0 {
-            margin-right: 0.5rem; /* Reduced margin */
-        }
+            margin-right: 0.5rem;
+         }
          .anatomy-card svg {
-             width: 2rem; /* Reduced icon size (w-8) */
-             height: 2rem; /* Reduced icon size (h-8) */
+             width: 2rem;
+             height: 2rem;
         }
          .anatomy-card h3 {
-             font-size: 0.8rem; /* Reduced heading size */
+             font-size: 0.8rem; /* Keep anatomy H3 small */
              font-weight: 600;
              margin-bottom: 0;
         }
          .anatomy-card p {
-            font-size: 0.65rem; /* Reduced paragraph size */
+            font-size: 0.65rem;
             line-height: 1.2;
         }
         /* Squeezed style for Tax Showdown Cards */
         .tax-showdown-card {
-            padding: 0.75rem; /* Reduced padding */
+            padding: 0.75rem;
             border-radius: 0.5rem;
-            border-width: 1px; /* Reduced border */
-            text-align: left; /* Align text left */
+            border-width: 1px;
+            text-align: left;
         }
         .tax-showdown-card svg.header-icon {
-            width: 2rem; /* Reduced icon size */
-            height: 2rem; /* Reduced icon size */
-            margin-bottom: 0.5rem; /* Reduced margin */
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 0.5rem;
         }
          .tax-showdown-card h3 {
-             font-size: 1rem; /* Reduced heading size */
+             font-size: 0.9rem; /* Slightly smaller than section H2 */
              font-weight: 700;
              margin-bottom: 0.1rem;
          }
          .tax-showdown-card .subtitle {
-             font-size: 0.65rem; /* Reduced subtitle size */
+             font-size: 0.65rem;
              font-weight: 600;
              margin-bottom: 0.5rem;
          }
          .tax-showdown-card ul {
-             font-size: 0.7rem; /* Reduced list font size */
-             space-y: 1; /* Reduced space between list items */
+             font-size: 0.7rem;
+             space-y: 1;
          }
          .tax-showdown-card li svg {
-            width: 1rem; /* w-4 */
-            height: 1rem; /* h-4 */
-            margin-right: 0.25rem; /* mr-1 */
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.25rem;
             margin-top: 1px;
          }
          /* Squeezed style for Market Cycles section */
         .market-cycle-card {
-            padding: 0.75rem 1rem 0.75rem 1.5rem; /* Adjusted padding */
-            /* Keep other .content-section-card styles */
+            padding: 0.75rem 1rem 0.75rem 1.5rem;
         }
         .market-cycle-card h2 {
-            font-size: 1rem; /* Ensure consistent heading size */
+            font-size: 1rem; /* Consistent H2 size */
+            font-weight: 700;
         }
          .market-cycle-card p {
-            font-size: 0.75rem; /* Reduced paragraph size */
+            font-size: 0.75rem;
         }
         .market-cycle-card .chart-container {
-             height: 12rem; /* h-48, reduced height */
-             margin-top: 0.5rem; /* Reduced top margin */
+             height: 12rem;
+             margin-top: 0.5rem;
         }
         /* Squeezed style for Toolkit Cards */
         .toolkit-card {
-            padding: 0.75rem; /* Reduced padding */
+            padding: 0.75rem;
             border-radius: 0.5rem;
-            border-width: 1px; /* Reduced border */
+            border-width: 1px;
             text-align: center;
             display: flex;
             flex-direction: column;
         }
         .toolkit-card h3 {
-            font-size: 1rem; /* Reduced heading size */
+            font-size: 0.9rem; /* Slightly smaller than section H2 */
             font-weight: 700;
         }
         .toolkit-card .subtitle {
-            font-size: 0.65rem; /* Reduced subtitle size */
+            font-size: 0.65rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
         .toolkit-card p.main-text {
-            font-size: 0.7rem; /* Reduced main text size */
-            margin-bottom: 0.75rem; /* Reduced bottom margin */
+            font-size: 0.7rem;
+            margin-bottom: 0.75rem;
             flex-grow: 1;
         }
         .toolkit-card .btn-secondary {
-            padding: 0.3rem 0.6rem !important; /* Smaller button padding */
-            font-size: 0.65rem !important; /* Smaller button font */
+            padding: 0.3rem 0.6rem !important;
+            font-size: 0.65rem !important;
+        }
+        /* Style for the separator */
+        .section-separator {
+            border: 0;
+            height: 1px;
+            background-color: #e5e7eb; /* gray-200 */
+            margin: 1.5rem 0; /* Add vertical space */
         }
     </style>
 </head>
@@ -321,6 +367,7 @@
                 <div class="flex flex-col md:flex-row items-center text-center md:text-left gap-6 p-4 rounded-lg bg-gradient-to-r from-red-50 to-amber-50 border border-red-200">
                     <img src="https://placehold.co/100x100/E34037/FFFFFF?text=Priya&font=inter" alt="Investor Priya" class="w-24 h-24 rounded-full border-4 border-white shadow-lg flex-shrink-0">
                     <div>
+                        <!-- This H2 is larger as it's part of the intro -->
                         <h2 class="text-xl font-bold text-gray-800">Meet Priya, Your Guide on This Journey</h2>
                         <p class="text-sm text-gray-600 mt-2">Priya is a 25-year-old designer with a dream: to make her money work for her. She wants to travel, build a comfortable future, but feels lost in the world of "SIPs" and "mutual funds."</p>
                         <p class="text-sm font-semibold text-red-700 mt-2 italic">"I know I should invest, but where do I even begin?"</p>
@@ -328,6 +375,9 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Separator Added -->
+            <hr class="section-separator">
 
             <div class="content-section-card">
                 <h2>Overcoming Common Investing Fears</h2>
@@ -349,6 +399,9 @@
                     </li>
                 </ul>
             </div>
+
+            <!-- Separator Added -->
+            <hr class="section-separator">
 
             <div class="content-section-card">
                 <h2>What is a Mutual Fund?</h2>
@@ -378,6 +431,9 @@
                 </ul>
             </div>
             
+             <!-- Separator Added -->
+            <hr class="section-separator">
+
             <div class="content-section-card bg-gray-50">
                 <h2>Key Strategies: SIP and Compounding</h2>
                 <p class="text-sm">Priya learns that to grow her money, she doesn't need a single heroic act, but two consistent superpowers.</p>
@@ -402,6 +458,9 @@
                 </div>
             </div>
             
+            <!-- Separator Added -->
+            <hr class="section-separator">
+
             <div class="content-section-card">
                 <h2>Choosing Your Investment Vehicle: The Three Baskets</h2>
                 <p class="text-sm">Priya learns that not all mutual funds are the same. They are like different vehicles, each designed for a specific type of journey.</p>
@@ -435,7 +494,46 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Separator Added -->
+            <hr class="section-separator">
+
+            <!-- NEW SECTION: Understanding Investment Risk -->
+            <div class="content-section-card bg-gray-50">
+                <h2>Wait, What Does 'Risk' Actually Mean? 🧐</h2>
+                <p class="text-sm">We hear "high-risk, high-return" all the time, but what does it mean for *you*?</p>
+                <ul class="mt-4 space-y-3">
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        <div>
+                            <p class="item-title"><strong>Risk = Volatility (The Wiggles)</strong></p>
+                            <p>Primarily, risk means the price of your investment can go up and down (sometimes a lot!). Equity funds (stocks) wiggle much more than Debt funds (loans/bonds).</p>
+                        </div>
+                    </li>
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+                        <div>
+                            <p class="item-title"><strong>Time is Your Best Friend Against Risk</strong></p>
+                            <p>This is crucial! If you need money next year (short-term), a big wiggle downwards (like in stocks) is a disaster. But if you don't need the money for 10+ years (long-term), you have time to ride out the down-wiggles and benefit from the up-wiggles. That's why stocks are risky short-term but powerful long-term.</p>
+                        </div>
+                    </li>
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                        <div>
+                            <p class="item-title"><strong>Diversification is Your Shield</strong></p>
+                            <p>As we saw with Mutual Funds, owning small pieces of many things reduces the impact if one single investment does badly. Don't put all your eggs in one basket!</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="alert alert-info mt-4 text-center">
+                    <p>Understanding your own comfort with these 'wiggles' is key. Take our <a href="../quizzes/risk-profile-quiz.html"><strong>Investor Profile Quiz</strong></a> to find out!</p>
+                </div>
+            </div>
+            <!-- END NEW SECTION -->
             
+            <!-- Separator Added -->
+            <hr class="section-separator">
+
             <div class="content-section-card bg-gray-50">
                 <h2>Anatomy of a Mutual Fund: What's Inside?</h2>
                 <p class="text-sm">Curious, Priya looks inside a Hybrid Fund to see what it's made of. She finds a carefully balanced portfolio, designed for both growth and safety.</p>
@@ -488,6 +586,9 @@
                 </div>
             </div>
 
+            <!-- Separator Added -->
+            <hr class="section-separator">
+
             <div class="content-section-card">
                 <h2>The Tax Showdown: It's Not What You Earn, It's What You Keep</h2>
                 <p class="text-sm">Priya uncovers a crucial secret: taxes can significantly eat into her returns. Here’s how her two options stack up in a head-to-head battle against the taxman.</p>
@@ -533,6 +634,9 @@
                 </div>
             </div>
 
+            <!-- Separator Added -->
+            <hr class="section-separator">
+
             <!-- Squeezed Market Cycles Section -->
             <div class="content-section-card market-cycle-card bg-gray-50">
                 <h2>Navigating Market Cycles</h2>
@@ -541,6 +645,9 @@
                    <canvas id="marketCycleChart"></canvas>
                 </div>
             </div>
+
+            <!-- Separator Added -->
+            <hr class="section-separator">
 
             <div class="content-section-card">
                 <h2>The Psychology of Investing</h2>
@@ -563,6 +670,9 @@
                 </ul>
             </div>
             
+            <!-- Separator Added -->
+            <hr class="section-separator">
+
             <div class="content-section-card bg-gray-50">
                 <h2>Safe Havens: Fixed and Recurring Deposits</h2>
                 <p class="text-sm">Priya learns that not all her money needs to face the open sea. For her short-term goal - the Japan trip in 3 years - she needs a safe harbor where her money is protected. She discovers two such havens:</p>
@@ -583,6 +693,9 @@
                     </li>
                 </ul>
             </div>
+
+            <!-- Separator Added -->
+            <hr class="section-separator">
 
             <div class="content-section-card">
                 <h2>Investment Comparison: At a Glance</h2>
@@ -617,6 +730,9 @@
                 </div>
             </div>
 
+            <!-- Separator Added -->
+            <hr class="section-separator">
+
             <div class="content-section-card bg-gray-50">
                  <h2>Common Investing Mistakes to Avoid</h2>
                 <p class="text-sm">Priya learns that a successful journey is not just about flying forward, but also about avoiding common asteroid fields that can damage her ship.</p>
@@ -637,6 +753,9 @@
                     </li>
                 </ul>
             </div>
+
+            <!-- Separator Added -->
+            <hr class="section-separator">
 
             <div class="content-section-card">
                 <h2>Debunking Common Investing Myths</h2>
@@ -665,6 +784,43 @@
                     </li>
                 </ul>
             </div>
+            
+             <!-- Separator Added -->
+            <hr class="section-separator">
+
+            <!-- NEW SECTION: Getting Started -->
+            <div class="content-section-card bg-gray-50">
+                <h2>Getting Started: The Nuts and Bolts 🛠️</h2>
+                <p class="text-sm">Ready to take the first practical steps? Here's what you need to know:</p>
+                <ul class="mt-4 space-y-4">
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <div>
+                            <p class="item-title"><strong>Complete Your KYC</strong></p>
+                            <p>This mandatory 'Know Your Customer' process is a one-time verification. You'll typically need your PAN card and Aadhaar card (linked to your mobile for OTP). Most platforms allow you to do this online in minutes.</p>
+                        </div>
+                    </li>
+                    <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M17 2h-1a4 4 0 0 0-4 4v0a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-1z"/></svg>
+                        <div>
+                            <p class="item-title"><strong>Choose Your Platform</strong></p>
+                            <p><strong>Mutual Funds:</strong> You can invest via Mutual Fund distributor platforms (like Groww, Zerodha Coin) or directly with the Asset Management Company (AMC) website after KYC.
+                            <br><strong>Direct Stocks:</strong> You'll need a Demat & Trading account with a stockbroker. Check our <a href="5paisa-vs-upstox.html">5paisa vs. Upstox guide</a> for a comparison.</p>
+                        </div>
+                    </li>
+                     <li class="icon-list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        <div>
+                            <p class="item-title"><strong>Link Your Bank Account</strong></p>
+                            <p>Securely link your bank account to your chosen platform for seamless investing (SIPs) and withdrawals.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- END NEW SECTION -->
+
+            <!-- Separator Added -->
+            <hr class="section-separator">
 
             <div class="content-section-card">
                 <h2>Your First Investment Checklist</h2>
@@ -698,6 +854,9 @@
                 </div>
             </div>
 
+            <!-- Separator Added -->
+            <hr class="section-separator">
+
             <!-- Squeezed Toolkit Section -->
             <div class="content-section-card bg-gray-50">
                 <h2 class="section-title-secondary text-center">Your Investor's Toolkit</h2>
@@ -727,6 +886,9 @@
                 </div>
             </div>
             
+            <!-- Separator Added -->
+            <hr class="section-separator">
+
             <div class="content-section-card text-center">
                 <h2>Ready to Start Your Own Journey?</h2>
                 <p class="mb-4 text-sm">Like Priya, you can turn financial uncertainty into a clear, confident plan. The best time to plant a tree was 20 years ago. The second-best time is today.</p>
@@ -735,6 +897,9 @@
                     <a href="../financial-hub.html" class="btn-secondary">Take a Financial Quiz</a>
                 </div>
             </div>
+
+            <!-- Separator Added -->
+            <hr class="section-separator">
 
             <div class="content-section-card bg-gray-50">
                 <h2 class="section-title-secondary">Frequently Asked Questions (FAQ)</h2>
