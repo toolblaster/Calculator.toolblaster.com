@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Adjusted Meta Title (60 chars) -->
-    <title>Retirement Planning India: Your Guide to a Happy, Secure Future</title>
+    <!-- Adjusted Meta Title (59 chars) -->
+    <title>Retirement Planning India: Guide to a Happy, Secure Future</title>
     <!-- Adjusted Meta Description (159 chars) -->
     <meta name="description" content="Plan your happy retirement in India! Calculate your corpus (inflation-adjusted), compare EPF, PPF, NPS & MFs, and create a post-retirement income plan.">
     <meta name="keywords" content="retirement planning india, how to retire early, retirement corpus calculator, nps, ppf, mutual funds for retirement, swp plan, 4% withdrawal rule">
@@ -13,15 +13,15 @@
     <link rel="canonical" href="https://calculator.toolblaster.com/guides/retirement-planning-guide.html">
 
     <!-- Open Graph Tags (for Facebook, LinkedIn, etc.) -->
-    <meta property="og:title" content="Retirement Planning India: Your Guide to a Happy, Secure Future | Calculator.toolblaster">
+    <meta property="og:title" content="Retirement Planning India: Your Guide to a Happy, Secure Future | Calculator.toolblaster.com">
     <meta property="og:description" content="Plan your happy retirement in India! Calculate your corpus (inflation-adjusted), compare EPF, PPF, NPS & MFs, and create a post-retirement income plan.">
     <!-- Removed og:image tag -->
     <meta property="og:url" content="https://calculator.toolblaster.com/guides/retirement-planning-guide.html">
     <meta property="og:type" content="article">
 
     <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Retirement Planning India: Your Guide to a Happy, Secure Future | Calculator.toolblaster">
+    <meta name="twitter:card" content="summary"> <!-- Changed card type -->
+    <meta name="twitter:title" content="Retirement Planning India: Your Guide to a Happy, Secure Future | Calculator.toolblaster.com">
     <meta name="twitter:description" content="Plan your happy retirement in India! Calculate your corpus (inflation-adjusted), compare EPF, PPF, NPS & MFs, and create a post-retirement income plan.">
     <!-- Removed twitter:image tag -->
 
@@ -126,33 +126,44 @@
     </script>
     <!-- Squeezed Styles -->
     <style>
+        /* Inheriting base styles from style.css */
         .content-section-card {
             background-color: #ffffff;
             border: 1px solid #e5e7eb; /* gray-200 */
-            border-radius: 0.5rem; /* Reduced from 0.75rem */
-            padding: 1rem; /* Reduced from 1.5rem */
-            margin-bottom: 0.75rem; /* Reduced from 1rem */
-            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* Slightly reduced shadow */
+            border-radius: 0.5rem; /* Reduced */
+            padding: 1rem 1rem 1rem 1.5rem; /* Squeezed padding, added left padding */
+            margin-bottom: 0.75rem; /* Squeezed */
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* Slightly reduced */
             /* Added Left Border */
             border-left-width: 4px;
-            border-left-color: #F87171; /* Adjust color as needed, e.g., red-400 */
+            /* Default border color - Red */
+            border-left-color: #F87171; /* red-400 */
         }
+        /* Complementary Border Colors */
+        .content-section-card.border-l-blue-400 { border-left-color: #60A5FA; }
+        .content-section-card.border-l-green-400 { border-left-color: #4ADE80; }
+        .content-section-card.border-l-purple-400 { border-left-color: #A78BFA; }
+        .content-section-card.border-l-yellow-400 { border-left-color: #FACC15; }
+        .content-section-card.border-l-teal-400 { border-left-color: #2DD4BF; }
+        .content-section-card.border-l-indigo-400 { border-left-color: #818cf8; } /* Added Indigo */
+        .content-section-card.border-l-orange-400 { border-left-color: #fb923c; } /* Added Orange */
+
         .mini-calculator {
             background-color: #fef2f2; /* red-50 */
             border: 1px solid #fca5a5; /* red-200 */
-            border-radius: 0.375rem; /* Reduced from 0.5rem */
-            padding: 0.75rem; /* Reduced from 1rem */
-            margin-top: 1rem; /* Reduced from 1.5rem */
+            border-radius: 0.375rem; /* Reduced */
+            padding: 0.75rem; /* Reduced */
+            margin-top: 1rem; /* Reduced */
             text-align: center;
         }
         .mini-calculator-icon {
-            width: 28px; /* Reduced from 32px */
-            height: 28px; /* Reduced from 32px */
+            width: 28px; /* Reduced */
+            height: 28px; /* Reduced */
             color: #E34037;
             margin: 0 auto 0.4rem; /* Reduced margin */
         }
         .mini-calculator-title {
-            font-size: 0.8rem; /* Reduced from 0.9rem */
+            font-size: 0.8rem; /* Reduced */
             font-weight: 700;
             color: #1f2937; /* gray-800 */
             margin-bottom: 0.5rem; /* Reduced margin */
@@ -174,15 +185,15 @@
         }
         .mini-calculator-result-value {
             display: block;
-            font-size: 1.1rem; /* Reduced from 1.25rem */
+            font-size: 1.1rem; /* Reduced */
             font-weight: 800;
             color: #C22D2D; /* Darker red */
         }
         .list-icon {
             flex-shrink: 0;
-            width: 16px; /* Reduced from 18px */
-            height: 16px; /* Reduced from 18px */
-            margin-right: 0.5rem; /* Reduced margin */
+            width: 14px; /* Reduced */
+            height: 14px; /* Reduced */
+            margin-right: 0.4rem; /* Reduced margin */
             margin-top: 2px; /* Adjusted alignment */
         }
         .pillar-card {
@@ -191,13 +202,20 @@
             padding: 0.75rem; /* Reduced */
             text-align: center;
             border: 1px solid #e5e7eb; /* gray-200 */
+            height: 100%; /* Ensure equal height */
+            display: flex; flex-direction: column; /* Align content */
         }
+         .pillar-card svg { width: 1.75rem; height: 1.75rem; margin: 0 auto 0.2rem;} /* Squeezed icon */
+         .pillar-card h4 { font-size: 0.8rem; font-weight: 700; } /* Squeezed title, bold */
+         .pillar-card p { font-size: 0.65rem; flex-grow: 1; } /* Squeezed text, fill space */
+
+
         .bucket-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1rem; /* Reduced gap */
+            gap: 0.75rem; /* Reduced gap */
             align-items: stretch; /* Make cards same height */
-            margin-top: 1rem; /* Reduced margin */
+            margin-top: 0.75rem; /* Reduced margin */
         }
         @media (min-width: 768px) {
             .bucket-grid {
@@ -215,97 +233,113 @@
             flex-direction: column; /* Stack content vertically */
         }
         .bucket-icon {
-            width: 32px; /* Reduced */
-            height: 32px; /* Reduced */
-            margin: 0 auto 0.75rem; /* Reduced margin */
+            width: 28px; /* Reduced */
+            height: 28px; /* Reduced */
+            margin: 0 auto 0.5rem; /* Reduced margin */
             color: #E34037;
         }
         .bucket-title {
-            font-size: 1rem; /* Reduced */
+            font-size: 0.9rem; /* Reduced */
             font-weight: 700;
-            margin-bottom: 0.4rem; /* Reduced margin */
+            margin-bottom: 0.2rem; /* Reduced margin */
         }
         .bucket-timeline {
-            font-size: 0.75rem; /* Reduced */
+            font-size: 0.7rem; /* Reduced */
             font-weight: 500;
             color: #4b5563; /* gray-600 */
-            margin-bottom: 0.75rem; /* Reduced margin */
+            margin-bottom: 0.5rem; /* Reduced margin */
         }
         .bucket-purpose {
-            font-size: 0.8rem; /* Reduced */
+            font-size: 0.75rem; /* Reduced */
             font-weight: 600;
-            margin-bottom: 0.4rem; /* Reduced margin */
+            margin-bottom: 0.3rem; /* Reduced margin */
             flex-grow: 1; /* Make purpose fill space */
         }
         .bucket-instruments {
-            font-size: 0.7rem; /* Reduced */
+            font-size: 0.65rem; /* Reduced */
             color: #4b5563; /* gray-600 */
         }
 
-        /* Adjust main title and intro paragraph */
-        .legal-content h1 { font-size: 1.2rem; margin-bottom: 0.25rem;}
-        .legal-content > p:first-of-type { font-size: 0.75rem; margin-bottom: 0.75rem;}
+         /* Adjust main title and intro paragraph */
+        .legal-content h1 { font-size: 1.1rem; margin-bottom: 0.25rem; text-align: center; font-weight: 800;} /* Squeezed */
+        .legal-content > p:first-of-type { font-size: 0.7rem; margin-bottom: 0.75rem; text-align: center; color: #4b5563;} /* Squeezed */
 
         /* Adjust section titles */
-        .legal-content .section-title-secondary {
-            font-size: 1rem; /* Slightly larger for clarity */
-            margin-bottom: 0.4rem; /* Reduced margin */
-            padding-bottom: 0.2rem;
-            text-align: left; /* Keep left aligned */
+        .legal-content h2 {
+            font-size: 1rem; /* Squeezed */
+            font-weight: 700;
+            color: #1f2937; /* gray-800 */
+            margin-bottom: 0.4rem; /* Squeezed */
+            padding-bottom: 0.2rem; /* Squeezed */
+            border-bottom: 1px solid #E34037; /* Accent red */
+            text-align: left;
+            position: relative;
         }
         /* REMOVED accent line style */
-        .legal-content .section-title-secondary::after {
-             display: none;
-        }
-        .legal-content .text-center .section-title-secondary::after {
-             display: none;
-        }
+         .legal-content h2::after { display: none; }
+         .legal-content .text-center h2::after { display: none; }
+
 
         /* Adjust standard paragraph text */
         .legal-content p, .legal-content li {
-            font-size: 0.75rem; /* Reduced from 0.8rem */
-            line-height: 1.4; /* Slightly tighter */
+            font-size: 0.7rem; /* Squeezed */
+            line-height: 1.4;
+            color: #4b5563; /* gray-600 */
         }
          /* Adjust smaller text specifically */
-        .legal-content .text-xs { font-size: 0.7rem; }
-        .legal-content .text-sm { font-size: 0.75rem; }
+        .legal-content .text-xs { font-size: 0.65rem; } /* Squeezed */
+        .legal-content .text-sm { font-size: 0.7rem; } /* Squeezed */
 
-         /* Squeeze chart containers FURTHER */
+         /* Squeeze chart containers */
         .chart-container-div {
-             height: 12rem; /* Reduced from 14rem */
+             height: 10rem; /* Squeezed */
+             width: 100%;
+             margin: 0.5rem auto 0; /* Squeezed margin */
         }
         @media (min-width: 768px) {
              .chart-container-div {
-                 height: 14rem; /* Reduced from 16rem */
+                 height: 12rem; /* Slightly larger on desktop */
              }
         }
         .pie-chart-container-div {
-             height: 12rem; /* Specific height for pie chart container */
-             max-width: 14rem; /* Limit width */
+             height: 9rem; /* Further Squeezed */
+             max-width: 9rem; /* Limit width */
+             margin: 0.5rem auto 0; /* Squeezed margin */
         }
          @media (min-width: 768px) {
              .pie-chart-container-div {
-                  height: 14rem; /* Slightly larger on desktop */
+                  height: 10rem; /* Slightly larger on desktop */
+                  max-width: 10rem;
              }
          }
 
 
         /* Squeeze FAQ items */
-        .faq-item summary { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
-        .faq-item p { padding: 0 0.6rem 0.4rem 0.6rem; font-size: 0.7rem; }
-        .faq-item summary::after { font-size: 0.9rem; right: 0.75rem; }
+        .faq-item summary { font-size: 0.7rem; padding: 0.4rem 0.6rem; } /* Squeezed */
+        .faq-item p { padding: 0 0.6rem 0.4rem 0.6rem; font-size: 0.65rem; text-align: left;} /* Squeezed & left aligned */
+        .faq-item summary::after { font-size: 0.8rem; right: 0.75rem; } /* Squeezed */
 
         /* Squeeze table */
-        .legal-content table { font-size: 0.7rem; }
-        .legal-content th, .legal-content td { padding: 0.4rem; }
+        .legal-content table { font-size: 0.65rem; } /* Squeezed */
+        .legal-content th, .legal-content td { padding: 0.3rem; } /* Squeezed */
 
         /* Squeeze alert boxes */
         .alert { padding: 0.5rem; font-size: 0.7rem;}
         .alert-title { font-size: 0.75rem; margin-bottom: 0.1rem; }
 
         /* Squeeze checklist spacing */
-        .content-section-card ul.space-y-4 { margin-top: 0.75rem; }
-        .content-section-card ul.space-y-4 li { margin-bottom: 0.75rem; }
+        .content-section-card ul.space-y-3 { margin-top: 0.5rem; } /* Squeezed */
+        .content-section-card ul.space-y-3 li { margin-bottom: 0.4rem; } /* Squeezed */
+
+         /* Squeeze Buttons */
+        .btn-primary { padding: 0.35rem 0.7rem !important; font-size: 0.7rem !important; }
+        .btn-secondary { padding: 0.35rem 0.7rem !important; font-size: 0.7rem !important; }
+
+        /* Ensure paragraphs under H2s are left-aligned */
+         .content-section-card p { text-align: left; }
+         /* Keep specific centered paragraphs centered */
+         .content-section-card p.text-center { text-align: center; }
+
     </style>
 </head>
 <body class="bg-gray-50">
@@ -313,81 +347,86 @@
     <div id="header-placeholder"></div>
 
     <main class="container">
-        <div class="legal-content">
+        <div class="legal-content"> <!-- Removed padding -->
             <h1>Your Guide to a Happy & Stress-Free Retirement!</h1>
             <!-- Conversational Intro -->
             <p>Hey there! Thinking about retirement? For many of us, it conjures up images of freedom, travel, maybe finally mastering that hobby. Awesome, right? But maybe there's a little voice whispering, "Will I actually have enough money?" Totally normal! This guide is your friendly co-pilot, here to turn those worries into a solid plan. Think of it less like homework and more like <strong>designing the epic, lifelong holiday you deserve</strong>. Let's make sure your golden years truly shine!</p>
 
-            <div class="content-section-card">
-                <h2 class="section-title-secondary">Why Starting Now is Basically a Cheat Code</h2>
+            <!-- Added border -->
+            <div class="content-section-card border-l-green-400">
+                <h2>Why Starting Now is Basically a Cheat Code</h2>
                 <!-- Conversational Text -->
                 <p>Okay, here's the deal: the absolute best weapon you have for building retirement wealth isn't some secret stock tip. It's <strong>TIME</strong>. Ever heard of compounding? It's where your money starts making baby money, and then those baby monies start making <strong>their</strong> own baby money. It's like a snowball rolling downhill – the longer it rolls, the HUGE it gets. Starting early, even small, lets that snowball roll for decades. Seriously, the best time to start was yesterday. <strong>The next best time? Right now!</strong></p>
             </div>
 
-            <div class="content-section-card">
-                <h2 class="section-title-secondary">Behold! The Magic of Compounding ✨</h2>
+            <!-- Added border -->
+            <div class="content-section-card border-l-blue-400">
+                <h2>Behold! The Magic of Compounding ✨</h2>
                 <!-- Conversational Text -->
-                <p class="text-center text-sm text-gray-500 mb-4">People call compounding the "eighth wonder of the world" for a reason. It's how small savings magically transform into big bucks over time. Check out the crazy difference below: ₹1 Lakh growing with simple interest vs. compound interest over 30 years (at 12% p.a.). Mind = blown.</p>
+                <p class="text-center text-sm mb-4">People call compounding the "eighth wonder of the world" for a reason. It's how small savings magically transform into big bucks over time. Check out the crazy difference below: ₹1 Lakh growing with simple interest vs. compound interest over 30 years (at 12% p.a.). Mind = blown.</p>
                  <!-- Further Squeezed Chart Container -->
                  <div class="chart-container-div w-full mx-auto">
                    <canvas id="compoundingChart"></canvas>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4"> <!-- Reduced gap/margin -->
                     <div class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-blue-500 mr-2 flex-shrink-0"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-blue-500"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
                         <div><h4 class="font-semibold text-xs">Time is King</h4><p class="text-xs text-gray-600">The longer you let it cook, the bigger the feast.</p></div>
                     </div>
                      <div class="flex items-start">
                         <!-- Changed Icon: Trending Up -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-blue-500 mr-2 flex-shrink-0"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-blue-500"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
                         <div><h4 class="font-semibold text-xs">Reinvest!</h4><p class="text-xs text-gray-600">Let your earnings join the party and earn more.</p></div>
                     </div>
                      <div class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-blue-500 mr-2 flex-shrink-0"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-blue-500"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
                         <div><h4 class="font-semibold text-xs">Keep Adding Fuel</h4><p class="text-xs text-gray-600">Regular SIPs keep the compounding engine roaring.</p></div>
                     </div>
                 </div>
             </div>
 
-            <div class="content-section-card bg-gray-50">
-                <h2 class="section-title-secondary">The 3 Must-Haves for a Rock-Solid Retirement</h2>
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-yellow-400">
+                <h2>The 3 Must-Haves for a Rock-Solid Retirement</h2>
                 <!-- Conversational Text -->
-                <p class="text-center text-sm text-gray-500 mb-4">Think of your retirement plan like a sturdy three-legged stool. If one leg is wobbly, the whole thing might tip over! Here are the essentials:</p>
+                <p class="text-center text-sm mb-4">Think of your retirement plan like a sturdy three-legged stool. If one leg is wobbly, the whole thing might tip over! Here are the essentials:</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2"> <!-- Reduced gap -->
                     <div class="pillar-card">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-1"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-                        <h4 class="font-semibold text-xs">Enough Dough (Corpus)</h4><p class="text-xs text-gray-600">The big pile of cash you'll need to live comfortably without working.</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                        <h4>Enough Dough (Corpus)</h4><p>The big pile of cash you'll need to live comfortably without working.</p>
                     </div>
                      <div class="pillar-card">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v6"/><path d="M15 11h-6"/></svg>
-                        <h4 class="font-semibold text-xs">Health Shield (Insurance)</h4><p class="text-xs text-gray-600">Because surprise medical bills shouldn't wipe out your life savings. <strong>Non-negotiable!</strong></p>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v6"/><path d="M15 11h-6"/></svg>
+                        <h4>Health Shield (Insurance)</h4><p>Because surprise medical bills shouldn't wipe out your life savings. <strong>Non-negotiable!</strong></p>
                     </div>
                      <div class="pillar-card">
                         <!-- Updated Rupee Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-1"><path d="M6 3h12"/><path d="M6 8h12"/><path d="m13 13-3 8h5l3-8H6Z"/></svg>
-                        <h4 class="font-semibold text-xs">Regular "Pension" (Income Stream)</h4><p class="text-xs text-gray-600">A smart plan to turn that big pile of cash into a steady monthly paycheck.</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500"><path d="M6 3h12"/><path d="M6 8h12"/><path d="m13 13-3 8h5l3-8H6Z"/></svg>
+                        <h4>Regular "Pension" (Income Stream)</h4><p>A smart plan to turn that big pile of cash into a steady monthly paycheck.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="content-section-card">
-                <h2 class="section-title-secondary">Beware the Silent Thief: Inflation!</h2>
+            <!-- Added border -->
+            <div class="content-section-card border-l-orange-400">
+                <h2>Beware the Silent Thief: Inflation!</h2>
                 <!-- Conversational Text -->
-                <p class="text-center text-sm text-gray-500 mb-4">Inflation is like a sneaky Pac-Man, slowly gobbling up the value of your money. That ₹10 Lakhs you have today? In 20 years (at 6% inflation), it'll only buy what about <strong>₹3.1 Lakhs</strong> buys now! This is why just saving isn't enough; you need to <strong>invest</strong> to outrun it.</p>
+                <p class="text-center text-sm mb-4">Inflation is like a sneaky Pac-Man, slowly gobbling up the value of your money. That ₹10 Lakhs you have today? In 20 years (at 6% inflation), it'll only buy what about <strong>₹3.1 Lakhs</strong> buys now! This is why just saving isn't enough; you need to <strong>invest</strong> to outrun it.</p>
                 <!-- Further Squeezed Chart Container -->
                 <div class="chart-container-div w-full mx-auto">
                    <canvas id="inflationChart"></canvas>
                 </div>
             </div>
 
-            <div class="content-section-card bg-gray-50">
-                <h2 class="section-title-secondary">So, How Much Do I <strong>Actually</strong> Need?</h2>
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-purple-400">
+                <h2>So, How Much Do I <strong>Actually</strong> Need?</h2>
                 <!-- Conversational Text -->
                 <p>Alright, the million-dollar question (literally!). While it's super personal, a handy rule of thumb is the <strong>"4% Rule"</strong>. Rough idea: Aim for a retirement pot that's <strong>25 times</strong> what you think you'll spend annually in your first year of retirement. Need ₹1 Lakh a month (₹12 Lakh/year)? Target = <strong>₹3 Crore</strong>. Whoa!</p>
 
                 <div id="mini-calc-retirement" class="mini-calculator">
                     <div class="mini-calculator-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                     </div>
                     <h4 class="mini-calculator-title">Quick Retirement Goal Check</h4>
                     <input type="number" id="annual-expenses-input" class="mini-calculator-input" placeholder="Est. Annual Expenses at Retirement">
@@ -403,10 +442,11 @@
                 </div>
             </div>
 
-            <div class="content-section-card">
-                <h2 class="section-title-secondary">Building Your Dream Team: A Sample Portfolio Mix</h2>
+            <!-- Added border -->
+            <div class="content-section-card border-l-teal-400">
+                <h2>Building Your Dream Team: A Sample Portfolio Mix</h2>
                 <!-- Conversational Text -->
-                <p class="text-center text-sm text-gray-500 mb-4">Don't put all your eggs in one basket! A good mix (aka 'asset allocation') helps you grow while managing bumps along the road. Here's a sample for someone around 35. Remember, this changes as you get older!</p>
+                <p class="text-center text-sm mb-4">Don't put all your eggs in one basket! A good mix (aka 'asset allocation') helps you grow while managing bumps along the road. Here's a sample for someone around 35. Remember, this changes as you get older!</p>
                 <!-- Further Squeezed Pie Chart Container -->
                 <div class="pie-chart-container-div w-full mx-auto">
                     <canvas id="assetAllocationChart"></canvas>
@@ -414,57 +454,59 @@
                 <p class="text-center text-xs text-gray-500 mt-3">Heads up: As retirement gets closer, you'll want to dial down the 'Equity' and dial up the safer 'Debt' stuff.</p>
             </div>
 
-            <div class="content-section-card">
-                <h2 class="section-title-secondary">Meet the Players: Your Retirement Investment Options</h2>
+            <!-- Added border -->
+            <div class="content-section-card border-l-indigo-400">
+                <h2>Meet the Players: Your Retirement Investment Options</h2>
                  <!-- Conversational Text -->
-                <p class="text-center text-sm text-gray-500 mb-4">Choosing <strong>where</strong> to invest is key. Here's a quick rundown of the main options in India:</p>
+                <p class="text-center text-sm mb-4">Choosing <strong>where</strong> to invest is key. Here's a quick rundown of the main options in India:</p>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-100">
                             <tr>
-                                <th class="px-4 py-2">Tool</th> <!-- Reduced padding -->
-                                <th class="px-4 py-2">Best For You If...</th>
-                                <th class="px-4 py-2">Risk?</th>
-                                <th class="px-4 py-2">Returns?</th>
-                                <th class="px-4 py-2">Locked In?</th>
+                                <th class="px-2 py-1">Tool</th> <!-- Reduced padding -->
+                                <th class="px-2 py-1">Best For You If...</th>
+                                <th class="px-2 py-1">Risk?</th>
+                                <th class="px-2 py-1">Returns?</th>
+                                <th class="px-2 py-1">Locked In?</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="bg-white border-b"><td class="px-4 py-2 font-medium">EPF</td><td class="px-4 py-2">You're salaried</td><td class="px-4 py-2">Low</td><td class="px-4 py-2">Govt. Declared</td><td class="px-4 py-2">Till Retirement</td></tr>
-                            <tr class="bg-gray-50 border-b"><td class="px-4 py-2 font-medium">PPF</td><td class="px-4 py-2">You love safety</td><td class="px-4 py-2">Risk-Free</td><td class="px-4 py-2">Guaranteed & Tax-Free</td><td class="px-4 py-2">15 Years</td></tr>
-                            <tr class="bg-white border-b"><td class="px-4 py-2 font-medium">NPS</td><td class="px-4 py-2">You want balance & tax perks</td><td class="px-4 py-2">Medium</td><td class="px-4 py-2">Market-linked Mix</td><td class="px-4 py-2">Till Age 60</td></tr>
-                            <tr class="bg-gray-50"><td class="px-4 py-2 font-medium">Mutual Funds (SIP)</td><td class="px-4 py-2">You're aiming high (long-term!)</td><td class="px-4 py-2">High</td><td class="px-4 py-2">Market-linked (High Potential)</td><td class="px-4 py-2">No (but stay long!)</td></tr>
+                            <tr class="bg-white border-b"><td class="px-2 py-1 font-medium">EPF</td><td class="px-2 py-1">You're salaried</td><td class="px-2 py-1">Low</td><td class="px-2 py-1">Govt. Declared</td><td class="px-2 py-1">Till Retirement</td></tr>
+                            <tr class="bg-gray-50 border-b"><td class="px-2 py-1 font-medium">PPF</td><td class="px-2 py-1">You love safety</td><td class="px-2 py-1">Risk-Free</td><td class="px-2 py-1">Guaranteed & Tax-Free</td><td class="px-2 py-1">15 Years</td></tr>
+                            <tr class="bg-white border-b"><td class="px-2 py-1 font-medium">NPS</td><td class="px-2 py-1">You want balance & tax perks</td><td class="px-2 py-1">Medium</td><td class="px-2 py-1">Market-linked Mix</td><td class="px-2 py-1">Till Age 60</td></tr>
+                            <tr class="bg-gray-50"><td class="px-2 py-1 font-medium">Mutual Funds (SIP)</td><td class="px-2 py-1">You're aiming high (long-term!)</td><td class="px-2 py-1">High</td><td class="px-2 py-1">Market-linked (High Potential)</td><td class="px-2 py-1">No (but stay long!)</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-             <div class="content-section-card">
-                <h2 class="section-title-secondary">Your Go-To Retirement Toolkit</h2>
+            <!-- Added border -->
+             <div class="content-section-card border-l-blue-400">
+                <h2>Your Go-To Retirement Toolkit</h2>
                  <!-- Conversational Text -->
                 <p>Let's zoom in on the most popular tools you'll likely use:</p>
 
                 <ul class="space-y-3 mt-3"> <!-- Reduced spacing -->
                     <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
                         <div>
                             <strong>EPF:</strong> If you're salaried, this is your automatic buddy. Safe, steady, does its thing in the background. Good start!
                         </div>
                     </li>
                      <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         <div>
                             <strong>PPF:</strong> Everyone's favorite! Government-backed, tax-free returns. Amazing for risk-free, long-term saving. A must-have for many.
                         </div>
                     </li>
                      <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/><path d="M16 12H8"/></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/><path d="M16 12H8"/></svg>
                         <div>
                             <strong>NPS:</strong> A low-cost pension plan mixing stocks and bonds. Gets you <strong>extra tax breaks</strong> too. Smart choice for balanced growth.
                         </div>
                     </li>
                      <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
                         <div>
                             <strong>Mutual Funds (SIP):</strong> The turbo engine! Equity SIPs are your best bet to beat inflation over the long haul. Essential for building that big corpus.
                         </div>
@@ -472,10 +514,11 @@
                 </ul>
             </div>
 
-            <div class="content-section-card bg-gray-50">
-                <h2 class="section-title-secondary">Creating Your Retirement Paycheck: The Awesome 3-Bucket Hack!</h2>
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-green-400">
+                <h2>Creating Your Retirement Paycheck: The Awesome 3-Bucket Hack!</h2>
                  <!-- Conversational Text -->
-                <p class="text-center text-sm text-gray-500 mb-4">Okay, you've retired, sitting on a nice pile of cash. Now what? You need a system to draw income without stressing about market crashes. Enter the super-smart <strong>3-Bucket Strategy</strong>:</p>
+                <p class="text-center text-sm mb-4">Okay, you've retired, sitting on a nice pile of cash. Now what? You need a system to draw income without stressing about market crashes. Enter the super-smart <strong>3-Bucket Strategy</strong>:</p>
                 <div class="bucket-grid">
                     <div class="bucket-card">
                         <div class="bucket-icon">
@@ -511,55 +554,57 @@
                 </div>
             </div>
 
-
+            <!-- Added border -->
             <div class="content-section-card bg-red-50 border-l-4 border-red-500">
-                <h2 class="section-title-secondary text-red-800">Oops! Avoid These Retirement Roadblocks</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3"> <!-- Reduced gap/margin -->
+                <h2>Oops! Avoid These Retirement Roadblocks</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3"> <!-- Reduced gap/margin -->
                     <div class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-red-600 mr-2 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-red-600"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
                         <div><h4 class="font-semibold text-xs">Ignoring Inflation</h4><p class="text-xs text-gray-700">Thinking today's ₹50k/month is enough 25 years later? Think again!</p></div>
                     </div>
                      <div class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-red-600 mr-2 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-red-600"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
                         <div><h4 class="font-semibold text-xs">Starting "Later"</h4><p class="text-xs text-gray-700">Delaying even a few years means you'll need to save WAY more later. Ouch.</p></div>
                     </div>
                      <div class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-red-600 mr-2 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-red-600"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
                         <div><h4 class="font-semibold text-xs">Playing It <strong>Too</strong> Safe</h4><p class="text-xs text-gray-700">Only using FDs? Inflation will likely eat your returns for lunch long-term.</p></div>
                     </div>
                      <div class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-red-600 mr-2 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-red-600"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
                         <div><h4 class="font-semibold text-xs">Forgetting Healthcare $$$</h4><p class="text-xs text-gray-700">Medical costs zoom up later. You NEED good health insurance + a buffer.</p></div>
                     </div>
                 </div>
             </div>
 
-            <div class="content-section-card">
-                <h2 class="section-title-secondary">Your Quick-Start Retirement Checklist</h2>
+            <!-- Added border -->
+            <div class="content-section-card border-l-yellow-400">
+                <h2>Your Quick-Start Retirement Checklist</h2>
                  <!-- Conversational Text -->
                 <p>Feeling overwhelmed? Don't be! Just focus on these simple steps:</p>
                 <ul class="space-y-3 mt-3"> <!-- Reduced spacing -->
                     <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <div><strong>Just Start! (Seriously, Today!):</strong> Even ₹500/month is HUGE thanks to compounding. <strong>Time > Amount</strong>.</div>
                     </li>
                      <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <div><strong>Dream a Little:</strong> What does <strong>your</strong> happy retirement look like? Picture it! This makes the goal real.</div>
                     </li>
                      <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <div><strong>Set it & Forget It (Automate):</strong> SIPs are your best friend. Make saving automatic so you don't even have to think about it.</div>
                     </li>
                      <li class="flex items-start">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-green-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <div><strong>Annual Check-In:</strong> Once a year, peek at your plan. Still on track? Can you save a bit more? Quick adjustments keep you flying right.</div>
                     </li>
                 </ul>
             </div>
 
-            <div class="content-section-card bg-gray-50">
-                <h3 class="section-title-secondary">Got Questions? We've Got Answers! (FAQ)</h3>
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-purple-400">
+                <h2 class="section-title-secondary text-center">Got Questions? We've Got Answers! (FAQ)</h2>
                 <div class="faq-container">
                     <details class="faq-item">
                         <summary>How much is <strong>really</strong> enough to retire in India?</summary>
@@ -587,7 +632,7 @@
                     </details>
                 </div>
             </div>
-
+            <!-- REMOVED Social Share and Continue Journey sections -->
         </div>
     </main>
 
@@ -600,18 +645,15 @@
         document.addEventListener('DOMContentLoaded', () => {
             const inflationCtx = document.getElementById('inflationChart');
             if(inflationCtx) {
-                // ... (inflation chart code as before)
-                const initialAmount = 1000000; const inflationRate = 0.06; const years = 20; const realValue = initialAmount / Math.pow(1 + inflationRate, years); new Chart(inflationCtx, { type: 'bar', /* ... config ... */ data: { labels: ['Nominal Value', 'Real Value (Purchasing Power)'], datasets: [{ label: 'Value after 20 Years', data: [initialAmount, realValue], backgroundColor: ['rgba(59, 130, 246, 0.7)','rgba(239, 68, 68, 0.7)'], borderColor: ['rgba(37, 99, 235, 1)','rgba(220, 38, 38, 1)'], borderWidth: 1 }] }, options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.x)}` }}}, scales: { x: { beginAtZero: true, ticks: { callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value) }}} }});
+                const initialAmount = 1000000; const inflationRate = 0.06; const years = 20; const realValue = initialAmount / Math.pow(1 + inflationRate, years); new Chart(inflationCtx, { type: 'bar', data: { labels: ['Nominal Value', 'Real Value (Purchasing Power)'], datasets: [{ label: 'Value after 20 Years', data: [initialAmount, realValue], backgroundColor: ['rgba(59, 130, 246, 0.7)','rgba(239, 68, 68, 0.7)'], borderColor: ['rgba(37, 99, 235, 1)','rgba(220, 38, 38, 1)'], borderWidth: 1 }] }, options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.x)}` }, bodyFont:{size:9}, titleFont:{size:10}, padding:4 }}, scales: { x: { beginAtZero: true, ticks: { callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value), font:{size:8} }}, y:{ticks:{font:{size:8}}} } }}); // Squeezed ticks
             }
             const assetCtx = document.getElementById('assetAllocationChart');
             if (assetCtx) {
-                // ... (asset allocation chart code as before)
-                 new Chart(assetCtx, { type: 'pie', /* ... config ... */ data: { labels: ['Equity Mutual Funds', 'Debt (PPF, EPF, Debt Funds)', 'Gold/Alternatives'], datasets: [{ label: 'Asset Allocation', data: [60, 30, 10], backgroundColor: ['rgba(22, 163, 74, 0.7)','rgba(59, 130, 246, 0.7)','rgba(245, 158, 11, 0.7)'], borderColor: ['rgba(22, 163, 74, 1)','rgba(37, 99, 235, 1)','rgba(217, 119, 6, 1)'], borderWidth: 1 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels:{boxWidth:10, padding:10, font:{size:10}} }, tooltip: { callbacks: { label: function(context) { let label = context.label || ''; if (label) { label += ': '; } if (context.parsed !== null) { label += context.parsed + '%'; } return label; }}}}} });
+                 new Chart(assetCtx, { type: 'pie', data: { labels: ['Equity Mutual Funds', 'Debt (PPF, EPF, Debt Funds)', 'Gold/Alternatives'], datasets: [{ label: 'Asset Allocation', data: [60, 30, 10], backgroundColor: ['rgba(22, 163, 74, 0.7)','rgba(59, 130, 246, 0.7)','rgba(245, 158, 11, 0.7)'], borderColor: ['rgba(22, 163, 74, 1)','rgba(37, 99, 235, 1)','rgba(217, 119, 6, 1)'], borderWidth: 1 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels:{boxWidth:8, padding:6, font:{size:8}} }, tooltip: { callbacks: { label: function(context) { let label = context.label || ''; if (label) { label += ': '; } if (context.parsed !== null) { label += context.parsed + '%'; } return label; }}, bodyFont:{size:9}, titleFont:{size:10}, padding:4 }}} }); // Squeezed legend/tooltip
             }
             const compoundingCtx = document.getElementById('compoundingChart');
             if(compoundingCtx) {
-                // ... (compounding chart code as before)
-                const years = 30; const principal = 100000; const rate = 0.12; let labels = []; let compoundData = []; let simpleData = []; let currentCompoundValue = principal; for(let i = 0; i <= years; i++) { labels.push(`Y${i}`); simpleData.push(principal + (principal * rate * i)); if (i > 0) { currentCompoundValue *= (1 + rate); } compoundData.push(currentCompoundValue); } new Chart(compoundingCtx, { type: 'line', /* ... config ... */ data: { labels: labels, datasets: [ { label: 'Compound Growth', data: compoundData, borderColor: 'rgba(34, 197, 94, 1)', backgroundColor: 'rgba(34, 197, 94, 0.2)', fill: true, tension: 0.1 }, { label: 'Simple Growth', data: simpleData, borderColor: 'rgba(239, 68, 68, 1)', backgroundColor: 'rgba(239, 68, 68, 0.2)', fill: true, tension: 0.1 } ] }, options: { responsive: true, maintainAspectRatio: false, plugins: {legend:{labels:{boxWidth:10, padding:10, font:{size:10}}}, tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.y)}` }}}, scales: { y: { beginAtZero: true, ticks: { callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value) }}, x:{ticks:{font:{size:8}, maxRotation: 0, autoSkipPadding: 10}} } }});
+                const years = 30; const principal = 100000; const rate = 0.12; let labels = []; let compoundData = []; let simpleData = []; let currentCompoundValue = principal; for(let i = 0; i <= years; i++) { labels.push(`Y${i}`); simpleData.push(principal + (principal * rate * i)); if (i > 0) { currentCompoundValue *= (1 + rate); } compoundData.push(currentCompoundValue); } new Chart(compoundingCtx, { type: 'line', data: { labels: labels, datasets: [ { label: 'Compound Growth', data: compoundData, borderColor: 'rgba(34, 197, 94, 1)', backgroundColor: 'rgba(34, 197, 94, 0.2)', fill: true, tension: 0.1, pointRadius: 0 }, { label: 'Simple Growth', data: simpleData, borderColor: 'rgba(239, 68, 68, 1)', backgroundColor: 'rgba(239, 68, 68, 0.2)', fill: true, tension: 0.1, pointRadius: 0 } ] }, options: { responsive: true, maintainAspectRatio: false, plugins: {legend:{labels:{boxWidth:8, padding:6, font:{size:8}}}, tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.y)}` }, bodyFont:{size:9}, titleFont:{size:10}, padding:4 }}, scales: { y: { beginAtZero: true, ticks: { callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value), font:{size:8} }}, x:{ticks:{font:{size:8}, maxRotation: 0, autoSkipPadding: 15}} } }}); // Squeezed legend/tooltip/ticks
             }
         });
     </script>
