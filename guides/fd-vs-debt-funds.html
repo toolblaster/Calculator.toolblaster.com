@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FD vs. Debt Funds: A Comprehensive Guide for Indian Investors</title>
-    <meta name="description" content="A comprehensive guide comparing Fixed Deposits (FDs) and Debt Mutual Funds. Understand the key differences in returns, risk, liquidity, and taxation to make an informed choice for your savings.">
+    <!-- Adjusted Title -->
+    <title>FD vs. Debt Funds: Which Low-Risk Option is Best for You?</title>
+    <!-- Adjusted Description -->
+    <meta name="description" content="FD or Debt Fund? Compare safety, returns, liquidity & tax efficiency. Our guide helps Indian investors choose the best low-risk savings option.">
     <meta name="keywords" content="fd vs debt funds, fixed deposit, debt mutual funds, short term investment, low risk investment, liquid funds, financial planning India">
 
     <!-- Canonical Tag -->
@@ -13,7 +15,7 @@
     <!-- Open Graph Tags (for Facebook, LinkedIn, etc.) -->
     <meta property="og:title" content="FD vs. Debt Funds: A Comprehensive Guide for Indian Investors">
     <meta property="og:description" content="A comprehensive guide comparing Fixed Deposits (FDs) and Debt Mutual Funds. Understand the key differences in returns, risk, liquidity, and taxation.">
-    <meta property="og:image" content="https://placehold.co/1200x630/E34037/FFFFFF?text=FD+vs+Debt+Funds">
+    <!-- Removed og:image tag -->
     <meta property="og:url" content="https://calculator.toolblaster.com/guides/fd-vs-debt-funds.html">
     <meta property="og:type" content="article">
 
@@ -21,8 +23,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="FD vs. Debt Funds: A Comprehensive Guide for Indian Investors">
     <meta name="twitter:description" content="A comprehensive guide comparing Fixed Deposits (FDs) and Debt Mutual Funds. Understand the key differences in returns, risk, liquidity, and taxation.">
-    <meta name="twitter:image" content="https://placehold.co/1200x630/E34037/FFFFFF?text=FD+vs+Debt+Funds">
-    
+    <!-- Removed twitter:image tag -->
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -42,17 +44,17 @@
           "description": "A comprehensive guide comparing Fixed Deposits (FDs) and Debt Mutual Funds. Understand the key differences in returns, risk, liquidity, and taxation to make an informed choice for your savings.",
           "author": {
             "@type": "Organization",
-            "name": "Calculator.toolblaster"
+            "name": "Calculator.toolblaster.com"
           },
           "publisher": {
             "@type": "Organization",
-            "name": "Calculator.toolblaster",
+            "name": "Calculator.toolblaster.com",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://calculator.toolblaster.com/assets/images/logo.png" 
+              "url": "https://calculator.toolblaster.com/favicon/favicon-96x96.png" // Updated logo URL
             }
           },
-          "datePublished": "2025-09-19"
+          "datePublished": "2025-10-19" // Updated Date
         },
         {
           "@type": "FAQPage",
@@ -109,201 +111,214 @@
     }
     </script>
     <style>
+        /* Inheriting base styles from style.css */
         .content-section-card {
             background-color: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb; /* gray-200 */
+            border-radius: 0.5rem; /* Squeezed */
+            padding: 1rem 1rem 1rem 1.5rem; /* Squeezed padding, added left padding */
+            margin-bottom: 0.75rem; /* Squeezed */
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* Slightly reduced */
+            border-left-width: 4px; /* Added */
+            /* Default border color - Red */
+            border-left-color: #F87171; /* red-400 */
         }
-        @media (min-width: 768px) {
-            .content-section-card {
-                padding: 1.5rem;
-            }
+         /* Complementary Border Colors */
+        .content-section-card.border-l-blue-400 { border-left-color: #60A5FA; }
+        .content-section-card.border-l-green-400 { border-left-color: #4ADE80; }
+        .content-section-card.border-l-purple-400 { border-left-color: #A78BFA; }
+        .content-section-card.border-l-yellow-400 { border-left-color: #FACC15; }
+        .content-section-card.border-l-teal-400 { border-left-color: #2DD4BF; }
+        .content-section-card.border-l-indigo-400 { border-left-color: #818cf8; }
+        .content-section-card.border-l-orange-400 { border-left-color: #fb923c; }
+
+
+        /* Squeezed main headings */
+        .legal-content h1 { font-size: 1.2rem; margin-bottom: 0.25rem;}
+        .legal-content > p:first-of-type { font-size: 0.75rem; margin-bottom: 0.75rem;}
+
+        /* Squeezed section headings */
+        .content-section-card h2 {
+            font-size: 1.0rem;
+            font-weight: 700;
+            color: #1f2937; /* Darker text */
+            margin-bottom: 0.5rem; /* Squeezed */
+            border-bottom: 1px solid #E34037;
+            padding-bottom: 0.25rem; /* Squeezed */
         }
 
-        .strategy-card {
-            background-color: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        /* Squeezed Sub-Headings */
+        .content-section-card h3, .content-section-card h4 {
+            font-size: 0.8rem; /* Squeezed H3/H4 */
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.2rem; /* Squeezed margin */
         }
-         @media (min-width: 768px) {
-            .strategy-card {
-                padding: 1.5rem;
-            }
+
+        /* Squeezed paragraph and list item text */
+        .content-section-card p, .content-section-card li {
+            font-size: 0.7rem; /* Squeezed */
+            color: #4b5563; /* Darker muted text */
+            line-height: 1.4; /* Slightly tighter */
         }
-        .strategy-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #121212;
-            margin-bottom: 0.75rem;
-            border-bottom: 1px solid #E34037;
-            padding-bottom: 0.5rem;
-        }
-        .strategy-subtitle {
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: #525252;
-            margin-bottom: 1rem;
-        }
-        .strategy-card ul {
+
+        /* Squeezed list styles */
+        .content-section-card ul {
             list-style: none;
             padding-left: 0;
-            margin-top: 1rem;
+            margin-top: 0.75rem; /* Squeezed */
         }
-        .strategy-card li {
-            font-size: 0.8rem;
-            color: #525252;
-            margin-bottom: 0.5rem;
+        .content-section-card li {
+            margin-bottom: 0.3rem; /* Squeezed */
             display: flex;
             align-items: flex-start;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
         }
-        .strategy-card li svg {
+        .list-icon {
             flex-shrink: 0;
-            width: 16px;
-            height: 16px;
-            margin-right: 0.5rem;
+            width: 14px; /* Squeezed */
+            height: 14px; /* Squeezed */
+            margin-right: 0.4rem; /* Squeezed */
             margin-top: 2px;
+            color: #E34037; /* Default icon color */
         }
         .list-tick-icon { color: #16a34a; }
         .list-cross-icon { color: #ef4444; }
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        @media (min-width: 768px) {
-            .benefits-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        .benefits-grid h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 0.75rem;
-        }
-        .benefits-grid ul {
-            margin-top: 0;
-        }
-        /* --- RESPONSIVE TABLE CSS --- */
-        .comparison-table-wrapper {
-            overflow-x: auto;
-        }
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .comparison-table th, .comparison-table td {
-            padding: 0.75rem;
-            border: 1px solid #eee;
-            text-align: left;
-        }
-        .comparison-table thead tr {
-            background-color: #f7f7f7;
-        }
+
+        /* Squeezed Alert */
+        .alert { padding: 0.5rem; font-size: 0.7rem; }
+        .alert-title { font-size: 0.8rem; margin-bottom: 0.1rem; }
+
+        /* Squeezed Button */
+        .btn-primary, .btn-secondary { padding: 0.35rem 0.8rem !important; font-size: 0.7rem !important; }
+
+        /* Squeezed Table */
+        .comparison-table-wrapper { overflow-x: auto; margin-top: 0.75rem; } /* Squeezed */
+        .comparison-table { width: 100%; border-collapse: collapse; }
+        .comparison-table th, .comparison-table td { padding: 0.5rem; border: 1px solid #e5e7eb; font-size: 0.7rem; } /* Squeezed */
+        .comparison-table thead tr { background-color: #f9fafb; /* gray-50 */ }
+        .comparison-table th { font-weight: 600; color: #374151; /* gray-700 */ }
         @media (max-width: 767px) {
             .comparison-table thead { display: none; }
-            .comparison-table, .comparison-table tbody, .comparison-table tr, .comparison-table td {
-                display: block;
-                width: 100%;
-            }
-            .comparison-table tr {
-                margin-bottom: 1rem;
-                border: 1px solid #e5e7eb;
-                border-radius: 0.5rem;
-                overflow: hidden;
-            }
-            .comparison-table td {
-                text-align: right;
-                padding-left: 50%;
-                position: relative;
-            }
-            .comparison-table td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 10px;
-                width: calc(50% - 20px);
-                padding-right: 10px;
-                white-space: nowrap;
-                text-align: left;
-                font-weight: bold;
-                color: #4b5563;
-            }
+            .comparison-table, .comparison-table tbody, .comparison-table tr, .comparison-table td { display: block; width: 100%; }
+            .comparison-table tr { margin-bottom: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.375rem; overflow: hidden; } /* Squeezed */
+            .comparison-table td { text-align: right; padding-left: 50%; position: relative; border-bottom: 1px solid #f3f4f6; } /* Squeezed */
+            .comparison-table tr td:last-child { border-bottom: none; }
+            .comparison-table td::before { content: attr(data-label); position: absolute; left: 0.75rem; width: calc(50% - 1.5rem); padding-right: 0.5rem; white-space: nowrap; text-align: left; font-weight: 600; font-size: 0.65rem; color: #4b5563;} /* Squeezed */
         }
-        /* --- NEW MINI TAX CALCULATOR STYLES --- */
+
+        /* Squeezed Chart Containers */
+        .chart-container-div {
+            height: 12rem; /* Squeezed height */
+            width: 100%;
+            max-width: 450px; /* Limit width */
+            margin: 0.5rem auto 0; /* Squeezed margin */
+        }
+         @media (min-width: 768px) {
+             .chart-container-div {
+                 height: 14rem; /* Slightly taller on desktop */
+             }
+         }
+
+        /* Squeezed Mini Tax Calculator */
         .mini-tax-calculator {
-            background-color: #eef2ff;
-            border: 1px solid #c7d2fe;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            margin-top: 1.5rem;
-        }
-        @media (min-width: 768px) {
-            .mini-tax-calculator {
-                padding: 1.5rem;
-            }
+            background-color: #eef2ff; /* indigo-50 */
+            border: 1px solid #c7d2fe; /* indigo-200 */
+            border-radius: 0.5rem; /* Squeezed */
+            padding: 0.75rem; /* Squeezed */
+            margin-top: 1rem; /* Squeezed */
         }
         .mini-tax-calculator h3 {
             text-align: center;
-            font-size: 1.25rem;
+            font-size: 1.0rem; /* Squeezed */
             font-weight: 700;
-            color: #312e81;
-            margin-bottom: 1rem;
+            color: #312e81; /* indigo-900 */
+            margin-bottom: 0.75rem; /* Squeezed */
         }
         .mini-tax-inputs {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 0.75rem; /* Squeezed */
+            margin-bottom: 1rem; /* Squeezed */
         }
-        @media (min-width: 640px) {
-            .mini-tax-inputs {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
+        @media (min-width: 640px) { .mini-tax-inputs { grid-template-columns: repeat(3, 1fr); } }
         .mini-tax-input-group label {
             display: block;
-            font-size: 0.8rem;
+            font-size: 0.7rem; /* Squeezed */
             font-weight: 500;
-            margin-bottom: 0.25rem;
-            color: #4338ca;
+            margin-bottom: 0.1rem; /* Squeezed */
+            color: #4338ca; /* indigo-700 */
         }
         .mini-tax-input-group input, .mini-tax-input-group select {
             width: 100%;
-            padding: 0.5rem;
+            padding: 0.4rem; /* Squeezed */
             border: 1px solid #c7d2fe;
-            border-radius: 0.375rem;
-            font-size: 0.9rem;
+            border-radius: 0.25rem; /* Squeezed */
+            font-size: 0.8rem; /* Squeezed */
         }
         .mini-tax-results {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1rem;
+            gap: 0.75rem; /* Squeezed */
             background-color: #fff;
-            padding: 1rem;
-            border-radius: 0.5rem;
+            padding: 0.75rem; /* Squeezed */
+            border-radius: 0.375rem; /* Squeezed */
         }
-         @media (min-width: 640px) {
-            .mini-tax-results {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+         @media (min-width: 640px) { .mini-tax-results { grid-template-columns: 1fr 1fr; } }
         .mini-tax-result-item strong {
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* Squeezed */
             font-weight: 600;
             color: #4b5563;
         }
         .mini-tax-result-item .result-value {
-            font-size: 1.5rem;
+            font-size: 1.25rem; /* Squeezed */
             font-weight: 700;
         }
+        .mini-tax-calculator .text-xs { font-size: 0.65rem; } /* Squeezed */
+        .mini-tax-calculator .mt-4 { margin-top: 0.75rem; } /* Squeezed */
+        .mini-tax-calculator .mt-6 { margin-top: 1rem; } /* Squeezed */
+
+        /* Squeezed FAQ */
+        .faq-item summary { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
+        .faq-item p { padding: 0 0.6rem 0.4rem 0.6rem; font-size: 0.7rem; }
+        .faq-item summary::after { font-size: 0.9rem; right: 0.75rem; }
+
+        /* Liquidity Section Specific Squeezing */
+        .liquidity-card h3 { font-size: 0.9rem; }
+        .liquidity-card svg { width: 1.5rem; height: 1.5rem; }
+        .liquidity-card p { font-size: 0.7rem; }
+
+        /* Improved Final Verdict Section */
+        .verdict-item {
+            background-color: #fff;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .verdict-item h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
+        .verdict-item h3 svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            flex-shrink: 0;
+        }
+        .verdict-item ul {
+            margin-top: 0.5rem;
+        }
+        .verdict-item li {
+            margin-bottom: 0.2rem; /* Tighter list */
+        }
+        .verdict-item li svg {
+            width: 12px; /* Smaller icon */
+            height: 12px; /* Smaller icon */
+            margin-right: 0.3rem;
+            margin-top: 3px;
+        }
+
     </style>
 </head>
 <body class="bg-gray-50">
@@ -313,26 +328,26 @@
     <main class="container">
         <div class="legal-content">
             <h1>FD vs. Debt Funds: A Comprehensive Comparison</h1>
-            <p style="margin: 0 1.5rem 1rem 1.5rem;">For risk-averse investors and those with short-to-medium term goals, the choice often comes down to a Fixed Deposit (FD) or a Debt Mutual Fund. While FDs have been a traditional favorite for generations, debt funds have emerged as a modern, more tax-efficient, and potentially higher-return alternative. This guide will break down the core differences, helping you choose the best option for your financial strategy.</p>
-            
+            <p>For risk-averse investors and those with short-to-medium term goals, the choice often comes down to a Fixed Deposit (FD) or a Debt Mutual Fund. While FDs have been a traditional favorite for generations, debt funds have emerged as a modern, more tax-efficient, and potentially higher-return alternative. This guide will break down the core differences, helping you choose the best option for your financial strategy.</p>
 
-            <!-- Fixed Deposit Section -->
-            <div class="strategy-card">
-                <h2 class="strategy-title">The Fixed Deposit (FD): The Traditional, Guaranteed Saver</h2>
-                <p class="strategy-subtitle">A Fixed Deposit is a savings product where you lock in a lump sum of money for a set period at a guaranteed interest rate. It's the definition of safety and predictability in investing.</p>
-                
-                <p class="text-sm font-semibold text-gray-700">An FD is perfect for you if:</p>
+
+            <!-- Fixed Deposit Section - Added Border -->
+            <div class="content-section-card border-l-blue-400">
+                <h2>The Fixed Deposit (FD): The Traditional, Guaranteed Saver</h2>
+                <p>A Fixed Deposit is a savings product where you lock in a lump sum of money for a set period at a guaranteed interest rate. It's the definition of safety and predictability in investing.</p>
+
+                <p><strong>An FD is perfect for you if:</strong></p>
                 <ul>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>Your top priority is the absolute safety of your capital.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>You need a predictable, guaranteed return with zero risk.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>You're saving for a short-term goal (1-3 years) where capital protection is essential.</span>
                     </li>
                 </ul>
@@ -340,27 +355,27 @@
                 <div class="alert alert-info mt-4">
                     <h3 class="alert-title">Does the Guaranteed Path Sound Like You?</h3>
                     <p>If capital safety is your primary concern, an FD is an excellent choice. Our FD calculator can help you project your returns with ease.</p>
-                    <a href="../index.html?mode=fd" class="btn-primary mt-3">Calculate Your FD Returns &rarr;</a>
+                    <a href="../?mode=fd" class="btn-primary mt-3">Calculate Your FD Returns &rarr;</a>
                 </div>
             </div>
 
-            <!-- Debt Funds Section -->
-            <div class="strategy-card">
-                <h2 class="strategy-title">The Debt Fund: The Modern, Tax-Efficient Alternative</h2>
-                <p class="strategy-subtitle">A Debt Mutual Fund invests in fixed-income instruments like corporate bonds, government securities, and money market instruments. They are professionally managed and designed to provide stable, low-risk returns that can be more tax-efficient than FDs.</p>
-                
-                <p class="text-sm font-semibold text-gray-700">A Debt Fund is ideal for you if:</p>
+            <!-- Debt Funds Section - Added Border -->
+            <div class="content-section-card border-l-green-400 bg-gray-50">
+                <h2>The Debt Fund: The Modern, Tax-Efficient Alternative</h2>
+                <p>A Debt Mutual Fund invests in fixed-income instruments like corporate bonds, government securities, and money market instruments. They are professionally managed and designed to provide stable, low-risk returns that can be more tax-efficient than FDs.</p>
+
+                <p><strong>A Debt Fund is ideal for you if:</strong></p>
                 <ul>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>You want to earn slightly higher returns than an FD.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>You are investing for a medium-term horizon (3-5 years) and are looking for tax efficiency.</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon"><path d="M20 6 9 17l-5-5"></path></svg>
                         <span>You want to use a Systematic Transfer Plan (STP) to move a lumpsum to equity funds.</span>
                     </li>
                 </ul>
@@ -368,12 +383,13 @@
                 <div class="alert alert-info mt-4">
                     <h3 class="alert-title">Ready for a Tax-Efficient Alternative?</h3>
                     <p>Debt Funds can be a powerful tool in your portfolio. Use our investment calculator in `lumpsum` mode to project your potential returns.</p>
-                    <a href="../index.html?mode=lumpsum" class="btn-primary mt-3">Project Your Returns &rarr;</a>
+                    <a href="../?mode=lumpsum" class="btn-primary mt-3">Project Your Returns &rarr;</a>
                 </div>
             </div>
 
-            <div class="strategy-card">
-                <h2 class="strategy-title">At a Glance: FD vs. Debt Funds</h2>
+            <!-- Comparison Table Section - Added Border -->
+            <div class="content-section-card border-l-teal-400">
+                <h2>At a Glance: FD vs. Debt Funds</h2>
                 <div class="comparison-table-wrapper">
                     <table class="comparison-table text-sm text-left">
                         <thead>
@@ -408,12 +424,13 @@
                     </table>
                 </div>
             </div>
-            
-            <!-- NEW SECTION: Risk-Return Trade-Off -->
-            <div class="content-section-card">
-                <h2 class="strategy-title">Visualizing the Risk-Return Trade-Off</h2>
-                <p class="strategy-subtitle">This chart clearly shows the fundamental difference. FDs offer a single, guaranteed return. Debt funds offer a range of possible outcomes, with the potential to earn more than an FD, but without a guarantee.</p>
-                <div class="h-64 md:h-80 w-full max-w-lg mx-auto">
+
+            <!-- Risk-Return Chart Section - Added Border -->
+            <div class="content-section-card border-l-orange-400 bg-gray-50">
+                <h2>Visualizing the Risk-Return Trade-Off</h2>
+                <p>This chart clearly shows the fundamental difference. FDs offer a single, guaranteed return. Debt funds offer a range of possible outcomes, with the potential to earn more than an FD, but without a guarantee.</p>
+
+                <div class="chart-container-div">
                     <canvas id="riskReturnChart"></canvas>
                 </div>
                 <div class="alert alert-info mt-4">
@@ -422,11 +439,12 @@
                 </div>
             </div>
 
-            <div class="content-section-card bg-gray-50">
-                <h2 class="strategy-title">The Tax-Efficiency Factor: A Deeper Dive</h2>
-                <p class="strategy-subtitle">It's not about the returns you earn, but the returns you <strong>keep</strong> after taxes. This is where debt funds have a powerful advantage over FDs, especially for higher tax brackets.</p>
-                
-                <!-- NEW MINI TAX CALCULATOR -->
+            <!-- Tax Efficiency Section - Added Border & Compacted -->
+            <div class="content-section-card border-l-purple-400">
+                <h2>The Tax-Efficiency Factor: A Deeper Dive</h2>
+                <p>It's not about the returns you earn, but the returns you <strong>keep</strong> after taxes. This is where debt funds have a powerful advantage over FDs, especially for higher tax brackets.</p>
+
+                <!-- Squeezed MINI TAX CALCULATOR -->
                 <div class="mini-tax-calculator">
                     <h3>Interactive Tax Impact Calculator</h3>
                     <div class="mini-tax-inputs">
@@ -464,13 +482,15 @@
                         <a href="../calculators/income-tax-calculator/" class="btn-primary">Use Full Income Tax Calculator &rarr;</a>
                     </div>
                 </div>
-
+                <!-- END Squeezed MINI TAX CALCULATOR -->
             </div>
-            
-            <div class="content-section-card">
-                <h2 class="strategy-title">The Power of Time: Compounding FD vs. Debt Fund Returns</h2>
-                <p class="strategy-subtitle">While both investments provide compounding returns, the difference in their average return rates can lead to a significant difference in final corpus over the long run. The chart below illustrates the potential growth of a <strong>₹1 Lakh</strong> investment over 10 years, assuming a fixed FD rate of 7% and a Debt Fund return of 8.5%.</p>
-                <div class="h-64 md:h-80 w-full max-w-lg mx-auto">
+
+            <!-- Growth Comparison Section - Added Border -->
+            <div class="content-section-card border-l-green-400 bg-gray-50">
+                <h2>The Power of Time: Compounding FD vs. Debt Fund Returns</h2>
+                <p>While both investments provide compounding returns, the difference in their average return rates can lead to a significant difference in final corpus over the long run. The chart below illustrates the potential growth of a <strong>₹1 Lakh</strong> investment over 10 years, assuming a fixed FD rate of 7% and a Debt Fund return of 8.5%.</p>
+
+                <div class="chart-container-div">
                     <canvas id="growthComparisonChart"></canvas>
                 </div>
                  <div class="alert alert-success mt-4">
@@ -479,90 +499,94 @@
                 </div>
             </div>
 
-            <div class="content-section-card">
-                 <h2 class="strategy-title">Liquidity & Premature Withdrawal: The Flexibility Factor</h2>
-                 <p class="strategy-subtitle">While both FDs and Debt Funds are for medium-term goals, they offer very different levels of flexibility if you need to access your money early.</p>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-white p-4 rounded-lg border">
+            <!-- Liquidity Section - Added Border -->
+            <div class="content-section-card border-l-yellow-400">
+                 <h2>Liquidity & Premature Withdrawal: The Flexibility Factor</h2>
+                 <p>While both FDs and Debt Funds are for medium-term goals, they offer very different levels of flexibility if you need to access your money early.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <!-- Updated Liquidity Card Style -->
+                    <div class="bg-white p-4 rounded-lg border liquidity-card">
                         <div class="flex items-center gap-2 mb-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-red-500"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                            <h3 class="font-semibold text-xl">Fixed Deposit (FD)</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            <h3 class="font-semibold">Fixed Deposit (FD)</h3>
                         </div>
-                        <p class="text-sm text-gray-600">An FD has a fixed maturity period. If you break it early, you incur a penalty, usually a loss of a portion of your earned interest. For example, if you withdraw a 5-year FD after 2 years, you might get the interest rate for a 2-year FD, minus an additional penalty of 1%.</p>
+                        <p>An FD has a fixed maturity period. If you break it early, you incur a penalty, usually a loss of a portion of your earned interest. For example, if you withdraw a 5-year FD after 2 years, you might get the interest rate for a 2-year FD, minus an additional penalty of 1%.</p>
                     </div>
-                    <div class="bg-white p-4 rounded-lg border">
+                    <!-- Updated Liquidity Card Style -->
+                    <div class="bg-white p-4 rounded-lg border liquidity-card">
                          <div class="flex items-center gap-2 mb-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-green-500"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg>
-                            <h3 class="font-semibold text-xl">Debt Mutual Fund</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg>
+                            <h3 class="font-semibold">Debt Mutual Fund</h3>
                          </div>
-                         <p class="text-sm text-gray-600">Debt funds offer high liquidity. Your money is typically available in 1-2 business days. Most debt funds have no exit load (penalty) if you redeem your money after a short period, often as little as 7 days. This makes them a great option for an emergency fund or a parking space for a lump sum.</p>
+                         <p>Debt funds offer high liquidity. Your money is typically available in 1-2 business days. Most debt funds have no exit load (penalty) if you redeem your money after a short period, often as little as 7 days. This makes them a great option for an emergency fund or a parking space for a lump sum.</p>
                     </div>
                 </div>
-                 <h3 class="font-semibold text-center mt-6 text-xl">Visualizing the Penalty of Early Withdrawal</h3>
+                 <h3 class="font-semibold text-center mt-6">Visualizing the Penalty of Early Withdrawal</h3>
                 <p class="text-center text-xs text-gray-500 mb-6">The chart below illustrates a simplified view of the penalty for withdrawing a ₹1 Lakh investment after just 6 months. While Debt Funds offer quick, penalty-free access, FDs can cost you a portion of your returns.</p>
-                <div class="h-64 md:h-80 w-full max-w-lg mx-auto">
+
+                <div class="chart-container-div">
                     <canvas id="withdrawalPenaltyChart"></canvas>
                 </div>
             </div>
 
-            <div class="strategy-card">
-                <h2 class="strategy-title">The Final Verdict for Your Goals</h2>
-                <p class="strategy-subtitle">The choice between an FD and a Debt Fund depends on your unique financial situation. Here's a quick guide to help you decide:</p>
-                <div class="benefits-grid">
-                    <div>
-                        <h3>Choose an FD if:</h3>
+            <!-- Final Verdict Section - Added Border & Improved -->
+            <div class="content-section-card border-l-blue-400 bg-gray-50">
+                <h2>The Final Verdict: Which Path Suits Your Goal?</h2>
+                <p>No single answer fits everyone! The best choice hinges on your specific needs: <strong>Time Horizon, Risk Appetite, and Tax Situation.</strong> Here’s a simplified breakdown:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <!-- Choose FD -->
+                    <div class="verdict-item">
+                        <h3>
+                            <svg class="text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M7 12v4"/><path d="M12 12v4"/><path d="M17 12v4"/><path d="M5 8v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg>
+                            Choose Fixed Deposit (FD) if:
+                        </h3>
                         <ul>
                             <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                                <span>Your goal is less than 3 years away and you need 100% certainty of your returns.</span>
+                               <svg class="list-tick-icon text-blue-500" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <span><strong>Time Horizon:</strong> Short (1-3 Years)</span>
                             </li>
                             <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                                <span>You are a highly risk-averse investor and want to avoid any market-linked fluctuations.</span>
+                               <svg class="list-tick-icon text-blue-500" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <span><strong>Risk Appetite:</strong> Very Low (Need 100% Safety)</span>
                             </li>
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                                <span>You are in a lower tax bracket and the tax benefits of debt funds are not a major factor for you.</span>
+                             <li>
+                               <svg class="list-tick-icon text-blue-500" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <span><strong>Tax Situation:</strong> Lower Tax Bracket (or tax impact isn't a priority)</span>
                             </li>
                         </ul>
                     </div>
-                    <div>
-                        <h3>Choose a Debt Fund if:</h3>
+                    <!-- Choose Debt Fund -->
+                    <div class="verdict-item">
+                         <h3>
+                            <svg class="text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                            Choose Debt Fund if:
+                         </h3>
                         <ul>
                             <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                                <span>Your goal is more than 3 years away and you want to benefit from better tax treatment.</span>
-                            </li>
-                             <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                                <span>You are in a higher tax bracket and want to maximize your post-tax returns.</span>
+                               <svg class="list-tick-icon text-green-500" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <span><strong>Time Horizon:</strong> Medium+ (3+ Years)</span>
                             </li>
                             <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-tick-icon"><path d="M20 6 9 17l-5-5"></path></svg>
-                                <span>You want higher liquidity and the flexibility to withdraw your money with no penalty.</span>
+                               <svg class="list-tick-icon text-green-500" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <span><strong>Risk Appetite:</strong> Low (Okay with minor fluctuations for better returns)</span>
+                            </li>
+                            <li>
+                               <svg class="list-tick-icon text-green-500" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <span><strong>Tax Situation:</strong> Higher Tax Bracket (Want tax efficiency via indexation)</span>
+                            </li>
+                             <li>
+                               <svg class="list-tick-icon text-green-500" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <span><strong>Need Flexibility:</strong> Want easy access to funds without penalty.</span>
                             </li>
                         </ul>
                     </div>
                 </div>
+                 <p class="text-xs text-center text-gray-500 mt-4"><strong>Remember:</strong> A well-rounded portfolio might even include both, using each for the goals they suit best!</p>
             </div>
 
-            <div class="strategy-card">
-                <h2 class="strategy-title">Continue Your Journey</h2>
-                <p>Explore these related guides to build a complete investment strategy:</p>
-                <ul>
-                    <li>
-                        <span><strong><a href="mfguide.html">Beginner's Guide to Investing:</a></strong> Understand the basics of mutual funds and their various types.</span>
-                    </li>
-                    <li>
-                        <span><strong><a href="tax-saving-guide.html">Smart Tax-Saving Strategies:</a></strong> Learn how to save tax and grow your money at the same time.</span>
-                    </li>
-                    <li>
-                        <span><strong><a href="../index.html">Investment Calculators:</a></strong> Use our calculators to model your FD and Debt Fund returns.</span>
-                    </li>
-                </ul>
-            </div>
 
-            <div class="content-section" style="margin-top: 1.5rem;">
+            <!-- FAQ Section - Added Border -->
+            <div class="content-section-card bg-gray-50 border-l-purple-400">
                 <h3 class="section-title-secondary">Frequently Asked Questions (FAQ)</h3>
                 <div class="faq-container">
                     <details class="faq-item">
@@ -579,27 +603,8 @@
                     </details>
                 </div>
             </div>
-            
-            <div class="share-buttons-container">
-                <p class="share-title">Share this guide:</p>
-                <div class="share-buttons">
-                    <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank" aria-label="Share on WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.35 3.48 16.81L2 22L7.33 20.55C8.75 21.33 10.35 21.79 12.04 21.79C17.5 21.79 21.95 17.34 21.95 11.88C21.95 6.42 17.5 2 12.04 2M12.04 3.64C16.57 3.64 20.25 7.32 20.25 11.85C20.25 16.38 16.57 20.06 12.04 20.06C10.56 20.06 9.14 19.68 7.9 18.98L7.54 18.78L4.45 19.65L5.35 16.62L5.13 16.27C4.34 15.05 3.96 13.5 3.96 11.88C3.96 7.35 7.64 3.64 12.04 3.64M9.01 7.4C8.86 7.4 8.71 7.4 8.57 7.4C8.37 7.4 8.1 7.49 7.89 7.85C7.68 8.21 7.03 8.81 7.03 9.94C7.03 11.07 7.92 12.14 8.07 12.31C8.21 12.48 10.03 15.34 12.87 16.59C15.72 17.84 15.72 17.34 16.19 17.29C16.66 17.24 17.63 16.68 17.84 16.09C18.05 15.5 18.05 15.03 17.98 14.91C17.91 14.78 17.77 14.7 17.53 14.58C17.3 14.46 15.98 13.83 15.74 13.73C15.51 13.64 15.37 13.59 15.22 13.83C15.08 14.07 14.54 14.7 14.4 14.84C14.26 14.98 14.11 15.01 13.88 14.89C13.64 14.77 12.71 14.45 11.61 13.48C10.71 12.7 10.09 11.76 9.92 11.49C9.75 11.22 9.89 11.09 10.03 10.96C10.16 10.83 10.3 10.65 10.43 10.5C10.56 10.35 10.61 10.23 10.73 10.03C10.86 9.83 10.78 9.64 10.71 9.5C10.65 9.36 10.11 8.04 9.87 7.47C9.64 6.9 9.4 6.98 9.25 6.98L9.01 7.4Z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn facebook" id="share-facebook" target="_blank" aria-label="Share on Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn twitter" id="share-twitter" target="_blank" aria-label="Share on Twitter">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.35 0 11.37-6.08 11.37-11.37 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.98-2.08z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn linkedin" id="share-linkedin" target="_blank" aria-label="Share on LinkedIn">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.5 2.5-2.5c1.6 0 2.5 1.2 2.5 2.5 0 1.3-1 2.5-2.5 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"></path></svg>
-                    </a>
-                    <button class="share-btn copy-link" id="copy-link-btn" aria-label="Copy link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    </button>
-                </div>
-            </div>
+
+            <!-- Share Buttons Removed -->
         </div>
     </main>
 
@@ -626,18 +631,29 @@
                 fdResultElem.textContent = `${(fdPostTaxRate * 100).toFixed(2)}%`;
 
                 // Debt Fund Calculation (simplified for demonstration)
-                const taxableGain = rate - assumedInflation;
-                const taxOnGain = taxableGain > 0 ? taxableGain * 0.20 : 0;
-                const debtPostTaxRate = rate - taxOnGain;
+                // Assuming LTCG with indexation
+                const indexedCost = amount * (1 + assumedInflation * 3); // Simplified indexation over 3 years
+                const gain = (amount * Math.pow(1 + rate, 3)) - amount;
+                const indexedGain = Math.max(0, (amount * Math.pow(1 + rate, 3)) - indexedCost);
+                const taxOnGain = indexedGain * 0.20; // 20% tax on indexed gain
+                const postTaxGain = gain - taxOnGain;
+                // Calculate annualized post-tax return rate
+                const debtPostTaxRate = (Math.pow((amount + postTaxGain) / amount, 1/3) - 1);
+
+
                 debtResultElem.textContent = `${(debtPostTaxRate * 100).toFixed(2)}%`;
             }
 
             [amountInput, returnInput, slabSelect].forEach(el => {
-                el.addEventListener('input', calculateTaxImpact);
+                if(el) { // Add check if element exists
+                    el.addEventListener('input', calculateTaxImpact);
+                }
             });
 
             // Initial calculation
-            calculateTaxImpact();
+             if(amountInput && returnInput && slabSelect) { // Check if elements exist before calling
+                calculateTaxImpact();
+            }
 
 
             // Chart Logics
@@ -658,8 +674,10 @@
                     labels.push(`Year ${i}`);
                     fdData.push(currentFdValue);
                     debtFundData.push(currentDebtFundValue);
-                    currentFdValue *= (1 + fdRate);
-                    currentDebtFundValue *= (1 + debtFundRate);
+                    if (i < years) { // Calculate for next year only if not the last year
+                        currentFdValue *= (1 + fdRate);
+                        currentDebtFundValue *= (1 + debtFundRate);
+                    }
                 }
 
                 new Chart(growthComparisonCtx, {
@@ -692,21 +710,25 @@
                         maintainAspectRatio: false,
                         plugins: {
                             legend: {
-                                position: 'bottom',
+                                position: 'bottom', labels:{boxWidth:10, padding:8, font:{size:9}} // Squeezed legend
                             },
                             tooltip: {
                                 callbacks: {
                                     label: (context) => `${context.dataset.label}: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.y)}`
-                                }
+                                }, bodyFont:{size:9}, titleFont:{size:10}, padding:4 // Squeezed tooltip
                             }
                         },
                         scales: {
                             y: {
                                 beginAtZero: true,
-                                title: { display: true, text: 'Corpus Value' },
+                                title: { display: true, text: 'Corpus Value (₹)', font:{size:10} }, // Squeezed title
                                 ticks: {
-                                    callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value)
+                                    callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value),
+                                    font:{size:8} // Squeezed ticks
                                 }
+                            },
+                            x: {
+                                ticks:{font:{size:8}} // Squeezed ticks
                             }
                         }
                     }
@@ -716,22 +738,26 @@
             const penaltyCtx = document.getElementById('withdrawalPenaltyChart');
             if (penaltyCtx) {
                 const principal = 100000;
-                const fdInterestRate = 0.07;
+                const fdInterestRateAnnual = 0.07;
                 const penaltyRate = 0.01;
                 const monthsHeld = 6;
-                const fdMaturityInterest = principal * Math.pow(1 + fdInterestRate, monthsHeld / 12) - principal;
-                const fdPenalty = principal * penaltyRate;
-                const fdLoss = fdMaturityInterest - fdPenalty; // Simplified loss for the chart's purpose
+
+                // Calculate interest earned if held for 6 months (simplified - assume rate for 6 months is similar)
+                const fdInterestEarnedRough = principal * (fdInterestRateAnnual / 12) * monthsHeld;
+                // Penalty is usually on the principal or a % of interest rate applicable for the period held
+                const fdPenaltyAmount = principal * penaltyRate * (monthsHeld/12); // Pro-rata penalty example
+                const fdEffectiveReturn = fdInterestEarnedRough - fdPenaltyAmount;
 
                 // Simplified representation for the chart
                 const chartData = {
-                    labels: ['FD Penalty (Example)', 'Debt Fund Penalty'],
+                    labels: ['FD (With Penalty)', 'Debt Fund (Likely No Penalty)'],
                     datasets: [{
-                        label: 'Estimated Penalty Amount',
-                        data: [fdLoss, 0], // Debt fund penalty is 0 after 7 days
-                        backgroundColor: ['rgba(239, 68, 68, 0.8)', 'rgba(34, 197, 94, 0.8)'],
+                        label: 'Net Return after 6 Months',
+                        data: [fdEffectiveReturn, fdInterestEarnedRough], // Show FD return reduced by penalty, Debt Fund return (simplified)
+                        backgroundColor: ['rgba(239, 68, 68, 0.7)', 'rgba(34, 197, 94, 0.7)'],
                         borderColor: ['rgba(220, 38, 38, 1)', 'rgba(22, 163, 74, 1)'],
-                        borderWidth: 1
+                        borderWidth: 1,
+                        borderRadius: 5
                     }]
                 };
 
@@ -746,17 +772,19 @@
                             tooltip: {
                                 callbacks: {
                                     label: (context) => `${context.label}: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.y)}`
-                                }
+                                }, bodyFont:{size:9}, titleFont:{size:10}, padding:4
                             }
                         },
                         scales: {
                             y: {
                                 beginAtZero: true,
-                                title: { display: true, text: 'Penalty (₹)' },
+                                title: { display: true, text: 'Net Return (₹)', font:{size:10} },
                                 ticks: {
-                                    callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value)
+                                    callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value),
+                                    font:{size:8}
                                 }
-                            }
+                            },
+                             x: { ticks:{font:{size:8}} }
                         }
                     }
                 });
@@ -770,7 +798,7 @@
                         labels: ['Fixed Deposit', 'Debt Fund'],
                         datasets: [{
                             label: 'Return Range',
-                            data: [[6.5, 7.5], [6, 9]], // For FD, min/max are same. For Debt, shows range.
+                            data: [[7.0, 7.0], [6.5, 8.5]], // Adjusted range slightly
                             backgroundColor: ['rgba(59, 130, 246, 0.7)', 'rgba(34, 197, 94, 0.7)'],
                             borderColor: ['rgba(37, 99, 235, 1)', 'rgba(22, 163, 74, 1)'],
                             borderWidth: 1,
@@ -787,19 +815,23 @@
                                 callbacks: {
                                     label: function(context) {
                                         const value = context.raw;
-                                        if (Array.isArray(value)) {
+                                        if (Array.isArray(value) && value[0] !== value[1]) {
                                             return `Potential: ${value[0]}% - ${value[1]}%`;
+                                        } else if (Array.isArray(value)) {
+                                             return `Guaranteed: ${value[0]}%`;
                                         }
                                         return `Guaranteed: ${value}%`;
                                     }
-                                }
+                                }, bodyFont:{size:9}, titleFont:{size:10}, padding:4
                             }
                         },
                         scales: {
                             y: {
                                 beginAtZero: true,
-                                title: { display: true, text: 'Potential Return Range (%)' }
-                            }
+                                title: { display: true, text: 'Potential Return Range (%)', font:{size:10} },
+                                ticks: { font:{size:8} }
+                            },
+                             x: { ticks:{font:{size:8}} }
                         }
                     }
                 });
