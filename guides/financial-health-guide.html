@@ -71,7 +71,7 @@
       ]
     }
     </script>
-    <!-- Combined and Squeezed Styles from sip-vs-lumpsum and original -->
+    <!-- Combined and Squeezed Styles (Further Adjusted & Alignment Fixed) -->
      <style>
         /* Inheriting base styles from style.css */
 
@@ -79,12 +79,12 @@
         .content-section-card {
             background-color: #ffffff;
             border: 1px solid #e5e7eb; /* gray-200 */
-            border-radius: 0.5rem; /* Squeezed */
-            padding: 1rem; /* Squeezed */
-            margin-bottom: 0.75rem; /* Squeezed */
-            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* Slightly reduced shadow */
+            border-radius: 0.375rem; /* Further Squeezed */
+            padding: 0.75rem; /* Further Squeezed */
+            margin-bottom: 0.6rem; /* Further Squeezed */
+            box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.05); /* Reduced shadow */
             /* Added Left Border */
-            border-left-width: 4px;
+            border-left-width: 3px; /* Further Squeezed */
             border-left-color: #F87171; /* Default: red-400 */
         }
         /* Complementary Border Colors */
@@ -93,91 +93,99 @@
         .border-l-purple-400 { border-left-color: #A78BFA; }
         .border-l-yellow-400 { border-left-color: #FACC15; }
         .border-l-teal-400 { border-left-color: #2DD4BF; }
-        .border-l-orange-400 { border-left-color: #fb923c; } /* Added Orange */
-        .border-l-pink-400 { border-left-color: #f472b6; } /* Added Pink */
+        .border-l-orange-400 { border-left-color: #fb923c; }
+        .border-l-pink-400 { border-left-color: #f472b6; }
 
 
         /* Titles */
         .legal-content h1 {
-            font-size: 1.2rem; /* Adjusted H1 */
-            margin-bottom: 0.25rem;
+            font-size: 1.1rem; /* Further Squeezed H1 */
+            margin-bottom: 0.2rem; /* Squeezed margin */
             text-align: center;
             font-weight: 800;
         }
         .legal-content > p:first-of-type { /* Intro paragraph */
-            font-size: 0.75rem; /* Adjusted intro */
-            margin: 0 0.5rem 0.75rem 0.5rem; /* Adjusted margin */
+            font-size: 0.7rem; /* Further Squeezed intro */
+            margin: 0 0.3rem 0.6rem 0.3rem; /* Squeezed margin */
             text-align: center;
             color: #4b5563; /* gray-600 */
         }
         .legal-content .section-title-secondary { /* Section Titles (H2) */
-            font-size: 1rem; /* Adjusted H2 */
+            font-size: 0.9rem; /* Further Squeezed H2 */
             font-weight: 700;
             color: #1f2937; /* gray-800 */
-            margin-bottom: 0.4rem; /* Reduced margin */
-            padding-bottom: 0.25rem; /* Added padding for space */
-            text-align: left;
+            margin-bottom: 0.3rem; /* Further Squeezed margin */
+            padding-bottom: 0.2rem; /* Squeezed padding */
+            text-align: center; /* Default to CENTER align */
             position: relative;
             border-bottom: none;
         }
-        /* Accent line for H2 */
+        /* Accent line for H2 - Centered by default */
         .legal-content .section-title-secondary::after {
             content: '';
             display: block;
-            width: 40px; /* Width of the accent line */
+            width: 35px; /* Squeezed line */
             height: 2px; /* Thickness of the line */
             background-color: #E34037; /* Accent red color */
             position: absolute; /* Position relative to the header */
             bottom: 0;
-            left: 0; /* Align to the left */
-        }
-         /* Center accent line for centered headers */
-        .legal-content .text-center .section-title-secondary::after {
-            left: 50%;
+            left: 50%; /* Center align */
             transform: translateX(-50%); /* Correct centering */
+            margin-top: 0.2rem; /* Added margin */
         }
+        /* NEW CLASS for left alignment */
+        .legal-content .title-left-align {
+            text-align: left;
+        }
+        .legal-content .title-left-align::after {
+            left: 0;
+            transform: none; /* Remove centering transform */
+        }
+
+
         .content-section-card h3 { /* Subsection Titles (H3) */
-            font-size: 0.8rem; /* Adjusted H3 */
+            font-size: 0.75rem; /* Further Squeezed H3 */
             font-weight: 600;
             color: #1f2937;
-            margin-bottom: 0.25rem; /* Reduced margin */
+            margin-bottom: 0.2rem; /* Squeezed margin */
         }
          .content-section-card h4 { /* Further Subsection Titles (H4) */
-            font-size: 0.75rem; /* Squeezed H4 */
+            font-size: 0.7rem; /* Further Squeezed H4 */
             font-weight: 600;
             color: #1f2937;
-            margin-bottom: 0.1rem; /* Squeezed margin */
+            margin-bottom: 0.05rem; /* Squeezed margin */
         }
 
 
         /* Standard text */
         .content-section-card p, .content-section-card li {
-            font-size: 0.75rem; /* Adjusted text size */
+            font-size: 0.7rem; /* Further Squeezed text */
             color: #4b5563; /* gray-600 */
-            line-height: 1.4; /* Slightly tighter */
+            line-height: 1.35; /* Slightly tighter */
         }
          /* Adjust smaller text specifically */
-        .legal-content .text-xs { font-size: 0.7rem; }
-        .legal-content .text-sm { font-size: 0.75rem; }
+        .legal-content .text-xs { font-size: 0.65rem; } /* Further Squeezed */
+        .legal-content .text-sm { font-size: 0.7rem; } /* Further Squeezed */
 
 
         /* List Styles */
-        .content-section-card ul { list-style: none; padding-left: 0; margin-top: 0.75rem; }
+        .content-section-card ul { list-style: none; padding-left: 0; margin-top: 0.6rem; } /* Squeezed */
         .content-section-card ol { list-style: none; padding-left: 0; }
-        .content-section-card li { margin-bottom: 0.5rem; } /* Reduced margin */
+        .content-section-card li { margin-bottom: 0.4rem; } /* Further Squeezed margin */
 
-        /* Icon List Item Style */
+        /* Icon List Item Style - Alignment Fix */
         .icon-list-item {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 0.75rem; /* Reduced margin */
+            align-items: baseline; /* Align based on the first line of text */
+            margin-bottom: 0.6rem; /* Further Squeezed margin */
         }
         .icon-list-item svg.list-icon { /* Target only list icons */
             flex-shrink: 0;
-            width: 18px; /* Adjusted icon size */
-            height: 18px; /* Adjusted icon size */
-            margin-right: 0.75rem; /* Reduced margin */
-            margin-top: 2px; /* Adjusted alignment */
+            width: 16px; /* Further Squeezed icon */
+            height: 16px; /* Further Squeezed icon */
+            margin-right: 0.6rem; /* Further Squeezed margin */
+            position: relative; /* Positioning for fine-tuning */
+            top: 0.1em; /* Further Adjust this value */
             color: #E34037; /* Default icon color */
         }
          /* Specific Icon Colors if needed */
@@ -189,62 +197,68 @@
         /* CTA Section Style (from original) */
         .cta-section {
             background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
-            border-radius: 0.75rem;
-            padding: 1.5rem; /* Reduced padding */
+            border-radius: 0.5rem; /* Squeezed */
+            padding: 1rem; /* Further Squeezed */
             text-align: center;
             border: 1px solid #fca5a5;
-            margin-top: 1rem; /* Added margin */
+            margin-top: 0.75rem; /* Squeezed */
         }
         .cta-section h2 {
-            font-size: 1.1rem; /* Reduced size */
-            font-weight: 800;
+            font-size: 1rem; /* Further Squeezed */
+            font-weight: 700; /* Adjusted */
             color: #1f2937;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem; /* Squeezed */
+            padding-bottom: 0 !important; /* Remove padding from H2 */
+            text-align: center; /* Ensure CTA header is centered */
         }
+        /* Remove accent line from CTA H2 */
+        .cta-section h2::after { display: none !important;}
+
         .cta-section p {
-            font-size: 0.8rem; /* Reduced size */
+            font-size: 0.75rem; /* Further Squeezed */
             color: #4b5563;
-            margin-bottom: 1rem; /* Reduced margin */
+            margin-bottom: 0.75rem; /* Squeezed */
+            text-align: center; /* Ensure CTA paragraph is centered */
         }
         .cta-button { /* Replaces original .cta-button */
             display: inline-flex !important;
             align-items: center !important;
-            gap: 0.5rem !important;
-            padding: 0.4rem 0.9rem !important; /* Adjusted padding */
-            font-size: 0.8rem !important; /* Adjusted size */
+            gap: 0.4rem !important; /* Squeezed */
+            padding: 0.35rem 0.8rem !important; /* Squeezed */
+            font-size: 0.75rem !important; /* Squeezed */
             font-weight: 600 !important;
             text-align: center !important;
-            border-radius: 0.5rem !important;
+            border-radius: 0.375rem !important; /* Squeezed */
             cursor: pointer !important;
             transition: all 0.2s ease-in-out !important;
             text-decoration: none !important;
-            border: 2px solid var(--accent-color-dark) !important;
+            border: 1px solid var(--accent-color-dark) !important; /* Squeezed border */
             background-color: var(--accent-color-dark) !important;
             color: white !important;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important; /* Reduced shadow */
         }
         .cta-button:hover {
             background-color: #ffffff !important;
             color: var(--accent-color-dark) !important;
             border-color: var(--accent-color-dark) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 7px 10px rgba(0,0,0,0.1) !important;
+            transform: translateY(-1px) !important; /* Less lift */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important; /* Reduced shadow */
         }
-        .cta-button svg { width: 18px; height: 18px;}
+        .cta-button svg { width: 16px; height: 16px;} /* Squeezed icon */
 
 
          /* Dashboard Section (3 Columns) */
          .dashboard-card {
             text-align: center;
-            padding: 1rem; /* Reduced */
+            padding: 0.75rem; /* Further Squeezed */
             background-color: #f9fafb; /* gray-50 */
-            border-radius: 0.5rem; /* Reduced */
+            border-radius: 0.375rem; /* Further Squeezed */
             border: 1px solid #e5e7eb;
          }
          .dashboard-card .icon-wrapper {
-            width: 40px; /* Reduced */
-            height: 40px; /* Reduced */
-            margin: 0 auto 0.5rem; /* Reduced */
+            width: 32px; /* Further Squeezed */
+            height: 32px; /* Further Squeezed */
+            margin: 0 auto 0.4rem; /* Further Squeezed */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -252,97 +266,128 @@
             background-color: #fef2f2; /* red-50 */
             color: #B91C1C; /* red-700 */
          }
-          .dashboard-card .icon-wrapper svg { width: 20px; height: 20px; } /* Reduced */
-          .dashboard-card h3 { font-size: 0.8rem; } /* Squeezed */
-          .dashboard-card p { font-size: 0.7rem; } /* Squeezed */
+          .dashboard-card .icon-wrapper svg { width: 18px; height: 18px; } /* Further Squeezed */
+          .dashboard-card h3 { font-size: 0.75rem; } /* Further Squeezed */
+          .dashboard-card p { font-size: 0.65rem; text-align: center; } /* Further Squeezed & Centered*/
 
-        /* 4-Step Checklist Styles */
+        /* 4-Step Checklist Styles - Alignment Fix */
         .checklist-item {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 0.75rem; /* Reduced */
+            align-items: baseline; /* Align icon with first line of text */
+            margin-bottom: 0.6rem; /* Further Squeezed */
         }
         .checklist-icon {
             flex-shrink: 0;
-            width: 20px; /* Reduced */
-            height: 20px; /* Reduced */
-            margin-right: 0.75rem; /* Reduced */
-            margin-top: 2px;
+            width: 18px; /* Further Squeezed */
+            height: 18px; /* Further Squeezed */
+            margin-right: 0.6rem; /* Further Squeezed */
+            position: relative;
+            top: 0.1em; /* Further adjust alignment */
             color: #E34037;
         }
 
-        /* Pillars Section Styles */
+        /* Pillars Section Styles - Alignment Fix */
          .pillar-item {
-            margin-bottom: 1rem; /* Reduced */
+            margin-bottom: 0.75rem; /* Further Squeezed */
          }
          .pillar-item h3 {
-            font-size: 0.9rem; /* Adjusted */
+            font-size: 0.85rem; /* Squeezed */
             font-weight: 700;
             display: flex;
-            align-items: center;
-            gap: 0.5rem; /* Reduced */
-            margin-bottom: 0.25rem; /* Reduced */
+            align-items: center; /* Center icon and text vertically */
+            gap: 0.4rem; /* Squeezed */
+            margin-bottom: 0.2rem; /* Squeezed */
          }
-         .pillar-item h3 svg { width: 18px; height: 18px; color: #E34037;} /* Adjusted */
-         .pillar-item p { margin-left: calc(18px + 0.5rem); } /* Align text under icon */
+         .pillar-item h3 svg { width: 16px; height: 16px; color: #E34037;} /* Squeezed */
+         /* Align text under icon - remove left margin from p */
+         .pillar-item p { margin-left: 0; text-align: left;} /* Keep text left aligned */
+         /* Add padding to the div containing text */
+         .pillar-item > div:last-child {
+            padding-left: calc(16px + 0.4rem); /* Space for icon + gap */
+            margin-top: -1.3em; /* Pull text up to align with H3 */
+         }
+         /* Adjust H3 padding if needed */
+         .pillar-item h3 {
+            padding-left: calc(16px + 0.4rem); /* Ensure H3 also aligns */
+            position: relative;
+         }
+         .pillar-item h3 svg {
+             position: absolute;
+             left: 0;
+             top: 50%;
+             transform: translateY(-50%);
+         }
 
 
         /* Chart Container Styles */
         .chart-container-div {
-             height: 10rem; /* Reduced */
+             height: 9rem; /* Further Squeezed */
              width: 100%;
-             max-width: 20rem; /* Adjusted */
-             margin: 0.5rem auto 0;
+             max-width: 18rem; /* Further Squeezed */
+             margin: 0.4rem auto 0; /* Squeezed */
         }
         @media (min-width: 768px) {
              .chart-container-div {
-                 height: 12rem; /* Reduced */
+                 height: 10rem; /* Further Squeezed */
              }
         }
 
         /* Squeeze FAQ items */
-        .faq-item summary { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
-        .faq-item p { padding: 0 0.6rem 0.4rem 0.6rem; font-size: 0.7rem; }
-        .faq-item summary::after { font-size: 0.9rem; right: 0.75rem; }
+        .faq-item summary { font-size: 0.7rem; padding: 0.3rem 0.5rem; } /* Squeezed */
+        .faq-item p { padding: 0 0.5rem 0.3rem 0.5rem; font-size: 0.65rem; text-align: left; } /* Squeezed & Left align */
+        .faq-item summary::after { font-size: 0.8rem; right: 0.6rem; } /* Squeezed */
 
         /* Squeeze spacing */
-        .content-section-card .mt-4 { margin-top: 0.75rem; }
-        .content-section-card .mt-6 { margin-top: 1rem; }
-        .content-section-card .mb-4 { margin-bottom: 0.75rem; }
-        .content-section-card .mb-6 { margin-bottom: 1rem; }
-        .content-section-card .space-y-4 li { margin-bottom: 0.5rem; } /* Tighter list */
-        .content-section-card .space-y-8 li { margin-bottom: 1rem; } /* Adjust specific spacing */
-        .content-section-card .gap-4 { gap: 0.75rem; }
-        .content-section-card .gap-6 { gap: 1rem; }
-        .content-section-card .gap-8 { gap: 1.25rem; }
+        .content-section-card .mt-4 { margin-top: 0.6rem; } /* Squeezed */
+        .content-section-card .mt-6 { margin-top: 0.8rem; } /* Squeezed */
+        .content-section-card .mb-4 { margin-bottom: 0.6rem; } /* Squeezed */
+        .content-section-card .mb-6 { margin-bottom: 0.8rem; } /* Squeezed */
+        .content-section-card .space-y-3 li { margin-bottom: 0.3rem; } /* Further Squeezed list */
+        .content-section-card .space-y-4 li { margin-bottom: 0.4rem; } /* Further Squeezed list */
+        .content-section-card .space-y-8 li { margin-bottom: 0.8rem; } /* Further Squeezed list */
+        .content-section-card .gap-3 { gap: 0.5rem; } /* Further Squeezed */
+        .content-section-card .gap-4 { gap: 0.6rem; } /* Further Squeezed */
+        .content-section-card .gap-6 { gap: 0.8rem; } /* Further Squeezed */
+        .content-section-card .gap-8 { gap: 1rem; } /* Further Squeezed */
+
 
         /* Alert Box */
-        .alert { padding: 0.5rem; font-size: 0.7rem; }
-        .alert-title { font-size: 0.75rem; margin-bottom: 0.1rem; }
+        .alert { padding: 0.4rem; font-size: 0.65rem; } /* Squeezed */
+        .alert-title { font-size: 0.7rem; margin-bottom: 0.05rem; } /* Squeezed */
 
         /* Buttons */
-        .btn-primary { padding: 0.35rem 0.7rem !important; font-size: 0.65rem !important; }
-        .btn-secondary { padding: 0.35rem 0.7rem !important; font-size: 0.65rem !important; }
+        .btn-primary { padding: 0.3rem 0.6rem !important; font-size: 0.6rem !important; } /* Squeezed */
+        .btn-secondary { padding: 0.3rem 0.6rem !important; font-size: 0.6rem !important; } /* Squeezed */
 
         /* Specific styles for restored sections */
         .debt-strategy-card {
-             padding: 1rem; /* Reduced */
-             background-color: #ffffff;
-             border-radius: 0.5rem; /* Reduced */
-             border: 1px solid #e5e7eb;
-             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-             height: 100%; /* Equal height */
+             padding: 0.75rem; /* Squeezed */
+             border-radius: 0.375rem; /* Squeezed */
         }
-        .debt-strategy-card .font-bold.text-lg { font-size: 1rem; } /* Adjusted */
-        .debt-strategy-card p.text-sm { font-size: 0.75rem; } /* Adjusted */
-        .debt-strategy-card ul { list-style: none; padding: 0; }
-        .debt-strategy-card li span:first-child { font-size: 1rem; line-height: 1; } /* Adjust bullet size if needed */
-        .debt-strategy-card li span:last-child { font-size: 0.75rem; } /* Adjusted */
-        .debt-strategy-card .text-xs.font-semibold { font-size: 0.7rem; } /* Adjusted */
+        .debt-strategy-card .font-bold.text-lg { font-size: 0.9rem; margin-bottom: 0.2rem; } /* Squeezed */
+        .debt-strategy-card p.text-sm { font-size: 0.7rem; margin-bottom: 0.4rem; } /* Squeezed */
+        .debt-strategy-card ul { margin-top: 0.4rem; } /* Squeezed */
+        .debt-strategy-card li span:first-child { font-size: 0.75rem; margin-right: 0.4rem;} /* Squeezed */
+        .debt-strategy-card li span:last-child { font-size: 0.7rem; } /* Squeezed */
+        .debt-strategy-card .text-xs.font-semibold { font-size: 0.65rem; margin-top: 0.4rem;} /* Squeezed */
 
-        .asset-allocation-item svg.list-icon { width: 18px; height: 18px;} /* Consistent icon size */
-        .asset-allocation-item h3.font-semibold { font-size: 0.8rem; } /* Adjusted */
-        .asset-allocation-item p.text-sm { font-size: 0.75rem; } /* Adjusted */
+        .asset-allocation-item { margin-bottom: 0.6rem !important; } /* Squeezed */
+        .asset-allocation-item svg.list-icon { width: 16px; height: 16px;} /* Squeezed */
+        .asset-allocation-item h3.font-semibold { font-size: 0.75rem; } /* Squeezed */
+        .asset-allocation-item p.text-sm { font-size: 0.7rem; } /* Squeezed */
+
+        /* Override centering for specific paragraphs that should be left-aligned */
+        .content-section-card .text-left { text-align: left !important; }
+
+        /* Ensure paragraphs under left-aligned H2s are also left-aligned */
+         .content-section-card:has(h2.section-title-secondary.title-left-align) p {
+             text-align: left;
+         }
+         /* Keep specific centered paragraphs centered */
+         .content-section-card p.text-center {
+            text-align: center;
+         }
+
 
     </style>
 </head>
@@ -357,8 +402,8 @@
             <p>Feeling anxious about your finances? You're not alone. Financial wellness isn't about getting rich quick; it's about building a strong foundation that gives you peace of mind and the freedom to live the life you want. This guide is your friendly roadmap to getting there.</p>
 
             <div class="content-section-card border-l-blue-400">
-              <h2 class="section-title-secondary">What is Financial Health? Think Car Dashboard!</h2>
-              <p class="text-sm text-gray-700 mb-4">Your financial health is a snapshot of your money situation. Like a car's dashboard, key indicators tell you if you're cruising smoothly or need a check-up.</p>
+              <h2 class="section-title-secondary text-center">What is Financial Health? Think Car Dashboard!</h2>
+              <p class="text-sm text-gray-700 mb-4 text-center">Your financial health is a snapshot of your money situation. Like a car's dashboard, key indicators tell you if you're cruising smoothly or need a check-up.</p>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div class="dashboard-card">
                       <div class="icon-wrapper">
@@ -385,7 +430,7 @@
             </div>
 
             <div class="content-section-card bg-gray-50 border-l-green-400">
-              <h2 class="section-title-secondary">Why a Financial Health Check is Your Best Friend</h2>
+              <h2 class="section-title-secondary title-left-align">Why a Financial Health Check is Your Best Friend</h2>
               <p class="text-sm text-gray-700 mb-4">Ignoring your car's dashboard can lead to trouble. Same with money! A check-up helps you:</p>
               <ul class="space-y-4">
                   <li class="icon-list-item">
@@ -413,7 +458,7 @@
             </div>
 
             <div class="content-section-card border-l-yellow-400">
-              <h2 class="section-title-secondary">Your Quick 4-Step Financial Check-Up</h2>
+              <h2 class="section-title-secondary title-left-align">Your Quick 4-Step Financial Check-Up</h2>
               <p class="text-sm text-gray-700 mb-4">Ready for a quick DIY check? Grab a pen (or open notes!) and let's go:</p>
               <ul class="space-y-4">
                     <li class="checklist-item">
@@ -448,30 +493,38 @@
             </div>
 
             <div class="content-section-card bg-gray-50 border-l-orange-400">
-                <h2 class="section-title-secondary">The Four Pillars of a Strong Financial House</h2>
+                <h2 class="section-title-secondary title-left-align">The Four Pillars of a Strong Financial House</h2>
                 <p class="text-sm text-gray-700 mb-4">Think of your financial life like building a house. You need these four strong pillars:</p>
                 <ul class="space-y-4">
                     <li class="pillar-item">
-                        <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pillar 1: Income & Spending (The Foundation)</h3>
-                        <p><strong>Goal:</strong> Spend less than you earn. <br><strong>Tool:</strong> A simple budget (try the 50/30/20 rule: 50% Needs, 30% Wants, 20% Savings).</p>
+                         <div> <!-- Div needed for correct alignment with padding -->
+                            <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pillar 1: Income & Spending (Foundation)</h3>
+                            <p><strong>Goal:</strong> Spend less than you earn. <br><strong>Tool:</strong> Budget (try 50/30/20 rule: Needs/Wants/Savings).</p>
+                        </div>
                     </li>
                     <li class="pillar-item">
-                        <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Pillar 2: Protection (The Roof & Walls)</h3>
-                        <p><strong>Goal:</strong> Shield against surprises. <br><strong>Tools:</strong> <a href="emergency-fund-guide.html" class="font-semibold text-red-700 hover:text-red-800">Emergency Fund</a> (3-6 months expenses) + Health & Life Insurance.</p>
+                        <div>
+                            <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Pillar 2: Protection (Roof & Walls)</h3>
+                            <p><strong>Goal:</strong> Shield against surprises. <br><strong>Tools:</strong> <a href="emergency-fund-guide.html" class="font-semibold text-red-700 hover:text-red-800">Emergency Fund</a> + Insurance.</p>
+                        </div>
                     </li>
                     <li class="pillar-item">
-                        <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>Pillar 3: Debt Management (Plumbing & Wiring)</h3>
-                        <p><strong>Goal:</strong> Keep debt healthy. <br><strong>Tools:</strong> Keep EMIs (non-home) < 20-30% income. Attack high-interest debt first. Maintain a good <a href="complete-credit-score-guide-in-india.html" class="font-semibold text-red-700 hover:text-red-800">Credit Score</a>.</p>
+                         <div>
+                            <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>Pillar 3: Debt Management (Wiring)</h3>
+                            <p><strong>Goal:</strong> Keep debt healthy. <br><strong>Tools:</strong> Keep EMIs < 20-30% income. Attack bad debt. Good <a href="complete-credit-score-guide-in-india.html" class="font-semibold text-red-700 hover:text-red-800">Credit Score</a>.</p>
+                        </div>
                     </li>
                     <li class="pillar-item">
-                        <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>Pillar 4: Growth (The Interior Design & Expansion)</h3>
-                        <p><strong>Goal:</strong> Make your money work for you! <br><strong>Tools:</strong> Invest smartly (like <a href="beginner-investing-guide.html" class="font-semibold text-red-700 hover:text-red-800">SIPs in Mutual Funds</a>) to beat inflation and reach long-term goals like <a href="retirement-planning-guide.html" class="font-semibold text-red-700 hover:text-red-800">Retirement</a>.</p>
+                         <div>
+                            <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>Pillar 4: Growth (Expansion)</h3>
+                            <p><strong>Goal:</strong> Make money work for you! <br><strong>Tools:</strong> Smart Investing (<a href="beginner-investing-guide.html" class="font-semibold text-red-700 hover:text-red-800">SIPs</a>) for goals like <a href="retirement-planning-guide.html" class="font-semibold text-red-700 hover:text-red-800">Retirement</a>.</p>
+                        </div>
                     </li>
                 </ul>
             </div>
 
             <div class="content-section-card border-l-pink-400">
-                <h2 class="section-title-secondary">Budgeting Made Easy: The 50/30/20 Rule</h2>
+                <h2 class="section-title-secondary text-center">Budgeting Made Easy: The 50/30/20 Rule</h2>
                 <p class="text-sm text-gray-700 mb-4 text-center">Feeling lost on where your money goes? This simple rule is a great starting point:</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                     <div class="chart-container-div mx-auto"><canvas id="budgetChart"></canvas></div>
@@ -503,7 +556,7 @@
 
             <!-- RESTORED: Debt Avalanche vs Snowball section -->
             <div class="content-section-card border-l-yellow-400">
-                <h2 class="section-title-secondary">A Deeper Dive: Debt Avalanche vs. Debt Snowball</h2>
+                <h2 class="section-title-secondary text-center">A Deeper Dive: Debt Avalanche vs. Debt Snowball</h2>
                 <p class="text-sm text-gray-700 mb-4 text-center">For paying off multiple debts, two popular strategies provide a clear path forward. Both involve making minimum payments on all debts, then focusing extra money on one debt at a time.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div class="debt-strategy-card">
@@ -534,7 +587,7 @@
 
             <!-- RESTORED: Asset Allocation section -->
             <div class="content-section-card bg-gray-50 border-l-green-400">
-                <h2 class="section-title-secondary">The Growth Pillar: Strategic Asset Allocation</h2>
+                <h2 class="section-title-secondary text-center">The Growth Pillar: Strategic Asset Allocation</h2>
                 <p class="text-sm text-gray-700 mb-4 text-center">A diversified portfolio is key to managing risk. This is a sample asset allocation for a balanced investor, a core concept for growing your wealth.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                     <div class="chart-container-div mx-auto" style="height: 10rem;"><canvas id="assetAllocationChart"></canvas></div>
@@ -543,21 +596,21 @@
                             <svg class="list-icon text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
                             <div>
                                 <h3 class="font-semibold">Equity (60%)</h3>
-                                <p class="text-sm">The engine of your portfolio. Invest via <a href="beginner-investing-guide.html" class="font-semibold text-red-700 hover:text-red-800">Mutual Funds (SIP)</a> for high long-term growth potential to beat inflation.</p>
+                                <p class="text-sm">Engine of portfolio. Invest via <a href="beginner-investing-guide.html" class="font-semibold text-red-700 hover:text-red-800">Mutual Funds (SIP)</a> for long-term growth.</p>
                             </div>
                         </li>
                         <li class="icon-list-item">
                            <svg class="list-icon text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                             <div>
                                 <h3 class="font-semibold">Debt (30%)</h3>
-                                <p class="text-sm">The stabilizer. Instruments like PPF, EPF, and Debt Funds provide stability and predictable returns for your portfolio.</p>
+                                <p class="text-sm">Stabilizer. PPF, EPF, Debt Funds provide stability.</p>
                             </div>
                         </li>
                         <li class="icon-list-item">
                             <svg class="list-icon text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.83 1.83C11.5 1.17 12.5 1.17 13.17 1.83L17.5 6.17C18.17 6.83 18.17 7.83 17.5 8.5L8.5 17.5C7.83 18.17 6.83 18.17 6.17 17.5L1.83 13.17C1.17 12.5 1.17 11.5 1.83 10.83L10.83 1.83Z"/><line x1="16" y1="8" x2="24" y2="0"/><line x1="0" y1="24" x2="8" y2="16"/></svg>
                             <div>
-                                <h3 class="font-semibold">Gold/Alternatives (10%)</h3>
-                                <p class="text-sm">The diversifier. Gold often performs well when equities don't, providing a hedge against market volatility.</p>
+                                <h3 class="font-semibold">Gold/Alt (10%)</h3>
+                                <p class="text-sm">Diversifier. Gold hedges against market volatility.</p>
                             </div>
                         </li>
                     </ul>
@@ -575,7 +628,7 @@
             </div>
 
             <div class="content-section-card bg-gray-50 border-l-purple-400">
-                <h3 class="section-title-secondary">Quick Q&A (FAQ)</h3>
+                <h3 class="section-title-secondary text-center">Quick Q&A (FAQ)</h3>
                 <div class="faq-container">
                     <details class="faq-item">
                         <summary>What exactly is financial health?</summary>
