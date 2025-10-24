@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Beginner's Guide to Investing in India: A Friendly Introduction</title>
-    <meta name="description" content="Your friendly guide to kickstart your investment journey in India. We make Mutual Funds, SIPs, and other concepts simple and fun, with practical, easy-to-understand advice.">
+    <!-- Updated Title (59 chars) -->
+    <title>Beginner's Guide to Investing in India: A Friendly Intro</title>
+    <!-- Updated Description (157 chars) -->
+    <meta name="description" content="Your friendly guide to investing in India. We make Mutual Funds, SIPs, and other concepts simple & fun, with practical, easy-to-understand advice.">
     <meta name="keywords" content="investing for beginners india, what is a mutual fund, how to start sip, beginner investing guide, financial planning india, easy investing guide">
 
     <!-- Canonical Tag -->
@@ -15,11 +17,13 @@
     <meta property="og:description" content="Your friendly guide to kickstart your investment journey in India. We make Mutual Funds, SIPs, and other concepts simple and fun, with practical, easy-to-understand advice.">
     <meta property="og:url" content="https://calculator.toolblaster.com/guides/beginner-investing-guide.html">
     <meta property="og:type" content="article">
+    <!-- Removed OG Image -->
 
     <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary"> <!-- Changed card type -->
     <meta name="twitter:title" content="A Beginner's Guide to Investing in India: A Friendly Introduction">
     <meta name="twitter:description" content="Your friendly guide to kickstart your investment journey in India. We make Mutual Funds, SIPs, and other concepts simple and fun, with practical, easy-to-understand advice.">
+    <!-- Removed Twitter Image -->
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -42,9 +46,9 @@
           "publisher": {
             "@type": "Organization",
             "name": "Toolblaster Network",
-            "logo": { "@type": "ImageObject", "url": "https://calculator.toolblaster.com/assets/images/logo.png" }
-          },
-          "datePublished": "2025-09-12"
+             "logo": { "@type": "ImageObject", "url": "https://calculator.toolblaster.com/favicon/favicon-96x96.png" } // Updated logo URL
+          }
+          // Removed datePublished for evergreen content
         },
         {
           "@type": "FAQPage",
@@ -102,92 +106,113 @@
       ]
     }
     </script>
+     <!-- Squeezed Styles -->
      <style>
-        .legal-content h1 {
-            font-size: 1.3rem; /* Main title */
-            font-weight: 800;
-            text-align: center;
-        }
-        .legal-content > p { font-size: 0.8rem; text-align: center;}
+        /* Inheriting base styles from style.css */
         .content-section-card {
             background-color: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-left: 4px solid #fca5a5;
-            border-radius: 0.75rem;
-            padding: 1rem 1rem 1rem 1.5rem;
-            margin-bottom: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb; /* gray-200 */
+            border-radius: 0.5rem; /* Reduced */
+            padding: 1rem 1rem 1rem 1.5rem; /* Squeezed padding, added left padding */
+            margin-bottom: 0.75rem; /* Squeezed */
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* Slightly reduced */
+            /* Added Left Border */
+            border-left-width: 4px;
+            /* Default border color - Red */
+            border-left-color: #F87171; /* red-400 */
         }
-        /* Style for H2 inside the sections */
-        .content-section-card h2, .section-title-secondary {
-            font-size: 1rem;   /* Section H2 size */
+        /* Complementary Border Colors */
+        .content-section-card.border-l-blue-400 { border-left-color: #60A5FA; }
+        .content-section-card.border-l-green-400 { border-left-color: #4ADE80; }
+        .content-section-card.border-l-purple-400 { border-left-color: #A78BFA; }
+        .content-section-card.border-l-yellow-400 { border-left-color: #FACC15; }
+        .content-section-card.border-l-teal-400 { border-left-color: #2DD4BF; }
+        .content-section-card.border-l-indigo-400 { border-left-color: #818cf8; } /* Added Indigo */
+        .content-section-card.border-l-orange-400 { border-left-color: #fb923c; } /* Added Orange */
+        .content-section-card.border-l-pink-400 { border-left-color: #f472b6; } /* Added Pink */
+
+
+        .legal-content h1 {
+            font-size: 1.1rem; /* Further Squeezed H1 */
+            margin-bottom: 0.2rem; /* Squeezed margin */
+            text-align: center;
+            font-weight: 800;
+        }
+        .legal-content > p:first-of-type { /* Intro paragraph */
+            font-size: 0.7rem; /* Further Squeezed intro */
+            margin: 0 0.3rem 0.6rem 0.3rem; /* Squeezed margin */
+            text-align: center;
+            color: #4b5563; /* gray-600 */
+        }
+        .content-section-card h2, .section-title-secondary { /* Section Titles (H2) */
+            font-size: 0.9rem; /* Further Squeezed H2 */
             font-weight: 700;
-            margin-bottom: 0.6rem;
-            color: #1f2937;
-            text-align: left;
+            color: #1f2937; /* gray-800 */
+            margin-bottom: 0.3rem; /* Further Squeezed margin */
+            padding-bottom: 0.2rem; /* Squeezed padding */
+            text-align: left; /* Default Left */
+            position: relative;
             border-bottom: none;
-            padding-bottom: 0;
-            position: relative; /* Needed for the ::after element */
         }
-        /* ADDED: Accent line style for H2 */
-        .content-section-card h2::after, h2.section-title-secondary::after {
+        /* Accent line for H2 */
+        .content-section-card h2::after, .section-title-secondary::after {
             content: '';
             display: block;
-            width: 40px; /* Width of the accent line */
-            height: 2px; /* Thickness of the line */
-            background-color: #E34037; /* Accent red color */
-            margin-top: 0.3rem; /* Space between text and line */
+            width: 35px; /* Squeezed line */
+            height: 2px;
+            background-color: #E34037; /* Accent red */
+            margin-top: 0.2rem; /* Squeezed margin */
         }
-        /* Center align H2s AND their accent lines if needed */
-        .content-section-card.text-center h2, h2.section-title-secondary.text-center {
-            text-align: center;
+        /* Center accent line if needed */
+        .content-section-card.text-center h2::after, .section-title-secondary.text-center::after {
+            margin-left: auto; margin-right: auto;
         }
-        .content-section-card.text-center h2::after, h2.section-title-secondary.text-center::after {
-            margin-left: auto; /* Center the line */
-            margin-right: auto; /* Center the line */
-        }
-        /* Style for H3 headings within cards/sections */
-        .content-section-card h3 {
-            font-size: 0.85rem; /* H3 smaller than H2 */
+        /* Left align title and accent line */
+         .title-left-align { text-align: left !important; }
+         .title-left-align::after { margin-left: 0; margin-right: auto;}
+
+        .content-section-card h3 { /* Subsection Titles (H3) */
+            font-size: 0.75rem; /* Further Squeezed H3 */
             font-weight: 600;
             color: #1f2937;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.2rem; /* Squeezed margin */
         }
+
         .icon-list-item {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 0.75rem;
+            align-items: baseline; /* Align icon with first line */
+            margin-bottom: 0.6rem; /* Squeezed */
         }
         .icon-list-item svg {
             flex-shrink: 0;
-            width: 18px;
-            height: 18px;
-            margin-right: 0.75rem;
+            width: 16px; /* Squeezed */
+            height: 16px; /* Squeezed */
+            margin-right: 0.6rem; /* Squeezed */
             color: #E34037;
-            margin-top: 3px;
+            position: relative; /* Positioning for fine-tuning */
+            top: 0.1em; /* Adjust this value */
         }
         .icon-list-item div {
             flex-grow: 1;
         }
-        /* Item titles (like list item headers) */
         .icon-list-item .item-title {
-            font-size: 0.85rem; /* Same size as H3 */
+            font-size: 0.75rem; /* Squeezed */
             font-weight: 600;
             color: #1f2937;
-            margin-bottom: 0.1rem;
+            margin-bottom: 0.1rem; /* Squeezed */
         }
         .icon-list-item p {
-            font-size: 0.75rem;
+            font-size: 0.7rem; /* Squeezed */
             color: #4b5563;
         }
         .timeline {
             position: relative;
-            padding-left: 2rem;
+            padding-left: 1.75rem; /* Reduced */
         }
         .timeline::before {
             content: '';
             position: absolute;
-            left: 10px;
+            left: 10px; /* Adjusted */
             top: 5px;
             bottom: 5px;
             width: 2px;
@@ -195,17 +220,17 @@
         }
         .timeline-item {
             position: relative;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem; /* Reduced */
         }
         .timeline-item:last-child {
             margin-bottom: 0;
         }
         .timeline-dot {
             position: absolute;
-            left: -32px;
+            left: -28px; /* Adjusted */
             top: 0;
-            height: 24px;
-            width: 24px;
+            height: 24px; /* Reduced */
+            width: 24px; /* Reduced */
             background: #E34037;
             border-radius: 50%;
             display: flex;
@@ -213,145 +238,201 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 0.8rem;
+            font-size: 0.7rem; /* Reduced */
             border: 3px solid #fef2f2;
         }
-         .timeline-item h3 { font-size: 0.85rem; } /* Adjusted timeline H3 */
-         .timeline-item p { font-size: 0.75rem; }
+         .timeline-item h3 { font-size: 0.8rem; font-weight: 700;} /* Squeezed */
+         .timeline-item p { font-size: 0.7rem; } /* Squeezed */
 
         .insight-card {
             background-color: #fff;
-            border-radius: 0.5rem;
-            padding: 0.75rem;
-            text-align: center;
+            border-radius: 0.375rem; /* Squeezed */
+            padding: 0.75rem; /* Squeezed */
+            text-align: center; /* Ensure all text inside is centered */
             border: 1px solid #e5e7eb;
             display: flex;
             flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            height: 100%; /* Ensure equal height */
         }
-        .insight-card h3 { font-size: 0.85rem; } /* Adjusted insight card H3 */
-        .insight-card p {
-            flex-grow: 1;
-            font-size: 0.7rem;
+         .insight-card svg { width: 1.75rem; height: 1.75rem; margin: 0 auto 0.2rem;} /* Squeezed & Centered */
+         .insight-card h3 { font-size: 0.8rem; font-weight: 700;} /* Squeezed */
+         .insight-card p {
+            flex-grow: 1; /* Pushes link down if present */
+            font-size: 0.65rem; /* Squeezed */
+            line-height: 1.3;
+            text-align: center; /* Explicitly center paragraph text */
         }
+         /* Style specifically for the paragraph containing risk/return info */
+         .insight-card p.text-xs.font-semibold {
+             margin-bottom: 0.1rem; /* Adjust spacing */
+         }
+         /* Style specifically for the main description paragraph */
+         .insight-card p.text-xs.text-gray-600.mb-2.flex-grow {
+             margin-bottom: 0.25rem; /* Adjust spacing */
+         }
+         /* Style specifically for the 'Best for' paragraph */
+         .insight-card p.text-xs.font-bold.mb-1 {
+             margin-bottom: 0.25rem; /* Adjust spacing */
+             margin-top: auto; /* Push towards bottom if flex-grow isn't enough */
+         }
 
-        .legal-content p { font-size: 0.8rem; }
-        .alert { padding: 0.75rem; }
+        .legal-content p, .legal-content li { font-size: 0.7rem; color: #4b5563; line-height: 1.4;} /* Squeezed */
+        .legal-content ul, .legal-content ol { padding-left: 1rem; } /* Squeezed */
+        .legal-content ol { list-style: decimal; }
+        .legal-content ul { list-style: disc; }
+
+        .alert { padding: 0.5rem; font-size: 0.65rem;} /* Squeezed */
+        .alert-title { font-size: 0.7rem; margin-bottom: 0.05rem; } /* Squeezed */
         .guide-link {
-            font-size: 0.7rem;
+            font-size: 0.65rem; /* Squeezed */
             font-weight: 600;
             color: #E34037;
             text-decoration: none;
-            margin-top: auto;
+            margin-top: auto; /* Push link to bottom */
             transition: color 0.3s ease;
+            display: inline-block; /* Ensure it respects text-align */
         }
         .guide-link:hover {
             color: #C22D2D;
         }
-        /* Further squeeze for Anatomy cards */
         .anatomy-card {
             display: flex;
             align-items: center;
             padding: 0.5rem;
-            border-radius: 0.5rem;
+            border-radius: 0.375rem; /* Squeezed */
             border: 1px solid #e5e7eb;
         }
          .anatomy-card .flex-shrink-0 {
             margin-right: 0.5rem;
          }
          .anatomy-card svg {
-             width: 2rem;
-             height: 2rem;
+             width: 1.75rem; /* Squeezed */
+             height: 1.75rem; /* Squeezed */
         }
          .anatomy-card h3 {
-             font-size: 0.8rem; /* Keep anatomy H3 small */
+             font-size: 0.75rem; /* Squeezed */
              font-weight: 600;
              margin-bottom: 0;
         }
          .anatomy-card p {
-            font-size: 0.65rem;
+            font-size: 0.6rem; /* Squeezed */
             line-height: 1.2;
         }
-        /* Squeezed style for Tax Showdown Cards */
         .tax-showdown-card {
             padding: 0.75rem;
-            border-radius: 0.5rem;
+            border-radius: 0.375rem; /* Squeezed */
             border-width: 1px;
             text-align: left;
         }
         .tax-showdown-card svg.header-icon {
-            width: 2rem;
-            height: 2rem;
-            margin-bottom: 0.5rem;
+            width: 1.75rem; /* Squeezed */
+            height: 1.75rem; /* Squeezed */
+            margin-bottom: 0.4rem; /* Squeezed */
         }
          .tax-showdown-card h3 {
-             font-size: 0.9rem; /* Slightly smaller than section H2 */
+             font-size: 0.8rem; /* Squeezed */
              font-weight: 700;
              margin-bottom: 0.1rem;
          }
          .tax-showdown-card .subtitle {
-             font-size: 0.65rem;
+             font-size: 0.6rem; /* Squeezed */
              font-weight: 600;
-             margin-bottom: 0.5rem;
+             margin-bottom: 0.4rem; /* Squeezed */
          }
          .tax-showdown-card ul {
-             font-size: 0.7rem;
+             font-size: 0.65rem; /* Squeezed */
              space-y: 1;
+             list-style: none; padding-left: 0;
          }
          .tax-showdown-card li svg {
-            width: 1rem;
-            height: 1rem;
+            width: 0.8rem; /* Squeezed */
+            height: 0.8rem; /* Squeezed */
             margin-right: 0.25rem;
             margin-top: 1px;
          }
-         /* Squeezed style for Market Cycles section */
         .market-cycle-card {
             padding: 0.75rem 1rem 0.75rem 1.5rem;
         }
         .market-cycle-card h2 {
-            font-size: 1rem; /* Consistent H2 size */
+            font-size: 0.9rem; /* Squeezed */
             font-weight: 700;
         }
          .market-cycle-card p {
-            font-size: 0.75rem;
+            font-size: 0.7rem; /* Squeezed */
         }
         .market-cycle-card .chart-container {
-             height: 12rem;
+             height: 10rem; /* Squeezed */
              margin-top: 0.5rem;
         }
-        /* Squeezed style for Toolkit Cards */
         .toolkit-card {
             padding: 0.75rem;
-            border-radius: 0.5rem;
+            border-radius: 0.375rem; /* Squeezed */
             border-width: 1px;
             text-align: center;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
         .toolkit-card h3 {
-            font-size: 0.9rem; /* Slightly smaller than section H2 */
+            font-size: 0.8rem; /* Squeezed */
             font-weight: 700;
         }
         .toolkit-card .subtitle {
-            font-size: 0.65rem;
+            font-size: 0.6rem; /* Squeezed */
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem; /* Squeezed */
         }
         .toolkit-card p.main-text {
-            font-size: 0.7rem;
-            margin-bottom: 0.75rem;
+            font-size: 0.65rem; /* Squeezed */
+            margin-bottom: 0.5rem; /* Squeezed */
             flex-grow: 1;
         }
         .toolkit-card .btn-secondary {
-            padding: 0.3rem 0.6rem !important;
-            font-size: 0.65rem !important;
+            padding: 0.3rem 0.6rem !important; /* Squeezed */
+            font-size: 0.6rem !important; /* Squeezed */
         }
-        /* Style for the separator */
         .section-separator {
             border: 0;
             height: 1px;
             background-color: #e5e7eb; /* gray-200 */
-            margin: 1.5rem 0; /* Add vertical space */
+            margin: 1rem 0; /* Squeezed */
         }
+        .chart-container-div {
+             height: 10rem; /* Squeezed */
+             width: 100%;
+             margin: 0.5rem auto 0; /* Squeezed margin */
+        }
+        @media (min-width: 768px) {
+             .chart-container-div {
+                 height: 12rem; /* Slightly larger on desktop */
+             }
+        }
+         /* Squeezed FAQ items */
+        .faq-item summary { font-size: 0.7rem; padding: 0.4rem 0.6rem; } /* Squeezed */
+        .faq-item p { padding: 0 0.6rem 0.4rem 0.6rem; font-size: 0.65rem; text-align: left;} /* Squeezed & left aligned */
+        .faq-item summary::after { font-size: 0.8rem; right: 0.75rem; } /* Squeezed */
+
+        /* Squeeze spacing */
+        .content-section-card .mt-4 { margin-top: 0.6rem; } /* Squeezed */
+        .content-section-card .mt-6 { margin-top: 0.8rem; } /* Squeezed */
+        .content-section-card .mb-4 { margin-bottom: 0.6rem; } /* Squeezed */
+        .content-section-card .mb-6 { margin-bottom: 0.8rem; } /* Squeezed */
+        .content-section-card .space-y-3 li { margin-bottom: 0.3rem; } /* Squeezed */
+        .content-section-card .space-y-4 li { margin-bottom: 0.4rem; } /* Squeezed */
+        .content-section-card .gap-4 { gap: 0.6rem; } /* Squeezed */
+        .content-section-card .gap-2 { gap: 0.4rem; } /* Squeezed */
+
+        /* Ensure paragraphs under H2s are left-aligned */
+         .content-section-card p { text-align: left; }
+         /* Keep specific centered paragraphs centered */
+         .content-section-card p.text-center { text-align: center; }
+         /* Table Squeeze */
+         .legal-content table { font-size: 0.65rem; }
+         .legal-content th, .legal-content td { padding: 0.4rem; }
+         /* Adjust buttons */
+         .btn-primary { padding: 0.35rem 0.7rem !important; font-size: 0.7rem !important; }
+         .btn-secondary { padding: 0.35rem 0.7rem !important; font-size: 0.7rem !important; }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -359,19 +440,19 @@
     <div id="header-placeholder"></div>
 
     <main class="container">
-        <div class="legal-content">
+        <div class="legal-content"> <!-- Removed padding -->
             <h1>A Beginner's Guide to Investing in India</h1>
             <p>Welcome to your financial launchpad! The world of investing might seem like a distant, complicated planet, but this guide is your friendly spaceship, ready to break it down into simple, starlit steps. We'll leave the jargon at the launch tower and focus on a clear, conversational journey to help you get started with confidence.</p>
-            
-            <div class="content-section-card bg-gray-50">
-                <div class="flex flex-col md:flex-row items-center text-center md:text-left gap-6 p-4 rounded-lg bg-gradient-to-r from-red-50 to-amber-50 border border-red-200">
-                    <img src="https://placehold.co/100x100/E34037/FFFFFF?text=Priya&font=inter" alt="Investor Priya" class="w-24 h-24 rounded-full border-4 border-white shadow-lg flex-shrink-0">
+
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-orange-400">
+                <div class="flex flex-col md:flex-row items-center text-center md:text-left gap-4 p-3 rounded-lg bg-gradient-to-r from-red-50 to-amber-50 border border-red-200"> <!-- Squeezed -->
+                    <img src="https://placehold.co/80x80/E34037/FFFFFF?text=Priya&font=inter" alt="Investor Priya" class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-white shadow-lg flex-shrink-0"> <!-- Squeezed -->
                     <div>
-                        <!-- This H2 is larger as it's part of the intro -->
-                        <h2 class="text-xl font-bold text-gray-800">Meet Priya, Your Guide on This Journey</h2>
-                        <p class="text-sm text-gray-600 mt-2">Priya is a 25-year-old designer with a dream: to make her money work for her. She wants to travel, build a comfortable future, but feels lost in the world of "SIPs" and "mutual funds."</p>
-                        <p class="text-sm font-semibold text-red-700 mt-2 italic">"I know I should invest, but where do I even begin?"</p>
-                        <p class="text-sm text-gray-600 mt-2">This guide follows her story as she takes her first steps, turning anxiety into a confident action plan. Let's learn with her.</p>
+                        <h2 class="text-lg font-bold text-gray-800">Meet Priya, Your Guide on This Journey</h2>
+                        <p class="text-xs text-gray-600 mt-1">Priya is a designer with a dream: to make her money work for her. She wants to travel, build a comfortable future, but feels lost in the world of "SIPs" and "mutual funds."</p>
+                        <p class="text-xs font-semibold text-red-700 mt-1 italic">"I know I should invest, but where do I even begin?"</p>
+                        <p class="text-xs text-gray-600 mt-1">This guide follows her story as she takes her first steps, turning anxiety into a confident action plan. Let's learn with her.</p>
                     </div>
                 </div>
             </div>
@@ -379,10 +460,11 @@
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card">
+            <!-- Added border -->
+            <div class="content-section-card border-l-blue-400">
                 <h2>Overcoming Common Investing Fears</h2>
                 <p class="text-sm">Priya's first hurdle isn't numbers; it's emotion. The world of investing can feel intimidating. Here’s how she, and you, can overcome the initial fear:</p>
-                <ul class="mt-4 space-y-3">
+                <ul class="mt-3 space-y-3"> <!-- Squeezed -->
                     <li class="icon-list-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                         <div>
@@ -403,26 +485,27 @@
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card">
+            <!-- Added border -->
+            <div class="content-section-card border-l-green-400">
                 <h2>What is a Mutual Fund?</h2>
                 <p class="text-sm">Priya discovers she doesn't need to be a stock-picking genius. Mutual Funds are her simple, powerful entry into the world of investing. Here's why:</p>
-                <ul class="mt-4 space-y-4">
+                <ul class="mt-3 space-y-3"> <!-- Squeezed -->
                     <li class="icon-list-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
                         <div>
                             <p class="item-title"><strong>Pooling Money</strong></p>
                             <p>A mutual fund pools money from many investors (like Priya) to invest in a large, diversified portfolio.</p>
                         </div>
                     </li>
                     <li class="icon-list-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         <div>
                             <p class="item-title"><strong>Professional Management</strong></p>
                             <p>An expert fund manager researches and selects the investments, so you don't have to pick individual stocks.</p>
                         </div>
                     </li>
                      <li class="icon-list-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
                         <div>
                             <p class="item-title"><strong>Instant Diversification</strong></p>
                             <p>With a single investment, you own a small piece of many different companies, automatically spreading your risk.</p>
@@ -430,14 +513,15 @@
                     </li>
                 </ul>
             </div>
-            
+
              <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card bg-gray-50">
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-purple-400">
                 <h2>Key Strategies: SIP and Compounding</h2>
                 <p class="text-sm">Priya learns that to grow her money, she doesn't need a single heroic act, but two consistent superpowers.</p>
-                <ul class="mt-4 space-y-4">
+                <ul class="mt-3 space-y-3"> <!-- Squeezed -->
                     <li class="icon-list-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
                         <div>
@@ -446,51 +530,69 @@
                         </div>
                     </li>
                     <li class="icon-list-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.88.99 6.6 2.6l-2.1 2.1"/><path d="M21 7v5h-5"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.88.99 6.6 2.6l-2.1 2.1"/><path d="M21 7v5h-5"/></svg>
                         <div>
                             <p class="item-title"><strong>Superpower 2: The Magic of Compounding</strong></p>
                             <p>This is the real secret. It’s when your investment returns start earning their own returns, creating a snowball of wealth that grows bigger and faster over time. The earlier you start, the more magical it becomes.</p>
                         </div>
                     </li>
                 </ul>
-                 <div class="h-56 md:h-72 w-full mx-auto mt-4">
+                 <!-- Squeezed Chart -->
+                 <div class="chart-container-div w-full mx-auto mt-3">
                    <canvas id="compoundingStartEarlyChart"></canvas>
                 </div>
             </div>
-            
+
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card">
+             <!-- ADDED CHART SECTION: Savings vs Investing -->
+             <!-- Added border -->
+            <div class="content-section-card border-l-orange-400">
+                 <h2>Savings vs. Investing: Why Growth Matters 🚀</h2>
+                 <p class="text-sm text-center mb-3">Just saving money isn't enough to beat inflation. Investing helps your money grow significantly faster over time. See the difference below for ₹10k saved/invested monthly for 20 years.</p>
+                 <div class="chart-container-div w-full mx-auto">
+                    <canvas id="savingsVsInvestingChart"></canvas>
+                 </div>
+                 <p class="text-center text-xs text-gray-500 mt-2"><strong>Assumptions:</strong> Savings @ 4% p.a., Investing @ 12% p.a. <em>Illustrative only.</em></p>
+            </div>
+             <!-- END ADDED CHART SECTION -->
+
+
+            <!-- Separator Added -->
+            <hr class="section-separator">
+
+            <!-- Added border -->
+            <div class="content-section-card border-l-yellow-400">
                 <h2>Choosing Your Investment Vehicle: The Three Baskets</h2>
                 <p class="text-sm">Priya learns that not all mutual funds are the same. They are like different vehicles, each designed for a specific type of journey.</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-3"> <!-- Squeezed -->
                     <!-- Equity Fund Card -->
-                    <div class="insight-card p-4 flex flex-col">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-green-500 mx-auto mb-2"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                    <div class="insight-card p-3 flex flex-col"> <!-- Squeezed -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green-500 mx-auto mb-1"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
                         <h3 class="font-bold text-gray-800">Equity Funds</h3>
-                        <p class="text-xs font-semibold text-gray-500 mb-2">High Risk / High Return</p>
-                        <p class="text-xs text-gray-600 mb-3 flex-grow">The speedboat - fast and exciting, perfect for long journeys where you can ride out market waves.</p>
-                        <p class="text-xs font-bold mb-2">Best for: Long-term goals (5+ years) like retirement.</p>
-                        <a href="../?mode=sip" class="guide-link">Plan with SIP Calculator →</a>
+                        <p class="text-xs font-semibold text-gray-500 mb-1">High Risk / High Return</p>
+                        <p class="text-xs text-gray-600 mb-2 flex-grow">The speedboat - fast and exciting, perfect for long journeys.</p>
+                        <p class="text-xs font-bold mb-1">Best for: Long-term goals (5+ years).</p>
+                        <a href="../?mode=sip" class="guide-link">Plan with SIP →</a>
                     </div>
                     <!-- Debt Fund Card -->
-                    <div class="insight-card p-4 flex flex-col">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-blue-500 mx-auto mb-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <div class="insight-card p-3 flex flex-col"> <!-- Squeezed -->
+                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-500 mx-auto mb-1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         <h3 class="font-bold text-gray-800">Debt Funds</h3>
-                        <p class="text-xs font-semibold text-gray-500 mb-2">Low Risk / Stable Return</p>
-                        <p class="text-xs text-gray-600 mb-3 flex-grow">The steady cargo ship - slower, but reliable and safe. Ideal for short trips where you can't afford delays.</p>
-                        <p class="text-xs font-bold mb-2">Best for: Short-term goals (1-3 years) and capital safety.</p>
-                        <a href="../?mode=fd" class="guide-link">Plan with FD/RD Calculator →</a>
+                        <p class="text-xs font-semibold text-gray-500 mb-1">Low Risk / Stable Return</p>
+                        <p class="text-xs text-gray-600 mb-2 flex-grow">The steady cargo ship - slower, but reliable and safe.</p>
+                        <p class="text-xs font-bold mb-1">Best for: Short-term goals (1-3 years).</p>
+                        <a href="../?mode=fd" class="guide-link">Plan with FD/RD →</a>
                     </div>
                     <!-- Hybrid Fund Card -->
-                    <div class="insight-card p-4 flex flex-col">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-yellow-500 mx-auto mb-2"><path d="M12 3v18M3 12h18"/><path d="M16 16-4-4-4 4"/><path d="M8 8l4 4 4-4"/></svg>
+                    <div class="insight-card p-3 flex flex-col"> <!-- Squeezed -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-yellow-500 mx-auto mb-1"><path d="M12 3v18M3 12h18"/><path d="M16 16-4-4-4 4"/><path d="M8 8l4 4 4-4"/></svg>
                         <h3 class="font-bold text-gray-800">Hybrid Funds</h3>
-                        <p class="text-xs font-semibold text-gray-500 mb-2">Medium Risk / Balanced Return</p>
-                        <p class="text-xs text-gray-600 mb-3 flex-grow">A versatile catamaran, offering a balance of speed and stability. A great starting point for many investors.</p>
-                        <p class="text-xs font-bold mb-2">Best for: Medium-term goals (3-5 years) and beginners.</p>
-                        <a href="../?mode=lumpsum" class="guide-link">Plan with Lumpsum Calculator →</a>
+                        <p class="text-xs font-semibold text-gray-500 mb-1">Medium Risk / Balanced Return</p>
+                        <p class="text-xs text-gray-600 mb-2 flex-grow">A versatile catamaran, offering balance.</p>
+                        <p class="text-xs font-bold mb-1">Best for: Medium-term goals (3-5 years).</p>
+                        <a href="../?mode=lumpsum" class="guide-link">Plan with Lumpsum →</a>
                     </div>
                 </div>
             </div>
@@ -498,11 +600,11 @@
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <!-- NEW SECTION: Understanding Investment Risk -->
-            <div class="content-section-card bg-gray-50">
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-indigo-400">
                 <h2>Wait, What Does 'Risk' Actually Mean? 🧐</h2>
                 <p class="text-sm">We hear "high-risk, high-return" all the time, but what does it mean for *you*?</p>
-                <ul class="mt-4 space-y-3">
+                <ul class="mt-3 space-y-3"> <!-- Squeezed -->
                     <li class="icon-list-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                         <div>
@@ -514,74 +616,45 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
                         <div>
                             <p class="item-title"><strong>Time is Your Best Friend Against Risk</strong></p>
-                            <p>This is crucial! If you need money next year (short-term), a big wiggle downwards (like in stocks) is a disaster. But if you don't need the money for 10+ years (long-term), you have time to ride out the down-wiggles and benefit from the up-wiggles. That's why stocks are risky short-term but powerful long-term.</p>
+                            <p>This is crucial! If you need money next year (short-term), a big wiggle downwards is a disaster. But if you don't need the money for 10+ years (long-term), you have time to ride out the down-wiggles and benefit from the up-wiggles.</p>
                         </div>
                     </li>
                     <li class="icon-list-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
                         <div>
                             <p class="item-title"><strong>Diversification is Your Shield</strong></p>
-                            <p>As we saw with Mutual Funds, owning small pieces of many things reduces the impact if one single investment does badly. Don't put all your eggs in one basket!</p>
+                            <p>Owning small pieces of many things reduces the impact if one single investment does badly. Don't put all your eggs in one basket!</p>
                         </div>
                     </li>
                 </ul>
-                <div class="alert alert-info mt-4 text-center">
+                <div class="alert alert-info mt-3 text-center"> <!-- Squeezed -->
                     <p>Understanding your own comfort with these 'wiggles' is key. Take our <a href="../quizzes/risk-profile-quiz.html"><strong>Investor Profile Quiz</strong></a> to find out!</p>
                 </div>
             </div>
-            <!-- END NEW SECTION -->
-            
+
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card bg-gray-50">
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-pink-400">
                 <h2>Anatomy of a Mutual Fund: What's Inside?</h2>
                 <p class="text-sm">Curious, Priya looks inside a Hybrid Fund to see what it's made of. She finds a carefully balanced portfolio, designed for both growth and safety.</p>
-                <!-- Squeezed Anatomy Cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
-                    <!-- Large Cap -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3"> <!-- Squeezed -->
                     <div class="anatomy-card bg-green-50 border-green-200">
-                        <div class="flex-shrink-0">
-                            <!-- New Icon: Building -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-gray-800">Large-Cap Stocks (40%)</h3>
-                            <p class="text-gray-600 italic">The sturdy oaks: Big, reliable companies.</p>
-                        </div>
+                        <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                        <div><h3 class="text-gray-800">Large-Cap Stocks (40%)</h3><p class="text-gray-600 italic">The sturdy oaks: Big companies.</p></div>
                     </div>
-                    <!-- Mid Cap -->
                     <div class="anatomy-card bg-green-50 border-green-200">
-                        <div class="flex-shrink-0">
-                            <!-- New Icon: Trending Up -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-gray-800">Mid-Cap Stocks (25%)</h3>
-                            <p class="text-gray-600 italic">The agile saplings: Growing companies.</p>
-                        </div>
+                        <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+                        <div><h3 class="text-gray-800">Mid-Cap Stocks (25%)</h3><p class="text-gray-600 italic">The agile saplings: Growing firms.</p></div>
                     </div>
-                    <!-- Bonds -->
                     <div class="anatomy-card bg-blue-50 border-blue-200">
-                        <div class="flex-shrink-0">
-                             <!-- New Icon: Shield -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-gray-800">Bonds (30%)</h3>
-                            <p class="text-gray-600 italic">The anchors: Stability and income.</p>
-                        </div>
+                        <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                        <div><h3 class="text-gray-800">Bonds (30%)</h3><p class="text-gray-600 italic">The anchors: Stability & income.</p></div>
                     </div>
-                    <!-- Cash -->
                     <div class="anatomy-card bg-gray-100 border-gray-200">
-                        <div class="flex-shrink-0">
-                             <!-- New Icon: Banknote -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-gray-800">Cash & Equivalents (5%)</h3>
-                            <p class="text-gray-600 italic">Ready cash for opportunities.</p>
-                        </div>
+                        <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></div>
+                        <div><h3 class="text-gray-800">Cash (5%)</h3><p class="text-gray-600 italic">Ready cash for opportunities.</p></div>
                     </div>
                 </div>
             </div>
@@ -589,58 +662,44 @@
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card">
+            <!-- Added border -->
+            <div class="content-section-card border-l-red-400">
                 <h2>The Tax Showdown: It's Not What You Earn, It's What You Keep</h2>
                 <p class="text-sm">Priya uncovers a crucial secret: taxes can significantly eat into her returns. Here’s how her two options stack up in a head-to-head battle against the taxman.</p>
-                <!-- Squeezed Tax Showdown Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
-                    <!-- Fixed Deposit Side -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3"> <!-- Squeezed -->
                     <div class="tax-showdown-card bg-red-50 border-red-200">
                          <svg class="header-icon text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M7 12v4"/><path d="M12 12v4"/><path d="M17 12v4"/><path d="M5 8v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg>
                         <h3 class="text-red-800">Fixed Deposit</h3>
                         <p class="subtitle text-red-600">The Tax-Heavy Path</p>
                         <ul class="space-y-1">
-                            <li class="flex items-start">
-                                <svg class="w-4 h-4 text-red-500 mr-1 flex-shrink-0 mt-px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                                <span>Interest is <strong>fully added</strong> to your income.</span>
-                            </li>
-                            <li class="flex items-start">
-                               <svg class="w-4 h-4 text-red-500 mr-1 flex-shrink-0 mt-px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                                <span>Taxed at your <strong>highest slab rate</strong> (up to 30% + cess).</span>
-                            </li>
+                            <li class="flex items-start"><svg class="list-icon text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span>Interest is <strong>fully added</strong> to income.</span></li>
+                            <li class="flex items-start"><svg class="list-icon text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span>Taxed at your <strong>highest slab rate</strong>.</span></li>
                         </ul>
                     </div>
-                    <!-- Mutual Fund Side -->
                     <div class="tax-showdown-card bg-green-50 border-green-200">
                          <svg class="header-icon text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
                         <h3 class="text-green-800">Equity Mutual Fund</h3>
                         <p class="subtitle text-green-600">The Tax-Smart Path</p>
                         <ul class="space-y-1">
-                             <li class="flex items-start">
-                                <svg class="w-4 h-4 text-green-500 mr-1 flex-shrink-0 mt-px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                <span>First <strong>₹1 Lakh of gains</strong> per year is <strong>tax-free</strong> (if held > 1 year).</span>
-                            </li>
-                             <li class="flex items-start">
-                                <svg class="w-4 h-4 text-green-500 mr-1 flex-shrink-0 mt-px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                <span>Gains above ₹1 Lakh are taxed at a <strong>low, flat 10%</strong>.</span>
-                            </li>
+                             <li class="flex items-start"><svg class="list-icon text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span>First <strong>₹1 Lakh gains/yr</strong> = <strong>tax-free</strong> (held > 1 yr).</span></li>
+                             <li class="flex items-start"><svg class="list-icon text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span>Above ₹1 Lakh = taxed at a <strong>low 10%</strong>.</span></li>
                         </ul>
                     </div>
                 </div>
-                 <div class="alert alert-info mt-4 text-center"> <!-- Reduced margin -->
-                    <h3 class="alert-title">The Clear Winner for Long-Term Growth</h3>
-                    <p>For long-term goals, the tax efficiency of equity mutual funds means you get to keep significantly more of your returns, supercharging your wealth creation.</p>
-                    <a href="../calculators/income-tax-calculator/" class="btn-primary mt-2">See How Much You Can Save →</a> <!-- Reduced margin -->
+                 <div class="alert alert-info mt-3 text-center"> <!-- Squeezed -->
+                    <h3 class="alert-title">Clear Winner for Long-Term Growth</h3>
+                    <p>Equity MFs are far more tax-efficient, meaning more money stays in your pocket!</p>
+                    <a href="../calculators/income-tax-calculator/" class="btn-primary mt-2">Check Your Tax Impact →</a> <!-- Squeezed -->
                 </div>
             </div>
 
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <!-- Squeezed Market Cycles Section -->
-            <div class="content-section-card market-cycle-card bg-gray-50">
-                <h2>Navigating Market Cycles</h2>
-                <p>Priya learns that the market has seasons, just like the weather. A "Bull Market" is a sunny period of growth, while a "Bear Market" is a stormy period of decline. Her goal as a long-term investor isn't to predict the weather, but to build a sturdy ship (her portfolio) that can sail through any storm and catch the favorable winds.</p>
+            <!-- Added border -->
+            <div class="content-section-card market-cycle-card bg-gray-50 border-l-yellow-400">
+                <h2 class="title-left-align">Navigating Market Cycles</h2>
+                <p>Priya learns that the market has seasons. A "Bull Market" is sunny growth, a "Bear Market" is a stormy decline. Her goal isn't predicting weather, but building a sturdy ship (portfolio) to sail through any storm.</p>
                  <div class="chart-container w-full mx-auto">
                    <canvas id="marketCycleChart"></canvas>
                 </div>
@@ -649,46 +708,48 @@
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card">
+            <!-- Added border -->
+            <div class="content-section-card border-l-teal-400">
                 <h2>The Psychology of Investing</h2>
                 <p class="text-sm">The biggest challenge isn't the market; it's the person in the mirror. Priya learns to recognize and tame two powerful emotional dragons:</p>
-                <ul class="mt-4 space-y-3">
+                <ul class="mt-3 space-y-3"> <!-- Squeezed -->
                     <li class="icon-list-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         <div>
                             <p class="item-title"><strong>The Dragon of FOMO (Fear of Missing Out)</strong></p>
-                            <p>This dragon tempts her to chase "hot" investments everyone is talking about. She learns that a disciplined plan is the best shield against this impulsive beast.</p>
+                            <p>Tempts her to chase "hot" investments. She learns a disciplined plan is the best shield.</p>
                         </div>
                     </li>
                     <li class="icon-list-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM14 10a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-2zM8 16c1.5 1 4 1 5 0"/></svg>
                         <div>
                             <p class="item-title"><strong>The Dragon of Panic</strong></p>
-                            <p>This dragon appears during market storms, urging her to sell everything. She learns that patience and sticking to her long-term plan is the only way to defeat it.</p>
+                            <p>Appears during market storms, urging her to sell. She learns patience & sticking to her plan defeats it.</p>
                         </div>
                     </li>
                 </ul>
             </div>
-            
+
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card bg-gray-50">
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-green-400">
                 <h2>Safe Havens: Fixed and Recurring Deposits</h2>
-                <p class="text-sm">Priya learns that not all her money needs to face the open sea. For her short-term goal - the Japan trip in 3 years - she needs a safe harbor where her money is protected. She discovers two such havens:</p>
-                <ul class="mt-4 space-y-4">
+                <p class="text-sm">Not all money needs to face the open sea. For short-term goals, Priya needs safe harbors. She discovers:</p>
+                <ul class="mt-3 space-y-3"> <!-- Squeezed -->
                     <li class="icon-list-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                         <div>
                             <p class="item-title"><strong>Fixed Deposit (FD)</strong></p>
-                            <p>She can put a part of her bonus in an FD, locking it for 3 years at a guaranteed interest rate. It's simple, safe, and completely predictable.</p>
+                            <p>Locking a sum for a set time at a guaranteed rate. Simple, safe, predictable.</p>
                         </div>
                     </li>
                     <li class="icon-list-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
                         <div>
                             <p class="item-title"><strong>Recurring Deposit (RD)</strong></p>
-                            <p>This is like a SIP for savings. She can deposit a fixed amount every month for her trip, earning a guaranteed interest rate. It’s perfect for building her travel fund systematically.</p>
+                            <p>Like a SIP for savings. Deposit fixed amounts monthly for guaranteed interest.</p>
                         </div>
                     </li>
                 </ul>
@@ -697,34 +758,19 @@
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card">
+            <!-- Added border -->
+            <div class="content-section-card border-l-blue-400">
                 <h2>Investment Comparison: At a Glance</h2>
-                <p class="text-sm">To keep things clear, Priya creates a quick comparison table to remind herself which tool is for which job.</p>
-                <div class="overflow-x-auto mt-4">
-                    <table class="w-full text-sm text-left">
+                <p class="text-sm">Priya creates a quick comparison table.</p>
+                <div class="overflow-x-auto mt-3"> <!-- Squeezed -->
+                    <table class="w-full text-left">
                         <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
-                            <tr>
-                                <th class="px-6 py-3">Feature</th>
-                                <th class="px-6 py-3">Mutual Fund (SIP)</th>
-                                <th class="px-6 py-3">FD / RD</th>
-                            </tr>
+                            <tr><th class="px-4 py-2">Feature</th><th class="px-4 py-2">Mutual Fund (SIP)</th><th class="px-4 py-2">FD / RD</th></tr>
                         </thead>
                         <tbody class="text-xs">
-                            <tr class="bg-white border-b">
-                                <td class="px-6 py-4 font-medium">Risk Level</td>
-                                <td class="px-6 py-4">High (Market-Linked)</td>
-                                <td class="px-6 py-4 font-bold text-green-600">Low (Risk-Free)</td>
-                            </tr>
-                            <tr class="bg-white border-b">
-                                <td class="px-6 py-4 font-medium">Returns</td>
-                                <td class="px-6 py-4">Variable (potential for high returns)</td>
-                                <td class="px-6 py-4">Fixed & Guaranteed</td>
-                            </tr>
-                             <tr class="bg-white border-b">
-                                <td class="px-6 py-4 font-medium">Best For</td>
-                                <td class="px-6 py-4">Long-term wealth creation</td>
-                                <td class="px-6 py-4">Capital safety, short-term goals</td>
-                            </tr>
+                            <tr class="bg-white border-b"><td class="px-4 py-2 font-medium">Risk Level</td><td class="px-4 py-2">High</td><td class="px-4 py-2 font-bold text-green-600">Low</td></tr>
+                            <tr class="bg-white border-b"><td class="px-4 py-2 font-medium">Returns</td><td class="px-4 py-2">Variable (High potential)</td><td class="px-4 py-2">Fixed & Guaranteed</td></tr>
+                             <tr class="bg-white"><td class="px-4 py-2 font-medium">Best For</td><td class="px-4 py-2">Long-term wealth</td><td class="px-4 py-2">Safety, short-term</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -733,23 +779,18 @@
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card bg-gray-50">
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-red-400">
                  <h2>Common Investing Mistakes to Avoid</h2>
-                <p class="text-sm">Priya learns that a successful journey is not just about flying forward, but also about avoiding common asteroid fields that can damage her ship.</p>
-                <ul class="mt-4 space-y-3">
+                <p class="text-sm">Priya learns to avoid common asteroid fields:</p>
+                <ul class="mt-3 space-y-3"> <!-- Squeezed -->
                     <li class="icon-list-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                        <div>
-                            <p class="item-title"><strong>Mistake: Trying to Time the Market</strong></p>
-                            <p><strong>Instead:</strong> She decides to invest consistently through her SIP. She learns that "time in the market" is far more powerful than "timing the market."</p>
-                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><p class="item-title"><strong>Mistake: Trying to Time the Market</strong></p><p><strong>Instead:</strong> Invest consistently via SIP. Time <strong>in</strong> market > Timing market.</p></div>
                     </li>
                     <li class="icon-list-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                        <div>
-                            <p class="item-title"><strong>Mistake: Forgetting About Inflation</strong></p>
-                            <p><strong>Instead:</strong> She chooses investments that can grow faster than the rate of inflation, ensuring her money's value doesn't decrease over time.</p>
-                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><p class="item-title"><strong>Mistake: Forgetting About Inflation</strong></p><p><strong>Instead:</strong> Choose investments that outrun inflation for long-term growth.</p></div>
                     </li>
                 </ul>
             </div>
@@ -757,143 +798,103 @@
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card">
+            <!-- Added border -->
+            <div class="content-section-card border-l-yellow-400">
                 <h2>Debunking Common Investing Myths</h2>
-                <p class="text-sm">Let's clear the air and bust some of the most common myths that stop people from building wealth.</p>
-                <ul class="mt-4 space-y-4">
+                <p class="text-sm">Let's bust some myths:</p>
+                <ul class="mt-3 space-y-3"> <!-- Squeezed -->
                     <li class="icon-list-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                        <div>
-                            <p class="item-title"><strong>Myth: "Investing is only for the rich."</strong></p>
-                            <p><strong>Fact:</strong> This is the biggest misconception! You can start a Systematic Investment Plan (SIP) in a mutual fund with as little as ₹500 per month. The key is not how much you start with, but that you start consistently.</p>
-                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><p class="item-title"><strong>Myth: "Investing is only for the rich."</strong></p><p><strong>Fact:</strong> Start SIPs with ₹500/month. Consistency > Amount.</p></div>
                     </li>
                     <li class="icon-list-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                        <div>
-                            <p class="item-title"><strong>Myth: "Investing in the stock market is like gambling."</strong></p>
-                            <p><strong>Fact:</strong> Gambling is a short-term bet on an uncertain outcome. Long-term investing, especially through mutual funds, is about owning a small piece of many successful businesses and growing with them over time. It's a strategic plan, not a game of chance.</p>
-                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><p class="item-title"><strong>Myth: "Stock market = gambling."</strong></p><p><strong>Fact:</strong> Long-term investing is owning businesses, not betting.</p></div>
                     </li>
                     <li class="icon-list-item">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                        <div>
-                            <p class="item-title"><strong>Myth: "You need to be a financial expert."</strong></p>
-                            <p><strong>Fact:</strong> That's what mutual funds are for! A professional fund manager does all the research and decision-making for you. Your job is simply to choose a fund that matches your goals and invest consistently.</p>
-                        </div>
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        <div><p class="item-title"><strong>Myth: "You need to be an expert."</strong></p><p><strong>Fact:</strong> Mutual fund managers do the work for you.</p></div>
                     </li>
                 </ul>
             </div>
-            
+
              <!-- Separator Added -->
             <hr class="section-separator">
 
-            <!-- NEW SECTION: Getting Started -->
-            <div class="content-section-card bg-gray-50">
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-teal-400">
                 <h2>Getting Started: The Nuts and Bolts 🛠️</h2>
-                <p class="text-sm">Ready to take the first practical steps? Here's what you need to know:</p>
-                <ul class="mt-4 space-y-4">
+                <p class="text-sm">Ready for practical steps? Here's what you need:</p>
+                <ul class="mt-3 space-y-3"> <!-- Squeezed -->
                     <li class="icon-list-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                        <div>
-                            <p class="item-title"><strong>Complete Your KYC</strong></p>
-                            <p>This mandatory 'Know Your Customer' process is a one-time verification. You'll typically need your PAN card and Aadhaar card (linked to your mobile for OTP). Most platforms allow you to do this online in minutes.</p>
-                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <div><p class="item-title"><strong>Complete Your KYC</strong></p><p>One-time online verification (PAN + Aadhaar needed).</p></div>
                     </li>
                     <li class="icon-list-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M17 2h-1a4 4 0 0 0-4 4v0a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-1z"/></svg>
-                        <div>
-                            <p class="item-title"><strong>Choose Your Platform</strong></p>
-                            <p><strong>Mutual Funds:</strong> You can invest via Mutual Fund distributor platforms (like Groww, Zerodha Coin) or directly with the Asset Management Company (AMC) website after KYC.
-                            <br><strong>Direct Stocks:</strong> You'll need a Demat & Trading account with a stockbroker. Check our <a href="5paisa-vs-upstox.html">5paisa vs. Upstox guide</a> for a comparison.</p>
-                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M17 2h-1a4 4 0 0 0-4 4v0a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-1z"/></svg>
+                        <div><p class="item-title"><strong>Choose Your Platform</strong></p><p>MF platforms (Groww, Coin) or direct AMCs. For stocks, need Demat/Trading account (check <a href="5paisa-vs-upstox.html">5paisa vs. Upstox</a>).</p></div>
                     </li>
                      <li class="icon-list-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                        <div>
-                            <p class="item-title"><strong>Link Your Bank Account</strong></p>
-                            <p>Securely link your bank account to your chosen platform for seamless investing (SIPs) and withdrawals.</p>
-                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        <div><p class="item-title"><strong>Link Your Bank Account</strong></p><p>For seamless investing (SIPs) and withdrawals.</p></div>
                     </li>
                 </ul>
             </div>
-            <!-- END NEW SECTION -->
 
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card">
+            <!-- Added border -->
+            <div class="content-section-card border-l-blue-400">
                 <h2>Your First Investment Checklist</h2>
-                <p class="text-sm">Feeling confident, Priya creates her action plan. This is her launch sequence:</p>
-                <div class="timeline mt-6">
-                    <div class="timeline-item">
-                        <div class="timeline-dot">1</div>
-                        <h3><strong>Define a Clear Goal</strong></h3>
-                        <p>She decides her first goal is her Japan trip. She uses our <a href="../?mode=goal"><strong>Goal Planner</strong></a> to figure out she needs to save ₹8,000 per month for three years.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot">2</div>
-                        <h3><strong>Build Her Safety Net</strong></h3>
-                        <p>She first builds a small <a href="emergency-fund-guide.html">emergency fund</a> in a simple Recurring Deposit (RD) to cover any unexpected surprises.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot">3</div>
-                        <h3><strong>Complete Her KYC</strong></h3>
-                        <p>She completes the one-time, online KYC (Know Your Customer) process with her PAN and Aadhaar, which is mandatory for investing.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot">4</div>
-                        <h3><strong>Choose Her First Fund</strong></h3>
-                        <p>For her long-term retirement goal, she decides to start a small SIP in a Nifty 50 Index Fund - a simple, low-cost fund that invests in India's top 50 companies.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot">5</div>
-                        <h3><strong>Automate Everything</strong></h3>
-                        <p>She sets up an automatic monthly transfer for her RD and her SIP. Her savings and investments are now on autopilot, working for her while she focuses on her design work.</p>
-                    </div>
+                <p class="text-sm">Priya creates her action plan:</p>
+                <div class="timeline mt-4"> <!-- Squeezed -->
+                    <div class="timeline-item"><div class="timeline-dot">1</div><h3><strong>Define Goal</strong></h3><p>Japan trip! Uses <a href="../?mode=goal"><strong>Goal Planner</strong></a>: needs ₹8k/month for 3 yrs.</p></div>
+                    <div class="timeline-item"><div class="timeline-dot">2</div><h3><strong>Build Safety Net</strong></h3><p>Starts small <a href="emergency-fund-guide.html">emergency fund</a> in an RD.</p></div>
+                    <div class="timeline-item"><div class="timeline-dot">3</div><h3><strong>Complete KYC</strong></h3><p>Does the quick online KYC (PAN + Aadhaar).</p></div>
+                    <div class="timeline-item"><div class="timeline-dot">4</div><h3><strong>Choose First Fund</strong></h3><p>For long-term goal (retirement), starts small SIP in Nifty 50 Index Fund.</p></div>
+                    <div class="timeline-item"><div class="timeline-dot">5</div><h3><strong>Automate</strong></h3><p>Sets auto-transfer for RD & SIP. Done!</p></div>
                 </div>
             </div>
 
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <!-- Squeezed Toolkit Section -->
-            <div class="content-section-card bg-gray-50">
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-green-400">
                 <h2 class="section-title-secondary text-center">Your Investor's Toolkit</h2>
-                <p class="text-xs text-center text-gray-600 mt-1 mb-4">Priya is now an investor. Her journey has just begun, and as she grows, her strategies will evolve. Here are the tools she'll use at every stage:</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
-                    <!-- Stage 1: The Beginner -->
+                <p class="text-xs text-center text-gray-600 mt-1 mb-3">Priya's journey starts now. Here are tools for each stage:</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2"> <!-- Squeezed -->
                     <div class="toolkit-card border-green-200 bg-green-50">
-                        <h3 class="text-green-800">Stage 1: The Beginner</h3>
-                        <p class="subtitle text-green-600">Focus: Building Habits</p>
-                        <p class="main-text text-gray-700">Start with basics: safety net & consistent investing.</p>
-                        <a href="../quizzes/risk-profile-quiz.html" class="btn-secondary">Find Your Risk Profile</a>
+                        <h3 class="text-green-800">Stage 1: Beginner</h3>
+                        <p class="subtitle text-green-600">Focus: Habits</p>
+                        <p class="main-text text-gray-700">Basics: safety net & consistent investing.</p>
+                        <a href="../quizzes/risk-profile-quiz.html" class="btn-secondary">Find Risk Profile</a>
                     </div>
-                    <!-- Stage 2: The Grower -->
                     <div class="toolkit-card border-blue-200 bg-blue-50">
-                        <h3 class="text-blue-800">Stage 2: The Grower</h3>
-                        <p class="subtitle text-blue-600">Focus: Building Wealth</p>
-                        <p class="main-text text-gray-700">Accelerate wealth creation for your biggest life goals.</p>
+                        <h3 class="text-blue-800">Stage 2: Grower</h3>
+                        <p class="subtitle text-blue-600">Focus: Wealth</p>
+                        <p class="main-text text-gray-700">Accelerate growth for big life goals.</p>
                         <a href="../?mode=goal" class="btn-secondary">Plan for a Goal</a>
                     </div>
-                    <!-- Stage 3: The Retiree -->
                     <div class="toolkit-card border-purple-200 bg-purple-50">
-                        <h3 class="text-purple-800">Stage 3: The Retiree</h3>
-                        <p class="subtitle text-purple-600">Focus: Generating Income</p>
-                        <p class="main-text text-gray-700">Shift to creating a steady income stream from your corpus.</p>
+                        <h3 class="text-purple-800">Stage 3: Retiree</h3>
+                        <p class="subtitle text-purple-600">Focus: Income</p>
+                        <p class="main-text text-gray-700">Create steady income from your corpus.</p>
                         <a href="../?mode=swp" class="btn-secondary">Plan Your SWP</a>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card text-center">
+            <!-- Added border -->
+            <div class="content-section-card text-center border-l-blue-400">
                 <h2>Ready to Start Your Own Journey?</h2>
-                <p class="mb-4 text-sm">Like Priya, you can turn financial uncertainty into a clear, confident plan. The best time to plant a tree was 20 years ago. The second-best time is today.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="../" class="btn-primary">Explore Our Calculators</a>
+                <p class="mb-3 text-sm">You can turn uncertainty into a clear plan. The best time was yesterday. The next best? Today.</p>
+                <div class="flex flex-col sm:flex-row gap-2 justify-center"> <!-- Squeezed -->
+                    <a href="../" class="btn-primary">Explore Calculators</a>
                     <a href="../financial-hub.html" class="btn-secondary">Take a Financial Quiz</a>
                 </div>
             </div>
@@ -901,38 +902,19 @@
             <!-- Separator Added -->
             <hr class="section-separator">
 
-            <div class="content-section-card bg-gray-50">
-                <h2 class="section-title-secondary">Frequently Asked Questions (FAQ)</h2>
+            <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-purple-400">
+                <h2 class="section-title-secondary text-center">Frequently Asked Questions (FAQ)</h2>
                 <div class="faq-container">
-                    <details class="faq-item">
-                        <summary>What's the minimum amount to start investing in India?</summary>
-                        <p>This is the best part! You don't need a large amount of money. You can start a Systematic Investment Plan (SIP) in most mutual funds with as little as ₹500 per month. The key is not the amount, but the habit of investing regularly.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Is investing in mutual funds safe?</summary>
-                        <p>Mutual funds that invest in the stock market (equity funds) carry market risk, meaning their value can go up and down. However, they are generally considered safer than buying individual stocks because they are highly diversified. For safety, you can choose debt funds, which are much less volatile. All mutual funds in India are regulated by SEBI, which adds a layer of safety for investors.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>How long should I stay invested?</summary>
-                        <p>The ideal investment period depends on your financial goal. For equity mutual funds, it is highly recommended to stay invested for the long term (at least 5-7 years or more). This gives your investment enough time to ride out short-term market fluctuations and benefit from the power of compounding.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>What is KYC and why is it needed?</summary>
-                        <p>KYC stands for 'Know Your Customer.' It is a one-time, mandatory verification process required by Indian regulators to prevent financial fraud. You'll need your PAN card and Aadhaar card to complete it. Once your KYC is done, you can invest in any mutual fund in India.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>How do I choose my first mutual fund?</summary>
-                        <p>For a complete beginner, a simple Nifty 50 Index Fund is an excellent starting point. It's a low-cost fund that invests in India's 50 largest companies, giving you broad market exposure. As you learn more, you can explore other types of funds that match your specific goals and risk appetite.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Can I lose money in a SIP?</summary>
-                        <p>Yes, it is possible. Since a SIP invests in market-linked mutual funds, if the market goes down, the value of your investment can also go down. However, the very nature of a SIP (investing regularly) helps reduce this risk through rupee cost averaging. Over the long term, the historical performance of equity markets has been positive, significantly reducing the risk of making a loss.</p>
-                    </details>
+                    <details class="faq-item"><summary>Minimum amount to start investing?</summary><p>Just ₹500/month for most SIPs! Consistency matters more.</p></details>
+                    <details class="faq-item"><summary>Are mutual funds safe?</summary><p>Equity funds have market risk (ups/downs) but are safer than single stocks due to diversification. Debt funds are very low risk. SEBI regulates all funds.</p></details>
+                    <details class="faq-item"><summary>How long should I stay invested?</summary><p>For equity funds, aim for 5-7+ years minimum to ride out volatility and benefit from compounding.</p></details>
+                    <details class="faq-item"><summary>What is KYC?</summary><p>A one-time mandatory ID check (PAN + Aadhaar) required by regulators. Do it online once, invest anywhere.</p></details>
+                    <details class="faq-item"><summary>Which first mutual fund?</summary><p>A Nifty 50 Index Fund is a great, simple start. It buys India's top 50 companies for you.</p></details>
+                    <details class="faq-item"><summary>Can I lose money in a SIP?</summary><p>Yes, if the market drops short-term. But SIPs average your cost, and long-term market history is positive, reducing loss risk significantly.</p></details>
                 </div>
             </div>
-
-            <!-- Removed Decorative Line Section -->
-
+            <!-- Removed Decorative Line & Social Share -->
         </div>
     </main>
 
@@ -941,41 +923,52 @@
     <script src="../script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // ... (rest of the chart script remains the same)
+            // Chart: Compounding Start Early
             const compoundingStartEarlyCtx = document.getElementById('compoundingStartEarlyChart');
             if(compoundingStartEarlyCtx) {
-                const calculateFutureValue = (monthlyInvestment, years, rate) => {
-                    const monthlyRate = rate / 12;
-                    const months = years * 12;
-                    if (monthlyRate === 0) return monthlyInvestment * months;
-                    return monthlyInvestment * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate * (1 + monthlyRate);
-                };
-
-                const priyaFV = calculateFutureValue(10000, 35, 0.12);
-                const amitFV = calculateFutureValue(10000, 25, 0.12);
-
-                new Chart(compoundingStartEarlyCtx, {
-                    type: 'bar', data: {
-                        labels: ['Priya (Starts at 25)', 'Amit (Starts at 35)'],
-                        datasets: [{
-                            label: 'Final Corpus at Age 60', data: [priyaFV, amitFV],
-                            backgroundColor: ['rgba(34, 197, 94, 0.7)', 'rgba(239, 68, 68, 0.7)'],
-                            borderColor: ['rgba(22, 163, 74, 1)', 'rgba(220, 38, 38, 1)'],
-                            borderWidth: 1
-                        }]
-                    }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `Final Corpus: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.y)}` }}}, scales: { y: { beginAtZero: true, ticks: { callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value) }}}}
-                });
+                const calculateFutureValue = (monthlyInvestment, years, rate) => { const monthlyRate = rate / 12; const months = years * 12; if (monthlyRate === 0) return monthlyInvestment * months; return monthlyInvestment * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate * (1 + monthlyRate); };
+                const priyaFV = calculateFutureValue(10000, 35, 0.12); const amitFV = calculateFutureValue(10000, 25, 0.12);
+                new Chart(compoundingStartEarlyCtx, { type: 'bar', data: { labels: ['Priya (Starts @ 25)', 'Amit (Starts @ 35)'], datasets: [{ label: 'Corpus @ 60', data: [priyaFV, amitFV], backgroundColor: ['rgba(34, 197, 94, 0.7)', 'rgba(239, 68, 68, 0.7)'], borderColor: ['rgba(22, 163, 74, 1)', 'rgba(220, 38, 38, 1)'], borderWidth: 1 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `Corpus: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.y)}` }, bodyFont:{size:9}, titleFont:{size:10}, padding:4 }}, scales: { y: { beginAtZero: true, ticks: { callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value), font:{size:8} }}, x:{ticks:{font:{size:8}}} } } }); // Squeezed ticks
             }
 
+            // Chart: Market Cycle
             const marketCycleCtx = document.getElementById('marketCycleChart');
             if(marketCycleCtx) {
-                const labels = ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6', 'Year 7', 'Year 8'];
-                const data = [100, 120, 150, 130, 110, 140, 170, 200];
-                new Chart(marketCycleCtx, {
-                    type: 'line', data: { labels: labels, datasets: [{ label: 'Market Index Value', data: data, borderColor: 'rgba(22, 163, 74, 1)', backgroundColor: 'rgba(22, 163, 74, 0.1)', fill: true, tension: 0.4 }] },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: false, ticks: { display: false } }, x: { grid: { display: false } } } }
-                });
+                const labels = ['Y1', 'Y2', 'Y3', 'Y4', 'Y5', 'Y6', 'Y7', 'Y8']; const data = [100, 120, 150, 130, 110, 140, 170, 200];
+                new Chart(marketCycleCtx, { type: 'line', data: { labels: labels, datasets: [{ label: 'Market Index', data: data, borderColor: 'rgba(22, 163, 74, 1)', backgroundColor: 'rgba(22, 163, 74, 0.1)', fill: true, tension: 0.4, pointRadius: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip:{enabled:false} }, scales: { y: { beginAtZero: false, ticks: { display: false }, grid:{display:false} }, x: { ticks: { font:{size:8}, maxRotation: 0}, grid:{display:false} } } } }); // Squeezed ticks
             }
+
+            // ADDED CHART: Savings vs Investing
+             const savingsVsInvestingCtx = document.getElementById('savingsVsInvestingChart');
+             if(savingsVsInvestingCtx) {
+                const years = 20; const monthlyAmount = 10000; const savingsRate = 0.04; const investingRate = 0.12;
+                let labels_svi = []; let savingsData = []; let investingData = [];
+                let currentSavings = 0; let currentInvesting = 0; const monthlySavingsRate = savingsRate / 12; const monthlyInvestingRate = investingRate / 12;
+
+                for (let i = 0; i <= years; i++) {
+                    labels_svi.push(`Year ${i}`);
+                    savingsData.push(currentSavings);
+                    investingData.push(currentInvesting);
+                    if (i < years) { // Calculate for the next year
+                        for(let m=0; m<12; m++){
+                            currentSavings = currentSavings * (1 + monthlySavingsRate) + monthlyAmount;
+                            currentInvesting = currentInvesting * (1 + monthlyInvestingRate) + monthlyAmount;
+                        }
+                    }
+                }
+
+                 new Chart(savingsVsInvestingCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels_svi,
+                        datasets: [
+                            { label: 'Savings (4% p.a.)', data: savingsData, borderColor: 'rgba(239, 68, 68, 1)', backgroundColor: 'rgba(239, 68, 68, 0.1)', fill: true, tension: 0.1, pointRadius: 0 },
+                            { label: 'Investing (12% p.a.)', data: investingData, borderColor: 'rgba(34, 197, 94, 1)', backgroundColor: 'rgba(34, 197, 94, 0.1)', fill: true, tension: 0.1, pointRadius: 0 }
+                        ]
+                    },
+                     options: { responsive: true, maintainAspectRatio: false, plugins: {legend:{labels:{boxWidth:8, padding:6, font:{size:8}}}, tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.y)}` }, bodyFont:{size:9}, titleFont:{size:10}, padding:4 }}, scales: { y: { beginAtZero: true, ticks: { callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value), font:{size:8} }}, x:{ticks:{font:{size:8}, maxRotation: 0, autoSkipPadding: 15}} } } // Squeezed legend/tooltip/ticks
+                 });
+             }
 
         });
     </script>
