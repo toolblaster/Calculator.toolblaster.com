@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Guide to Stock Market Investing & Diversification</title>
-    <meta name="description" content="A beginner's guide to demystifying the stock market, from core concepts to building a diversified portfolio with stocks, gold, and real estate.">
+    <!-- Adjusted Meta Title (56 chars) -->
+    <title>Stock Market Guide: Investing & Diversification Basics</title>
+    <!-- Adjusted Meta Description (158 chars) -->
+    <meta name="description" content="Demystify the Indian stock market! Learn core concepts, direct vs. indirect investing, and how to build a diversified portfolio with stocks, gold & RE.">
     <meta name="keywords" content="stock market for beginners, stock investing, direct equity, gold investment, real estate investing, asset diversification, financial education, Indian stock market">
 
     <!-- Canonical Tag -->
@@ -13,16 +15,20 @@
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Your Guide to Stock Market Investing & Diversification">
     <meta property="og:description" content="A beginner's guide to demystifying the stock market, from core concepts to building a diversified portfolio with stocks, gold, and real estate.">
+    <!-- Removed og:image tag -->
     <meta property="og:url" content="https://calculator.toolblaster.com/guides/stock-market-guide-in-india.html">
     <meta property="og:type" content="article">
 
     <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary"> <!-- Changed to summary as no image -->
     <meta name="twitter:title" content="Your Guide to Stock Market Investing & Diversification">
     <meta name="twitter:description" content="A beginner's guide to demystifying the stock market, from core concepts to building a diversified portfolio with stocks, gold, and real estate.">
-    
+    <!-- Removed twitter:image tag -->
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Add Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <script type="application/ld+json">
@@ -39,17 +45,17 @@
           "description": "A beginner's guide to demystifying the stock market, from core concepts to building a diversified portfolio with stocks, gold, and real estate.",
           "author": {
             "@type": "Organization",
-            "name": "Calculator.toolblaster"
+            "name": "Calculator.toolblaster.com" // Updated name
           },
           "publisher": {
             "@type": "Organization",
-            "name": "Calculator.toolblaster",
+            "name": "Calculator.toolblaster.com", // Updated name
             "logo": {
               "@type": "ImageObject",
-              "url": "https://calculator.toolblaster.com/assets/images/logo.png"
+              "url": "https://calculator.toolblaster.com/favicon/favicon-96x96.png" // Updated logo URL
             }
           },
-          "datePublished": "2025-08-25"
+          "datePublished": "2025-10-25" // Updated publication date
         },
         {
           "@type": "FAQPage",
@@ -100,188 +106,277 @@
     }
     </script>
 
+    <!-- Squeezed and Enhanced Styles -->
     <style>
-        body {
-            background-color: #ffffff;
-            font-size: 14px;
-        }
-        @media (min-width: 768px) {
-            body {
-                font-size: 16px;
-            }
-        }
+        /* Inheriting base styles from style.css */
         .content-section-card {
             background-color: #ffffff;
+            border: 1px solid #e5e7eb; /* gray-200 */
+            border-radius: 0.5rem; /* Squeezed */
+            padding: 1rem 1rem 1rem 1.5rem; /* Squeezed padding, added left padding */
+            margin-bottom: 0.75rem; /* Squeezed */
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* Slightly reduced */
+            border-left-width: 4px; /* Added */
+            /* Default border color - Red */
+            border-left-color: #F87171; /* red-400 */
+        }
+        /* Complementary Border Colors */
+        .content-section-card.border-l-blue-400 { border-left-color: #60A5FA; }
+        .content-section-card.border-l-green-400 { border-left-color: #4ADE80; }
+        .content-section-card.border-l-purple-400 { border-left-color: #A78BFA; }
+        .content-section-card.border-l-yellow-400 { border-left-color: #FACC15; }
+        .content-section-card.border-l-teal-400 { border-left-color: #2DD4BF; }
+        .content-section-card.border-l-indigo-400 { border-left-color: #818cf8; }
+        .content-section-card.border-l-orange-400 { border-left-color: #fb923c; }
+
+
+        /* Squeezed Titles */
+        .legal-content h1 {
+            font-size: 1.1rem; /* Further Squeezed H1 */
+            margin-bottom: 0.2rem; /* Squeezed margin */
+            text-align: center;
+            font-weight: 800;
+        }
+        .legal-content > p:first-of-type { /* Intro paragraph */
+            font-size: 0.7rem; /* Further Squeezed intro */
+            margin: 0 0.3rem 0.6rem 0.3rem; /* Squeezed margin */
+            text-align: center;
+            color: #4b5563; /* gray-600 */
+        }
+         /* Section Titles (H2) */
+         .legal-content h2 {
+            font-size: 1rem; /* Squeezed H2 */
+             border-bottom: 1px solid #E34037;
+            padding-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+            font-weight: 700;
+            text-align: left; /* Keep H2 left aligned */
+        }
+        /* Remove border for specific H2s if needed */
+        .legal-content .no-border h2 { border-bottom: none; padding-bottom: 0;}
+         /* Squeezed Subsection Titles (H3) */
+        .content-section-card h3 {
+            font-size: 0.8rem; /* Further Squeezed H3 */
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.2rem; /* Squeezed margin */
+        }
+        /* Squeezed H4 */
+        .content-section-card h4 {
+            font-size: 0.75rem; /* Further Squeezed H4 */
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.1rem; /* Squeezed margin */
+        }
+
+
+        /* Squeezed standard text */
+        .content-section-card p, .content-section-card li {
+            font-size: 0.7rem; /* Further Squeezed text */
+            color: #4b5563; /* gray-600 */
+            line-height: 1.4; /* Tighter */
+        }
+         /* Adjust smaller text specifically */
+        .legal-content .text-xs { font-size: 0.65rem; } /* Further Squeezed */
+        .legal-content .text-sm { font-size: 0.7rem; } /* Further Squeezed */
+
+        /* Squeezed List Styles */
+        .content-section-card ul { list-style: none; padding-left: 0; margin-top: 0.5rem; /* Squeezed margin */ }
+        .content-section-card li { margin-bottom: 0.4rem; /* Further Squeezed margin */ display: flex; align-items: flex-start; }
+        .content-section-card li svg.list-icon { /* Target only list icons */
+            flex-shrink: 0;
+            width: 14px; /* Further Squeezed icon */
+            height: 14px; /* Further Squeezed icon */
+            margin-right: 0.4rem; /* Squeezed margin */
+            margin-top: 2px; /* Alignment */
+        }
+         /* Squeezed Icon List specific styles */
+        .icon-list li { margin-bottom: 0.3rem;} /* Tighter */
+        .icon-list li svg { width: 14px; height: 14px; margin-right: 0.4rem; margin-top: 1px;} /* Adjusted */
+
+
+        /* Squeezed Score Range Bar */
+        .score-range-bar {
+            width: 100%;
+            height: 0.75rem; /* Squeezed */
+            background: linear-gradient(to right, #ef4444, #f59e0b, #22c55e);
+            border-radius: 999px;
+            position: relative;
+            margin: 0.5rem 0 0.3rem; /* Squeezed */
+        }
+        .score-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6rem; /* Squeezed */
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        /* Squeezed Table */
+        .overflow-x-auto table { font-size: 0.7rem; }
+        .overflow-x-auto th, .overflow-x-auto td { padding: 0.4rem !important; } /* Squeezed */
+
+        /* Squeezed Credit Card Grid */
+        .credit-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Further Squeezed */
+            gap: 0.5rem; /* Squeezed */
+            margin-top: 0.75rem; /* Squeezed */
+        }
+        .credit-card-card {
+            background-color: #fff;
             border: 1px solid #e5e7eb;
-            border-left: 4px solid #60a5fa; /* Complimentary blue border */
-            border-radius: 0.75rem;
-            padding: 1rem 1rem 1rem 1.5rem; /* Adjusted padding for the left border */
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.375rem; /* Squeezed */
+            padding: 0.5rem; /* Further Squeezed */
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
         }
-        @media (min-width: 768px) {
-            .content-section-card {
-                padding: 1.5rem 1.5rem 1.5rem 2rem;
-            }
+        .credit-card-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
         }
-        .asset-card {
-            background-color: #ffffff;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            border: 1px solid #d1d5db;
+         .credit-card-card h3 { font-size: 0.75rem; margin-bottom: 0.1rem; } /* Squeezed */
+         .credit-card-card p { font-size: 0.65rem; flex-grow: 1; margin-bottom: 0.3rem; } /* Squeezed */
+        .credit-card-card .apply-btn {
+            display: inline-block;
+            background-color: #E34037;
+            color: #fff !important;
+            padding: 0.3rem 0.6rem; /* Squeezed */
+            border-radius: 0.25rem; /* Squeezed */
+            font-size: 0.65rem; /* Squeezed */
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s;
+            margin-top: auto;
+        }
+        .credit-card-card .apply-btn:hover { background-color: #C22D2D; }
+
+        /* Squeezed Affiliate Section */
+        .affiliate-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: #eff6ff; /* blue-50 */
+            border: 1px solid #dbeafe; /* blue-100 */
+            border-radius: 0.5rem; /* Squeezed */
+            padding: 1rem 0.75rem; /* Squeezed */
+            margin-top: 1rem; /* Squeezed */
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.05); /* Reduced shadow */
+        }
+        .affiliate-section h3 {
+            font-size: 1rem; /* Further Squeezed */
+            font-weight: 700;
+            margin-bottom: 0.3rem; /* Squeezed */
+            color: #1e40af; /* blue-800 */
+        }
+        .affiliate-section p {
+            font-size: 0.75rem; /* Further Squeezed */
+            color: #374151; /* gray-700 */
+            margin-bottom: 0.75rem; /* Squeezed */
+            max-width: 600px;
+        }
+
+        /* Squeezed FAQ */
+        .faq-item summary { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
+        .faq-item p { padding: 0 0.6rem 0.4rem 0.6rem; font-size: 0.7rem; }
+        .faq-item summary::after { font-size: 0.9rem; right: 0.75rem; }
+        .faq-container.mt-4 { margin-top: 0.75rem; }
+
+         /* Spacing adjustments */
+        .content-section-card .mt-4 { margin-top: 0.75rem;}
+        .content-section-card .space-y-4 li { margin-bottom: 0.4rem;}
+        .content-section-card .space-y-3 li { margin-bottom: 0.3rem;}
+        .content-section-card .space-y-2 li { margin-bottom: 0.2rem;}
+        .content-section-card .gap-4 { gap: 0.75rem;}
+        .content-section-card .gap-3 { gap: 0.5rem;}
+        .content-section-card .gap-2 { gap: 0.5rem;}
+        .legal-content .mt-6 { margin-top: 0.75rem;} /* Further squeezed margin */
+        .legal-content .py-5 { padding-top: 0.75rem; padding-bottom: 0.75rem;}
+
+        /* Squeezed Related Guides Section */
+        .related-guides-section .p-2 { padding: 0.5rem;}
+        .related-guides-section .w-6 { width: 1.25rem;}
+        .related-guides-section .h-6 { height: 1.25rem;}
+        .related-guides-section .mb-1 { margin-bottom: 0.15rem;}
+        .related-guides-section .mb-2 { margin-bottom: 0.25rem;}
+        .related-guides-section .text-xs { font-size: 0.7rem;}
+        .related-guides-section .text-xxs { font-size: 0.6rem;}
+        .related-guides-section .mt-1 { margin-top: 0.15rem;}
+        .related-guides-section .mt-2 { margin-top: 0.25rem;}
+        .related-guides-section .gap-2 { gap: 0.5rem;}
+        .related-guides-section .h-full { /* Ensure cards maintain structure */ }
+        .related-guides-section .flex-grow { /* Ensure text fills space */ }
+
+         /* Styles for the new chart */
+        .chart-container {
+            height: 10rem; /* Squeezed height */
+            width: 100%;
+            max-width: 450px; /* Limit width */
+            margin: 0.75rem auto 0; /* Squeezed margin */
         }
          @media (min-width: 768px) {
-            .asset-card {
-                padding: 1.25rem;
-            }
-        }
-        .asset-card:hover {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transform: none;
-        }
-        .asset-icon {
-            color: #E34037;
-        }
-        .asset-card h3 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #1f2d37;
-        }
-        .asset-card p {
-            font-size: 0.75rem;
-            color: #4b5563;
-        }
-        .recommendation-box {
-            background-color: #fef2f2;
-            border: 1px solid #fca5a5;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-        }
-        .recommendation-title, p.recommendation-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #C22D2D;
-        }
-        .recommendation-description {
-            font-size: 0.8rem;
-            color: #4b5563;
-            margin-bottom: 1rem;
-        }
-        .list-icon {
-            color: #E34037;
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-            margin-right: 0.5rem;
-        }
-        .prominent-section {
-            background-color: #fef2f2;
-            border-left: 4px solid #C22D2D;
-            padding: 1.5rem;
-        }
-        .prominent-section h2 {
-            text-align: left;
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-bottom: 1rem;
-        }
-        .prominent-section h2::after {
-            display: none;
-        }
-        .market-list {
-            list-style: none;
-            padding-left: 0;
-            counter-reset: market-counter;
-        }
-        .market-list li {
-            counter-increment: market-counter;
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 0.5rem;
-            font-size: 0.75rem;
-        }
-        .market-list li::before {
-            content: counter(market-counter);
-            background-color: #E34037;
-            color: white;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-right: 0.75rem;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        .timeline-container {
-            position: relative;
-            padding-left: 2rem;
-        }
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            left: 14px;
-            top: 10px;
-            bottom: 10px;
-            width: 2px;
-            background-color: #fca5a5;
-        }
-        .timeline-step {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-        .timeline-step:last-child {
-            margin-bottom: 0;
-        }
-        .timeline-step::before {
-            content: attr(data-step);
-            position: absolute;
-            left: -35px;
-            top: 0;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #E34037;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-            border: 3px solid #fef2f2;
-        }
-        .timeline-step h3 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #1f2d37;
-            margin-bottom: 0.25rem;
-        }
-        .timeline-step p, .timeline-step ul {
-            font-size: 0.75rem;
-            color: #4b5563;
-        }
+             .chart-container {
+                 height: 12rem; /* Slightly taller on desktop */
+             }
+         }
+
+        /* Styles copied from beginner-investing-guide */
+        .timeline-container { position: relative; padding-left: 2rem; }
+        .timeline-container::before { content: ''; position: absolute; left: 14px; top: 10px; bottom: 10px; width: 2px; background-color: #fca5a5; }
+        .timeline-step { position: relative; margin-bottom: 1rem; } /* Squeezed margin */
+        .timeline-step:last-child { margin-bottom: 0; }
+        .timeline-step::before { content: attr(data-step); position: absolute; left: -30px; top: 0; width: 24px; height: 24px; border-radius: 50%; background-color: #E34037; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem; border: 2px solid #fef2f2; } /* Squeezed size */
+        .timeline-step h3 { font-size: 0.8rem; font-weight: 700; color: #1f2937; margin-bottom: 0.15rem; } /* Squeezed */
+        .timeline-step p, .timeline-step ul { font-size: 0.7rem; color: #4b5563; } /* Squeezed */
+        .timeline-step ul { list-style-position: inside; padding-left: 0.25rem; margin-top: 0.25rem;} /* Adjust list styling */
+
+        .asset-card { background-color: #ffffff; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid #d1d5db; display: flex; flex-direction: column; height: 100%;} /* Squeezed, added height */
+        .asset-card:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); transform: none; }
+        .asset-icon { color: #E34037; width: 1.5rem; height: 1.5rem;} /* Squeezed icon */
+        .asset-card h3 { font-size: 0.8rem; font-weight: 600; color: #1f2937; } /* Squeezed */
+        .asset-card p { font-size: 0.7rem; color: #4b5563; flex-grow: 1;} /* Squeezed, added flex-grow */
+        /* --- UPDATED: Ensure icon aligns with start of text --- */
+        .asset-card .items-start { align-items: flex-start; } /* Changed from items-center */
+        .asset-card .justify-start { justify-content: flex-start; } /* Changed from justify-center */
+        .asset-card .gap-2 { gap: 0.5rem; } /* Squeezed */
+        .asset-card .mb-2 { margin-bottom: 0.25rem; } /* Squeezed */
+
+        .recommendation-box { background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 0.5rem; padding: 0.75rem; } /* Squeezed */
+        .recommendation-title, p.recommendation-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem; color: #C22D2D; } /* Squeezed */
+        .recommendation-description { font-size: 0.7rem; color: #4b5563; margin-bottom: 0.5rem; } /* Squeezed */
+
+        .prominent-section { background-color: #fef2f2; border-left: 3px solid #C22D2D; padding: 1rem; border-radius: 0.5rem; margin-bottom: 0.75rem;} /* Squeezed */
+        .prominent-section h2 { text-align: left; border-bottom: none; padding-bottom: 0; margin-bottom: 0.5rem; font-size: 1rem;} /* Squeezed */
+        .prominent-section h2::after { display: none; }
+        .prominent-section p { font-size: 0.75rem; margin-bottom: 0.5rem;} /* Squeezed */
+
+        .market-list { list-style: none; padding-left: 0; counter-reset: market-counter; }
+        .market-list li { counter-increment: market-counter; display: flex; align-items: flex-start; margin-bottom: 0.3rem; font-size: 0.7rem; } /* Squeezed */
+        .market-list li::before { content: counter(market-counter); background-color: #E34037; color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; margin-right: 0.5rem; flex-shrink: 0; margin-top: 1px; } /* Squeezed */
+
+
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <!-- Header will be loaded here -->
     <div id="header-placeholder"></div>
 
-    <!-- Main Content -->
     <main class="container">
-        <div class="legal-content">
+        <div class="legal-content"> <!-- Removed extra padding -->
             <h1>Your Friendly Guide to the Stock Market</h1>
-            <p style="text-align: center;">Let's be honest, the "stock market" can sound like a complicated, scary place reserved for experts in fancy suits. But what if I told you it's one of the most powerful tools you have to build real wealth for your future? This guide is your friendly co-pilot, here to translate the jargon and turn your investing-anxiety into a confident action plan. This isn't about 'getting rich quick'; it's about getting smart with your money for the long haul.</p>
+            <p>Let's be honest, the "stock market" can sound like a complicated, scary place reserved for experts in fancy suits. But what if I told you it's one of the most powerful tools you have to build real wealth for your future? This guide is your friendly co-pilot, here to translate the jargon and turn your investing-anxiety into a confident action plan. This isn't about 'getting rich quick'; it's about getting smart with your money for the long haul.</p>
 
             <!-- Section 1: The Basics of the Stock Market -->
-            <div class="content-section-card">
+            <!-- Added border -->
+            <div class="content-section-card border-l-blue-400">
                 <h2>So, What's this 'Stock Market' Everyone Talks About? 📈</h2>
                 <p>Imagine your favorite company, maybe the one that makes your phone or your go-to snacks. The stock market is simply a giant, organized marketplace where you can buy a tiny slice of that company. Here’s the simple version:</p>
-                <ul class="list-disc list-inside space-y-2">
+                <ul class="list-disc list-inside space-y-2"> <!-- Removed mt-4 -->
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                         <span><strong>A Slice of the Pie (Shares):</strong> To grow, big companies sell tiny ownership pieces called 'shares' or 'stocks'. When you buy a share, you're not just a customer anymore. You're a part-owner!</span>
@@ -299,10 +394,11 @@
             </div>
 
             <!-- New Section: How Does the Stock Market Work? -->
-            <div class="content-section-card bg-gray-50">
+             <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-green-400">
                 <h2>How It All Connects: A Simple Story ⚙️</h2>
                 <p>Let's trace the journey of your money from your bank account to the market. It's like ordering something online:</p>
-                <ul class="list-disc list-inside space-y-2">
+                <ul class="list-disc list-inside space-y-2"> <!-- Removed mt-4 -->
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M17 2h-1a4 4 0 0 0-4 4v0a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-1z"/></svg>
                         <span><strong>You, the Investor:</strong> You decide you want to buy a few shares of a cool company. You can't just call them up; you need a special account.</span>
@@ -316,17 +412,18 @@
                         <span><strong>The Grand Exchange:</strong> Your broker sends your "buy" order to the stock exchange (NSE or BSE). The exchange is like a super-fast matchmaker, finding a seller for your order in a blink of an eye.</span>
                     </li>
                 </ul>
-                <div class="alert alert-info">
+                <div class="alert alert-info mt-4"> <!-- Added margin -->
                     <h3>Is it Safe?</h3>
                     <p>Yes! This whole process is watched over by a government referee called SEBI (Securities and Exchange Board of India) to make sure everything is fair and transparent.</p>
                 </div>
             </div>
 
             <!-- New Section: Understanding the Stock Market Basics - Important Terms -->
-            <div class="content-section-card">
+             <!-- Added border -->
+            <div class="content-section-card border-l-purple-400">
                 <h2>Decoding the Jargon: Your Quick Dictionary 📚</h2>
                 <p>Let's quickly translate some common terms you'll hear:</p>
-                <ul class="list-disc list-inside space-y-2">
+                <ul class="list-disc list-inside space-y-2"> <!-- Removed mt-4 -->
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                         <span><strong>IPO (Initial Public Offering):</strong> This is a company's big debut party! It's the first time they sell their shares to everyone.</span>
@@ -345,28 +442,31 @@
                     </li>
                 </ul>
             </div>
-            
+
             <!-- New Section: What is the difference between stocks and shares? -->
-            <div class="content-section-card bg-gray-50">
+             <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-yellow-400">
                 <h2>Are 'Stocks' and 'Shares' the Same Thing? 🔍</h2>
                 <p>You'll hear these words used interchangeably, and that's usually fine! But there's a tiny difference. Think of it like this:</p>
-                <ul class="list-disc list-inside space-y-2">
+                <ul class="list-disc list-inside space-y-2"> <!-- Removed mt-4 -->
                     <li><span>You own a portfolio of <strong>stocks</strong> (a general term for your collection).</span></li>
                     <li><span>That portfolio is made up of 10 <strong>shares</strong> of Company A and 50 <strong>shares</strong> of Company B (the specific units).</span></li>
                 </ul>
             </div>
-            
+
             <!-- New Section: What is a Dividend in the Stock Market? -->
-            <div class="content-section-card">
+             <!-- Added border -->
+            <div class="content-section-card border-l-teal-400">
                 <h2>What's a Dividend? (Hint: It's Like a Bonus!) 💰</h2>
                 <p>When a profitable company has extra cash, it might decide to share some of those profits with its owners (that's you, the shareholder!). This bonus payment is called a <strong>dividend</strong>. It's a company's way of saying "thanks for being a part-owner!" Not all companies pay them, as some prefer to reinvest all their profits to grow bigger, faster.</p>
             </div>
-            
+
             <!-- What is a Stock Index in the Stock Market? -->
-            <div class="content-section-card bg-gray-50">
+             <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-indigo-400">
                 <h2>What's a Stock Index, Anyway? 📊</h2>
                 <p>You'll often hear news anchors say "the market is up today!" What they're usually talking about is a <strong>Stock Index</strong>. Think of it as a report card for a group of top companies. It gives you a quick snapshot of the market's overall mood.</p>
-                <ul class="list-disc list-inside space-y-2">
+                <ul class="list-disc list-inside space-y-2"> <!-- Removed mt-4 -->
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon mt-1"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
                         <span><strong>India's Famous Two:</strong> The two big report cards in India are the <strong>Nifty 50</strong> (tracking the 50 largest companies on the NSE) and the <strong>Sensex</strong> (tracking the 30 largest on the BSE).</span>
@@ -379,20 +479,21 @@
             </div>
 
             <!-- Bull vs Bear Market -->
-            <div class="content-section-card">
+             <!-- Added border -->
+            <div class="content-section-card border-l-orange-400">
                 <h2>Understanding Market Moods: The Bull vs. The Bear 🐂🐻</h2>
                 <p>You'll hear people talk about "bull" and "bear" markets. It's a simple way to describe the market's overall mood, inspired by how these animals attack: a bull thrusts its horns <strong>up</strong>, while a bear swipes its paws <strong>down</strong>.</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4"> <!-- Squeezed gap -->
                     <div class="asset-card bg-white">
-                        <div class="flex items-center gap-2 mb-2">
+                        <div class="flex items-start gap-2 mb-2 justify-start"> <!-- Changed alignment -->
                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon"><path d="M3 12h18"/><path d="m14 7 7 5-7 5"/></svg>
                             <h3>Bull Market 🐂</h3>
                         </div>
                         <p>This is a happy, optimistic market. Prices are generally rising, the economy is strong, and investors are confident. It's a time of growth and opportunity.</p>
                     </div>
                     <div class="asset-card bg-white">
-                        <div class="flex items-center gap-2 mb-2">
+                        <div class="flex items-start gap-2 mb-2 justify-start"> <!-- Changed alignment -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon"><path d="M21 12H3"/><path d="m10 5-7 7 7 7"/></svg>
                             <h3>Bear Market 🐻</h3>
                         </div>
@@ -403,38 +504,40 @@
 
 
             <!-- Section 2: Direct vs. Indirect Investing -->
-            <div class="content-section-card bg-gray-50">
+             <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-blue-400">
                 <h2>Your First Big Decision: DIY or Get a Guide? 🤔</h2>
                 <p>Okay, you're ready to invest. Now you have a choice. Do you want to be the pilot, or would you rather relax in business class and let a professional fly the plane? </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4"> <!-- Squeezed gap -->
                     <div class="asset-card bg-white">
-                        <div class="flex items-center gap-2 mb-2">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon mt-[-4px]"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <div class="flex items-start gap-2 mb-2"> <!-- Changed alignment -->
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                             <h3>The DIY Path (Direct Investing)</h3>
                         </div>
                         <p>This is where you pick and choose individual company stocks yourself. It can be rewarding, but it's like being a chef. You need to research your ingredients (companies) and know how to combine them.</p>
                         <p><strong>Best for:</strong> People who genuinely enjoy research and are willing to dedicate time to it.</p>
                     </div>
                     <div class="asset-card bg-white">
-                        <div class="flex items-center gap-2 mb-2">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon mt-[-4px]"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                        <div class="flex items-start gap-2 mb-2"> <!-- Changed alignment -->
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
                             <h3>The Guided Tour (Indirect Investing)</h3>
                         </div>
                         <p>This is the most popular route for beginners. You invest in something called a <strong>Mutual Fund</strong>, which is like a basket containing many different stocks, all managed by a professional.</p>
                         <p><strong>Best for:</strong> Almost everyone! Especially beginners and busy people who want expert management.</p>
                     </div>
                 </div>
-                <div class="alert alert-success">
+                <div class="alert alert-success mt-4"> <!-- Added margin -->
                     <h3>Our Friendly Advice?</h3>
                     <p>Start with the guided tour. A <a href="/guides/sip-vs-lumpsum.html">Systematic Investment Plan (SIP)</a> in a good mutual fund is the simplest, most effective way to begin. It's like putting your investing on autopilot. <a href="/?mode=sip">You can plan your SIP here</a>.</p>
                 </div>
             </div>
 
             <!-- UPDATED Section: How to Start Investing in Stocks -->
-            <div class="content-section-card">
+             <!-- Added border -->
+            <div class="content-section-card border-l-green-400">
                 <h2>Your 4-Step Launch Sequence to Start Investing 🚀</h2>
                 <p>Decided to be the pilot and invest directly? Awesome! Here's your simple, four-step checklist to get off the ground.</p>
-                <div class="timeline-container mt-6">
+                <div class="timeline-container mt-4"> <!-- Squeezed margin -->
                     <div class="timeline-step" data-step="1">
                         <h3>Get Your Keys: Open a Demat & Trading Account</h3>
                         <p>You need a special key to enter the market. This comes in the form of two accounts, usually opened together:</p>
@@ -446,7 +549,7 @@
                     <div class="timeline-step" data-step="2">
                         <h3>Choose Your Co-Pilot: Pick a Broker</h3>
                         <p>A broker is the company that gives you these accounts and access to the market. Look for one with low fees and an easy-to-use app. For a detailed comparison, check out our <a href="/guides/5paisa-vs-upstox.html">5paisa vs. Upstox guide</a>.</p>
-                        <div class="recommendation-box text-center mt-6">
+                        <div class="recommendation-box text-center mt-4"> <!-- Squeezed margin -->
                             <p class="recommendation-title"><strong>Ready to Open an Account?</strong></p>
                             <p class="recommendation-description">We've partnered with Upstox, a trusted and beginner-friendly platform, to get you started.</p>
                             <a href="https://upstox.onelink.me/0H1s/2JAL6D" class="btn-primary" target="_blank" rel="noopener noreferrer">Open an Upstox Account &rarr;</a>
@@ -464,25 +567,27 @@
             </div>
 
             <!-- Section 3: The Power of Diversification -->
-            <div class="content-section-card prominent-section">
+             <!-- Added border -->
+            <div class="prominent-section border-l-yellow-400">
                 <h2>The Most Important Rule: Don't Put All Your Eggs in One Basket 🧺</h2>
                 <p>This isn't just a catchy phrase; it's the golden rule of investing. <strong>Diversification</strong> simply means spreading your money across different investments. Why? Because if one investment has a bad day, the others can help balance it out. A well-diversified portfolio is like a well-built ship. It's designed to handle any storm. This is why starting with a Mutual Fund (which is already diversified) is such a smart move for beginners.</p>
             </div>
 
             <!-- Section 4: Beyond Stocks - Gold and Real Estate -->
-            <div class="content-section-card">
+             <!-- Added border -->
+            <div class="content-section-card border-l-purple-400">
                  <h2>Building a Stronger Ship: Adding Gold & Real Estate ✨</h2>
                  <p>While stocks are your engine for growth, assets like gold and real estate are your stabilizers. They often zig when the stock market zags, making your portfolio more resilient.</p>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-center">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4 text-center"> <!-- Squeezed gap -->
                     <div class="asset-card bg-white">
-                        <div class="flex items-center gap-2 mb-2 justify-center">
+                        <div class="flex items-start gap-2 mb-2 justify-start"> <!-- Changed alignment -->
                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon"><path d="M10.83 1.83C11.5 1.17 12.5 1.17 13.17 1.83L17.5 6.17C18.17 6.83 18.17 7.83 17.5 8.5L8.5 17.5C7.83 18.17 6.83 18.17 6.17 17.5L1.83 13.17C1.17 12.5 1.17 11.5 1.83 10.83L10.83 1.83Z"/><line x1="16" y1="8" x2="24" y2="0"/><line x1="0" y1="24" x2="8" y2="16"/></svg>
                             <h3>Gold: The Protector</h3>
                         </div>
                         <p>Gold often holds its value when stocks fall, making it a great safety net. You don't need to buy jewelry; modern options like Gold ETFs or Sovereign Gold Bonds (SGBs) are easy and efficient ways to invest.</p>
                     </div>
                     <div class="asset-card bg-white">
-                        <div class="flex items-center gap-2 mb-2 justify-center">
+                        <div class="flex items-start gap-2 mb-2 justify-start"> <!-- Changed alignment -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="asset-icon"><path d="m21 12-9-7-9 7v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"/><path d="M9 22V12h6v10"/></svg>
                             <h3>Real Estate: The Rent-Earner</h3>
                         </div>
@@ -492,21 +597,28 @@
             </div>
 
             <!-- Section 5: The Advanced Concepts -->
-            <div class="content-section-card prominent-section">
+             <!-- Added border -->
+            <div class="prominent-section border-l-teal-400">
                  <h2>Leveling Up Your Skills: Two Ways to Analyze Stocks 📊</h2>
                  <p>As you get more comfortable, you'll hear about two main ways to pick stocks. The best investors often use a bit of both.</p>
                  <p><strong>Fundamental Analysis (The Detective):</strong> This is about playing detective and investigating a company's health. You'd look at its sales, profits, and debt to decide if it's a strong company that's currently on sale.</p>
                  <p><strong>Technical Analysis (The Weather Forecaster):</strong> This is like forecasting the weather by looking at cloud patterns. Analysts study stock price charts to predict which way the price might move next. It's more for short-term traders.</p>
             </div>
-            
+
             <!-- Section 6: Mini-Calculator: Asset Allocation -->
-            <div class="content-section-card">
+             <!-- Added border -->
+            <div class="content-section-card border-l-indigo-400">
                 <h2>A Simple Rule for Your Portfolio Mix</h2>
                 <p class="text-center text-sm mb-4">A simple starting point for deciding your investment mix is the "100 minus your age" rule. It suggests the percentage of your portfolio that could be in higher-growth assets like stocks. For example, if you are 30 years old, the rule suggests a 70% allocation to equities. For a more personalized plan, <a href="/quizzes/risk-profile-quiz.html">take our investor profile quiz</a>.</p>
+                 <!-- Added Chart for Asset Allocation -->
+                <div class="chart-container">
+                    <canvas id="assetAllocationChart"></canvas>
+                </div>
             </div>
 
             <!-- Section 7: Final Overview & CTA -->
-            <div class="content-section-card bg-gray-50">
+             <!-- Added border -->
+            <div class="content-section-card bg-gray-50 border-l-blue-400">
                 <h2>You're Ready for Your First Step!</h2>
                 <p class="text-center text-sm mb-4">Whew, that was a lot! But remember, investing is a journey, not a destination. You don't need to be an expert overnight. Your goal is to learn a little, start small, and stay consistent. You've got this!</p>
                 <div class="recommendation-box text-center">
@@ -516,28 +628,13 @@
                 </div>
             </div>
 
-            <!-- Section 8: Continue Your Journey -->
-            <div class="content-section-card">
-                <h2>Continue Your Adventure</h2>
-                <p class="text-center text-sm mb-4">Want to learn more? These guides are your perfect next stop.</p>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 0.5rem; text-align: center;">
-                        <a href="/guides/beginner-investing-guide.html" style="font-weight: 600; color: #E34037; text-decoration: none;">
-                            Beginner's Guide to Investing: The perfect next step to understand mutual funds.
-                        </a>
-                    </li>
-                    <li style="margin-bottom: 0.5rem; text-align: center;">
-                        <a href="/guides/goal-based-investing.html" style="font-weight: 600; color: #E34037; text-decoration: none;">
-                            Goal-Based Investing Guide: Learn to connect your money to your dreams.
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <!-- Section 8: Removed Continue Your Journey -->
 
             <!-- FAQ Section -->
-             <div class="content-section-card bg-gray-50">
+             <!-- Added border -->
+             <div class="content-section-card bg-gray-50 border-l-purple-400">
                 <h2>Still Have Questions? We've Got Answers!</h2>
-                <div class="faq-container">
+                <div class="faq-container mt-4"> <!-- Added mt-4 -->
                     <details class="faq-item">
                         <summary>What is the stock market?</summary>
                         <p>The stock market is a public marketplace where buyers and sellers trade shares of publicly-held companies. When you buy a share, you become a part-owner of that company. The two main stock exchanges in India are the National Stock Exchange (NSE) and the Bombay Stock Exchange (BSE).</p>
@@ -561,19 +658,7 @@
                 </div>
             </div>
 
-            <!-- Share Buttons Section -->
-             <div class="share-buttons-container">
-                <p class="share-title">Share this guide:</p>
-                <div class="share-buttons">
-                    <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank" aria-label="Share on WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.35 3.48 16.81L2 22L7.33 20.55C8.75 21.33 10.35 21.79 12.04 21.79C17.5 21.79 21.95 17.34 21.95 11.88C21.95 6.42 17.5 2 12.04 2M12.04 3.64C16.57 3.64 20.25 7.32 20.25 11.85C20.25 16.38 16.57 20.06 12.04 20.06C10.56 20.06 9.14 19.68 7.9 18.98L7.54 18.78L4.45 19.65L5.35 16.62L5.13 16.27C4.34 15.05 3.96 13.5 3.96 11.88C3.96 7.35 7.64 3.64 12.04 3.64M9.01 7.4C8.86 7.4 8.71 7.4 8.57 7.4C8.37 7.4 8.1 7.49 7.89 7.85C7.68 8.21 7.03 8.81 7.03 9.94C7.03 11.07 7.92 12.14 8.07 12.31C8.21 12.48 10.03 15.34 12.87 16.59C15.72 17.84 15.72 17.34 16.19 17.29C16.66 17.24 17.63 16.68 17.84 16.09C18.05 15.5 18.05 15.03 17.98 14.91C17.91 14.78 17.77 14.7 17.53 14.58C17.3 14.46 15.98 13.83 15.74 13.73C15.51 13.64 15.37 13.59 15.22 13.83C15.08 14.07 14.54 14.7 14.4 14.84C14.26 14.98 14.11 15.01 13.88 14.89C13.64 14.77 12.71 14.45 11.61 13.48C10.71 12.7 10.09 11.76 9.92 11.49C9.75 11.22 9.89 11.09 10.03 10.96C10.16 10.83 10.3 10.65 10.43 10.5C10.56 10.35 10.61 10.23 10.73 10.03C10.86 9.83 10.78 9.64 10.71 9.5C10.65 9.36 10.11 8.04 9.87 7.47C9.64 6.9 9.4 6.98 9.25 6.98L9.01 7.4Z"></path></svg>
-                    </a>
-                    <a href="#" class="share-btn facebook" id="share-facebook" target="_blank" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"></path></svg></a>
-                    <a href="#" class="share-btn twitter" id="share-twitter" target="_blank" aria-label="Share on Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.35 0 11.37-6.08 11.37-11.37 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.98-2.08z"></path></svg></a>
-                    <a href="#" class="share-btn linkedin" id="share-linkedin" target="_blank" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.5 2.5-2.5c1.6 0 2.5 1.2 2.5 2.5 0 1.3-1 2.5-2.5 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"></path></svg></a>
-                    <button class="share-btn copy-link" id="copy-link-btn" aria-label="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-            </div>
+            <!-- Removed Share Buttons Section -->
 
         </div>
     </main>
@@ -582,6 +667,48 @@
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
+    <!-- Add script for the new chart -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const assetAllocationCtx = document.getElementById('assetAllocationChart');
+            if (assetAllocationCtx) {
+                new Chart(assetAllocationCtx, {
+                    type: 'pie', // Changed to pie for allocation
+                    data: {
+                        labels: ['Equity (Stocks/MFs)', 'Debt (Bonds/FDs)', 'Gold/Alternatives'],
+                        datasets: [{
+                            label: 'Sample Asset Allocation (Age 30)',
+                            data: [70, 20, 10], // Example based on 100-age rule
+                            backgroundColor: [
+                                'rgba(34, 197, 94, 0.7)',   // Green for Equity
+                                'rgba(59, 130, 246, 0.7)',  // Blue for Debt
+                                'rgba(245, 158, 11, 0.7)'  // Amber for Gold/Alt
+                            ],
+                            borderColor: '#ffffff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: { boxWidth: 10, padding: 8, font: { size: 9 } }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => `${context.label}: ${context.parsed}%`
+                                },
+                                bodyFont: { size: 9 }, titleFont: { size: 10 }, padding: 4
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
 
 </body>
 </html>
