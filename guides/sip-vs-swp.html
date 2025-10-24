@@ -25,6 +25,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <script type="application/ld+json">
@@ -110,6 +112,9 @@
         .strategy-card.border-l-yellow-400 { border-left-color: #FACC15; }
         .strategy-card.border-l-teal-400 { border-left-color: #2DD4BF; }
         .strategy-card.border-l-indigo-400 { border-left-color: #818cf8; }
+        /* Add color for the new chart section */
+        .strategy-card.border-l-orange-400 { border-left-color: #fb923c; }
+
 
         .strategy-title {
             font-size: 1.0rem;
@@ -200,6 +205,18 @@
         .faq-item summary { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
         .faq-item p { padding: 0 0.6rem 0.4rem 0.6rem; font-size: 0.7rem; }
         .faq-item summary::after { font-size: 0.9rem; right: 0.75rem; }
+        /* Style for the new chart container */
+        .chart-container-div {
+            height: 12rem; /* Squeezed height */
+            width: 100%;
+            max-width: 450px; /* Limit width */
+            margin: 0.5rem auto 0; /* Squeezed margin */
+        }
+        @media (min-width: 768px) {
+            .chart-container-div {
+                height: 14rem; /* Slightly taller on desktop */
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -342,6 +359,19 @@
                 </div>
             </div>
 
+             <!-- NEW CHART SECTION: Visualizing SIP Accumulation and SWP Distribution -->
+            <div class="strategy-card border-l-orange-400 bg-gray-50">
+                <h2 class="strategy-title">Visualizing the Lifecycle: Accumulation to Distribution</h2>
+                <p class="strategy-subtitle">This chart illustrates the concept: the blue area shows wealth growing via SIP during the working years (accumulation), and the green area shows the corpus gently declining while providing income via SWP during retirement (distribution).</p>
+                
+                <div class="chart-container-div">
+                    <canvas id="sipSwpLifecycleChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-500 mt-2"><em>*Illustrative example assuming a 30-year SIP followed by a 20-year SWP with moderate returns and withdrawals. Actual results vary.</em></p>
+            </div>
+            <!-- END NEW CHART SECTION -->
+
+
             <!-- Lifecycle Section - Added border -->
             <div class="strategy-card bg-gray-50 border-l-teal-400">
                 <h2 class="strategy-title">The Investor's Lifecycle: From SIP to SWP</h2>
@@ -388,8 +418,6 @@
                 <p class="strategy-subtitle">It's a mistake to see SIP and SWP as competitors. They are complementary tools designed for different stages of your financial life. Use a SIP to diligently build your wealth during your working years. Then, deploy an SWP to intelligently create a sustainable income stream from that wealth when you need it. Master both, and you've mastered the art of long-term financial planning.</p>
             </div>
 
-            <!-- Continue Journey Section Removed -->
-
             <!-- FAQ Section - Added border -->
             <div class="strategy-card bg-gray-50 border-l-purple-400">
                 <h3 class="section-title-secondary">Frequently Asked Questions (FAQ)</h3>
@@ -420,6 +448,103 @@
     <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
+    <!-- Add script for the new chart -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lifecycleCtx = document.getElementById('sipSwpLifecycleChart');
+            if(lifecycleCtx) {
+                const accumulationYears = 30;
+                const distributionYears = 20;
+                const totalYears = accumulationYears + distributionYears;
+                const sipAmount = 10000; // Monthly SIP
+                const sipRate = 0.12; // Annual return during SIP
+                const swpRate = 0.07; // Annual return during SWP (lower risk)
+                const withdrawalAmount = 60000; // Monthly withdrawal
+                const monthlySipRate = sipRate / 12;
+                const monthlySwpRate = swpRate / 12;
 
+                let labels = [];
+                let data = [];
+                let currentCorpus = 0;
+
+                // Accumulation Phase (SIP)
+                for (let year = 1; year <= accumulationYears; year++) {
+                    labels.push(`Year ${year}`);
+                    let yearEndCorpus = currentCorpus;
+                    for(let month = 1; month <= 12; month++) {
+                        yearEndCorpus = yearEndCorpus * (1 + monthlySipRate) + sipAmount;
+                    }
+                    currentCorpus = yearEndCorpus;
+                    data.push(currentCorpus);
+                }
+
+                // Distribution Phase (SWP)
+                for (let year = accumulationYears + 1; year <= totalYears; year++) {
+                    labels.push(`Year ${year}`);
+                    let yearEndCorpus = currentCorpus;
+                     for(let month = 1; month <= 12; month++) {
+                         // Grow first, then withdraw
+                        yearEndCorpus = yearEndCorpus * (1 + monthlySwpRate);
+                        yearEndCorpus -= withdrawalAmount;
+                        if (yearEndCorpus < 0) yearEndCorpus = 0; // Stop if corpus depletes
+                    }
+                    currentCorpus = yearEndCorpus;
+                    data.push(currentCorpus);
+                }
+
+                new Chart(lifecycleCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Investment Corpus Value',
+                            data: data,
+                            borderColor: (context) => {
+                                const index = context.dataIndex;
+                                return index < accumulationYears ? 'rgba(59, 130, 246, 1)' : 'rgba(34, 197, 94, 1)'; // Blue for SIP, Green for SWP
+                            },
+                            backgroundColor: (context) => {
+                                 const index = context.dataIndex;
+                                return index < accumulationYears ? 'rgba(59, 130, 246, 0.1)' : 'rgba(34, 197, 94, 0.1)';
+                            },
+                            fill: true,
+                            tension: 0.1,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => `Corpus: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(context.parsed.y)}`
+                                },
+                                bodyFont: { size: 9 }, titleFont: { size: 10 }, padding: 4
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value),
+                                    font: {size: 8}
+                                }
+                            },
+                            x: {
+                                title: { display: true, text: 'Investment Lifecycle (Years)', font: { size: 10 } },
+                                ticks: {
+                                    font: {size: 8},
+                                    maxRotation: 0,
+                                    autoSkipPadding: 20 // Adjust for better label visibility
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
