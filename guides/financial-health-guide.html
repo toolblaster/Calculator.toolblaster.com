@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Updated Meta Title (max 60 chars) -->
-    <title>Your Guide to Financial Health & Wellness: Secure Your Future</title>
+    <title>Guide to Financial Health: Assess Savings, Debt & Secure Future</title>
     <!-- Updated Meta Description (max 160 chars) -->
-    <meta name="description" content="Understand financial health pillars! Assess savings, debt & protection. Get your personalised report card & action plan. Your path to financial wellness starts here.">
+    <meta name="description" content="Understand financial health pillars! Assess savings, debt & protection. Get your personalized report card & action plan. Your path to wellness starts here.">
     <meta name="keywords" content="financial health, financial wellness, financial planning, money management, financial assessment tool, savings, debt management, insurance">
 
     <!-- Canonical Tag -->
@@ -15,13 +15,13 @@
     <!-- Open Graph Tags (for Facebook, LinkedIn, etc.) -->
     <meta property="og:title" content="Your Guide to Financial Health & Wellness: Secure Your Future">
     <meta property="og:description" content="Understand financial health pillars! Assess savings, debt & protection. Get your personalised report card & action plan. Your path to financial wellness starts here.">
-    <!-- Removed og:image tag as it might not exist -->
+    <!-- Removed og:image tag -->
     <meta property="og:url" content="https://calculator.toolblaster.com/guides/financial-health-guide.html">
     <meta property="og:type" content="article">
 
     <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Your Guide to Financial Health & Wellness: Secure Your Future">
+    <meta name="twitter:card" content="summary"> <!-- Changed card type as no image -->
+    <meta name="twitter:title" content="Your Guide to Financial Health & Wellness: Secure Your Future - Calculator.toolblaster">
     <meta name="twitter:description" content="Understand financial health pillars! Assess savings, debt & protection. Get your personalised report card & action plan. Your path to financial wellness starts here.">
     <!-- Removed twitter:image tag -->
 
@@ -38,17 +38,17 @@
           "@type": "Article",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://calculator.toolblaster.com/guides/financial-health-guide.html"
+            "@id": "https://calculator.toolblaster.com/guides/financial-health-guide.html" // Updated URL
           },
           "headline": "Your Guide to Financial Health & Wellness",
           "description": "Understand the key pillars of financial health and why a regular assessment is crucial for your future. Take our free tool to get your personalized financial report card.",
-          "author": { "@type": "Organisation", "name": "Calculator.toolblaster.com" },
+          "author": { "@type": "Organization", "name": "Calculator.toolblaster.com" }, // Updated Name
           "publisher": {
-            "@type": "Organisation",
-            "name": "Calculator.toolblaster.com",
-            "logo": { "@type": "ImageObject", "url": "https://calculator.toolblaster.com/favicon/favicon-96x96.png" }
+            "@type": "Organization",
+            "name": "Calculator.toolblaster.com", // Updated Name
+            "logo": { "@type": "ImageObject", "url": "https://calculator.toolblaster.com/favicon/favicon-96x96.png" } // Updated Logo URL
           },
-          "datePublished": "2025-10-20"
+          "datePublished": "2025-10-20" // Updated Date
         },
         {
           "@type": "HowTo",
@@ -56,8 +56,8 @@
           "step": [
             { "@type": "HowToStep", "name": "Assess Savings & Investments", "text": "Evaluate if you are consistently putting money aside and making it grow for your future." },
             { "@type": "HowToStep", "name": "Check Safety & Protection", "text": "Determine if you and your family are protected from life's unexpected emergencies through insurance and emergency funds." },
-            { "@type": "HowToStep", "name": "Review Debt Management", "text": "Analyse if your debt is at a healthy level or if it's holding you back from achieving your financial goals." },
-            { "@type": "HowToStep", "name": "Take a Financial Health Assessment", "text": "Use a comprehensive tool to get a score and a personalised report card on your overall financial standing." }
+            { "@type": "HowToStep", "name": "Review Debt Management", "text": "Analyze if your debt is at a healthy level or if it's holding you back from achieving your financial goals." },
+            { "@type": "HowToStep", "name": "Take a Financial Health Assessment", "text": "Use a comprehensive tool to get a score and a personalized report card on your overall financial standing." }
           ]
         },
         {
@@ -79,22 +79,21 @@
         .content-section-card {
             background-color: #ffffff;
             border: 1px solid #e5e7eb; /* gray-200 */
-            border-radius: 0.375rem; /* Further Squeezed */
-            padding: 0.75rem; /* Further Squeezed */
-            margin-bottom: 0.6rem; /* Further Squeezed */
-            box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.05); /* Reduced shadow */
-            /* Added Left Border */
-            border-left-width: 3px; /* Further Squeezed */
+            border-radius: 0.5rem; /* Squeezed */
+            padding: 1rem 1rem 1rem 1.5rem; /* Squeezed padding, added left padding */
+            margin-bottom: 0.75rem; /* Squeezed */
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* Slightly reduced */
+            border-left-width: 4px; /* Added */
             border-left-color: #F87171; /* Default: red-400 */
         }
         /* Complementary Border Colors */
-        .border-l-blue-400 { border-left-color: #60A5FA; }
-        .border-l-green-400 { border-left-color: #4ADE80; }
-        .border-l-purple-400 { border-left-color: #A78BFA; }
-        .border-l-yellow-400 { border-left-color: #FACC15; }
-        .border-l-teal-400 { border-left-color: #2DD4BF; }
-        .border-l-orange-400 { border-left-color: #fb923c; }
-        .border-l-pink-400 { border-left-color: #f472b6; }
+        .content-section-card.border-l-blue-400 { border-left-color: #60A5FA; }
+        .content-section-card.border-l-green-400 { border-left-color: #4ADE80; }
+        .content-section-card.border-l-purple-400 { border-left-color: #A78BFA; }
+        .content-section-card.border-l-yellow-400 { border-left-color: #FACC15; }
+        .content-section-card.border-l-teal-400 { border-left-color: #2DD4BF; }
+        .content-section-card.border-l-orange-400 { border-left-color: #fb923c; }
+        .content-section-card.border-l-pink-400 { border-left-color: #f472b6; }
 
 
         /* Titles */
@@ -110,82 +109,60 @@
             text-align: center;
             color: #4b5563; /* gray-600 */
         }
-        .legal-content .section-title-secondary { /* Section Titles (H2) */
-            font-size: 0.9rem; /* Further Squeezed H2 */
-            font-weight: 700;
-            color: #1f2937; /* gray-800 */
-            margin-bottom: 0.3rem; /* Further Squeezed margin */
-            padding-bottom: 0.2rem; /* Squeezed padding */
-            text-align: center; /* Default to CENTER align */
-            position: relative;
-            border-bottom: none;
+        /* Section Titles (H2) */
+        .legal-content h2 {
+           font-size: 1rem; /* Squeezed H2 */
+            border-bottom: 1px solid #E34037;
+           padding-bottom: 0.25rem;
+           margin-bottom: 0.5rem;
+           color: #1f2937;
+           font-weight: 700;
+           text-align: left; /* Keep H2 left aligned */
         }
-        /* Accent line for H2 - Centered by default */
-        .legal-content .section-title-secondary::after {
-            content: '';
-            display: block;
-            width: 35px; /* Squeezed line */
-            height: 2px; /* Thickness of the line */
-            background-color: #E34037; /* Accent red color */
-            position: absolute; /* Position relative to the header */
-            bottom: 0;
-            left: 50%; /* Center align */
-            transform: translateX(-50%); /* Correct centering */
-            margin-top: 0.2rem; /* Added margin */
-        }
-        /* NEW CLASS for left alignment */
-        .legal-content .title-left-align {
-            text-align: left;
-        }
-        .legal-content .title-left-align::after {
-            left: 0;
-            transform: none; /* Remove centering transform */
-        }
+        /* REMOVED accent line style */
+         .legal-content h2::after { display: none; }
+         .legal-content .text-center h2::after { display: none; }
 
-
-        .content-section-card h3 { /* Subsection Titles (H3) */
-            font-size: 0.75rem; /* Further Squeezed H3 */
+        /* Squeezed Subsection Titles (H3) */
+        .content-section-card h3 {
+            font-size: 0.8rem; /* Further Squeezed H3 */
             font-weight: 600;
             color: #1f2937;
             margin-bottom: 0.2rem; /* Squeezed margin */
         }
-         .content-section-card h4 { /* Further Subsection Titles (H4) */
-            font-size: 0.7rem; /* Further Squeezed H4 */
+         /* Squeezed H4 */
+         .content-section-card h4 {
+            font-size: 0.75rem; /* Further Squeezed H4 */
             font-weight: 600;
             color: #1f2937;
-            margin-bottom: 0.05rem; /* Squeezed margin */
+            margin-bottom: 0.1rem; /* Squeezed margin */
         }
 
 
-        /* Standard text */
+        /* Squeezed standard text */
         .content-section-card p, .content-section-card li {
             font-size: 0.7rem; /* Further Squeezed text */
             color: #4b5563; /* gray-600 */
-            line-height: 1.35; /* Slightly tighter */
+            line-height: 1.4; /* Tighter */
         }
          /* Adjust smaller text specifically */
         .legal-content .text-xs { font-size: 0.65rem; } /* Further Squeezed */
         .legal-content .text-sm { font-size: 0.7rem; } /* Further Squeezed */
 
 
-        /* List Styles */
-        .content-section-card ul { list-style: none; padding-left: 0; margin-top: 0.6rem; } /* Squeezed */
+        /* Squeezed List Styles */
+        .content-section-card ul { list-style: none; padding-left: 0; margin-top: 0.5rem; /* Squeezed margin */ }
         .content-section-card ol { list-style: none; padding-left: 0; }
-        .content-section-card li { margin-bottom: 0.4rem; } /* Further Squeezed margin */
+        .content-section-card li { margin-bottom: 0.4rem; /* Squeezed margin */ display: flex; align-items: flex-start; }
 
-        /* Icon List Item Style - Alignment Fix */
-        .icon-list-item {
-            display: flex;
-            align-items: baseline; /* Align based on the first line of text */
-            margin-bottom: 0.6rem; /* Further Squeezed margin */
-        }
+        /* Squeezed Icon List Item Style */
+        .icon-list-item { margin-bottom: 0.4rem; } /* Squeezed margin */
         .icon-list-item svg.list-icon { /* Target only list icons */
             flex-shrink: 0;
-            width: 16px; /* Further Squeezed icon */
-            height: 16px; /* Further Squeezed icon */
-            margin-right: 0.6rem; /* Further Squeezed margin */
-            position: relative; /* Positioning for fine-tuning */
-            top: 0.1em; /* Further Adjust this value */
+            width: 14px; /* Further Squeezed icon */
+            height: 14px; /* Further Squeezed icon */
+            margin-right: 0.4rem; /* Squeezed margin */
+            margin-top: 2px; /* Alignment */
             color: #E34037; /* Default icon color */
         }
          /* Specific Icon Colors if needed */
@@ -194,28 +171,26 @@
         .icon-list-item svg.text-yellow-500 { color: #f59e0b; }
 
 
-        /* CTA Section Style (from original) */
+        /* Squeezed CTA Section Style */
         .cta-section {
             background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
-            border-radius: 0.5rem; /* Squeezed */
-            padding: 1rem; /* Further Squeezed */
+            border-radius: 0.375rem; /* Squeezed */
+            padding: 1rem; /* Squeezed */
             text-align: center;
             border: 1px solid #fca5a5;
             margin-top: 0.75rem; /* Squeezed */
         }
         .cta-section h2 {
-            font-size: 1rem; /* Further Squeezed */
-            font-weight: 700; /* Adjusted */
+            font-size: 1rem; /* Squeezed */
+            font-weight: 700;
             color: #1f2937;
             margin-bottom: 0.4rem; /* Squeezed */
             padding-bottom: 0 !important; /* Remove padding from H2 */
+            border-bottom: none; /* Remove border */
             text-align: center; /* Ensure CTA header is centered */
         }
-        /* Remove accent line from CTA H2 */
-        .cta-section h2::after { display: none !important;}
-
         .cta-section p {
-            font-size: 0.75rem; /* Further Squeezed */
+            font-size: 0.7rem; /* Squeezed */
             color: #4b5563;
             margin-bottom: 0.75rem; /* Squeezed */
             text-align: center; /* Ensure CTA paragraph is centered */
@@ -225,7 +200,7 @@
             align-items: center !important;
             gap: 0.4rem !important; /* Squeezed */
             padding: 0.35rem 0.8rem !important; /* Squeezed */
-            font-size: 0.75rem !important; /* Squeezed */
+            font-size: 0.7rem !important; /* Squeezed */
             font-weight: 600 !important;
             text-align: center !important;
             border-radius: 0.375rem !important; /* Squeezed */
@@ -244,16 +219,17 @@
             transform: translateY(-1px) !important; /* Less lift */
             box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important; /* Reduced shadow */
         }
-        .cta-button svg { width: 16px; height: 16px;} /* Squeezed icon */
+        .cta-button svg { width: 14px; height: 14px;} /* Squeezed icon */
 
 
-         /* Dashboard Section (3 Columns) */
+         /* Squeezed Dashboard Section (3 Columns) */
          .dashboard-card {
             text-align: center;
             padding: 0.75rem; /* Further Squeezed */
             background-color: #f9fafb; /* gray-50 */
             border-radius: 0.375rem; /* Further Squeezed */
             border: 1px solid #e5e7eb;
+            height: 100%; /* Ensure equal height */
          }
          .dashboard-card .icon-wrapper {
             width: 32px; /* Further Squeezed */
@@ -267,31 +243,31 @@
             color: #B91C1C; /* red-700 */
          }
           .dashboard-card .icon-wrapper svg { width: 18px; height: 18px; } /* Further Squeezed */
-          .dashboard-card h3 { font-size: 0.75rem; } /* Further Squeezed */
+          .dashboard-card h3 { font-size: 0.75rem; margin-bottom: 0.1rem;} /* Further Squeezed & squeezed margin */
           .dashboard-card p { font-size: 0.65rem; text-align: center; } /* Further Squeezed & Centered*/
 
-        /* 4-Step Checklist Styles - Alignment Fix */
+        /* Squeezed Checklist Styles */
         .checklist-item {
             display: flex;
-            align-items: baseline; /* Align icon with first line of text */
-            margin-bottom: 0.6rem; /* Further Squeezed */
+            align-items: flex-start; /* Align icon with first line */
+            margin-bottom: 0.4rem; /* Further Squeezed */
         }
         .checklist-icon {
             flex-shrink: 0;
-            width: 18px; /* Further Squeezed */
-            height: 18px; /* Further Squeezed */
-            margin-right: 0.6rem; /* Further Squeezed */
-            position: relative;
-            top: 0.1em; /* Further adjust alignment */
+            width: 16px; /* Further Squeezed */
+            height: 16px; /* Further Squeezed */
+            margin-right: 0.4rem; /* Squeezed */
+            margin-top: 2px; /* Align icon */
             color: #E34037;
         }
+        .checklist-item h4 { font-size: 0.75rem; margin-bottom: 0.1rem;}
+        .checklist-item p { font-size: 0.7rem;}
 
-        /* Pillars Section Styles - Alignment Fix */
-         .pillar-item {
-            margin-bottom: 0.75rem; /* Further Squeezed */
-         }
+
+        /* Squeezed Pillars Section Styles */
+         .pillar-item { margin-bottom: 0.5rem; } /* Further Squeezed */
          .pillar-item h3 {
-            font-size: 0.85rem; /* Squeezed */
+            font-size: 0.8rem; /* Squeezed */
             font-weight: 700;
             display: flex;
             align-items: center; /* Center icon and text vertically */
@@ -299,43 +275,31 @@
             margin-bottom: 0.2rem; /* Squeezed */
          }
          .pillar-item h3 svg { width: 16px; height: 16px; color: #E34037;} /* Squeezed */
-         /* Align text under icon - remove left margin from p */
-         .pillar-item p { margin-left: 0; text-align: left;} /* Keep text left aligned */
-         /* Add padding to the div containing text */
-         .pillar-item > div:last-child {
-            padding-left: calc(16px + 0.4rem); /* Space for icon + gap */
-            margin-top: -1.3em; /* Pull text up to align with H3 */
-         }
-         /* Adjust H3 padding if needed */
-         .pillar-item h3 {
-            padding-left: calc(16px + 0.4rem); /* Ensure H3 also aligns */
-            position: relative;
-         }
-         .pillar-item h3 svg {
-             position: absolute;
-             left: 0;
-             top: 50%;
-             transform: translateY(-50%);
-         }
+         .pillar-item p { margin-left: calc(16px + 0.4rem); font-size: 0.7rem;} /* Align text under icon */
 
 
-        /* Chart Container Styles */
+        /* Squeezed Chart Container Styles */
         .chart-container-div {
-             height: 9rem; /* Further Squeezed */
+             height: 8rem; /* Further Squeezed */
              width: 100%;
-             max-width: 18rem; /* Further Squeezed */
+             max-width: 16rem; /* Further Squeezed */
              margin: 0.4rem auto 0; /* Squeezed */
         }
         @media (min-width: 768px) {
              .chart-container-div {
-                 height: 10rem; /* Further Squeezed */
+                 height: 9rem; /* Further Squeezed */
+                 max-width: 18rem;
              }
         }
+         /* Squeezed Line Chart Container */
+        .line-chart-container-div { height: 10rem; } /* Reduced height */
+        @media (min-width: 768px) { .line-chart-container-div { height: 12rem; } } /* Slightly taller on desktop */
 
-        /* Squeeze FAQ items */
-        .faq-item summary { font-size: 0.7rem; padding: 0.3rem 0.5rem; } /* Squeezed */
-        .faq-item p { padding: 0 0.5rem 0.3rem 0.5rem; font-size: 0.65rem; text-align: left; } /* Squeezed & Left align */
-        .faq-item summary::after { font-size: 0.8rem; right: 0.6rem; } /* Squeezed */
+
+        /* Squeezed FAQ items */
+        .faq-item summary { font-size: 0.75rem; padding: 0.4rem 0.6rem; } /* Squeezed */
+        .faq-item p { padding: 0 0.6rem 0.4rem 0.6rem; font-size: 0.7rem; text-align: left; } /* Squeezed & Left align */
+        .faq-item summary::after { font-size: 0.9rem; right: 0.75rem; } /* Squeezed */
 
         /* Squeeze spacing */
         .content-section-card .mt-4 { margin-top: 0.6rem; } /* Squeezed */
@@ -344,50 +308,47 @@
         .content-section-card .mb-6 { margin-bottom: 0.8rem; } /* Squeezed */
         .content-section-card .space-y-3 li { margin-bottom: 0.3rem; } /* Further Squeezed list */
         .content-section-card .space-y-4 li { margin-bottom: 0.4rem; } /* Further Squeezed list */
-        .content-section-card .space-y-8 li { margin-bottom: 0.8rem; } /* Further Squeezed list */
-        .content-section-card .gap-3 { gap: 0.5rem; } /* Further Squeezed */
         .content-section-card .gap-4 { gap: 0.6rem; } /* Further Squeezed */
-        .content-section-card .gap-6 { gap: 0.8rem; } /* Further Squeezed */
-        .content-section-card .gap-8 { gap: 1rem; } /* Further Squeezed */
+        .content-section-card .gap-3 { gap: 0.5rem; } /* Further Squeezed */
 
 
-        /* Alert Box */
-        .alert { padding: 0.4rem; font-size: 0.65rem; } /* Squeezed */
-        .alert-title { font-size: 0.7rem; margin-bottom: 0.05rem; } /* Squeezed */
+        /* Squeezed Alert Box */
+        .alert { padding: 0.5rem; font-size: 0.7rem; } /* Squeezed */
+        .alert-title { font-size: 0.75rem; margin-bottom: 0.1rem; } /* Squeezed */
 
-        /* Buttons */
-        .btn-primary { padding: 0.3rem 0.6rem !important; font-size: 0.6rem !important; } /* Squeezed */
-        .btn-secondary { padding: 0.3rem 0.6rem !important; font-size: 0.6rem !important; } /* Squeezed */
+        /* Squeezed Buttons */
+        .btn-primary { padding: 0.35rem 0.7rem !important; font-size: 0.7rem !important; } /* Squeezed */
+        .btn-secondary { padding: 0.35rem 0.7rem !important; font-size: 0.7rem !important; } /* Squeezed */
 
-        /* Specific styles for restored sections */
+        /* Squeezed specific styles for restored sections */
         .debt-strategy-card {
              padding: 0.75rem; /* Squeezed */
              border-radius: 0.375rem; /* Squeezed */
+             background-color: #fff; border: 1px solid #e5e7eb; height: 100%; /* Added bg, border, height */
         }
-        .debt-strategy-card .font-bold.text-lg { font-size: 0.9rem; margin-bottom: 0.2rem; } /* Squeezed */
+        .debt-strategy-card h3 { font-size: 0.8rem; margin-bottom: 0.2rem; } /* Squeezed */
         .debt-strategy-card p.text-sm { font-size: 0.7rem; margin-bottom: 0.4rem; } /* Squeezed */
-        .debt-strategy-card ul { margin-top: 0.4rem; } /* Squeezed */
-        .debt-strategy-card li span:first-child { font-size: 0.75rem; margin-right: 0.4rem;} /* Squeezed */
+        .debt-strategy-card ul { margin-top: 0.4rem; padding-left: 0; font-size: 0.7rem; } /* Squeezed */
+        .debt-strategy-card li span:first-child { font-size: 0.7rem; margin-right: 0.4rem; font-weight: 700;} /* Squeezed */
         .debt-strategy-card li span:last-child { font-size: 0.7rem; } /* Squeezed */
-        .debt-strategy-card .text-xs.font-semibold { font-size: 0.65rem; margin-top: 0.4rem;} /* Squeezed */
+        .debt-strategy-card .text-xs.font-semibold { font-size: 0.65rem; margin-top: 0.5rem;} /* Squeezed */
+        .debt-strategy-card li { margin-bottom: 0.3rem;} /* Squeeze list items */
 
-        .asset-allocation-item { margin-bottom: 0.6rem !important; } /* Squeezed */
-        .asset-allocation-item svg.list-icon { width: 16px; height: 16px;} /* Squeezed */
-        .asset-allocation-item h3.font-semibold { font-size: 0.75rem; } /* Squeezed */
-        .asset-allocation-item p.text-sm { font-size: 0.7rem; } /* Squeezed */
+        .asset-allocation-item { margin-bottom: 0.4rem !important; } /* Squeezed */
+        .asset-allocation-item svg.list-icon { width: 14px; height: 14px;} /* Squeezed */
+        .asset-allocation-item h3 { font-size: 0.75rem; margin-bottom: 0.1rem;} /* Squeezed */
+        .asset-allocation-item p { font-size: 0.7rem; } /* Squeezed */
 
-        /* Override centering for specific paragraphs that should be left-aligned */
-        .content-section-card .text-left { text-align: left !important; }
-
-        /* Ensure paragraphs under left-aligned H2s are also left-aligned */
-         .content-section-card:has(h2.section-title-secondary.title-left-align) p {
+        /* Ensure paragraphs under H2s are left-aligned */
+         .content-section-card p {
              text-align: left;
          }
          /* Keep specific centered paragraphs centered */
          .content-section-card p.text-center {
             text-align: center;
          }
-
+         /* Center text in dashboard cards */
+         .dashboard-card p { text-align: center;}
 
     </style>
 </head>
@@ -401,6 +362,7 @@
             <h1>Your Guide to Financial Health & Wellness</h1>
             <p>Feeling anxious about your finances? You're not alone. Financial wellness isn't about getting rich quick; it's about building a strong foundation that gives you peace of mind and the freedom to live the life you want. This guide is your friendly roadmap to getting there.</p>
 
+            <!-- Added border -->
             <div class="content-section-card border-l-blue-400">
               <h2 class="section-title-secondary text-center">What is Financial Health? Think Car Dashboard!</h2>
               <p class="text-sm text-gray-700 mb-4 text-center">Your financial health is a snapshot of your money situation. Like a car's dashboard, key indicators tell you if you're cruising smoothly or need a check-up.</p>
@@ -429,71 +391,74 @@
               </div>
             </div>
 
+            <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-green-400">
-              <h2 class="section-title-secondary title-left-align">Why a Financial Health Check is Your Best Friend</h2>
+              <h2 class="section-title-secondary">Why a Financial Health Check is Your Best Friend</h2>
               <p class="text-sm text-gray-700 mb-4">Ignoring your car's dashboard can lead to trouble. Same with money! A check-up helps you:</p>
               <ul class="space-y-4">
                   <li class="icon-list-item">
                       <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                       <div>
-                          <h4 class="font-semibold">Spot Hidden Dangers</h4>
+                          <h4>Spot Hidden Dangers</h4>
                           <p>Find weak spots (like not enough insurance) before they cause a breakdown.</p>
                       </div>
                   </li>
                   <li class="icon-list-item">
                      <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
                       <div>
-                          <h4 class="font-semibold">Get a Clear Roadmap</h4>
+                          <h4>Get a Clear Roadmap</h4>
                           <p>Stop guessing! Know exactly what to fix first. Our <a href="../quizzes/next-financial-move-quiz.html" class="font-semibold text-red-700 hover:text-red-800">Next Move Quiz</a> gives you this.</p>
                       </div>
                   </li>
                   <li class="icon-list-item">
                       <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                       <div>
-                          <h4 class="font-semibold">Feel Confident & In Control</h4>
+                          <h4>Feel Confident & In Control</h4>
                           <p>Knowing where you stand replaces worry with a sense of command over your finances.</p>
                       </div>
                   </li>
               </ul>
             </div>
 
+            <!-- Added border -->
             <div class="content-section-card border-l-yellow-400">
-              <h2 class="section-title-secondary title-left-align">Your Quick 4-Step Financial Check-Up</h2>
+              <h2 class="section-title-secondary">Your Quick 4-Step Financial Check-Up</h2>
               <p class="text-sm text-gray-700 mb-4">Ready for a quick DIY check? Grab a pen (or open notes!) and let's go:</p>
               <ul class="space-y-4">
                     <li class="checklist-item">
                         <svg class="checklist-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
                         <div>
-                            <h4 class="font-semibold">Step 1: Cash Flow Check</h4>
+                            <h4>Step 1: Cash Flow Check</h4>
                             <p>Do you consistently spend less than you earn each month? (Yes/No)</p>
                         </div>
                     </li>
                     <li class="checklist-item">
                         <svg class="checklist-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         <div>
-                            <h4 class="font-semibold">Step 2: Safety Net Status</h4>
+                            <h4>Step 2: Safety Net Status</h4>
                             <p>Do you have 3-6 months of essential expenses saved in an <a href="emergency-fund-guide.html" class="font-semibold text-red-700 hover:text-red-800">Emergency Fund</a> AND adequate Health/Life Insurance? (Yes/No)</p>
                         </div>
                     </li>
                     <li class="checklist-item">
                         <svg class="checklist-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                         <div>
-                            <h4 class="font-semibold">Step 3: Debt Danger Zone</h4>
+                            <h4>Step 3: Debt Danger Zone</h4>
                             <p>Are your monthly EMIs (excluding home loan) comfortably below 20-30% of your income? Do you clear credit card bills fully each month? (Yes/No)</p>
                         </div>
                     </li>
                      <li class="checklist-item">
                         <svg class="checklist-icon text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
                         <div>
-                            <h4 class="font-semibold">Step 4: Take the Full Assessment!</h4>
+                            <h4>Step 4: Take the Full Assessment!</h4>
                             <p>Want a detailed score and action plan? Our <a href="../quizzes/financial-health-assessment.html" class="font-semibold text-red-700 hover:text-red-800">Financial Health Assessment</a> does the heavy lifting for you!</p>
                         </div>
                     </li>
                 </ul>
             </div>
 
+            <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-orange-400">
-                <h2 class="section-title-secondary title-left-align">The Four Pillars of a Strong Financial House</h2>
+                <h2 class="section-title-secondary">The Four Pillars of a Strong Financial House</h2>
                 <p class="text-sm text-gray-700 mb-4">Think of your financial life like building a house. You need these four strong pillars:</p>
                 <ul class="space-y-4">
                     <li class="pillar-item">
@@ -523,6 +488,7 @@
                 </ul>
             </div>
 
+            <!-- Added border -->
             <div class="content-section-card border-l-pink-400">
                 <h2 class="section-title-secondary text-center">Budgeting Made Easy: The 50/30/20 Rule</h2>
                 <p class="text-sm text-gray-700 mb-4 text-center">Feeling lost on where your money goes? This simple rule is a great starting point:</p>
@@ -532,21 +498,21 @@
                         <li class="icon-list-item">
                             <svg class="list-icon text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                             <div>
-                                <h4 class="font-semibold">50% for Needs</h4>
+                                <h4>50% for Needs</h4>
                                 <p class="text-xs">Rent/EMI, groceries, bills, transport – the essentials.</p>
                             </div>
                         </li>
                         <li class="icon-list-item">
                             <svg class="list-icon text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
                             <div>
-                                <h4 class="font-semibold">30% for Wants</h4>
+                                <h4>30% for Wants</h4>
                                 <p class="text-xs">Dining out, hobbies, movies, shopping – the fun stuff!</p>
                             </div>
                         </li>
                         <li class="icon-list-item">
                            <svg class="list-icon text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
                             <div>
-                                <h4 class="font-semibold">20% for Savings & Debt Payoff</h4>
+                                <h4>20% for Savings & Debt Payoff</h4>
                                 <p class="text-xs">Your future self thanks you! Includes investments & extra debt payments.</p>
                             </div>
                         </li>
@@ -554,70 +520,69 @@
                 </div>
             </div>
 
-            <!-- RESTORED: Debt Avalanche vs Snowball section -->
+            <!-- Added border -->
             <div class="content-section-card border-l-yellow-400">
                 <h2 class="section-title-secondary text-center">A Deeper Dive: Debt Avalanche vs. Debt Snowball</h2>
                 <p class="text-sm text-gray-700 mb-4 text-center">For paying off multiple debts, two popular strategies provide a clear path forward. Both involve making minimum payments on all debts, then focusing extra money on one debt at a time.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4"> <!-- Reduced gap and margin -->
                     <div class="debt-strategy-card">
-                        <div class="font-bold text-lg mb-2">The Debt Avalanche 🏔️</div>
-                        <p class="text-sm text-gray-700 mb-4">Focuses on saving the most money on interest over time.</p>
-                        <ul class="space-y-2 text-sm">
-                            <li class="flex items-start"><span class="mr-2 font-bold text-red-600">1.</span><span>List debts from <strong>highest interest rate</strong> to lowest.</span></li>
-                            <li class="flex items-start"><span class="mr-2 font-bold text-red-600">2.</span><span>Pay extra on the highest-interest debt while making minimum payments on others.</span></li>
-                            <li class="flex items-start"><span class="mr-2 font-bold text-red-600">3.</span><span>Once cleared, roll that entire payment amount to the next-highest interest debt.</span></li>
+                        <h3>The Debt Avalanche 🏔️</h3>
+                        <p>Focuses on saving the most money on interest over time.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start"><span class="text-red-600">1.</span><span>List debts from <strong>highest interest rate</strong> to lowest.</span></li>
+                            <li class="flex items-start"><span class="text-red-600">2.</span><span>Pay extra on the highest-interest debt while making minimum payments on others.</span></li>
+                            <li class="flex items-start"><span class="text-red-600">3.</span><span>Once cleared, roll that entire payment amount to the next-highest interest debt.</span></li>
                         </ul>
-                        <p class="text-xs font-semibold mt-4"><strong>Best for:</strong> Disciplined individuals motivated by long-term savings.</p>
+                        <p class="text-xs font-semibold"><strong>Best for:</strong> Disciplined individuals motivated by long-term savings.</p>
                     </div>
                     <div class="debt-strategy-card">
-                        <div class="font-bold text-lg mb-2">The Debt Snowball ❄️</div>
-                        <p class="text-sm text-gray-700 mb-4">Focuses on building momentum through quick wins.</p>
-                        <ul class="space-y-2 text-sm">
-                            <li class="flex items-start"><span class="mr-2 font-bold text-red-600">1.</span><span>List debts from <strong>smallest balance</strong> to largest.</span></li>
-                            <li class="flex items-start"><span class="mr-2 font-bold text-red-600">2.</span><span>Pay extra on the smallest debt while making minimum payments on others.</span></li>
-                            <li class="flex items-start"><span class="mr-2 font-bold text-red-600">3.</span><span>Once cleared, enjoy the motivational boost and roll the payment to the next-smallest debt.</span></li>
+                        <h3>The Debt Snowball ❄️</h3>
+                        <p>Focuses on building momentum through quick wins.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start"><span class="text-red-600">1.</span><span>List debts from <strong>smallest balance</strong> to largest.</span></li>
+                            <li class="flex items-start"><span class="text-red-600">2.</span><span>Pay extra on the smallest debt while making minimum payments on others.</span></li>
+                            <li class="flex items-start"><span class="text-red-600">3.</span><span>Once cleared, enjoy the motivational boost and roll the payment to the next-smallest debt.</span></li>
                         </ul>
-                        <p class="text-xs font-semibold mt-4"><strong>Best for:</strong> Individuals who need quick results to stay motivated.</p>
+                        <p class="text-xs font-semibold"><strong>Best for:</strong> Individuals who need quick results to stay motivated.</p>
                     </div>
                 </div>
-                <h3 class="font-semibold text-center mb-4">Visualizing the Impact</h3>
-                <div class="chart-container-div mx-auto" style="height: 10rem;"><canvas id="debtChart"></canvas></div>
+                <h3 class="font-semibold text-center mb-2">Visualizing the Impact</h3> <!-- Reduced margin -->
+                <div class="line-chart-container-div mx-auto"><canvas id="debtChart"></canvas></div>
             </div>
-            <!-- END RESTORED SECTION -->
 
-            <!-- RESTORED: Asset Allocation section -->
+            <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-green-400">
                 <h2 class="section-title-secondary text-center">The Growth Pillar: Strategic Asset Allocation</h2>
                 <p class="text-sm text-gray-700 mb-4 text-center">A diversified portfolio is key to managing risk. This is a sample asset allocation for a balanced investor, a core concept for growing your wealth.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-                    <div class="chart-container-div mx-auto" style="height: 10rem;"><canvas id="assetAllocationChart"></canvas></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-center"> <!-- Reduced gap -->
+                    <div class="chart-container-div mx-auto"><canvas id="assetAllocationChart"></canvas></div>
                     <ul class="space-y-3 asset-allocation-item">
                         <li class="icon-list-item">
                             <svg class="list-icon text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
                             <div>
-                                <h3 class="font-semibold">Equity (60%)</h3>
-                                <p class="text-sm">Engine of portfolio. Invest via <a href="beginner-investing-guide.html" class="font-semibold text-red-700 hover:text-red-800">Mutual Funds (SIP)</a> for long-term growth.</p>
+                                <h3>Equity (60%)</h3>
+                                <p>Engine of portfolio. Invest via <a href="beginner-investing-guide.html" class="font-semibold text-red-700 hover:text-red-800">Mutual Funds (SIP)</a> for long-term growth.</p>
                             </div>
                         </li>
                         <li class="icon-list-item">
                            <svg class="list-icon text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                             <div>
-                                <h3 class="font-semibold">Debt (30%)</h3>
-                                <p class="text-sm">Stabilizer. PPF, EPF, Debt Funds provide stability.</p>
+                                <h3>Debt (30%)</h3>
+                                <p>Stabilizer. PPF, EPF, Debt Funds provide stability.</p>
                             </div>
                         </li>
                         <li class="icon-list-item">
                             <svg class="list-icon text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.83 1.83C11.5 1.17 12.5 1.17 13.17 1.83L17.5 6.17C18.17 6.83 18.17 7.83 17.5 8.5L8.5 17.5C7.83 18.17 6.83 18.17 6.17 17.5L1.83 13.17C1.17 12.5 1.17 11.5 1.83 10.83L10.83 1.83Z"/><line x1="16" y1="8" x2="24" y2="0"/><line x1="0" y1="24" x2="8" y2="16"/></svg>
                             <div>
-                                <h3 class="font-semibold">Gold/Alt (10%)</h3>
-                                <p class="text-sm">Diversifier. Gold hedges against market volatility.</p>
+                                <h3>Gold/Alt (10%)</h3>
+                                <p>Diversifier. Gold hedges against market volatility.</p>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
-            <!-- END RESTORED SECTION -->
 
+            <!-- Added border -->
             <div class="content-section-card cta-section border-l-red-400">
                 <h2>Ready for Your Financial Check-up?</h2>
                 <p>Get your personalized report card and action plan in under 5 minutes. It's free, anonymous, and the best step you can take today!</p>
@@ -627,8 +592,9 @@
                 </a>
             </div>
 
+            <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-purple-400">
-                <h3 class="section-title-secondary text-center">Quick Q&A (FAQ)</h3>
+                <h2 class="section-title-secondary text-center">Quick Q&A (FAQ)</h2>
                 <div class="faq-container">
                     <details class="faq-item">
                         <summary>What exactly is financial health?</summary>
@@ -671,14 +637,14 @@
                     options: {
                         responsive: true, maintainAspectRatio: false,
                         plugins: {
-                            legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } }, // Smaller legend
-                            tooltip: { callbacks: { label: (c) => `${c.label}: ${c.parsed}%` }, bodyFont:{size:9}, titleFont:{size:10}, padding:4} // Smaller tooltip
+                            legend: { position: 'bottom', labels: { boxWidth: 10, padding: 8, font: { size: 9 } } }, // Squeezed legend
+                            tooltip: { callbacks: { label: (c) => `${c.label}: ${c.parsed}%` }, bodyFont:{size:9}, titleFont:{size:10}, padding:4} // Squeezed tooltip
                         }
                     }
                 });
             }
 
-            // RESTORED: Debt chart JS
+            // Squeezed Debt chart JS
             const debtCtx = document.getElementById('debtChart');
             if(debtCtx) {
                 new Chart(debtCtx, {
@@ -695,13 +661,13 @@
                     },
                     options: {
                         responsive: true, maintainAspectRatio: false,
-                        plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `Total Interest: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(c.parsed.y)}` }}},
-                        scales: { y: { beginAtZero: true, ticks: { callback: (v) => `₹${v/1000}k` }}}
+                        plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `Total Interest: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(c.parsed.y)}` }, bodyFont:{size:9}, titleFont:{size:10}, padding:4 }},
+                        scales: { y: { beginAtZero: true, ticks: { callback: (v) => `₹${v/1000}k`, font: {size: 8} }}, x:{ticks:{font:{size:8}}} } // Squeezed ticks
                     }
                 });
             }
 
-            // RESTORED: Asset Allocation chart JS
+            // Squeezed Asset Allocation chart JS
             const assetCtx = document.getElementById('assetAllocationChart');
             if(assetCtx) {
                 new Chart(assetCtx, {
@@ -724,8 +690,8 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } },
-                            tooltip: { callbacks: { label: (c) => `${c.label}: ${c.parsed}%` } }
+                            legend: { position: 'bottom', labels: { boxWidth: 10, padding: 8, font: { size: 9 } } }, // Squeezed legend
+                            tooltip: { callbacks: { label: (c) => `${c.label}: ${c.parsed}%` }, bodyFont:{size:9}, titleFont:{size:10}, padding:4 } // Squeezed tooltip
                         }
                     }
                 });
