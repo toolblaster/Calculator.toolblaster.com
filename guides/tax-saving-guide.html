@@ -131,13 +131,12 @@
         .content-section-card.border-l-indigo-400 { border-left-color: #818cf8; } /* Added Indigo */
         .content-section-card.border-l-orange-400 { border-left-color: #fb923c; } /* Added Orange */
 
-
         .list-icon {
             flex-shrink: 0;
             width: 14px; /* Reduced */
             height: 14px; /* Reduced */
-            margin-right: 0.4rem; /* Reduced */
-            margin-top: 2px; /* Adjusted */
+            margin-right: 0.4rem; /* Reduced margin */
+            margin-top: 2px; /* Adjusted alignment */
         }
         .journey-card {
             background-color: #fff;
@@ -176,8 +175,8 @@
          .persona-card svg { width: 1.5rem; height: 1.5rem; margin: 0 auto 0.25rem; } /* Center and squeeze icon */
          .persona-card h4 { font-size: 0.8rem; font-weight: 700;} /* Squeeze title, bold */
          .persona-card p { font-size: 0.65rem; margin-bottom: 0.3rem; flex-grow: 1;} /* Squeeze text, fill space */
-         .persona-card ul { font-size: 0.65rem; padding-left: 0; list-style: none; margin-top: auto;} /* Squeeze list, push to bottom */
-         .persona-card li { margin-bottom: 0.1rem; text-align: left; /* Align list text left */ display: flex;}
+         .persona-card ul { font-size: 0.65rem; padding-left: 0; list-style: none; margin-top: auto; text-align: center;} /* Squeeze list, push to bottom, EXPLICITLY CENTERED */
+         .persona-card li { margin-bottom: 0.1rem; text-align: center; display: block;} /* EXPLICITLY CENTERED */
          .persona-card li strong { margin-right: 0.25rem; color: #1f2937;}
 
         .timeline {
@@ -229,12 +228,13 @@
             margin-bottom: 0.4rem; /* Squeezed */
             padding-bottom: 0.2rem; /* Squeezed */
             border-bottom: 1px solid #E34037; /* Accent red */
-            text-align: left;
+            /* text-align: left; */ /* Removed: Let Tailwind handle this */
             position: relative;
         }
         /* REMOVED accent line style */
          .legal-content h2::after { display: none; }
          .legal-content .text-center h2::after { display: none; }
+
 
         /* Adjust standard paragraph text */
         .legal-content p, .legal-content li {
@@ -263,7 +263,7 @@
         .alert { padding: 0.5rem; font-size: 0.7rem;}
         .alert-title { font-size: 0.75rem; margin-bottom: 0.1rem; }
 
-        /* Squeeze spacing */
+        /* Squeeze checklist spacing */
         .content-section-card ul.space-y-4 { margin-top: 0.75rem; }
         .content-section-card ul.space-y-4 li { margin-bottom: 0.5rem; } /* Tighter list items */
         .content-section-card ul.space-y-3 { margin-top: 0.5rem; } /* Squeezed */
@@ -341,7 +341,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-green-400">
-                <h2>So, What's This Section 80C Magic Trick?</h2>
+                <h2 class="text-center">So, What's This Section 80C Magic Trick?</h2>
                 <p>Imagine your yearly income is a pizza. Before the taxman takes his slice, Section 80C lets you grab a slice (up to <strong>₹1.5 lakh</strong>!) and put it into specific government-approved savings plans. Because you saved it smartly, the taxman pretends that slice doesn't exist. Smaller taxable pizza = less tax paid. Simple! 🎉</p>
                 <div class="alert alert-info mt-3">
                     <h3 class="alert-title">Old vs. New Tax Regime? 🤔</h3>
@@ -351,7 +351,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-blue-400">
-                <h2>How Much Can You Actually Save? Let's See!</h2>
+                <h2 class="text-center">How Much Can You Actually Save? Let's See!</h2>
                 <p class="text-center text-sm mb-4">Numbers talk! If you're in the 30% tax bracket and use the full ₹1.5 lakh 80C limit, you could save around <strong>₹46,800</strong> in taxes every single year. That's like getting a free bonus just for saving smart!</p>
                 <div class="bar-chart-container-div w-full mx-auto">
                    <canvas id="taxSavingsChart"></canvas>
@@ -360,7 +360,7 @@
 
             <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-green-400">
-                 <h2>Meet Anjali & Her Tax-Saving Adventure!</h2>
+                 <h2 class="text-center">Meet Anjali & Her Tax-Saving Adventure!</h2>
                 <p>Let's follow Anjali, our savvy marketing manager. She wants to cut her tax bill <strong>and</strong> make her money grow. What tools does she pick from the 80C treasure chest?</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3"> <!-- Reduced gap -->
                     <div class="journey-card">
@@ -416,7 +416,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-blue-400">
-                <h2>Quick Compare: Which Tax-Saver Fits YOU?</h2>
+                <h2 class="text-center">Quick Compare: Which Tax-Saver Fits YOU?</h2>
                 <div class="comparison-table-wrapper">
                     <table class="comparison-table w-full">
                         <thead>
@@ -464,10 +464,9 @@
                 <p class="text-xs text-gray-600 mt-2">Want to see PPF's magic? Try our <a href="../calculators/ppf-calculator/"><strong>Advanced PPF Calculator</strong></a>!</p>
             </div>
 
-            <!-- NEW CHART SECTION -->
             <!-- Added border -->
             <div class="content-section-card border-l-orange-400">
-                <h2>Visualizing Growth: ELSS vs. PPF vs. FD (Post-Tax)</h2>
+                <h2 class="text-center">Visualizing Growth: ELSS vs. PPF vs. FD (Post-Tax)</h2>
                 <p class="text-center text-sm mb-4">Let's see how ₹1.5 Lakh invested annually might grow over 15 years in these popular 80C options, considering estimated post-tax returns.</p>
                 <div class="bar-chart-container-div w-full mx-auto">
                    <canvas id="taxSavingGrowthChart"></canvas>
@@ -485,19 +484,19 @@
                      <div class="space-y-2">
                         <div class="flex items-start">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14B8A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 mr-2 flex-shrink-0"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                            <div><h4 class="font-semibold text-xs">EPF (₹50k)</h4><p class="text-xs text-gray-600">The automatic base.</p></div>
+                            <div class="text-center"><h4 class="font-semibold text-xs">EPF (₹50k)</h4><p class="text-xs text-gray-600">The automatic base.</p></div>
                         </div>
                          <div class="flex items-start">
                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 mr-2 flex-shrink-0"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
-                            <div><h4 class="font-semibold text-xs">ELSS SIP (₹50k)</h4><p class="text-xs text-gray-600">The growth booster.</p></div>
+                            <div class="text-center"><h4 class="font-semibold text-xs">ELSS SIP (₹50k)</h4><p class="text-xs text-gray-600">The growth booster.</p></div>
                         </div>
                         <div class="flex items-start">
                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 mr-2 flex-shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            <div><h4 class="font-semibold text-xs">PPF (₹30k)</h4><p class="text-xs text-gray-600">The safety net.</p></div>
+                            <div class="text-center"><h4 class="font-semibold text-xs">PPF (₹30k)</h4><p class="text-xs text-gray-600">The safety net.</p></div>
                         </div>
                          <div class="flex items-start">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 mr-2 flex-shrink-0"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                            <div><h4 class="font-semibold text-xs">Term Insurance (₹20k)</h4><p class="text-xs text-gray-600">Essential protection.</p></div>
+                            <div class="text-center"><h4 class="font-semibold text-xs">Term Insurance (₹20k)</h4><p class="text-xs text-gray-600">Essential protection.</p></div>
                         </div>
                     </div>
                 </div>
@@ -506,7 +505,6 @@
             <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-green-400">
                 <h2>Beyond 80C: More Tax-Saving Superpowers!</h2>
-                <p>Section 80C is awesome, but it's not the only hero in town! Don't forget these other ways to shield your income:</p>
                 <ul class="space-y-3 mt-3">
                     <li class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-blue-500"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v6"/><path d="M15 11h-6"/></svg>
@@ -523,7 +521,7 @@
                         </div>
                     </li>
                      <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-blue-500"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/><path d="M16 12H8"/></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-blue-500"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l2 2"/><path d="M16 12H8"/></svg>
                         <div>
                             <h4 class="font-semibold text-xs">NPS Boost (Sec 80CCD(1B)): Extra ₹50k Off!</h4>
                             <p class="text-xs text-gray-600">Investing in NPS? Get an <strong>additional</strong> ₹50,000 deduction on top of the 80C limit!</p>
@@ -534,7 +532,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-purple-400">
-                <h2>Your Smart Tax Strategy: Find Your Tribe!</h2>
+                <h2 class="text-center">Your Smart Tax Strategy: Find Your Tribe!</h2>
                 <p>The "best" mix depends on YOU. Are you Captain Cautious or Admiral Aggressive? Find your investor style below. (Still figuring it out? <a href="../quizzes/risk-profile-quiz.html">Our 2-min quiz</a> nails it!).</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-3">
                     <div class="persona-card">
@@ -608,7 +606,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-teal-400">
-                <h2 class="section-title-secondary text-teal-800">Pro Move: Link Tax Saving to Your Goals! </h2>
+                <h2>Pro Move: Link Tax Saving to Your Goals! </h2>
                 <p class="text-sm text-teal-700 mb-4">Don't just save tax in isolation! Use your tax-saving investments to power your biggest life goals. It's like getting a double win.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                      <div class="flex items-start">
@@ -625,7 +623,7 @@
 
             <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-green-400">
-                <h2 class="section-title-secondary">Your Simple 4-Step Tax-Saving Game Plan</h2>
+                <h2>Your Simple 4-Step Tax-Saving Game Plan</h2>
                 <p>Tax saving doesn't need to be a headache. Just follow these steps:</p>
                 <div class="timeline mt-4">
                     <div class="timeline-item"> <div class="timeline-dot">1</div> <h4>Start Early (April is Your Friend!)</h4> <p>Avoid the March panic. Starting early gives max growth time & less stress.</p> </div>
@@ -638,7 +636,7 @@
             <!-- Added border -->
             <div class="content-section-card text-center border-l-blue-400">
                 <h2 class="section-title-secondary text-center">Ready to Take Control?</h2>
-                <p class="mb-3">You've got the map! Now use the tools to chart your course:</p>
+                <p class="mb-3 text-center">You've got the map! Now use the tools to chart your course:</p>
                 <div class="flex flex-col sm:flex-row gap-2 justify-center">
                     <a href="../" class="btn-primary">Plan All Investments</a>
                     <a href="../calculators/income-tax-calculator/" class="btn-secondary">Compare Tax Regimes</a>
