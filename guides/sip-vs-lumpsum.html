@@ -172,7 +172,25 @@
             height: 2px;
             background-color: #E34037; /* Accent red */
             margin-top: 0.2rem; /* Squeezed margin */
+             /* Default to left alignment for the line */
+            margin-left: 0;
+            margin-right: auto;
         }
+        /* Center accent line if text-center class is present on H2 */
+        .content-section-card h2.text-center::after, .section-title-secondary.text-center::after {
+            margin-left: auto; margin-right: auto;
+        }
+
+        /* NEW CSS: Ensure FAQ H2 and Verdict H2 are centered */
+        .content-section-card h2.h2-center-accent {
+            text-align: center;
+        }
+        .content-section-card h2.h2-center-accent::after {
+            margin-left: auto; 
+            margin-right: auto;
+        }
+
+
         .content-section-card h3 { /* Subsection Titles (H3) */
             font-size: 0.75rem; /* Further Squeezed H3 */
             font-weight: 600;
@@ -285,6 +303,7 @@
         .comparison-table { width: 100%; border-collapse: collapse; }
         .comparison-table th, .comparison-table td { padding: 0.4rem; border: 1px solid #e5e7eb; font-size: 0.65rem; } 
         .comparison-table thead { background-color: #f9fafb; font-weight: 600; color: #374151;}
+        .comparison-table th { text-align: left !important;} /* ADDED: For left alignment */
         @media (max-width: 640px) { 
             .comparison-table thead { display: none; }
             .comparison-table, .comparison-table tbody, .comparison-table tr, .comparison-table td { display: block; width: 100%; }
@@ -505,7 +524,7 @@
             
              <!-- STP Section - Squeezed and Aligned -->
             <div class="content-section-card stp-section bg-gray-50">
-                <h2 class="strategy-title">The Pro Move: The Best of Both Worlds (STP) 🤝</h2>
+                <h2>The Pro Move: The Best of Both Worlds (STP) 🤝</h2>
                 <p class="strategy-subtitle">Got a lumpsum but feeling jittery about investing it all at once? The Systematic Transfer Plan (STP) is your smart, stress-free solution.</p>
                 
                 <!-- Tighter vertical spacing (space-y-1), center alignment for steps -->
@@ -571,7 +590,8 @@
             
             <!-- Final Verdict & CTAs -->
             <div class="content-section-card text-center">
-                <h2>The Final Word: Your Journey, Your Choice!</h2>
+                <!-- ADDED h2-center-accent class -->
+                <h2 class="h2-center-accent">The Final Word: Your Journey, Your Choice!</h2>
                 <p class="mb-3">Ultimately, the "best" strategy is the one that fits <strong>your life</strong> and lets you <strong>sleep well at night</strong>. Often, a mix is perfect! Use SIP for your regular savings, and consider Lumpsum or STP for windfalls. The most important thing? <strong>Just start!</strong></p>
                 <div class="flex flex-col sm:flex-row gap-2 justify-center">
                     <a href="../" class="btn-primary">Plan with Our Calculators</a>
@@ -581,7 +601,8 @@
 
             <!-- FAQ Section -->
             <div class="content-section-card bg-gray-50">
-                <h2>Still Got Questions? (FAQ)</h2>
+                <!-- ADDED h2-center-accent class -->
+                <h2 class="h2-center-accent">Still Got Questions? (FAQ)</h2>
                 <div class="faq-container mt-2">
                     <details class="faq-item">
                         <summary>What is a Systematic Investment Plan (SIP)?</summary>
