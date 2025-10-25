@@ -125,6 +125,9 @@
         .content-section-card.border-l-teal-400 { border-left-color: #2DD4BF; }
         .content-section-card.border-l-indigo-400 { border-left-color: #818cf8; } /* Added Indigo */
         .content-section-card.border-l-pink-400 { border-left-color: #f472b6; } /* Added Pink */
+        /* Added Orange for new section */
+        .content-section-card.border-l-orange-400 { border-left-color: #fb923c; }
+
 
         .icon-list-item {
             display: flex;
@@ -161,10 +164,19 @@
         .insight-card h4 {
             font-size: 0.75rem; /* Squeezed */
             margin-bottom: 0.25rem; /* Squeezed */
+            font-weight: 700; /* Added font-weight */
         }
         .legal-content h1 { font-size: 1.2rem; margin-bottom: 0.25rem;}
         .legal-content > p:first-of-type { font-size: 0.75rem; margin-bottom: 0.75rem;}
-        .legal-content h2 { font-size: 1rem; margin-bottom: 0.5rem;}
+        /* Adjusted h2 styling */
+        .legal-content h2 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.2rem;
+            border-bottom: 1px solid #E34037;
+            font-weight: 700;
+            color: #1f2937;
+        }
         .legal-content h4 { font-size: 0.8rem; }
         .legal-content p, .legal-content li { font-size: 0.75rem; }
         .legal-content .text-xs { font-size: 0.65rem; }
@@ -188,6 +200,74 @@
         .faq-item summary::after { font-size: 0.9rem; right: 0.75rem; }
         .btn-primary { padding: 0.35rem 0.8rem !important; font-size: 0.7rem !important; }
         table th, table td { padding: 0.5rem; font-size: 0.7rem;} /* Squeezed table */
+        /* Ensure specific H2s remain centered */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; } /* Added for explicit left alignment */
+        .section-title-secondary { /* Base class for H2s */
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.2rem;
+            border-bottom: 1px solid #E34037;
+            font-weight: 700;
+            color: #1f2937;
+            position: relative; /* Needed for pseudo-element */
+        }
+        /* Style for the accent line */
+        .section-title-secondary::after {
+            content: '';
+            display: block;
+            width: 30px; /* Adjust width as needed */
+            height: 2px;
+            background-color: #E34037; /* Accent color */
+            position: absolute;
+            bottom: -1px; /* Position right below the border-bottom */
+            left: 0; /* Align to the left */
+        }
+        /* Remove the accent line for centered H2s */
+        .section-title-secondary.text-center::after {
+            display: none;
+        }
+         /* Added style for links within text */
+        .legal-content a:not(.btn-primary) {
+            color: var(--accent-color);
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: #fecaca; /* red-200 */
+            transition: all 0.2s ease;
+        }
+        .legal-content a:not(.btn-primary):hover {
+            color: var(--accent-color-dark);
+            text-decoration-color: var(--accent-color-dark);
+            background-color: #fef2f2; /* red-50 */
+        }
+         /* Styles for the new "Beyond Basics" section */
+         .pro-tip-card {
+            display: flex;
+            align-items: flex-start; /* Align icon with text */
+            gap: 0.75rem; /* Space between icon and text */
+            background-color: #fff;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid #e5e7eb;
+        }
+         .pro-tip-card svg {
+            flex-shrink: 0;
+            width: 24px; /* Icon size */
+            height: 24px;
+            color: #E34037; /* Icon color */
+            margin-top: 1px; /* Fine-tune vertical alignment */
+        }
+         .pro-tip-card h4 {
+            font-size: 0.75rem; /* Smaller heading */
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.1rem;
+        }
+         .pro-tip-card p {
+            font-size: 0.65rem; /* Smaller text */
+            color: #4b5563;
+            line-height: 1.3;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -197,29 +277,50 @@
     <main class="container">
         <div class="legal-content">
             <h1>Your Step-by-Step Guide to Building an Emergency Fund</h1>
-            <p>Before you start investing for your future, it's essential to <strong>protect your present</strong>. An emergency fund is your personal financial safety net, designed to cover unexpected life events without derailing your long-term goals or forcing you into debt. This guide will walk you through everything you need to know.</p>
+            <p>Before you start investing for your future, it's essential to <strong>protect your present</strong>. An emergency fund is your personal financial safety net, designed to cover unexpected life events without derailing your <a href="goal-based-investing.html">long-term goals</a> or forcing you into debt. This guide will walk you through everything you need to know.</p>
 
-            <!-- Added border-l-blue-400 and text-center to H2 -->
+            <!-- IMPROVED SECTION -->
             <div class="content-section-card border-l-blue-400">
-                <h2 class="text-center">What is an Emergency Fund and Why Do You Need One?</h2>
-                <p>An emergency fund is a pool of money set aside specifically for unforeseen financial challenges. Think of it as a <strong>buffer against life's curveballs</strong>. Imagine a scenario where your car breaks down unexpectedly, or a medical issue arises. Without an emergency fund, you might be forced to sell your long-term investments at an inopportune time or take on high-interest credit card debt, both of which can be detrimental to your financial health.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 text-center">
-                    <div class="p-4 bg-red-50 rounded-lg border border-red-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                        <h4 class="font-semibold text-sm">Protects Investments</h4>
-                        <p class="text-xs text-gray-600">Prevents you from selling long-term investments at the wrong time.</p>
+                <h2 class="section-title-secondary text-center">What is an Emergency Fund? Think Financial Fire Extinguisher!</h2>
+                <p class="text-sm text-gray-700 mb-4 text-center">Life throws curveballs – job loss, medical bills, urgent car repairs. An emergency fund is a stash of cash, kept separate and easily accessible, specifically to handle these unexpected financial fires. It's not for vacations or down payments; it's your <strong>first line of defense</strong> against financial chaos.</p>
+                <h3 class="font-bold text-base text-center mb-4">Why is it Non-Negotiable?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                    <div class="flex items-start p-3 bg-red-50 rounded-lg border border-red-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mr-3 flex-shrink-0 mt-1"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <div>
+                            <h4 class="font-semibold text-sm">Prevents Debt Traps</h4>
+                            <p class="text-xs text-gray-600">Avoid high-interest credit card debt or costly personal loans when surprises hit. Learn more about managing debt in our <a href="financial-health-guide.html">Financial Health Guide</a>.</p>
+                        </div>
                     </div>
-                     <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-500 mx-auto mb-2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-                        <h4 class="font-semibold text-sm">Reduces Stress</h4>
-                        <p class="text-xs text-gray-600">Provides peace of mind, knowing you can handle unexpected expenses.</p>
+                    <div class="flex items-start p-3 bg-green-50 rounded-lg border border-green-200">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green-500 mr-3 flex-shrink-0 mt-1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <div>
+                            <h4 class="font-semibold text-sm">Protects Long-Term Goals</h4>
+                            <p class="text-xs text-gray-600">Stops you from panic-selling investments meant for <a href="retirement-planning-guide.html">retirement</a> or other big dreams.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-3 bg-blue-50 rounded-lg border border-blue-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-500 mr-3 flex-shrink-0 mt-1"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                        <div>
+                            <h4 class="font-semibold text-sm">Reduces Financial Stress</h4>
+                            <p class="text-xs text-gray-600">Knowing you have a cushion brings immense peace of mind.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-yellow-500 mr-3 flex-shrink-0 mt-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        <div>
+                            <h4 class="font-semibold text-sm">Empowers Better Decisions</h4>
+                            <p class="text-xs text-gray-600">Allows you to negotiate repairs or handle job transitions without desperation. Check your <a href="complete-credit-score-guide-in-india.html">credit score</a> to further empower your financial decisions.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- END IMPROVED SECTION -->
 
             <!-- Added border-l-green-400 -->
             <div class="content-section-card bg-gray-50 border-l-green-400">
-                <h2>Step 1: How Much Should You Save?</h2>
+                <!-- MODIFIED: Added text-left class -->
+                <h2 class="section-title-secondary text-left">Step 1: How Much Should You Save?</h2>
                 <p>The golden rule is to save <strong>3 to 6 months' worth</strong> of your essential living expenses. Your ideal amount depends on your financial stability:</p>
                  <ul class="mt-4 space-y-4">
                     <li class="icon-list-item">
@@ -268,7 +369,8 @@
 
             <!-- Added border-l-teal-400 -->
             <div class="content-section-card border-l-teal-400">
-                <h2>Step 2: Where Should You Keep Your Emergency Fund?</h2>
+                <!-- MODIFIED: Added text-left class -->
+                <h2 class="section-title-secondary text-left">Step 2: Where Should You Keep Your Emergency Fund?</h2>
                 <p>The two most important criteria for an emergency fund are <strong>safety and liquidity</strong>. You need to be able to access your money quickly and without any risk of losing the principal amount. Here are the best options:</p>
 
                 <table style="width:100%; border-collapse: collapse; margin-bottom: 1rem;">
@@ -287,7 +389,7 @@
                         </tr>
                         <tr>
                             <td style="padding: 0.75rem; border: 1px solid #eee;"><strong>Liquid Mutual Funds</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid #eee;">Potentially higher returns than a savings account; high liquidity (money in 1-2 days).</td>
+                            <td style="padding: 0.75rem; border: 1px solid #eee;">Potentially higher returns than a savings account; high liquidity (money in 1-2 days). See <a href="fd-vs-debt-funds.html">FD vs Debt Funds</a>.</td>
                             <td style="padding: 0.75rem; border: 1px solid #eee;">Carries very low market risk; returns are not guaranteed.</td>
                         </tr>
                         <tr>
@@ -301,14 +403,16 @@
 
             <!-- Added border-l-indigo-400 -->
             <div class="content-section-card bg-gray-50 border-l-indigo-400">
-                <h2 class="section-title-secondary">Step 3: The Action Plan: Build, Use, and Refill</h2>
-                <p class="text-sm text-gray-500 mb-6 text-center">Building your fund is just the beginning. Knowing how to manage it is key to long-term financial security.</p>
+                <!-- MODIFIED: Added text-left class -->
+                <h2 class="section-title-secondary text-left">Step 3: The Action Plan: Build, Use, and Refill</h2>
+                <!-- MODIFIED: Changed text-center to text-left -->
+                <p class="text-sm text-gray-500 mb-6 text-left">Building your fund is just the beginning. Knowing how to manage it is key to long-term financial security.</p>
                 <ul class="space-y-4">
                     <li class="icon-list-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 0 2.73l-.15.08a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1 0-2.73l.15-.08a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
                         <div>
                             <h4 class="font-semibold">Automate Your Savings</h4>
-                            <p>The most effective way to build your fund is to <strong>"pay yourself first."</strong> Set up a recurring monthly transfer from your salary account to your emergency fund account. Treat it like an EMI to build your safety net consistently without relying on willpower.</p>
+                            <p>The most effective way to build your fund is to <strong>"pay yourself first."</strong> Set up a recurring monthly transfer from your salary account to your emergency fund account. Treat it like an EMI to build your safety net consistently without relying on willpower. You can use our <a href="../?mode=rd">RD Calculator</a> to plan this.</p>
                         </div>
                     </li>
                     <li class="icon-list-item">
@@ -322,7 +426,7 @@
                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M2 11.5a10 10 0 0 1 18.8-4.3l-3.3 3.3"/><path d="M22 12.5a10 10 0 0 1-18.8 4.3l3.3-3.3"/></svg>
                         <div>
                             <h4 class="font-semibold">Replenish After Use</h4>
-                            <p>If you have to dip into your fund, your <strong>top financial priority</strong> should be to build it back up to its target level. Pause other discretionary spending or investing until your safety net is fully restored.</p>
+                            <p>If you have to dip into your fund, your <strong>top financial priority</strong> should be to build it back up to its target level. Pause other discretionary spending or investing until your safety net is fully restored. Our <a href="../quizzes/next-financial-move-quiz.html">Next Financial Move Quiz</a> can help prioritize.</p>
                         </div>
                     </li>
                 </ul>
@@ -330,7 +434,7 @@
 
             <!-- Added border-l-pink-400 -->
             <div class="content-section-card border-l-pink-400">
-                <h2>Emergency Fund Dos and Don'ts</h2>
+                <h2 class="section-title-secondary">Emergency Fund Dos and Don'ts</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                     <div>
                         <h3 class="font-bold text-lg text-green-600 mb-2">What to Do ✅</h3>
@@ -344,7 +448,7 @@
                      <div>
                         <h3 class="font-bold text-lg text-red-600 mb-2">What to Avoid ❌</h3>
                          <ul class="space-y-2">
-                           <li class="flex items-start"><span class="text-red-500 mr-2">✖</span><p class="text-xs"><strong>Don't</strong> invest it in high-risk assets like stocks.</p></li>
+                           <li class="flex items-start"><span class="text-red-500 mr-2">✖</span><p class="text-xs"><strong>Don't</strong> invest it in high-risk assets like stocks (learn about stocks in our <a href="stock-market-guide-in-india.html">Stock Market Guide</a>).</p></li>
                            <li class="flex items-start"><span class="text-red-500 mr-2">✖</span><p class="text-xs"><strong>Don't</strong> use it for planned expenses like vacations or down payments.</p></li>
                            <li class="flex items-start"><span class="text-red-500 mr-2">✖</span><p class="text-xs"><strong>Don't</strong> lock it up in long-term investments with low liquidity.</p></li>
                             <li class="flex items-start"><span class="text-red-500 mr-2">✖</span><p class="text-xs"><strong>Don't</strong> stop saving once you reach your goal; let it be your financial foundation.</p></li>
@@ -353,32 +457,72 @@
                 </div>
             </div>
 
-            <!-- Added border-l-blue-400 -->
-            <div class="content-section-card bg-gray-50 border-l-blue-400">
-                <h2 class="section-title-secondary">Your Emergency Fund Golden Rules</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-                    <div class="insight-card">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                        <h4 class="font-semibold text-sm">Start Now</h4>
-                        <p class="text-xs text-gray-600">Even a small amount saved regularly can grow into a substantial safety net over time.</p>
+            <!-- NEW SECTION: Beyond Basics -->
+            <div class="content-section-card border-l-orange-400">
+                <h2 class="section-title-secondary">Beyond the Basics: Leveling Up Your Emergency Fund Strategy</h2>
+                <!-- MODIFIED: Added text-center class -->
+                <p class="text-sm text-gray-700 mb-6 text-center">Once your basic 3-6 month fund is solid, consider these pro-tips to make your safety net even smarter:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="pro-tip-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        <div>
+                            <h4>Tiered Approach (Bucket Strategy)</h4>
+                            <p>Consider splitting your fund: Keep 1 month's expenses in a super-liquid savings account for immediate needs, and the rest in a slightly higher-yielding liquid fund or short-term FD for better (but still safe) returns.</p>
+                        </div>
                     </div>
-                    <div class="insight-card">
-                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 0 2.73l-.15.08a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1 0-2.73l.15-.08a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-                        <h4 class="font-semibold text-sm">Automate It</h4>
-                        <p class="text-xs text-gray-600">The "pay yourself first" method is the most effective way to build your fund without relying on willpower.</p>
+                    <div class="pro-tip-card">
+                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v6"/><path d="M15 11h-6"/></svg>
+                        <div>
+                            <h4>Insurance Integration</h4>
+                            <p>Your emergency fund works *with* your insurance. Ensure you have adequate health insurance to cover major medical bills, reducing the potential drain on your emergency cash.</p>
+                        </div>
                     </div>
-                    <div class="insight-card">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        <h4 class="font-semibold text-sm">Keep it Sacred</h4>
-                        <p class="text-xs text-gray-600">Your emergency fund should be used for true emergencies only. A separate account helps maintain this discipline.</p>
+                     <div class="pro-tip-card">
+                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M2 11.5a10 10 0 0 1 18.8-4.3l-3.3 3.3"/><path d="M22 12.5a10 10 0 0 1-18.8 4.3l3.3-3.3"/></svg>
+                        <div>
+                            <h4>Inflation Adjustment</h4>
+                            <p>Your expenses increase over time due to inflation. Review your fund size annually and top it up slightly to ensure it maintains its real-world purchasing power.</p>
+                        </div>
                     </div>
-                    <div class="insight-card">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-500 mx-auto mb-2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><path d="m9 16 2 2 4-4"/></svg>
-                        <h4 class="font-semibold text-sm">Review Annually</h4>
-                        <p class="text-xs text-gray-600">As your life changes, review your fund to ensure it's still adequate for your circumstances.</p>
+                     <div class="pro-tip-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                        <div>
+                            <h4>Consider Dependents</h4>
+                            <p>If you have children or support elderly parents, err on the side of a larger fund (closer to 6 months or even more). More dependents mean potentially larger unexpected expenses.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- END NEW SECTION -->
+
+            <!-- IMPROVED SECTION: Your Emergency Fund Golden Rules -->
+            <div class="content-section-card bg-gray-50 border-l-blue-400">
+                <h2 class="section-title-secondary">Your Emergency Fund Golden Rules: The 4 A's</h2>
+                <p class="text-center text-sm text-gray-700 mb-6">Mastering your emergency fund comes down to these four simple, powerful actions:</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="insight-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+                        <h4>Act Now</h4>
+                        <p class="text-xs text-gray-600">Don't wait for the 'perfect' time. Start saving *something* today, even if it's small. Every rupee counts.</p>
+                    </div>
+                    <div class="insight-card">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 0 2.73l-.15.08a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1 0-2.73l.15-.08a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <h4>Automate</h4>
+                        <p class="text-xs text-gray-600">Make saving effortless. Set up automatic monthly transfers. 'Pay yourself first' is the key to consistency.</p>
+                    </div>
+                    <div class="insight-card">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <h4>Accessibility</h4>
+                        <p class="text-xs text-gray-600">Keep it safe, but keep it reachable. Choose savings accounts or liquid funds – no complex investments.</p>
+                    </div>
+                    <div class="insight-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+                        <h4>Annual Review</h4>
+                        <p class="text-xs text-gray-600">Life changes, so should your fund. Check once a year – is 3-6 months' expenses still the right amount?</p>
+                    </div>
+                </div>
+            </div>
+            <!-- END IMPROVED SECTION -->
 
             <!-- Added border-l-green-400 -->
             <div class="content-section-card text-center border-l-green-400">
