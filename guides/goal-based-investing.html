@@ -230,7 +230,7 @@
             margin-bottom: 0.4rem; /* Squeezed */
             padding-bottom: 0.2rem; /* Squeezed */
             border-bottom: 1px solid #E34037; /* Accent red */
-            text-align: left;
+            /* text-align: left; */ /* Removed: Let Tailwind handle this */
             position: relative;
         }
         /* REMOVED accent line style */
@@ -309,7 +309,6 @@
          /* Fix for H4 inside list-icon div */
          .flex > div > h4 { font-size: 0.75rem; margin-bottom: 0.1rem; font-weight: 600;}
 
-
     </style>
 </head>
 <body class="bg-gray-50">
@@ -323,7 +322,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-green-400">
-                <h2>Why Goal-Based Investing is Your Financial Superpower</h2>
+                <h2 class="text-center">Why Goal-Based Investing is Your Financial Superpower</h2>
                 <p class="text-center text-sm mb-4">Investing can feel like wandering in a jungle. But goals are your compass! Here's why this approach rocks:</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2"> <!-- Reduced gap -->
                     <div class="insight-card">
@@ -347,7 +346,7 @@
 
             <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-blue-400">
-                <h2>Your Goals, Your Plan: Match Strategy to Timeline! </h2>
+                <h2 class="text-center">Your Goals, Your Plan: Match Strategy to Timeline! </h2>
                 <p class="text-center text-sm mb-4">The secret sauce? Pick investments based on <strong>when</strong> you need the money. Let's break it down:</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2"> <!-- Reduced gap -->
                     <!-- Short-Term -->
@@ -373,9 +372,9 @@
                        <div class="icon-container bg-green-100 text-green-600"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg></div>
                         <h3>Long-Term Legacy</h3>
                         <p class="text-xs font-semibold text-gray-500 mb-2">(<strong>7+ Years</strong>)</p>
-                        <p class="text-sm text-gray-600 mb-4"><strong>Think:</strong> <a href="retirement-planning-guide.html" class="font-semibold">Retirement</a>, kid's college fund, dream home.</p>
+                        <p class="text-sm text-gray-600 mb-4"><strong>Think:</strong> <a href="retirement-planning-guide.html">Retirement</a>, kid's college fund, dream home.</p>
                          <h4>Job: <strong>Go for Growth!</strong></h4>
-                        <div class="bg-green-50 p-2 rounded-lg text-xs text-green-700"><strong>Your Tools:</strong> Equity <a href="beginner-investing-guide.html" class="font-semibold">Mutual Funds (SIP)</a>, PPF, NPS.</div>
+                        <div class="bg-green-50 p-2 rounded-lg text-xs text-green-700"><strong>Your Tools:</strong> Equity <a href="beginner-investing-guide.html">Mutual Funds (SIP)</a>, PPF, NPS.</div>
                     </div>
                 </div>
             </div>
@@ -408,7 +407,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-yellow-400">
-                <h2>The Golden Rule: Risk vs. Time</h2>
+                <h2 class="text-center">The Golden Rule: Risk vs. Time</h2>
                 <p class="text-center text-sm mb-4">This is the heart of goal-based investing! Match the investment risk to how soon you need the money.</p>
                 <!-- Responsive Risk Matrix Table -->
                 <div class="risk-matrix-table-wrapper">
@@ -434,7 +433,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-purple-400">
-                 <h2>Why Starting Early is Basically a Cheat Code</h2>
+                 <h2 class="text-center">Why Starting Early is Basically a Cheat Code</h2>
                  <p class="text-center text-sm mb-4">Think starting small doesn't matter? Think again! Compounding is magic. Check out Priya vs. Amit. Both invest ₹10k/month for retirement, but Priya starts 10 years earlier...</p>
                  <div class="line-chart-container-div w-full mx-auto">
                     <canvas id="compoundingChart"></canvas>
@@ -444,7 +443,7 @@
 
             <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-green-400">
-                <h2>Visualizing Your Goal Journey</h2>
+                <h2 class="text-center">Visualizing Your Goal Journey</h2>
                 <p class="text-center text-sm mb-4">Let's see how a <strong>₹15k monthly SIP</strong> aiming for a <strong>₹50 Lakh goal</strong> in <strong>15 years</strong> (at 12% return) actually grows:</p>
                 <div class="line-chart-container-div w-full mx-auto">
                     <canvas id="goalJourneyChart"></canvas>
@@ -454,8 +453,8 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-teal-400">
-                 <h2 class="section-title-secondary text-center">Your 3-Step Goal-Getting Formula</h2>
-                 <p class="text-center text-sm mb-4">Ready to make your dreams happen? It's simple:</p>
+                 <h2 class="section-title-secondary">Your 3-Step Goal-Getting Formula</h2>
+                 <p class="text-sm mb-4">Ready to make your dreams happen? It's simple:</p>
                  <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-dot">1</div>
@@ -477,8 +476,8 @@
 
             <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-blue-400">
-                <h2 class="section-title-secondary text-center">Stay On Course: Review & Rebalance</h2>
-                <p class="text-center text-sm mb-4">Investing isn't a one-time thing. Keep your plan healthy with these check-ups:</p>
+                <h2>Stay On Course: Review & Rebalance</h2>
+                <p class="text-sm mb-4">Investing isn't a one-time thing. Keep your plan healthy with these check-ups:</p>
                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3"> <!-- Reduced gap -->
                     <div class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-blue-500"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><path d="m9 16 2 2 4-4"/></svg>
@@ -493,7 +492,8 @@
 
             <!-- Added border -->
             <div class="content-section-card bg-red-50 border-l-4 border-red-500">
-                <h2 class="section-title-secondary text-red-800">Oops! Avoid These Goal-Killing Mistakes</h2>
+                <h2>Oops! Avoid These Goal-Killing Mistakes</h2>
+                <p class="text-sm text-red-700 mb-4">Even smart people make mistakes! Here are a few common tripwires to watch out for:</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3"> <!-- Reduced gap -->
                     <div class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-red-600"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
@@ -517,7 +517,7 @@
             <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-green-400">
                 <h2>Bumps in the Road? No Problem!</h2>
-                <p class="text-center text-sm mb-4">Life happens! Here's how to handle common challenges:</p>
+                <p class="text-sm mb-4">Life happens! Here's how to handle common challenges:</p>
                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3"> <!-- Reduced gap -->
                     <div class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-red-500"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -533,7 +533,7 @@
             <!-- Added border -->
             <div class="content-section-card text-center border-l-blue-400">
                 <h2 class="section-title-secondary text-center">Ready to Plan Your Dreams? ✨</h2>
-                <p class="mb-3 text-sm">You've got the knowledge! Now turn those dreams into numbers with our super-helpful calculator.</p>
+                <p class="mb-3 text-sm text-center">You've got the knowledge! Now turn those dreams into numbers with our super-helpful calculator.</p>
                 <div class="flex flex-col sm:flex-row gap-2 justify-center">
                     <a href="../?mode=goal" class="btn-primary">Go to Goal Planner!</a>
                     <a href="beginner-investing-guide.html" class="btn-secondary">Read Beginner's Guide</a>
@@ -569,7 +569,7 @@
                 };
                 const priyaFV = calculateFutureValue(10000, 35, 0.12); // Starts at 25, invests for 35 yrs
                 const amitFV = calculateFutureValue(10000, 25, 0.12); // Starts at 35, invests for 25 yrs
-                new Chart(compoundingCtx, { type: 'bar', data: { labels: ['Priya (Starts at 25)', 'Amit (Starts at 35)'], datasets: [{ label: 'Corpus at 60', data: [priyaFV, amitFV], backgroundColor: ['rgba(34, 197, 94, 0.7)', 'rgba(239, 68, 68, 0.7)'], borderColor: ['rgba(22, 163, 74, 1)', 'rgba(220, 38, 38, 1)'], borderWidth: 1 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `Corpus: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(c.parsed.y)}` }, bodyFont:{size:9}, titleFont:{size:10}, padding:4 }}, scales: { y: { beginAtZero: true, ticks: { callback: (v) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(v), font:{size:8} }}, x:{ticks:{font:{size:8}}} } } }); // Squeezed ticks
+                new Chart(compoundingCtx, { type: 'bar', data: { labels: ['Priya (Starts @ 25)', 'Amit (Starts @ 35)'], datasets: [{ label: 'Corpus at 60', data: [priyaFV, amitFV], backgroundColor: ['rgba(34, 197, 94, 0.7)', 'rgba(239, 68, 68, 0.7)'], borderColor: ['rgba(22, 163, 74, 1)', 'rgba(220, 38, 38, 1)'], borderWidth: 1 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `Corpus: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(c.parsed.y)}` }, bodyFont:{size:9}, titleFont:{size:10}, padding:4 }}, scales: { y: { beginAtZero: true, ticks: { callback: (v) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(v), font:{size:8} }}, x:{ticks:{font:{size:8}}} } } }); // Squeezed ticks
             }
 
             // Chart for Goal Journey
@@ -578,7 +578,7 @@
                 const years = 15; const monthlyInvestment = 15000; const annualRate = 0.12; const monthlyRate = annualRate / 12; const goalAmount = 5000000;
                 let labels = [], principalData = [], totalValueData = []; let totalInvested = 0, futureValue = 0;
                 for (let year = 1; year <= years; year++) { labels.push(`${year}`); for(let m=1; m<=12; m++) { totalInvested+=monthlyInvestment; futureValue=futureValue*(1+monthlyRate)+monthlyInvestment; } principalData.push(totalInvested); totalValueData.push(futureValue); }
-                new Chart(goalCtx, { type: 'line', data: { labels: labels, datasets: [ { label: 'Investment', data: principalData, borderColor: 'rgba(59, 130, 246, 1)', backgroundColor: 'rgba(59, 130, 246, 0.2)', fill: true, tension: 0.1, pointRadius: 0 }, { label: 'Growth', data: totalValueData, borderColor: 'rgba(34, 197, 94, 1)', backgroundColor: 'rgba(34, 197, 94, 0.2)', fill: true, tension: 0.1, pointRadius: 0 }, { label: 'Goal', data: Array(years).fill(goalAmount), borderColor: 'rgba(239, 68, 68, 1)', borderDash: [5, 5], fill: false, pointRadius: 0 } ] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { boxWidth: 10, font: {size: 9} }}, tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(c.parsed.y)}` }, bodyFont:{size:9}, titleFont:{size:10}, padding:4 }}, scales: { y: { beginAtZero: true, ticks: { callback: (v) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(v), font:{size:8} }}, x: { ticks: { font: {size: 8}, maxTicksLimit: 10 }} } } }); // Squeezed ticks
+                new Chart(goalCtx, { type: 'line', data: { labels: labels, datasets: [ { label: 'Investment', data: principalData, borderColor: 'rgba(59, 130, 246, 1)', backgroundColor: 'rgba(59, 130, 246, 0.2)', fill: true, tension: 0.1, pointRadius: 0 }, { label: 'Growth', data: totalValueData, borderColor: 'rgba(34, 197, 94, 1)', backgroundColor: 'rgba(34, 197, 94, 0.1)', fill: true, tension: 0.1, pointRadius: 0 }, { label: 'Goal', data: Array(years).fill(goalAmount), borderColor: 'rgba(239, 68, 68, 1)', borderDash: [5, 5], fill: false, pointRadius: 0 } ] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { boxWidth: 10, font: {size: 9} }}, tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(c.parsed.y)}` }, bodyFont:{size:9}, titleFont:{size:10}, padding:4 }}, scales: { y: { beginAtZero: true, ticks: { callback: (v) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(v), font:{size:8} }}, x: { ticks: { font: {size: 8}, maxTicksLimit: 10 }} } } }); // Squeezed ticks
             }
         });
     </script>
