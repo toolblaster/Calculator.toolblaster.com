@@ -309,6 +309,16 @@
          /* Fix for H4 inside list-icon div */
          .flex > div > h4 { font-size: 0.75rem; margin-bottom: 0.1rem; font-weight: 600;}
 
+        /* ADDED: Fix for the globally centered section-title-secondary class */
+        .h2-goal-formula {
+            text-align: left !important;
+        }
+        /* ADDED: Fix for the accent line below the h2 */
+        .h2-goal-formula::after {
+             margin-left: 0 !important;
+             margin-right: auto !important;
+        }
+
     </style>
 </head>
 <body class="bg-gray-50">
@@ -387,20 +397,20 @@
                     <div class="insight-card">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         <h4>Cautious Captain</h4>
-                        <p>Loves safety nets. Prefers guaranteed returns, even if small.</p>
-                        <p class="text-xs font-bold mt-2 text-blue-700">Tools: FDs, RDs, PPF, Debt Funds</p>
+                        <p class="text-center">Loves safety nets. Prefers guaranteed returns, even if small.</p>
+                        <p class="text-xs font-bold mt-2 text-blue-700 text-center">Tools: FDs, RDs, PPF, Debt Funds</p>
                     </div>
                     <div class="insight-card">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><path d="M16 16-4-4-4 4"/><path d="M8 8l4 4 4-4"/></svg>
                         <h4>Balanced Navigator</h4>
-                        <p>Seeks a middle path. Wants decent growth that beats inflation, okay with some bumps.</p>
-                         <p class="text-xs font-bold mt-2 text-yellow-700">Tools: Hybrid Funds, NPS, Index Funds</p>
+                        <p class="text-center">Seeks a middle path. Wants decent growth that beats inflation, okay with some bumps.</p>
+                         <p class="text-xs font-bold mt-2 text-yellow-700 text-center">Tools: Hybrid Funds, NPS, Index Funds</p>
                     </div>
                     <div class="insight-card">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                         <h4>Adventurous Explorer</h4>
-                        <p>Aims for the stars! Comfortable with market ups & downs for high long-term rewards.</p>
-                         <p class="text-xs font-bold mt-2 text-green-700">Tools: Equity MFs, Stocks</p>
+                        <p class="text-center">Aims for the stars! Comfortable with market ups & downs for high long-term rewards.</p>
+                         <p class="text-xs font-bold mt-2 text-green-700 text-center">Tools: Equity MFs, Stocks</p>
                     </div>
                 </div>
             </div>
@@ -433,7 +443,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-purple-400">
-                 <h2 class="text-center">Why Starting Early is Basically a Cheat Code</h2>
+                <h2 class="text-center">Why Starting Early is Basically a Cheat Code</h2>
                  <p class="text-center text-sm mb-4">Think starting small doesn't matter? Think again! Compounding is magic. Check out Priya vs. Amit. Both invest ₹10k/month for retirement, but Priya starts 10 years earlier...</p>
                  <div class="line-chart-container-div w-full mx-auto">
                     <canvas id="compoundingChart"></canvas>
@@ -453,7 +463,8 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-teal-400">
-                 <h2 class="section-title-secondary">Your 3-Step Goal-Getting Formula</h2>
+                 <!-- REMOVED text-center CLASS FROM H2 -->
+                 <h2 class="section-title-secondary h2-goal-formula">Your 3-Step Goal-Getting Formula</h2>
                  <p class="text-sm mb-4">Ready to make your dreams happen? It's simple:</p>
                  <div class="timeline">
                     <div class="timeline-item">
@@ -494,7 +505,7 @@
             <div class="content-section-card bg-red-50 border-l-4 border-red-500">
                 <h2>Oops! Avoid These Goal-Killing Mistakes</h2>
                 <p class="text-sm text-red-700 mb-4">Even smart people make mistakes! Here are a few common tripwires to watch out for:</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3"> <!-- Reduced gap -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3"> <!-- Reduced gap/margin -->
                     <div class="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="list-icon text-red-600"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
                         <div><h4>Wrong Tool for the Job</h4><p class="text-xs text-gray-700">Using stocks for a 1-year goal? Risky! Match risk to timeline.</p></div>
