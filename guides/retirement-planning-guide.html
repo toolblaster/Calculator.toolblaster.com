@@ -207,7 +207,7 @@
         }
          .pillar-card svg { width: 1.75rem; height: 1.75rem; margin: 0 auto 0.2rem;} /* Squeezed icon */
          .pillar-card h4 { font-size: 0.8rem; font-weight: 700; } /* Squeezed title, bold */
-         .pillar-card p { font-size: 0.65rem; flex-grow: 1; } /* Squeezed text, fill space */
+         .pillar-card p { font-size: 0.65rem; flex-grow: 1; text-align: center;} /* Squeezed text, fill space, Ensure centered */
 
 
         .bucket-grid {
@@ -258,6 +258,7 @@
         .bucket-instruments {
             font-size: 0.65rem; /* Reduced */
             color: #4b5563; /* gray-600 */
+            text-align: center; /* Ensure centered */
         }
 
          /* Adjust main title and intro paragraph */
@@ -272,7 +273,7 @@
             margin-bottom: 0.4rem; /* Squeezed */
             padding-bottom: 0.2rem; /* Squeezed */
             border-bottom: 1px solid #E34037; /* Accent red */
-            text-align: left;
+            /* text-align: left; */ /* Removed: Let Tailwind handle this */
             position: relative;
         }
         /* REMOVED accent line style */
@@ -335,10 +336,13 @@
         .btn-primary { padding: 0.35rem 0.7rem !important; font-size: 0.7rem !important; }
         .btn-secondary { padding: 0.35rem 0.7rem !important; font-size: 0.7rem !important; }
 
-        /* Ensure paragraphs under H2s are left-aligned */
+        /* Ensure paragraphs under H2s default to left, unless explicitly centered */
          .content-section-card p { text-align: left; }
-         /* Keep specific centered paragraphs centered */
          .content-section-card p.text-center { text-align: center; }
+         /* Ensure pillar card paragraphs are centered */
+         .pillar-card p { text-align: center; }
+         /* Ensure bucket card instruments are centered */
+         .bucket-instruments { text-align: center; }
 
     </style>
 </head>
@@ -361,7 +365,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-blue-400">
-                <h2>Behold! The Magic of Compounding ✨</h2>
+                <h2 class="text-center">Behold! The Magic of Compounding ✨</h2>
                 <!-- Conversational Text -->
                 <p class="text-center text-sm mb-4">People call compounding the "eighth wonder of the world" for a reason. It's how small savings magically transform into big bucks over time. Check out the crazy difference below: ₹1 Lakh growing with simple interest vs. compound interest over 30 years (at 12% p.a.). Mind = blown.</p>
                  <!-- Further Squeezed Chart Container -->
@@ -386,8 +390,8 @@
             </div>
 
             <!-- Added border -->
-            <div class="content-section-card bg-gray-50 border-l-yellow-400">
-                <h2>The 3 Must-Haves for a Rock-Solid Retirement</h2>
+            <div class="content-section-card bg-gray-50 border-l-yellow-400 text-center">
+                <h2 class="text-center">The 3 Must-Haves for a Rock-Solid Retirement</h2>
                 <!-- Conversational Text -->
                 <p class="text-center text-sm mb-4">Think of your retirement plan like a sturdy three-legged stool. If one leg is wobbly, the whole thing might tip over! Here are the essentials:</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2"> <!-- Reduced gap -->
@@ -409,7 +413,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-orange-400">
-                <h2>Beware the Silent Thief: Inflation!</h2>
+                <h2 class="text-center">Beware the Silent Thief: Inflation!</h2>
                 <!-- Conversational Text -->
                 <p class="text-center text-sm mb-4">Inflation is like a sneaky Pac-Man, slowly gobbling up the value of your money. That ₹10 Lakhs you have today? In 20 years (at 6% inflation), it'll only buy what about <strong>₹3.1 Lakhs</strong> buys now! This is why just saving isn't enough; you need to <strong>invest</strong> to outrun it.</p>
                 <!-- Further Squeezed Chart Container -->
@@ -420,9 +424,9 @@
 
             <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-purple-400">
-                <h2>So, How Much Do I <strong>Actually</strong> Need?</h2>
+                <h2 class="text-center">So, How Much Do I <strong>Actually</strong> Need?</h2>
                 <!-- Conversational Text -->
-                <p>Alright, the million-dollar question (literally!). While it's super personal, a handy rule of thumb is the <strong>"4% Rule"</strong>. Rough idea: Aim for a retirement pot that's <strong>25 times</strong> what you think you'll spend annually in your first year of retirement. Need ₹1 Lakh a month (₹12 Lakh/year)? Target = <strong>₹3 Crore</strong>. Whoa!</p>
+                <p class="text-center text-sm">Alright, the million-dollar question (literally!). While it's super personal, a handy rule of thumb is the <strong>"4% Rule"</strong>. Rough idea: Aim for a retirement pot that's <strong>25 times</strong> what you think you'll spend annually in your first year of retirement. Need ₹1 Lakh a month (₹12 Lakh/year)? Target = <strong>₹3 Crore</strong>. Whoa!</p>
 
                 <div id="mini-calc-retirement" class="mini-calculator">
                     <div class="mini-calculator-icon">
@@ -444,7 +448,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-teal-400">
-                <h2>Building Your Dream Team: A Sample Portfolio Mix</h2>
+                <h2 class="text-center">Building Your Dream Team: A Sample Portfolio Mix</h2>
                 <!-- Conversational Text -->
                 <p class="text-center text-sm mb-4">Don't put all your eggs in one basket! A good mix (aka 'asset allocation') helps you grow while managing bumps along the road. Here's a sample for someone around 35. Remember, this changes as you get older!</p>
                 <!-- Further Squeezed Pie Chart Container -->
@@ -456,7 +460,7 @@
 
             <!-- Added border -->
             <div class="content-section-card border-l-indigo-400">
-                <h2>Meet the Players: Your Retirement Investment Options</h2>
+                <h2 class="text-center">Meet the Players: Your Retirement Investment Options</h2>
                  <!-- Conversational Text -->
                 <p class="text-center text-sm mb-4">Choosing <strong>where</strong> to invest is key. Here's a quick rundown of the main options in India:</p>
                 <div class="overflow-x-auto">
@@ -515,8 +519,8 @@
             </div>
 
             <!-- Added border -->
-            <div class="content-section-card bg-gray-50 border-l-green-400">
-                <h2>Creating Your Retirement Paycheck: The Awesome 3-Bucket Hack!</h2>
+            <div class="content-section-card bg-gray-50 border-l-green-400 text-center">
+                <h2 class="text-center">Creating Your Retirement Paycheck: The Awesome 3-Bucket Hack!</h2>
                  <!-- Conversational Text -->
                 <p class="text-center text-sm mb-4">Okay, you've retired, sitting on a nice pile of cash. Now what? You need a system to draw income without stressing about market crashes. Enter the super-smart <strong>3-Bucket Strategy</strong>:</p>
                 <div class="bucket-grid">
@@ -525,27 +529,27 @@
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                         </div>
                         <h3 class="bucket-title text-blue-800">Bucket 1: Now Money</h3>
-                        <p class="bucket-timeline">(1-2 Years Expenses)</p>
-                        <p class="bucket-purpose">Your everyday cash stash. Covers immediate bills. Super safe, instantly available.</p>
-                        <p class="bucket-instruments"><strong>Keep In:</strong> Savings A/C, Liquid Funds.</p>
+                        <p class="bucket-timeline text-center">(1-2 Years Expenses)</p>
+                        <p class="bucket-purpose text-center">Your everyday cash stash. Covers immediate bills. Super safe, instantly available.</p>
+                        <p class="bucket-instruments text-center"><strong>Keep In:</strong> Savings A/C, Liquid Funds.</p>
                     </div>
                     <div class="bucket-card">
                         <div class="bucket-icon">
                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M7 12v4"/><path d="M12 12v4"/><path d="M17 12v4"/><path d="M5 8v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg>
                         </div>
                         <h3 class="bucket-title text-green-800">Bucket 2: Soon Money</h3>
-                        <p class="bucket-timeline">(3-5 Years Expenses)</p>
-                        <p class="bucket-purpose">Your reliable income generator. Set up your monthly SWP (Systematic Withdrawal Plan) from here.</p>
-                        <p class="bucket-instruments"><strong>Keep In:</strong> Short-Term Debt Funds, Bonds, Annuities.</p>
+                        <p class="bucket-timeline text-center">(3-5 Years Expenses)</p>
+                        <p class="bucket-purpose text-center">Your reliable income generator. Set up your monthly SWP (Systematic Withdrawal Plan) from here.</p>
+                        <p class="bucket-instruments text-center"><strong>Keep In:</strong> Short-Term Debt Funds, Bonds, Annuities.</p>
                     </div>
                     <div class="bucket-card">
                         <div class="bucket-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
                         </div>
                         <h3 class="bucket-title text-purple-800">Bucket 3: Later Money</h3>
-                        <p class="bucket-timeline">(6+ Years Expenses)</p>
-                        <p class="bucket-purpose">Your growth engine! This fights inflation and refills the other buckets over time.</p>
-                        <p class="bucket-instruments"><strong>Keep In:</strong> Equity Mutual Funds, Index Funds.</p>
+                        <p class="bucket-timeline text-center">(6+ Years Expenses)</p>
+                        <p class="bucket-purpose text-center">Your growth engine! This fights inflation and refills the other buckets over time.</p>
+                        <p class="bucket-instruments text-center"><strong>Keep In:</strong> Equity Mutual Funds, Index Funds.</p>
                     </div>
                 </div>
                  <div class="alert alert-info mt-4 text-center"> <!-- Reduced margin -->
