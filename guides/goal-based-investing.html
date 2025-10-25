@@ -129,33 +129,35 @@
         .goal-card {
             background-color: #fff;
             border-radius: 0.5rem; /* Reduced */
-            padding: 1rem; /* Reduced */
+            padding: 0.75rem; /* Further reduced padding */
             border: 1px solid #e5e7eb; /* gray-200 */
             transition: all 0.3s ease;
             height: 100%; /* Make cards equal height in a row */
             display: flex; /* Flex layout */
             flex-direction: column; /* Stack content vertically */
+            align-items: center; /* ADDED for centering content horizontally */
+            text-align: center; /* ADDED for centering inline content */
         }
         .goal-card:hover {
             transform: translateY(-3px); /* Slightly more lift */
             box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
         }
         .goal-card .icon-container {
-            width: 36px; /* Reduced */
-            height: 36px; /* Reduced */
+            width: 32px; /* Further Reduced */
+            height: 32px; /* Further Reduced */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 0.5rem; /* Reduced */
+            margin-bottom: 0.4rem; /* Further Reduced */
         }
-         .goal-card .icon-container svg { width: 18px; height: 18px; } /* Reduced icon */
+         .goal-card .icon-container svg { width: 16px; height: 16px; } /* Further Reduced icon */
          .goal-card h3 { font-size: 0.8rem; margin-bottom: 0.1rem; font-weight: 700;} /* Squeezed H3, bold */
          .goal-card .text-xs { font-size: 0.65rem; } /* Squeezed small text */
          .goal-card .text-sm { font-size: 0.7rem; } /* Squeezed text */
-         .goal-card .mb-2 { margin-bottom: 0.25rem; } /* Reduced margin */
-         .goal-card .mb-4 { margin-bottom: 0.5rem; } /* Reduced margin */
-         .goal-card .bg-blue-50, .goal-card .bg-yellow-50, .goal-card .bg-green-50 { padding: 0.5rem; border-radius: 0.25rem;} /* Squeezed inner box, radius */
+         .goal-card .mb-2 { margin-bottom: 0.2rem; } /* Further Reduced margin */
+         .goal-card .mb-4 { margin-bottom: 0.4rem; } /* Further Reduced margin */
+         .goal-card .bg-blue-50, .goal-card .bg-yellow-50, .goal-card .bg-green-50 { padding: 0.4rem; border-radius: 0.25rem;} /* Further Squeezed inner box, radius */
          .goal-card h4 { font-size: 0.7rem; margin-bottom: 0.1rem;} /* Squeezed H4 */
          .goal-card .text-xs.text-blue-700, .goal-card .text-xs.text-yellow-700, .goal-card .text-xs.text-green-700 { font-size: 0.65rem; } /* Squeezed investment text */
          /* Ensure content below title fills space */
@@ -356,7 +358,7 @@
 
             <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-blue-400">
-                <h2 class="text-center">Your Goals, Your Plan: Match Strategy to Timeline! </h2>
+                <h2 class="text-center">Your Goals, Your Plan: Match Strategy to Timeline! 🗺️</h2>
                 <p class="text-center text-sm mb-4">The secret sauce? Pick investments based on <strong>when</strong> you need the money. Let's break it down:</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2"> <!-- Reduced gap -->
                     <!-- Short-Term -->
@@ -364,7 +366,7 @@
                         <div class="icon-container bg-blue-100 text-blue-600"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
                         <h3>Short-Term Hustle</h3>
                         <p class="text-xs font-semibold text-gray-500 mb-2">(<strong>1-3 Years</strong>)</p>
-                        <p class="text-sm text-gray-600 mb-4"><strong>Think:</strong> That dream vacation, fancy gadget, bike down payment.</p>
+                        <p class="text-sm text-gray-600 mb-4"><strong>Think:</strong> Vacation, gadget, bike down payment.</p>
                         <h4>Job: <strong>Keep it Safe!</strong></h4>
                         <div class="bg-blue-50 p-2 rounded-lg text-xs text-blue-700"><strong>Your Tools:</strong> Savings A/C, Liquid Funds, <a href="sip-vs-rd.html" class="font-semibold">RDs</a>, Short FDs.</div>
                     </div>
@@ -373,7 +375,7 @@
                          <div class="icon-container bg-yellow-100 text-yellow-600"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><path d="M16 16-4-4-4 4"/><path d="M8 8l4 4 4-4"/></svg></div>
                         <h3>Mid-Term Mission</h3>
                         <p class="text-xs font-semibold text-gray-500 mb-2">(<strong>3-7 Years</strong>)</p>
-                        <p class="text-sm text-gray-600 mb-4"><strong>Think:</strong> Car down payment, home renovation, starting a side biz.</p>
+                        <p class="text-sm text-gray-600 mb-4"><strong>Think:</strong> Car down payment, home renovation.</p>
                         <h4>Job: <strong>Mix Safety & Growth</strong></h4>
                         <div class="bg-yellow-50 p-2 rounded-lg text-xs text-yellow-700"><strong>Your Tools:</strong> Hybrid Funds, Debt Funds, Corp Bonds.</div>
                     </div>
@@ -382,7 +384,7 @@
                        <div class="icon-container bg-green-100 text-green-600"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg></div>
                         <h3>Long-Term Legacy</h3>
                         <p class="text-xs font-semibold text-gray-500 mb-2">(<strong>7+ Years</strong>)</p>
-                        <p class="text-sm text-gray-600 mb-4"><strong>Think:</strong> <a href="retirement-planning-guide.html">Retirement</a>, kid's college fund, dream home.</p>
+                        <p class="text-sm text-gray-600 mb-4"><strong>Think:</strong> <a href="retirement-planning-guide.html">Retirement</a>, kid's college fund.</p>
                          <h4>Job: <strong>Go for Growth!</strong></h4>
                         <div class="bg-green-50 p-2 rounded-lg text-xs text-green-700"><strong>Your Tools:</strong> Equity <a href="beginner-investing-guide.html">Mutual Funds (SIP)</a>, PPF, NPS.</div>
                     </div>
