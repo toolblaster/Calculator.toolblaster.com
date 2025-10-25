@@ -109,7 +109,7 @@
             text-align: center;
             color: #4b5563; /* gray-600 */
         }
-        /* Section Titles (H2) */
+        /* Section Titles (H2) - Default to left alignment */
         .legal-content h2 {
            font-size: 1rem; /* Squeezed H2 */
             border-bottom: 1px solid #E34037;
@@ -117,8 +117,17 @@
            margin-bottom: 0.5rem;
            color: #1f2937;
            font-weight: 700;
-           text-align: left; /* Keep H2 left aligned */
+           text-align: left; /* Default to left */
         }
+        /* Style ONLY for the specific ID to be centered */
+        #h2-car-dashboard {
+            text-align: center !important; /* Ensure it overrides general rule */
+        }
+        /* Style for other explicitly centered H2s */
+        .legal-content h2.text-center {
+            text-align: center;
+        }
+
         /* REMOVED accent line style */
          .legal-content h2::after { display: none; }
          .legal-content .text-center h2::after { display: none; }
@@ -265,17 +274,17 @@
 
 
         /* Squeezed Pillars Section Styles */
-         .pillar-item { margin-bottom: 0.5rem; } /* Further Squeezed */
+         .pillar-item { margin-bottom: 0.3rem; } /* Further Squeezed */
          .pillar-item h3 {
-            font-size: 0.8rem; /* Squeezed */
+            font-size: 0.75rem; /* Further Squeezed H3 */
             font-weight: 700;
             display: flex;
             align-items: center; /* Center icon and text vertically */
-            gap: 0.4rem; /* Squeezed */
-            margin-bottom: 0.2rem; /* Squeezed */
+            gap: 0.3rem; /* Further Squeezed */
+            margin-bottom: 0.1rem; /* Further Squeezed */
          }
-         .pillar-item h3 svg { width: 16px; height: 16px; color: #E34037;} /* Squeezed */
-         .pillar-item p { margin-left: calc(16px + 0.4rem); font-size: 0.7rem;} /* Align text under icon */
+         .pillar-item h3 svg { width: 14px; height: 14px; color: #E34037;} /* Further Squeezed */
+         .pillar-item p { margin-left: calc(14px + 0.3rem); font-size: 0.65rem;} /* Further Squeezed P */
 
 
         /* Squeezed Chart Container Styles */
@@ -334,10 +343,7 @@
         .debt-strategy-card .text-xs.font-semibold { font-size: 0.65rem; margin-top: 0.5rem;} /* Squeezed */
         .debt-strategy-card li { margin-bottom: 0.3rem;} /* Squeeze list items */
 
-        .asset-allocation-item { margin-bottom: 0.4rem !important; } /* Squeezed */
-        .asset-allocation-item svg.list-icon { width: 14px; height: 14px;} /* Squeezed */
-        .asset-allocation-item h3 { font-size: 0.75rem; margin-bottom: 0.1rem;} /* Squeezed */
-        .asset-allocation-item p { font-size: 0.7rem; } /* Squeezed */
+        /* Removed .asset-allocation-item styles as they are replaced */
 
         /* Ensure paragraphs under H2s are left-aligned */
          .content-section-card p {
@@ -362,9 +368,9 @@
             <h1>Your Guide to Financial Health & Wellness</h1>
             <p>Feeling anxious about your finances? You're not alone. Financial wellness isn't about getting rich quick; it's about building a strong foundation that gives you peace of mind and the freedom to live the life you want. This guide is your friendly roadmap to getting there.</p>
 
-            <!-- Added border -->
+            <!-- Added border and ID for specific centering -->
             <div class="content-section-card border-l-blue-400">
-              <h2 class="section-title-secondary text-center">What is Financial Health? Think Car Dashboard!</h2>
+              <h2 id="h2-car-dashboard" class="section-title-secondary">What is Financial Health? Think Car Dashboard!</h2>
               <p class="text-sm text-gray-700 mb-4 text-center">Your financial health is a snapshot of your money situation. Like a car's dashboard, key indicators tell you if you're cruising smoothly or need a check-up.</p>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div class="dashboard-card">
@@ -460,7 +466,8 @@
             <div class="content-section-card bg-gray-50 border-l-orange-400">
                 <h2 class="section-title-secondary">The Four Pillars of a Strong Financial House</h2>
                 <p class="text-sm text-gray-700 mb-4">Think of your financial life like building a house. You need these four strong pillars:</p>
-                <ul class="space-y-4">
+                <!-- Further Squeezed list spacing -->
+                <ul class="space-y-3">
                     <li class="pillar-item">
                          <div> <!-- Div needed for correct alignment with padding -->
                             <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pillar 1: Income & Spending (Foundation)</h3>
@@ -556,36 +563,38 @@
                 <p class="text-sm text-gray-700 mb-4 text-center">A diversified portfolio is key to managing risk. This is a sample asset allocation for a balanced investor, a core concept for growing your wealth.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-center"> <!-- Reduced gap -->
                     <div class="chart-container-div mx-auto"><canvas id="assetAllocationChart"></canvas></div>
-                    <ul class="space-y-3 asset-allocation-item">
-                        <li class="icon-list-item">
-                            <svg class="list-icon text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
-                            <div>
-                                <h3>Equity (60%)</h3>
-                                <p>Engine of portfolio. Invest via <a href="beginner-investing-guide.html" class="font-semibold text-red-700 hover:text-red-800">Mutual Funds (SIP)</a> for long-term growth.</p>
-                            </div>
-                        </li>
-                        <li class="icon-list-item">
-                           <svg class="list-icon text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            <div>
-                                <h3>Debt (30%)</h3>
-                                <p>Stabilizer. PPF, EPF, Debt Funds provide stability.</p>
-                            </div>
-                        </li>
-                        <li class="icon-list-item">
-                            <svg class="list-icon text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.83 1.83C11.5 1.17 12.5 1.17 13.17 1.83L17.5 6.17C18.17 6.83 18.17 7.83 17.5 8.5L8.5 17.5C7.83 18.17 6.83 18.17 6.17 17.5L1.83 13.17C1.17 12.5 1.17 11.5 1.83 10.83L10.83 1.83Z"/><line x1="16" y1="8" x2="24" y2="0"/><line x1="0" y1="24" x2="8" y2="16"/></svg>
-                            <div>
-                                <h3>Gold/Alt (10%)</h3>
-                                <p>Diversifier. Gold hedges against market volatility.</p>
-                            </div>
-                        </li>
+                    <!-- RESTRUCTURED Asset Allocation List using icon-list-item structure -->
+                    <ul class="space-y-3">
+                         <li class="icon-list-item">
+                             <svg class="list-icon text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>
+                             <div>
+                                 <h4>Equity (60%)</h4>
+                                 <p>Engine of portfolio. Invest via <a href="beginner-investing-guide.html" class="font-semibold text-red-700 hover:text-red-800">Mutual Funds (SIP)</a> for long-term growth.</p>
+                             </div>
+                         </li>
+                         <li class="icon-list-item">
+                            <svg class="list-icon text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                             <div>
+                                 <h4>Debt (30%)</h4>
+                                 <p>Stabilizer. PPF, EPF, Debt Funds provide stability.</p>
+                             </div>
+                         </li>
+                         <li class="icon-list-item">
+                             <svg class="list-icon text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.83 1.83C11.5 1.17 12.5 1.17 13.17 1.83L17.5 6.17C18.17 6.83 18.17 7.83 17.5 8.5L8.5 17.5C7.83 18.17 6.83 18.17 6.17 17.5L1.83 13.17C1.17 12.5 1.17 11.5 1.83 10.83L10.83 1.83Z"/><line x1="16" y1="8" x2="24" y2="0"/><line x1="0" y1="24" x2="8" y2="16"/></svg>
+                             <div>
+                                 <h4>Gold/Alt (10%)</h4>
+                                 <p>Diversifier. Gold hedges against market volatility.</p>
+                             </div>
+                         </li>
                     </ul>
+                     <!-- End RESTRUCTURED List -->
                 </div>
             </div>
 
             <!-- Added border -->
             <div class="content-section-card cta-section border-l-red-400">
                 <h2>Ready for Your Financial Check-up?</h2>
-                <p>Get your personalized report card and action plan in under 5 minutes. It's free, anonymous, and the best step you can take today!</p>
+                <p class="text-center">Get your personalized report card and action plan in under 5 minutes. It's free, anonymous, and the best step you can take today!</p>
                 <a href="../quizzes/financial-health-assessment.html" class="cta-button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
                     <span>Take Your Free Assessment Now</span>
