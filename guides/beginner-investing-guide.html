@@ -150,7 +150,7 @@
             color: #1f2937; /* gray-800 */
             margin-bottom: 0.3rem; /* Further Squeezed margin */
             padding-bottom: 0.2rem; /* Squeezed padding */
-            text-align: left; /* Default Left */
+            /* text-align: left; */ /* REMOVED Default Left alignment */
             position: relative;
             border-bottom: none;
         }
@@ -162,14 +162,15 @@
             height: 2px;
             background-color: #E34037; /* Accent red */
             margin-top: 0.2rem; /* Squeezed margin */
+             /* Default to left alignment for the line */
+            margin-left: 0;
+            margin-right: auto;
         }
-        /* Center accent line if needed */
-        .content-section-card.text-center h2::after, .section-title-secondary.text-center::after {
+        /* Center accent line if text-center class is present on H2 */
+        .content-section-card h2.text-center::after, .section-title-secondary.text-center::after {
             margin-left: auto; margin-right: auto;
         }
-        /* Left align title and accent line */
-         .title-left-align { text-align: left !important; }
-         .title-left-align::after { margin-left: 0; margin-right: auto;}
+
 
         .content-section-card h3 { /* Subsection Titles (H3) */
             font-size: 0.75rem; /* Further Squeezed H3 */
@@ -862,6 +863,7 @@
 
             <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-green-400">
+                 <!-- UPDATED: Added text-center class to H2 -->
                 <h2 class="section-title-secondary text-center">Your Investor's Toolkit</h2>
                 <p class="text-xs text-center text-gray-600 mt-1 mb-3">Priya's journey starts now. Here are tools for each stage:</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2"> <!-- Squeezed -->
@@ -891,7 +893,8 @@
 
             <!-- Added border -->
             <div class="content-section-card text-center border-l-blue-400">
-                <h2>Ready to Start Your Own Journey?</h2>
+                <!-- UPDATED: Added text-center class to H2 -->
+                <h2 class="section-title-secondary text-center">Ready to Start Your Own Journey?</h2>
                 <p class="mb-3 text-sm">You can turn uncertainty into a clear plan. The best time was yesterday. The next best? Today.</p>
                 <div class="flex flex-col sm:flex-row gap-2 justify-center"> <!-- Squeezed -->
                     <a href="../" class="btn-primary">Explore Calculators</a>
@@ -904,6 +907,7 @@
 
             <!-- Added border -->
             <div class="content-section-card bg-gray-50 border-l-purple-400">
+                <!-- UPDATED: Added text-center class to H2 -->
                 <h2 class="section-title-secondary text-center">Frequently Asked Questions (FAQ)</h2>
                 <div class="faq-container">
                     <details class="faq-item"><summary>Minimum amount to start investing?</summary><p>Just ₹500/month for most SIPs! Consistency matters more.</p></details>
