@@ -200,16 +200,94 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-
 /* Print-specific styles */
 @media print {
-    body * { visibility: hidden; }
-    .print-area, .print-area * { visibility: visible; }
-    .print-area { position: absolute; left: 0; top: 0; width: 100%; }
-    .modal-actions, .close-modal-btn, .modal-share-section { display: none !important; }
-    .share-modal-content { border: none; box-shadow: none; width: 100%; max-width: 100%; margin: 0; padding: 0;}
-    .share-modal { background-color: white !important; display: block !important; position: relative !important; height: auto !important; }
-    .modal-title { font-size: 16pt; } /* Adjust print font sizes */
-    .modal-report-content { font-size: 10pt; }
-    .modal-report-content h3 { font-size: 12pt; }
+    /* --- UPDATED: Use display: none to hide --- */
+    body * {
+        display: none !important; /* Hide everything by default using display */
+    }
+
+    /* --- UPDATED: Make ONLY the modal report content and its children display --- */
+    #modalReportContent, #modalReportContent * {
+        display: block !important; /* Make the container block */
+        visibility: visible !important; /* Keep visibility just in case */
+    }
+     #modalReportContent li span {
+        display: inline-block !important; /* Spans should be inline-block */
+    }
+
+
+    /* Style the report content container for printing */
+    #modalReportContent {
+        /* REMOVED: position: absolute !important; */
+        /* REMOVED: left: 0 !important; */
+        /* REMOVED: top: 0 !important; */
+        width: 100% !important; /* Use full page width */
+        margin: 0 !important; /* Reset margins */
+        padding: 20px !important; /* Add some padding for print */
+        border: none !important; /* Remove borders */
+        box-shadow: none !important; /* Remove shadows */
+        background-color: white !important; /* Ensure white background */
+        color: black !important; /* Ensure black text */
+        font-size: 10pt !important; /* Set a base print font size */
+        line-height: 1.4 !important; /* Improve print readability */
+        transform: none !important; /* Remove transform */
+    }
+    /* --- END UPDATE --- */
+
+    /* Hide specific elements not needed for print (redundant but safe) */
+    .share-modal, .share-modal-content, .modal-actions, .close-modal-btn, .modal-share-section, .site-header, .site-footer, #header-placeholder, #footer-placeholder, #calculator, #dynamic-content-area, .financial-calculator-wrapper button, .financial-calculator-wrapper select, .financial-calculator-wrapper input[type="range"], canvas, #recommendationBox {
+        display: none !important;
+        visibility: hidden !important;
+        position: static !important;
+    }
+
+
+    /* Style the report content specifically for print */
+    #modalReportContent h3 {
+        font-size: 12pt !important;
+        font-weight: bold !important;
+        color: black !important;
+        margin-top: 0 !important;
+        margin-bottom: 10px !important;
+        border-bottom: 1px solid #ccc !important;
+        padding-bottom: 5px !important;
+        page-break-after: avoid !important;
+        display: block !important; /* Ensure heading displays */
+    }
+    #modalReportContent ul {
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important; /* Ensure list displays */
+    }
+    #modalReportContent li {
+        display: block !important; /* Ensure list items display */
+        padding: 4px 0 !important;
+        border-bottom: 1px dashed #eee !important;
+        page-break-inside: avoid !important;
+    }
+     #modalReportContent li:last-child {
+        border-bottom: none !important;
+    }
+     #modalReportContent li span:first-child {
+         width: 60%;
+         font-weight: normal !important;
+         color: #333 !important;
+         display: inline-block !important; /* Ensure spans display */
+     }
+     #modalReportContent li span:last-child {
+         width: 35%;
+         font-weight: bold !important;
+         text-align: right !important;
+         color: black !important;
+         display: inline-block !important; /* Ensure spans display */
+     }
+     /* Reset potential conflicting inline styles */
+     #modalReportContent li[style*="font-size"] span { font-size: 10pt !important; }
+     #modalReportContent li[style*="font-weight"] span { font-weight: normal !important; }
+     #modalReportContent li[style*="font-weight"] span:last-child { font-weight: bold !important; }
+     #modalReportContent li[style*="color"] span { color: black !important; }
+     #modalReportContent li[style*="color"] span:first-child { color: #333 !important; }
+
 }
