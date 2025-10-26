@@ -326,9 +326,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
         const navOverlay = document.querySelector('.nav-overlay');
-
+        const dropdownParent = document.querySelector('.dropdown');
+        const dropdownLink = document.querySelector('.dropdown > a');
+        
         if (hamburger && navLinks && navOverlay) {
              console.log("[Script] Setting up mobile menu listeners."); // Debug log
+            
             hamburger.addEventListener('click', (e) => {
                 e.stopPropagation();
                 toggleMenu();
@@ -337,12 +340,44 @@ document.addEventListener('DOMContentLoaded', () => {
             navOverlay.addEventListener('click', () => {
                 toggleMenu();
             });
-            // Close menu if a link inside it is clicked
+            
+            // NEW: Handle clicks on ANY link within the active menu to close the menu
+            // This includes top-level links and sub-menu links
             navLinks.addEventListener('click', (e) => {
                  if (e.target.tagName === 'A' && navLinks.classList.contains('active')) {
-                     toggleMenu();
+                     // We only want to close the menu if the link is NOT the dropdown toggle
+                     // If it is the dropdown link, the dropdownLink listener will handle the toggle
+                     if (!e.target.closest('.dropdown > a')) {
+                         // A slight delay ensures navigation starts before closing the menu
+                         setTimeout(toggleMenu, 50); 
+                     }
                  }
             });
+            
+            // Handle clicks on top-level menu item without closing (desktop dropdown behavior)
+             navLinks.querySelectorAll('li:not(.dropdown) > a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // If the menu is not active (i.e., on desktop), navigation happens normally.
+                    if (navLinks.classList.contains('active')) {
+                        // On mobile, the click will also be caught by the general navLinks listener above
+                        // which ensures toggleMenu() runs after navigation starts.
+                    }
+                });
+            });
+            
+            // Handle mobile dropdown toggle
+            if (dropdownLink && dropdownParent) {
+                dropdownLink.addEventListener('click', (e) => {
+                    // Only apply this behavior on mobile/when the menu is active
+                    if (navLinks.classList.contains('active') || window.innerWidth <= 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dropdownParent.classList.toggle('open');
+                        console.log("[Script] Mobile dropdown toggled.");
+                    }
+                });
+            }
+
         } else {
              console.warn("[Script] Hamburger, navLinks, or navOverlay not found. Cannot set up mobile menu."); // Debug log
         }
@@ -353,6 +388,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 navLinks.classList.toggle('active');
                 navOverlay.classList.toggle('active');
                  console.log("[Script] Mobile menu toggled."); // Debug log
+                 
+                 // If closing, ensure dropdown is closed too
+                 if (!navLinks.classList.contains('active') && dropdownParent) {
+                     dropdownParent.classList.remove('open');
+                 }
             }
         }
     };
