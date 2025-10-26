@@ -3,86 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Financial Health Check: What's Your Next Move? - Calculator.toolblaster</title>
-    
-    <meta name="description" content="Take our advanced financial quiz to get a personalized primary and secondary action plan. Discover your next best move for building wealth and achieving financial security.">
+    <!-- Updated Meta Title (58 chars) -->
+    <title>Quiz: What's Your Next Best Financial Move? Action Plan</title>
+    <!-- Updated Meta Description (157 chars) -->
+    <meta name="description" content="Take our quick financial quiz for a personalized primary & secondary action plan. Discover your next best move for building wealth and achieving security.">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- Include styles needed for buttons -->
+    <link rel="stylesheet" href="../calculators/financial-calculator/calculator-style.css">
+
 
     <style>
+        /* --- General Quiz Container --- */
         .quiz-container {
-            max-width: 700px;
-            margin: 2rem auto;
+            max-width: 650px; /* Slightly narrower */
+            margin: 1.5rem auto; /* Reduced margin */
             background-color: #ffffff;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 1.25rem; /* Slightly reduced padding */
+            border-radius: 0.75rem; /* More rounded */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.07); /* Softer shadow */
+            border: 1px solid #e5e7eb; /* Subtle border */
             overflow: hidden;
         }
+
+        /* --- Quiz Header --- */
+        .quiz-header {
+            text-align: center;
+            padding: 1rem 0.5rem; /* Adjusted padding */
+            background-color: #fef2f2; /* red-50 */
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem; /* Spacing below header */
+            border: 1px solid #fee2e2; /* red-100 */
+        }
+        .quiz-header h1 {
+            font-size: 1.1rem; /* Slightly smaller */
+            font-weight: 800; /* Bolder */
+            color: #1f2937; /* gray-800 */
+            margin-bottom: 0.25rem;
+            position: relative;
+             padding-bottom: 0.4rem;
+        }
+         /* Accent line below H1 */
+        .quiz-header h1::after {
+            content: ''; display: block; width: 40px; height: 3px;
+            background-color: #E34037; /* Accent red */
+            margin: 0.4rem auto 0;
+        }
+        .quiz-header p {
+            color: #4b5563; /* gray-600 */
+            font-size: 0.7rem; /* Smaller */
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        /* --- Progress Bar --- */
         #progress-bar-container {
             width: 100%;
-            background-color: #e5e7eb;
+            background-color: #e5e7eb; /* gray-200 */
             border-radius: 999px;
-            height: 8px;
-            margin-bottom: 0.5rem;
+            height: 10px; /* Slightly thicker */
+            margin-bottom: 0.25rem; /* Reduced margin */
+            overflow: hidden; /* Ensure gradient stays contained */
         }
         #progress-bar {
             height: 100%;
             width: 0%;
-            background-color: #E34037;
+            /* Updated to Gradient */
+            background: linear-gradient(90deg, #f87171 0%, #E34037 100%); /* red-400 to accent */
             border-radius: 999px;
             transition: width 0.4s ease-in-out;
         }
         .progress-text {
             text-align: center;
-            font-size: 0.7rem;
-            color: #4b5563;
-            margin-bottom: 1.5rem;
+            font-size: 0.65rem; /* Smaller */
+            font-weight: 500;
+            color: #6b7280; /* gray-500 */
+            margin-bottom: 1.25rem; /* Reduced margin */
         }
+
+        /* --- Questions & Options --- */
         .question-block.active { display: block; }
         .question-block { display: none; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         
-        .question-text { font-size: 0.85rem; font-weight: 600; color: #1f2d37; margin-bottom: 1rem; }
+        .question-text { 
+            font-size: 0.8rem; /* Smaller */
+            font-weight: 600; 
+            color: #1f2d37; 
+            margin-bottom: 0.75rem; /* Reduced margin */
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed #d1d5db; /* Separator */
+        }
         
         .option-label {
-            display: block;
-            padding: 0.6rem 0.8rem;
-            border: 1px solid #d1d5db;
-            border-radius: 0.375rem;
+            display: flex; /* Use flex for alignment */
+            align-items: center; /* Vertically align */
+            padding: 0.6rem 0.8rem; /* Adjusted padding */
+            border: 1px solid #d1d5db; /* gray-300 */
+            border-radius: 0.5rem; /* More rounded */
             margin-bottom: 0.5rem;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
-            font-size: 0.75rem;
+            font-size: 0.7rem; /* Smaller */
+            background-color: #fff;
+            position: relative; /* For pseudo-element checkmark */
         }
-        .option-label:hover { background-color: #f9fafb; border-color: #E34037; }
+        .option-label:hover { 
+            background-color: #f9fafb; 
+            border-color: #E34037; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
         .option-label input { display: none; }
-        .option-label.selected { background-color: #fef2f2; border-color: #E34037; color: #C22D2D; font-weight: 500; }
+        .option-label.selected { 
+            background-color: #fef2f2; /* red-50 */
+            border-color: #E34037; 
+            color: #B91C1C; /* Darker red */
+            font-weight: 600; 
+            box-shadow: 0 3px 6px rgba(227, 64, 55, 0.1);
+        }
+        /* Checkmark Styling */
+        .option-label::before {
+            content: '';
+            display: inline-block;
+            width: 14px; /* Size of circle */
+            height: 14px;
+            border: 1px solid #9ca3af; /* gray-400 */
+            border-radius: 50%;
+            margin-right: 0.6rem; /* Space */
+            background-color: #fff;
+            transition: all 0.2s ease;
+        }
+        .option-label.selected::before {
+             background-color: #E34037;
+             border-color: #E34037;
+             box-shadow: inset 0 0 0 2px white; /* Inner circle effect */
+        }
         
+        /* --- Results Section --- */
         #results-content { display: none; text-align: center; }
         
         .results-header {
-            background-color: #fef2f2;
+            background-color: #fef2f2; /* red-50 */
             border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid #fca5a5;
+            padding: 1rem 1rem; /* Adjusted padding */
+            margin-bottom: 1rem; /* Reduced margin */
+            border: 1px solid #fecaca; /* red-200 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
         #result-header-icon {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 1rem;
-            color: #C22D2D;
+            width: 40px; /* Smaller */
+            height: 40px;
+            margin: 0 auto 0.75rem; /* Reduced margin */
+            color: #B91C1C; /* Darker red */
         }
-        .result-title { font-size: 1.2rem; font-weight: 700; color: #1f2d37; margin-bottom: 0.25rem; }
-        .result-description { font-size: 0.8rem; color: #4b5563; }
+        .result-title { 
+            font-size: 1.1rem; /* Slightly smaller */
+            font-weight: 800; 
+            color: #1f2d37; 
+            margin-bottom: 0.1rem; 
+        }
+        .result-description { 
+            font-size: 0.75rem; /* Smaller */
+            color: #4b5563; 
+        }
         
         .action-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 1rem; /* Reduced gap */
         }
         @media (min-width: 640px) {
             .action-grid { grid-template-columns: 1fr 1fr; }
@@ -92,119 +182,143 @@
             background-color: #ffffff;
             border: 1px solid #e5e7eb;
             border-radius: 0.5rem;
-            padding: 1rem;
+            padding: 1rem; /* Consistent padding */
             text-align: left;
-            display: flex; /* UPDATED */
-            flex-direction: column; /* UPDATED */
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.04);
+            transition: box-shadow 0.3s ease;
         }
+         .action-card:hover { box-shadow: 0 6px 12px rgba(0,0,0,0.08); }
         .action-card.primary {
-            background-color: #fef2f2;
-            border-color: #fca5a5;
+            background-color: #fff; /* Keep base white */
+            border-left: 4px solid #E34037; /* Accent border */
         }
         .action-card.secondary {
-            background-color: #eef2ff;
-            border-color: #c7d2fe;
+            background-color: #fff; /* Keep base white */
+            border-left: 4px solid #4f46e5; /* indigo-600 */
         }
         .action-card-header {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem; /* Reduced margin */
         }
         .action-card-header .tag {
-            font-size: 0.65rem;
+            font-size: 0.6rem; /* Smaller */
             font-weight: 700;
-            padding: 0.125rem 0.5rem;
+            padding: 0.1rem 0.5rem; /* Adjusted padding */
             border-radius: 999px;
             color: white;
+            text-transform: uppercase;
         }
-        .action-card.primary .action-card-header .tag { background-color: #C22D2D; }
-        .action-card.secondary .action-card-header .tag { background-color: #4338ca; }
-        .action-card-header h4 { font-size: 0.9rem; font-weight: 700; color: #1f2d37; }
+        .action-card.primary .action-card-header .tag { background-color: #E34037; }
+        .action-card.secondary .action-card-header .tag { background-color: #4f46e5; }
+        .action-card-header h4 { 
+            font-size: 0.85rem; /* Smaller */
+            font-weight: 700; 
+            color: #1f2d37; 
+        }
         .action-card .reason { 
-            font-size: 0.7rem; 
+            font-size: 0.7rem; /* Smaller */
             color: #4b5563; 
-            margin-bottom: 0.75rem; 
+            margin-bottom: 0.75rem; /* Reduced margin */
             font-style: italic;
-            flex-grow: 1; /* UPDATED: This makes the text fill available space */
+            flex-grow: 1; 
+            border-left: 2px solid #e5e7eb; /* Subtle indent line */
+            padding-left: 0.5rem;
         }
         .action-card ul { list-style: none; padding: 0; }
-        .action-card li { margin-bottom: 0.5rem; }
+        .action-card li { margin-bottom: 0.4rem; } /* Reduced margin */
         .action-card a {
-            display: flex;
+            display: inline-flex; /* Changed to inline-flex */
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem; /* Reduced gap */
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.8rem;
-            transition: color 0.2s;
+            font-size: 0.75rem; /* Smaller */
+            transition: color 0.2s, background-color 0.2s, transform 0.2s;
+            padding: 0.2rem 0.4rem; /* Padding for hover effect */
+            border-radius: 0.25rem;
         }
         .action-card.primary a { color: #C22D2D; }
         .action-card.secondary a { color: #4f46e5; }
-        .action-card.primary a:hover { color: #991b1b; }
-        .action-card.secondary a:hover { color: #3730a3; }
-        .action-card a svg { width: 16px; height: 16px; }
+        .action-card.primary a:hover { color: #991b1b; background-color: #fee2e2; transform: translateX(2px);}
+        .action-card.secondary a:hover { color: #3730a3; background-color: #e0e7ff; transform: translateX(2px);}
+        .action-card a svg { width: 14px; height: 14px; } /* Smaller icon */
 
         .what-if-card {
-            background-color: #fff;
+            background-color: #f9fafb; /* gray-50 */
             border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin-top: 1rem;
+            border-radius: 0.375rem; /* Smaller radius */
+            padding: 0.75rem; /* Reduced padding */
+            margin-top: 0.75rem; /* Reduced margin */
         }
         .what-if-card h5 {
-            font-size: 0.8rem;
+            font-size: 0.75rem; /* Smaller */
             font-weight: 600;
             color: #1f2d37;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.3rem; /* Reduced margin */
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
+         .what-if-card h5 svg { width: 14px; height: 14px; color: #16a34a; } /* Smaller icon */
         .what-if-body {
-            font-size: 0.75rem;
+            font-size: 0.7rem; /* Smaller */
             color: #4b5563;
         }
         .what-if-body strong {
-            color: #16a34a;
+            color: #16a34a; /* green-600 */
         }
 
-        .title-with-accent::after {
-            content: ''; display: block; width: 50px; height: 3px;
-            background-color: #E34037; margin: 0.75rem auto 0;
-        }
+        /* --- Buttons --- */
         #retake-quiz-btn {
             margin-top: 1.5rem;
-            background-color: #374151; color: white; padding: 0.5rem 1rem;
-            border-radius: 0.375rem; font-size: 0.8rem; font-weight: 600;
-            cursor: pointer; transition: background-color 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            /* Using btn-secondary styles from financial-calculator.css */
         }
-        #retake-quiz-btn:hover { background-color: #4b5563; }
         
         #quiz-navigation {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 2rem;
+            margin-top: 1.5rem; /* Reduced margin */
         }
         .nav-button {
-            background: none;
-            border: 1px solid #d1d5db;
-            color: #4b5563;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
+            /* Using styles from financial-calculator.css but adjusting slightly */
+            padding: 0.4rem 1rem; /* Adjusted padding */
+            font-size: 0.75rem; /* Smaller */
+            font-weight: 600;
+             /* Default gray button */
+            background-color: #e5e7eb; /* gray-200 */
+            color: #374151; /* gray-700 */
+            border: 1px solid #d1d5db; /* gray-300 */
+             border-radius: 0.375rem;
             cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 500;
             transition: all 0.2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
-        .nav-button:hover {
-            background-color: #f3f4f6;
+        .nav-button:hover:not(:disabled) {
+            background-color: #d1d5db; /* gray-300 */
+            transform: translateY(-1px);
         }
         .nav-button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
+         /* Style the Previous button differently */
+        #prev-btn {
+            background-color: #6b7280; /* gray-500 */
+            color: white;
+            border-color: #6b7280;
+        }
+        #prev-btn:hover:not(:disabled) {
+             background-color: #4b5563; /* gray-600 */
+        }
+
+        /* --- Notification Toast (No changes needed) --- */
+         #notification-toast { /* ... existing styles ... */ }
+         #notification-toast.show { /* ... existing styles ... */ }
 
     </style>
 </head>
@@ -215,333 +329,111 @@
     <main class="container">
         <div class="quiz-container">
             <div id="quiz-content">
-                <div class="text-center p-6 bg-red-50 rounded-lg mb-8">
-                    <h1 class="text-xl font-bold text-gray-800 mb-2 title-with-accent">What's Your Next Financial Move?</h1>
-                    <p class="text-gray-600 text-sm">This advanced check-up will give you a primary and secondary action plan for your finances.</p>
+                <!-- Updated Header -->
+                <div class="quiz-header">
+                    <h1>What's Your Next Financial Move?</h1>
+                    <p>This quick check-up helps prioritize your finances, giving you clear primary and secondary actions.</p>
                 </div>
                 
                 <div id="progress-bar-container">
                     <div id="progress-bar"></div>
                 </div>
-                <p id="progress-text" class="progress-text">Step 1 of 6</p>
+                <p id="progress-text" class="progress-text">Step 1 of X</p> <!-- Dynamically updated -->
 
                 <form id="next-move-quiz-form">
+                    <!-- Question 1 -->
                     <div class="question-block active" data-question-index="0">
-                        <p class="question-text">1. Do you have a dedicated emergency fund that can cover at least 3 months of essential living expenses?</p>
+                        <p class="question-text">1. Do you have a dedicated emergency fund covering at least 3 months of essential expenses?</p>
                         <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q_emergency" value="no" required> No, not yet.</label>
-                            <label class="option-label"><input type="radio" name="q_emergency" value="yes"> Yes, I'm covered.</label>
+                            <label class="option-label"><input type="radio" name="q_emergency" value="yes" required> Yes, fully covered.</label>
+                            <label class="option-label"><input type="radio" name="q_emergency" value="no" required> No, not yet or partially.</label>
                         </div>
                     </div>
+                    <!-- Question 2 -->
                     <div class="question-block" data-question-index="1">
-                        <p class="question-text">2. Do you have any high-interest debt (like credit card balances you don't pay in full, or personal loans)?</p>
+                        <p class="question-text">2. Do you carry high-interest debt (e.g., credit cards not paid fully, personal loans >12%)?</p>
                         <div class="options-container">
                             <label class="option-label"><input type="radio" name="q_debt" value="yes" required> Yes, I have some.</label>
-                            <label class="option-label"><input type="radio" name="q_debt" value="no"> No, I'm clear of high-interest debt.</label>
+                            <label class="option-label"><input type="radio" name="q_debt" value="no" required> No, I'm clear of high-interest debt.</label>
                         </div>
                     </div>
+                    <!-- Question 2a (Conditional) -->
                     <div class="question-block" data-question-index="2" data-condition='{"q_debt": "yes"}'>
-                        <p class="question-text">2a. What kind of high-interest debt is your main concern?</p>
+                        <p class="question-text">2a. What type of high-interest debt is your main concern?</p>
                         <div class="options-container">
                             <label class="option-label"><input type="radio" name="q_debt_type" value="credit_card" required> Credit Card balances</label>
                             <label class="option-label"><input type="radio" name="q_debt_type" value="personal_loan"> Personal Loan</label>
                             <label class="option-label"><input type="radio" name="q_debt_type" value="other"> Other high-interest loans</label>
                         </div>
                     </div>
+                    <!-- Question 3 -->
                     <div class="question-block" data-question-index="3">
-                        <p class="question-text">3. Roughly what percentage of your monthly income are you able to save or invest?</p>
+                        <p class="question-text">3. What percentage of your monthly income are you currently saving or investing?</p>
                         <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q_savings_rate" value="low" required> Less than 10%</label>
+                            <label class="option-label"><input type="radio" name="q_savings_rate" value="high" required> More than 20%</label>
                             <label class="option-label"><input type="radio" name="q_savings_rate" value="medium"> 10% - 20%</label>
-                            <label class="option-label"><input type="radio" name="q_savings_rate" value="high"> More than 20%</label>
+                            <label class="option-label"><input type="radio" name="q_savings_rate" value="low" required> Less than 10%</label>
                         </div>
                     </div>
+                    <!-- Question 4 -->
                     <div class="question-block" data-question-index="4">
-                        <p class="question-text">4. Have you planned and started your tax-saving investments (under Section 80C) for this financial year?</p>
+                        <p class="question-text">4. Have you planned and started your tax-saving investments (Sec 80C) for this year?</p>
                         <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q_tax" value="no" required> No, I usually do it at the last minute.</label>
-                            <label class="option-label"><input type="radio" name="q_tax" value="yes"> Yes, my plan is in place and automated.</label>
+                             <label class="option-label"><input type="radio" name="q_tax" value="yes" required> Yes, planned and automated.</label>
+                            <label class="option-label"><input type="radio" name="q_tax" value="no" required> No, usually do it last minute.</label>
                         </div>
                     </div>
+                    <!-- Question 5 -->
                     <div class="question-block" data-question-index="5">
-                        <p class="question-text">5. Are you consistently investing every month for your long-term goals (like retirement)?</p>
+                        <p class="question-text">5. Are you consistently investing each month for long-term goals (e.g., retirement via SIP)?</p>
                         <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q_investing" value="no" required> No, I'm not investing regularly yet.</label>
-                            <label class="option-label"><input type="radio" name="q_investing" value="yes"> Yes, I have a regular investment plan (like a SIP).</label>
+                            <label class="option-label"><input type="radio" name="q_investing" value="yes" required> Yes, I have a regular plan (like SIP).</label>
+                            <label class="option-label"><input type="radio" name="q_investing" value="no" required> No, not investing regularly yet.</label>
                         </div>
                     </div>
+                    <!-- Question 6 -->
                     <div class="question-block" data-question-index="6">
-                        <p class="question-text">6. When you think about investing for the long term (5+ years), what is your primary goal?</p>
+                        <p class="question-text">6. Your primary goal for long-term investing (5+ years) is:</p>
                         <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q_risk" value="low" required> Protecting my original capital is most important.</label>
-                            <label class="option-label"><input type="radio" name="q_risk" value="medium"> I'm looking for a balance of safety and growth.</label>
-                            <label class="option-label"><input type="radio" name="q_risk" value="high"> I want the highest possible growth, and I'm comfortable with volatility.</label>
+                            <label class="option-label"><input type="radio" name="q_risk" value="high" required> Highest possible growth (comfortable with volatility).</label>
+                            <label class="option-label"><input type="radio" name="q_risk" value="medium"> Balance of safety and growth.</label>
+                            <label class="option-label"><input type="radio" name="q_risk" value="low" required> Protecting my capital is most important.</label>
                         </div>
                     </div>
                 </form>
                 
+                <!-- Updated Navigation -->
                 <div id="quiz-navigation">
-                    <button id="prev-btn" class="nav-button">Previous</button>
+                    <button id="prev-btn" class="nav-button" disabled>
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1"><path d="m15 18-6-6 6-6"/></svg>
+                        Previous
+                    </button>
+                    <!-- Next button is usually hidden and only shown by JS if needed -->
                 </div>
             </div>
 
+            <!-- Results area -->
             <div id="results-content">
-                <!-- Results will be dynamically inserted here -->
+                <!-- Results structure will be dynamically inserted here -->
+                <!-- Example structure (generated by JS):
+                <div class="results-header">...</div>
+                <div class="action-grid">
+                    <div class="action-card primary">...</div>
+                    <div class="action-card secondary">...</div>
+                </div>
+                <button id="retake-quiz-btn" class="btn-secondary">...</button>
+                -->
             </div>
         </div>
     </main>
     
     <div id="footer-placeholder"></div>
+     <div id="notification-toast"></div> <!-- Added for notifications -->
+
 
     <script src="../script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const quizContent = document.getElementById('quiz-content');
-            const resultsContent = document.getElementById('results-content');
-            const allQuestions = Array.from(document.querySelectorAll('.question-block'));
-            const progressBar = document.getElementById('progress-bar');
-            const progressText = document.getElementById('progress-text');
-            const prevBtn = document.getElementById('prev-btn');
-            
-            let userAnswers = {};
-            let visibleQuestions = [];
-            let currentVisibleIndex = 0;
-
-            const resultsMap = {
-                'emergency': {
-                    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
-                    title: "Build Your Emergency Fund",
-                    reason: "This is your financial foundation. Without it, any unexpected event can derail your entire plan.",
-                    whatIf: "<strong>What If?</strong> Saving just ₹5,000 a month in a Recurring Deposit for one year would give you a safety net of over <strong>₹60,000</strong>.",
-                    links: [
-                        { text: 'Guide to Emergency Funds', url: 'emergency-fund-guide.html' },
-                        { text: 'Use the RD Calculator', url: '../index.html?mode=rd' }
-                    ]
-                },
-                'debt': {
-                    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
-                    title: "Tackle High-Interest Debt",
-                    reason: "High-interest debt acts like 'reverse compounding'—it actively works against your wealth. Clearing it is a guaranteed return.",
-                    whatIf: "<strong>What If?</strong> Paying an extra ₹2,000/month on a ₹50,000 credit card balance (at 36% APR) could save you thousands in interest and get you debt-free years sooner.",
-                    links: [
-                        { text: 'Guide on Debt Management', url: 'financial-health-guide.html' },
-                        { text: 'Assess Your Full Financial Health', url: 'financial-health-assessment.html' }
-                    ]
-                },
-                'savings': {
-                    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>`,
-                    title: "Focus on Increasing Savings",
-                    reason: "You can't invest what you don't save. Increasing your savings rate is the fuel for all your future financial goals.",
-                    whatIf: "<strong>What If?</strong> Increasing your savings by just 5% of a ₹50,000 monthly income means an extra ₹30,000 invested per year. In 10 years, that alone could be worth over <strong>₹7 Lakhs</strong>.",
-                    links: [
-                        { text: 'Guide to Financial Health', url: 'financial-health-guide.html' },
-                        { text: 'Take the Financial Habits Quiz', url: 'financial-habits-assessment-quiz.html' }
-                    ]
-                },
-                'tax': {
-                    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
-                    title: "Plan Your Tax-Saving",
-                    reason: "Smart tax planning isn't just about saving tax; it's a great opportunity to build wealth through instruments like ELSS.",
-                    whatIf: "<strong>What If?</strong> Investing ₹12,500/month in an ELSS SIP to save tax could grow to over <strong>₹25 Lakhs</strong> in 10 years (assuming 12% returns).",
-                    links: [
-                        { text: 'Guide to Smart Tax-Saving', url: 'tax-saving-guide.html' },
-                        { text: 'Start an ELSS SIP', url: '../index.html?mode=sip' }
-                    ]
-                },
-                'investing': {
-                    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>`,
-                    title: "Start Systematic Investing (SIP)",
-                    reason: "You have a solid base. Now it's time to put your money to work and let compounding build your long-term wealth.",
-                    whatIf: "<strong>What If?</strong> A ₹10,000 monthly SIP for your retirement could grow to over <strong>₹1 Crore</strong> in 25 years (assuming 12% returns).",
-                    links: [
-                        { text: 'Guide: SIP vs. Lumpsum', url: 'sip-vs-lumpsum.html' },
-                        { text: 'Project Your Growth with the SIP Calculator', url: '../index.html?mode=sip' }
-                    ]
-                },
-                'optimize': {
-                    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
-                    title: "Optimize Your Portfolio",
-                    reason: "You've mastered the basics. Now, focus on aligning your investments perfectly with your life goals for maximum efficiency.",
-                    whatIf: "<strong>What If?</strong> By aligning specific investments to your goals, you ensure you're taking the right amount of risk and can potentially reach your targets sooner.",
-                    links: [
-                        { text: 'Guide to Goal-Based Investing', url: 'goal-based-investing.html' },
-                        { text: 'Use the Goal Planner for Your Next Dream', url: '../index.html?mode=goal' }
-                    ]
-                }
-            };
-
-            function updateVisibleQuestions() {
-                visibleQuestions = allQuestions.filter(q => {
-                    const conditionAttr = q.dataset.condition;
-                    if (!conditionAttr) return true;
-                    const condition = JSON.parse(conditionAttr);
-                    const [key, value] = Object.entries(condition)[0];
-                    return userAnswers[key] === value;
-                });
-                updateProgress();
-            }
-
-            function showCurrentQuestion() {
-                allQuestions.forEach(q => q.classList.remove('active'));
-                if (visibleQuestions[currentVisibleIndex]) {
-                    visibleQuestions[currentVisibleIndex].classList.add('active');
-                }
-                prevBtn.disabled = currentVisibleIndex === 0;
-                updateProgress();
-            }
-
-            function updateProgress() {
-                const progress = visibleQuestions.length > 1 ? (currentVisibleIndex / (visibleQuestions.length - 1)) * 100 : 100;
-                progressBar.style.width = `${progress}%`;
-                progressText.textContent = `Step ${currentVisibleIndex + 1} of ${visibleQuestions.length}`;
-            }
-
-            function generateActionLinks(links) {
-                return links.map(link => `
-                    <li>
-                        <a href="${link.url}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                            ${link.text}
-                        </a>
-                    </li>
-                `).join('');
-            }
-
-            function displayResults(primaryKey, secondaryKey) {
-                const primary = resultsMap[primaryKey];
-                const secondary = resultsMap[secondaryKey];
-
-                resultsContent.innerHTML = `
-                    <div class="results-header">
-                        <div id="result-header-icon">${primary.icon}</div>
-                        <h2 class="result-title">${primary.title}</h2>
-                        <p class="result-description">This is your most critical next step. Below, you'll find your primary and secondary actions to take.</p>
-                    </div>
-                    
-                    <div class="action-grid">
-                        <div class="action-card primary">
-                            <div class="action-card-header">
-                                <span class="tag">Primary Action</span>
-                                <h4>${primary.title}</h4>
-                            </div>
-                            <p class="reason">${primary.reason}</p>
-                            <ul>${generateActionLinks(primary.links)}</ul>
-                            <div class="what-if-card">
-                                <h5>Impact Scenario</h5>
-                                <p class="what-if-body">${primary.whatIf}</p>
-                            </div>
-                        </div>
-                        <div class="action-card secondary">
-                             <div class="action-card-header">
-                                <span class="tag">Secondary Action</span>
-                                <h4>${secondary.title}</h4>
-                            </div>
-                            <p class="reason">${secondary.reason}</p>
-                            <ul>${generateActionLinks(secondary.links)}</ul>
-                             <div class="what-if-card">
-                                <h5>Impact Scenario</h5>
-                                <p class="what-if-body">${secondary.whatIf}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button id="retake-quiz-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
-                        <span>Take the Quiz Again</span>
-                    </button>
-                `;
-
-                quizContent.style.display = 'none';
-                resultsContent.style.display = 'block';
-                
-                document.getElementById('retake-quiz-btn').addEventListener('click', resetQuiz);
-            }
-
-            function calculateResults() {
-                const scores = {
-                    emergency: userAnswers.q_emergency === 'yes' ? 10 : 0,
-                    debt: userAnswers.q_debt === 'no' ? 10 : 1,
-                    savings: userAnswers.q_savings_rate === 'low' ? 2 : (userAnswers.q_savings_rate === 'medium' ? 5 : 10),
-                    tax: userAnswers.q_tax === 'yes' ? 10 : 3,
-                    investing: userAnswers.q_investing === 'yes' ? 10 : 4
-                };
-
-                if (scores.emergency === 0) {
-                    displayResults('emergency', scores.debt === 1 ? 'debt' : 'savings');
-                    return;
-                }
-                if (scores.debt === 1) {
-                    displayResults('debt', 'savings');
-                    return;
-                }
-                 if (scores.savings === 2) {
-                    displayResults('savings', 'tax');
-                    return;
-                }
-
-                const sortedPriorities = Object.entries(scores)
-                    .sort(([,a],[,b]) => a-b)
-                    .map(([key]) => key);
-
-                if (scores.investing === 10 && scores.tax === 10 && scores.savings === 10) {
-                     displayResults('optimize', 'investing');
-                } else {
-                    displayResults(sortedPriorities[0], sortedPriorities[1]);
-                }
-            }
-
-            function resetQuiz() {
-                userAnswers = {};
-                currentVisibleIndex = 0;
-                document.querySelectorAll('.option-label.selected').forEach(l => l.classList.remove('selected'));
-                resultsContent.style.display = 'none';
-                quizContent.style.display = 'block';
-                updateVisibleQuestions();
-                showCurrentQuestion();
-            }
-
-            function handlePrevious() {
-                if (currentVisibleIndex > 0) {
-                    currentVisibleIndex--;
-                    showCurrentQuestion();
-                }
-            }
-
-            allQuestions.forEach(question => {
-                const options = question.querySelectorAll('.option-label');
-                options.forEach(label => {
-                    label.addEventListener('click', () => {
-                        const radio = label.querySelector('input[type="radio"]');
-                        userAnswers[radio.name] = radio.value;
-                        
-                        const parentQuestionBlock = radio.closest('.question-block');
-                        parentQuestionBlock.querySelectorAll('.option-label').forEach(opt => opt.classList.remove('selected'));
-                        label.classList.add('selected');
-                        
-                        setTimeout(() => {
-                            updateVisibleQuestions();
-                            
-                            const nextUnansweredIndex = visibleQuestions.findIndex(q => {
-                                const input = q.querySelector('input[type="radio"]');
-                                return !userAnswers.hasOwnProperty(input.name);
-                            });
-
-                            if (nextUnansweredIndex !== -1) {
-                                currentVisibleIndex = visibleQuestions.indexOf(visibleQuestions[nextUnansweredIndex]);
-                                showCurrentQuestion();
-                            } else {
-                                calculateResults();
-                            }
-                        }, 300);
-                    });
-                });
-            });
-
-            prevBtn.addEventListener('click', handlePrevious);
-
-            // Initial setup
-            updateVisibleQuestions();
-            showCurrentQuestion();
-        });
-    </script>
+    <!-- Use type="module" if your script uses import/export -->
+    <script type="module" src="next-financial-move-quiz.js"></script> 
+    
 </body>
 </html>
