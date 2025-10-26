@@ -6,17 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!quizContent || !document.getElementById('health-quiz-form')) return;
 
     const resultsContent = document.getElementById('results-content');
-    const questions = Array.from(document.querySelectorAll('.question-block')); // Get all question blocks
+    const questions = Array.from(document.querySelectorAll('.question-block')); // Get all question blocks defined in HTML
     const prevButton = document.getElementById('prev-btn');
     const progressBar = document.getElementById('progress-bar');
-    
-    const TOTAL_QUESTIONS = questions.length; // This will now correctly be 15
-    if (TOTAL_QUESTIONS === 0) {
+
+    const TOTAL_QUESTIONS = questions.length; // Determine total questions from HTML
+     if (TOTAL_QUESTIONS === 0) {
         console.error("No question blocks found!");
         return;
     }
+    console.log(`Initialized with ${TOTAL_QUESTIONS} questions.`); // Log the number of questions found
 
-    let currentQuestionIndex = 0;
+    let currentQuestionIndex = 0; // This will track the index in the 'questions' array (0-based)
     const userAnswers = {};
     let isTransitioning = false; // Flag to prevent rapid clicks
     let finalReport = {}; // To store results for sharing
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Pillar Data Map ---
+    // --- Pillar Data Map (Remains the same as previous correct version) ---
     const pillarMap = {
         'savings': {
             name: "Savings Rate",
@@ -74,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'insurance': {
             name: "Insurance Coverage",
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v6"/><path d="M15 11h-6"/></svg>`, // Changed icon to ShieldPlus
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v6"/><path d="M15 11h-6"/></svg>`,
             advice: {
                 bad: 'Inadequate insurance is a major risk. A medical event or tragedy could wipe out savings. Prioritize Health & Term insurance.',
                 medium: 'You have some coverage, but review if it\'s truly adequate for your family\'s needs (sum insured, critical illness).',
@@ -110,13 +111,14 @@ document.addEventListener('DOMContentLoaded', () => {
                  { text: 'Use Tax Calculator', link: '../calculators/income-tax-calculator/', icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>` }
             ]
         },
-        'investing': { 
+        'investing': { // This pillar remains relevant even with fewer risk questions
             name: "Investment Mindset",
             icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m18 9-6 6-4-4-3 3"/></svg>`,
             advice: {
-                bad: 'Your investment mindset appears very conservative. While safety is vital, consider growth assets (like equity MFs) to beat inflation and build significant wealth long-term.',
-                medium: 'You have a balanced approach. Exploring diversification and goal-based investing can further enhance your portfolio.',
-                good: 'You are a confident investor who understands risk and reward. Continue your disciplined approach to achieve your long-term goals.',
+                // Simplified advice based only on Q11 (q5)
+                bad: 'Your investment mindset appears very conservative. While safety is vital, consider growth assets (like equity MFs) to beat inflation and build significant wealth long-term.', // Maps to q5=1
+                medium: 'You have a balanced approach. Exploring diversification and goal-based investing can further enhance your portfolio.', // Maps to q5=2
+                good: 'You appear comfortable with investing for growth. Ensure your strategy aligns with your long-term objectives and risk tolerance.', // Maps to q5=3
             },
             actions: [
                  { text: 'Take Risk Quiz', link: '../quizzes/risk-profile-quiz.html', icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>` },
@@ -176,29 +178,22 @@ document.addEventListener('DOMContentLoaded', () => {
      * Calculates scores for each pillar and the overall score, then displays results.
      */
     function calculateAndShowResults() {
-        // --- Scoring Logic (FIXED to use all 15 questions) ---
-        // This logic now matches the 15-question HTML file
-        const savingsScore = parseInt(userAnswers.q1 || '1'); // Q7
-        const emergencyScore = parseInt(userAnswers.q2 || '1'); // Q8
-        const debtScore = 4 - parseInt(userAnswers.q3 || '1'); // Q9 (inverted)
-        const insuranceScore = parseInt(userAnswers.q4 || '1'); // Q10
-        const goalScore = parseInt(userAnswers.q_goal_started || '1'); // Q5
-        const taxScore = parseInt(userAnswers.q_tax || '1'); // Q6
+        // --- Scoring Logic (FIXED for 11 questions) ---
+        // Indices refer to the *original* 15 questions in the user's HTML
+        // We only use answers from the first 11 questions (indices 0-10)
+        const savingsScore = parseInt(userAnswers.q1 || '1'); // Q7 (index 6)
+        const emergencyScore = parseInt(userAnswers.q2 || '1'); // Q8 (index 7)
+        const debtScore = 4 - parseInt(userAnswers.q3 || '1'); // Q9 (index 8, inverted)
+        const insuranceScore = parseInt(userAnswers.q4 || '1'); // Q10 (index 9)
+        const goalScore = parseInt(userAnswers.q_goal_started || '1'); // Q5 (index 4)
+        const taxScore = parseInt(userAnswers.q_tax || '1'); // Q6 (index 5)
 
-        // Risk questions (Q11-Q15, which are q5-q9 in the form)
-        const q5 = parseInt(userAnswers.q5 || '1'); // Q11
-        const q6 = parseInt(userAnswers.q6 || '1'); // Q12
-        const q7 = parseInt(userAnswers.q7 || '1'); // Q13
-        const q8 = parseInt(userAnswers.q8 || '1'); // Q14
-        const q9 = parseInt(userAnswers.q9 || '3'); // Q15 (default to conservative)
+        // Investing mindset score based only on Q11 (index 10, form name q5)
+        const q5_investing = parseInt(userAnswers.q5 || '1'); // Q11
+        let investingRating = 'bad'; // Default conservative
+        if (q5_investing === 3) investingRating = 'good'; // Aggressive
+        else if (q5_investing === 2) investingRating = 'medium'; // Balanced
 
-        // Calculate investing rating
-        const rawRiskScore = (q5 + q6 + q7 + q8 + (4 - q9)); // Invert q9
-        let investingRating = 'bad'; // Default to 'bad' (conservative)
-        if (rawRiskScore <= 7) investingRating = 'bad'; // Conservative
-        else if (rawRiskScore <= 12) investingRating = 'medium'; // Balanced
-        else investingRating = 'good'; // Aggressive
-        
         // --- Normalization & Weighting ---
         const normalizedScores = {
             savings: ((savingsScore - 1) / (4 - 1)) * 100,
@@ -209,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tax: ((taxScore - 1) / (3 - 1)) * 100,
             investing: (investingRating === 'good' ? 100 : (investingRating === 'medium' ? 66 : 33))
         };
-
 
         // --- Calculate Weighted Overall Score ---
         const weights = { savings: 0.15, emergency: 0.20, debt: 0.15, insurance: 0.10, goal: 0.10, tax: 0.10, investing: 0.20 };
@@ -241,7 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const pillars = Object.keys(normalizedScores).map(key => ({
             id: key,
             score: normalizedScores[key],
-            // Use the specific investingRating for the investing pillar
             rating: (key === 'investing') ? investingRating : getRating(normalizedScores[key])
         }));
 
@@ -413,8 +406,8 @@ document.addEventListener('DOMContentLoaded', () => {
         showQuestion(0); // Go back to the first question
     }
 
-    // --- Event Listeners Setup (FIXED) ---
-    questions.forEach((question, index) => { // 'index' is the 0-14 index in the NodeList
+    // --- Event Listeners Setup (Corrected Progression) ---
+    questions.forEach((question, index) => { // 'index' is the 0-based index in the NodeList/Array
         const options = question.querySelectorAll('.option-label');
         options.forEach(label => {
             label.addEventListener('click', () => {
@@ -424,6 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const radio = label.querySelector('input[type="radio"]');
                 if (!radio) { isTransitioning = false; return; }
                 userAnswers[radio.name] = radio.value;
+                console.log(`Answered Q${index + 1} (${radio.name}): ${radio.value}`); // Debug Log
 
                 // Update visual selection
                 question.querySelectorAll('.option-label').forEach(opt => opt.classList.remove('selected'));
@@ -431,18 +425,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Advance after delay
                 setTimeout(() => {
-                    // We use the 'index' from the forEach loop's closure
-                    // which is 0 for Q1, 1 for Q2, ... 14 for Q15.
-                    if (index < TOTAL_QUESTIONS - 1) { // e.g., on Q14 (index 13): 13 < 14 -> TRUE
-                        showQuestion(index + 1); // Show next question in the list
+                    // Check if the current index is less than the TOTAL number of questions - 1
+                    if (currentQuestionIndex < TOTAL_QUESTIONS - 1) {
+                         console.log(`Moving from Q${currentQuestionIndex + 1} to Q${currentQuestionIndex + 2}`); // Debug Log
+                        showQuestion(currentQuestionIndex + 1); // Go to the next sequential index
                     } else {
-                        // This block runs when the last question (index 14) is clicked
+                         // This block runs when the last question (index TOTAL_QUESTIONS - 1) is clicked
+                         console.log("Last question answered. Calculating results."); // Debug Log
                         if(progressBar) progressBar.style.width = '100%';
                         calculateAndShowResults();
-                        isTransitioning = false; // **FIX**: Reset flag here
+                         // Reset transition flag *after* results calculation is triggered
+                         isTransitioning = false;
                     }
-                     // 'isTransitioning' is reset in showQuestion() for non-final questions
-                }, 250);
+                    // isTransitioning is reset in showQuestion() for non-final questions
+                }, 150); // Shorter delay for better responsiveness
             });
         });
     });
@@ -451,8 +447,9 @@ document.addEventListener('DOMContentLoaded', () => {
     prevButton.addEventListener('click', () => {
         if (currentQuestionIndex > 0 && !isTransitioning) {
             isTransitioning = true; // Prevent clicks while going back
+            console.log(`Moving back from Q${currentQuestionIndex + 1} to Q${currentQuestionIndex}`); // Debug Log
             // 'currentQuestionIndex' is updated by showQuestion, so this is correct
-            showQuestion(currentQuestionIndex - 1); 
+            showQuestion(currentQuestionIndex - 1);
         }
     });
 
