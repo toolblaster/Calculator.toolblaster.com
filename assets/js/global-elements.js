@@ -1,7 +1,8 @@
 /**
  * global-elements.js
  * This file contains centralized logic for reusable components across the site,
- * such as notification toasts, social media sharing buttons, and affiliate links.
+ * primarily for affiliate links now. Social share logic moved to script.js.
+ * Notification function remains here for potential use by quizzes/other scripts.
  */
 
 // --- CONSTANTS ---
@@ -11,84 +12,66 @@ const AFFILIATE_URLS = {
 };
 
 // --- GLOBAL UTILITY FUNCTIONS ---
+
+// Keep showNotification here as other scripts might use it independently
 function showNotification(message) {
     // Check if a toast container exists, if not, create one.
     let toast = document.getElementById('notification-toast');
     if (!toast) {
         toast = document.createElement('div');
         toast.id = 'notification-toast';
+        // Add basic styles if style.css might not cover it immediately
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.backgroundColor = '#2d3748'; // gray-800
+        toast.style.color = 'white';
+        toast.style.padding = '10px 20px';
+        toast.style.borderRadius = '8px';
+        toast.style.zIndex = '1000';
+        toast.style.opacity = '0';
+        toast.style.visibility = 'hidden';
+        toast.style.transition = 'opacity 0.3s, visibility 0.3s';
         document.body.appendChild(toast);
     }
     toast.textContent = message;
     toast.classList.add('show');
+    // Ensure 'show' class applies opacity/visibility
+    toast.style.opacity = '1';
+    toast.style.visibility = 'visible';
     setTimeout(() => {
         toast.classList.remove('show');
+        toast.style.opacity = '0';
+        toast.style.visibility = 'hidden';
     }, 3000);
 }
 
-/**
- * Initializes all social share buttons on a page.
- * It finds buttons with specific IDs and attaches the correct share URLs.
- */
-function initializeShareButtons() {
-    const shareContainer = document.querySelector('.share-buttons-container');
-    if (!shareContainer) return;
 
-    const pageUrl = window.location.href;
-    const pageTitle = document.title;
-    const encodedUrl = encodeURIComponent(pageUrl);
-    const encodedTitle = encodeURIComponent(pageTitle);
+// --- REMOVED initializeShareButtons function ---
 
-    const shareLinks = {
-        whatsapp: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
-        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-        twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-        linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`
-    };
-
-    const whatsappBtn = document.getElementById('share-whatsapp');
-    const facebookBtn = document.getElementById('share-facebook');
-    const twitterBtn = document.getElementById('share-twitter');
-    const linkedinBtn = document.getElementById('share-linkedin');
-    const copyLinkBtn = document.getElementById('copy-link-btn');
-
-    if (whatsappBtn) whatsappBtn.href = shareLinks.whatsapp;
-    if (facebookBtn) facebookBtn.href = shareLinks.facebook;
-    if (twitterBtn) twitterBtn.href = shareLinks.twitter;
-    if (linkedinBtn) linkedinBtn.href = shareLinks.linkedin;
-
-    if (copyLinkBtn) {
-        copyLinkBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            navigator.clipboard.writeText(pageUrl).then(() => {
-                showNotification('Link copied to clipboard!');
-            }).catch(err => {
-                console.error('Could not copy text: ', err);
-                showNotification('Failed to copy link.');
-            });
-        });
-    }
-}
 
 /**
  * Initializes all affiliate links on a page.
  * It finds links with a `data-affiliate` attribute and sets the correct URL.
  */
 function initializeAffiliateLinks() {
+    console.log("[Global] Initializing affiliate links..."); // Debug log
     document.querySelectorAll('[data-affiliate]').forEach(link => {
         const affiliateName = link.dataset.affiliate;
         if (AFFILIATE_URLS[affiliateName]) {
             link.href = AFFILIATE_URLS[affiliateName];
             link.target = '_blank';
             link.rel = 'noopener sponsored noreferrer';
+            // console.log(`[Global] Set affiliate link for: ${affiliateName}`); // Debug log
+        } else {
+            // console.warn(`[Global] Affiliate key not found: ${affiliateName}`); // Debug log
         }
     });
 }
 
+// --- Expose ONLY the affiliate initializer ---
+window.initializeGlobalAffiliateLinks = initializeAffiliateLinks;
 
-// --- INITIALIZATION ---
-// When the DOM is fully loaded, initialize all global elements.
-document.addEventListener('DOMContentLoaded', () => {
-    initializeShareButtons();
-    initializeAffiliateLinks();
-});
+// --- REMOVED DOMContentLoaded listener ---
+console.log("[Global] global-elements.js loaded (Share logic moved). Affiliate initializer exposed."); // Debug log
