@@ -62,16 +62,154 @@
 #detailsTableContainer .bg-blue-50 { background-color: #eff6ff; }
 #detailsTableContainer .bg-green-50 { background-color: #f0fdf4; }
 
-/* Share Modal Styles (Contrast already good) */
-.share-modal { /* ... */ }
-.share-modal-content { /* ... */ }
-.close-modal-btn { /* ... */ }
-.modal-title { /* ... */ }
-.modal-report-content { /* ... */ }
-.modal-share-section { /* ... */ }
-.share-url-input { /* ... */ }
-.modal-actions { /* ... */ }
-.modal-btn { /* ... */ }
+/* Share Modal Styles */
+/* --- UPDATED: Removed !important, ensured centering properties --- */
+.share-modal {
+    position: fixed; /* Use fixed to position relative to viewport */
+    z-index: 50;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Allow scrolling if content overflows */
+    background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
+    display: flex; /* Use flexbox to center content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    opacity: 0;
+    visibility: hidden; /* Use visibility with opacity for transition */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.share-modal:not(.hidden) {
+    opacity: 1;
+    visibility: visible; /* Make visible when not hidden */
+}
+/* --- END UPDATE --- */
 
-/* Print-specific styles (No contrast issues) */
-@media print { /* ... */ }
+.share-modal-content {
+    background-color: #fff;
+    margin: auto; /* Crucial for centering within the flex container */
+    padding: 20px;
+    border: 1px solid #d1d5db; /* Use a lighter border */
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Slightly softer shadow */
+    position: relative;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.share-modal:not(.hidden) .share-modal-content {
+    transform: scale(1);
+}
+
+
+.close-modal-btn {
+    color: #9ca3af; /* gray-400 */
+    position: absolute;
+    top: 8px; /* Adjusted position */
+    right: 12px; /* Adjusted position */
+    font-size: 24px; /* Slightly smaller */
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1; /* Ensure proper vertical alignment */
+    padding: 4px; /* Add padding for easier clicking */
+}
+.close-modal-btn:hover,
+.close-modal-btn:focus {
+    color: #1f2937; /* gray-800 */
+}
+
+.modal-title {
+    font-size: 1.1rem; /* Slightly smaller */
+    font-weight: 700; /* Use 700 for bold */
+    color: #1f2937; /* gray-800 */
+    text-align: center;
+    margin-bottom: 1rem;
+    padding-right: 20px; /* Add padding to prevent overlap with close button */
+}
+
+.modal-report-content {
+    font-size: 0.8rem; /* Slightly smaller */
+    color: #4b5563; /* gray-600 */
+    margin-bottom: 1rem; /* Reduced margin */
+}
+.modal-report-content h3 {
+    font-weight: 600; /* Use 600 for semi-bold */
+    color: #111827; /* gray-900 */
+    font-size: 0.9rem; /* Slightly smaller */
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb; /* gray-200 */
+    padding-bottom: 0.25rem;
+}
+.modal-report-content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Remove default margin */
+}
+.modal-report-content li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0; /* Slightly increased padding */
+    border-bottom: 1px dashed #e5e7eb; /* Dashed separator */
+}
+.modal-report-content li:last-child {
+    border-bottom: none; /* Remove border on last item */
+}
+
+.modal-report-content li span:last-child {
+    font-weight: 600;
+    color: #1f2937; /* gray-800 */
+}
+
+.modal-share-section {
+    margin-top: 1.25rem; /* Adjusted margin */
+}
+.share-url-input {
+    width: 100%;
+    padding: 8px 10px; /* Adjusted padding */
+    border: 1px solid #d1d5db; /* gray-300 */
+    border-radius: 4px;
+    font-size: 0.75rem; /* Slightly smaller */
+    background-color: #f9fafb; /* gray-50 */
+    margin-bottom: 0.75rem; /* Reduced margin */
+    box-sizing: border-box; /* Ensure padding doesn't increase size */
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem; /* Reduced gap */
+}
+.modal-btn {
+    padding: 6px 14px; /* Slightly reduced padding */
+    border-radius: 6px;
+    border: 1px solid transparent;
+    font-size: 0.8rem; /* Slightly smaller */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #2563eb; /* blue-600 */
+    color: white;
+}
+.modal-btn:hover {
+    background-color: #1d4ed8; /* blue-700 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+/* Print-specific styles */
+@media print {
+    body * { visibility: hidden; }
+    .print-area, .print-area * { visibility: visible; }
+    .print-area { position: absolute; left: 0; top: 0; width: 100%; }
+    .modal-actions, .close-modal-btn, .modal-share-section { display: none !important; }
+    .share-modal-content { border: none; box-shadow: none; width: 100%; max-width: 100%; margin: 0; padding: 0;}
+    .share-modal { background-color: white !important; display: block !important; position: relative !important; height: auto !important; }
+    .modal-title { font-size: 16pt; } /* Adjust print font sizes */
+    .modal-report-content { font-size: 10pt; }
+    .modal-report-content h3 { font-size: 12pt; }
+}
