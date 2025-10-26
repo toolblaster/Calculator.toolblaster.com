@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Health Assessment - Calculator.toolblaster</title>
-    
-    <meta name="description" content="Take our comprehensive quiz to assess your financial health. Get a personalized report card on your savings, debt, insurance, and investment habits.">
-    
+    <!-- Meta Title (59 Chars) -->
+    <title>Financial Health Assessment Quiz | Get Your Score & Action Plan</title>
+    <!-- Meta Description (159 Chars) -->
+    <meta name="description" content="Take our comprehensive quiz to assess your financial health. Get a personalized score, report card on savings/debt/insurance, and a prioritized action plan.">
+    <link rel="canonical" href="https://calculator.toolblaster.com/quizzes/financial-health-assessment.html" />
+
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Quiz",
       "name": "Financial Health Assessment",
       "description": "An interactive quiz to help users assess their overall financial health, covering savings, debt, insurance, and investment risk profile, and receive a personalized report card.",
+      "url": "https://calculator.toolblaster.com/quizzes/financial-health-assessment.html", // Added URL
       "hasPart": [
         { "@type": "Question", "name": "What is your current age group?" },
         { "@type": "Question", "name": "Which of these best describes your current life stage?"},
@@ -35,279 +39,333 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js kept for potential future use, although not currently used in results -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- Include styles needed for buttons -->
+    <link rel="stylesheet" href="../calculators/financial-calculator/calculator-style.css">
+
 
     <style>
+         /* --- General Quiz Container --- */
         .quiz-container {
-            max-width: 700px;
-            margin: 2rem auto;
+            max-width: 650px; /* Consistent width */
+            margin: 1.5rem auto;
             background-color: #ffffff;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+            border: 1px solid #e5e7eb;
             overflow: hidden;
         }
-        #progress-bar-container {
+
+        /* --- Quiz Header --- */
+        .quiz-header { /* Reusing styles */
+            text-align: center;
+            padding: 1rem 0.5rem;
+            background-color: #fef2f2; /* red-50 */
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #fee2e2; /* red-100 */
+        }
+        .quiz-header h1 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+            position: relative;
+             padding-bottom: 0.4rem;
+        }
+         /* Accent line below H1 */
+        .quiz-header h1::after {
+            content: ''; display: block; width: 40px; height: 3px;
+            background-color: #E34037;
+            margin: 0.4rem auto 0;
+        }
+        .quiz-header p {
+            color: #4b5563;
+            font-size: 0.7rem;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        /* --- Progress Bar --- */
+        #progress-bar-container { /* Reusing styles */
             width: 100%;
             background-color: #e5e7eb;
             border-radius: 999px;
-            height: 8px;
-            margin-bottom: 2rem;
+            height: 10px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
         }
-        #progress-bar {
+        #progress-bar { /* Reusing styles */
             height: 100%;
             width: 0%;
-            background-color: #E34037;
+            background: linear-gradient(90deg, #f87171 0%, #E34037 100%);
             border-radius: 999px;
             transition: width 0.4s ease-in-out;
         }
-        .question-block {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-        .question-block.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .question-text {
-            font-size: 0.85rem;
+
+        /* --- Questions & Options --- */
+        .question-block { display: none; animation: fadeIn 0.5s; }
+        .question-block.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .question-text { /* Reusing styles */
+            font-size: 0.8rem;
             font-weight: 600;
-            color: #1f2d37;
-            margin-bottom: 1rem;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed #d1d5db;
         }
-        .option-label {
-            display: block;
+
+        .option-label { /* Reusing enhanced styles */
+            display: flex;
+            align-items: center;
             padding: 0.6rem 0.8rem;
             border: 1px solid #d1d5db;
-            border-radius: 0.375rem;
+            border-radius: 0.5rem;
             margin-bottom: 0.5rem;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
+            background-color: #fff;
+            position: relative;
         }
         .option-label:hover {
             background-color: #f9fafb;
             border-color: #E34037;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
         }
-        .option-label input {
-            display: none;
-        }
+        .option-label input { display: none; }
         .option-label.selected {
             background-color: #fef2f2;
             border-color: #E34037;
-            color: #C22D2D;
-            font-weight: 500;
+            color: #B91C1C;
+            font-weight: 600;
+            box-shadow: 0 3px 6px rgba(227, 64, 55, 0.1);
         }
+        /* Checkmark Styling */
+        .option-label::before { /* Reusing styles */
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 1px solid #9ca3af;
+            border-radius: 50%;
+            margin-right: 0.6rem;
+            background-color: #fff;
+            transition: all 0.2s ease;
+        }
+        .option-label.selected::before { /* Reusing styles */
+             background-color: #E34037;
+             border-color: #E34037;
+             box-shadow: inset 0 0 0 2px white;
+        }
+
+        /* --- Results Section Styling (Applying Styles) --- */
         #results-content { display: none; }
-        .report-card {
+
+        .report-card { /* Main container */
             text-align: center;
-            padding: 0.75rem;
+            padding: 1rem;
             border: 1px solid #e5e7eb;
             border-radius: 0.5rem;
-            background-color: #f9fafb;
+            background-color: #f9fafb; /* gray-50 */
             animation: fadeIn 0.5s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
+        /* Overall Score Section */
         .overall-score-container {
             margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #d1d5db;
         }
-        .score-circle {
-            width: 80px;
-            height: 80px;
+        .score-circle { /* Circular score display */
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            margin: 0 auto 0.75rem;
+            margin: 0 auto 0.5rem auto;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: background-color 0.5s ease, border-color 0.5s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .score-text {
-            font-size: 1.5rem;
+        .score-text { /* Score number */
+            font-size: 1.4rem;
             font-weight: 800;
             transition: color 0.5s ease;
+            z-index: 1;
         }
-        /* Dynamic Score Colors - 5 Levels */
-        .score-very-low { background-color: #fecaca; border: 4px solid #b91c1c; }
-        .score-very-low .score-text { color: #7f1d1d; }
-        .score-low { background-color: #fee2e2; border: 4px solid #ef4444; }
-        .score-low .score-text { color: #b91c1c; }
-        .score-medium { background-color: #fef9c3; border: 4px solid #f59e0b; }
+        /* Dynamic Score Colors */
+        .score-very-low { background-color: #fee2e2; border: 3px solid #dc2626; }
+        .score-very-low .score-text { color: #991b1b; }
+        .score-low { background-color: #ffedd5; border: 3px solid #f97316; }
+        .score-low .score-text { color: #c2410c; }
+        .score-medium { background-color: #fef9c3; border: 3px solid #f59e0b; }
         .score-medium .score-text { color: #b45309; }
-        .score-good { background-color: #dcfce7; border: 4px solid #22c55e; }
+        .score-good { background-color: #dcfce7; border: 3px solid #22c55e; }
         .score-good .score-text { color: #15803d; }
-        .score-excellent { background-color: #bbf7d0; border: 4px solid #16a34a; }
+        .score-excellent { background-color: #bbf7d0; border: 3px solid #16a34a; }
         .score-excellent .score-text { color: #14532d; }
 
-        .score-title {
-            font-size: 1.1rem;
+        .score-title { /* Text below score circle */
+            font-size: 1rem;
             font-weight: 700;
             color: #1f2937;
         }
-        .pillar-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
-            text-align: left;
-        }
-        @media (min-width: 640px) {
-            .pillar-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        .pillar-card {
-            background-color: #ffffff;
-            border: 1px solid #e5e7eb;
-            padding: 0.5rem;
-            border-radius: 0.5rem;
-        }
-        .pillar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-        .pillar-title {
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .pillar-rating {
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 0.125rem 0.5rem;
-            border-radius: 999px;
-        }
-        .rating-green { background-color: #dcfce7; color: #166534; }
-        .rating-yellow { background-color: #fef9c3; color: #854d0e; }
-        .rating-red { background-color: #fee2e2; color: #991b1b; }
-        .pillar-advice {
-            font-size: 0.65rem;
-            color: #4b5563;
-            margin-bottom: 0.5rem;
-        }
-        .action-btn-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.25rem;
-            margin-top: 0.5rem;
-        }
-        .action-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            background-color: #fef2f2;
-            color: #C22D2D;
-            border: 1px solid #fca5a5;
-            padding: 0.125rem 0.5rem;
-            border-radius: 999px;
-            font-size: 0.65rem;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.2s ease-in-out;
-        }
-        .action-btn:hover {
-            background-color: #C22D2D;
-            color: white;
-            border-color: #C22D2D;
-            transform: translateY(-1px);
-        }
-        .action-btn svg {
-            width: 10px;
-            height: 10px;
-        }
-        .results-actions {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        .results-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: #374151;
-            color: white;
-            border: none;
-            padding: 0.25rem 0.7rem;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            font-size: 0.65rem;
-            font-weight: 600;
-            transition: all 0.2s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .results-btn:hover {
-            background-color: #4b5563;
-            transform: translateY(-1px);
-        }
-        #quiz-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 2rem;
-        }
-        .nav-button {
-            background: none;
-            border: 1px solid #d1d5db;
-            color: #4b5563;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        .nav-button:hover {
-            background-color: #f3f4f6;
-        }
-        .nav-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        .title-with-accent {
-            position: relative;
-            padding-bottom: 0.75rem;
-        }
-        .title-with-accent::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background-color: #E34037;
-            margin: 0.75rem auto 0;
-        }
+
+        /* Priority Plan Section */
         #priority-plan {
             margin-bottom: 1rem;
             background-color: #fff;
-            padding: 0.5rem;
+            padding: 0.75rem;
             border-radius: 0.5rem;
             border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
         }
         #priority-plan h3 {
             font-weight: 700;
             color: #1f2937;
             margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            text-align: center;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid #f3f4f6;
         }
         #priority-plan ol {
             list-style-position: inside;
             list-style-type: decimal;
             text-align: left;
+            padding-left: 0.5rem;
         }
         #priority-plan li {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #4b5563;
+            margin-bottom: 0.2rem;
+            line-height: 1.3;
+        }
+         #priority-plan li strong { font-weight: 600; color: #111827; }
+
+        /* Pillar Grid & Cards */
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+            text-align: left;
+        }
+        @media (min-width: 640px) { .pillar-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .pillar-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            padding: 0.6rem;
+            border-radius: 0.5rem;
+            transition: box-shadow 0.3s ease;
+             display: flex; /* Ensure flex for content */
+             flex-direction: column; /* Stack content vertically */
+             height: 100%; /* Ensure equal height */
+        }
+        .pillar-card:hover { box-shadow: 0 3px 6px rgba(0,0,0,0.06); }
+
+        .pillar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 0.25rem;
         }
-        .chart-container {
-            position: relative;
-            height: 100px;
-            width: 100%;
+        .pillar-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #1f2937;
+        }
+         .pillar-title svg { width: 12px; height: 12px; color: #6b7280; }
+        .pillar-rating {
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 0.1rem 0.4rem;
+            border-radius: 999px;
+            line-height: 1;
+        }
+        /* Rating colors */
+        .rating-green { background-color: #dcfce7; color: #166534; }
+        .rating-yellow { background-color: #fef9c3; color: #854d0e; }
+        .rating-red { background-color: #fee2e2; color: #991b1b; }
+
+        .pillar-advice {
+            font-size: 0.6rem;
+            color: #4b5563;
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
+             flex-grow: 1; /* Allow advice to take up space */
+        }
+        /* Action Buttons within Pillars */
+        .action-btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            margin-top: auto; /* Push buttons to bottom */
+             padding-top: 0.3rem; /* Add space above buttons */
+        }
+        .action-btn { /* Reusing styles */
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            background-color: #f3f4f6;
+            color: #4b5563;
+            border: 1px solid #e5e7eb;
+            padding: 0.1rem 0.4rem;
+            border-radius: 999px;
+            font-size: 0.55rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+        .action-btn:hover {
+            background-color: #e5e7eb;
+            color: #1f2937;
+            transform: translateY(-1px);
+        }
+        .action-btn svg { width: 8px; height: 8px; }
+
+        /* --- Buttons --- */
+        .results-actions { /* Reusing styles */
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
             margin-top: 1rem;
         }
-        #notification-toast {
+        .results-btn { /* Inherited */ }
+
+        #quiz-navigation { /* Reusing styles */
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        .nav-button { /* Reusing styles */
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background-color: #6b7280;
+            color: white;
+            border: 1px solid #6b7280;
+             border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .nav-button:hover:not(:disabled) { background-color: #4b5563; }
+        .nav-button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* --- Notification Toast --- */
+         #notification-toast {
             position: fixed;
             bottom: 20px;
             left: 50%;
@@ -320,11 +378,12 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s;
-        }
-        #notification-toast.show {
-            opacity: 1;
+            font-size: 0.8rem;
+         }
+         #notification-toast.show {
+             opacity: 1;
             visibility: visible;
-        }
+         }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -334,17 +393,18 @@
     <main class="container">
         <div class="quiz-container">
             <div id="quiz-content">
-                <div class="text-center p-6 bg-red-50 rounded-lg mb-8">
-                    <h1 class="text-xl font-bold text-gray-800 mb-2 title-with-accent">Your Financial Health Assessment</h1>
-                    <p class="text-gray-600 text-sm">Answer 15 quick questions to get your personalized financial report card.</p>
+                <!-- Updated Header -->
+                <div class="quiz-header">
+                    <h1>Your Financial Health Assessment</h1>
+                    <p>Get your personalized financial score and a clear action plan in minutes.</p>
                 </div>
-                
+
                 <div id="progress-bar-container">
                     <div id="progress-bar"></div>
                 </div>
 
                 <form id="health-quiz-form">
-                    <!-- Questions -->
+                    <!-- Questions 1-15 (Structure remains the same, styles applied via CSS) -->
                     <div class="question-block active" data-question-index="0">
                         <p class="question-text">1. What is your current age group?</p>
                         <div class="options-container">
@@ -414,71 +474,64 @@
                         </div>
                     </div>
                     <div class="question-block" data-question-index="8">
-                        <p class="question-text">9. Excluding a home loan, is your total monthly EMI (for personal loans, car loans, credit cards) more than 20% of your income?</p>
+                        <p class="question-text">9. Excluding a home loan, is your total monthly EMI (personal/car loans, credit cards) more than 20% of your income?</p>
                         <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q3" value="1" required> Yes, it's significantly more than 20%.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="1" required> Yes, significantly more than 20%.</label>
                             <label class="option-label"><input type="radio" name="q3" value="2"> It's around 20%.</label>
                             <label class="option-label"><input type="radio" name="q3" value="3"> No, it's well below 20%.</label>
                         </div>
                     </div>
                     <div class="question-block" data-question-index="9">
-                        <p class="question-text">10. Which of these essential insurance policies do you have?</p>
+                        <p class="question-text">10. Which essential insurance policies do you have?</p>
                         <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q4" value="1" required> Neither</label>
+                            <label class="option-label"><input type="radio" name="q4" value="1" required> Neither Health nor Term Life Insurance</label>
                             <label class="option-label"><input type="radio" name="q4" value="2"> Health Insurance only</label>
                             <label class="option-label"><input type="radio" name="q4" value="3"> Term Life Insurance only</label>
-                            <label class="option-label"><input type="radio" name="q4" value="4"> Both Health and Term Life</label>
+                            <label class="option-label"><input type="radio" name="q4" value="4"> Both Health and Term Life Insurance</label>
                         </div>
                     </div>
                     <div class="question-block" data-question-index="10">
-                        <p class="question-text">11. When it comes to investing, which statement sounds most like you?</p>
+                        <p class="question-text">11. When investing, which statement sounds most like you?</p>
                         <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q5" value="1" required> "My main goal is to not lose the money I've saved."</label>
-                            <label class="option-label"><input type="radio" name="q5" value="2"> "I'm willing to accept some ups and downs for better returns."</label>
-                            <label class="option-label"><input type="radio" name="q5" value="3"> "I'm aiming for the highest possible growth, and I understand that involves bigger risks."</label>
+                            <label class="option-label"><input type="radio" name="q5" value="1" required> "My main goal is to not lose money."</label>
+                            <label class="option-label"><input type="radio" name="q5" value="2"> "I accept some ups/downs for better returns."</label>
+                            <label class="option-label"><input type="radio" name="q5" value="3"> "Aiming for highest growth, understand risks."</label>
                         </div>
                     </div>
+                    <!-- REMOVED Questions 12, 13, 14, 15 -->
+                    <!-- Original Question 12 (now hidden or removed from HTML)
                     <div class="question-block" data-question-index="11">
-                        <p class="question-text">12. If you saw your investment value drop by 20% in a month, what would you do?</p>
-                        <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q6" value="1" required> Sell immediately to cut my losses.</label>
-                            <label class="option-label"><input type="radio" name="q6" value="2"> Feel worried, but hold on and hope it recovers.</label>
-                            <label class="option-label"><input type="radio" name="q6" value="3"> See it as a sale and invest even more.</label>
-                        </div>
-                    </div>
+                        <p class="question-text">12. If your investments dropped 20% in a month, you would:</p> ...
+                    </div> -->
+                     <!-- Original Question 13 (now hidden or removed)
                      <div class="question-block" data-question-index="12">
-                        <p class="question-text">13. How soon do you think you'll need to use the money you're investing?</p>
-                        <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q7" value="1" required> In the next 1-3 years.</label>
-                            <label class="option-label"><input type="radio" name="q7" value="2"> Sometime between 4 and 7 years from now.</label>
-                            <label class="option-label"><input type="radio" name="q7" value="3"> Not for at least 8 years or more.</label>
-                        </div>
-                    </div>
+                        <p class="question-text">13. Investment time horizon for major goals (e.g., retirement):</p> ...
+                    </div> -->
+                    <!-- Original Question 14 (now hidden or removed)
                     <div class="question-block" data-question-index="13">
-                        <p class="question-text">14. How much experience do you have with investing in things like stocks or mutual funds?</p>
-                        <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q8" value="1" required> None at all, I'm a complete beginner.</label>
-                            <label class="option-label"><input type="radio" name="q8" value="2"> I know the basics and have made a few investments.</label>
-                            <label class="option-label"><input type="radio" name="q8" value="3"> I'm very experienced and actively manage my own portfolio.</label>
-                        </div>
-                    </div>
+                        <p class="question-text">14. Your experience with stocks or mutual funds:</p> ...
+                    </div> -->
+                    <!-- Original Question 15 (now hidden or removed)
                     <div class="question-block" data-question-index="14">
-                        <p class="question-text">15. Which of these trade-offs are you most comfortable making?</p>
-                        <div class="options-container">
-                            <label class="option-label"><input type="radio" name="q9" value="1" required> I'd accept very low returns to ensure my money is 100% safe.</label>
-                            <label class="option-label"><input type="radio" name="q9" value="2"> I'd risk a small potential loss for a chance at moderate, inflation-beating returns.</label>
-                            <label class="option-label"><input type="radio" name="q9" value="3"> I'd risk a larger potential loss for a chance at high, market-beating returns.</label>
-                        </div>
-                    </div>
+                        <p class="question-text">15. Which trade-off are you most comfortable with?</p> ...
+                    </div> -->
+                    <!-- End Questions -->
                 </form>
 
+                 <!-- Navigation -->
                 <div id="quiz-navigation">
-                    <button id="prev-btn" class="nav-button">Previous</button>
+                    <button id="prev-btn" class="nav-button" disabled>
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1"><path d="m15 18-6-6 6-6"/></svg>
+                        Previous
+                    </button>
+                    <!-- Next button removed -->
                 </div>
             </div>
 
+            <!-- Results area (Structure defined here, content filled by JS) -->
             <div id="results-content">
-                <div class="report-card">
+                 <div class="report-card">
+                    <!-- Overall Score -->
                     <div class="overall-score-container">
                         <div id="score-circle" class="score-circle">
                             <span id="overall-score" class="score-text">0</span>
@@ -486,38 +539,46 @@
                         <h2 class="score-title">Your Financial Health Score</h2>
                     </div>
 
-                    <div id="priority-plan">
+                    <!-- Priority Plan -->
+                     <div id="priority-plan">
                         <h3>Your Prioritized Action Plan</h3>
-                        <ol id="priority-list"></ol>
+                        <ol id="priority-list">
+                            <!-- JS will populate this -->
+                            <li>Calculating priorities...</li>
+                        </ol>
                     </div>
 
+                    <!-- Pillar Breakdown -->
                     <div class="pillar-grid">
-                        <!-- Pillars will be dynamically inserted here -->
+                        <!-- JS will populate pillar cards here -->
+                        <p>Loading assessment details...</p>
                     </div>
 
+                    <!-- Action Buttons -->
                     <div class="results-actions">
-                        <button id="share-report-btn" class="results-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+                        <button id="share-report-btn" class="results-btn btn-secondary"> <!-- Applied btn-secondary style -->
+                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
                             Share Report
                         </button>
-                        <button class="results-btn retake-quiz-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+                        <button class="results-btn retake-quiz-btn btn-secondary"> <!-- Applied btn-secondary style -->
+                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M2 11.5a10 10 0 0 1 18.8-4.3l-3.3 3.3"/><path d="M22 12.5a10 10 0 0 1-18.8 4.3l3.3-3.3"/></svg>
                             Retake Assessment
                         </button>
                     </div>
-                    <!-- New Disclaimer -->
+                    <!-- Disclaimer -->
                     <p class="text-xs font-light text-gray-500 mt-6 pt-4 border-t border-gray-200">
-                        <strong>Privacy Guarantee:</strong> We do not ask for personal details and none of your answers or results are stored. This assessment is completely anonymous.
+                        <strong>Disclaimer:</strong> This assessment provides a general overview. For personalized financial advice, consult a qualified advisor. Your answers are not stored.
                     </p>
                 </div>
-            </div>
+            </div> <!-- End results content -->
         </div>
     </main>
-    
-    <div id="notification-toast"></div>
+
     <div id="footer-placeholder"></div>
+     <div id="notification-toast"></div> <!-- Added for notifications -->
 
     <script src="../script.js"></script>
-    <script src="financial-health-assessment.js"></script>
+    <!-- Use type="module" if your script uses import/export -->
+    <script type="module" src="financial-health-assessment.js"></script>
 </body>
 </html>
