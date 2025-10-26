@@ -7,7 +7,7 @@
     <meta name="description" content="India's best all-in-one financial calculator. Master SIP, RD, FD, SWP, & Goal investments with our free, user-friendly, and inflation-adjusted tools.">
     <meta name="keywords" content="financial calculator, investment calculator, sip calculator, lumpsum calculator, tax calculator, emi calculator, rd calculator, fd calculator, goal planner, personal finance india">
     <link rel="canonical" href="https://calculator.toolblaster.com/" />
-    
+
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="calculators/financial-calculator/calculator-style.css">
 
@@ -16,13 +16,13 @@
 
     <style>
         .hidden { display: none !important; }
-        
+
         /* --- UPDATED: Compact and Centered Styles --- */
         .featured-guides-section {
             padding: 0.5rem; /* Reduced padding */
             margin: 1rem auto; /* Adjusted margin */
             max-width: 1000px;
-            background-color: #f0f4f8; 
+            background-color: #f0f4f8;
             border-radius: 0.5rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
@@ -31,7 +31,7 @@
         .guide-link {
             font-size: 0.8rem;
             font-weight: 600;
-            color: #E34037; 
+            color: #E34037;
             text-decoration: none;
             margin-top: auto;
             transition: color 0.3s ease;
@@ -56,15 +56,15 @@
             text-decoration: none;
             color: inherit;
         }
-        .content-card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 12px 16px rgba(0,0,0,0.08); 
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 16px rgba(0,0,0,0.08);
         }
-        .content-card h3 { 
-            font-size: 0.85rem; 
-            font-weight: 600; 
-            color: #121212; 
-            margin-bottom: 0.5rem; 
+        .content-card h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #121212;
+            margin-bottom: 0.5rem;
         }
         .content-card p {
             font-size: 0.75rem;
@@ -88,6 +88,12 @@
         #notification-toast.show {
             opacity: 1;
             visibility: visible;
+        }
+        /* ADDED: Style for inline error messages */
+        .input-error-message {
+            color: #dc2626; /* red-600 */
+            font-size: 0.6rem; /* text-xxs */
+            margin-top: 0.1rem; /* mt-1 roughly */
         }
     </style>
     <script type="application/ld+json">
@@ -183,10 +189,10 @@
 
         <div id="calculator" class="financial-calculator-wrapper">
             <div class="bg-white shadow-lg rounded-xl p-2 sm:p-3 w-full border border-red-300 mx-auto my-0 calculator-container">
-                
+
                 <h2 id="calculatorTitle" class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">All-in-One Investment Calculator</h2>
                 <p id="calculatorDescription" class="text-center text-gray-500 mb-3 text-xs">Plan your investments with our advanced tools for SIP, RD, FD, SWP, Goal Planning & more.</p>
-                
+
                 <div class="flex justify-center mb-2 flex-wrap gap-1">
                     <button id="sipModeBtn" aria-label="Switch to SIP calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-blue-600 text-white shadow-md">SIP</button>
                     <button id="lumpsumModeBtn" aria-label="Switch to Lumpsum calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Lumpsum</button>
@@ -195,7 +201,7 @@
                     <button id="fdModeBtn" aria-label="Switch to FD calculator" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">FD</button>
                     <button id="goalModeBtn" aria-label="Switch to Goal Planner" class="px-2 py-1 rounded-md text-xs font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gray-200 text-gray-700 hover:bg-gray-300">Goal Planner</button>
                 </div>
-                
+
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-3">
                     <div class="space-y-1.5">
                         <div id="sipSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg">
@@ -205,7 +211,8 @@
                                     <input type="range" id="sipAmountSlider" min="500" max="50000" value="10000" step="500" class="w-full range-slider">
                                     <input type="number" id="sipAmountInput" class="manual-input" value="10000" min="500" max="50000" step="500">
                                 </div>
-                                <p id="sipAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹500 - ₹50,000.</p>
+                                <!-- ADDED Error Message Div -->
+                                <p id="sipAmountError" class="input-error-message hidden">Amount must be between ₹500 - ₹50,000.</p>
                             </div>
                             <div>
                                 <label for="sipFrequency" class="block text-xs font-medium text-gray-600 mb-1">SIP Frequency</label>
@@ -234,6 +241,8 @@
                                     <input type="range" id="sipIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider">
                                     <input type="number" id="sipIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
                                 </div>
+                                <!-- ADDED Error Message Div -->
+                                <p id="sipIncreaseRateError" class="input-error-message hidden">Value must be between 0 and 20.</p>
                             </div>
                         </div>
                         <div id="lumpsumSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
@@ -243,7 +252,8 @@
                                     <input type="range" id="lumpsumAmountSlider" min="5000" max="10000000" value="500000" step="1000" class="w-full range-slider">
                                     <input type="number" id="lumpsumAmountInput" class="manual-input" value="500000" min="5000" max="10000000" step="1000">
                                 </div>
-                                <p id="lumpsumAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹5,000 - ₹1 Crore.</p>
+                                <!-- ADDED Error Message Div -->
+                                <p id="lumpsumAmountError" class="input-error-message hidden">Amount must be between ₹5,000 - ₹1 Crore.</p>
                             </div>
                         </div>
                         <div id="rdSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
@@ -253,7 +263,8 @@
                                     <input type="range" id="rdAmountSlider" min="100" max="50000" value="5000" step="100" class="w-full range-slider">
                                     <input type="number" id="rdAmountInput" class="manual-input" value="5000" min="100" max="50000" step="100">
                                 </div>
-                                <p id="rdAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹100 - ₹50,000.</p>
+                                <!-- ADDED Error Message Div -->
+                                <p id="rdAmountError" class="input-error-message hidden">Amount must be between ₹100 - ₹50,000.</p>
                             </div>
                             <div>
                                 <label for="rdFrequency" class="block text-xs font-medium text-gray-600 mb-1">RD Frequency</label>
@@ -282,6 +293,8 @@
                                     <input type="range" id="rdIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider">
                                     <input type="number" id="rdIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
                                 </div>
+                                <!-- ADDED Error Message Div -->
+                                <p id="rdIncreaseRateError" class="input-error-message hidden">Value must be between 0 and 20.</p>
                             </div>
                         </div>
                         <div id="fdSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
@@ -291,7 +304,8 @@
                                     <input type="range" id="fdAmountSlider" min="1000" max="10000000" value="100000" step="1000" class="w-full range-slider">
                                     <input type="number" id="fdAmountInput" class="manual-input" value="100000" min="1000" max="10000000" step="1000">
                                 </div>
-                                <p id="fdAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1,000 - ₹1 Crore.</p>
+                                <!-- ADDED Error Message Div -->
+                                <p id="fdAmountError" class="input-error-message hidden">Amount must be between ₹1,000 - ₹1 Crore.</p>
                             </div>
                         </div>
                         <div id="swpSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
@@ -301,7 +315,8 @@
                                     <input type="range" id="initialCorpusSlider" min="100000" max="50000000" value="2000000" step="10000" class="w-full range-slider">
                                     <input type="number" id="initialCorpusInput" class="manual-input" value="2000000" min="100000" max="50000000" step="10000">
                                 </div>
-                                <p id="initialCorpusError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1 Lac - ₹5 Crore.</p>
+                                <!-- ADDED Error Message Div -->
+                                <p id="initialCorpusError" class="input-error-message hidden">Amount must be between ₹1 Lac - ₹5 Crore.</p>
                             </div>
                             <div>
                                 <label for="withdrawalAmountInput" class="block text-xs font-medium text-gray-600 mb-1">Monthly Withdrawal (₹)</label>
@@ -309,7 +324,8 @@
                                     <input type="range" id="withdrawalAmountSlider" min="1000" max="100000" value="20000" step="500" class="w-full range-slider">
                                     <input type="number" id="withdrawalAmountInput" class="manual-input" value="20000" min="1000" max="100000" step="500">
                                 </div>
-                                <p id="withdrawalAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1,000 - ₹1 Lac.</p>
+                                <!-- ADDED Error Message Div -->
+                                <p id="withdrawalAmountError" class="input-error-message hidden">Amount must be between ₹1,000 - ₹1 Lac.</p>
                             </div>
                             <div>
                                 <div class="flex justify-between items-center mb-1">
@@ -330,6 +346,8 @@
                                     <input type="range" id="withdrawalIncreaseSlider" min="0" max="10" value="0" step="1" class="w-full range-slider">
                                     <input type="number" id="withdrawalIncreaseInput" class="manual-input" value="0" min="0" max="10" step="1">
                                 </div>
+                                <!-- ADDED Error Message Div -->
+                                <p id="withdrawalIncreaseError" class="input-error-message hidden">Value must be between 0 and 10.</p>
                             </div>
                             <div>
                                 <label for="withdrawalFrequency" class="block text-xs font-medium text-gray-600 mb-1">Withdrawal Frequency</label>
@@ -395,7 +413,8 @@
                                     <input type="range" id="targetAmountSlider" min="100000" max="100000000" value="5000000" step="10000" class="w-full range-slider">
                                     <input type="number" id="targetAmountInput" class="manual-input" value="5000000" min="100000" max="100000000" step="10000">
                                 </div>
-                                <p id="targetAmountError" class="text-red-500 text-xxs mt-1 hidden">Amount must be between ₹1 Lac - ₹10 Crore.</p>
+                                <!-- ADDED Error Message Div -->
+                                <p id="targetAmountError" class="input-error-message hidden">Amount must be between ₹1 Lac - ₹10 Crore.</p>
                             </div>
                             <div>
                                 <label for="goalReturnRateInput" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
@@ -403,7 +422,8 @@
                                     <input type="range" id="goalReturnRateSlider" min="1" max="30" value="12" step="0.1" class="w-full range-slider">
                                     <input type="number" id="goalReturnRateInput" class="manual-input" value="12" min="1" max="30" step="0.1">
                                 </div>
-                                <p id="goalReturnRateError" class="text-red-500 text-xxs mt-1 hidden">Rate must be between 1% - 30%.</p>
+                                <!-- ADDED Error Message Div -->
+                                <p id="goalReturnRateError" class="input-error-message hidden">Rate must be between 1% - 30%.</p>
                             </div>
                             <div>
                                 <label for="goalPeriodInput" class="block text-xs font-medium text-gray-600 mb-1">Investment Period (Years)</label>
@@ -411,10 +431,11 @@
                                     <input type="range" id="goalPeriodSlider" min="1" max="40" value="10" class="w-full range-slider">
                                     <input type="number" id="goalPeriodInput" class="manual-input" value="10" min="1" max="40">
                                 </div>
-                                <p id="goalPeriodError" class="text-red-500 text-xxs mt-1 hidden">Period must be between 1 - 40 years.</p>
+                                <!-- ADDED Error Message Div -->
+                                <p id="goalPeriodError" class="input-error-message hidden">Period must be between 1 - 40 years.</p>
                             </div>
                         </div>
-                        
+
                         <div id="generalInputsSection" class="bg-blue-50/50 p-2 rounded-lg space-y-1.5">
                             <div>
                                 <label for="returnRateInput" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
@@ -422,7 +443,8 @@
                                     <input type="range" id="returnRateSlider" min="1" max="30" value="12" step="0.1" class="w-full range-slider">
                                     <input type="number" id="returnRateInput" class="manual-input" value="12" min="1" max="30" step="0.1">
                                 </div>
-                                <p id="returnRateError" class="text-red-500 text-xxs mt-1 hidden">Rate must be between 1% - 30%.</p>
+                                <!-- ADDED Error Message Div -->
+                                <p id="returnRateError" class="input-error-message hidden">Rate must be between 1% - 30%.</p>
                             </div>
                             <div>
                                 <label for="investmentPeriodInput" class="block text-xs font-medium text-gray-600 mb-1" id="periodLabel">Investment Period (Years)</label>
@@ -430,7 +452,8 @@
                                     <input type="range" id="investmentPeriodSlider" min="1" max="40" value="10" class="w-full range-slider">
                                     <input type="number" id="investmentPeriodInput" class="manual-input" value="10" min="1" max="40">
                                 </div>
-                                <p id="investmentPeriodError" class="text-red-500 text-xxs mt-1 hidden">Period must be between 1 - 40 years.</p>
+                                <!-- ADDED Error Message Div -->
+                                <p id="investmentPeriodError" class="input-error-message hidden">Period must be between 1 - 40 years.</p>
                             </div>
                         </div>
 
@@ -468,7 +491,8 @@
                                     <input type="range" id="inflationRateSlider" min="0" max="15" value="5" step="0.1" class="w-full range-slider">
                                     <input type="number" id="inflationRateInput" class="manual-input" value="5" min="0" max="15" step="0.1">
                                 </div>
-                                <p id="inflationRateError" class="text-red-500 text-xxs mt-1 hidden">Rate must be between 0% - 15%.</p>
+                                <!-- ADDED Error Message Div -->
+                                <p id="inflationRateError" class="input-error-message hidden">Rate must be between 0% - 15%.</p>
                             </div>
                         </div>
                     </div>
@@ -516,7 +540,7 @@
                            <div id="postTaxSectionFD" class="summary-extra hidden"><span class="summary-label">Post-Tax Total</span><span id="postTaxTotalValueFD" class="summary-value tax">₹0</span></div>
                            <div id="realValueSectionFD" class="summary-extra hidden"><span class="summary-label">Real Value</span><span id="realTotalValueFD" class="summary-value real">₹0</span></div>
                         </div>
-                        
+
                         <div id="swpSummary" class="summary-card hidden" aria-live="polite">
                             <div class="summary-header"><h3>SWP Summary</h3><button class="share-btn" aria-label="Share SWP calculation results"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 8.81C7.5 8.31 6.79 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg></button></div>
                             <div class="summary-grid swp-grid">
@@ -538,7 +562,7 @@
                             <div class="summary-total"><span class="summary-label">Monthly Investment Needed</span><span id="monthlyInvestmentGoal" class="summary-value goal">₹0</span></div>
                             <div class="summary-extra hidden"><span class="summary-label">Expected Returns</span><span id="expectedReturnsGoal" class="summary-value returns">₹0</span></div>
                         </div>
-                        
+
                         <div class="flex justify-center items-center h-24 sm:h-28 md:h-32 w-full relative mt-3">
                             <canvas id="investmentDoughnutChart"></canvas>
                         </div>
@@ -584,11 +608,15 @@
     </main>
 
     <div id="footer-placeholder"></div>
-    
+
     <div id="notification-toast"></div>
 
+    <!-- Ensure utils.js is loaded as a module BEFORE the main calculator script -->
+    <script type="module" src="assets/js/utils.js"></script>
+    <!-- Load the main calculator script -->
+    <script type="module" src="calculators/financial-calculator/financial-calculator.js"></script>
+    <!-- Load global scripts -->
     <script src="script.js"></script>
     <script src="assets/js/global-elements.js" defer></script>
-    <script src="calculators/financial-calculator/financial-calculator.js"></script>
 </body>
 </html>
