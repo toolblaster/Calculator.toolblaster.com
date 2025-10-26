@@ -705,15 +705,30 @@ main {
     box-shadow: 0 4px 8px rgba(0,0,0,0.08);
 }
 
+/* Specific hover effects for share buttons */
 .share-btn.whatsapp:hover { background-color: #25D366; color: #fff; border-color: #25D366;}
 .share-btn.facebook:hover { background-color: #1877F2; color: #fff; border-color: #1877F2;}
 .share-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2;}
 .share-btn.linkedin:hover { background-color: #0A66C2; color: #fff; border-color: #0A66C2;}
 .share-btn.copy-link:hover { background-color: #4b5563; color: #fff; border-color: #4b5563;} /* gray-600 */
 
+/* Style for share buttons within the footer */
+.site-footer .share-btn {
+    border-color: #4b5563; /* gray-600 */
+    background-color: transparent;
+    color: #ffffff; /* Make icons white */
+}
+.site-footer .share-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter background on hover */
+    color: #ffffff; /* Keep icons white on hover */
+    border-color: #9ca3af; /* gray-400 */
+}
+
+/* Ensure SVG icons inherit the color */
 .share-btn svg {
     width: 16px;
     height: 16px;
+    fill: currentColor; /* Make sure SVG uses the button's color */
 }
 
 /* --- UNIVERSAL CTA BUTTON STYLES (Contrast improvements) --- */
@@ -954,4 +969,25 @@ main {
 label {
      /* IMPROVED CONTRAST: Darker labels */
     color: #374151; /* gray-700 */
+}
+
+/* Notification Toast */
+#notification-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2d3748; /* gray-800 */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    font-size: 0.8rem;
+}
+#notification-toast.show {
+    opacity: 1;
+    visibility: visible;
 }
