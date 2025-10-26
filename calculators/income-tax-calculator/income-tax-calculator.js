@@ -5,14 +5,16 @@ import { formatCurrency, debounce, syncSliderAndInput } from '../../assets/js/ut
 document.addEventListener('DOMContentLoaded', () => {
     // Check if the main calculator container exists on the page
     const calculatorContainer = document.querySelector('.calculator-container');
-    if (calculatorContainer) {
+    if (calculatorContainer && getElem('grossSalaryInput')) { // Added check for a specific input
         initializeTaxCalculator();
     }
 });
 
+// Helper function to get elements
+const getElem = (id) => document.getElementById(id);
+
 function initializeTaxCalculator() {
     'use strict';
-    const getElem = (id) => document.getElementById(id);
 
     // --- Element Variables ---
     const grossSalaryInput = getElem('grossSalaryInput');
@@ -35,7 +37,7 @@ function initializeTaxCalculator() {
 
     const toggleDetailsBtn = getElem('toggleDetailsBtn');
     const detailsTableContainer = getElem('detailsTableContainer');
-    
+
     // Share Modal Elements
     const shareReportBtn = getElem('shareReportBtn');
     const shareModal = getElem('shareModal');
@@ -95,27 +97,41 @@ function initializeTaxCalculator() {
         const otherDeductions = parseFloat(otherDeductionsInput.value) || 0;
         const taxpayerProfile = taxpayerProfileSelect.value;
         const standardDeduction = 50000;
-        
+
         const totalDeductions = deduction80c + homeLoanInterest + npsDeduction + otherDeductions + standardDeduction;
 
         const { oldRegimeSlabs, newRegimeSlabs } = getTaxSlabs(taxpayerProfile);
 
         // --- Old Regime Calculation ---
         let taxableIncomeOld = grossSalary - totalDeductions;
+        taxableIncomeOld = Math.max(0, taxableIncomeOld); // Ensure income doesn't go below 0
         let taxOld = 0;
-        if (taxableIncomeOld > 500000) {
+        let rebateOld = 0;
+        // Apply rebate u/s 87A for Old Regime if taxable income <= 5L
+        if (taxableIncomeOld <= 500000) {
             taxOld = calculateTax(taxableIncomeOld, oldRegimeSlabs);
+            rebateOld = Math.min(taxOld, 12500);
+            taxOld = 0; // Tax becomes 0 after rebate
+        } else {
+             taxOld = calculateTax(taxableIncomeOld, oldRegimeSlabs);
         }
-        const cessOld = taxOld * 0.04;
+        const cessOld = taxOld * 0.04; // Cess is applied on tax after rebate
         const totalTaxOld = taxOld + cessOld;
-        
+
         // --- New Regime Calculation ---
         let taxableIncomeNew = grossSalary - standardDeduction; // SD is now available in new regime
+        taxableIncomeNew = Math.max(0, taxableIncomeNew); // Ensure income doesn't go below 0
         let taxNew = 0;
-        if (taxableIncomeNew > 700000) {
+        let rebateNew = 0;
+         // Apply rebate u/s 87A for New Regime if taxable income <= 7L
+        if (taxableIncomeNew <= 700000) {
+            taxNew = calculateTax(taxableIncomeNew, newRegimeSlabs);
+            rebateNew = Math.min(taxNew, 25000); // Higher rebate limit
+            taxNew = 0; // Tax becomes 0 after rebate
+        } else {
             taxNew = calculateTax(taxableIncomeNew, newRegimeSlabs);
         }
-        const cessNew = taxNew * 0.04;
+        const cessNew = taxNew * 0.04; // Cess is applied on tax after rebate
         const totalTaxNew = taxNew + cessNew;
 
         // --- Update UI ---
@@ -145,15 +161,15 @@ function initializeTaxCalculator() {
 
         // Update Doughnut Chart
         updateDoughnutChart([totalTaxOld, totalTaxNew], ['Old Regime', 'New Regime'], ['#F87171', '#60A5FA']);
-        
+
         // Update Details Table
         updateDetailsTable({
             grossSalary, standardDeduction, deduction80c, homeLoanInterest, npsDeduction, otherDeductions,
-            taxableIncomeOld, taxOld, cessOld, totalTaxOld,
-            taxableIncomeNew, taxNew, cessNew, totalTaxNew
+            taxableIncomeOld, taxOldBeforeRebate: calculateTax(taxableIncomeOld, oldRegimeSlabs), rebateOld, taxOld, cessOld, totalTaxOld, // Pass rebate info
+            taxableIncomeNew, taxNewBeforeRebate: calculateTax(taxableIncomeNew, newRegimeSlabs), rebateNew, taxNew, cessNew, totalTaxNew // Pass rebate info
         });
     }
-    
+
     function updateDoughnutChart(data, labels, colors) {
       const chartData = { labels: labels, datasets: [{ data, backgroundColor: colors, hoverOffset: 4, borderRadius: 3, spacing: 1 }] };
       const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: '50%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` } } } };
@@ -161,6 +177,10 @@ function initializeTaxCalculator() {
     }
 
     function updateDetailsTable(data) {
+        // Only show rebate row if rebate is actually applied (> 0)
+        const rebateRowOld = data.rebateOld > 0 ? `<tr><td class="px-2 py-1 pl-4">Rebate u/s 87A</td><td class="px-2 py-1 text-right">(-) ${formatCurrency(data.rebateOld)}</td><td class="px-2 py-1 text-right">-</td></tr>` : '';
+        const rebateRowNew = data.rebateNew > 0 ? `<tr><td class="px-2 py-1 pl-4">Rebate u/s 87A</td><td class="px-2 py-1 text-right">-</td><td class="px-2 py-1 text-right">(-) ${formatCurrency(data.rebateNew)}</td></tr>` : '';
+
         detailsTableContainer.innerHTML = `
             <h3 class="text-center text-sm font-bold text-gray-800 mb-2">Detailed Tax Calculation</h3>
             <table class="min-w-full divide-y divide-gray-200">
@@ -176,44 +196,54 @@ function initializeTaxCalculator() {
                     <tr class="bg-gray-50"><td colspan="3" class="px-2 py-1 font-semibold">Deductions</td></tr>
                     <tr><td class="px-2 py-1 pl-4">Standard Deduction</td><td class="px-2 py-1 text-right">(-) ${formatCurrency(data.standardDeduction)}</td><td class="px-2 py-1 text-right">(-) ${formatCurrency(data.standardDeduction)}</td></tr>
                     <tr><td class="px-2 py-1 pl-4">Section 80C</td><td class="px-2 py-1 text-right">(-) ${formatCurrency(data.deduction80c)}</td><td class="px-2 py-1 text-right">-</td></tr>
-                    <tr><td class="px-2 py-1 pl-4">Home Loan Interest</td><td class="px-2 py-1 text-right">(-) ${formatCurrency(data.homeLoanInterest)}</td><td class="px-2 py-1 text-right">-</td></tr>
+                    <tr><td class="px-2 py-1 pl-4">Home Loan Interest (Sec 24b)</td><td class="px-2 py-1 text-right">(-) ${formatCurrency(data.homeLoanInterest)}</td><td class="px-2 py-1 text-right">-</td></tr>
                     <tr><td class="px-2 py-1 pl-4">NPS (80CCD-1B)</td><td class="px-2 py-1 text-right">(-) ${formatCurrency(data.npsDeduction)}</td><td class="px-2 py-1 text-right">-</td></tr>
-                    <tr><td class="px-2 py-1 pl-4">Other Deductions</td><td class="px-2 py-1 text-right">(-) ${formatCurrency(data.otherDeductions)}</td><td class="px-2 py-1 text-right">-</td></tr>
-                    <tr class="font-bold bg-blue-50"><td class="px-2 py-1">Taxable Income</td><td class="px-2 py-1 text-right">${formatCurrency(data.taxableIncomeOld > 0 ? data.taxableIncomeOld : 0)}</td><td class="px-2 py-1 text-right">${formatCurrency(data.taxableIncomeNew > 0 ? data.taxableIncomeNew : 0)}</td></tr>
-                    <tr><td class="px-2 py-1">Income Tax</td><td class="px-2 py-1 text-right">${formatCurrency(data.taxOld)}</td><td class="px-2 py-1 text-right">${formatCurrency(data.taxNew)}</td></tr>
+                    <tr><td class="px-2 py-1 pl-4">Other Deductions (80D etc.)</td><td class="px-2 py-1 text-right">(-) ${formatCurrency(data.otherDeductions)}</td><td class="px-2 py-1 text-right">-</td></tr>
+                    <tr class="font-semibold bg-blue-50"><td class="px-2 py-1">Net Taxable Income</td><td class="px-2 py-1 text-right">${formatCurrency(data.taxableIncomeOld)}</td><td class="px-2 py-1 text-right">${formatCurrency(data.taxableIncomeNew)}</td></tr>
+                    <tr><td class="px-2 py-1">Income Tax (Before Rebate)</td><td class="px-2 py-1 text-right">${formatCurrency(data.taxOldBeforeRebate)}</td><td class="px-2 py-1 text-right">${formatCurrency(data.taxNewBeforeRebate)}</td></tr>
+                    ${rebateRowOld}
+                    ${rebateRowNew}
+                    <tr><td class="px-2 py-1 font-semibold">Income Tax (After Rebate)</td><td class="px-2 py-1 text-right">${formatCurrency(data.taxOld)}</td><td class="px-2 py-1 text-right">${formatCurrency(data.taxNew)}</td></tr>
                     <tr><td class="px-2 py-1">Health & Edu Cess (4%)</td><td class="px-2 py-1 text-right">(+) ${formatCurrency(data.cessOld)}</td><td class="px-2 py-1 text-right">(+) ${formatCurrency(data.cessNew)}</td></tr>
                     <tr class="font-bold text-base bg-green-50"><td class="px-2 py-1">Total Tax Payable</td><td class="px-2 py-1 text-right">${formatCurrency(data.totalTaxOld)}</td><td class="px-2 py-1 text-right">${formatCurrency(data.totalTaxNew)}</td></tr>
                 </tbody>
             </table>
         `;
     }
-    
+
     function populateAndShowModal() {
         const grossSalary = parseFloat(grossSalaryInput.value);
         const totalDeductionsOld = parseFloat(deduction80cInput.value) + parseFloat(homeLoanInterestInput.value) + parseFloat(deductionNpsInput.value) + parseFloat(otherDeductionsInput.value) + 50000;
         const taxOldText = oldRegimeTaxElem.textContent;
         const taxNewText = newRegimeTaxElem.textContent;
-        
+
         const taxOld = taxOldText ? parseFloat(taxOldText.replace(/[^0-9.]/g, '')) : 0;
         const taxNew = taxNewText ? parseFloat(taxNewText.replace(/[^0-9.]/g, '')) : 0;
-    
+
+        const recommendedRegime = recommendationText.textContent; // Get the recommendation text
+        const savings = Math.abs(taxOld - taxNew);
+
         modalReportContent.innerHTML = `
             <h3>Your Inputs</h3>
             <ul>
                 <li><span>Annual Gross Salary:</span> <span>${formatCurrency(grossSalary)}</span></li>
                 <li><span>Taxpayer Profile:</span> <span>${taxpayerProfileSelect.options[taxpayerProfileSelect.selectedIndex].text}</span></li>
-                <li><span>Total Deductions (Old Regime):</span> <span>${formatCurrency(totalDeductionsOld)}</span></li>
+                <li><span>Total Deductions Claimed (Old Regime):</span> <span>${formatCurrency(totalDeductionsOld)}</span></li>
             </ul>
             <h3 style="margin-top: 1rem;">Final Tax Liability</h3>
             <ul>
                 <li><span>Old Regime Tax:</span> <span>${formatCurrency(taxOld)}</span></li>
                 <li><span>New Regime Tax:</span> <span>${formatCurrency(taxNew)}</span></li>
-                <li style="font-size: 1rem; font-weight: bold; color: ${taxOld < taxNew ? '#166534' : '#991b1b'}; margin-top: 0.5rem; border-top: 1px solid #e5e7eb; padding-top: 0.5rem;">
-                    <span>Total Savings:</span> <span>${formatCurrency(Math.abs(taxOld - taxNew))}</span>
+                <li style="font-size: 0.9rem; font-weight: bold; color: ${taxOld < taxNew ? '#166534' : (taxNew < taxOld ? '#166534' : '#1f2937')}; margin-top: 0.5rem; border-top: 1px solid #e5e7eb; padding-top: 0.5rem;">
+                    <span>Recommendation:</span> <span>${recommendedRegime}</span>
                 </li>
+                 ${savings > 0 ? `
+                 <li style="font-size: 0.9rem; font-weight: bold; color: #15803d; ">
+                     <span>Total Savings with Recommended Regime:</span> <span>${formatCurrency(savings)}</span>
+                 </li>` : ''}
             </ul>
         `;
-        
+
         // Generate shareable URL
         const params = new URLSearchParams();
         params.set('salary', grossSalaryInput.value);
@@ -223,7 +253,7 @@ function initializeTaxCalculator() {
         params.set('dnps', deductionNpsInput.value);
         params.set('dother', otherDeductionsInput.value);
         shareUrlInput.value = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
-    
+
         shareModal.classList.remove('hidden');
     }
 
@@ -236,17 +266,25 @@ function initializeTaxCalculator() {
             homeLoanInterestInput.value = params.get('d24') || 0;
             deductionNpsInput.value = params.get('dnps') || 0;
             otherDeductionsInput.value = params.get('dother') || 0;
-            
+
             // Sync sliders
             ['grossSalarySlider', 'deduction80cSlider', 'homeLoanInterestSlider', 'deductionNpsSlider', 'otherDeductionsSlider'].forEach(sliderId => {
                 const slider = getElem(sliderId);
                 const input = getElem(sliderId.replace('Slider', 'Input'));
                 if(input && slider) {
                     slider.value = input.value;
+                    // Ensure the imported updateSliderFill is used
+                    if (typeof updateSliderFill === 'function') {
+                        updateSliderFill(slider);
+                    }
                 }
             });
-            
+
+            // Call updateCalculator only *after* potentially loading from URL and syncing sliders
             updateCalculator();
+        } else {
+             // If no URL params, call updateCalculator for initial display
+             updateCalculator();
         }
     }
 
@@ -262,7 +300,7 @@ function initializeTaxCalculator() {
         syncSliderAndInput({ sliderId: 'otherDeductionsSlider', inputId: 'otherDeductionsInput', updateCallback: debouncedUpdate });
 
         if (taxpayerProfileSelect) taxpayerProfileSelect.addEventListener('change', updateCalculator);
-      
+
         if(toggleDetailsBtn) toggleDetailsBtn.addEventListener('click', () => {
             detailsTableContainer.classList.toggle('hidden');
             toggleDetailsBtn.textContent = detailsTableContainer.classList.contains('hidden') ? 'Show Calculation Details' : 'Hide Calculation Details';
@@ -272,20 +310,29 @@ function initializeTaxCalculator() {
         if(shareReportBtn) shareReportBtn.addEventListener('click', populateAndShowModal);
         if(closeModalBtn) closeModalBtn.addEventListener('click', () => shareModal.classList.add('hidden'));
         window.addEventListener('click', (event) => { if (event.target == shareModal) shareModal.classList.add('hidden'); });
-        
+
         if(copyUrlBtn) copyUrlBtn.addEventListener('click', () => {
             shareUrlInput.select();
-            document.execCommand('copy');
-            if (typeof showNotification === 'function') {
-              showNotification('Link copied to clipboard!');
+            // Use the older document.execCommand for broader compatibility within potential iframe restrictions
+            try {
+                const successful = document.execCommand('copy');
+                if (successful && typeof showNotification === 'function') {
+                    showNotification('Link copied to clipboard!');
+                } else if (typeof showNotification === 'function') {
+                    showNotification('Could not copy link.');
+                }
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+                if (typeof showNotification === 'function') {
+                    showNotification('Could not copy link.');
+                }
             }
         });
 
+
         if(printReportBtn) printReportBtn.addEventListener('click', () => {
-           const modalContent = getElem('modalReportContent');
-           modalContent.classList.add('print-area');
+           // Removed the dynamic class adding/removing logic
            window.print();
-           modalContent.classList.remove('print-area');
         });
     }
 
@@ -293,23 +340,25 @@ function initializeTaxCalculator() {
     function loadSeoContent() {
         const contentArea = getElem('dynamic-content-area');
         if (contentArea) {
+            // Corrected path assuming SEO content is in the same directory
             fetch('income-tax-calculator-seo-content.html')
                 .then(response => response.ok ? response.text() : Promise.reject('File not found'))
                 .then(html => contentArea.innerHTML = html)
                 .catch(error => console.error('Error loading SEO content:', error));
         }
     }
-    
+
     // --- Initial Run ---
     setupEventListeners();
-    loadFromUrl(); // Load from URL first
-    
-    // Initial UI setup, sliders will be synced by syncSliderAndInput
-    if (!window.location.search) {
-        updateCalculator(); // Then do initial calculation if no params
-    } else {
-        // We still need to call updateCalculator to ensure all values are processed after URL loading
-        updateCalculator();
-    }
+    loadFromUrl(); // Load from URL and potentially triggers updateCalculator
+
+    // Initial slider fill update needs to happen after potential loading from URL
+    document.querySelectorAll('.range-slider').forEach(slider => {
+        // Ensure the imported updateSliderFill is used
+        if (typeof updateSliderFill === 'function') {
+            updateSliderFill(slider);
+        }
+    });
+
     loadSeoContent();
 }
