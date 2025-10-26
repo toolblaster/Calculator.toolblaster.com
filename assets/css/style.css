@@ -875,13 +875,47 @@ main {
         align-items: center;
         padding: 0.4rem 0;
         text-align: left;
-        font-size: 0.9rem;
+        font-size: 0.8rem; /* MODIFIED: Base link font size decreased */
         font-weight: 600;
     }
 
     .hamburger {
         display: block;
     }
+
+    .dropdown .dropdown-menu {
+        position: static; /* Stack vertically, not fly-out */
+        display: none;
+        width: 100%;
+        padding: 0;
+        margin-top: 0.5rem;
+        box-shadow: none;
+        border: none;
+        background-color: transparent; /* Use transparent background */
+    }
+
+    /* Show mobile dropdown when 'open' class is toggled by JS */
+    .dropdown.open .dropdown-menu {
+        display: block;
+    }
+    
+    /* Rotate icon when open */
+    .dropdown.open .dropdown-icon {
+        transform: rotate(180deg);
+    }
+    
+    /* Style the sub-links inside the dropdown */
+    .dropdown-menu li a {
+        padding: 0.2rem 1rem 0.2rem 1.5rem; /* Indent sub-links */
+        font-size: 0.75rem; /* MODIFIED: Sub-link font size decreased */
+        border-left: none; /* Remove left border */
+    }
+     .dropdown-menu li a:hover,
+     .dropdown-menu li a.active {
+        background-color: var(--link-hover-bg);
+        border-left: 3px solid var(--accent-color); /* Add a small marker instead */
+        padding-left: 1.25rem;
+     }
 
     .footer-content {
         gap: 1.5rem;
