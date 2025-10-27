@@ -1,21 +1,22 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Calculator.Toolblaster.com",
+  "short_name": "CalcTool",
   "icons": [
     {
-      "src": "/web-app-manifest-192x192.png",
+      "src": "/favicon/android-chrome-192x192.png", // Corrected path
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable" // Combined purpose
     },
     {
-      "src": "/web-app-manifest-512x512.png",
+      "src": "/favicon/android-chrome-512x512.png", // Corrected path
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable" // Combined purpose
     }
   ],
   "theme_color": "#E34037",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "standalone",
+  "start_url": "/" // Added start_url
 }
