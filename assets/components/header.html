@@ -1,9 +1,7 @@
 <header class="site-header">
     <div class="container">
         <nav class="main-nav">
-            <!-- Updated the logo container to use flexbox for perfect vertical alignment -->
             <a href="/" class="logo flex items-center" style="font-size: 1.1rem;">
-                <!-- Adjusted the margin to add a small space between the icon and the text -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" fill="none" stroke="#E34037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.25rem;">
                     <rect width="16" height="20" x="4" y="2" rx="2"/>
                     <path d="M8 6h8"/>
@@ -17,13 +15,10 @@
                 <div class="nav-overlay"></div>
                 <ul class="nav-links">
                     <li><a href="/">#All-in-one calculator</a></li>
-                    <!-- Added Link to Comparison Tool -->
                     <li><a href="/compare-investments.html">Compare Investments</a></li>
                     <li class="dropdown">
-                        <!-- This link is now the toggle button for mobile/touch users -->
                         <a href="/calculators/" class="flex items-center">
                             Calculators
-                            <!-- **** MODIFIED: Changed ml-1 to ml-0.5 **** -->
                             <svg class="dropdown-icon ml-0.5 h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /> </svg>
                         </a>
                         <ul class="dropdown-menu">
@@ -47,9 +42,7 @@
             </button>
         </nav>
     </div>
-    <!-- Add Favicon Links Here -->
-    <!-- It's generally better to place favicon links directly in the <head> of each HTML file -->
-    <!-- However, if loading via JS is the only option, ensure this runs early -->
+    <!-- This script dynamically inserts favicon links into the <head> for proper pathing on all pages -->
     <script>
       (function() {
         const createLink = (rel, href, type, sizes) => {
@@ -61,35 +54,23 @@
           document.head.appendChild(link);
         };
 
-        // Get base path relative to the root
         const pathSegments = window.location.pathname.split('/').filter(Boolean);
-        let basePath = '/'; // Default for root
+        let basePath = '';
         if (pathSegments.length > 0) {
-            // Adjust depth based on how many directory levels deep the current page is
-            // Example: /calculators/emi-calculator/ -> ../../
             basePath = '../'.repeat(pathSegments.length);
         }
-         // Adjust specifically for root index.html if needed
-        if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-             basePath = ''; // No prefix needed if already at root
-        }
+        
+        createLink('icon', "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E34037' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='16' height='20' x='4' y='2' rx='2'/%3E%3Cpath d='M8 6h8'/%3E%3Cpath d='M8 10h8'/%3E%3Cpath d='M8 14h8'/%3E%3Cpath d='M15 18h1'/%3E%3C/svg%3E", 'image/svg+xml');
+        createLink('icon', basePath + 'favicon/favicon.ico', 'image/x-icon');
+        createLink('icon', basePath + 'favicon/favicon-16x16.png', 'image/png', '16x16');
+        createLink('icon', basePath + 'favicon/favicon-32x32.png', 'image/png', '32x32');
+        createLink('icon', basePath + 'favicon/favicon-48x48.png', 'image/png', '48x48');
+        createLink('icon', basePath + 'favicon/favicon-96x96.png', 'image/png', '96x96');
+        createLink('apple-touch-icon', basePath + 'favicon/apple-touch-icon.png', null, '180x180');
+        createLink('icon', basePath + 'favicon/android-chrome-192x192.png', 'image/png', '192x192');
+        createLink('icon', basePath + 'favicon/android-chrome-512x512.png', 'image/png', '512x512');
+        createLink('link', basePath + 'favicon/site.webmanifest', 'manifest');
 
-
-        // Fallback ICO for older browsers/systems
-        createLink('icon', basePath + 'favicon.ico', 'image/x-icon');
-        // SVG Icon (Modern browsers prefer this if available)
-        createLink('icon', basePath + 'favicon.svg', 'image/svg+xml');
-        // PNG sizes for various platforms
-        createLink('icon', basePath + 'favicon-16x16.png', 'image/png', '16x16');
-        createLink('icon', basePath + 'favicon-32x32.png', 'image/png', '32x32');
-        createLink('icon', basePath + 'favicon-48x48.png', 'image/png', '48x48');
-        createLink('icon', basePath + 'favicon-96x96.png', 'image/png', '96x96');
-        // Apple Touch Icon (iOS, etc.)
-        createLink('apple-touch-icon', basePath + 'apple-touch-icon.png', null, '180x180');
-        // Android/Chrome Icon
-        createLink('icon', basePath + 'android-chrome-192x192.png', 'image/png', '192x192');
-        // Optional: Larger size for high-res displays
-        createLink('icon', basePath + 'android-chrome-512x512.png', 'image/png', '512x512');
       })();
     </script>
 </header>
