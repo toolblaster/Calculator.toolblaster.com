@@ -11,10 +11,10 @@
  */
 export function formatCurrency(num) {
     if (isNaN(num)) return '₹0';
-    return new Intl.NumberFormat('en-IN', { 
-        style: 'currency', 
-        currency: 'INR', 
-        maximumFractionDigits: 0 
+    return new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+        maximumFractionDigits: 0
     }).format(Math.round(num));
 }
 
@@ -44,7 +44,8 @@ export function updateSliderFill(slider) {
 }
 
 /**
- * Synchronizes a range slider and a number input, with live validation.
+ * Synchronizes a range slider and a number input, with live validation
+ * and ARIA attribute updates for accessibility.
  * @param {object} options - The options for synchronization.
  * @param {string} options.sliderId - The ID of the range slider.
  * @param {string} options.inputId - The ID of the number input.
@@ -55,13 +56,26 @@ export function syncSliderAndInput({ sliderId, inputId, updateCallback }) {
     const input = document.getElementById(inputId);
     // Find the error message element by convention (e.g., sipAmountInput -> sipAmountError)
     const errorElement = document.getElementById(inputId.replace('Input', 'Error'));
-    
+
     const debouncedUpdate = updateCallback ? debounce(updateCallback, 250) : () => {};
 
     if (!slider || !input) {
         // console.warn(`Slider or Input not found for IDs: ${sliderId}, ${inputId}`);
         return;
     }
+
+    // --- ACCESSIBILITY ADDITION: Function to update aria-valuetext ---
+    const updateAriaValueText = () => {
+        const value = parseFloat(input.value);
+        if (!isNaN(value)) {
+            // Determine if it's likely a currency value based on common IDs or large steps
+            const isCurrency = inputId.toLowerCase().includes('amount') || inputId.toLowerCase().includes('salary') || inputId.toLowerCase().includes('corpus') || inputId.toLowerCase().includes('savings') || inputId.toLowerCase().includes('investment') || inputId.toLowerCase().includes('withdrawal') || (parseFloat(input.step) >= 100);
+            const formattedValue = isCurrency ? formatCurrency(value) : value.toString();
+            slider.setAttribute('aria-valuetext', formattedValue);
+        }
+    };
+    // --- END ACCESSIBILITY ADDITION ---
+
 
     const validate = () => {
         const value = parseFloat(input.value);
@@ -80,6 +94,7 @@ export function syncSliderAndInput({ sliderId, inputId, updateCallback }) {
     slider.addEventListener('input', () => {
         input.value = slider.value;
         updateSliderFill(slider);
+        updateAriaValueText(); // <-- ACCESSIBILITY UPDATE
         if (validate()) {
             debouncedUpdate();
         }
@@ -90,6 +105,7 @@ export function syncSliderAndInput({ sliderId, inputId, updateCallback }) {
         if (validate()) {
             slider.value = input.value;
             updateSliderFill(slider);
+            updateAriaValueText(); // <-- ACCESSIBILITY UPDATE
             debouncedUpdate();
         }
     });
@@ -105,21 +121,23 @@ export function syncSliderAndInput({ sliderId, inputId, updateCallback }) {
         } else if (value > max) {
             value = max;
         }
-        
+
         const step = parseFloat(slider.step) || 1;
         // Correct the value to the nearest step if needed, and format decimals
-        const correctedValue = step < 1 
-            ? parseFloat(value).toFixed(String(step).split('.')[1]?.length || 1) 
+        const correctedValue = step < 1
+            ? parseFloat(value).toFixed(String(step).split('.')[1]?.length || 1)
             : Math.round(value / step) * step;
-        
+
         input.value = correctedValue;
         slider.value = correctedValue;
-        
+
         updateSliderFill(slider);
+        updateAriaValueText(); // <-- ACCESSIBILITY UPDATE
         validate(); // This will remove error styles
         if (updateCallback) updateCallback(); // Immediate update on blur
     });
 
-    // Initial fill
+    // Initial fill and ARIA update
     updateSliderFill(slider);
+    updateAriaValueText(); // <-- ACCESSIBILITY UPDATE (Initial Set)
 }
