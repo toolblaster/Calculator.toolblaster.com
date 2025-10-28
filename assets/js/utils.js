@@ -2,6 +2,7 @@
  * utils.js
  * This new file centralizes reusable utility functions for all calculators and potentially other parts of the site.
  * This avoids code duplication and makes maintenance much easier.
+ * UPDATED: Added logic for increment/decrement buttons to syncSliderAndInput.
  */
 
 /**
@@ -44,38 +45,37 @@ export function updateSliderFill(slider) {
 }
 
 /**
- * Synchronizes a range slider and a number input, with live validation
- * and ARIA attribute updates for accessibility.
+ * Synchronizes a range slider and a number input, with live validation,
+ * ARIA attribute updates, and optional stepper buttons.
  * @param {object} options - The options for synchronization.
  * @param {string} options.sliderId - The ID of the range slider.
  * @param {string} options.inputId - The ID of the number input.
+ * @param {string} [options.decrementId] - Optional ID of the decrement button.
+ * @param {string} [options.incrementId] - Optional ID of the increment button.
  * @param {Function} [options.updateCallback] - An optional callback function to run on valid updates.
  */
-export function syncSliderAndInput({ sliderId, inputId, updateCallback }) {
+export function syncSliderAndInput({ sliderId, inputId, decrementId, incrementId, updateCallback }) {
     const slider = document.getElementById(sliderId);
     const input = document.getElementById(inputId);
-    // Find the error message element by convention (e.g., sipAmountInput -> sipAmountError)
+    const decrementBtn = decrementId ? document.getElementById(decrementId) : null;
+    const incrementBtn = incrementId ? document.getElementById(incrementId) : null;
     const errorElement = document.getElementById(inputId.replace('Input', 'Error'));
 
     const debouncedUpdate = updateCallback ? debounce(updateCallback, 250) : () => {};
 
     if (!slider || !input) {
-        // console.warn(`Slider or Input not found for IDs: ${sliderId}, ${inputId}`);
+        console.warn(`Slider or Input not found for IDs: ${sliderId}, ${inputId}`);
         return;
     }
 
-    // --- ACCESSIBILITY ADDITION: Function to update aria-valuetext ---
     const updateAriaValueText = () => {
         const value = parseFloat(input.value);
         if (!isNaN(value)) {
-            // Determine if it's likely a currency value based on common IDs or large steps
             const isCurrency = inputId.toLowerCase().includes('amount') || inputId.toLowerCase().includes('salary') || inputId.toLowerCase().includes('corpus') || inputId.toLowerCase().includes('savings') || inputId.toLowerCase().includes('investment') || inputId.toLowerCase().includes('withdrawal') || (parseFloat(input.step) >= 100);
             const formattedValue = isCurrency ? formatCurrency(value) : value.toString();
             slider.setAttribute('aria-valuetext', formattedValue);
         }
     };
-    // --- END ACCESSIBILITY ADDITION ---
-
 
     const validate = () => {
         const value = parseFloat(input.value);
@@ -87,26 +87,60 @@ export function syncSliderAndInput({ sliderId, inputId, updateCallback }) {
         if (errorElement) {
             errorElement.classList.toggle('hidden', isValid);
         }
+        // Disable/enable stepper buttons based on value
+        if (decrementBtn) decrementBtn.disabled = isNaN(value) || value <= min;
+        if (incrementBtn) incrementBtn.disabled = isNaN(value) || value >= max;
+
         return isValid;
+    };
+
+    // Shared update logic for slider, input, and buttons
+    const updateValue = (newValue) => {
+        const min = parseFloat(slider.min);
+        const max = parseFloat(slider.max);
+        const step = parseFloat(slider.step) || 1;
+
+        // Clamp value within min/max
+        let clampedValue = Math.max(min, Math.min(max, newValue));
+
+        // Adjust to the nearest step and format decimals correctly
+        const correctedValue = step < 1
+            ? parseFloat(clampedValue).toFixed(String(step).split('.')[1]?.length || 1)
+            : Math.round(clampedValue / step) * step;
+
+        // Ensure the corrected value is still within bounds after step correction
+        clampedValue = Math.max(min, Math.min(max, parseFloat(correctedValue)));
+
+        input.value = clampedValue;
+        slider.value = clampedValue;
+        updateSliderFill(slider);
+        updateAriaValueText();
+        if (validate()) {
+            if (updateCallback) updateCallback(); // Use immediate callback for button clicks
+        }
     };
 
     // Sync from slider to input
     slider.addEventListener('input', () => {
-        input.value = slider.value;
-        updateSliderFill(slider);
-        updateAriaValueText(); // <-- ACCESSIBILITY UPDATE
-        if (validate()) {
-            debouncedUpdate();
+        const newValue = parseFloat(slider.value);
+        if (!isNaN(newValue)) {
+            input.value = newValue; // Update input first
+            updateSliderFill(slider);
+            updateAriaValueText();
+            if (validate()) { // Then validate
+                debouncedUpdate(); // Use debounce for slider drag
+            }
         }
     });
 
+
     // Sync from input to slider with live validation
     input.addEventListener('input', () => {
-        if (validate()) {
+        if (validate()) { // Only sync slider if input is valid
             slider.value = input.value;
             updateSliderFill(slider);
-            updateAriaValueText(); // <-- ACCESSIBILITY UPDATE
-            debouncedUpdate();
+            updateAriaValueText();
+            debouncedUpdate(); // Use debounce for typing
         }
     });
 
@@ -115,6 +149,7 @@ export function syncSliderAndInput({ sliderId, inputId, updateCallback }) {
         let value = parseFloat(input.value);
         const min = parseFloat(slider.min);
         const max = parseFloat(slider.max);
+        const step = parseFloat(slider.step) || 1;
 
         if (isNaN(value) || value < min || input.value.trim() === '') {
             value = min;
@@ -122,22 +157,45 @@ export function syncSliderAndInput({ sliderId, inputId, updateCallback }) {
             value = max;
         }
 
-        const step = parseFloat(slider.step) || 1;
-        // Correct the value to the nearest step if needed, and format decimals
         const correctedValue = step < 1
             ? parseFloat(value).toFixed(String(step).split('.')[1]?.length || 1)
             : Math.round(value / step) * step;
 
-        input.value = correctedValue;
-        slider.value = correctedValue;
+        // Ensure value is clamped *after* step correction
+        value = Math.max(min, Math.min(max, parseFloat(correctedValue)));
+
+        input.value = value; // Use the finally corrected value
+        slider.value = value;
 
         updateSliderFill(slider);
-        updateAriaValueText(); // <-- ACCESSIBILITY UPDATE
-        validate(); // This will remove error styles
+        updateAriaValueText();
+        validate(); // Remove error styles and update button states
         if (updateCallback) updateCallback(); // Immediate update on blur
     });
 
-    // Initial fill and ARIA update
+    // Stepper Button Logic
+    if (decrementBtn) {
+        decrementBtn.addEventListener('click', () => {
+            const currentValue = parseFloat(input.value);
+            const step = parseFloat(slider.step) || 1;
+            if (!isNaN(currentValue)) {
+                updateValue(currentValue - step);
+            }
+        });
+    }
+
+    if (incrementBtn) {
+        incrementBtn.addEventListener('click', () => {
+            const currentValue = parseFloat(input.value);
+            const step = parseFloat(slider.step) || 1;
+            if (!isNaN(currentValue)) {
+                updateValue(currentValue + step);
+            }
+        });
+    }
+
+    // Initial validation and state setting
+    validate();
     updateSliderFill(slider);
-    updateAriaValueText(); // <-- ACCESSIBILITY UPDATE (Initial Set)
+    updateAriaValueText();
 }
