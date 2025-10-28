@@ -6,14 +6,15 @@
     <title>Advanced Income Tax Calculator (Old vs New Regime) - India</title>
     <meta name="description" content="Calculate and compare your income tax liability under the Old and New Tax Regimes with our advanced, user-friendly calculator for India. Includes deductions, age profiles, and a detailed tax breakup.">
     <meta name="keywords" content="income tax calculator, old vs new tax regime, tax calculator india, salary tax calculator, income tax slabs, tax saving investments">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="income-tax-calculator-style.css">
+    <!-- Link to the main calculator styles for slider/input group consistency -->
     <link rel="stylesheet" href="../financial-calculator/calculator-style.css">
+    <link rel="stylesheet" href="income-tax-calculator-style.css">
 </head>
 <body class="bg-gray-50">
 
@@ -22,25 +23,31 @@
     <main class="container">
         <div class="financial-calculator-wrapper">
             <div class="bg-white shadow-lg rounded-xl p-2 sm:p-3 w-full border border-red-300 mx-auto my-0 calculator-container">
-                
+
                 <h1 class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">Income Tax Calculator (FY 2025-26)</h1>
                 <p class="text-center text-gray-500 mb-2 text-xs">Compare the Old and New Tax Regimes to find which saves you more.</p>
-                
+
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-3">
                     <!-- Left Column: Inputs -->
                     <div class="space-y-1.5">
                         <!-- Salary and Profile Section -->
                         <div class="bg-blue-50/50 p-1.5 rounded-lg space-y-1.5">
                              <div>
-                                <label for="grossSalarySlider" class="block text-xs font-medium text-gray-600 mb-1">Your Gross Annual Salary (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="grossSalarySlider" min="250000" max="20000000" value="1200000" step="10000" class="w-full range-slider" aria-label="Gross Annual Salary">
-                                    <input type="number" id="grossSalaryInput" class="manual-input" value="1200000" min="250000" max="20000000" step="10000">
+                                <label for="grossSalaryInput" class="block text-xs font-medium text-gray-600 mb-1">Your Gross Annual Salary (₹)</label>
+                                <!-- UPDATED: Applied input-group and stepper-buttons structure -->
+                                <div class="input-group flex items-center space-x-2">
+                                    <input type="range" id="grossSalarySlider" min="250000" max="20000000" value="1200000" step="10000" class="w-full range-slider flex-grow" aria-label="Gross Annual Salary">
+                                    <div class="input-stepper-group flex-shrink-0">
+                                        <button type="button" id="grossSalaryDecrement" class="stepper-button decrement" aria-label="Decrease Gross Salary">-</button>
+                                        <input type="number" id="grossSalaryInput" class="manual-input" value="1200000" min="250000" max="20000000" step="10000">
+                                        <button type="button" id="grossSalaryIncrement" class="stepper-button increment" aria-label="Increase Gross Salary">+</button>
+                                    </div>
                                 </div>
+                                <p id="grossSalaryError" class="input-error-message hidden">Salary must be between ₹2,50,000 - ₹2 Crore.</p>
                             </div>
                             <div>
                                <label for="taxpayerProfile" class="block text-xs font-medium text-gray-600 mb-1">Taxpayer Profile</label>
-                               <select id="taxpayerProfile" class="w-full p-1 border border-gray-300 rounded-md text-xs font-semibold text-gray-700 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 shadow-sm">
+                               <select id="taxpayerProfile" class="w-full p-1 border border-gray-300 rounded-md text-xs font-semibold text-gray-700 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 shadow-sm h-8"> <!-- Added h-8 for consistent height -->
                                    <option value="regular">Regular Citizen (< 60 years)</option>
                                    <option value="senior">Senior Citizen (60-80 years)</option>
                                    <option value="super_senior">Super Senior Citizen (> 80 years)</option>
@@ -52,32 +59,56 @@
                         <div class="bg-blue-50/50 p-1.5 rounded-lg space-y-1.5">
                             <h2 class="text-sm font-bold text-blue-800 text-center mb-1">Enter Your Potential Deductions</h2>
                              <div>
-                                <label for="deduction80cSlider" class="block text-xs font-medium text-gray-600 mb-1">Section 80C Deductions (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="deduction80cSlider" min="0" max="150000" value="150000" step="1000" class="w-full range-slider" aria-label="Section 80C Deductions">
-                                    <input type="number" id="deduction80cInput" class="manual-input" value="150000" min="0" max="150000" step="1000">
+                                <label for="deduction80cInput" class="block text-xs font-medium text-gray-600 mb-1">Section 80C Deductions (₹)</label>
+                                <!-- UPDATED: Applied input-group and stepper-buttons structure -->
+                                <div class="input-group flex items-center space-x-2">
+                                    <input type="range" id="deduction80cSlider" min="0" max="150000" value="150000" step="1000" class="w-full range-slider flex-grow" aria-label="Section 80C Deductions">
+                                    <div class="input-stepper-group flex-shrink-0">
+                                        <button type="button" id="deduction80cDecrement" class="stepper-button decrement" aria-label="Decrease 80C Deduction">-</button>
+                                        <input type="number" id="deduction80cInput" class="manual-input" value="150000" min="0" max="150000" step="1000">
+                                        <button type="button" id="deduction80cIncrement" class="stepper-button increment" aria-label="Increase 80C Deduction">+</button>
+                                    </div>
                                 </div>
+                                <p id="deduction80cError" class="input-error-message hidden">Amount must be between ₹0 - ₹1,50,000.</p>
                             </div>
                             <div>
-                                <label for="homeLoanInterestSlider" class="block text-xs font-medium text-gray-600 mb-1">Home Loan Interest - Sec 24 (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="homeLoanInterestSlider" min="0" max="200000" value="0" step="1000" class="w-full range-slider" aria-label="Home Loan Interest Section 24b Deduction">
-                                    <input type="number" id="homeLoanInterestInput" class="manual-input" value="0" min="0" max="200000" step="1000">
+                                <label for="homeLoanInterestInput" class="block text-xs font-medium text-gray-600 mb-1">Home Loan Interest - Sec 24 (₹)</label>
+                                <!-- UPDATED: Applied input-group and stepper-buttons structure -->
+                                <div class="input-group flex items-center space-x-2">
+                                    <input type="range" id="homeLoanInterestSlider" min="0" max="200000" value="0" step="1000" class="w-full range-slider flex-grow" aria-label="Home Loan Interest Section 24b Deduction">
+                                    <div class="input-stepper-group flex-shrink-0">
+                                        <button type="button" id="homeLoanInterestDecrement" class="stepper-button decrement" aria-label="Decrease Home Loan Interest Deduction">-</button>
+                                        <input type="number" id="homeLoanInterestInput" class="manual-input" value="0" min="0" max="200000" step="1000">
+                                        <button type="button" id="homeLoanInterestIncrement" class="stepper-button increment" aria-label="Increase Home Loan Interest Deduction">+</button>
+                                    </div>
                                 </div>
+                                <p id="homeLoanInterestError" class="input-error-message hidden">Amount must be between ₹0 - ₹2,00,000.</p>
                             </div>
                             <div>
-                                <label for="deductionNpsSlider" class="block text-xs font-medium text-gray-600 mb-1">NPS Contribution - Sec 80CCD(1B) (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="deductionNpsSlider" min="0" max="50000" value="0" step="1000" class="w-full range-slider" aria-label="NPS Contribution Section 80CCD(1B) Deduction">
-                                    <input type="number" id="deductionNpsInput" class="manual-input" value="0" min="0" max="50000" step="1000">
+                                <label for="deductionNpsInput" class="block text-xs font-medium text-gray-600 mb-1">NPS Contribution - Sec 80CCD(1B) (₹)</label>
+                                <!-- UPDATED: Applied input-group and stepper-buttons structure -->
+                                <div class="input-group flex items-center space-x-2">
+                                    <input type="range" id="deductionNpsSlider" min="0" max="50000" value="0" step="1000" class="w-full range-slider flex-grow" aria-label="NPS Contribution Section 80CCD(1B) Deduction">
+                                    <div class="input-stepper-group flex-shrink-0">
+                                        <button type="button" id="deductionNpsDecrement" class="stepper-button decrement" aria-label="Decrease NPS Deduction">-</button>
+                                        <input type="number" id="deductionNpsInput" class="manual-input" value="0" min="0" max="50000" step="1000">
+                                        <button type="button" id="deductionNpsIncrement" class="stepper-button increment" aria-label="Increase NPS Deduction">+</button>
+                                    </div>
                                 </div>
+                                <p id="deductionNpsError" class="input-error-message hidden">Amount must be between ₹0 - ₹50,000.</p>
                             </div>
                              <div>
-                                <label for="otherDeductionsSlider" class="block text-xs font-medium text-gray-600 mb-1">Other Deductions (80D, 80G etc.) (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="otherDeductionsSlider" min="0" max="100000" value="0" step="1000" class="w-full range-slider" aria-label="Other Deductions like 80D, 80G">
-                                    <input type="number" id="otherDeductionsInput" class="manual-input" value="0" min="0" max="100000" step="1000">
+                                <label for="otherDeductionsInput" class="block text-xs font-medium text-gray-600 mb-1">Other Deductions (80D, 80G etc.) (₹)</label>
+                                <!-- UPDATED: Applied input-group and stepper-buttons structure -->
+                                <div class="input-group flex items-center space-x-2">
+                                    <input type="range" id="otherDeductionsSlider" min="0" max="100000" value="0" step="1000" class="w-full range-slider flex-grow" aria-label="Other Deductions like 80D, 80G">
+                                    <div class="input-stepper-group flex-shrink-0">
+                                        <button type="button" id="otherDeductionsDecrement" class="stepper-button decrement" aria-label="Decrease Other Deductions">-</button>
+                                        <input type="number" id="otherDeductionsInput" class="manual-input" value="0" min="0" max="100000" step="1000">
+                                        <button type="button" id="otherDeductionsIncrement" class="stepper-button increment" aria-label="Increase Other Deductions">+</button>
+                                    </div>
                                 </div>
+                                <p id="otherDeductionsError" class="input-error-message hidden">Amount must be between ₹0 - ₹1,00,000.</p>
                             </div>
                         </div>
                     </div>
@@ -136,14 +167,14 @@
                 </p>
             </div>
         </div>
-        
+
         <!-- Placeholder for the SEO content -->
-        <!-- Added mt-4 for spacing -->
-        <div id="dynamic-content-area" class="mt-4"></div>
+        <!-- UPDATED: Changed ID to be unique -->
+        <div id="dynamic-content-area-tax" class="mt-4"></div>
     </main>
 
     <div id="footer-placeholder"></div>
-    
+
     <!-- Share Modal -->
     <div id="shareModal" class="share-modal hidden">
         <div class="share-modal-content">
@@ -165,7 +196,6 @@
 
     <script src="../../script.js"></script>
     <script src="../../assets/js/global-elements.js" defer></script>
-    <!-- UPDATED: Added type="module" to enable import statements -->
     <script type="module" src="income-tax-calculator.js"></script>
 </body>
 </html>
