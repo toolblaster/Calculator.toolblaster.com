@@ -3,8 +3,9 @@
     --bg-color: #f9fafb; /* gray-50 */
     /* IMPROVED CONTRAST: Darker default text */
     --text-color: #1f2937; /* gray-800 */
-    /* IMPROVED CONTRAST: Slightly darker muted text */
-    --text-color-muted: #4b5563; /* gray-600 */
+    /* *** ACCESSIBILITY UPDATE: Increased contrast for muted text *** */
+    /* Was: --text-color-muted: #4b5563; /* gray-600 */
+    --text-color-muted: #374151; /* gray-700 - Higher contrast */
     --accent-color: #E34037; /* Original red */
     --accent-color-dark: #B91C1C; /* Darker red */
     --card-bg: #ffffff;
@@ -21,7 +22,7 @@
 body.dark-mode {
     --bg-color: #121212;
     --text-color: #e5e5e5;
-    --text-color-muted: #a3a3a3;
+    --text-color-muted: #a3a3a3; /* Kept lighter for dark mode */
     --card-bg: #1e1e1e;
     --card-border: #374151;
     --header-bg: #1f2937;
