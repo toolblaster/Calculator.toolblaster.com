@@ -47,6 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
+    // Make showNotification globally accessible if other scripts need it
+    window.showNotification = showNotification;
+
+
     /**
      * Initializes all social share buttons on a page (including footer).
      * It finds buttons with specific IDs and attaches the correct share URLs.
@@ -233,6 +237,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
+    /**
+     * Sets the 'active' class on the navigation link corresponding to the current page.
+     */
     const setActiveNavLink = () => {
         // ... (setActiveNavLink function remains the same as previous version) ...
         const currentPath = window.location.pathname.replace(/\/$/, "").replace(/\/index\.html$/, "");
@@ -270,6 +277,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150); // Small delay
     };
 
+    /**
+     * Sets the SVG favicon for the page.
+     */
     const setFavicon = () => {
         // ... (setFavicon function remains the same as previous version) ...
          console.log("[Script] Setting favicon..."); // Debug log
@@ -279,6 +289,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.head.appendChild(faviconLink);
     };
 
+    /**
+     * Initializes the page by loading components and setting up global event listeners.
+     */
     const initializePage = () => {
         setFavicon();
 
@@ -321,67 +334,163 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    /**
+     * Sets up the mobile menu toggle functionality and keyboard navigation for the dropdown.
+     */
     const setupMobileMenu = () => {
-        // ... (setupMobileMenu function remains the same as previous version) ...
+        // Get necessary elements for the menu
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
         const navOverlay = document.querySelector('.nav-overlay');
         const dropdownParent = document.querySelector('.dropdown');
         const dropdownLink = document.querySelector('.dropdown > a');
-        
+        const dropdownMenu = document.querySelector('.dropdown-menu'); // Get the menu itself
+        const dropdownItems = dropdownMenu ? dropdownMenu.querySelectorAll('a') : []; // Get links within the dropdown
+
         if (hamburger && navLinks && navOverlay) {
              console.log("[Script] Setting up mobile menu listeners."); // Debug log
             
+            // Hamburger button click toggles the menu
             hamburger.addEventListener('click', (e) => {
-                e.stopPropagation();
+                e.stopPropagation(); // Prevent event bubbling
                 toggleMenu();
             });
 
+            // Clicking the overlay closes the menu
             navOverlay.addEventListener('click', () => {
                 toggleMenu();
             });
             
-            // NEW: Handle clicks on ANY link within the active menu to close the menu
-            // This includes top-level links and sub-menu links
+            // Clicking any link *inside* the mobile menu closes it
             navLinks.addEventListener('click', (e) => {
                  if (e.target.tagName === 'A' && navLinks.classList.contains('active')) {
-                     // We only want to close the menu if the link is NOT the dropdown toggle
-                     // If it is the dropdown link, the dropdownLink listener will handle the toggle
+                     // Only close if it's NOT the main dropdown link itself (which toggles sub-menu)
                      if (!e.target.closest('.dropdown > a')) {
-                         // A slight delay ensures navigation starts before closing the menu
-                         setTimeout(toggleMenu, 50); 
+                         setTimeout(toggleMenu, 50); // Short delay allows navigation to start
                      }
                  }
             });
             
-            // Handle clicks on top-level menu item without closing (desktop dropdown behavior)
+            // Clicking non-dropdown links (redundant due to above listener, but kept for clarity)
              navLinks.querySelectorAll('li:not(.dropdown) > a').forEach(link => {
                 link.addEventListener('click', (e) => {
-                    // If the menu is not active (i.e., on desktop), navigation happens normally.
-                    if (navLinks.classList.contains('active')) {
-                        // On mobile, the click will also be caught by the general navLinks listener above
-                        // which ensures toggleMenu() runs after navigation starts.
-                    }
+                    // On mobile, the main navLinks listener handles closing.
+                    // On desktop, this click navigates normally.
                 });
             });
             
-            // Handle mobile dropdown toggle
-            if (dropdownLink && dropdownParent) {
-                dropdownLink.addEventListener('click', (e) => {
-                    // Only apply this behavior on mobile/when the menu is active
-                    if (navLinks.classList.contains('active') || window.innerWidth <= 768) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        dropdownParent.classList.toggle('open');
-                        console.log("[Script] Mobile dropdown toggled.");
+            // --- KEYBOARD ACCESSIBILITY FOR DROPDOWN ---
+            if (dropdownLink && dropdownParent && dropdownMenu) {
+                
+                // Toggle dropdown with Enter/Space on the main link
+                dropdownLink.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault(); // Prevent default action (scrolling/navigation)
+                        e.stopPropagation(); // Stop event propagation
+                        const isOpen = dropdownParent.classList.toggle('open'); // Toggle visibility class
+                        dropdownLink.setAttribute('aria-expanded', isOpen); // Update ARIA state
+                        
+                        // If opening, focus the first item in the dropdown
+                        if (isOpen && dropdownItems.length > 0) {
+                            dropdownItems[0].focus();
+                        } else if (!isOpen) {
+                            // If closing, return focus to the dropdown link
+                             dropdownLink.focus();
+                        }
                     }
                 });
+
+                // Close dropdown with Escape key when focus is inside the menu
+                dropdownMenu.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                         e.preventDefault();
+                         e.stopPropagation();
+                         dropdownParent.classList.remove('open'); // Close menu
+                         dropdownLink.setAttribute('aria-expanded', 'false'); // Update ARIA state
+                         dropdownLink.focus(); // Return focus to the trigger link
+                    }
+                });
+
+                // Navigate dropdown items with Arrow Keys
+                dropdownItems.forEach((item, index) => {
+                    item.addEventListener('keydown', (e) => {
+                        if (e.key === 'ArrowDown') {
+                            e.preventDefault();
+                            const nextIndex = (index + 1) % dropdownItems.length; // Loop to start if at end
+                            dropdownItems[nextIndex].focus();
+                        } else if (e.key === 'ArrowUp') {
+                            e.preventDefault();
+                            const prevIndex = (index - 1 + dropdownItems.length) % dropdownItems.length; // Loop to end if at start
+                            dropdownItems[prevIndex].focus();
+                        } else if (e.key === 'Escape') {
+                            // Allow Escape on items to close menu as well
+                            e.preventDefault();
+                            e.stopPropagation();
+                             dropdownParent.classList.remove('open');
+                             dropdownLink.setAttribute('aria-expanded', 'false');
+                             dropdownLink.focus();
+                        }
+                        // Enter/Space on items will navigate due to default link behavior
+                    });
+
+                    // Close menu automatically if focus moves outside the dropdown
+                    // Useful especially when tabbing away from the last item
+                    if (index === dropdownItems.length - 1) { // Add listener only to the last item
+                        item.addEventListener('focusout', (e) => {
+                            // Check if the newly focused element is still within the dropdown menu
+                            if (!dropdownMenu.contains(e.relatedTarget)) {
+                                 // Use setTimeout to allow focus to settle before checking activeElement
+                                 setTimeout(() => { 
+                                    // Double-check: ensure the focus truly left the menu
+                                    if (!dropdownMenu.contains(document.activeElement)) {
+                                        dropdownParent.classList.remove('open');
+                                        dropdownLink.setAttribute('aria-expanded', 'false');
+                                    }
+                                 }, 0); 
+                            }
+                        });
+                    }
+                });
+
+                // Add ARIA attributes initially for semantics
+                dropdownLink.setAttribute('aria-haspopup', 'true');
+                dropdownLink.setAttribute('aria-expanded', 'false');
+
+                // Mobile dropdown toggle (click handling)
+                dropdownLink.addEventListener('click', (e) => {
+                    // Only apply click toggle behavior on mobile view or when mobile menu is active
+                    if (navLinks.classList.contains('active') || window.innerWidth <= 768) {
+                        e.preventDefault(); // Prevent default link navigation on mobile click
+                        e.stopPropagation();
+                        const isOpen = dropdownParent.classList.toggle('open');
+                        dropdownLink.setAttribute('aria-expanded', isOpen); // Update ARIA state
+                        console.log("[Script] Mobile dropdown toggled via click.");
+                    }
+                    // On desktop, the click navigates, and hover (CSS) or keyboard handles the dropdown
+                });
+
+                // Close dropdown if clicking outside (primarily for desktop experience)
+                 document.addEventListener('click', (e) => {
+                     // Check if not mobile menu view AND click is outside the dropdown parent
+                     if (window.innerWidth > 768 && !dropdownParent.contains(e.target)) {
+                        dropdownParent.classList.remove('open');
+                        dropdownLink.setAttribute('aria-expanded', 'false');
+                     }
+                 });
+
+
+            } else {
+                 console.warn("[Script] Dropdown elements not found, cannot enhance keyboard nav.");
             }
+             // --- END KEYBOARD ACCESSIBILITY ---
 
         } else {
              console.warn("[Script] Hamburger, navLinks, or navOverlay not found. Cannot set up mobile menu."); // Debug log
         }
 
+        /**
+         * Toggles the visibility of the mobile menu and overlay.
+         */
         function toggleMenu() {
             if (hamburger && navLinks && navOverlay) {
                 hamburger.classList.toggle('active');
@@ -389,13 +498,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 navOverlay.classList.toggle('active');
                  console.log("[Script] Mobile menu toggled."); // Debug log
                  
-                 // If closing, ensure dropdown is closed too
+                 // If closing the menu, also ensure the dropdown is closed and ARIA state is correct
                  if (!navLinks.classList.contains('active') && dropdownParent) {
                      dropdownParent.classList.remove('open');
+                     if(dropdownLink) dropdownLink.setAttribute('aria-expanded', 'false');
                  }
             }
         }
     };
 
+    // Initialize the page on load
     initializePage();
 });
