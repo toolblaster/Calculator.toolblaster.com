@@ -57,7 +57,7 @@ function initializeEmiCalculator() {
 
     const toggleDetailsBtn = getElem('toggleAmortizationBtn');
     const detailsTableContainer = getElem('amortizationTableContainer');
-    
+
     // Share Modal Elements
     const shareReportBtn = getElem('shareReportBtn');
     const shareModal = getElem('shareModal');
@@ -70,7 +70,7 @@ function initializeEmiCalculator() {
 
     let currentAmortizationData = [];
     let isHomeLoanActive = false;
-    
+
     // --- Core Calculation Logic ---
     function calculateEMI(p, r, n) {
         if (r <= 0) return p / n;
@@ -79,50 +79,122 @@ function initializeEmiCalculator() {
     }
 
     function updateCalculator() {
+        // --- Validation ---
+        let isValid = true;
+        const validateInput = (inputId, min, max, errorMessageElemId) => {
+            const inputElem = getElem(inputId);
+            const value = parseFloat(inputElem.value);
+            const errorElem = getElem(errorMessageElemId);
+            if (isNaN(value) || value < min || value > max) {
+                errorElem?.classList.remove('hidden');
+                return false;
+            } else {
+                errorElem?.classList.add('hidden');
+                return true;
+            }
+        };
+
+        isValid &= validateInput('loanAmountInput', 50000, 20000000, 'loanAmountError');
+        isValid &= validateInput('interestRateInput', 1, 20, 'interestRateError');
+        isValid &= validateInput('loanTenureInput', 1, 30, 'loanTenureError');
+
+        const isFloatingRate = rateTypeToggle.checked;
+        if (isFloatingRate) {
+            isValid &= validateInput('rateIncreaseInput', 0.25, 5, 'rateIncreaseError');
+            isValid &= validateInput('increaseAfterInput', 1, 10, 'increaseAfterError');
+        }
+
+        const prepaymentAmount = parseFloat(prepaymentAmountInput.value) || 0;
+        if (prepaymentAmount > 0) {
+            isValid &= validateInput('prepaymentAmountInput', 0, 1000000, 'prepaymentAmountError');
+            if (prepaymentFrequencySelect.value === '0') {
+                 // Validate start month only if prepayment amount is > 0 and freq is 'One Time'
+                 const totalMonths = (parseFloat(loanTenureInput.value) || 0) * 12;
+                 const startMonth = parseInt(prepaymentStartInput.value);
+                 const errorElem = getElem('prepaymentStartError');
+                 if (isNaN(startMonth) || startMonth < 1 || startMonth > totalMonths) {
+                    if (errorElem) {
+                        errorElem.textContent = `Month must be between 1 and ${totalMonths}.`;
+                        errorElem.classList.remove('hidden');
+                    }
+                    isValid = false;
+                 } else {
+                    errorElem?.classList.add('hidden');
+                 }
+            } else {
+                 getElem('prepaymentStartError')?.classList.add('hidden'); // Hide start month error if not one-time
+            }
+        } else {
+             // Hide errors if prepayment amount is 0
+            getElem('prepaymentAmountError')?.classList.add('hidden');
+            getElem('prepaymentStartError')?.classList.add('hidden');
+        }
+
+
+        if (!isValid) {
+            // Display error state in results
+            monthlyEmiElem.textContent = '-';
+            principalAmountElem.textContent = '-';
+            totalInterestElem.textContent = '-';
+            totalPayableElem.textContent = '-';
+            prepaymentResultSection.classList.add('hidden');
+            newEmiSection.classList.add('hidden');
+            taxBenefitSection.classList.add('hidden');
+            updateDoughnutChart([1], ['Invalid Input'], ['#E5E7EB']);
+            // Clear amortization table and chart if invalid
+            detailsTableContainer.innerHTML = '<p class="text-center text-gray-500 text-xs">Enter valid inputs to see schedule.</p>';
+            if (amortizationLineChart) {
+                amortizationLineChart.data.labels = [];
+                amortizationLineChart.data.datasets = [];
+                amortizationLineChart.update();
+            }
+            return;
+        }
+        // --- End Validation ---
+
+
         const principal = parseFloat(loanAmountInput.value) || 0;
         const annualRate = parseFloat(interestRateInput.value) || 0;
         const years = parseFloat(loanTenureInput.value) || 0;
-        const prepaymentAmount = parseFloat(prepaymentAmountInput.value) || 0;
+        // Prepayment values read again after validation
+        const currentPrepaymentAmount = parseFloat(prepaymentAmountInput.value) || 0;
         const prepaymentFrequency = parseInt(prepaymentFrequencySelect.value, 10);
         const oneTimeStartMonth = parseInt(prepaymentStartInput.value, 10);
-        const isFloatingRate = rateTypeToggle.checked;
-        const rateIncrease = isFloatingRate ? parseFloat(rateIncreaseInput.value) / 100 : 0;
+        // Floating rate values read again after validation
+        const currentRateIncrease = isFloatingRate ? parseFloat(rateIncreaseInput.value) / 100 : 0;
         const increaseAfterYears = isFloatingRate ? parseInt(increaseAfterInput.value) : Infinity;
 
-        if (principal === 0 || annualRate === 0 || years === 0) return;
 
         let monthlyRate = annualRate / 12 / 100;
         const totalMonths = years * 12;
-        
+
         prepaymentStartSlider.max = totalMonths;
-        if (parseInt(prepaymentStartInput.value) > totalMonths) {
-            prepaymentStartInput.value = totalMonths;
-        }
+        // No need to adjust input value here as validation already handles it
         updateSliderFill(prepaymentStartSlider);
 
         const initialEmi = calculateEMI(principal, monthlyRate, totalMonths);
-        
-        let originalLoanData = generateAmortizationData(principal, initialEmi, monthlyRate, totalMonths, 0, 0, 0, rateIncrease, increaseAfterYears);
-        
+
+        let originalLoanData = generateAmortizationData(principal, initialEmi, monthlyRate, totalMonths, 0, 0, 0, currentRateIncrease, increaseAfterYears);
+
         monthlyEmiElem.textContent = formatCurrency(initialEmi);
         principalAmountElem.textContent = formatCurrency(principal);
         totalInterestElem.textContent = formatCurrency(originalLoanData.totalInterest);
         totalPayableElem.textContent = formatCurrency(principal + originalLoanData.totalInterest);
 
-        if (isFloatingRate && originalLoanData.newEmi > 0) {
+        if (isFloatingRate && originalLoanData.newEmi > 0 && originalLoanData.newEmi !== initialEmi) {
             newEmiSection.classList.remove('hidden');
             newEmiElem.textContent = formatCurrency(originalLoanData.newEmi);
         } else {
             newEmiSection.classList.add('hidden');
         }
-        
+
         updateDoughnutChart([principal, originalLoanData.totalInterest], ['Principal Amount', 'Total Interest'], ['#3B82F6', '#F87171']);
 
         let prepayLoanData = { amortization: [], totalInterest: 0, totalPrepaid: 0 };
-        if (prepaymentAmount > 0) {
+        if (currentPrepaymentAmount > 0) {
             prepaymentResultSection.classList.remove('hidden');
-            prepayLoanData = generateAmortizationData(principal, initialEmi, monthlyRate, totalMonths, prepaymentAmount, prepaymentFrequency, oneTimeStartMonth, rateIncrease, increaseAfterYears);
-            
+            prepayLoanData = generateAmortizationData(principal, initialEmi, monthlyRate, totalMonths, currentPrepaymentAmount, prepaymentFrequency, oneTimeStartMonth, currentRateIncrease, increaseAfterYears);
+
             const interestSaved = originalLoanData.totalInterest - prepayLoanData.totalInterest;
             const tenureReducedMonths = originalLoanData.amortization.length - prepayLoanData.amortization.length;
 
@@ -131,13 +203,18 @@ function initializeEmiCalculator() {
             totalPrepaidAmountElem.textContent = formatCurrency(prepayLoanData.totalPrepaid);
 
             const today = new Date();
-            const newEndDate = new Date(new Date().setMonth(today.getMonth() + prepayLoanData.amortization.length));
-            newEndDateElem.textContent = newEndDate.toLocaleDateString('en-IN', { month: 'short', year: 'numeric' });
+             // Ensure amortization length is valid before calculating date
+             if (prepayLoanData.amortization.length > 0) {
+                const newEndDate = new Date(new Date().setMonth(today.getMonth() + prepayLoanData.amortization.length));
+                newEndDateElem.textContent = newEndDate.toLocaleDateString('en-IN', { month: 'short', year: 'numeric' });
+             } else {
+                 newEndDateElem.textContent = '-'; // Handle case where loan is paid off instantly (unlikely but possible)
+             }
         } else {
             prepaymentResultSection.classList.add('hidden');
         }
-        
-        currentAmortizationData = prepaymentAmount > 0 ? prepayLoanData.amortization : originalLoanData.amortization;
+
+        currentAmortizationData = currentPrepaymentAmount > 0 ? prepayLoanData.amortization : originalLoanData.amortization;
         generateAmortizationTable(currentAmortizationData);
         generateAmortizationChart(originalLoanData.amortization, prepayLoanData.amortization);
 
@@ -149,6 +226,8 @@ function initializeEmiCalculator() {
         }
     }
 
+
+    // --- Other functions remain unchanged ---
     function generateAmortizationData(principal, emi, initialMonthlyRate, totalMonths, prepayment, prepFrequency, oneTimeStart, rateIncrease, increaseAfterYears) {
         let amortization = [];
         let balance = principal;
@@ -156,43 +235,66 @@ function initializeEmiCalculator() {
         let totalPrepaid = 0;
         let monthlyRate = initialMonthlyRate;
         let currentEmi = emi;
-        let newEmi = 0;
+        let newEmi = 0; // Track if EMI changes
 
         for (let i = 1; i <= totalMonths; i++) {
             if (balance <= 0) break;
 
+            // Check if rate increases (only once)
             if (i > increaseAfterYears * 12 && rateIncrease > 0 && newEmi === 0) {
-                const newAnnualRate = parseFloat(interestRateInput.value) + (rateIncrease * 100);
-                monthlyRate = newAnnualRate / 12 / 100;
-                
-                const recalculatedEmi = calculateEMI(balance, monthlyRate, totalMonths - (i - 1));
-                newEmi = recalculatedEmi;
-                currentEmi = recalculatedEmi;
+                 // Calculate new annual rate based on the *initial* rate + increase
+                 const initialAnnualRate = parseFloat(interestRateInput.value) || 0; // Read initial rate again
+                 const newAnnualRate = initialAnnualRate + (rateIncrease * 100);
+                 console.log("Rate Increase Triggered:", { i, increaseAfterYears, initialAnnualRate, rateIncrease, newAnnualRate }); // Debug
+                 monthlyRate = newAnnualRate / 12 / 100;
+
+                 // Recalculate EMI based on remaining balance and tenure
+                 const remainingMonths = totalMonths - (i - 1);
+                 // Only recalculate if remainingMonths is positive
+                 const recalculatedEmi = remainingMonths > 0 ? calculateEMI(balance, monthlyRate, remainingMonths) : balance; // If last month, EMI is remaining balance + interest
+                 console.log("Recalculated EMI:", { balance, monthlyRate, remainingMonths, recalculatedEmi }); // Debug
+
+                 // Only update if the new EMI is meaningfully different (handle floating point issues)
+                 if (Math.abs(recalculatedEmi - currentEmi) > 0.01) {
+                    newEmi = recalculatedEmi;
+                    currentEmi = recalculatedEmi;
+                 } else {
+                      newEmi = currentEmi; // Keep track that recalculation happened but didn't change EMI much
+                 }
             }
+
 
             const interest = balance * monthlyRate;
             let principalPaid = currentEmi - interest;
-            
-            if ((principalPaid) > balance) {
+
+             // Ensure principal paid doesn't exceed balance
+             // Also handles the final payment correctly
+             if (principalPaid >= balance || Math.abs(balance - principalPaid) < 0.01) {
                 principalPaid = balance;
-                currentEmi = balance + interest;
+                currentEmi = balance + interest; // Final EMI is just balance + interest for that month
             }
 
+
             let currentPrepayment = 0;
-            if (prepayment > 0) {
-                if (prepFrequency > 0 && i % prepFrequency === 0) {
-                    currentPrepayment = Math.min(balance - principalPaid, prepayment);
-                } else if (prepFrequency === 0 && i === oneTimeStart) {
-                    currentPrepayment = Math.min(balance - principalPaid, prepayment);
+            // Calculate prepayment only if balance > 0 after principal payment
+            if (balance - principalPaid > 0) {
+                if (prepayment > 0) {
+                    if (prepFrequency > 0 && i % prepFrequency === 0) { // Recurring prepayment
+                        currentPrepayment = Math.min(balance - principalPaid, prepayment);
+                    } else if (prepFrequency === 0 && i === oneTimeStart) { // One-time prepayment
+                        currentPrepayment = Math.min(balance - principalPaid, prepayment);
+                    }
                 }
             }
-            
+
+
             balance -= (principalPaid + currentPrepayment);
-            if (balance < 0) balance = 0;
+            // Ensure balance doesn't go negative due to rounding
+            if (balance < 0.01) balance = 0;
 
             totalInterest += interest;
             totalPrepaid += currentPrepayment;
-            
+
             amortization.push({
                 month: i,
                 principalPaid: principalPaid,
@@ -200,13 +302,17 @@ function initializeEmiCalculator() {
                 prepayment: currentPrepayment,
                 balance: balance,
             });
+
+             // Break loop early if balance is cleared
+             if (balance <= 0) break;
         }
+        // Return the potentially changed EMI
         return { amortization, totalInterest, totalPrepaid, newEmi };
     }
-    
+
     function calculateTaxBenefits(amortizationData) {
         const taxSlab = parseFloat(taxSlabSelect.value);
-        
+
         const firstYearData = amortizationData.slice(0, 12);
         const principalPaidInFirstYear = firstYearData.reduce((acc, row) => acc + row.principalPaid, 0);
         const interestPaidInFirstYear = firstYearData.reduce((acc, row) => acc + row.interest, 0);
@@ -255,7 +361,7 @@ function initializeEmiCalculator() {
     function generateAmortizationChart(originalData, prepayData) {
         const labels = originalData.map(d => d.month);
         const originalBalance = originalData.map(d => d.balance);
-        
+
         const datasets = [{
             label: 'Original Loan Balance',
             data: originalBalance,
@@ -267,34 +373,55 @@ function initializeEmiCalculator() {
         }];
 
         if (prepayData && prepayData.length > 0) {
-            const prepayBalance = prepayData.map(d => d.balance);
+            // Need to map prepay data balance to the original month labels
+            const prepayBalanceMapped = labels.map(month => {
+                const dataPoint = prepayData.find(d => d.month === month);
+                // Continue showing 0 balance after loan ends
+                return dataPoint ? dataPoint.balance : (prepayData.length > 0 && month > prepayData[prepayData.length-1].month ? 0 : null);
+            }).filter(val => val !== null); // Filter out potential nulls if original loan is shorter? (Shouldn't happen here)
+
+             // Ensure the prepay data aligns correctly with the original labels
+             const prepayBalancePadded = labels.map(month => {
+                const dataPoint = prepayData.find(d => d.month === month);
+                if (dataPoint) {
+                    return dataPoint.balance;
+                } else if (prepayData.length > 0 && month > prepayData[prepayData.length - 1].month && prepayData[prepayData.length - 1].balance <= 0) {
+                    // If the loan finished in prepayData, fill subsequent months with 0
+                    return 0;
+                } else {
+                    // If the month is beyond the original loan or before prepay starts matching, use null
+                    return null; // Chart.js handles nulls by breaking the line
+                }
+             });
+
             datasets.push({
                 label: 'Balance with Prepayment',
-                data: prepayBalance,
+                data: prepayBalancePadded, // Use the padded/mapped data
                 borderColor: '#4ADE80',
                 backgroundColor: 'rgba(74, 222, 128, 0.1)',
                 fill: true,
                 pointRadius: 0,
-                tension: 0.1
+                tension: 0.1,
+                spanGaps: false // Don't connect points across nulls
             });
         }
-        
+
         const chartData = { labels, datasets };
-        const chartOptions = { 
-            responsive: true, 
-            maintainAspectRatio: false, 
-            plugins: { 
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
                 legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } },
-                tooltip: { 
-                    callbacks: { 
+                tooltip: {
+                    callbacks: {
                         label: (context) => `${context.dataset.label}: ${formatCurrency(context.parsed.y)}`,
                         title: (context) => `Month: ${context[0].label}`
-                    } 
-                } 
+                    }
+                }
             },
             scales: {
-                y: { ticks: { callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value) } },
-                x: { ticks: { maxTicksLimit: 10 } }
+                y: { ticks: { callback: (value) => new Intl.NumberFormat('en-IN', { notation: 'compact', compactDisplay: 'short' }).format(value), font:{size: 8} } }, // Squeezed ticks
+                x: { ticks: { maxTicksLimit: 10, font: {size: 8} } } // Squeezed ticks
             }
         };
 
@@ -306,12 +433,13 @@ function initializeEmiCalculator() {
         }
     }
 
+
     function updateDoughnutChart(data, labels, colors) {
       const chartData = { labels: labels, datasets: [{ data, backgroundColor: colors, hoverOffset: 4, borderRadius: 3, spacing: 1 }] };
       const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: '50%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` } } } };
       if (loanDoughnutChart) { loanDoughnutChart.data = chartData; loanDoughnutChart.update(); } else { loanDoughnutChart = new Chart(doughnutCanvas.getContext('2d'), { type: 'doughnut', data: chartData, options: chartOptions }); }
     }
-    
+
     function loadSeoContent() {
         const contentArea = getElem('dynamic-content-area-emi');
         if (contentArea) {
@@ -321,8 +449,9 @@ function initializeEmiCalculator() {
                 .catch(error => console.error('Error loading EMI SEO content:', error));
         }
     }
-    
+
     function populateAndShowModal() {
+        // ... (rest of the function remains the same) ...
         const loanAmount = parseFloat(loanAmountInput.value);
         const interestRate = parseFloat(interestRateInput.value);
         const loanTenure = parseFloat(loanTenureInput.value);
@@ -333,7 +462,7 @@ function initializeEmiCalculator() {
         const emi = emiText ? parseFloat(emiText.replace(/[^0-9.]/g, '')) : 0;
         const totalPayment = totalPaymentText ? parseFloat(totalPaymentText.replace(/[^0-9.]/g, '')) : 0;
         const totalInterest = totalInterestText ? parseFloat(totalInterestText.replace(/[^0-9.]/g, '')) : 0;
-    
+
         modalReportContent.innerHTML = `
             <h3>Your Loan Summary</h3>
             <ul>
@@ -347,32 +476,39 @@ function initializeEmiCalculator() {
                 <li><span>Total Payment:</span> <span>${formatCurrency(totalPayment)}</span></li>
             </ul>
         `;
-        
+
         const params = new URLSearchParams();
         params.set('amount', loanAmount);
         params.set('rate', interestRate);
         params.set('tenure', loanTenure);
-        
-        const prepaymentAmount = parseFloat(prepaymentAmountInput.value);
-        if (prepaymentAmount > 0) {
-            params.set('prepay', prepaymentAmount);
+
+        const prepaymentAmountVal = parseFloat(prepaymentAmountInput.value);
+        if (prepaymentAmountVal > 0) {
+            params.set('prepay', prepaymentAmountVal);
             params.set('prepayFreq', prepaymentFrequencySelect.value);
              if (prepaymentFrequencySelect.value === '0') {
                  params.set('prepayStart', prepaymentStartInput.value);
             }
         }
+        // Add floating rate params if applicable
+        if (rateTypeToggle.checked) {
+             params.set('float', 'true');
+             params.set('rateInc', rateIncreaseInput.value);
+             params.set('incAfter', increaseAfterInput.value);
+        }
+
         shareUrlInput.value = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
 
         shareModal.classList.remove('hidden');
     }
-    
+
     function loadFromUrl() {
         const params = new URLSearchParams(window.location.search);
         if (params.has('amount')) {
             loanAmountInput.value = params.get('amount') || 2000000;
             interestRateInput.value = params.get('rate') || 8.5;
             loanTenureInput.value = params.get('tenure') || 10;
-            
+
             if (params.has('prepay')) {
                 prepaymentAmountInput.value = params.get('prepay') || 0;
                 prepaymentFrequencySelect.value = params.get('prepayFreq') || '0';
@@ -381,16 +517,28 @@ function initializeEmiCalculator() {
                     prepaymentStartInput.value = params.get('prepayStart') || 12;
                 }
             }
-            
+            // Load floating rate params
+            if (params.get('float') === 'true') {
+                 rateTypeToggle.checked = true;
+                 floatingRateSection.classList.remove('hidden');
+                 rateIncreaseInput.value = params.get('rateInc') || 1;
+                 increaseAfterInput.value = params.get('incAfter') || 3;
+            } else {
+                 rateTypeToggle.checked = false;
+                 floatingRateSection.classList.add('hidden');
+            }
+
+
             // Sync all sliders to their input values after loading from URL
             document.querySelectorAll('input[type="range"]').forEach(slider => {
                 const input = getElem(slider.id.replace('Slider', 'Input'));
-                if (input) {
+                if (input && slider) { // Added slider check
                     slider.value = input.value;
                 }
             });
         }
     }
+
 
     function downloadAmortizationCSV() {
         if (currentAmortizationData.length === 0) {
@@ -427,15 +575,18 @@ function initializeEmiCalculator() {
     }
 
     function setupEventListeners() {
-      // Use the new sync function for all slider/input pairs
-      syncSliderAndInput({ sliderId: 'loanAmountSlider', inputId: 'loanAmountInput', updateCallback: updateCalculator });
-      syncSliderAndInput({ sliderId: 'interestRateSlider', inputId: 'interestRateInput', updateCallback: updateCalculator });
-      syncSliderAndInput({ sliderId: 'loanTenureSlider', inputId: 'loanTenureInput', updateCallback: updateCalculator });
-      syncSliderAndInput({ sliderId: 'prepaymentAmountSlider', inputId: 'prepaymentAmountInput', updateCallback: updateCalculator });
-      syncSliderAndInput({ sliderId: 'prepaymentStartSlider', inputId: 'prepaymentStartInput', updateCallback: updateCalculator });
-      syncSliderAndInput({ sliderId: 'rateIncreaseSlider', inputId: 'rateIncreaseInput', updateCallback: updateCalculator });
-      syncSliderAndInput({ sliderId: 'increaseAfterSlider', inputId: 'increaseAfterInput', updateCallback: updateCalculator });
-      
+        const debouncedUpdate = debounce(updateCalculator, 250);
+
+      // Use the new sync function for all slider/input pairs, passing button IDs
+      syncSliderAndInput({ sliderId: 'loanAmountSlider', inputId: 'loanAmountInput', decrementId: 'loanAmountDecrement', incrementId: 'loanAmountIncrement', updateCallback: debouncedUpdate });
+      syncSliderAndInput({ sliderId: 'interestRateSlider', inputId: 'interestRateInput', decrementId: 'interestRateDecrement', incrementId: 'interestRateIncrement', updateCallback: debouncedUpdate });
+      syncSliderAndInput({ sliderId: 'loanTenureSlider', inputId: 'loanTenureInput', decrementId: 'loanTenureDecrement', incrementId: 'loanTenureIncrement', updateCallback: debouncedUpdate });
+      syncSliderAndInput({ sliderId: 'prepaymentAmountSlider', inputId: 'prepaymentAmountInput', decrementId: 'prepaymentAmountDecrement', incrementId: 'prepaymentAmountIncrement', updateCallback: debouncedUpdate });
+      syncSliderAndInput({ sliderId: 'prepaymentStartSlider', inputId: 'prepaymentStartInput', decrementId: 'prepaymentStartDecrement', incrementId: 'prepaymentStartIncrement', updateCallback: debouncedUpdate });
+      syncSliderAndInput({ sliderId: 'rateIncreaseSlider', inputId: 'rateIncreaseInput', decrementId: 'rateIncreaseDecrement', incrementId: 'rateIncreaseIncrement', updateCallback: debouncedUpdate });
+      syncSliderAndInput({ sliderId: 'increaseAfterSlider', inputId: 'increaseAfterInput', decrementId: 'increaseAfterDecrement', incrementId: 'increaseAfterIncrement', updateCallback: debouncedUpdate });
+
+        // ... rest of event listeners remain the same ...
       homeLoanPreset.addEventListener('click', () => setPreset('home'));
       carLoanPreset.addEventListener('click', () => setPreset('car'));
       personalLoanPreset.addEventListener('click', () => setPreset('personal'));
@@ -449,7 +600,7 @@ function initializeEmiCalculator() {
           oneTimePrepaymentStartDiv.style.display = prepaymentFrequencySelect.value === '0' ? 'block' : 'none';
           updateCalculator();
       });
-      
+
       toggleDetailsBtn.addEventListener('click', () => {
           detailsTableContainer.classList.toggle('hidden');
           toggleDetailsBtn.textContent = detailsTableContainer.classList.contains('hidden') ? 'Show Amortization Schedule' : 'Hide Schedule';
@@ -460,15 +611,19 @@ function initializeEmiCalculator() {
       window.addEventListener('click', (event) => { if (event.target == shareModal) shareModal.classList.add('hidden'); });
       if(copyUrlBtn) copyUrlBtn.addEventListener('click', () => {
           shareUrlInput.select();
-          document.execCommand('copy');
-          if (typeof showNotification === 'function') {
-            showNotification('Link copied to clipboard!');
+          // Use execCommand for broader compatibility
+          try {
+            document.execCommand('copy');
+             if (typeof showNotification === 'function') { showNotification('Link copied to clipboard!'); }
+          } catch (err) {
+              console.error('Fallback copy failed', err);
+              if (typeof showNotification === 'function') { showNotification('Could not copy link.'); }
           }
       });
       if(printReportBtn) printReportBtn.addEventListener('click', () => {
          const modalContent = getElem('modalReportContent');
          const printArea = document.createElement('div');
-         printArea.classList.add('print-area');
+         printArea.classList.add('print-area'); // Class for print styles
          printArea.innerHTML = modalContent.innerHTML;
          document.body.appendChild(printArea);
          window.print();
@@ -478,10 +633,14 @@ function initializeEmiCalculator() {
 
       taxSlabSelect.addEventListener('change', () => {
         if(isHomeLoanActive) {
-            calculateTaxBenefits(currentAmortizationData);
+            // Recalculate benefits only if data exists
+            if (currentAmortizationData && currentAmortizationData.length > 0) {
+                 calculateTaxBenefits(currentAmortizationData);
+            }
         }
       });
     }
+
 
     function setPreset(loanType) {
         document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
@@ -507,28 +666,43 @@ function initializeEmiCalculator() {
 
         if (activeBtn) activeBtn.classList.add('active');
 
-        // After setting input values, sync all sliders
+        // Reset prepayment and floating rate to defaults when preset is clicked
+        rateTypeToggle.checked = false;
+        floatingRateSection.classList.add('hidden');
+        rateIncreaseInput.value = 1; // Default
+        increaseAfterInput.value = 3; // Default
+        prepaymentAmountInput.value = 0;
+        prepaymentFrequencySelect.value = '0'; // Default to One Time
+        oneTimePrepaymentStartDiv.style.display = 'block'; // Show start month for One Time
+        prepaymentStartInput.value = 12; // Default start month
+
+
+        // After setting input values, sync all sliders AND recalculate
         document.querySelectorAll('input[type="range"]').forEach(slider => {
             const input = getElem(slider.id.replace('Slider', 'Input'));
-            if(input) {
+            if(input && slider) { // Added slider check
                 slider.value = input.value;
                 updateSliderFill(slider);
             }
         });
-        updateCalculator();
+        updateCalculator(); // Trigger calculation after applying preset and resetting options
     }
-    
+
+    // --- Initial Run ---
     setupEventListeners();
-    oneTimePrepaymentStartDiv.style.display = 'block';
-    loadFromUrl();
-    
+    oneTimePrepaymentStartDiv.style.display = 'block'; // Show by default
+    loadFromUrl(); // Load potentially overriding defaults
+
+    // If no URL params loaded, set a default preset
     if (!window.location.search) {
         setPreset('home');
     } else {
         // Ensure sliders are filled and calculator runs if loaded from URL
-        document.querySelectorAll('.range-slider').forEach(updateSliderFill);
-        updateCalculator();
+        document.querySelectorAll('.range-slider').forEach(slider => {
+             if (slider) updateSliderFill(slider); // Added check for slider existence
+        });
+        updateCalculator(); // Calculate based on loaded URL params
     }
-    
+
     loadSeoContent();
 }
