@@ -6,12 +6,13 @@
     <title>Advanced EMI Calculator with Prepayment & Amortization</title>
     <meta name="description" content="Calculate your loan EMI with our advanced tool. Features prepayment simulation, amortization schedules, and interactive charts for Indian users.">
     <meta name="keywords" content="emi calculator, loan calculator, prepayment calculator, amortization schedule, home loan emi, car loan emi, personal loan emi">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- Link to the main calculator styles for slider/input group consistency -->
     <link rel="stylesheet" href="../financial-calculator/calculator-style.css">
     <link rel="stylesheet" href="emi-calculator-style.css">
 </head>
@@ -22,10 +23,10 @@
     <main class="container">
         <div class="financial-calculator-wrapper">
             <div class="bg-white shadow-lg rounded-xl p-2 sm:p-4 w-full border border-red-300 mx-auto my-0 calculator-container">
-                
+
                 <h1 class="text-lg sm:text-xl font-bold text-gray-800 text-center mb-1">Advanced EMI Calculator</h1>
                 <p class="text-center text-gray-500 mb-2 text-xs">Plan your loans with precision, including prepayments and detailed amortization.</p>
-                
+
                 <div class="flex justify-center mb-2 flex-wrap gap-1">
                     <button id="homeLoanPreset" class="preset-btn px-2 py-1 rounded-md text-xs font-semibold bg-gray-200 text-gray-700 hover:bg-gray-300 transition-all">Home Loan</button>
                     <button id="carLoanPreset" class="preset-btn px-2 py-1 rounded-md text-xs font-semibold bg-gray-200 text-gray-700 hover:bg-gray-300 transition-all">Car Loan</button>
@@ -38,26 +39,44 @@
                         <!-- Loan Details Section -->
                         <div class="bg-blue-50/50 p-2 rounded-lg space-y-2">
                              <div>
-                                <label for="loanAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Loan Amount (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="loanAmountSlider" min="50000" max="20000000" value="2000000" step="10000" class="w-full range-slider" aria-label="Loan Amount">
-                                    <input type="number" id="loanAmountInput" class="manual-input" value="2000000" min="50000" max="20000000" step="10000">
+                                <label for="loanAmountInput" class="block text-xs font-medium text-gray-600 mb-1">Loan Amount (₹)</label>
+                                <!-- UPDATED: Applied input-group and stepper-buttons structure -->
+                                <div class="input-group flex items-center space-x-2">
+                                    <input type="range" id="loanAmountSlider" min="50000" max="20000000" value="2000000" step="10000" class="w-full range-slider flex-grow" aria-label="Loan Amount">
+                                    <div class="input-stepper-group flex-shrink-0">
+                                        <button type="button" id="loanAmountDecrement" class="stepper-button decrement" aria-label="Decrease Loan Amount">-</button>
+                                        <input type="number" id="loanAmountInput" class="manual-input" value="2000000" min="50000" max="20000000" step="10000">
+                                        <button type="button" id="loanAmountIncrement" class="stepper-button increment" aria-label="Increase Loan Amount">+</button>
+                                    </div>
                                 </div>
+                                <p id="loanAmountError" class="input-error-message hidden">Amount must be between ₹50,000 - ₹2 Crore.</p>
                             </div>
                             <div>
-                               <label for="interestRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Interest Rate (% p.a.)</label>
-                               <div class="flex items-center space-x-2">
-                                   <input type="range" id="interestRateSlider" min="1" max="20" value="8.5" step="0.05" class="w-full range-slider" aria-label="Interest Rate Percentage">
-                                   <input type="number" id="interestRateInput" class="manual-input" value="8.5" min="1" max="20" step="0.05">
+                               <label for="interestRateInput" class="block text-xs font-medium text-gray-600 mb-1">Interest Rate (% p.a.)</label>
+                               <!-- UPDATED: Applied input-group and stepper-buttons structure -->
+                               <div class="input-group flex items-center space-x-2">
+                                   <input type="range" id="interestRateSlider" min="1" max="20" value="8.5" step="0.05" class="w-full range-slider flex-grow" aria-label="Interest Rate Percentage">
+                                   <div class="input-stepper-group flex-shrink-0">
+                                        <button type="button" id="interestRateDecrement" class="stepper-button decrement" aria-label="Decrease Interest Rate">-</button>
+                                        <input type="number" id="interestRateInput" class="manual-input" value="8.5" min="1" max="20" step="0.05">
+                                        <button type="button" id="interestRateIncrement" class="stepper-button increment" aria-label="Increase Interest Rate">+</button>
+                                    </div>
                                </div>
+                               <p id="interestRateError" class="input-error-message hidden">Rate must be between 1.00% - 20.00%.</p>
                            </div>
                            <div>
-                            <label for="loanTenureSlider" class="block text-xs font-medium text-gray-600 mb-1">Loan Tenure (Years)</label>
-                            <div class="flex items-center space-x-2">
-                                <input type="range" id="loanTenureSlider" min="1" max="30" value="10" step="1" class="w-full range-slider" aria-label="Loan Tenure in Years">
-                                <input type="number" id="loanTenureInput" class="manual-input" value="10" min="1" max="30" step="1">
+                                <label for="loanTenureInput" class="block text-xs font-medium text-gray-600 mb-1">Loan Tenure (Years)</label>
+                                <!-- UPDATED: Applied input-group and stepper-buttons structure -->
+                                <div class="input-group flex items-center space-x-2">
+                                    <input type="range" id="loanTenureSlider" min="1" max="30" value="10" step="1" class="w-full range-slider flex-grow" aria-label="Loan Tenure in Years">
+                                    <div class="input-stepper-group flex-shrink-0">
+                                        <button type="button" id="loanTenureDecrement" class="stepper-button decrement" aria-label="Decrease Loan Tenure">-</button>
+                                        <input type="number" id="loanTenureInput" class="manual-input" value="10" min="1" max="30" step="1">
+                                        <button type="button" id="loanTenureIncrement" class="stepper-button increment" aria-label="Increase Loan Tenure">+</button>
+                                    </div>
+                                </div>
+                                <p id="loanTenureError" class="input-error-message hidden">Tenure must be between 1 - 30 years.</p>
                             </div>
-                        </div>
                         </div>
 
                         <!-- Floating Rate Section -->
@@ -75,18 +94,30 @@
                             </div>
                             <div id="floatingRateSection" class="hidden space-y-1.5 pt-1.5 border-t border-blue-200">
                                 <div>
-                                    <label for="rateIncreaseSlider" class="block text-xs font-medium text-gray-600 mb-1">Expected Rate Increase (%)</label>
-                                    <div class="flex items-center space-x-2">
-                                        <input type="range" id="rateIncreaseSlider" min="0.25" max="5" value="1" step="0.25" class="w-full range-slider" aria-label="Expected Floating Rate Increase Percentage">
-                                        <input type="number" id="rateIncreaseInput" class="manual-input" value="1" min="0.25" max="5" step="0.25">
+                                    <label for="rateIncreaseInput" class="block text-xs font-medium text-gray-600 mb-1">Expected Rate Increase (%)</label>
+                                    <!-- UPDATED: Applied input-group and stepper-buttons structure -->
+                                    <div class="input-group flex items-center space-x-2">
+                                        <input type="range" id="rateIncreaseSlider" min="0.25" max="5" value="1" step="0.25" class="w-full range-slider flex-grow" aria-label="Expected Floating Rate Increase Percentage">
+                                        <div class="input-stepper-group flex-shrink-0">
+                                            <button type="button" id="rateIncreaseDecrement" class="stepper-button decrement" aria-label="Decrease Rate Increase">-</button>
+                                            <input type="number" id="rateIncreaseInput" class="manual-input" value="1" min="0.25" max="5" step="0.25">
+                                            <button type="button" id="rateIncreaseIncrement" class="stepper-button increment" aria-label="Increase Rate Increase">+</button>
+                                        </div>
                                     </div>
+                                     <p id="rateIncreaseError" class="input-error-message hidden">Increase must be between 0.25% - 5.00%.</p>
                                 </div>
                                 <div>
-                                    <label for="increaseAfterSlider" class="block text-xs font-medium text-gray-600 mb-1">Increase After (Years)</label>
-                                    <div class="flex items-center space-x-2">
-                                        <input type="range" id="increaseAfterSlider" min="1" max="10" value="3" step="1" class="w-full range-slider" aria-label="Years after which floating rate increases">
-                                        <input type="number" id="increaseAfterInput" class="manual-input" value="3" min="1" max="10" step="1">
+                                    <label for="increaseAfterInput" class="block text-xs font-medium text-gray-600 mb-1">Increase After (Years)</label>
+                                    <!-- UPDATED: Applied input-group and stepper-buttons structure -->
+                                    <div class="input-group flex items-center space-x-2">
+                                        <input type="range" id="increaseAfterSlider" min="1" max="10" value="3" step="1" class="w-full range-slider flex-grow" aria-label="Years after which floating rate increases">
+                                         <div class="input-stepper-group flex-shrink-0">
+                                            <button type="button" id="increaseAfterDecrement" class="stepper-button decrement" aria-label="Decrease Increase After Years">-</button>
+                                            <input type="number" id="increaseAfterInput" class="manual-input" value="3" min="1" max="10" step="1">
+                                            <button type="button" id="increaseAfterIncrement" class="stepper-button increment" aria-label="Increase Increase After Years">+</button>
+                                        </div>
                                     </div>
+                                    <p id="increaseAfterError" class="input-error-message hidden">Years must be between 1 - 10.</p>
                                 </div>
                             </div>
                         </div>
@@ -95,11 +126,17 @@
                         <div class="bg-blue-50/50 p-1.5 rounded-lg space-y-1.5">
                             <h2 class="text-sm font-bold text-blue-800 text-center mb-1">Prepayment Simulation (Optional)</h2>
                              <div>
-                                <label for="prepaymentAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Prepayment Amount (₹)</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="range" id="prepaymentAmountSlider" min="0" max="1000000" value="0" step="5000" class="w-full range-slider" aria-label="Prepayment Amount">
-                                    <input type="number" id="prepaymentAmountInput" class="manual-input" value="0" min="0" max="1000000" step="5000">
+                                <label for="prepaymentAmountInput" class="block text-xs font-medium text-gray-600 mb-1">Prepayment Amount (₹)</label>
+                                <!-- UPDATED: Applied input-group and stepper-buttons structure -->
+                                <div class="input-group flex items-center space-x-2">
+                                    <input type="range" id="prepaymentAmountSlider" min="0" max="1000000" value="0" step="5000" class="w-full range-slider flex-grow" aria-label="Prepayment Amount">
+                                    <div class="input-stepper-group flex-shrink-0">
+                                        <button type="button" id="prepaymentAmountDecrement" class="stepper-button decrement" aria-label="Decrease Prepayment Amount">-</button>
+                                        <input type="number" id="prepaymentAmountInput" class="manual-input" value="0" min="0" max="1000000" step="5000">
+                                        <button type="button" id="prepaymentAmountIncrement" class="stepper-button increment" aria-label="Increase Prepayment Amount">+</button>
+                                    </div>
                                 </div>
+                                <p id="prepaymentAmountError" class="input-error-message hidden">Amount must be between ₹0 - ₹10,00,000.</p>
                             </div>
                             <div>
                                <label for="prepaymentFrequency" class="block text-xs font-medium text-gray-600 mb-1">How often?</label>
@@ -111,16 +148,22 @@
                                </select>
                            </div>
                            <div id="oneTimePrepaymentStartDiv">
-                            <label for="prepaymentStartSlider" class="block text-xs font-medium text-gray-600 mb-1">When? (After how many months)</label>
-                            <div class="flex items-center space-x-2">
-                                <input type="range" id="prepaymentStartSlider" min="1" max="120" value="12" step="1" class="w-full range-slider" aria-label="Month after which one-time prepayment is made">
-                                <input type="number" id="prepaymentStartInput" class="manual-input" value="12" min="1" max="120" step="1">
+                                <label for="prepaymentStartInput" class="block text-xs font-medium text-gray-600 mb-1">When? (After how many months)</label>
+                                <!-- UPDATED: Applied input-group and stepper-buttons structure -->
+                                <div class="input-group flex items-center space-x-2">
+                                    <input type="range" id="prepaymentStartSlider" min="1" max="120" value="12" step="1" class="w-full range-slider flex-grow" aria-label="Month after which one-time prepayment is made">
+                                     <div class="input-stepper-group flex-shrink-0">
+                                        <button type="button" id="prepaymentStartDecrement" class="stepper-button decrement" aria-label="Decrease Prepayment Start Month">-</button>
+                                        <input type="number" id="prepaymentStartInput" class="manual-input" value="12" min="1" max="120" step="1">
+                                        <button type="button" id="prepaymentStartIncrement" class="stepper-button increment" aria-label="Increase Prepayment Start Month">+</button>
+                                    </div>
+                                </div>
+                                <p id="prepaymentStartError" class="input-error-message hidden">Month must be between 1 and tenure.</p>
                             </div>
-                        </div>
                         </div>
                     </div>
 
-                    <!-- Right Column: Results -->
+                    <!-- Right Column: Results (No structural changes needed here) -->
                     <div class="flex flex-col">
                          <div class="bg-blue-50/50 p-2 rounded-lg" aria-live="polite">
                             <div class="flex justify-between items-center mb-2">
@@ -158,7 +201,8 @@
                         </div>
                     </div>
                 </div>
-                 <!-- Prepayment Result Section -->
+
+                 <!-- Rest of HTML remains unchanged -->
                  <div id="prepaymentResultSection" class="hidden mt-4 bg-green-50 p-4 rounded-lg border border-green-300">
                     <h2 class="text-center text-sm font-bold text-green-800 mb-2">Prepayment Savings</h2>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-center text-xs">
@@ -180,8 +224,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Tax Benefit Section -->
                 <div id="taxBenefitSection" class="hidden mt-4 bg-indigo-50 p-4 rounded-lg border border-indigo-300">
                     <h2 class="text-center text-sm font-bold text-indigo-800 mb-2">Home Loan Tax Benefit (Year 1)</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-center">
@@ -211,23 +253,18 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="flex justify-center my-2">
                     <button id="toggleAmortizationBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Show Amortization Schedule</button>
                 </div>
-
                 <div id="amortizationTableContainer" class="hidden overflow-x-auto bg-white rounded-lg shadow-md mt-4 p-4 border border-gray-200">
                     <!-- Table will be injected here by JS -->
                 </div>
-
-                <!-- Amortization Chart -->
                 <div id="amortizationChartContainer" class="mt-4 p-2 bg-white rounded-lg shadow-md border border-gray-200">
                     <h2 class="text-center text-sm font-bold text-gray-800 mb-2">Loan Balance Over Time</h2>
                     <div class="h-48 sm:h-56 w-full">
                         <canvas id="amortizationLineChart"></canvas>
                     </div>
                 </div>
-
                 <div class="border-t border-gray-200 my-3 w-full"></div>
                  <div class="text-center text-gray-500 text-xxs leading-relaxed px-2 flex justify-center items-center space-x-3">
                     <a href="https://www.5paisa.com/demat-account?ReferralCode=54285431&ReturnUrl=invest-open-account" target="_blank" rel="nofollow sponsored noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
@@ -245,9 +282,8 @@
                 </p>
             </div>
         </div>
-        
+
         <!-- Placeholder for the SEO content -->
-        <!-- Added mt-4 for spacing -->
         <div id="dynamic-content-area-emi" class="mt-4"></div>
     </main>
 
@@ -264,7 +300,6 @@
                 <div class="modal-actions">
                     <button id="copyUrlBtn" class="modal-btn">Copy Link</button>
                     <button id="printReportBtn" class="modal-btn">Print Report</button>
-                    <!-- NEW Download CSV Button -->
                     <button id="downloadCsvBtn" class="modal-btn">Download CSV</button>
                 </div>
             </div>
@@ -277,7 +312,6 @@
 
     <script src="../../script.js"></script>
     <script src="../../assets/js/global-elements.js" defer></script>
-    <!-- FIX: Added type="module" to enable import statements -->
     <script type="module" src="emi-calculator.js"></script>
 </body>
 </html>
