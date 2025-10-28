@@ -95,6 +95,76 @@
             font-size: 0.6rem; /* text-xxs */
             margin-top: 0.1rem; /* mt-1 roughly */
         }
+        /* ADDED: Styles for increment/decrement buttons and input group */
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* space-x-2 */
+        }
+        .input-group input[type="range"] {
+            flex-grow: 1; /* Slider takes remaining space */
+        }
+        .input-group .stepper-buttons {
+            display: flex;
+            align-items: center;
+        }
+        .stepper-btn {
+            background-color: #e5e7eb; /* gray-200 */
+            color: #4b5563; /* gray-600 */
+            border: 1px solid #d1d5db; /* gray-300 */
+            padding: 0.1rem; /* Reduced padding */
+            width: 1.5rem; /* Fixed width */
+            height: 1.5rem; /* Fixed height */
+            font-size: 1rem; /* Adjust font size for +/- */
+            font-weight: bold;
+            line-height: 1;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+        .stepper-btn:hover:not(:disabled) {
+            background-color: #d1d5db; /* gray-300 */
+            border-color: #9ca3af; /* gray-400 */
+        }
+        .stepper-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .stepper-btn.decrement {
+            border-top-left-radius: 0.375rem; /* rounded-l-md */
+            border-bottom-left-radius: 0.375rem;
+        }
+        .stepper-btn.increment {
+            border-top-right-radius: 0.375rem; /* rounded-r-md */
+            border-bottom-right-radius: 0.375rem;
+        }
+         /* Adjust manual input width when buttons are present */
+        .input-group .manual-input {
+            width: 60px; /* Make input slightly smaller */
+            border-radius: 0; /* Remove rounding when part of stepper */
+            border-left: none;
+            border-right: none;
+             margin-left: -1px; /* Overlap borders */
+             margin-right: -1px; /* Overlap borders */
+             z-index: 1; /* Bring input above button borders */
+        }
+         @media (min-width: 640px) {
+            .input-group .manual-input {
+                width: 75px; /* Adjust width for sm screens */
+            }
+        }
+         /* Remove spinner arrows from number input */
+        .manual-input::-webkit-outer-spin-button,
+        .manual-input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        .manual-input[type=number] {
+          -moz-appearance: textfield; /* Firefox */
+        }
+
     </style>
     <script type="application/ld+json">
     {
@@ -207,11 +277,15 @@
                         <div id="sipSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg">
                             <div>
                                 <label for="sipAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="sipAmountLabel">Monthly SIP Amount (₹)</label>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="sipAmountSlider" min="500" max="50000" value="10000" step="500" class="w-full range-slider" aria-label="Monthly SIP Amount">
-                                    <input type="number" id="sipAmountInput" class="manual-input" value="10000" min="500" max="50000" step="500">
+                                    <div class="stepper-buttons">
+                                        <button type="button" id="sipAmountDecrement" class="stepper-btn decrement" aria-label="Decrease SIP Amount">-</button>
+                                        <input type="number" id="sipAmountInput" class="manual-input" value="10000" min="500" max="50000" step="500">
+                                        <button type="button" id="sipAmountIncrement" class="stepper-btn increment" aria-label="Increase SIP Amount">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="sipAmountError" class="input-error-message hidden">Amount must be between ₹500 - ₹50,000.</p>
                             </div>
                             <div>
@@ -237,33 +311,45 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="sipIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider" aria-label="Annual SIP Increase Rate">
-                                    <input type="number" id="sipIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
+                                     <div class="stepper-buttons">
+                                        <button type="button" id="sipIncreaseRateDecrement" class="stepper-btn decrement" aria-label="Decrease SIP Increase Rate">-</button>
+                                        <input type="number" id="sipIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
+                                        <button type="button" id="sipIncreaseRateIncrement" class="stepper-btn increment" aria-label="Increase SIP Increase Rate">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="sipIncreaseRateError" class="input-error-message hidden">Value must be between 0 and 20.</p>
                             </div>
                         </div>
                         <div id="lumpsumSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="lumpsumAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="lumpsumAmountLabel">Lumpsum Amount (₹)</label>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="lumpsumAmountSlider" min="5000" max="10000000" value="500000" step="1000" class="w-full range-slider" aria-label="Lumpsum Amount">
-                                    <input type="number" id="lumpsumAmountInput" class="manual-input" value="500000" min="5000" max="10000000" step="1000">
+                                    <div class="stepper-buttons">
+                                        <button type="button" id="lumpsumAmountDecrement" class="stepper-btn decrement" aria-label="Decrease Lumpsum Amount">-</button>
+                                        <input type="number" id="lumpsumAmountInput" class="manual-input" value="500000" min="5000" max="10000000" step="1000">
+                                        <button type="button" id="lumpsumAmountIncrement" class="stepper-btn increment" aria-label="Increase Lumpsum Amount">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="lumpsumAmountError" class="input-error-message hidden">Amount must be between ₹5,000 - ₹1 Crore.</p>
                             </div>
                         </div>
                         <div id="rdSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="rdAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="rdAmountLabel">Monthly RD Amount (₹)</label>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="rdAmountSlider" min="100" max="50000" value="5000" step="100" class="w-full range-slider" aria-label="Monthly Recurring Deposit Amount">
-                                    <input type="number" id="rdAmountInput" class="manual-input" value="5000" min="100" max="50000" step="100">
+                                    <div class="stepper-buttons">
+                                        <button type="button" id="rdAmountDecrement" class="stepper-btn decrement" aria-label="Decrease RD Amount">-</button>
+                                        <input type="number" id="rdAmountInput" class="manual-input" value="5000" min="100" max="50000" step="100">
+                                        <button type="button" id="rdAmountIncrement" class="stepper-btn increment" aria-label="Increase RD Amount">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="rdAmountError" class="input-error-message hidden">Amount must be between ₹100 - ₹50,000.</p>
                             </div>
                             <div>
@@ -289,42 +375,58 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="rdIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider" aria-label="Annual Recurring Deposit Increase Rate">
-                                    <input type="number" id="rdIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
+                                    <div class="stepper-buttons">
+                                        <button type="button" id="rdIncreaseRateDecrement" class="stepper-btn decrement" aria-label="Decrease RD Increase Rate">-</button>
+                                        <input type="number" id="rdIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
+                                        <button type="button" id="rdIncreaseRateIncrement" class="stepper-btn increment" aria-label="Increase RD Increase Rate">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="rdIncreaseRateError" class="input-error-message hidden">Value must be between 0 and 20.</p>
                             </div>
                         </div>
                         <div id="fdSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="fdAmountInput" class="block text-xs font-medium text-gray-600 mb-1" id="fdAmountLabel">FD Amount (₹)</label>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="fdAmountSlider" min="1000" max="10000000" value="100000" step="1000" class="w-full range-slider" aria-label="Fixed Deposit Amount">
-                                    <input type="number" id="fdAmountInput" class="manual-input" value="100000" min="1000" max="10000000" step="1000">
+                                    <div class="stepper-buttons">
+                                        <button type="button" id="fdAmountDecrement" class="stepper-btn decrement" aria-label="Decrease FD Amount">-</button>
+                                        <input type="number" id="fdAmountInput" class="manual-input" value="100000" min="1000" max="10000000" step="1000">
+                                        <button type="button" id="fdAmountIncrement" class="stepper-btn increment" aria-label="Increase FD Amount">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="fdAmountError" class="input-error-message hidden">Amount must be between ₹1,000 - ₹1 Crore.</p>
                             </div>
                         </div>
                         <div id="swpSection" class="space-y-1.5 bg-blue-50/50 p-2 rounded-lg hidden">
                             <div>
                                 <label for="initialCorpusInput" class="block text-xs font-medium text-gray-600 mb-1" id="initialCorpusLabel">Initial Investment (₹)</label>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="initialCorpusSlider" min="100000" max="50000000" value="2000000" step="10000" class="w-full range-slider" aria-label="Initial Investment Corpus for SWP">
-                                    <input type="number" id="initialCorpusInput" class="manual-input" value="2000000" min="100000" max="50000000" step="10000">
+                                     <div class="stepper-buttons">
+                                        <button type="button" id="initialCorpusDecrement" class="stepper-btn decrement" aria-label="Decrease Initial Corpus">-</button>
+                                        <input type="number" id="initialCorpusInput" class="manual-input" value="2000000" min="100000" max="50000000" step="10000">
+                                        <button type="button" id="initialCorpusIncrement" class="stepper-btn increment" aria-label="Increase Initial Corpus">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="initialCorpusError" class="input-error-message hidden">Amount must be between ₹1 Lac - ₹5 Crore.</p>
                             </div>
                             <div>
                                 <label for="withdrawalAmountInput" class="block text-xs font-medium text-gray-600 mb-1">Monthly Withdrawal (₹)</label>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="withdrawalAmountSlider" min="1000" max="100000" value="20000" step="500" class="w-full range-slider" aria-label="Monthly SWP Withdrawal Amount">
-                                    <input type="number" id="withdrawalAmountInput" class="manual-input" value="20000" min="1000" max="100000" step="500">
+                                     <div class="stepper-buttons">
+                                        <button type="button" id="withdrawalAmountDecrement" class="stepper-btn decrement" aria-label="Decrease Withdrawal Amount">-</button>
+                                        <input type="number" id="withdrawalAmountInput" class="manual-input" value="20000" min="1000" max="100000" step="500">
+                                        <button type="button" id="withdrawalAmountIncrement" class="stepper-btn increment" aria-label="Increase Withdrawal Amount">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="withdrawalAmountError" class="input-error-message hidden">Amount must be between ₹1,000 - ₹1 Lac.</p>
                             </div>
                             <div>
@@ -342,11 +444,15 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="withdrawalIncreaseSlider" min="0" max="10" value="0" step="1" class="w-full range-slider" aria-label="Annual SWP Withdrawal Increase Rate">
-                                    <input type="number" id="withdrawalIncreaseInput" class="manual-input" value="0" min="0" max="10" step="1">
+                                    <div class="stepper-buttons">
+                                        <button type="button" id="withdrawalIncreaseDecrement" class="stepper-btn decrement" aria-label="Decrease Withdrawal Increase Rate">-</button>
+                                        <input type="number" id="withdrawalIncreaseInput" class="manual-input" value="0" min="0" max="10" step="1">
+                                        <button type="button" id="withdrawalIncreaseIncrement" class="stepper-btn increment" aria-label="Increase Withdrawal Increase Rate">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="withdrawalIncreaseError" class="input-error-message hidden">Value must be between 0 and 10.</p>
                             </div>
                             <div>
@@ -409,29 +515,41 @@
                             <!-- END UPDATED GOAL SECTION -->
                             <div>
                                 <label for="targetAmountInput" class="block text-xs font-medium text-gray-600 mb-1">Target Amount (₹)</label>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="targetAmountSlider" min="100000" max="100000000" value="5000000" step="10000" class="w-full range-slider" aria-label="Goal Target Amount">
-                                    <input type="number" id="targetAmountInput" class="manual-input" value="5000000" min="100000" max="100000000" step="10000">
+                                    <div class="stepper-buttons">
+                                        <button type="button" id="targetAmountDecrement" class="stepper-btn decrement" aria-label="Decrease Target Amount">-</button>
+                                        <input type="number" id="targetAmountInput" class="manual-input" value="5000000" min="100000" max="100000000" step="10000">
+                                        <button type="button" id="targetAmountIncrement" class="stepper-btn increment" aria-label="Increase Target Amount">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="targetAmountError" class="input-error-message hidden">Amount must be between ₹1 Lac - ₹10 Crore.</p>
                             </div>
                             <div>
                                 <label for="goalReturnRateInput" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="goalReturnRateSlider" min="1" max="30" value="12" step="0.1" class="w-full range-slider" aria-label="Goal Expected Return Rate">
-                                    <input type="number" id="goalReturnRateInput" class="manual-input" value="12" min="1" max="30" step="0.1">
+                                     <div class="stepper-buttons">
+                                        <button type="button" id="goalReturnRateDecrement" class="stepper-btn decrement" aria-label="Decrease Goal Return Rate">-</button>
+                                        <input type="number" id="goalReturnRateInput" class="manual-input" value="12" min="1" max="30" step="0.1">
+                                        <button type="button" id="goalReturnRateIncrement" class="stepper-btn increment" aria-label="Increase Goal Return Rate">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="goalReturnRateError" class="input-error-message hidden">Rate must be between 1% - 30%.</p>
                             </div>
                             <div>
                                 <label for="goalPeriodInput" class="block text-xs font-medium text-gray-600 mb-1">Investment Period (Years)</label>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="goalPeriodSlider" min="1" max="40" value="10" class="w-full range-slider" aria-label="Goal Investment Period">
-                                    <input type="number" id="goalPeriodInput" class="manual-input" value="10" min="1" max="40">
+                                    <div class="stepper-buttons">
+                                        <button type="button" id="goalPeriodDecrement" class="stepper-btn decrement" aria-label="Decrease Goal Period">-</button>
+                                        <input type="number" id="goalPeriodInput" class="manual-input" value="10" min="1" max="40">
+                                        <button type="button" id="goalPeriodIncrement" class="stepper-btn increment" aria-label="Increase Goal Period">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="goalPeriodError" class="input-error-message hidden">Period must be between 1 - 40 years.</p>
                             </div>
                         </div>
@@ -439,20 +557,28 @@
                         <div id="generalInputsSection" class="bg-blue-50/50 p-2 rounded-lg space-y-1.5">
                             <div>
                                 <label for="returnRateInput" class="block text-xs font-medium text-gray-600 mb-1">Expected Return Rate (p.a. %)</label>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="returnRateSlider" min="1" max="30" value="12" step="0.1" class="w-full range-slider" aria-label="Expected Return Rate">
-                                    <input type="number" id="returnRateInput" class="manual-input" value="12" min="1" max="30" step="0.1">
+                                     <div class="stepper-buttons">
+                                        <button type="button" id="returnRateDecrement" class="stepper-btn decrement" aria-label="Decrease Return Rate">-</button>
+                                        <input type="number" id="returnRateInput" class="manual-input" value="12" min="1" max="30" step="0.1">
+                                        <button type="button" id="returnRateIncrement" class="stepper-btn increment" aria-label="Increase Return Rate">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="returnRateError" class="input-error-message hidden">Rate must be between 1% - 30%.</p>
                             </div>
                             <div>
                                 <label for="investmentPeriodInput" class="block text-xs font-medium text-gray-600 mb-1" id="periodLabel">Investment Period (Years)</label>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="investmentPeriodSlider" min="1" max="40" value="10" class="w-full range-slider" aria-label="Investment Period">
-                                    <input type="number" id="investmentPeriodInput" class="manual-input" value="10" min="1" max="40">
+                                     <div class="stepper-buttons">
+                                        <button type="button" id="investmentPeriodDecrement" class="stepper-btn decrement" aria-label="Decrease Investment Period">-</button>
+                                        <input type="number" id="investmentPeriodInput" class="manual-input" value="10" min="1" max="40">
+                                        <button type="button" id="investmentPeriodIncrement" class="stepper-btn increment" aria-label="Increase Investment Period">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="investmentPeriodError" class="input-error-message hidden">Period must be between 1 - 40 years.</p>
                             </div>
                         </div>
@@ -487,11 +613,15 @@
                             </div>
                             <div id="inflationInputGroup" class="mt-2 hidden">
                                 <label for="inflationRateInput" class="block text-xs font-medium text-gray-600 mb-1">Inflation Rate (p.a. %)</label>
-                                <div class="flex items-center space-x-2">
+                                <!-- UPDATED: Input Group with Stepper Buttons -->
+                                <div class="input-group">
                                     <input type="range" id="inflationRateSlider" min="0" max="15" value="5" step="0.1" class="w-full range-slider" aria-label="Inflation Rate">
-                                    <input type="number" id="inflationRateInput" class="manual-input" value="5" min="0" max="15" step="0.1">
+                                    <div class="stepper-buttons">
+                                        <button type="button" id="inflationRateDecrement" class="stepper-btn decrement" aria-label="Decrease Inflation Rate">-</button>
+                                        <input type="number" id="inflationRateInput" class="manual-input" value="5" min="0" max="15" step="0.1">
+                                        <button type="button" id="inflationRateIncrement" class="stepper-btn increment" aria-label="Increase Inflation Rate">+</button>
+                                    </div>
                                 </div>
-                                <!-- ADDED Error Message Div -->
                                 <p id="inflationRateError" class="input-error-message hidden">Rate must be between 0% - 15%.</p>
                             </div>
                         </div>
