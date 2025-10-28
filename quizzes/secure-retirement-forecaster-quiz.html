@@ -216,7 +216,7 @@
                         <p class="question-text">4. How much have you already saved for retirement (EPF, PPF, MFs, etc.)?</p>
                          <label for="currentSavingsSlider" class="block text-xs font-medium text-gray-600 mb-1">Current Savings (₹)</label>
                          <div class="flex items-center space-x-2">
-                             <input type="range" id="currentSavingsSlider" min="0" max="20000000" value="500000" step="10000" class="w-full range-slider">
+                             <input type="range" id="currentSavingsSlider" min="0" max="20000000" value="500000" step="10000" class="w-full range-slider" aria-label="Current Retirement Savings Amount">
                              <input type="number" name="currentSavings" id="currentSavingsInput" class="manual-input" value="500000" min="0" max="20000000" step="10000" required>
                          </div>
                          <p id="currentSavingsError" class="input-error-message hidden">Please enter a valid amount.</p>
@@ -226,7 +226,7 @@
                         <p class="question-text">5. How much are you currently investing for retirement each month?</p>
                          <label for="monthlyInvestmentSlider" class="block text-xs font-medium text-gray-600 mb-1">Monthly Investment (₹)</label>
                          <div class="flex items-center space-x-2">
-                             <input type="range" id="monthlyInvestmentSlider" min="0" max="100000" value="10000" step="500" class="w-full range-slider">
+                             <input type="range" id="monthlyInvestmentSlider" min="0" max="100000" value="10000" step="500" class="w-full range-slider" aria-label="Current Monthly Retirement Investment Amount">
                              <input type="number" name="monthlyInvestment" id="monthlyInvestmentInput" class="manual-input" value="10000" min="0" max="100000" step="500" required>
                          </div>
                          <p id="monthlyInvestmentError" class="input-error-message hidden">Please enter a valid amount.</p>
