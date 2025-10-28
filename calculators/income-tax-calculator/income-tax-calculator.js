@@ -1,6 +1,6 @@
 // --- IMPORT SHARED UTILITIES ---
 // Refactored to import common functions from the central utils.js file, removing duplicated code.
-import { formatCurrency, debounce, syncSliderAndInput } from '../../assets/js/utils.js';
+import { formatCurrency, debounce, updateSliderFill, syncSliderAndInput } from '../../assets/js/utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check if the main calculator container exists on the page
@@ -32,8 +32,15 @@ function initializeTaxCalculator() {
     const recommendationText = getElem('recommendationText');
 
     const doughnutCanvas = getElem('taxDoughnutChart');
-    const doughnutCtx = doughnutCanvas.getContext('2d');
     let taxDoughnutChart;
+    // --- ADDED: Check for canvas and get context ---
+    let doughnutCtx = null;
+    if (doughnutCanvas) {
+        doughnutCtx = doughnutCanvas.getContext('2d');
+    } else {
+        console.error("Doughnut chart canvas element not found!");
+    }
+    // --- END ADDED ---
 
     const toggleDetailsBtn = getElem('toggleDetailsBtn');
     const detailsTableContainer = getElem('detailsTableContainer');
@@ -90,6 +97,51 @@ function initializeTaxCalculator() {
     }
 
     function updateCalculator() {
+        // --- Validation ---
+        let isValid = true;
+        const validateInput = (inputId, min, max, errorMessageElemId) => {
+            const inputElem = getElem(inputId);
+            const value = parseFloat(inputElem.value);
+            const errorElem = getElem(errorMessageElemId);
+            if (isNaN(value) || value < min || value > max) {
+                errorElem?.classList.remove('hidden');
+                return false;
+            } else {
+                errorElem?.classList.add('hidden');
+                return true;
+            }
+        };
+
+        isValid &= validateInput('grossSalaryInput', 250000, 20000000, 'grossSalaryError');
+        isValid &= validateInput('deduction80cInput', 0, 150000, 'deduction80cError');
+        isValid &= validateInput('homeLoanInterestInput', 0, 200000, 'homeLoanInterestError');
+        isValid &= validateInput('deductionNpsInput', 0, 50000, 'deductionNpsError');
+        isValid &= validateInput('otherDeductionsInput', 0, 100000, 'otherDeductionsError');
+
+
+        if (!isValid) {
+            // Display error state in results
+            oldRegimeTaxElem.textContent = '-';
+            newRegimeTaxElem.textContent = '-';
+            recommendationBox.classList.remove('bg-green-100', 'bg-gray-100');
+            recommendationText.classList.remove('text-green-800');
+            recommendationText.textContent = 'Please enter valid inputs.';
+            recommendationBox.classList.add('bg-red-100'); // Indicate error
+            recommendationText.classList.add('text-red-800');
+            oldRegimeCard.classList.remove('recommended');
+            newRegimeCard.classList.remove('recommended');
+            // --- UPDATED: Pass default error state to chart ---
+            updateDoughnutChart([1], ['Invalid Input'], ['#E5E7EB']); // Show gray chart
+            // --- END UPDATED ---
+            detailsTableContainer.innerHTML = '<p class="text-center text-gray-500 text-xs">Enter valid inputs to see details.</p>';
+            return;
+        } else {
+             // Ensure error styles are removed if valid
+             recommendationBox.classList.remove('bg-red-100');
+             recommendationText.classList.remove('text-red-800');
+        }
+        // --- End Validation ---
+
         const grossSalary = parseFloat(grossSalaryInput.value) || 0;
         const deduction80c = parseFloat(deduction80cInput.value) || 0;
         const homeLoanInterest = parseFloat(homeLoanInterestInput.value) || 0;
@@ -141,8 +193,8 @@ function initializeTaxCalculator() {
         // Update recommendation
         oldRegimeCard.classList.remove('recommended');
         newRegimeCard.classList.remove('recommended');
-        recommendationBox.classList.remove('bg-green-100', 'bg-gray-100');
-        recommendationText.classList.remove('text-green-800');
+        recommendationBox.classList.remove('bg-green-100', 'bg-gray-100', 'bg-red-100'); // Also remove red bg
+        recommendationText.classList.remove('text-green-800', 'text-red-800');
 
         if (totalTaxOld < totalTaxNew) {
             oldRegimeCard.classList.add('recommended');
@@ -170,13 +222,23 @@ function initializeTaxCalculator() {
         });
     }
 
+    // --- Chart Update Function ---
     function updateDoughnutChart(data, labels, colors) {
-      const chartData = { labels: labels, datasets: [{ data, backgroundColor: colors, hoverOffset: 4, borderRadius: 3, spacing: 1 }] };
-      const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: '50%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` } } } };
-      if (taxDoughnutChart) { taxDoughnutChart.data = chartData; taxDoughnutChart.update(); } else { taxDoughnutChart = new Chart(doughnutCtx, { type: 'doughnut', data: chartData, options: chartOptions }); }
+        // --- ADDED: Check if context exists ---
+        if (!doughnutCtx) {
+            console.error("Chart context (doughnutCtx) is not available.");
+            return;
+        }
+        // --- END ADDED ---
+        const chartData = { labels: labels, datasets: [{ data, backgroundColor: colors, hoverOffset: 4, borderRadius: 3, spacing: 1 }] };
+        const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: '50%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` } } } };
+        if (taxDoughnutChart) { taxDoughnutChart.data = chartData; taxDoughnutChart.update(); }
+        else { taxDoughnutChart = new Chart(doughnutCtx, { type: 'doughnut', data: chartData, options: chartOptions }); }
     }
 
-    function updateDetailsTable(data) {
+
+    // --- Other functions (updateDetailsTable, populateAndShowModal, loadFromUrl) remain unchanged ---
+     function updateDetailsTable(data) {
         // Only show rebate row if rebate is actually applied (> 0)
         const rebateRowOld = data.rebateOld > 0 ? `<tr><td class="px-2 py-1 pl-4">Rebate u/s 87A</td><td class="px-2 py-1 text-right">(-) ${formatCurrency(data.rebateOld)}</td><td class="px-2 py-1 text-right">-</td></tr>` : '';
         const rebateRowNew = data.rebateNew > 0 ? `<tr><td class="px-2 py-1 pl-4">Rebate u/s 87A</td><td class="px-2 py-1 text-right">-</td><td class="px-2 py-1 text-right">(-) ${formatCurrency(data.rebateNew)}</td></tr>` : '';
@@ -288,18 +350,19 @@ function initializeTaxCalculator() {
         }
     }
 
+
     // --- Event Listeners ---
     function setupEventListeners() {
         const debouncedUpdate = debounce(updateCalculator, 250);
 
-        // REFACTORED: Use syncSliderAndInput for cleaner code
-        syncSliderAndInput({ sliderId: 'grossSalarySlider', inputId: 'grossSalaryInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'deduction80cSlider', inputId: 'deduction80cInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'homeLoanInterestSlider', inputId: 'homeLoanInterestInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'deductionNpsSlider', inputId: 'deductionNpsInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'otherDeductionsSlider', inputId: 'otherDeductionsInput', updateCallback: debouncedUpdate });
+        // REFACTORED: Use syncSliderAndInput for cleaner code, passing button IDs
+        syncSliderAndInput({ sliderId: 'grossSalarySlider', inputId: 'grossSalaryInput', decrementId: 'grossSalaryDecrement', incrementId: 'grossSalaryIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'deduction80cSlider', inputId: 'deduction80cInput', decrementId: 'deduction80cDecrement', incrementId: 'deduction80cIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'homeLoanInterestSlider', inputId: 'homeLoanInterestInput', decrementId: 'homeLoanInterestDecrement', incrementId: 'homeLoanInterestIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'deductionNpsSlider', inputId: 'deductionNpsInput', decrementId: 'deductionNpsDecrement', incrementId: 'deductionNpsIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'otherDeductionsSlider', inputId: 'otherDeductionsInput', decrementId: 'otherDeductionsDecrement', incrementId: 'otherDeductionsIncrement', updateCallback: debouncedUpdate });
 
-        if (taxpayerProfileSelect) taxpayerProfileSelect.addEventListener('change', updateCalculator);
+        if (taxpayerProfileSelect) taxpayerProfileSelect.addEventListener('change', updateCalculator); // Update immediately on profile change
 
         if(toggleDetailsBtn) toggleDetailsBtn.addEventListener('click', () => {
             detailsTableContainer.classList.toggle('hidden');
@@ -338,13 +401,17 @@ function initializeTaxCalculator() {
 
     // --- Dynamic SEO Content Loading ---
     function loadSeoContent() {
-        const contentArea = getElem('dynamic-content-area');
+        // --- UPDATED: Target unique ID ---
+        const contentArea = getElem('dynamic-content-area-tax');
+        // --- END UPDATED ---
         if (contentArea) {
             // Corrected path assuming SEO content is in the same directory
             fetch('income-tax-calculator-seo-content.html')
                 .then(response => response.ok ? response.text() : Promise.reject('File not found'))
                 .then(html => contentArea.innerHTML = html)
                 .catch(error => console.error('Error loading SEO content:', error));
+        } else {
+             console.error("SEO content area ('dynamic-content-area-tax') not found!");
         }
     }
 
