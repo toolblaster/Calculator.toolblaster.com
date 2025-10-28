@@ -51,14 +51,14 @@
                              <div>
                                 <label for="annualInvestmentSlider" class="block text-xs font-medium text-gray-600 mb-1">Yearly Investment (₹)</label>
                                 <div class="flex items-center space-x-2">
-                                    <input type="range" id="annualInvestmentSlider" min="500" max="150000" value="150000" step="500" class="w-full range-slider">
+                                    <input type="range" id="annualInvestmentSlider" min="500" max="150000" value="150000" step="500" class="w-full range-slider" aria-label="Yearly PPF Investment Amount">
                                     <input type="number" id="annualInvestmentInput" class="manual-input" value="150000" min="500" max="150000" step="500">
                                 </div>
                             </div>
                             <div>
                                <label for="interestRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Interest Rate (% p.a.)</label>
                                <div class="flex items-center space-x-2">
-                                   <input type="range" id="interestRateSlider" min="5" max="10" value="7.1" step="0.1" class="w-full range-slider">
+                                   <input type="range" id="interestRateSlider" min="5" max="10" value="7.1" step="0.1" class="w-full range-slider" aria-label="PPF Interest Rate Percentage">
                                    <input type="number" id="interestRateInput" class="manual-input" value="7.1" min="5" max="10" step="0.1">
                                </div>
                            </div>
@@ -93,7 +93,7 @@
                                 <label for="lwYearSlider" class="block text-xs font-medium text-gray-600 mb-1">Check Eligibility for Financial Year</label>
                                 <div class="flex items-center space-x-2">
                                     <span class="text-xs font-semibold">Year 1</span>
-                                    <input type="range" id="lwYearSlider" min="1" max="15" value="7" step="1" class="w-full range-slider">
+                                    <input type="range" id="lwYearSlider" min="1" max="15" value="7" step="1" class="w-full range-slider" aria-label="Financial year to check loan and withdrawal eligibility">
                                     <span class="text-xs font-semibold">Year 15</span>
                                 </div>
                                 <p class="text-center font-bold text-green-800 text-sm mt-1">Year <span id="lwYearDisplay">7</span></p>
