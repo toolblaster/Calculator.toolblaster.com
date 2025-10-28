@@ -266,6 +266,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Main Update Function ---
     function updateComparison() {
+        // --- Validation ---
+        let isValid = true;
+        const validateInput = (inputId, min, max, errorMessageElemId) => {
+            const inputElem = getElem(inputId);
+            const value = parseFloat(inputElem.value);
+            const errorElem = getElem(errorMessageElemId);
+            if (isNaN(value) || value < min || value > max) {
+                errorElem?.classList.remove('hidden');
+                return false;
+            } else {
+                errorElem?.classList.add('hidden');
+                return true;
+            }
+        };
+
+        isValid &= validateInput('initialLumpsumInput', 0, 5000000, 'initialLumpsumError');
+        isValid &= validateInput('monthlyInvestmentInput', 500, 100000, 'monthlyInvestmentError');
+        isValid &= validateInput('investmentPeriodInput', 1, 40, 'investmentPeriodError');
+        isValid &= validateInput('sipReturnInput', 1, 25, 'sipReturnError');
+        isValid &= validateInput('rdReturnInput', 1, 10, 'rdReturnError');
+        isValid &= validateInput('fdReturnInput', 1, 10, 'fdReturnError');
+        isValid &= validateInput('debtReturnInput', 1, 12, 'debtReturnError');
+        isValid &= validateInput('inflationRateInput', 0, 15, 'inflationRateError');
+
+        // Validate step-up inputs based on type
+        const isSipIncreaseAmount = sipIncreaseTypeToggle.checked;
+        const sipIncreaseMax = isSipIncreaseAmount ? 5000 : 20;
+        isValid &= validateInput('sipIncreaseRateInput', 0, sipIncreaseMax, 'sipIncreaseRateError');
+
+        const isRdIncreaseAmount = rdIncreaseTypeToggle.checked;
+        const rdIncreaseMax = isRdIncreaseAmount ? 5000 : 20;
+        isValid &= validateInput('rdIncreaseRateInput', 0, rdIncreaseMax, 'rdIncreaseRateError');
+
+        if (!isValid) {
+            // Display error state in results - clear all values
+            [sipInvestedElem, sipReturnsElem, sipTotalElem, sipRealValueElem,
+             rdInvestedElem, rdReturnsElem, rdReturnsPostTaxElem, rdTotalElem, rdTotalPostTaxElem, rdRealValueElem,
+             lumpsumInvestedElem, lumpsumReturnsElem, lumpsumTotalElem, lumpsumRealValueElem,
+             fdReturnsPostTaxElem, fdTotalPostTaxElem, fdRealValueElem,
+             debtReturnsPostTaxElem, debtTotalPostTaxElem, debtRealValueElem].forEach(el => el.textContent = '-');
+
+            // Show Real Value items but with '-'
+            [sipRealValueItem, rdRealValueItem, lumpsumRealValueItem, fdRealValueItem, debtRealValueItem].forEach(el => {
+                el.style.display = inflationToggle.checked ? 'flex' : 'none';
+                el.querySelector('.result-value.real').textContent = '-';
+            });
+
+            // Update charts to show error state
+            updateFinalValueChart([0,0,0,0,0]); // Zero values
+            growthChartData = {}; // Clear yearly data
+            updateGrowthChart(); // Attempt to clear or show empty chart
+            return;
+        }
+        // --- End Validation ---
+
         // Read Inputs
         const initialLumpsum = parseFloat(initialLumpsumInput.value) || 0;
         const monthlyInvestment = parseFloat(monthlyInvestmentInput.value) || 0;
@@ -278,23 +333,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const applyInflation = inflationToggle.checked;
         const inflationRate = applyInflation ? (parseFloat(inflationRateInput.value) || 0) : 0;
         const sipIncreaseValue = parseFloat(sipIncreaseRateInput.value) || 0;
-        const isSipIncreaseAmount = sipIncreaseTypeToggle.checked;
+        // isSipIncreaseAmount is already defined in validation
         const rdIncreaseValue = parseFloat(rdIncreaseRateInput.value) || 0;
-        const isRdIncreaseAmount = rdIncreaseTypeToggle.checked;
+        // isRdIncreaseAmount is already defined in validation
 
-        if (years <= 0 || (monthlyInvestment <= 0 && initialLumpsum <= 0)) return; // Basic validation
 
         // Calculate Equivalent Lumpsum for FD/Debt comparison
-        // More accurate: Simulate SIP growth to get total invested amount for lumpsum equivalence
         const sipInvestedAmount = calculateSIP(initialLumpsum, monthlyInvestment, years, sipRate, sipIncreaseValue, isSipIncreaseAmount).totalInvested;
-        const equivalentLumpsum = sipInvestedAmount; // Use total capital deployed in SIP/RD
+        const equivalentLumpsum = sipInvestedAmount;
 
         // Perform Calculations
         const sipData = calculateSIP(initialLumpsum, monthlyInvestment, years, sipRate, sipIncreaseValue, isSipIncreaseAmount);
         const rdData = calculateRD(initialLumpsum, monthlyInvestment, years, rdRate, taxRate, rdIncreaseValue, isRdIncreaseAmount);
         const lumpsumData = calculateLumpsum(equivalentLumpsum, years, sipRate); // Lumpsum uses SIP rate
         const fdData = calculateFD(equivalentLumpsum, years, fdRate, taxRate);
-        const debtData = calculateDebtFund(equivalentLumpsum, years, debtRate, taxRate, inflationRate); // Pass inflation for indexation
+        const debtData = calculateDebtFund(equivalentLumpsum, years, debtRate, taxRate, inflationRate);
 
 
         // Calculate Real Values
@@ -304,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const fdReal = calculateRealValue(fdData.futureValuePostTax, years, inflationRate);
         const debtReal = calculateRealValue(debtData.futureValuePostTax, years, inflationRate);
 
-        // Store yearly data for growth chart (use Real Value if inflation is ON)
+        // Store yearly data for growth chart
         const getAdjustedYearlyData = (data, isPostTax, isLumpsumType = false) => {
             const baseData = isPostTax ? data.yearlyDataPostTax : data.yearlyData;
             if (applyInflation) {
@@ -313,13 +366,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     value: calculateRealValue(d.value, d.year, inflationRate)
                 }));
             }
-             // For non-inflation adjusted lumpsum types, ensure year 0 exists correctly
              if (!applyInflation && isLumpsumType && baseData[0]?.year !== 0) {
                  return [{ year: 0, value: data.totalInvested }, ...baseData.slice(1)];
              }
-             // For non-inflation adjusted SIP/RD, ensure year 0 exists correctly
              if (!applyInflation && !isLumpsumType && baseData[0]?.year !== 0) {
-                 // Correctly use initialLumpsum if provided
                  const startValue = initialLumpsum > 0 ? initialLumpsum : 0;
                  return [{ year: 0, value: startValue }, ...baseData.slice(1)];
              }
@@ -371,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
         debtRealValueElem.textContent = formatCurrency(debtReal);
         debtRealValueItem.style.display = applyInflation ? 'flex' : 'none';
 
-        // Update Charts (pass real values if inflation is on)
+        // Update Charts
         updateFinalValueChart(applyInflation ? [sipReal, rdReal, lumpsumReal, fdReal, debtReal] : [
             sipData.futureValue,
             rdData.futureValuePostTax,
@@ -379,10 +429,11 @@ document.addEventListener('DOMContentLoaded', () => {
             fdData.futureValuePostTax,
             debtData.futureValuePostTax
         ]);
-        updateGrowthChart(); // Update based on the active dataset (which now contains real values if needed)
+        updateGrowthChart();
     }
 
-    // --- Chart Update Functions ---
+
+    // --- Other functions (updateFinalValueChart, updateGrowthChart, getChartColor, populateAndShowModal, loadFromUrl) remain unchanged ---
     function updateFinalValueChart(finalValues) {
         const data = {
             labels: ['SIP', 'RD', 'Lumpsum', 'FD', 'Debt Fund'], // Simplified labels
@@ -436,19 +487,33 @@ document.addEventListener('DOMContentLoaded', () => {
             finalValueChart.data = data;
              finalValueChart.options.plugins.tooltip.callbacks.label = (context) => `${context.dataset.label}: ${formatCurrency(context.parsed.x)}`; // Update tooltip label
             finalValueChart.update();
-        } else {
+        } else if (finalValueCanvas) { // Check if canvas exists
             finalValueChart = new Chart(finalValueCanvas, { type: 'bar', data, options });
         }
     }
 
     function updateGrowthChart() {
         const years = parseInt(investmentPeriodInput.value) || 0;
-        if (years <= 0 || !growthChartData[activeChartDataset]) return;
+        if (years <= 0 || !activeChartDataset || !growthChartData[activeChartDataset]) {
+             // Clear chart if no valid data
+             if (growthChart) {
+                 growthChart.data.labels = [];
+                 growthChart.data.datasets = [];
+                 growthChart.update();
+             }
+             return;
+        }
+
 
         const yearlyData = growthChartData[activeChartDataset];
          // Ensure yearlyData is an array and has length
         if (!Array.isArray(yearlyData) || yearlyData.length === 0) {
             console.error("Yearly data for chart is invalid or empty for:", activeChartDataset);
+             if (growthChart) { // Clear chart if data is bad
+                 growthChart.data.labels = [];
+                 growthChart.data.datasets = [];
+                 growthChart.update();
+             }
             return;
         }
 
@@ -501,7 +566,7 @@ document.addEventListener('DOMContentLoaded', () => {
             growthChart.data = data;
              growthChart.options.plugins.tooltip.callbacks.label = (context) => `Value: ${formatCurrency(context.parsed.y)}`; // Update tooltip label
             growthChart.update();
-        } else {
+        } else if (growthCanvas) { // Check if canvas exists
             growthChart = new Chart(growthCanvas, { type: 'line', data, options });
         }
     }
@@ -609,7 +674,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('input[type="range"]').forEach(slider => {
                 const inputId = slider.id.replace('Slider', 'Input');
                 const input = getElem(inputId);
-                if (input) {
+                if (input && slider) { // Added slider check
                     slider.value = input.value;
                     updateSliderFill(slider);
                 }
@@ -622,51 +687,70 @@ document.addEventListener('DOMContentLoaded', () => {
          updateComparison(); // Recalculate after loading
     }
 
+
     // --- Event Listeners ---
     function setupEventListeners() {
         const debouncedUpdate = debounce(updateComparison, 300);
 
-        // Sync Sliders and Inputs
-        syncSliderAndInput({ sliderId: 'initialLumpsumSlider', inputId: 'initialLumpsumInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'monthlyInvestmentSlider', inputId: 'monthlyInvestmentInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'investmentPeriodSlider', inputId: 'investmentPeriodInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'sipReturnSlider', inputId: 'sipReturnInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'rdReturnSlider', inputId: 'rdReturnInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'fdReturnSlider', inputId: 'fdReturnInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'debtReturnSlider', inputId: 'debtReturnInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'inflationRateSlider', inputId: 'inflationRateInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'sipIncreaseRateSlider', inputId: 'sipIncreaseRateInput', updateCallback: debouncedUpdate });
-        syncSliderAndInput({ sliderId: 'rdIncreaseRateSlider', inputId: 'rdIncreaseRateInput', updateCallback: debouncedUpdate });
+        // Sync Sliders and Inputs using the imported function
+        syncSliderAndInput({ sliderId: 'initialLumpsumSlider', inputId: 'initialLumpsumInput', decrementId: 'initialLumpsumDecrement', incrementId: 'initialLumpsumIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'monthlyInvestmentSlider', inputId: 'monthlyInvestmentInput', decrementId: 'monthlyInvestmentDecrement', incrementId: 'monthlyInvestmentIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'investmentPeriodSlider', inputId: 'investmentPeriodInput', decrementId: 'investmentPeriodDecrement', incrementId: 'investmentPeriodIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'sipReturnSlider', inputId: 'sipReturnInput', decrementId: 'sipReturnDecrement', incrementId: 'sipReturnIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'rdReturnSlider', inputId: 'rdReturnInput', decrementId: 'rdReturnDecrement', incrementId: 'rdReturnIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'fdReturnSlider', inputId: 'fdReturnInput', decrementId: 'fdReturnDecrement', incrementId: 'fdReturnIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'debtReturnSlider', inputId: 'debtReturnInput', decrementId: 'debtReturnDecrement', incrementId: 'debtReturnIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'inflationRateSlider', inputId: 'inflationRateInput', decrementId: 'inflationRateDecrement', incrementId: 'inflationRateIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'sipIncreaseRateSlider', inputId: 'sipIncreaseRateInput', decrementId: 'sipIncreaseRateDecrement', incrementId: 'sipIncreaseRateIncrement', updateCallback: debouncedUpdate });
+        syncSliderAndInput({ sliderId: 'rdIncreaseRateSlider', inputId: 'rdIncreaseRateInput', decrementId: 'rdIncreaseRateDecrement', incrementId: 'rdIncreaseRateIncrement', updateCallback: debouncedUpdate });
 
 
         taxSlabSelect.addEventListener('change', updateComparison); // Update immediately on tax change
         inflationToggle.addEventListener('change', () => {
-             getElem('inflationRateSlider').closest('div.grid > div').style.display = inflationToggle.checked ? 'block' : 'none';
+             // Find the parent div containing the slider and input group
+             const inflationInputContainer = getElem('inflationRateSlider')?.closest('.grid > div');
+             if (inflationInputContainer) {
+                 inflationInputContainer.style.display = inflationToggle.checked ? 'block' : 'none';
+             }
              updateComparison();
         });
 
 
         // Step-up Toggles
         function setupIncreaseToggle(toggle, label, slider, input, modePrefix) {
+             if (!toggle || !label || !slider || !input) return; // Add null checks
             toggle.addEventListener('change', () => {
                 const isAmountMode = toggle.checked;
-                const currentValue = 0; // Reset value on toggle
+                let currentValue = parseFloat(input.value) || 0; // Keep current value if valid, else 0
                 let maxAmount = 5000; // Default max amount increase
                 let maxPercent = 20; // Default max percent increase
+                let stepAmount = 100;
+                let stepPercent = 1;
+
 
                 if (modePrefix === 'sip' || modePrefix === 'rd') {
                      label.textContent = `${modePrefix.toUpperCase()} Annual Increase (${isAmountMode ? '₹' : '%'})`;
                      slider.max = isAmountMode ? maxAmount : maxPercent;
                      input.max = isAmountMode ? maxAmount : maxPercent;
-                     slider.step = isAmountMode ? 100 : 1;
-                     input.step = isAmountMode ? 100 : 1;
+                     slider.step = isAmountMode ? stepAmount : stepPercent;
+                     input.step = isAmountMode ? stepAmount : stepPercent;
+                     // Reset value only if it exceeds the new max
+                     if (currentValue > parseFloat(input.max)) {
+                         currentValue = 0;
+                     }
+                      // Update error message text based on mode
+                     const errorElem = getElem(`${modePrefix}IncreaseRateError`);
+                     if (errorElem) {
+                          errorElem.textContent = `Value must be between 0 and ${isAmountMode ? formatCurrency(maxAmount) : maxPercent + '%'}.`;
+                     }
+
                 }
                 slider.value = currentValue;
                 input.value = currentValue;
                 updateSliderFill(slider);
-                updateComparison();
+                updateComparison(); // Recalculate after changing toggle
             });
-             // Initial label setup
+             // Initial label/range setup and validation message setup
              const event = new Event('change');
              toggle.dispatchEvent(event);
         }
@@ -707,10 +791,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
     // --- Initial Run ---
     setupEventListeners();
     loadFromUrl(); // Load from URL first
     // Ensure initial state of inflation section is correct based on toggle
-    getElem('inflationRateSlider').closest('div.grid > div').style.display = inflationToggle.checked ? 'block' : 'none';
+    const inflationInputContainer = getElem('inflationRateSlider')?.closest('.grid > div');
+    if (inflationInputContainer) {
+         inflationInputContainer.style.display = inflationToggle.checked ? 'block' : 'none';
+    }
     updateComparison(); // Then run initial calculation
 });
