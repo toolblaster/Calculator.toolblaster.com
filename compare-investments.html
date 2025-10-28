@@ -330,21 +330,21 @@
                         <div>
                             <label for="initialLumpsumSlider" class="block text-xs font-medium text-gray-600 mb-1">Initial Lumpsum (₹, Optional)</label>
                             <div class="flex items-center space-x-2">
-                                <input type="range" id="initialLumpsumSlider" min="0" max="5000000" value="0" step="10000" class="w-full range-slider">
+                                <input type="range" id="initialLumpsumSlider" min="0" max="5000000" value="0" step="10000" class="w-full range-slider" aria-label="Initial Lumpsum Amount (Optional)">
                                 <input type="number" id="initialLumpsumInput" class="manual-input" value="0" min="0" max="5000000" step="10000">
                             </div>
                         </div>
                         <div>
                             <label for="monthlyInvestmentSlider" class="block text-xs font-medium text-gray-600 mb-1">Monthly Investment (₹)</label>
                             <div class="flex items-center space-x-2">
-                                <input type="range" id="monthlyInvestmentSlider" min="500" max="100000" value="10000" step="500" class="w-full range-slider">
+                                <input type="range" id="monthlyInvestmentSlider" min="500" max="100000" value="10000" step="500" class="w-full range-slider" aria-label="Monthly Investment Amount">
                                 <input type="number" id="monthlyInvestmentInput" class="manual-input" value="10000" min="500" max="100000" step="500">
                             </div>
                         </div>
                         <div>
                             <label for="investmentPeriodSlider" class="block text-xs font-medium text-gray-600 mb-1">Investment Period (Years)</label>
                             <div class="flex items-center space-x-2">
-                                <input type="range" id="investmentPeriodSlider" min="1" max="40" value="15" step="1" class="w-full range-slider">
+                                <input type="range" id="investmentPeriodSlider" min="1" max="40" value="15" step="1" class="w-full range-slider" aria-label="Investment Period in Years">
                                 <input type="number" id="investmentPeriodInput" class="manual-input" value="15" min="1" max="40" step="1">
                             </div>
                         </div>
@@ -362,7 +362,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-2">
-                                <input type="range" id="sipIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider">
+                                <input type="range" id="sipIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider" aria-label="Annual SIP Increase Rate">
                                 <input type="number" id="sipIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
                             </div>
                         </div>
@@ -377,7 +377,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-2">
-                                <input type="range" id="rdIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider">
+                                <input type="range" id="rdIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider" aria-label="Annual Recurring Deposit Increase Rate">
                                 <input type="number" id="rdIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
                             </div>
                         </div>
@@ -394,28 +394,28 @@
                         <div>
                             <label for="sipReturnSlider" class="block text-xs font-medium text-gray-600 mb-1">SIP Return (%)</label>
                             <div class="flex items-center space-x-2">
-                                <input type="range" id="sipReturnSlider" min="1" max="25" value="12" step="0.5" class="w-full range-slider">
+                                <input type="range" id="sipReturnSlider" min="1" max="25" value="12" step="0.5" class="w-full range-slider" aria-label="Expected SIP Return Percentage">
                                 <input type="number" id="sipReturnInput" class="manual-input" value="12" min="1" max="25" step="0.5">
                             </div>
                         </div>
                         <div>
                             <label for="rdReturnSlider" class="block text-xs font-medium text-gray-600 mb-1">RD Return (%)</label>
                             <div class="flex items-center space-x-2">
-                                <input type="range" id="rdReturnSlider" min="1" max="10" value="7.1" step="0.1" class="w-full range-slider">
+                                <input type="range" id="rdReturnSlider" min="1" max="10" value="7.1" step="0.1" class="w-full range-slider" aria-label="Expected Recurring Deposit Return Percentage">
                                 <input type="number" id="rdReturnInput" class="manual-input" value="7.1" min="1" max="10" step="0.1">
                             </div>
                         </div>
                         <div>
                             <label for="fdReturnSlider" class="block text-xs font-medium text-gray-600 mb-1">FD Return (%)</label>
                             <div class="flex items-center space-x-2">
-                                <input type="range" id="fdReturnSlider" min="1" max="10" value="7.5" step="0.1" class="w-full range-slider">
+                                <input type="range" id="fdReturnSlider" min="1" max="10" value="7.5" step="0.1" class="w-full range-slider" aria-label="Expected Fixed Deposit Return Percentage">
                                 <input type="number" id="fdReturnInput" class="manual-input" value="7.5" min="1" max="10" step="0.1">
                             </div>
                         </div>
                         <div>
                             <label for="debtReturnSlider" class="block text-xs font-medium text-gray-600 mb-1">Debt Fund Return (%)</label>
                             <div class="flex items-center space-x-2">
-                                <input type="range" id="debtReturnSlider" min="1" max="12" value="8" step="0.1" class="w-full range-slider">
+                                <input type="range" id="debtReturnSlider" min="1" max="12" value="8" step="0.1" class="w-full range-slider" aria-label="Expected Debt Fund Return Percentage">
                                 <input type="number" id="debtReturnInput" class="manual-input" value="8" min="1" max="12" step="0.1">
                             </div>
                         </div>
@@ -432,7 +432,7 @@
                         <div>
                             <label for="inflationRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Inflation Rate (%)</label>
                             <div class="flex items-center space-x-2">
-                                <input type="range" id="inflationRateSlider" min="0" max="15" value="6" step="0.1" class="w-full range-slider">
+                                <input type="range" id="inflationRateSlider" min="0" max="15" value="6" step="0.1" class="w-full range-slider" aria-label="Expected Inflation Rate Percentage">
                                 <input type="number" id="inflationRateInput" class="manual-input" value="6" min="0" max="15" step="0.1">
                             </div>
                              <div class="flex items-center mt-1">
