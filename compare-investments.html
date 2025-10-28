@@ -301,6 +301,13 @@
             visibility: visible;
             opacity: 1;
         }
+
+        /* Added error message style */
+        .input-error-message {
+            color: #dc2626; /* red-600 */
+            font-size: 0.6rem; /* text-xxs */
+            margin-top: 0.1rem; /* mt-1 roughly */
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -328,25 +335,43 @@
                     <h2 class="text-sm font-bold text-blue-800 text-center mb-1">Investment Scenario</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-1.5">
                         <div>
-                            <label for="initialLumpsumSlider" class="block text-xs font-medium text-gray-600 mb-1">Initial Lumpsum (₹, Optional)</label>
-                            <div class="flex items-center space-x-2">
-                                <input type="range" id="initialLumpsumSlider" min="0" max="5000000" value="0" step="10000" class="w-full range-slider" aria-label="Initial Lumpsum Amount (Optional)">
-                                <input type="number" id="initialLumpsumInput" class="manual-input" value="0" min="0" max="5000000" step="10000">
+                            <label for="initialLumpsumInput" class="block text-xs font-medium text-gray-600 mb-1">Initial Lumpsum (₹, Optional)</label>
+                            <!-- UPDATED: Applied input-group structure -->
+                            <div class="input-group flex items-center space-x-2">
+                                <input type="range" id="initialLumpsumSlider" min="0" max="5000000" value="0" step="10000" class="w-full range-slider flex-grow" aria-label="Initial Lumpsum Amount (Optional)">
+                                <div class="input-stepper-group flex-shrink-0">
+                                    <button type="button" id="initialLumpsumDecrement" class="stepper-button decrement" aria-label="Decrease Initial Lumpsum">-</button>
+                                    <input type="number" id="initialLumpsumInput" class="manual-input" value="0" min="0" max="5000000" step="10000">
+                                    <button type="button" id="initialLumpsumIncrement" class="stepper-button increment" aria-label="Increase Initial Lumpsum">+</button>
+                                </div>
                             </div>
+                            <p id="initialLumpsumError" class="input-error-message hidden">Amount must be between ₹0 - ₹50 Lakh.</p>
                         </div>
                         <div>
-                            <label for="monthlyInvestmentSlider" class="block text-xs font-medium text-gray-600 mb-1">Monthly Investment (₹)</label>
-                            <div class="flex items-center space-x-2">
-                                <input type="range" id="monthlyInvestmentSlider" min="500" max="100000" value="10000" step="500" class="w-full range-slider" aria-label="Monthly Investment Amount">
-                                <input type="number" id="monthlyInvestmentInput" class="manual-input" value="10000" min="500" max="100000" step="500">
+                            <label for="monthlyInvestmentInput" class="block text-xs font-medium text-gray-600 mb-1">Monthly Investment (₹)</label>
+                            <!-- UPDATED: Applied input-group structure -->
+                            <div class="input-group flex items-center space-x-2">
+                                <input type="range" id="monthlyInvestmentSlider" min="500" max="100000" value="10000" step="500" class="w-full range-slider flex-grow" aria-label="Monthly Investment Amount">
+                                <div class="input-stepper-group flex-shrink-0">
+                                    <button type="button" id="monthlyInvestmentDecrement" class="stepper-button decrement" aria-label="Decrease Monthly Investment">-</button>
+                                    <input type="number" id="monthlyInvestmentInput" class="manual-input" value="10000" min="500" max="100000" step="500">
+                                    <button type="button" id="monthlyInvestmentIncrement" class="stepper-button increment" aria-label="Increase Monthly Investment">+</button>
+                                </div>
                             </div>
+                             <p id="monthlyInvestmentError" class="input-error-message hidden">Amount must be between ₹500 - ₹1 Lakh.</p>
                         </div>
                         <div>
-                            <label for="investmentPeriodSlider" class="block text-xs font-medium text-gray-600 mb-1">Investment Period (Years)</label>
-                            <div class="flex items-center space-x-2">
-                                <input type="range" id="investmentPeriodSlider" min="1" max="40" value="15" step="1" class="w-full range-slider" aria-label="Investment Period in Years">
-                                <input type="number" id="investmentPeriodInput" class="manual-input" value="15" min="1" max="40" step="1">
+                            <label for="investmentPeriodInput" class="block text-xs font-medium text-gray-600 mb-1">Investment Period (Years)</label>
+                            <!-- UPDATED: Applied input-group structure -->
+                            <div class="input-group flex items-center space-x-2">
+                                <input type="range" id="investmentPeriodSlider" min="1" max="40" value="15" step="1" class="w-full range-slider flex-grow" aria-label="Investment Period in Years">
+                                <div class="input-stepper-group flex-shrink-0">
+                                    <button type="button" id="investmentPeriodDecrement" class="stepper-button decrement" aria-label="Decrease Investment Period">-</button>
+                                    <input type="number" id="investmentPeriodInput" class="manual-input" value="15" min="1" max="40" step="1">
+                                    <button type="button" id="investmentPeriodIncrement" class="stepper-button increment" aria-label="Increase Investment Period">+</button>
+                                </div>
                             </div>
+                            <p id="investmentPeriodError" class="input-error-message hidden">Period must be between 1 - 40 years.</p>
                         </div>
                     </div>
                     <!-- Step-up Inputs -->
@@ -361,10 +386,16 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-2">
-                                <input type="range" id="sipIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider" aria-label="Annual SIP Increase Rate">
-                                <input type="number" id="sipIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
+                            <!-- UPDATED: Applied input-group structure -->
+                            <div class="input-group flex items-center space-x-2">
+                                <input type="range" id="sipIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider flex-grow" aria-label="Annual SIP Increase Rate">
+                                <div class="input-stepper-group flex-shrink-0">
+                                    <button type="button" id="sipIncreaseRateDecrement" class="stepper-button decrement" aria-label="Decrease SIP Increase Rate">-</button>
+                                    <input type="number" id="sipIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
+                                    <button type="button" id="sipIncreaseRateIncrement" class="stepper-button increment" aria-label="Increase SIP Increase Rate">+</button>
+                                </div>
                             </div>
+                            <p id="sipIncreaseRateError" class="input-error-message hidden">Value must be between 0 and 20 / 5000.</p>
                         </div>
                          <div>
                             <div class="flex justify-between items-center mb-1">
@@ -376,10 +407,16 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-2">
-                                <input type="range" id="rdIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider" aria-label="Annual Recurring Deposit Increase Rate">
-                                <input type="number" id="rdIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
+                            <!-- UPDATED: Applied input-group structure -->
+                            <div class="input-group flex items-center space-x-2">
+                                <input type="range" id="rdIncreaseRateSlider" min="0" max="20" value="0" step="1" class="w-full range-slider flex-grow" aria-label="Annual Recurring Deposit Increase Rate">
+                                <div class="input-stepper-group flex-shrink-0">
+                                    <button type="button" id="rdIncreaseRateDecrement" class="stepper-button decrement" aria-label="Decrease RD Increase Rate">-</button>
+                                    <input type="number" id="rdIncreaseRateInput" class="manual-input" value="0" min="0" max="20" step="1">
+                                    <button type="button" id="rdIncreaseRateIncrement" class="stepper-button increment" aria-label="Increase RD Increase Rate">+</button>
+                                </div>
                             </div>
+                            <p id="rdIncreaseRateError" class="input-error-message hidden">Value must be between 0 and 20 / 5000.</p>
                         </div>
                     </div>
                 </div>
@@ -392,32 +429,56 @@
                      <h2 class="text-sm font-bold text-blue-800 text-center mb-1">Expected Annual Returns, Tax & Inflation</h2>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
                         <div>
-                            <label for="sipReturnSlider" class="block text-xs font-medium text-gray-600 mb-1">SIP Return (%)</label>
-                            <div class="flex items-center space-x-2">
-                                <input type="range" id="sipReturnSlider" min="1" max="25" value="12" step="0.5" class="w-full range-slider" aria-label="Expected SIP Return Percentage">
-                                <input type="number" id="sipReturnInput" class="manual-input" value="12" min="1" max="25" step="0.5">
+                            <label for="sipReturnInput" class="block text-xs font-medium text-gray-600 mb-1">SIP Return (%)</label>
+                            <!-- UPDATED: Applied input-group structure -->
+                            <div class="input-group flex items-center space-x-2">
+                                <input type="range" id="sipReturnSlider" min="1" max="25" value="12" step="0.5" class="w-full range-slider flex-grow" aria-label="Expected SIP Return Percentage">
+                                <div class="input-stepper-group flex-shrink-0">
+                                    <button type="button" id="sipReturnDecrement" class="stepper-button decrement" aria-label="Decrease SIP Return">-</button>
+                                    <input type="number" id="sipReturnInput" class="manual-input" value="12" min="1" max="25" step="0.5">
+                                    <button type="button" id="sipReturnIncrement" class="stepper-button increment" aria-label="Increase SIP Return">+</button>
+                                </div>
                             </div>
+                            <p id="sipReturnError" class="input-error-message hidden">Rate must be between 1.0% - 25.0%.</p>
                         </div>
                         <div>
-                            <label for="rdReturnSlider" class="block text-xs font-medium text-gray-600 mb-1">RD Return (%)</label>
-                            <div class="flex items-center space-x-2">
-                                <input type="range" id="rdReturnSlider" min="1" max="10" value="7.1" step="0.1" class="w-full range-slider" aria-label="Expected Recurring Deposit Return Percentage">
-                                <input type="number" id="rdReturnInput" class="manual-input" value="7.1" min="1" max="10" step="0.1">
+                            <label for="rdReturnInput" class="block text-xs font-medium text-gray-600 mb-1">RD Return (%)</label>
+                            <!-- UPDATED: Applied input-group structure -->
+                            <div class="input-group flex items-center space-x-2">
+                                <input type="range" id="rdReturnSlider" min="1" max="10" value="7.1" step="0.1" class="w-full range-slider flex-grow" aria-label="Expected Recurring Deposit Return Percentage">
+                                <div class="input-stepper-group flex-shrink-0">
+                                    <button type="button" id="rdReturnDecrement" class="stepper-button decrement" aria-label="Decrease RD Return">-</button>
+                                    <input type="number" id="rdReturnInput" class="manual-input" value="7.1" min="1" max="10" step="0.1">
+                                    <button type="button" id="rdReturnIncrement" class="stepper-button increment" aria-label="Increase RD Return">+</button>
+                                </div>
                             </div>
+                            <p id="rdReturnError" class="input-error-message hidden">Rate must be between 1.0% - 10.0%.</p>
                         </div>
                         <div>
-                            <label for="fdReturnSlider" class="block text-xs font-medium text-gray-600 mb-1">FD Return (%)</label>
-                            <div class="flex items-center space-x-2">
-                                <input type="range" id="fdReturnSlider" min="1" max="10" value="7.5" step="0.1" class="w-full range-slider" aria-label="Expected Fixed Deposit Return Percentage">
-                                <input type="number" id="fdReturnInput" class="manual-input" value="7.5" min="1" max="10" step="0.1">
+                            <label for="fdReturnInput" class="block text-xs font-medium text-gray-600 mb-1">FD Return (%)</label>
+                            <!-- UPDATED: Applied input-group structure -->
+                            <div class="input-group flex items-center space-x-2">
+                                <input type="range" id="fdReturnSlider" min="1" max="10" value="7.5" step="0.1" class="w-full range-slider flex-grow" aria-label="Expected Fixed Deposit Return Percentage">
+                                <div class="input-stepper-group flex-shrink-0">
+                                    <button type="button" id="fdReturnDecrement" class="stepper-button decrement" aria-label="Decrease FD Return">-</button>
+                                    <input type="number" id="fdReturnInput" class="manual-input" value="7.5" min="1" max="10" step="0.1">
+                                    <button type="button" id="fdReturnIncrement" class="stepper-button increment" aria-label="Increase FD Return">+</button>
+                                </div>
                             </div>
+                            <p id="fdReturnError" class="input-error-message hidden">Rate must be between 1.0% - 10.0%.</p>
                         </div>
                         <div>
-                            <label for="debtReturnSlider" class="block text-xs font-medium text-gray-600 mb-1">Debt Fund Return (%)</label>
-                            <div class="flex items-center space-x-2">
-                                <input type="range" id="debtReturnSlider" min="1" max="12" value="8" step="0.1" class="w-full range-slider" aria-label="Expected Debt Fund Return Percentage">
-                                <input type="number" id="debtReturnInput" class="manual-input" value="8" min="1" max="12" step="0.1">
+                            <label for="debtReturnInput" class="block text-xs font-medium text-gray-600 mb-1">Debt Fund Return (%)</label>
+                            <!-- UPDATED: Applied input-group structure -->
+                            <div class="input-group flex items-center space-x-2">
+                                <input type="range" id="debtReturnSlider" min="1" max="12" value="8" step="0.1" class="w-full range-slider flex-grow" aria-label="Expected Debt Fund Return Percentage">
+                                <div class="input-stepper-group flex-shrink-0">
+                                    <button type="button" id="debtReturnDecrement" class="stepper-button decrement" aria-label="Decrease Debt Fund Return">-</button>
+                                    <input type="number" id="debtReturnInput" class="manual-input" value="8" min="1" max="12" step="0.1">
+                                    <button type="button" id="debtReturnIncrement" class="stepper-button increment" aria-label="Increase Debt Fund Return">+</button>
+                                </div>
                             </div>
+                            <p id="debtReturnError" class="input-error-message hidden">Rate must be between 1.0% - 12.0%.</p>
                         </div>
                         <div>
                              <label for="taxSlabSelect" class="block text-xs font-medium text-gray-600 mb-1">Income Tax Slab</label>
@@ -430,15 +491,21 @@
                             </select>
                         </div>
                         <div>
-                            <label for="inflationRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Inflation Rate (%)</label>
-                            <div class="flex items-center space-x-2">
-                                <input type="range" id="inflationRateSlider" min="0" max="15" value="6" step="0.1" class="w-full range-slider" aria-label="Expected Inflation Rate Percentage">
-                                <input type="number" id="inflationRateInput" class="manual-input" value="6" min="0" max="15" step="0.1">
+                            <label for="inflationRateInput" class="block text-xs font-medium text-gray-600 mb-1">Inflation Rate (%)</label>
+                            <!-- UPDATED: Applied input-group structure -->
+                            <div class="input-group flex items-center space-x-2">
+                                <input type="range" id="inflationRateSlider" min="0" max="15" value="6" step="0.1" class="w-full range-slider flex-grow" aria-label="Expected Inflation Rate Percentage">
+                                <div class="input-stepper-group flex-shrink-0">
+                                    <button type="button" id="inflationRateDecrement" class="stepper-button decrement" aria-label="Decrease Inflation Rate">-</button>
+                                    <input type="number" id="inflationRateInput" class="manual-input" value="6" min="0" max="15" step="0.1">
+                                    <button type="button" id="inflationRateIncrement" class="stepper-button increment" aria-label="Increase Inflation Rate">+</button>
+                                </div>
                             </div>
                              <div class="flex items-center mt-1">
                                 <input type="checkbox" id="inflationToggle" class="h-3 w-3 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-1.5" checked>
                                 <label for="inflationToggle" class="text-xxs font-medium text-gray-600">Adjust results for inflation?</label>
                             </div>
+                            <p id="inflationRateError" class="input-error-message hidden">Rate must be between 0.0% - 15.0%.</p>
                         </div>
                     </div>
                 </div>
@@ -451,7 +518,6 @@
                         <div class="result-item"><span class="result-label">Invested</span><span id="sipInvested" class="result-value">₹0</span></div>
                         <div class="result-item"><span class="result-label">Est. Returns</span><span id="sipReturns" class="result-value">₹0</span></div>
                         <div class="result-item"><span class="result-label font-bold">Total Value</span><span id="sipTotal" class="result-value total">₹0</span></div>
-                        <!-- **** MODIFIED: Added tooltip icon **** -->
                         <div class="result-item" id="sipRealValueItem"><span class="result-label">Real Value <span class="tooltip-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0zm-8.25.75h-.01a.75.75 0 0 0 0 1.5h.01a.75.75 0 0 0 0-1.5zM8 4a.75.75 0 0 0-.75.75v1.5a.75.75 0 0 0 1.5 0v-1.5A.75.75 0 0 0 8 4z" clip-rule="evenodd" /></svg><span class="tooltip-text">Value adjusted for inflation, showing purchasing power in today's terms.</span></span></span><span id="sipRealValue" class="result-value real">₹0</span></div>
                         <p class="risk-goal-text"><span class="risk-tag risk-high">Risk: High</span> | Good for Long-Term Growth (>7 Yrs)</p>
                     </div>
@@ -463,7 +529,6 @@
                         <div class="result-item"><span class="result-label">Post-Tax Returns</span><span id="rdReturnsPostTax" class="result-value post-tax">₹0</span></div>
                         <div class="result-item"><span class="result-label font-bold">Total Value</span><span id="rdTotal" class="result-value total">₹0</span></div>
                         <div class="result-item"><span class="result-label font-bold">Post-Tax Value</span><span id="rdTotalPostTax" class="result-value total post-tax">₹0</span></div>
-                        <!-- **** MODIFIED: Added tooltip icon **** -->
                         <div class="result-item" id="rdRealValueItem"><span class="result-label">Real Value (Post-Tax) <span class="tooltip-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0zm-8.25.75h-.01a.75.75 0 0 0 0 1.5h.01a.75.75 0 0 0 0-1.5zM8 4a.75.75 0 0 0-.75.75v1.5a.75.75 0 0 0 1.5 0v-1.5A.75.75 0 0 0 8 4z" clip-rule="evenodd" /></svg><span class="tooltip-text">Value adjusted for inflation, showing purchasing power in today's terms.</span></span></span><span id="rdRealValue" class="result-value real">₹0</span></div>
                          <p class="risk-goal-text"><span class="risk-tag risk-very-low">Risk: Very Low</span> | Good for Short-Term Safety (1-3 Yrs)</p>
                     </div>
@@ -473,7 +538,6 @@
                         <div class="result-item"><span class="result-label">Invested</span><span id="lumpsumInvested" class="result-value">₹0</span></div>
                         <div class="result-item"><span class="result-label">Est. Returns</span><span id="lumpsumReturns" class="result-value">₹0</span></div>
                         <div class="result-item"><span class="result-label font-bold">Total Value</span><span id="lumpsumTotal" class="result-value total">₹0</span></div>
-                        <!-- **** MODIFIED: Added tooltip icon **** -->
                         <div class="result-item" id="lumpsumRealValueItem"><span class="result-label">Real Value <span class="tooltip-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0zm-8.25.75h-.01a.75.75 0 0 0 0 1.5h.01a.75.75 0 0 0 0-1.5zM8 4a.75.75 0 0 0-.75.75v1.5a.75.75 0 0 0 1.5 0v-1.5A.75.75 0 0 0 8 4z" clip-rule="evenodd" /></svg><span class="tooltip-text">Value adjusted for inflation, showing purchasing power in today's terms.</span></span></span><span id="lumpsumRealValue" class="result-value real">₹0</span></div>
                          <p class="risk-goal-text"><span class="risk-tag risk-high">Risk: High</span> | Maximize Long-Term Growth (>10 Yrs)</p>
                          <p class="text-xxs text-center text-gray-500 mt-1">Invested amount = Initial Lumpsum + Total Monthly Investments.</p>
@@ -484,11 +548,9 @@
                          <p class="text-xxs text-center text-gray-500 mb-1">For an equivalent Lumpsum investment.</p>
                         <div class="result-item"><span class="result-label">FD Returns (Post-Tax)</span><span id="fdReturnsPostTax" class="result-value post-tax">₹0</span></div>
                         <div class="result-item"><span class="result-label font-bold">FD Value (Post-Tax)</span><span id="fdTotalPostTax" class="result-value total post-tax">₹0</span></div>
-                        <!-- **** MODIFIED: Added tooltip icon **** -->
                          <div class="result-item" id="fdRealValueItem"><span class="result-label">FD Real Value <span class="tooltip-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0zm-8.25.75h-.01a.75.75 0 0 0 0 1.5h.01a.75.75 0 0 0 0-1.5zM8 4a.75.75 0 0 0-.75.75v1.5a.75.75 0 0 0 1.5 0v-1.5A.75.75 0 0 0 8 4z" clip-rule="evenodd" /></svg><span class="tooltip-text">Value adjusted for inflation, showing purchasing power in today's terms.</span></span></span><span id="fdRealValue" class="result-value real">₹0</span></div>
                         <div class="result-item mt-1 pt-1 border-t border-gray-200"><span class="result-label">Debt Fund Returns (Post-Tax*)</span><span id="debtReturnsPostTax" class="result-value post-tax">₹0</span></div>
                          <div class="result-item"><span class="result-label font-bold">Debt Fund Value (Post-Tax*)</span><span id="debtTotalPostTax" class="result-value total post-tax">₹0</span></div>
-                        <!-- **** MODIFIED: Added tooltip icon **** -->
                          <div class="result-item" id="debtRealValueItem"><span class="result-label">Debt Real Value <span class="tooltip-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0zm-8.25.75h-.01a.75.75 0 0 0 0 1.5h.01a.75.75 0 0 0 0-1.5zM8 4a.75.75 0 0 0-.75.75v1.5a.75.75 0 0 0 1.5 0v-1.5A.75.75 0 0 0 8 4z" clip-rule="evenodd" /></svg><span class="tooltip-text">Value adjusted for inflation, showing purchasing power in today's terms.</span></span></span><span id="debtRealValue" class="result-value real">₹0</span></div>
                          <p class="risk-goal-text"><span class="risk-tag risk-free">FD: Risk-Free</span> | <span class="risk-tag risk-low">Debt: Low Risk</span> | Good for Medium Term (3-7 Yrs)</p>
                          <p class="text-xxs text-center text-gray-500 mt-1">*Debt Fund tax uses indexation if > 3 yrs. <span class="tooltip-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0zm-8.25.75h-.01a.75.75 0 0 0 0 1.5h.01a.75.75 0 0 0 0-1.5zM8 4a.75.75 0 0 0-.75.75v1.5a.75.75 0 0 0 1.5 0v-1.5A.75.75 0 0 0 8 4z" clip-rule="evenodd" /></svg><span class="tooltip-text">Indexation adjusts the purchase price for inflation, reducing taxable gains on long-term debt funds (>3 yrs).</span></span></p>
