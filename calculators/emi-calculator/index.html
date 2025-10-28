@@ -40,21 +40,21 @@
                              <div>
                                 <label for="loanAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Loan Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
-                                    <input type="range" id="loanAmountSlider" min="50000" max="20000000" value="2000000" step="10000" class="w-full range-slider">
+                                    <input type="range" id="loanAmountSlider" min="50000" max="20000000" value="2000000" step="10000" class="w-full range-slider" aria-label="Loan Amount">
                                     <input type="number" id="loanAmountInput" class="manual-input" value="2000000" min="50000" max="20000000" step="10000">
                                 </div>
                             </div>
                             <div>
                                <label for="interestRateSlider" class="block text-xs font-medium text-gray-600 mb-1">Interest Rate (% p.a.)</label>
                                <div class="flex items-center space-x-2">
-                                   <input type="range" id="interestRateSlider" min="1" max="20" value="8.5" step="0.05" class="w-full range-slider">
+                                   <input type="range" id="interestRateSlider" min="1" max="20" value="8.5" step="0.05" class="w-full range-slider" aria-label="Interest Rate Percentage">
                                    <input type="number" id="interestRateInput" class="manual-input" value="8.5" min="1" max="20" step="0.05">
                                </div>
                            </div>
                            <div>
                             <label for="loanTenureSlider" class="block text-xs font-medium text-gray-600 mb-1">Loan Tenure (Years)</label>
                             <div class="flex items-center space-x-2">
-                                <input type="range" id="loanTenureSlider" min="1" max="30" value="10" step="1" class="w-full range-slider">
+                                <input type="range" id="loanTenureSlider" min="1" max="30" value="10" step="1" class="w-full range-slider" aria-label="Loan Tenure in Years">
                                 <input type="number" id="loanTenureInput" class="manual-input" value="10" min="1" max="30" step="1">
                             </div>
                         </div>
@@ -77,14 +77,14 @@
                                 <div>
                                     <label for="rateIncreaseSlider" class="block text-xs font-medium text-gray-600 mb-1">Expected Rate Increase (%)</label>
                                     <div class="flex items-center space-x-2">
-                                        <input type="range" id="rateIncreaseSlider" min="0.25" max="5" value="1" step="0.25" class="w-full range-slider">
+                                        <input type="range" id="rateIncreaseSlider" min="0.25" max="5" value="1" step="0.25" class="w-full range-slider" aria-label="Expected Floating Rate Increase Percentage">
                                         <input type="number" id="rateIncreaseInput" class="manual-input" value="1" min="0.25" max="5" step="0.25">
                                     </div>
                                 </div>
                                 <div>
                                     <label for="increaseAfterSlider" class="block text-xs font-medium text-gray-600 mb-1">Increase After (Years)</label>
                                     <div class="flex items-center space-x-2">
-                                        <input type="range" id="increaseAfterSlider" min="1" max="10" value="3" step="1" class="w-full range-slider">
+                                        <input type="range" id="increaseAfterSlider" min="1" max="10" value="3" step="1" class="w-full range-slider" aria-label="Years after which floating rate increases">
                                         <input type="number" id="increaseAfterInput" class="manual-input" value="3" min="1" max="10" step="1">
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                              <div>
                                 <label for="prepaymentAmountSlider" class="block text-xs font-medium text-gray-600 mb-1">Prepayment Amount (₹)</label>
                                 <div class="flex items-center space-x-2">
-                                    <input type="range" id="prepaymentAmountSlider" min="0" max="1000000" value="0" step="5000" class="w-full range-slider">
+                                    <input type="range" id="prepaymentAmountSlider" min="0" max="1000000" value="0" step="5000" class="w-full range-slider" aria-label="Prepayment Amount">
                                     <input type="number" id="prepaymentAmountInput" class="manual-input" value="0" min="0" max="1000000" step="5000">
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
                            <div id="oneTimePrepaymentStartDiv">
                             <label for="prepaymentStartSlider" class="block text-xs font-medium text-gray-600 mb-1">When? (After how many months)</label>
                             <div class="flex items-center space-x-2">
-                                <input type="range" id="prepaymentStartSlider" min="1" max="120" value="12" step="1" class="w-full range-slider">
+                                <input type="range" id="prepaymentStartSlider" min="1" max="120" value="12" step="1" class="w-full range-slider" aria-label="Month after which one-time prepayment is made">
                                 <input type="number" id="prepaymentStartInput" class="manual-input" value="12" min="1" max="120" step="1">
                             </div>
                         </div>
