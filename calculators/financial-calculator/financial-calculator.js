@@ -1,3 +1,7 @@
+// --- Import utility functions ---
+// Explicitly import functions from utils.js
+import { formatCurrency, debounce, updateSliderFill, syncSliderAndInput } from '../../assets/js/utils.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.calculator-container')) {
         initializeCalculator();
@@ -11,6 +15,7 @@ function initializeCalculator() {
     // --- Element Variables ---
     const sipModeBtn = getElem('sipModeBtn');
     const lumpsumModeBtn = getElem('lumpsumModeBtn');
+    // ... rest of element variables remain the same ...
     const swpModeBtn = getElem('swpModeBtn');
     const rdModeBtn = getElem('rdModeBtn');
     const fdModeBtn = getElem('fdModeBtn');
@@ -81,7 +86,7 @@ function initializeCalculator() {
       inflationRate: getElem('inflationRateError'),
       targetAmount: getElem('targetAmountError'), goalReturnRate: getElem('goalReturnRateError'), goalPeriod: getElem('goalPeriodError')
     };
-    
+
     const calculatorTitle = getElem('calculatorTitle');
     const calculatorDescription = getElem('calculatorDescription');
     const periodLabel = getElem('periodLabel');
@@ -138,10 +143,13 @@ function initializeCalculator() {
     let investmentDoughnutChart;
     let currentMode = 'sip';
 
-    const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
-    const formatCurrency = (num) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(Math.round(num));
-    const updateSliderFill = (slider) => { if (!slider) return; const percentage = ((slider.value - slider.min) / (slider.max - slider.min)) * 100; slider.style.setProperty('--fill-percentage', `${percentage}%`); };
+    // REMOVED window object access - using direct imports now
+    // const formatCurrency = window.formatCurrency || ...
+    // const debounce = window.debounce || ...
+    // const updateSliderFill = window.updateSliderFill || ...
+    // const syncSliderAndInput = window.syncSliderAndInput;
 
+    // ... rest of the functions (updateDoughnutChart, generateGrowthTable, updateCalculator, switchMode, handleShare, loadFromUrl, setupIncreaseToggle) remain the same ...
     function updateDoughnutChart(data, labels, colors) {
       const chartData = { labels: labels, datasets: [{ data, backgroundColor: colors, hoverOffset: 4, borderRadius: 3, spacing: 1 }] };
       const chartOptions = { responsive: true, maintainAspectRatio: false, cutout: '50%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${context.label}: ${formatCurrency(context.parsed)}` }, bodyFont: { family: 'Inter', size: window.innerWidth < 640 ? 8 : 10 }, titleFont: { family: 'Inter', size: window.innerWidth < 640 ? 8 : 10 }, padding: window.innerWidth < 640 ? 4 : 6, cornerRadius: 4 } } };
@@ -150,8 +158,8 @@ function initializeCalculator() {
 
     function generateGrowthTable(data) {
       growthTableBody.innerHTML = '';
-      data.forEach(yearData => { const row = document.createElement('tr'); row.className = 'hover:bg-gray-100 transition-colors'; 
-      
+      data.forEach(yearData => { const row = document.createElement('tr'); row.className = 'hover:bg-gray-100 transition-colors';
+
       if (currentMode === 'swp') {
           row.innerHTML = `<td class="px-2 py-1 whitespace-nowrap text-left">${yearData.year}</td>
                            <td class="px-2 py-1 whitespace-nowrap font-semibold text-blue-700 text-right">${formatCurrency(yearData.openingBalance)}</td>
@@ -185,16 +193,16 @@ function initializeCalculator() {
           updateDoughnutChart([1], ['Invalid Input'], ['#E5E7EB']);
           return;
       }
-      
+
       let yearlyGrowthData = [];
-      
+
       const annualReturnRate = (currentMode === 'goal' ? parseFloat(goalReturnRateInput.value) : parseFloat(returnRateInput.value)) / 100;
       const investmentPeriodYears = (currentMode === 'goal' ? parseFloat(goalPeriodInput.value) : parseFloat(investmentPeriodInput.value));
       const annualInflationRate = inflationToggle.checked ? parseFloat(inflationRateInput.value) / 100 : 0;
-      
+
       toggleGrowthTableBtn.classList.toggle('hidden', currentMode === 'goal');
       tableHeaderInvested.textContent = (currentMode === 'fd' || currentMode === 'lumpsum') ? 'Principal' : 'Invested';
-      
+
       if (currentMode === 'sip') {
         const sipAmount = parseFloat(sipAmountInput.value);
         const isIncreaseAmountMode = sipIncreaseTypeToggle.checked;
@@ -227,7 +235,7 @@ function initializeCalculator() {
         } else { realValueSectionSIP.classList.add('hidden'); }
         updateDoughnutChart([investedAmount, currentCorpus - investedAmount], ['Invested', 'Returns'], ['#3B82F6', '#22C55E']);
         generateGrowthTable(yearlyGrowthData);
-      
+
       } else if (currentMode === 'lumpsum') {
         const investedAmount = parseFloat(lumpsumAmountInput.value);
         const totalValue = investedAmount * Math.pow(1 + annualReturnRate, investmentPeriodYears);
@@ -254,7 +262,7 @@ function initializeCalculator() {
         const frequency = { monthly: 12, quarterly: 4, 'half-yearly': 2 }[rdFrequencySelect.value];
         const periodicReturnRate = annualReturnRate / frequency;
         let currentRdAmount = rdAmount, investedAmount = 0, currentCorpus = 0;
-        
+
         for (let year = 1; year <= investmentPeriodYears; year++) {
           let yearInvested = 0;
           for (let i = 0; i < frequency; i++) { yearInvested += currentRdAmount; currentCorpus = currentCorpus * (1 + periodicReturnRate) + currentRdAmount; }
@@ -280,8 +288,6 @@ function initializeCalculator() {
             const taxPayable = estimatedReturns * taxRate;
             const postTaxReturns = estimatedReturns - taxPayable;
             const postTaxTotal = investedAmount + postTaxReturns;
-            // The element postTaxReturnsRD does not exist in the HTML, this was causing the bug.
-            // postTaxReturnsRD.textContent = formatCurrency(postTaxReturns); 
             postTaxTotalValueRD.textContent = formatCurrency(postTaxTotal);
             postTaxSectionRD.classList.remove('hidden');
             finalCorpusRD = postTaxTotal;
@@ -304,7 +310,7 @@ function initializeCalculator() {
         investedAmountFD.textContent = formatCurrency(investedAmount);
         estimatedReturnsFD.textContent = formatCurrency(estimatedReturns);
         totalValueFD.textContent = formatCurrency(totalValue);
-        
+
         let finalCorpusFD = totalValue;
 
         if (taxToggle.checked) {
@@ -312,8 +318,6 @@ function initializeCalculator() {
             const taxPayable = estimatedReturns * taxRate;
             const postTaxReturns = estimatedReturns - taxPayable;
             const postTaxTotal = investedAmount + postTaxReturns;
-            // The element postTaxReturnsFD does not exist in the HTML, this was causing the bug.
-            // postTaxReturnsFD.textContent = formatCurrency(postTaxReturns);
             postTaxTotalValueFD.textContent = formatCurrency(postTaxTotal);
             postTaxSectionFD.classList.remove('hidden');
             finalCorpusFD = postTaxTotal;
@@ -339,8 +343,8 @@ function initializeCalculator() {
         const increaseValue = parseFloat(withdrawalIncreaseInput.value);
 
         const frequency = { monthly: 12, quarterly: 4, 'half-yearly': 2, yearly: 1 }[withdrawalFrequencySelect.value];
-        const periodicReturnRate = annualReturnRate / 12; 
-        
+        const periodicReturnRate = annualReturnRate / 12;
+
         let totalWithdrawn = 0;
         let totalInterest = 0;
         let exhaustionYear = 0;
@@ -356,7 +360,7 @@ function initializeCalculator() {
                 const interestThisMonth = corpus * periodicReturnRate;
                 yearInterest += interestThisMonth;
                 corpus += interestThisMonth;
-                
+
                 if (month % (12 / frequency) === 0) {
                     const withdrawalThisPeriod = Math.min(corpus, currentWithdrawalAmount * (12/frequency));
                     corpus -= withdrawalThisPeriod;
@@ -366,7 +370,7 @@ function initializeCalculator() {
 
             totalWithdrawn += yearWithdrawn;
             totalInterest += yearInterest;
-            
+
             yearlyGrowthData.push({
                 year: year,
                 openingBalance: yearOpeningBalance,
@@ -374,11 +378,11 @@ function initializeCalculator() {
                 withdrawn: yearWithdrawn,
                 closingBalance: corpus
             });
-            
+
             if (corpus <= 0 && exhaustionYear === 0) {
                 exhaustionYear = year;
             }
-            
+
             if (isIncreaseAmountMode) {
                 currentWithdrawalAmount += increaseValue / frequency * (12/frequency);
             } else {
@@ -390,7 +394,7 @@ function initializeCalculator() {
         totalWithdrawnSWP.textContent = formatCurrency(totalWithdrawn);
         totalInterestSWP.textContent = formatCurrency(totalInterest);
         remainingCorpusSWP.textContent = formatCurrency(corpus);
-        
+
         corpusExhaustedInfo.classList.toggle('hidden', exhaustionYear === 0);
         if (exhaustionYear > 0) {
             exhaustionPeriodSWP.textContent = `${exhaustionYear} Yrs`;
@@ -400,7 +404,7 @@ function initializeCalculator() {
           realRemainingCorpusSWP.textContent = formatCurrency(corpus / Math.pow(1 + annualInflationRate, investmentPeriodYears));
           realValueSectionSWP.classList.remove('hidden');
         } else { realValueSectionSWP.classList.add('hidden'); }
-        
+
         updateDoughnutChart([totalWithdrawn, totalInterest, Math.max(0, corpus)], ['Withdrawn', 'Interest', 'Remaining'], ['#10B981', '#6366F1', '#EF4444']);
         generateGrowthTable(yearlyGrowthData);
 
@@ -411,7 +415,7 @@ function initializeCalculator() {
         const months = years * 12;
         const monthlyRate = annualRate / 12;
         let monthlyInvestment;
-        
+
         let inflatedTargetAmount = targetAmount;
         if (inflationToggle.checked) {
             const inflationRate = parseFloat(inflationRateInput.value) / 100;
@@ -423,7 +427,7 @@ function initializeCalculator() {
         } else {
             monthlyInvestment = (inflatedTargetAmount * monthlyRate) / ((Math.pow(1 + monthlyRate, months) - 1) * (1 + monthlyRate));
         }
-        
+
         const totalInvestment = monthlyInvestment * months;
         const expectedReturns = inflatedTargetAmount - totalInvestment;
 
@@ -431,7 +435,7 @@ function initializeCalculator() {
         totalInvestmentGoal.textContent = formatCurrency(totalInvestment);
         expectedReturnsGoal.textContent = formatCurrency(expectedReturns);
         monthlyInvestmentGoal.textContent = formatCurrency(monthlyInvestment);
-        
+
         updateDoughnutChart([totalInvestment, expectedReturns], ['Total Investment', 'Expected Returns'], ['#22C55E', '#6366F1']);
       }
     }
@@ -441,23 +445,23 @@ function initializeCalculator() {
     function switchMode(newMode) {
       currentMode = newMode;
       [sipSection, lumpsumSection, rdSection, fdSection, swpSection, goalSection, sipSummary, lumpsumSummary, rdSummary, fdSummary, swpSummary, goalSummary].forEach(el => el.classList.add('hidden'));
-      
+
       generalInputsSection.classList.toggle('hidden', newMode === 'goal');
       taxSection.classList.toggle('hidden', !(newMode === 'rd' || newMode === 'fd'));
 
       const activeClasses = 'bg-blue-600 text-white shadow-md'.split(' ');
       const inactiveClasses = 'bg-gray-200 text-gray-700 hover:bg-gray-300'.split(' ');
       [sipModeBtn, lumpsumModeBtn, rdModeBtn, fdModeBtn, swpModeBtn, goalModeBtn].forEach(btn => { btn.classList.remove(...activeClasses, ...inactiveClasses); btn.classList.add(...(btn.id.startsWith(newMode) ? activeClasses : inactiveClasses)); });
-      
-      if (newMode === 'sip') { sipSection.classList.remove('hidden'); sipSummary.classList.remove('hidden'); calculatorTitle.textContent = 'SIP Calculator with Inflation'; calculatorDescription.textContent = 'Plan your investments with our advanced SIP Calculator. Also includes tools for RD, FD, SWP, Goal Planning.'; periodLabel.textContent = 'Investment Period (Years)'; } 
-      else if (newMode === 'lumpsum') { lumpsumSection.classList.remove('hidden'); lumpsumSummary.classList.remove('hidden'); calculatorTitle.textContent = 'Lumpsum Calculator'; calculatorDescription.textContent = 'Calculate the future value of your one-time investment.'; periodLabel.textContent = 'Investment Period (Years)'; } 
-      else if (newMode === 'rd') { rdSection.classList.remove('hidden'); rdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'RD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your Recurring Deposit.'; periodLabel.textContent = 'Investment Period (Years)'; } 
-      else if (newMode === 'fd') { fdSection.classList.remove('hidden'); fdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'FD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your Fixed Deposit.'; periodLabel.textContent = 'Investment Period (Years)'; } 
-      else if (newMode === 'swp') { 
-          swpSection.classList.remove('hidden'); 
-          swpSummary.classList.remove('hidden'); 
-          calculatorTitle.textContent = 'SWP Calculator'; 
-          calculatorDescription.textContent = 'Plan post-retirement income with a Systematic Withdrawal Plan.'; 
+
+      if (newMode === 'sip') { sipSection.classList.remove('hidden'); sipSummary.classList.remove('hidden'); calculatorTitle.textContent = 'SIP Calculator with Inflation'; calculatorDescription.textContent = 'Plan your investments with our advanced SIP Calculator. Also includes tools for RD, FD, SWP, Goal Planning.'; periodLabel.textContent = 'Investment Period (Years)'; }
+      else if (newMode === 'lumpsum') { lumpsumSection.classList.remove('hidden'); lumpsumSummary.classList.remove('hidden'); calculatorTitle.textContent = 'Lumpsum Calculator'; calculatorDescription.textContent = 'Calculate the future value of your one-time investment.'; periodLabel.textContent = 'Investment Period (Years)'; }
+      else if (newMode === 'rd') { rdSection.classList.remove('hidden'); rdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'RD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your Recurring Deposit.'; periodLabel.textContent = 'Investment Period (Years)'; }
+      else if (newMode === 'fd') { fdSection.classList.remove('hidden'); fdSummary.classList.remove('hidden'); calculatorTitle.textContent = 'FD Calculator'; calculatorDescription.textContent = 'Calculate the maturity amount of your Fixed Deposit.'; periodLabel.textContent = 'Investment Period (Years)'; }
+      else if (newMode === 'swp') {
+          swpSection.classList.remove('hidden');
+          swpSummary.classList.remove('hidden');
+          calculatorTitle.textContent = 'SWP Calculator';
+          calculatorDescription.textContent = 'Plan post-retirement income with a Systematic Withdrawal Plan.';
           periodLabel.textContent = 'Withdrawal Period (Years)';
           growthTableHeader.innerHTML = `<tr>
               <th class="px-2 py-1 text-left text-xxs font-medium text-gray-500 uppercase tracking-wider">Year</th>
@@ -492,7 +496,7 @@ function initializeCalculator() {
 
       updateCalculator();
     }
-    
+
     const handleShare = () => {
         const params = new URLSearchParams();
         params.set('mode', currentMode);
@@ -523,12 +527,12 @@ function initializeCalculator() {
         } else if (currentMode === 'swp') {
             params.set('corpus', initialCorpusInput.value);
             params.set('withdrawal', withdrawalAmountInput.value);
-            params.set('increase', withdrawalIncreaseInput.value); 
+            params.set('increase', withdrawalIncreaseInput.value);
             params.set('increaseType', withdrawalIncreaseTypeToggle.checked ? 'amount' : 'percent');
             params.set('rate', returnRateInput.value);
             params.set('period', investmentPeriodInput.value);
         }
-        
+
         if (inflationToggle.checked) {
             params.set('inflation', inflationRateInput.value);
         }
@@ -614,7 +618,7 @@ function initializeCalculator() {
                 inflationRateInput.value = params.get('inflation');
                 inflationInputGroup.classList.remove('hidden');
             }
-            
+
             document.querySelectorAll('input[type="range"]').forEach(slider => {
                 const input = getElem(slider.id.replace('Slider', 'Input'));
                 if (input && slider) {
@@ -637,7 +641,7 @@ function initializeCalculator() {
             if (label.id.includes('sip')) labelTextPrefix = 'Annual Increase';
             else if (label.id.includes('rd')) labelTextPrefix = 'Annual Increase';
             else if (label.id.includes('withdrawal')) labelTextPrefix = 'Annual Withdrawal Increase';
-            
+
             if (isAmountMode) {
                 label.textContent = `${labelTextPrefix} (₹)`;
                 slider.min = 0;
@@ -667,26 +671,53 @@ function initializeCalculator() {
     }
 
     function setupEventListeners() {
-      const inputs = [ 
-       { slider: sipAmountSlider, input: sipAmountInput, error: errorMessages.sipAmount }, 
-       { slider: lumpsumAmountSlider, input: lumpsumAmountInput, error: errorMessages.lumpsumAmount }, 
-       { slider: rdAmountSlider, input: rdAmountInput, error: errorMessages.rdAmount }, 
-       { slider: fdAmountSlider, input: fdAmountInput, error: errorMessages.fdAmount }, 
-       { slider: initialCorpusSlider, input: initialCorpusInput, error: errorMessages.initialCorpus }, 
-       { slider: withdrawalAmountSlider, input: withdrawalAmountInput, error: errorMessages.withdrawalAmount }, 
-       { slider: withdrawalIncreaseSlider, input: withdrawalIncreaseInput, error: null },
-       { slider: returnRateSlider, input: returnRateInput, error: errorMessages.returnRate }, 
-       { slider: investmentPeriodSlider, input: investmentPeriodInput, error: errorMessages.investmentPeriod }, 
-       { slider: inflationRateSlider, input: inflationRateInput, error: errorMessages.inflationRate }, 
-       { slider: sipIncreaseRateSlider, input: sipIncreaseRateInput, error: null }, 
-       { slider: rdIncreaseRateSlider, input: rdIncreaseRateInput, error: null }, 
-       { slider: targetAmountSlider, input: targetAmountInput, error: errorMessages.targetAmount }, 
-       { slider: goalReturnRateSlider, input: goalReturnRateInput, error: errorMessages.goalReturnRate }, 
-       { slider: goalPeriodSlider, input: goalPeriodInput, error: errorMessages.goalPeriod }
+      const inputs = [
+       // UPDATED: Added decrementId and incrementId for each entry
+       { slider: sipAmountSlider, input: sipAmountInput, error: errorMessages.sipAmount, decrementId: 'sipAmountDecrement', incrementId: 'sipAmountIncrement' },
+       { slider: lumpsumAmountSlider, input: lumpsumAmountInput, error: errorMessages.lumpsumAmount, decrementId: 'lumpsumAmountDecrement', incrementId: 'lumpsumAmountIncrement' },
+       { slider: rdAmountSlider, input: rdAmountInput, error: errorMessages.rdAmount, decrementId: 'rdAmountDecrement', incrementId: 'rdAmountIncrement' },
+       { slider: fdAmountSlider, input: fdAmountInput, error: errorMessages.fdAmount, decrementId: 'fdAmountDecrement', incrementId: 'fdAmountIncrement' },
+       { slider: initialCorpusSlider, input: initialCorpusInput, error: errorMessages.initialCorpus, decrementId: 'initialCorpusDecrement', incrementId: 'initialCorpusIncrement' },
+       { slider: withdrawalAmountSlider, input: withdrawalAmountInput, error: errorMessages.withdrawalAmount, decrementId: 'withdrawalAmountDecrement', incrementId: 'withdrawalAmountIncrement' },
+       { slider: withdrawalIncreaseSlider, input: withdrawalIncreaseInput, error: null, decrementId: 'withdrawalIncreaseDecrement', incrementId: 'withdrawalIncreaseIncrement' },
+       { slider: returnRateSlider, input: returnRateInput, error: errorMessages.returnRate, decrementId: 'returnRateDecrement', incrementId: 'returnRateIncrement' },
+       { slider: investmentPeriodSlider, input: investmentPeriodInput, error: errorMessages.investmentPeriod, decrementId: 'investmentPeriodDecrement', incrementId: 'investmentPeriodIncrement' },
+       { slider: inflationRateSlider, input: inflationRateInput, error: errorMessages.inflationRate, decrementId: 'inflationRateDecrement', incrementId: 'inflationRateIncrement' },
+       { slider: sipIncreaseRateSlider, input: sipIncreaseRateInput, error: null, decrementId: 'sipIncreaseRateDecrement', incrementId: 'sipIncreaseRateIncrement' },
+       { slider: rdIncreaseRateSlider, input: rdIncreaseRateInput, error: null, decrementId: 'rdIncreaseRateDecrement', incrementId: 'rdIncreaseRateIncrement' },
+       { slider: targetAmountSlider, input: targetAmountInput, error: errorMessages.targetAmount, decrementId: 'targetAmountDecrement', incrementId: 'targetAmountIncrement' },
+       { slider: goalReturnRateSlider, input: goalReturnRateInput, error: errorMessages.goalReturnRate, decrementId: 'goalReturnRateDecrement', incrementId: 'goalReturnRateIncrement' },
+       { slider: goalPeriodSlider, input: goalPeriodInput, error: errorMessages.goalPeriod, decrementId: 'goalPeriodDecrement', incrementId: 'goalPeriodIncrement' }
      ];
-      
-      inputs.forEach(({ slider, input, error }) => { 
+
+      inputs.forEach(({ slider, input, error, decrementId, incrementId }) => { // Include IDs here
         if (slider && input) {
+          // Pass the button IDs to syncSliderAndInput
+           if (typeof syncSliderAndInput === 'function') { // Check if function is available
+               syncSliderAndInput({
+                   sliderId: slider.id,
+                   inputId: input.id,
+                   decrementId: decrementId, // Pass decrementId
+                   incrementId: incrementId, // Pass incrementId
+                   updateCallback: debouncedUpdate // Keep the debounced update
+               });
+           } else {
+               console.error('syncSliderAndInput function is not defined. Make sure utils.js is loaded correctly.');
+               // Fallback: Basic listeners without stepper button logic if sync function failed to load
+                slider.addEventListener('input', () => {
+                    input.value = slider.value;
+                    updateSliderFill(slider);
+                    debouncedUpdate();
+                });
+                input.addEventListener('input', () => {
+                    slider.value = input.value;
+                    updateSliderFill(slider);
+                    debouncedUpdate();
+                });
+           }
+
+
+          // Validation logic remains the same, syncSliderAndInput handles listeners now
           const validate = () => {
             const value = parseFloat(input.value);
             const min = parseFloat(input.min);
@@ -700,20 +731,7 @@ function initializeCalculator() {
             return isValid;
           };
 
-          slider.addEventListener('input', () => { 
-            input.value = slider.value; 
-            updateSliderFill(slider); 
-            if(validate()) debouncedUpdate(); 
-          }); 
-
-          input.addEventListener('input', () => { 
-            if(validate()) {
-              slider.value = input.value; 
-              updateSliderFill(slider); 
-              debouncedUpdate(); 
-            }
-          });
-
+          // Keep blur validation if needed, though syncSliderAndInput has its own
           input.addEventListener('blur', () => {
               let value = parseFloat(input.value);
               const min = parseFloat(slider.min);
@@ -724,32 +742,36 @@ function initializeCalculator() {
               } else if (value > max) {
                   value = max;
               }
-              
+
               const step = parseFloat(slider.step) || 1;
-              const correctedValue = step < 1 
-                  ? parseFloat(value).toFixed(String(step).split('.')[1]?.length || 1) 
+              const correctedValue = step < 1
+                  ? parseFloat(value).toFixed(String(step).split('.')[1]?.length || 1)
                   : Math.round(value / step) * step;
-              
-              input.value = correctedValue;
-              slider.value = correctedValue;
-              
+
+              // Ensure value is clamped *after* step correction
+              value = Math.max(min, Math.min(max, parseFloat(correctedValue)));
+
+              input.value = value;
+              slider.value = value;
+
               updateSliderFill(slider);
               validate(); // Remove error styles
               updateCalculator(); // Immediate update on blur
           });
-        } 
+        }
       });
-      
-      [sipFrequencySelect, rdFrequencySelect, withdrawalFrequencySelect, inflationToggle, taxToggle, taxSlabSelect].forEach(el => { 
-        if (el) { 
-          el.addEventListener('change', () => { 
+
+      // ... rest of the event listeners remain the same ...
+      [sipFrequencySelect, rdFrequencySelect, withdrawalFrequencySelect, inflationToggle, taxToggle, taxSlabSelect].forEach(el => {
+        if (el) {
+          el.addEventListener('change', () => {
             if (el.id === 'inflationToggle') { inflationInputGroup.classList.toggle('hidden', !inflationToggle.checked); }
             if (el.id === 'taxToggle') { taxInputGroup.classList.toggle('hidden', !taxToggle.checked); }
-            updateCalculator(); 
-          }); 
-        } 
+            updateCalculator();
+          });
+        }
       });
-      
+
       sipModeBtn.addEventListener('click', () => switchMode('sip'));
       lumpsumModeBtn.addEventListener('click', () => switchMode('lumpsum'));
       rdModeBtn.addEventListener('click', () => switchMode('rd'));
@@ -780,7 +802,7 @@ function initializeCalculator() {
                     goalPeriodSlider.value = 3;
                     goalReturnRateSlider.value = 8;
                 }
-                
+
                 targetAmountInput.value = targetAmountSlider.value;
                 goalPeriodInput.value = goalPeriodSlider.value;
                 goalReturnRateInput.value = goalReturnRateSlider.value;
@@ -795,7 +817,7 @@ function initializeCalculator() {
 
       toggleGrowthTableBtn.addEventListener('click', () => { growthTableContainer.classList.toggle('hidden'); toggleGrowthTableBtn.textContent = growthTableContainer.classList.contains('hidden') ? 'Show Yearly Growth' : 'Hide Yearly Growth'; });
       window.addEventListener('resize', debounce(() => { if(investmentDoughnutChart) investmentDoughnutChart.resize(); }, 250));
-    
+
       setupIncreaseToggle(sipIncreaseTypeToggle, sipIncreaseLabel, sipIncreaseRateSlider, sipIncreaseRateInput);
       setupIncreaseToggle(rdIncreaseTypeToggle, rdIncreaseLabel, rdIncreaseRateSlider, rdIncreaseRateInput);
       setupIncreaseToggle(withdrawalIncreaseTypeToggle, withdrawalIncreaseLabel, withdrawalIncreaseSlider, withdrawalIncreaseInput);
